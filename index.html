@@ -64,6 +64,153 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-BUGKU靶场解题记录之web" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/" class="article-date">
+  <time datetime="2021-07-30T14:28:07.903Z" itemprop="datePublished">2021-07-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/">BUGKU靶场解题记录之web</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a><center>前言：</center></h4><blockquote>
+<p>学习CTF已经有一段时间了，陆陆续续也做了不少题。为了准备前段时间的全国大学生信息安全大赛，又把许多题目重新看过一遍。现在也终于闲下来一两天，正好趁这个机会把在bugku靶场做出的题目整理一下。</p>
+</blockquote>
+<h4 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h4><h6 id="web1"><a href="#web1" class="headerlink" title="web1"></a>web1</h6><p>打开看到一大堆滑稽，F12查看网页源代码就能发现flag，明显的送分题。</p>
+<h6 id="web2"><a href="#web2" class="headerlink" title="web2"></a>web2</h6><p> 题目描述输入验证码即可得到flag，正常输入发现只能输入1位，F12，将maxlength=”1”改为maxlength=”2”即可正确输入,得到flag。还是送分题。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;ea008b7aaab0d3ea27c8580df13f52c3&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="web3"><a href="#web3" class="headerlink" title="web3"></a>web3</h6><p>根据题意构造url即可得到flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://114.67.246.176:14287/?what=flag</span><br><span class="line">flag&#123;45240136ecbcb3c6db9d1dcb756ced4b&#125;</span><br></pre></td></tr></table></figure>
+<p>######web4<br>跟上一道题类似，只不过这次是post，使用Firefox插架Max HackBar输入what=flag得到flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;1e7a6931002d229ac37085a846d21e6d&#125; </span><br></pre></td></tr></table></figure>
+
+<h6 id="web5"><a href="#web5" class="headerlink" title="web5"></a>web5</h6><p>题目描述<strong>矛盾</strong>，打开链接看到相应php代码描述。if=($num==1) 意思就是num等于数字1就会打印flag 但是is_numeric函数检测数字意味着，<strong>既要是数字1，又不能是数字。</strong><br>在评论区有这个介绍。</p>
+<blockquote>
+<p>PHP一个数字和一个字符串进行比较或者进行运算时，PHP会把字符串转换成数字再进行比较。PHP转换的规则的是：若字符串以数字开头，则取开头数字作为转换结果，若无则输出0。 在PHP中，== 会先进行类型转换，再进行对比，而===会先比较类型，如果类型不同直接返回不相等。</p>
+</blockquote>
+<p>题目中正好使用的是==号我们可以构造类似1a的数字加字母的组合。<br>构建url得到flag：<br><em>flag{2b16dd84ae5d35c74fe16c759849b871}</em></p>
+<h6 id="web6"><a href="#web6" class="headerlink" title="web6"></a>web6</h6><p>直接查看网页源代码，得到unicode编码解码得到相flag。<br> <strong>flag{f41c9ed6534a088591cfc7cb118d8b46}</strong></p>
+<h6 id="web7-你必须让他停下来"><a href="#web7-你必须让他停下来" class="headerlink" title="web7 你必须让他停下来"></a>web7 你必须让他停下来</h6><p>右键查看源代码，然后一直刷新源代码的页面，就能得到flag，当然有burpsuit抓包，然后sendtorepeter，一直send也一样，在第10张jpg的响应里边就有flag.<br>这两种方法本质上是一样的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;222c6ea6e3f1b78d0e47688932d6c097&#125;</span><br></pre></td></tr></table></figure>
+<p>在补充一点提交flag时要记得把代理关上。</p>
+<h6 id="web8-文件包含"><a href="#web8-文件包含" class="headerlink" title="web8 文件包含"></a>web8 文件包含</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> &lt;?php</span><br><span class="line">    include &quot;flag.php&quot;;</span><br><span class="line">    $a = @$_REQUEST[&#x27;hello&#x27;];</span><br><span class="line">    eval( &quot;var_dump($a);&quot;);</span><br><span class="line">    show_source(__FILE__);</span><br><span class="line">?&gt; </span><br></pre></td></tr></table></figure>
+<p>审计PHP代码得到以下信息。</p>
+<blockquote>
+<p>request函数表明可以任选get或post方法提交<br>helloeval() 函数把字符串按照 PHP 代码来执行<br>show_source用来返回文件内容<br>include函数会将flag.php包含在该文件中</p>
+</blockquote>
+<p>由此我们可以构建url <strong>/?hello=show_source(‘flag.php’)<strong>或者</strong>?hello=file(‘flag.php’)<strong>均能得到flag。</strong>flag{e5d1a21b2cf1819415ce4ba106e868d9}</strong></p>
+<h6 id="web9"><a href="#web9" class="headerlink" title="web9"></a>web9</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(0);</span><br><span class="line">include &quot;flag1.php&quot;;</span><br><span class="line">highlight_file(__file__);</span><br><span class="line">if(isset($_GET[&#x27;args&#x27;]))&#123;</span><br><span class="line">    $args = $_GET[&#x27;args&#x27;];</span><br><span class="line">    if(!preg_match(&quot;/^\w+$/&quot;,$args))&#123;</span><br><span class="line">        die(&quot;args error!&quot;);</span><br><span class="line">    &#125;eval(&quot;var_dump($$args);&quot;);&#125;</span><br><span class="line">?&gt; </span><br></pre></td></tr></table></figure>
+<p>php代码实际上就是最大的提示。</p>
+<blockquote>
+<p>flag in the variable：提示flag在变量里面<br>preg_match：使用正则表达式匹配，/^\w+$/ 表明只能输入数字和英文字母及下划线<br>说明此时只能用全局变量查看GLOBALS</p>
+</blockquote>
+<p>构造?args=GLOBALS得到flag：<br><em>flag{6ee63ee40bbaf7d0992a373217f73f43}</em></p>
+<h6 id="web10-头等舱"><a href="#web10-头等舱" class="headerlink" title="web10 头等舱"></a>web10 头等舱</h6><p>我觉得这道题真的是送分的，F12查看网络在响应头里就能得到flag。当然抓包也一样但是麻烦了。</p>
+<h6 id="web-11-网站被黑"><a href="#web-11-网站被黑" class="headerlink" title="web 11 网站被黑"></a>web 11 网站被黑</h6><blockquote>
+<p> 描　　述: 网站被黑了 黑客会不会留下后门 </p>
+</blockquote>
+<p>既然提示了后门的存在就用，扫描工具扫描下。利用御剑扫描，扫出来两个.php一个是那个黑页，另一个是一张登录界面。<br><img src="https://upload-images.jianshu.io/upload_images/24919094-ff37e575621d6bc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>在得到网址后进项抓包，直接用burp suit自带的爆破功能爆破下就OK了。（注burp suite的社区版爆破功能好像不是很全，推荐去找一个别人破解的专业版）<br><img src="https://upload-images.jianshu.io/upload_images/24919094-fea2aa6bcd261fd2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<h6 id="web-12-本地管理员"><a href="#web-12-本地管理员" class="headerlink" title="web 12 本地管理员"></a>web 12 本地管理员</h6><p>查看网页源代码在一堆n后面有个base64，解码得到管理员密码，账户盲猜admin登录，提示IP禁止访问，请联系本地管理员登陆，IP已被记录.使用本地管理员登录，就要进行IP伪造，编辑消息头，X-Forwarded-For:127.0.0.1。得到flag</p>
+<h6 id="game1"><a href="#game1" class="headerlink" title="game1"></a>game1</h6><p>一道游戏题，正常来说游戏应该是杂项吧，这一次的游戏题有一说一竟然让我忘了我是来做题的。<br>在评论区得到大佬的提示，这一道游戏题分数上限是99999，使用burp suite抓包，在最后出成绩时能看到</p>
+<blockquote>
+<p>GET /score.php?score=200&amp;ip=223.104.190.201&amp;sign=zMMjAw== HTTP/1.1</p>
+</blockquote>
+<p>sign=zMMjAw像是base64加密，但是直接解算不出来，多玩几次游戏，发现zM是一直都有的，对后面的部分解码正是游戏得到的分数。构造url</p>
+<blockquote>
+<p>score.php?score=99999&amp;ip=223.104.190.201&amp;sign=zMOTk5OTk==</p>
+</blockquote>
+<p>得到flag。<em>flag{78544bfa1e21dcf4dcbd7488870b267f}</em></p>
+<h6 id="web13-看看源码吧"><a href="#web13-看看源码吧" class="headerlink" title="web13 看看源码吧"></a>web13 看看源码吧</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var p1 = &#x27;%66%75%6e%63%74%69%6f%6e%20%63%68%65%63%6b%53%75%62%6d%69%74%28%29%7b%76%61%72%20%61%3d%64%6f%63%75%6d%65%6e%74%2e%67%65%74%45%6c%65%6d%65%6e%74%42%79%49%64%28%22%70%61%73%73%77%6f%72%64%22%29%3b%69%66%28%22%75%6e%64%65%66%69%6e%65%64%22%21%3d%74%79%70%65%6f%66%20%61%29%7b%69%66%28%22%36%37%64%37%30%39%62%32%62&#x27;;</span><br><span class="line">var p2 = &#x27;%61%61%36%34%38%63%66%36%65%38%37%61%37%31%31%34%66%31%22%3d%3d%61%2e%76%61%6c%75%65%29%72%65%74%75%72%6e%21%30%3b%61%6c%65%72%74%28%22%45%72%72%6f%72%22%29%3b%61%2e%66%6f%63%75%73%28%29%3b%72%65%74%75%72%6e%21%31%7d%7d%64%6f%63%75%6d%65%6e%74%2e%67%65%74%45%6c%65%6d%65%6e%74%42%79%49%64%28%22%6c%65%76%65%6c%51%75%65%73%74%22%29%2e%6f%6e%73%75%62%6d%69%74%3d%63%68%65%63%6b%53%75%62%6d%69%74%3b&#x27;;</span><br><span class="line">eval(unescape(p1) + unescape(&#x27;%35%34%61%61%32&#x27; + p2));</span><br></pre></td></tr></table></figure>
+<p>使用<a target="_blank" rel="noopener" href="http://tool.chinaz.com/tools/urlencode.aspx">在线工具解码</a>得到三段url按照要求进行拼接</p>
+<blockquote>
+<p>function checkSubmit(){var a=document.getElementById(“password”);if(“undefined”!=typeof a){if(“67d709b2b54aa2aa648cf6e87a7114f1”==a.value)return!0;alert(“Error”);a.focus();return!1}}document.getElementById(“levelQuest”).onsubmit=checkSubmit;</p>
+</blockquote>
+<p>中间那一段就是要在网页上提交的东西,提交得到flag；</p>
+<blockquote>
+<p>flag{f51a5a7335f538b979ac5eaf43e4cad6}</p>
+</blockquote>
+<h6 id="web14"><a href="#web14" class="headerlink" title="web14"></a>web14</h6><p>怎么说呢？这道题考察了<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32393893/article/details/110228864">文件包含&amp;PHP伪协议</a>这个作者整理的很好，可以去借鉴借鉴。<br>构造一个url</p>
+<blockquote>
+<p>php?file=php://filter/read=convert.base64-encode/resource=index.php<br>读取目标服务器文件内容，并讲这些内容进行base64编码，我们只需要解码就可以了。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DQogICAgDQo8P3BocA0KCWVycm9yX3JlcG9ydGluZygwKTsNCglpZighJF9HRVRbZmlsZV0pe2VjaG8gJzxhIGhyZWY9Ii4vaW5kZXgucGhwP2ZpbGU9c2hvdy5waHAiPmNsaWNrIG1lPyBubzwvYT4nO30NCgkkZmlsZT0kX0dFVFsnZmlsZSddOw0KCWlmKHN0cnN0cigkZmlsZSwiLi4vIil8fHN0cmlzdHIoJGZpbGUsICJ0cCIpfHxzdHJpc3RyKCRmaWxlLCJpbnB1dCIpfHxzdHJpc3RyKCRmaWxlLCJkYXRhIikpew0KCQllY2hvICJPaCBubyEiOw0KCQlleGl0KCk7DQoJfQ0KCWluY2x1ZGUoJGZpbGUpOyANCi8vZmxhZzpmbGFne2U4M2VlOWM2YWY5MjdkYWFmMjAyMTExNjE1ZWJjOWYxfQ0KPz4NCjwvaHRtbD4NCg</span><br></pre></td></tr></table></figure>
+<p>对着一长串进行解码得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	error_reporting(0);</span><br><span class="line">	if(!$_GET[file])&#123;echo &#x27;&lt;a href=&quot;./index.php?file=show.php&quot;&gt;click me? no&lt;/a&gt;&#x27;;&#125;</span><br><span class="line">	$file=$_GET[&#x27;file&#x27;];</span><br><span class="line">	if(strstr($file,&quot;../&quot;)||stristr($file, &quot;tp&quot;)||stristr($file,&quot;input&quot;)||stristr($file,&quot;data&quot;))&#123;</span><br><span class="line">		echo &quot;Oh no!&quot;;</span><br><span class="line">		exit();</span><br><span class="line">	&#125;</span><br><span class="line">	include($file); </span><br><span class="line">//flag:flag&#123;e83ee9c6af927daaf202111615ebc9f1&#125;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>得到flag。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://shierjinghuang.github.io/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/" data-id="ckrqg1qt20000eounesi183ks" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-QFNUCTF春季练习赛结题记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/07/30/QFNUCTF%E6%98%A5%E5%AD%A3%E7%BB%83%E4%B9%A0%E8%B5%9B%E7%BB%93%E9%A2%98%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2021-07-30T14:25:52.464Z" itemprop="datePublished">2021-07-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="title-QFNUCTF春季练习赛解题记录"><a href="#title-QFNUCTF春季练习赛解题记录" class="headerlink" title="title:QFNUCTF春季练习赛解题记录"></a>title:QFNUCTF春季练习赛解题记录</h2><h2 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h2><h4 id="1-二维码"><a href="#1-二维码" class="headerlink" title="1 二维码"></a>1 二维码</h4><p>题目下载出的压缩包中是一张二维码<br>这张二维码，用手机扫一扫后输出secret in here .试了一下这东西不是flag，使用Formost分解图片找到了一个压缩包，里面的txt文件名字叫做4.number。<br><img src="https://upload-images.jianshu.io/upload_images/24919094-cc97408e49939ec3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>使用软件进行爆破，得到密码7639，得到flag：CTF{vjpw_wnoei}</p>
+<h4 id="2-基础破解"><a href="#2-基础破解" class="headerlink" title="2  基础破解"></a>2  基础破解</h4><p>给你一个压缩包，你并不能获得什么，因为他是四位数字加密的，嗯题干说的很清晰，密码是四位数字加密的，同样暴力跑下，得到结果2563，输入打开密码文件，得道，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZmxhZ3s3MDM1NDMwMGE1MTAwYmE3ODA2ODgwNTY2MWI5M2E1Y30=</span><br></pre></td></tr></table></figure>
+<p>很明显这是base64编码,使用工具解码得flag{70354300a5100ba78068805661b93a5c}，换成相应格式就可以提交了。</p>
+<h3 id="3-大白-●—●"><a href="#3-大白-●—●" class="headerlink" title="3 大白(●—●)"></a>3 大白(●—●)</h3><p>大白这道题真是一道老题，使用winhex修改图片高度就可以得到flag，但是在之前我的winhex被我玩坏了，重下外带激活，忙活了老一阵。</p>
+<p>####4 多种方法解决<br>从平台下载下来到文件是exe类型，但是无法正常打开，修改拓展名为txt，发现文件头是：</p>
+<blockquote>
+<p>data:image/jpg;base64,</p>
+</blockquote>
+<p>这个是将jpg文件转化成的base64编码，使用工具<a target="_blank" rel="noopener" href="http://tool.chinaz.com/tools/imgtobase">base64图片在线转换工具</a>将base64编码专为图片，扫描图片得到flag，KEY{dca57f966e4e4e31fd5b15417da63269}</p>
+<h4 id="5-爱因斯坦"><a href="#5-爱因斯坦" class="headerlink" title="5 爱因斯坦"></a>5 爱因斯坦</h4><p>题目下载下来是一张爱因斯坦的表情包，在图片的属性中有备注this_is_not_password，那么我觉得应该是在图片中有压缩包，使用formost进行分解，得到压缩包，但是txt文件解压需要密码，密码来源我觉得是在图片的高度上，毕竟1366,768可能被隐藏了一部分，然后由于我渣渣的winhex使用，图片高度每有调整，我还不知道如何解决。<br>设想使用暴力破解，但是试了6位没有，实验七位时间已经超过数个小时，这样绝对行不通。<br>在这个题中我唯一知道的信息是this_is_not_password，实验下，结果就是这个。<br>打开txt文档flag{dd22a92bf2cceb6c0cd0d6b83ff51606}</p>
+<h4 id="6-神秘龙卷风"><a href="#6-神秘龙卷风" class="headerlink" title="6 神秘龙卷风"></a>6 神秘龙卷风</h4><p>题干描述科学家用四位数字为它命名，和之前一样，爆破得到密码5463，打开压缩文件，打开txt文件神秘的龙卷风，好家伙这不就是Brainfuck编码吗？<img src="https://upload-images.jianshu.io/upload_images/24919094-6678e719593812b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>将文本内容复制，用在线工具将他转化为txt得到flag{e4bbef8bdf9743f8bf5b727a9f6332a8}</p>
+<h4 id="7-刷新过的图片"><a href="#7-刷新过的图片" class="headerlink" title="7 刷新过的图片"></a>7 刷新过的图片</h4><p>没做出来</p>
+<h4 id="8-wireshark"><a href="#8-wireshark" class="headerlink" title="8 wireshark"></a>8 wireshark</h4><p>使用wirshark追踪http流得到，在追踪多个http流后发现有</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">email=flag&amp;password=ffb7567a1d4f4abdffdb54e022f8facd&amp;captcha=BYUGHTTP/1.1 200 OK</span><br><span class="line">Date: Mon, 29 Jun 2015 15:09:10 GMT</span><br><span class="line">Content-Type: text/html; charset=UTF-8</span><br><span class="line">Transfer-Encoding: chunked</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Expires: Thu, 19 Nov 1981 08:52:00 GMT</span><br><span class="line">Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0</span><br><span class="line">Pragma: no-cache</span><br><span class="line">Server: yunjiasu-nginx</span><br><span class="line">CF-RAY: 1fe28d0a63e91c3b-JXG</span><br><span class="line">Content-Encoding: gzip</span><br></pre></td></tr></table></figure>
+<p>email=flag&amp;password=ffb7567a1d4f4abdffdb54e022f8facd&amp;captcha=BYUG得到flag</p>
+<h2 id="逆向"><a href="#逆向" class="headerlink" title="逆向"></a>逆向</h2><h4 id="1-easy-re"><a href="#1-easy-re" class="headerlink" title="1 easy.re"></a>1 easy.re</h4><p>由于做逆向少，ctftools里的工具又不知道为什么打不开easy.exe，从网上下载了IDA就那个图标很磕碜的软件，easy.red的flag就在main（）里<br><img src="https://upload-images.jianshu.io/upload_images/24919094-8aab620e79a564b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>“flag{this_Is_a_EaSyRe}”</p>
+<h4 id="2-reverse-1"><a href="#2-reverse-1" class="headerlink" title="2 reverse_1"></a>2 reverse_1</h4><p>说实话这道题我是用最笨的方法做的，将文件用IDA反编译，从头到尾一个个的找下去，在sub_1400118C0这个项目里面找到了“hello world”这个可能是flag的东西，<br><img src="https://upload-images.jianshu.io/upload_images/24919094-c2f7d359bfd385ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>this is the right flag!更加坚定了我的想法，尝试输入，不对。之后憨憨的从这里到下面全部翻了一遍，试了几个字符串发现没有结果后，最后又回到这里。<br>考虑到之前做bugku的题目有的题目有我们解出的是o，在需要输入的flag上却是0的情况，试着输入0代替o，然后correct。<br>QFNU{hell0_w0rld}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://shierjinghuang.github.io/2021/07/30/QFNUCTF%E6%98%A5%E5%AD%A3%E7%BB%83%E4%B9%A0%E8%B5%9B%E7%BB%93%E9%A2%98%E8%AE%B0%E5%BD%95/" data-id="ckrqg1qt60001eoun9c9i7jqt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-C语言实训之员工信息管理系统" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/07/30/C%E8%AF%AD%E8%A8%80%E5%AE%9E%E8%AE%AD%E4%B9%8B%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" class="article-date">
@@ -341,6 +488,14 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/">BUGKU靶场解题记录之web</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/30/QFNUCTF%E6%98%A5%E5%AD%A3%E7%BB%83%E4%B9%A0%E8%B5%9B%E7%BB%93%E9%A2%98%E8%AE%B0%E5%BD%95/">(no title)</a>
+          </li>
         
           <li>
             <a href="/2021/07/30/C%E8%AF%AD%E8%A8%80%E5%AE%9E%E8%AE%AD%E4%B9%8B%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">C语言课程实训：员工信息管理系统</a>

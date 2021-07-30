@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>十二惊惶的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="title:QFNUCTF春季练习赛解题记录杂项1 二维码题目下载出的压缩包中是一张二维码这张二维码，用手机扫一扫后输出secret in here .试了一下这东西不是flag，使用Formost分解图片找到了一个压缩包，里面的txt文件名字叫做4.number。 使用软件进行爆破，得到密码7639，得到flag：CTF{vjpw_wnoei} 2  基础破解给你一个压缩包，你并不能获得什么，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="十二惊惶的博客">
+<meta property="og:url" content="https://shierjinghuang.github.io/2021/07/30/QFNUCTF%E6%98%A5%E5%AD%A3%E7%BB%83%E4%B9%A0%E8%B5%9B%E7%BB%93%E9%A2%98%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="十二惊惶的博客">
+<meta property="og:description" content="title:QFNUCTF春季练习赛解题记录杂项1 二维码题目下载出的压缩包中是一张二维码这张二维码，用手机扫一扫后输出secret in here .试了一下这东西不是flag，使用Formost分解图片找到了一个压缩包，里面的txt文件名字叫做4.number。 使用软件进行爆破，得到密码7639，得到flag：CTF{vjpw_wnoei} 2  基础破解给你一个压缩包，你并不能获得什么，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/24919094-cc97408e49939ec3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/24919094-6678e719593812b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/24919094-8aab620e79a564b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/24919094-c2f7d359bfd385ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2021-07-30T14:25:52.464Z">
+<meta property="article:modified_time" content="2021-07-30T14:31:15.114Z">
+<meta property="article:author" content="shierjinghuang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/24919094-cc97408e49939ec3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+    <link rel="alternate" href="/atom.xml" title="十二惊惶的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">十二惊惶的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://shierjinghuang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-QFNUCTF春季练习赛结题记录" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/07/30/QFNUCTF%E6%98%A5%E5%AD%A3%E7%BB%83%E4%B9%A0%E8%B5%9B%E7%BB%93%E9%A2%98%E8%AE%B0%E5%BD%95/" class="article-date">
+  <time datetime="2021-07-30T14:25:52.464Z" itemprop="datePublished">2021-07-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <hr>
+<h2 id="title-QFNUCTF春季练习赛解题记录"><a href="#title-QFNUCTF春季练习赛解题记录" class="headerlink" title="title:QFNUCTF春季练习赛解题记录"></a>title:QFNUCTF春季练习赛解题记录</h2><h2 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h2><h4 id="1-二维码"><a href="#1-二维码" class="headerlink" title="1 二维码"></a>1 二维码</h4><p>题目下载出的压缩包中是一张二维码<br>这张二维码，用手机扫一扫后输出secret in here .试了一下这东西不是flag，使用Formost分解图片找到了一个压缩包，里面的txt文件名字叫做4.number。<br><img src="https://upload-images.jianshu.io/upload_images/24919094-cc97408e49939ec3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>使用软件进行爆破，得到密码7639，得到flag：CTF{vjpw_wnoei}</p>
+<h4 id="2-基础破解"><a href="#2-基础破解" class="headerlink" title="2  基础破解"></a>2  基础破解</h4><p>给你一个压缩包，你并不能获得什么，因为他是四位数字加密的，嗯题干说的很清晰，密码是四位数字加密的，同样暴力跑下，得到结果2563，输入打开密码文件，得道，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZmxhZ3s3MDM1NDMwMGE1MTAwYmE3ODA2ODgwNTY2MWI5M2E1Y30=</span><br></pre></td></tr></table></figure>
+<p>很明显这是base64编码,使用工具解码得flag{70354300a5100ba78068805661b93a5c}，换成相应格式就可以提交了。</p>
+<h3 id="3-大白-●—●"><a href="#3-大白-●—●" class="headerlink" title="3 大白(●—●)"></a>3 大白(●—●)</h3><p>大白这道题真是一道老题，使用winhex修改图片高度就可以得到flag，但是在之前我的winhex被我玩坏了，重下外带激活，忙活了老一阵。</p>
+<p>####4 多种方法解决<br>从平台下载下来到文件是exe类型，但是无法正常打开，修改拓展名为txt，发现文件头是：</p>
+<blockquote>
+<p>data:image/jpg;base64,</p>
+</blockquote>
+<p>这个是将jpg文件转化成的base64编码，使用工具<a target="_blank" rel="noopener" href="http://tool.chinaz.com/tools/imgtobase">base64图片在线转换工具</a>将base64编码专为图片，扫描图片得到flag，KEY{dca57f966e4e4e31fd5b15417da63269}</p>
+<h4 id="5-爱因斯坦"><a href="#5-爱因斯坦" class="headerlink" title="5 爱因斯坦"></a>5 爱因斯坦</h4><p>题目下载下来是一张爱因斯坦的表情包，在图片的属性中有备注this_is_not_password，那么我觉得应该是在图片中有压缩包，使用formost进行分解，得到压缩包，但是txt文件解压需要密码，密码来源我觉得是在图片的高度上，毕竟1366,768可能被隐藏了一部分，然后由于我渣渣的winhex使用，图片高度每有调整，我还不知道如何解决。<br>设想使用暴力破解，但是试了6位没有，实验七位时间已经超过数个小时，这样绝对行不通。<br>在这个题中我唯一知道的信息是this_is_not_password，实验下，结果就是这个。<br>打开txt文档flag{dd22a92bf2cceb6c0cd0d6b83ff51606}</p>
+<h4 id="6-神秘龙卷风"><a href="#6-神秘龙卷风" class="headerlink" title="6 神秘龙卷风"></a>6 神秘龙卷风</h4><p>题干描述科学家用四位数字为它命名，和之前一样，爆破得到密码5463，打开压缩文件，打开txt文件神秘的龙卷风，好家伙这不就是Brainfuck编码吗？<img src="https://upload-images.jianshu.io/upload_images/24919094-6678e719593812b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>将文本内容复制，用在线工具将他转化为txt得到flag{e4bbef8bdf9743f8bf5b727a9f6332a8}</p>
+<h4 id="7-刷新过的图片"><a href="#7-刷新过的图片" class="headerlink" title="7 刷新过的图片"></a>7 刷新过的图片</h4><p>没做出来</p>
+<h4 id="8-wireshark"><a href="#8-wireshark" class="headerlink" title="8 wireshark"></a>8 wireshark</h4><p>使用wirshark追踪http流得到，在追踪多个http流后发现有</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">email=flag&amp;password=ffb7567a1d4f4abdffdb54e022f8facd&amp;captcha=BYUGHTTP/1.1 200 OK</span><br><span class="line">Date: Mon, 29 Jun 2015 15:09:10 GMT</span><br><span class="line">Content-Type: text/html; charset=UTF-8</span><br><span class="line">Transfer-Encoding: chunked</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Expires: Thu, 19 Nov 1981 08:52:00 GMT</span><br><span class="line">Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0</span><br><span class="line">Pragma: no-cache</span><br><span class="line">Server: yunjiasu-nginx</span><br><span class="line">CF-RAY: 1fe28d0a63e91c3b-JXG</span><br><span class="line">Content-Encoding: gzip</span><br></pre></td></tr></table></figure>
+<p>email=flag&amp;password=ffb7567a1d4f4abdffdb54e022f8facd&amp;captcha=BYUG得到flag</p>
+<h2 id="逆向"><a href="#逆向" class="headerlink" title="逆向"></a>逆向</h2><h4 id="1-easy-re"><a href="#1-easy-re" class="headerlink" title="1 easy.re"></a>1 easy.re</h4><p>由于做逆向少，ctftools里的工具又不知道为什么打不开easy.exe，从网上下载了IDA就那个图标很磕碜的软件，easy.red的flag就在main（）里<br><img src="https://upload-images.jianshu.io/upload_images/24919094-8aab620e79a564b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>“flag{this_Is_a_EaSyRe}”</p>
+<h4 id="2-reverse-1"><a href="#2-reverse-1" class="headerlink" title="2 reverse_1"></a>2 reverse_1</h4><p>说实话这道题我是用最笨的方法做的，将文件用IDA反编译，从头到尾一个个的找下去，在sub_1400118C0这个项目里面找到了“hello world”这个可能是flag的东西，<br><img src="https://upload-images.jianshu.io/upload_images/24919094-c2f7d359bfd385ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>this is the right flag!更加坚定了我的想法，尝试输入，不对。之后憨憨的从这里到下面全部翻了一遍，试了几个字符串发现没有结果后，最后又回到这里。<br>考虑到之前做bugku的题目有的题目有我们解出的是o，在需要输入的flag上却是0的情况，试着输入0代替o，然后correct。<br>QFNU{hell0_w0rld}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://shierjinghuang.github.io/2021/07/30/QFNUCTF%E6%98%A5%E5%AD%A3%E7%BB%83%E4%B9%A0%E8%B5%9B%E7%BB%93%E9%A2%98%E8%AE%B0%E5%BD%95/" data-id="ckrqg1qt60001eoun9c9i7jqt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          BUGKU靶场解题记录之web
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/07/30/C%E8%AF%AD%E8%A8%80%E5%AE%9E%E8%AE%AD%E4%B9%8B%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">C语言课程实训：员工信息管理系统</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/">BUGKU靶场解题记录之web</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/30/QFNUCTF%E6%98%A5%E5%AD%A3%E7%BB%83%E4%B9%A0%E8%B5%9B%E7%BB%93%E9%A2%98%E8%AE%B0%E5%BD%95/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/30/C%E8%AF%AD%E8%A8%80%E5%AE%9E%E8%AE%AD%E4%B9%8B%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">C语言课程实训：员工信息管理系统</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/30/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98%E6%B8%B8%E6%88%8F/">课程论文：基于C++的可视化飞机大战游戏</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/28/hello-world/">欢迎来到十二惊惶的博客</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 shierjinghuang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
