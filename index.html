@@ -64,6 +64,93 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-BUGKU靶场解题记录之Crypto" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BCrypto/" class="article-date">
+  <time datetime="2021-07-30T14:40:45.088Z" itemprop="datePublished">2021-07-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BCrypto/">BUGKU靶场解题记录之Cypto</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1"><a href="#1" class="headerlink" title="1 /.-"></a>1 /.-</h4><blockquote>
+<p>..-./.-../.-/–./—-.–/-../…–/..-./-.-./-…/..-./.—-/–…/..-./—-./…–/—-./—-./…../—–/….-/—–.-</p>
+</blockquote>
+<p>一个很简单的莫斯密码题，使用线上的<a target="_blank" rel="noopener" href="https://tool.bugku.com/mosi/">解题工具</a>即可完成。注意*%u7b<em>和</em>%u7d<em>分别是</em><em>{</em>* 和 **}**。</p>
+<h4 id="2-聪明的小羊"><a href="#2-聪明的小羊" class="headerlink" title="2  聪明的小羊"></a>2  聪明的小羊</h4><p>题干是一只小羊翻过了2个栅栏 fa{fe13f590lg6d46d0d0}，提示的很清楚栅栏密码，直接解码就行。</p>
+<h4 id="3-okk"><a href="#3-okk" class="headerlink" title="3 okk"></a>3 okk</h4><p>说真的我并不知道这道题的考点在哪里。下载是一个txt文件，打开一大串由okk组成的字符，使用<a target="_blank" rel="noopener" href="https://ctf.bugku.com/tool/brainfuck">在线工具解码</a>就行。</p>
+<blockquote>
+<p>okk密码实际上是一种编程语言，由okk. okk? okk!组成。</p>
+</blockquote>
+<h4 id="4-lt-gt"><a href="#4-lt-gt" class="headerlink" title="4 [+-&lt;&gt;]"></a>4 [+-&lt;&gt;]</h4><p>说真的这道题跟上一道题是接近一毛一样，这是使用的是一款可读性几乎为0的语言:Brainfuck!<br>解码还是用上一道题的链接就行，bugku本站将两种编码的在线解码放在了同一个工具里。</p>
+<h4 id="5-你以为是md5吗"><a href="#5-你以为是md5吗" class="headerlink" title="5 你以为是md5吗"></a>5 你以为是md5吗</h4><blockquote>
+<p>bci177a7a9c7udf69c248647b4dfc6fd84o 是又不是就是玩</p>
+</blockquote>
+<p>确实是md5，但是md5是16进制的包含0到9和a到f一共16个字符，这道题给的包含了超出f的字符，删去这一部分就能得到正确的编码。解码可得结果。不得不说真的666666啊。</p>
+<h4 id="6-这不是md5"><a href="#6-这不是md5" class="headerlink" title="6 这不是md5"></a>6 这不是md5</h4><p>说实话这道题还真不是md5，就是一段16进制数，直接转文本就行<strong>flag{ae73587ba56baef5}</strong></p>
+<h4 id="7-一段base64"><a href="#7-一段base64" class="headerlink" title="7 一段base64"></a>7 一段base64</h4><p>这段base64还真是够长的，用在线解题工具已经不能将其解码了。不过还是可以利用工具converter进行解码。得道形如\134\170\65\143\134\170\67\65 的一段编码。百度得知是unescape编码。继续进项解码得到形如\x5c\x75\x30\x30\x35的编码这一部分还清楚是hex编码。将他转化为text。得到一堆我又不认识的密码。。。<br>结果看了下别人的解题他们告诉我这还是unescape，继续解码发现<strong>String.fromCharCode</strong>根据大佬的介绍这是JavaScript的函数，[]内的是里面的参数。然后将这一些删去对数字就是一种dec密码。继续解码。得到decode编码。继续解码。得到Unicode编码.编码可得。</p>
+<blockquote>
+<p>&#102;&#108;&#97;&#103;&#37;&#55;&#66;&#99;&#116;&#102;&#95;&#116;&#102;&#99;&#50;&#48;&#49;&#55;&#49;&#55;&#113;&#119;&#101;&#37;&#55;&#68;</p>
+</blockquote>
+<p>其中%7b是 <strong>{</strong> ，%7d是 **}**。<br>得到flag。这道做的时候是转的最晕的一次，使用的密码太多了。</p>
+<h4 id="8-base家族"><a href="#8-base家族" class="headerlink" title="8 base家族"></a>8 base家族</h4><p>这确实不是base64，不是base32，不是base16.这是神奇的base91…….</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;554a5058c9021c76&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="9-把猪困在猪圈里"><a href="#9-把猪困在猪圈里" class="headerlink" title="9 把猪困在猪圈里"></a>9 把猪困在猪圈里</h4><p>题目提示的很清楚是与猪圈密码有关。打开是一段base64编码，我们知道猪圈密码是一堆特殊符号。这就很有可能是要将base64密码转为图片。在文本最前方加上data:image/jpg;base64,然后用在线工具编码出对应图片。<br><img src="https://upload-images.jianshu.io/upload_images/24919094-c63759746f45889a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>就是这个，对应解码得到<strong>flag{thisispigpassword}</strong></p>
+<blockquote>
+<p>由于比较忙碌这个解题，包括之前的web和之后写的杂项都会持续更新的。</p>
+</blockquote>
+<h4 id="10"><a href="#10" class="headerlink" title="10 .!?"></a>10 .!?</h4><p>这像不像前面的okk，实际上这就是一种变形的okk密码，省略okk只使用.!?进行描述。用在线工具解题即可获得flag。</p>
+<h4 id="11-散乱的密码"><a href="#11-散乱的密码" class="headerlink" title="11 散乱的密码"></a>11 散乱的密码</h4><p>看这个题第一眼以为是栅栏密码，但又有2 1 6 5 3 4这样的提示，这让我想到了ADFGX密码。仔细一数 lf5{ag024c483549d7fd@@1}一共24个数，216534一共六个数。盲猜是变形对ADFGX，将每六个作为一组，按照216534的顺序进行排列。最后删去@@得到flag。</p>
+<h4 id="12-EN-气泡"><a href="#12-EN-气泡" class="headerlink" title="12 EN-气泡"></a>12 EN-气泡</h4><p>提示的很清楚气泡，Bubble。这就是一串BubbleBubble密码。对文件多次解码得到flag。</p>
+<h4 id="13-简单加密"><a href="#13-简单加密" class="headerlink" title="13 简单加密"></a>13 简单加密</h4><p>题目信息里的AA实际上是提示，这个本质上是一个凯撒移位，但是凯撒移位是对字母进行移位，而这个是包含了字母数字和特殊符号。无法使用现成的工具。<br>写一个脚本。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">text = input(&quot;请输入题目密文&quot;)</span><br><span class="line">text1=&#x27;&#x27;</span><br><span class="line">for i in text:</span><br><span class="line">    t=chr(ord(i)-4)</span><br><span class="line">    text1+=t</span><br><span class="line">print(text1)</span><br></pre></td></tr></table></figure>
+<p>将字符进行移位得到a2V5ezY4NzQzMDAwNjUwMTczMjMwZTRhNThlZTE1M2M2OGU4fQ==是base64密码，解码得flag。</p>
+<h4 id="14-来自宇宙的信号"><a href="#14-来自宇宙的信号" class="headerlink" title="14 来自宇宙的信号"></a>14 来自宇宙的信号</h4><p>下载下来是一张图片，评论区告诉我这是标准银河字母（Standard Galactic Alphabet）出自《<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%8C%87%E6%8C%A5%E5%AE%98%E5%9F%BA%E6%81%A9/10345602">指挥官基恩</a>》系列。后面又了解了下，突然发现这东西还是MC的附魔符号，感觉这么多年的我的世界白玩了。</p>
+<h4 id="15-告诉你一个秘密。"><a href="#15-告诉你一个秘密。" class="headerlink" title="15 告诉你一个秘密。"></a>15 告诉你一个秘密。</h4><blockquote>
+<p>636A56355279427363446C4A49454A7154534230526D6843 56445A31614342354E326C4B4946467A5769426961453067</p>
+</blockquote>
+<p>嗯这像是16进制数也像MD5，MD5解密什么都没有得到，使用16进制转字符串得到cjV5RyBscDlJIEJqTSB0RmhCVDZ1aCB5N2lKIFFzWiBiaE0g，用base64进行编码得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r5yG lp9I BjM tFhBT6uh y7iJ QsZ bhM </span><br></pre></td></tr></table></figure>
+
+<p>评论区有人告诉我们，这是键盘码，</p>
+<blockquote>
+<p>键盘密码应该不算是一种加密算法，但是一种有趣的设置密码方式。<br>他就是a-z(A-Z)对应成键盘上的字母，把键盘字母一行一行的对应即可。<br>例如被r5yg几个字母包围的是t。</p>
+</blockquote>
+<p>得到flag，注意最后的密码需要大写。</p>
+<h4 id="16-小山丘的秘密"><a href="#16-小山丘的秘密" class="headerlink" title="16 小山丘的秘密"></a>16 小山丘的秘密</h4><p>hill能有什么秘密呢，Hill Cipher正是希尔密码，观察图片，希尔密码需要秘钥字母表，密钥肯定就在图片中,图片看上去4和9的位置看上去像是缺了棋子，那么将它看作0，那么此处位置为 z ，其他位置如图所示，得到密钥<br><img src="https://upload-images.jianshu.io/upload_images/24919094-df5120eed9bd6250.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<p>将其作为秘钥abczadefz<br>同时我们知道提示中他说A=1，我们要让密码表中Z=0，a=1；<br>将PLGTGBQHM小写进行解码，得到whatahill。扩上{}得到flag。</p>
+<h4 id="17-你喜欢下棋吗"><a href="#17-你喜欢下棋吗" class="headerlink" title="17 你喜欢下棋吗"></a>17 你喜欢下棋吗</h4><p>题干很清楚下棋，这个是波利比奥斯方阵密码，也叫棋盘密码。使用在线工具解码得到thisispolybius。这是txt文件的解压密码。</p>
+<blockquote>
+<p>一种5bit的编码<br>bugku{11111 11001 00011 00111 01001 11011 10110 11111 10000 01110 11011 10110 11111 01001 00001}</p>
+</blockquote>
+<p>评论区告诉我这是博多电码解码，好家伙出题人你做个人吧。<br>博多电码太过于古老，导致都没什么现成的公具。<a target="_blank" rel="noopener" href="https://www.dcode.fr/baudot-code%E8%BF%99%E6%98%AF%E8%AF%84%E8%AE%BA%E5%8C%BA%E5%A4%A7%E4%BD%AC%E7%BB%99%E7%9A%84%E8%A7%A3%E7%A0%81%E7%BD%91%E5%9D%80%E3%80%82%E8%BF%98%E6%9C%89%E5%87%A0%E4%B8%AA%E7%BD%91%E5%9D%80%EF%BC%8C%E4%BD%86%E5%9B%A0%E4%B8%BA%E5%90%84%E7%A7%8D%E5%90%84%E6%A0%B7%E7%9A%84%E5%8E%9F%E5%9B%A0%E8%BF%9B%E4%B8%8D%E5%8E%BB%E3%80%82%E3%80%82%E3%80%82">https://www.dcode.fr/baudot-code这是评论区大佬给的解码网址。还有几个网址，但因为各种各样的原因进不去。。。</a><br>解码得到flag</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://shierjinghuang.github.io/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BCrypto/" data-id="ckrqgfq1p0000w0uncpdl2gvo" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-BUGKU靶场解题记录之web" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/" class="article-date">
@@ -499,6 +586,10 @@
       <ul>
         
           <li>
+            <a href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BCrypto/">BUGKU靶场解题记录之Cypto</a>
+          </li>
+        
+          <li>
             <a href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/">BUGKU靶场解题记录之web</a>
           </li>
         
@@ -512,10 +603,6 @@
         
           <li>
             <a href="/2021/07/30/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98%E6%B8%B8%E6%88%8F/">课程论文：基于C++的可视化飞机大战游戏</a>
-          </li>
-        
-          <li>
-            <a href="/2021/07/28/hello-world/">欢迎来到十二惊惶的博客</a>
           </li>
         
       </ul>
