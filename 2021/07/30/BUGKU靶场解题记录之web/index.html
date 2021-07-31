@@ -7,17 +7,17 @@
   
   <title>BUGKU靶场解题记录之web | 十二惊惶的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言： 学习CTF已经有一段时间了，陆陆续续也做了不少题。为了准备前段时间的全国大学生信息安全大赛，又把许多题目重新看过一遍。现在也终于闲下来一两天，正好趁这个机会把在bugku靶场做出的题目整理一下。  Webweb1打开看到一大堆滑稽，F12查看网页源代码就能发现flag，明显的送分题。 web2 题目描述输入验证码即可得到flag，正常输入发现只能输入1位，F12，将maxlength&#x3D;”1">
+  <meta name="description" content="前言：   学习CTF已经有一段时间了，陆陆续续也做了不少题。为了准备前段时间的全国大学生信息安全大赛，又把许多题目重新看过一遍。现在也终于闲下来一两天，正好趁这个机会把在bugku靶场做出的题目整理一下。   web1打开看到一大堆滑稽，F12查看网页源代码就能发现flag，明显的送分题。 web2 题目描述输入验证码即可得到flag，正常输入发现只能输入1位，F12，将maxlength&#x3D;”1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BUGKU靶场解题记录之web">
 <meta property="og:url" content="https://shierjinghuang.github.io/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/index.html">
 <meta property="og:site_name" content="十二惊惶的博客">
-<meta property="og:description" content="前言： 学习CTF已经有一段时间了，陆陆续续也做了不少题。为了准备前段时间的全国大学生信息安全大赛，又把许多题目重新看过一遍。现在也终于闲下来一两天，正好趁这个机会把在bugku靶场做出的题目整理一下。  Webweb1打开看到一大堆滑稽，F12查看网页源代码就能发现flag，明显的送分题。 web2 题目描述输入验证码即可得到flag，正常输入发现只能输入1位，F12，将maxlength&#x3D;”1">
+<meta property="og:description" content="前言：   学习CTF已经有一段时间了，陆陆续续也做了不少题。为了准备前段时间的全国大学生信息安全大赛，又把许多题目重新看过一遍。现在也终于闲下来一两天，正好趁这个机会把在bugku靶场做出的题目整理一下。   web1打开看到一大堆滑稽，F12查看网页源代码就能发现flag，明显的送分题。 web2 题目描述输入验证码即可得到flag，正常输入发现只能输入1位，F12，将maxlength&#x3D;”1">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/24919094-ff37e575621d6bc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/24919094-fea2aa6bcd261fd2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="article:published_time" content="2021-07-30T14:28:07.903Z">
-<meta property="article:modified_time" content="2021-07-30T14:30:17.343Z">
+<meta property="article:modified_time" content="2021-07-31T01:46:06.212Z">
 <meta property="article:author" content="shierjinghuang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/24919094-ff37e575621d6bc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -91,16 +91,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="前言："><a href="#前言：" class="headerlink" title="前言："></a><center>前言：</center></h4><blockquote>
+        <h4><center>前言：</center></h4>
+
+<blockquote>
 <p>学习CTF已经有一段时间了，陆陆续续也做了不少题。为了准备前段时间的全国大学生信息安全大赛，又把许多题目重新看过一遍。现在也终于闲下来一两天，正好趁这个机会把在bugku靶场做出的题目整理一下。</p>
 </blockquote>
-<h4 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h4><h6 id="web1"><a href="#web1" class="headerlink" title="web1"></a>web1</h6><p>打开看到一大堆滑稽，F12查看网页源代码就能发现flag，明显的送分题。</p>
+<hr>
+<h6 id="web1"><a href="#web1" class="headerlink" title="web1"></a>web1</h6><p>打开看到一大堆滑稽，F12查看网页源代码就能发现flag，明显的送分题。</p>
 <h6 id="web2"><a href="#web2" class="headerlink" title="web2"></a>web2</h6><p> 题目描述输入验证码即可得到flag，正常输入发现只能输入1位，F12，将maxlength=”1”改为maxlength=”2”即可正确输入,得到flag。还是送分题。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;ea008b7aaab0d3ea27c8580df13f52c3&#125;</span><br></pre></td></tr></table></figure>
 
-<h6 id="web3"><a href="#web3" class="headerlink" title="web3"></a>web3</h6><p>根据题意构造url即可得到flag</p>
+<h5 id="web3"><a href="#web3" class="headerlink" title="web3"></a>web3</h5><p>根据题意构造url即可得到flag</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://114.67.246.176:14287/?what=flag</span><br><span class="line">flag&#123;45240136ecbcb3c6db9d1dcb756ced4b&#125;</span><br></pre></td></tr></table></figure>
-<p>######web4<br>跟上一道题类似，只不过这次是post，使用Firefox插架Max HackBar输入what=flag得到flag</p>
+<h6 id="web4"><a href="#web4" class="headerlink" title="web4"></a>web4</h6><p>跟上一道题类似，只不过这次是post，使用Firefox插架Max HackBar输入what=flag得到flag</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;1e7a6931002d229ac37085a846d21e6d&#125; </span><br></pre></td></tr></table></figure>
 
 <h6 id="web5"><a href="#web5" class="headerlink" title="web5"></a>web5</h6><p>题目描述<strong>矛盾</strong>，打开链接看到相应php代码描述。if=($num==1) 意思就是num等于数字1就会打印flag 但是is_numeric函数检测数字意味着，<strong>既要是数字1，又不能是数字。</strong><br>在评论区有这个介绍。</p>
@@ -112,13 +115,13 @@
 <h6 id="web7-你必须让他停下来"><a href="#web7-你必须让他停下来" class="headerlink" title="web7 你必须让他停下来"></a>web7 你必须让他停下来</h6><p>右键查看源代码，然后一直刷新源代码的页面，就能得到flag，当然有burpsuit抓包，然后sendtorepeter，一直send也一样，在第10张jpg的响应里边就有flag.<br>这两种方法本质上是一样的。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;222c6ea6e3f1b78d0e47688932d6c097&#125;</span><br></pre></td></tr></table></figure>
 <p>在补充一点提交flag时要记得把代理关上。</p>
-<h6 id="web8-文件包含"><a href="#web8-文件包含" class="headerlink" title="web8 文件包含"></a>web8 文件包含</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> &lt;?php</span><br><span class="line">    include &quot;flag.php&quot;;</span><br><span class="line">    $a = @$_REQUEST[&#x27;hello&#x27;];</span><br><span class="line">    eval( &quot;var_dump($a);&quot;);</span><br><span class="line">    show_source(__FILE__);</span><br><span class="line">?&gt; </span><br></pre></td></tr></table></figure>
+<h6 id="web8-文件包含"><a href="#web8-文件包含" class="headerlink" title="web8 文件包含"></a>web8 文件包含</h6><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">include</span> <span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line">    <span class="variable">$a</span> = @<span class="variable">$_REQUEST</span>[<span class="string">&#x27;hello&#x27;</span>];</span><br><span class="line">    <span class="keyword">eval</span>( <span class="string">&quot;var_dump(<span class="subst">$a</span>);&quot;</span>);</span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
 <p>审计PHP代码得到以下信息。</p>
 <blockquote>
 <p>request函数表明可以任选get或post方法提交<br>helloeval() 函数把字符串按照 PHP 代码来执行<br>show_source用来返回文件内容<br>include函数会将flag.php包含在该文件中</p>
 </blockquote>
 <p>由此我们可以构建url <strong>/?hello=show_source(‘flag.php’)<strong>或者</strong>?hello=file(‘flag.php’)<strong>均能得到flag。</strong>flag{e5d1a21b2cf1819415ce4ba106e868d9}</strong></p>
-<h6 id="web9"><a href="#web9" class="headerlink" title="web9"></a>web9</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(0);</span><br><span class="line">include &quot;flag1.php&quot;;</span><br><span class="line">highlight_file(__file__);</span><br><span class="line">if(isset($_GET[&#x27;args&#x27;]))&#123;</span><br><span class="line">    $args = $_GET[&#x27;args&#x27;];</span><br><span class="line">    if(!preg_match(&quot;/^\w+$/&quot;,$args))&#123;</span><br><span class="line">        die(&quot;args error!&quot;);</span><br><span class="line">    &#125;eval(&quot;var_dump($$args);&quot;);&#125;</span><br><span class="line">?&gt; </span><br></pre></td></tr></table></figure>
+<h6 id="web9"><a href="#web9" class="headerlink" title="web9"></a>web9</h6><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;flag1.php&quot;</span>;</span><br><span class="line">highlight_file(<span class="keyword">__file__</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;args&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$args</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;args&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(!preg_match(<span class="string">&quot;/^\w+$/&quot;</span>,<span class="variable">$args</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;args error!&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">eval</span>(<span class="string">&quot;var_dump($<span class="subst">$args</span>);&quot;</span>);&#125;</span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
 <p>php代码实际上就是最大的提示。</p>
 <blockquote>
 <p>flag in the variable：提示flag在变量里面<br>preg_match：使用正则表达式匹配，/^\w+$/ 表明只能输入数字和英文字母及下划线<br>说明此时只能用全局变量查看GLOBALS</p>
