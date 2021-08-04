@@ -74,11 +74,24 @@
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/01/BugkuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bmisc/">BUGKU靶场解题记录之Misc</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="BugkuCTF解题记录之misc"><a href="#BugkuCTF解题记录之misc" class="headerlink" title="BugkuCTF解题记录之misc"></a>BugkuCTF解题记录之misc</h4><hr>
-<h5 id="1、签到题"><a href="#1、签到题" class="headerlink" title="1、签到题"></a>1、签到题</h5><p>直接扫描二维码就行，这是最简单的送分题</p>
-<h5 id="2、0和1的故事"><a href="#2、0和1的故事" class="headerlink" title="2、0和1的故事"></a>2、0和1的故事</h5><p>这个01串实际上代表着二维码的黑色与白色部分。个人感觉还是用python写一个脚本。</p>
+<p>[TOC]</p>
+<hr>
+<h5 id="1、签到题"><a href="#1、签到题" class="headerlink" title="1、签到题"></a>1、签到题</h5><p>直接扫描二维码就行，这是最简单的签到题</p>
+<h5 id="2、-0和1的故事"><a href="#2、-0和1的故事" class="headerlink" title="2、 0和1的故事"></a>2、 0和1的故事</h5><p>这道题是一个较为常见的二维码隐写题目，用0和1分别作为二维码的黑色与白色部分。在使用工具扫码得到flag。</p>
+<p>这种题目的难点在于，二维码的生成，个人感觉还是用python写一个脚本做最方便。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;1和0的故事.txt&quot;</span>, <span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    data = [<span class="built_in">list</span>(i.strip()) <span class="keyword">for</span> i <span class="keyword">in</span> f.readlines()]</span><br><span class="line"><span class="comment"># 7*7的定位标志</span></span><br><span class="line">flag = [</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line">]</span><br><span class="line">img = Image.new(<span class="string">&quot;1&quot;</span>, (<span class="number">25</span>, <span class="number">25</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data[<span class="number">1</span>])):</span><br><span class="line">        <span class="comment"># 左上角定位标志</span></span><br><span class="line">        <span class="keyword">if</span> i &lt; <span class="number">7</span> <span class="keyword">and</span> j &lt; <span class="number">7</span>:</span><br><span class="line">            img.putpixel((i, j), flag[i][j] ^ <span class="number">1</span>)</span><br><span class="line">        <span class="comment"># 左下角定位标志</span></span><br><span class="line">        <span class="keyword">elif</span> i &gt; <span class="number">17</span> <span class="keyword">and</span> j &lt; <span class="number">7</span>:</span><br><span class="line">            img.putpixel((i, j), flag[i-<span class="number">18</span>][j] ^ <span class="number">1</span>)</span><br><span class="line">        <span class="comment"># 右上角定位标志</span></span><br><span class="line">        <span class="keyword">elif</span> i &lt; <span class="number">7</span> <span class="keyword">and</span> j &gt; <span class="number">17</span>:</span><br><span class="line">            img.putpixel((i, j), flag[i][j-<span class="number">18</span>] ^ <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            img.putpixel((i, j), <span class="built_in">int</span>(data[i][j]) ^ <span class="number">1</span>)</span><br><span class="line">img.resize((<span class="number">500</span>, <span class="number">500</span>)).show()</span><br></pre></td></tr></table></figure>
 
 <p>不过我还是看到了一个神奇的解法，<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_52715164/article/details/119054663">来自评论区的神奇解法</a>，这个解法是一种很神奇的操作，将01串放在Excel里，将其设计成正方形的单元格。在把为1的用黑色填充。最后把其他的部分p上……</p>
@@ -112,7 +125,7 @@
 <h5 id="8、ping"><a href="#8、ping" class="headerlink" title="8、ping"></a>8、ping</h5><p>这道题我一时间想不到说什么好，这个是正常人想出来的操作，下载得到一个流量包，这个流量包全部是ICMP流，这道题真的跟题目一样是拼， 最简单的解法wireshark打开一个包一个包看下面字符，进行拼接得到flag 。</p>
 <h5 id="9、可爱的故事"><a href="#9、可爱的故事" class="headerlink" title="9、可爱的故事"></a>9、可爱的故事</h5><blockquote>
 <p>可可爱爱没有脑袋</p>
-<p>一‌‍‍‎‍‎‍‌‌‎‌‎‍‌‏‍‏‌‎‌‏‏‍‌‎‍‍‌‎‏‎‍‌‏‎‍‏‏‌‎‍‎‍‌‌‌‎‍‌‌‍‍‌‎‏‍‍‌‏‌‎‍‌‍‌‌‍‌‌‍‌‌‍‌‎‍‍‌‎‌‎‏‍‏‏‌‌‎‌‍‏‎‌‌‍‍‍‌‎个可爱的故事<br>这‍‌‍‌‎‌‏‏‍‌‎‍‌‍‍‎‏‏‌‌‏‌‌‏‌‍‍‌‎‏‍‏‏‌‏‎‎‏‌‌‍‏‍‍‌‎‏‎‌‌‌‏‎‎‎‌‍‍‎‏‎‎‏‏‍‌‌‌‏‏‍‌‌‌‏‏‍‌‌‌是一种奇怪的文字写的故事<br>f‍‌‎‏‎‍‌‏‎‍‏‏‌‏‎‎‏‏‌‏‎‍‎‎‌‌‍‌‌‍‌‌‍‌‎‍‌‏‌‏‎‍‌‎‏‍‍‌‏‌‎‍‌‍lag就藏在其中<br>flag为大兔子说的一句带bugku的话<br>如‌‌‎‎‌‍‌‏‎‎‏‌‌‍‏‍‏‏‍‌‎‍‌‌‎‎‌‍‌‏‎‎‏‌‌‍‏‍‏‏‍‌‎‍‌‌‌‏‏‌‌‌‍‌‎‌‍‏‌‌‏‌‍‍‌‎‍‍‎‏‍‌‎‍‍‎‏‍‍‌‎‏‎‌‌‎‎‌‎‌‍‎‎‎‍‎‌‎‌‏‌‌‏‌‌‍‌‌‍‌‌‍‌‎‌‎‌‍‏‎‌‌‍‍‍‌‎‌‌‏‍‌‎‎‏‏‍‌‌‌果找到了<br>就‌‌‍‏‍‌‌‍‌‎‌‍‏‌‎‏‍‍‌‏‌‎‍‌‍‌‌‏‌‎‌‍‌‏‍‌‏‎‌‍‌‌‍‎‎‌‍‏‎‌‏‌‏‎‍‎‎‍‌‍‌‍‌‍‍‍‏‌‍‌‍‌‌‍‍‏‌‌‏‍‏‏‎‍‌‏‏‎‍‏‍‌‏‎‍‎‍‍‎‎‎‍‌‏‏‌‍‌‍‌‌‌‍‌‌‎‎‌‍‏‏‍‍‍‌把他全部变成小写然后包上bugku{}</p>
+<p>一‌‍‍‎‍‎‍‌个可爱的故事<br>这‍‌‍‌‎是一种奇怪的文字写的故事<br>f‍‌‎‏‎‍‌‏‎‍‏‏‎‍‌‍lag就藏在其中<br>flag为大兔子说的一句带bugku的话<br>如果找到了<br>就把他全部变成小写然后包上bugku{}</p>
 </blockquote>
 <p>来看下这个题给的图片……</p>
 <img src="C:\Users\888888\Desktop\故事1.png" style="zoom:25%;" />
@@ -124,7 +137,101 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bugku&#123;iamlearningteyvatinbugku&#125;</span><br></pre></td></tr></table></figure>
 
 <p>得，我裂开了……</p>
-<h5 id="10、"><a href="#10、" class="headerlink" title="10、"></a>10、</h5>
+<h5 id="10、赛博朋克"><a href="#10、赛博朋克" class="headerlink" title="10、赛博朋克"></a>10、赛博朋克</h5><p>flag{Hel1o_Wor1e}</p>
+<h5 id="11、猜"><a href="#11、猜" class="headerlink" title="11、猜"></a>11、猜</h5><p>这题还真是猜……, 图中人物名字全拼。打开照片一看刘亦菲，嗯金币-1……</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag:   key&#123;liuyifei&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="12、又一张图片还单纯吗？"><a href="#12、又一张图片还单纯吗？" class="headerlink" title="12、又一张图片还单纯吗？"></a>12、又一张图片还单纯吗？</h5><p>这个题，最简单的方法是使用formost进行分解，分解得到的那张图片上面的就是flag，正常的做法实际上不应该直接使用formost。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对于图片隐写题目，推荐先看属性查看是否有隐藏的信息，再使用 010edit 或者winhex查看图片信息</span></span><br><span class="line"><span class="comment">//使用winhex查看文件， 搜索504b 0304（压缩包头），FFD8FF（jpg文件头） ，89504E47（png文件头）</span></span><br><span class="line"><span class="comment">//确定在文件中隐藏其他文件时再使用formost进行分解。</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="13、社会主义核心价值观"><a href="#13、社会主义核心价值观" class="headerlink" title="13、社会主义核心价值观"></a>13、社会主义核心价值观</h5><p>嗯，这道题是不是可以扔到密码学里面，这是一个神奇的编码，知道有这种编码方式解决就行。</p>
+<h5 id="14、where-is-flag-番外篇"><a href="#14、where-is-flag-番外篇" class="headerlink" title="14、where is flag 番外篇"></a>14、where is flag 番外篇</h5><p>这道题的脑洞是真大……</p>
+<ol>
+<li><p>解压全部文件得到一个加密压缩包，和一堆经过修改的出师表…..</p>
+</li>
+<li><p>在看到这一堆出师表后，我觉得还不如去看看，那个加密压缩包是不是伪加密，用winhex打开，最后一通操作下来确定这个是正常加密……</p>
+</li>
+<li><p>经过刚刚的两部操作，实际上已经确认了这个的解压密码与这一堆叫做出师表文件有关。但是看文件那一堆AAAAA，CCCCC，我觉得这个密码可能是这些字母的数量….结果还是小瞧了出题人。</p>
+</li>
+<li><p> 在评论区有大佬这么提示：**每个文档的字数不一样会对文档的大小产生影响，而有的文档最后之所有有大写字母来填充，那么就是为了凑文档大小的数字！！！ **</p>
+</li>
+<li><p>好家伙这一层实际上是用压缩前的大小减去压缩后大小的差…..</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">75 101 121 58 90 104 117 71 76 64 64 46 48</span><br></pre></td></tr></table></figure>
+
+<p>得到这一串，这一串实际上是ascll码的形式，<strong>ZhuGL@@.0</strong>这个就是最好的密码…..</p>
+</li>
+<li><p>得，又一张图片看下里面属性啥也没有，使用winhex打开，拖到最后看到这一串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag in here &#123;LjFWBuxFNTzEWv6t2NfxjNFSH1sQEwBt5wTTLD1fJ&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果这个并不是flag…..出题人我劝你善良…..</p>
+<p>里面这一串是base编码，但是不是我们最熟悉的base64，是神奇的base58……</p>
+<blockquote>
+<p><strong>base58</strong>:编码去掉了几个看起来会产生歧义的字符，如 0 (零), O (大写字母O), I (大写的字母i) and l (小写的字母L) ，和几个影响双击选择的字符，如/, +。结果字符集正好58个字符(包括9个数字，24个大写字母，25个小写字母)。 </p>
+</blockquote>
+</li>
+</ol>
+<p> 最后 bugku{th1s_1s_chu_Sh1_B1A0!!@} …..</p>
+<p>说真的出题人我劝你善良…………</p>
+<h5 id="15、贝斯手"><a href="#15、贝斯手" class="headerlink" title="15、贝斯手"></a>15、贝斯手</h5><p>看下题目给的提示……</p>
+<blockquote>
+<p>这剧叫做《缝纫机乐队》，女主叫丁建国，是一名贝斯手，剧中面试的时候，问到腿是怎么回事的时候，回答了”又长又白又细”，我爱了，成功圈粉</p>
+</blockquote>
+<p>txt看上去是没东西了，但实际上这是个假象，在txt最后还有一段提示</p>
+<blockquote>
+<p> 密码我4不会告诉你的，除非你知道我的女神是哪一年出生的给你个提示：申猴，闰年</p>
+</blockquote>
+<p>这里如果说考了什么内容的话，应该说是细心观察和知识检索的能力….</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5+58==327a6c4304ad5938eaf0efb6cc3e53dcCFmZknmK3SDEcMEue1wrsJdqqkt7dXLuS</span><br></pre></td></tr></table></figure>
+
+<p>这个其实是一段md5和一段base58，千万别以为是先md5后base58来着….小写的那部分是md5，因为存在0很容易确认，相应的大写的范围是base58</p>
+<p>得到<strong>flag{this_is_md5_and_base58}</strong></p>
+<h5 id="16、隐写2"><a href="#16、隐写2" class="headerlink" title="16、隐写2"></a>16、隐写2</h5><ul>
+<li><p>这个隐写题的难度也不是很大， 从网站上下载下来就是一张图片，同过winhex分析其中包含一个zip压缩包。 使用formost分解即可。得到一个名为flag的压缩包还有一个图片。根据图片提示的信息三位数字…这样直接暴力跑就能得出来了。使用ARCHPR暴力破解就能得到密码871</p>
+</li>
+<li><p>单纯给了三个字母，对应三个数字，肯定不可能是在字母表里的顺序，对应键盘，则Q对应数字1，J对应数字7，K对应数字8（在键盘同一列）。</p>
+<p>得到的是一张图片用winhex打开在最后发现这一串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f1@g&#123;eTB1IEFyZSBhIGhAY2tlciE=&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不过里面的是base64编码，稍微解码下得到<strong>flag{y0u Are a h@cker!}</strong></p>
+</li>
+</ul>
+<h5 id="17、普通的二维码"><a href="#17、普通的二维码" class="headerlink" title="17、普通的二维码"></a>17、普通的二维码</h5><ol>
+<li><p>下载得到一张图片是一张二维码，使用工具扫码，他告诉我flag不在这里….</p>
+</li>
+<li><p>使用winhex打开有这一段（这里我已经将其三个一组分开）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">146，154，141，147，173，110，141，166，145，137，171，060，125，137，120，171，137，163，143，162，151，160，164，137，117，164，143，137，124，157，137，124，145，156，137，101，163，143，151，151，041，175，@xjseck!</span><br></pre></td></tr></table></figure>
+
+<p>这里能看出数字永远是0到7，应该是八进制将其转化为10进制，在将其视为对应的ascill码</p>
+</li>
+<li><p>对应脚本</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> misc1[<span class="number">42</span>]=&#123;<span class="number">146</span>,<span class="number">154</span>,<span class="number">141</span>,<span class="number">147</span>,<span class="number">173</span>,<span class="number">110</span>,<span class="number">141</span>,<span class="number">166</span>,<span class="number">145</span>,<span class="number">137</span>,<span class="number">171</span>,<span class="number">60</span>,<span class="number">125</span>,<span class="number">137</span>,<span class="number">120</span>,<span class="number">171</span>,<span class="number">137</span>,<span class="number">163</span>,<span class="number">143</span>,<span class="number">162</span>,<span class="number">151</span>,<span class="number">160</span>,<span class="number">164</span>,<span class="number">137</span>,<span class="number">117</span>,<span class="number">164</span>,<span class="number">143</span>,<span class="number">137</span>,<span class="number">124</span>,<span class="number">157</span>,<span class="number">137</span>,<span class="number">124</span>,<span class="number">145</span>,<span class="number">156</span>,<span class="number">137</span>,<span class="number">101</span>,<span class="number">163</span>,<span class="number">143</span>,<span class="number">151</span>,<span class="number">151</span>,<span class="number">41</span>,<span class="number">175</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span> misc2[<span class="number">42</span>];</span><br><span class="line">	<span class="keyword">int</span> a1,a2,a3;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">42</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		a1=misc1[i]/<span class="number">100</span>;</span><br><span class="line">		a2=misc1[i]/<span class="number">10</span>%<span class="number">10</span>;</span><br><span class="line">		a3=misc1[i]%<span class="number">10</span>;</span><br><span class="line">        misc2[i]=a1*<span class="number">8</span>*<span class="number">8</span>+a2*<span class="number">8</span>+a3;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">42</span>;j++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,misc2[j]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后得到flag。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;Have_y0U_Py_script_Otc_To_Ten_Ascii!&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="18、多种方法解决"><a href="#18、多种方法解决" class="headerlink" title="18、多种方法解决"></a>18、多种方法解决</h5></li>
+</ol>
+<ul>
+<li><p>将文件转化成txt格式，打开文件里面是这么一堆东西</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data:image/jpg;base64,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</span><br></pre></td></tr></table></figure>
+
+<p>最后的==很明显能够说明这里是一个base编码，盲猜base64，同时题目信息又有提示说：在解题过程中会得到一张二维码….显然这个是考的base64转图片。</p>
+<p>通过线上的工具将base64编码转换为图片，扫码得到flag。<strong>KEY{dca57f966e4e4e31fd5b15417da63269}</strong></p>
+<h5 id="19、where-is-flag"><a href="#19、where-is-flag" class="headerlink" title="19、where is flag"></a>19、where is flag</h5></li>
+<li><p>之前做的那个where is flag番外篇的灵感估计就是来自于这里…..</p>
+</li>
+<li><p>解压得到十个空的txt文件，但是这个大小却绝对不是空txt文件该有的样子，应该是在文件里隐藏了什么…</p>
+</li>
+<li><p>使用winhex打开里面都是用的0来占位，对应到txt里面就是一个个的空格</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">11</span>):</span><br><span class="line">    name = <span class="built_in">str</span>(n)+<span class="string">&#x27;.txt&#x27;</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(name) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">len</span>(f.read()),end=<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>使用python脚本解出来一串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">98，117，103，107，117，123，110，97，48，100，48，110，103，100，97，107，97，49，125</span><br></pre></td></tr></table></figure>
+
+<p>跟之前的那组一样转化为ascll码，就能知道flag<strong>bugku{na0d0ngdaka1}</strong></p>
+
       
     </div>
     <footer class="article-footer">
@@ -663,7 +770,7 @@
       <ul>
         
           <li>
-            <a href="/2021/08/01/BugkuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bmisc/">(no title)</a>
+            <a href="/2021/08/01/BugkuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bmisc/">BUGKU靶场解题记录之Misc</a>
           </li>
         
           <li>
