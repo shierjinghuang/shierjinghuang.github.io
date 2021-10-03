@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>十二惊惶的博客</title>
+  <title>十二惊惶</title>
   
-  <subtitle>犁牛之子骍且角，虽欲勿用，山川其舍诸？</subtitle>
+  <subtitle>犁牛之子骍且角，虽欲勿用，山川其舍诸</subtitle>
   <link href="https://shierjinghuang.github.io/atom.xml" rel="self"/>
   
   <link href="https://shierjinghuang.github.io/"/>
