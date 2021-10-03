@@ -7,17 +7,17 @@
   
   <title>BUGKU靶场解题记录之web | 十二惊惶的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言：   学习CTF已经有一段时间了，陆陆续续也做了不少题。为了准备前段时间的全国大学生信息安全大赛，又把许多题目重新看过一遍。现在也终于闲下来一两天，正好趁这个机会把在bugku靶场做出的题目整理一下。   web1打开看到一大堆滑稽，F12查看网页源代码就能发现flag，明显的送分题。 web2 题目描述输入验证码即可得到flag，正常输入发现只能输入1位，F12，将maxlength&#x3D;”1">
+  <meta name="description" content="前言： &gt; 学习CTF已经有一段时间了，陆陆续续也做了不少题。为了准备前段时间的全国大学生信息安全大赛，又把许多题目重新看过一遍。现在也终于闲下来一两天，正好趁这个机会把在bugku靶场做出的题目整理一下。   web1打开看到一大堆滑稽，F12查看网页源代码就能发现flag，明显的送分题。 web2 题目描述输入验证码即可得到flag，正常输入发现只能输入1位，F12，将maxlength&#x3D;”1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BUGKU靶场解题记录之web">
 <meta property="og:url" content="https://shierjinghuang.github.io/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/index.html">
 <meta property="og:site_name" content="十二惊惶的博客">
-<meta property="og:description" content="前言：   学习CTF已经有一段时间了，陆陆续续也做了不少题。为了准备前段时间的全国大学生信息安全大赛，又把许多题目重新看过一遍。现在也终于闲下来一两天，正好趁这个机会把在bugku靶场做出的题目整理一下。   web1打开看到一大堆滑稽，F12查看网页源代码就能发现flag，明显的送分题。 web2 题目描述输入验证码即可得到flag，正常输入发现只能输入1位，F12，将maxlength&#x3D;”1">
+<meta property="og:description" content="前言： &gt; 学习CTF已经有一段时间了，陆陆续续也做了不少题。为了准备前段时间的全国大学生信息安全大赛，又把许多题目重新看过一遍。现在也终于闲下来一两天，正好趁这个机会把在bugku靶场做出的题目整理一下。   web1打开看到一大堆滑稽，F12查看网页源代码就能发现flag，明显的送分题。 web2 题目描述输入验证码即可得到flag，正常输入发现只能输入1位，F12，将maxlength&#x3D;”1">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/24919094-ff37e575621d6bc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/24919094-fea2aa6bcd261fd2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="article:published_time" content="2021-07-30T14:28:07.903Z">
-<meta property="article:modified_time" content="2021-07-31T01:46:06.212Z">
+<meta property="article:modified_time" content="2021-10-03T02:46:03.077Z">
 <meta property="article:author" content="shierjinghuang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/24919094-ff37e575621d6bc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -92,10 +92,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h4><center>前言：</center></h4>
+> 学习CTF已经有一段时间了，陆陆续续也做了不少题。为了准备前段时间的全国大学生信息安全大赛，又把许多题目重新看过一遍。现在也终于闲下来一两天，正好趁这个机会把在bugku靶场做出的题目整理一下。
 
-<blockquote>
-<p>学习CTF已经有一段时间了，陆陆续续也做了不少题。为了准备前段时间的全国大学生信息安全大赛，又把许多题目重新看过一遍。现在也终于闲下来一两天，正好趁这个机会把在bugku靶场做出的题目整理一下。</p>
-</blockquote>
 <hr>
 <h6 id="web1"><a href="#web1" class="headerlink" title="web1"></a>web1</h6><p>打开看到一大堆滑稽，F12查看网页源代码就能发现flag，明显的送分题。</p>
 <h6 id="web2"><a href="#web2" class="headerlink" title="web2"></a>web2</h6><p> 题目描述输入验证码即可得到flag，正常输入发现只能输入1位，F12，将maxlength=”1”改为maxlength=”2”即可正确输入,得到flag。还是送分题。</p>
@@ -208,7 +206,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li></ul>
     </div>
   </div>
 
@@ -219,6 +217,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/10/03/BuuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BMisc/">(no title)</a>
+          </li>
         
           <li>
             <a href="/2021/09/29/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A%E6%9D%8E%E6%98%9F%E4%BA%AE2021,9,15/">Python上机课汇总</a>
@@ -234,10 +236,6 @@
         
           <li>
             <a href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BCrypto/">BUGKU靶场解题记录之Cypto</a>
-          </li>
-        
-          <li>
-            <a href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/">BUGKU靶场解题记录之web</a>
           </li>
         
       </ul>

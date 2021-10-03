@@ -64,6 +64,91 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-BuuCTF解题记录之Misc" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/10/03/BuuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BMisc/" class="article-date">
+  <time datetime="2021-10-03T02:38:40.241Z" itemprop="datePublished">2021-10-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: BUUCTF解题记录之MISC</p>
+<h4><center>BUUCTF解题记录之MISC</center></h4>
+
+<hr>
+
+<p>[TOC]</p>
+<h3 id="1-签到题"><a href="#1-签到题" class="headerlink" title="1. 签到题"></a>1. 签到题</h3><p>说实话，这道题我第一眼真的没看到那个flag在那里，我看到一个链接，加QQ群我以为这道题是类似加公众号之类的，在加群被拒后看到了这个 flag{buu_ctf}</p>
+<h3 id="2-金三胖"><a href="#2-金三胖" class="headerlink" title="2. 金三胖"></a>2. 金三胖</h3><p>这是一张GIF动图，仔细观察在三胖鼓掌的过程中发现闪过了几次奇怪的东西，那应该就是在gif图片里隐藏的flag，使用PS就能简单的分离图层就可以得到flag</p>
+<h3 id="3-二维码"><a href="#3-二维码" class="headerlink" title="3. 二维码"></a>3. 二维码</h3><p>好家伙，确实是个二维码，使用QR扫一遍secret is here，嗯二维码在这里面发送到formost进行分解，得到一个压缩包，通过暴力破解工具得到压缩吧密码7631，解压得到4number.txt文件，flag为：CTF{vjpw_wnoei}</p>
+<h3 id="4-你竟赶我走"><a href="#4-你竟赶我走" class="headerlink" title="4 .  你竟赶我走"></a>4 .  你竟赶我走</h3><p>这个题目名字有点意思啊，是一张图片隐写，实际上是一种最低有效位的问题的隐写，通过stegslve工具使用analyse功能进行分析可以得到flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;stego_is_s0_bor1ing&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-N种方法解决"><a href="#5-N种方法解决" class="headerlink" title="5.N种方法解决"></a>5.N种方法解决</h3><p>好家伙，这道题真经典啊，哪里都有他，这个4kb大小的exe文件实际上是一个假的txt，使用winhex打开看到这个头image/jpg;base64,这个是图片转化为base64编码，解密后又是一张二维码，用工具扫码得到flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KEY&#123;dca57f966e4e4e31fd5b15417da63269&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-大白"><a href="#6-大白" class="headerlink" title="6. 大白"></a>6. 大白</h3><p>这个啊，实际上是一道修改图片高度的问题，还是使用winhex修改图片高度就能得到flag。</p>
+<h3 id="7-基础破解"><a href="#7-基础破解" class="headerlink" title="7. 基础破解"></a>7. 基础破解</h3><p>主要考察暴力密码破解，这个题好在有提示四位数字加密，所以把库限制为从0000到9999就可以很方便的解题</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;70354300a5100ba78068805661b93a5c&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="8-乌镇峰会中图"><a href="#8-乌镇峰会中图" class="headerlink" title="8. 乌镇峰会中图"></a>8. 乌镇峰会中图</h3><p>这道题还是通过stegslve工具使用analyse功能进行分析可以得到flag。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;97314e7864a8f62627b26f3f998c37f1&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="9-LSB"><a href="#9-LSB" class="headerlink" title="9.LSB"></a>9.LSB</h3><p>这个名字LSB最低有效位隐写，这个题跟上面两道一样还是使用stegslve工具，在使用stegslve工具查看图片的时候 在<code>Red plane 0</code>、<code>Grenn plane 0</code>、<code>Blue plane0</code>通道发现图片的上方发现存在类似二维码的东西，使用 Data Extract 功能将其保存为一张图片，得到的图片是一张二维码，通过QR工具扫码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cumtctf&#123;1sb_i4_s0_Ea4y&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-图片中的秘密"><a href="#10-图片中的秘密" class="headerlink" title="10.图片中的秘密"></a>10.图片中的秘密</h3><p>这个秘密在图片的属性里…实际上拿到一张图片隐写题目第一步不就是应该看属性吗？为毛这道题会在这里。</p>
+<h3 id="11-wireshark"><a href="#11-wireshark" class="headerlink" title="11.wireshark"></a>11.wireshark</h3><p>最简单的流量分析，流量分析…..提到流量分析我就像到了之前科来杯预选的那道流量分析，耗了我不知道多久还是没搞出来，这个就好说多了，直接查找关键字flag就能找到好几个流，挨个分析就能找到一个写的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">email=flag&amp;password=ffb7567a1d4f4abdffdb54e022f8facd&amp;captcha=BYUG</span><br></pre></td></tr></table></figure>
+
+<p>ffb7567a1d4f4abdffdb54e022f8facd这一段就是flag。</p>
+<h3 id="12-rar"><a href="#12-rar" class="headerlink" title="12.rar"></a>12.rar</h3><p>这道题也是暴力破解，做到这个时候对Buuctf这个靶场的认识是题目丰富，但缺少层次，通过暴力破解得到rar文件的解压密码，解压就能得到flag。</p>
+<h3 id="13-伪加密"><a href="#13-伪加密" class="headerlink" title="13.伪加密"></a>13.伪加密</h3><p>真的是伪加密，关于伪加密这是个大的知识点。<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_26187985/article/details/83654197">zip伪加密原理及操作</a>一个别人的博客，讲的比较清楚，对于这道题来说，看上去是真加密，实际上只是将两个标记位置都改为了0900，还原操作就是单纯将0900改为0000就行。</p>
+<p>14.QR</p>
+<p>题如其名qr，这个是二维码隐写的工具，使用qr扫一遍就行，这个好像说是某个比赛的签到题？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">欢迎参加本次比赛，密码为 Flag&#123;878865ce73370a4ce607d21ca01b5e59&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="15-被嗅探的流量"><a href="#15-被嗅探的流量" class="headerlink" title="15.被嗅探的流量"></a>15.被嗅探的流量</h3><p>这个是使用wireshark的搜索功能在分组字节流中查找flag，，在看上去被嗅探到的是一个flag.jpg，在查找几次后就找到了，flag{da73d88936010da1eeeb36e945ec4b97}。</p>
+<h3 id="16-镜子里的世界"><a href="#16-镜子里的世界" class="headerlink" title="16.镜子里的世界"></a>16.镜子里的世界</h3><p>又又又又是提到LSB最低有效位隐写还是使用stegslve工具，通过分析得出Hey I th ink we can write  safely in this  file without any one seeing it. A nyway, the secre t key is: st3g0_ saurus_wr3cks</p>
+<p>嗯，这里的flag中又一个空格，我没注意到，捣鼓了老一会。</p>
+<h3 id="17-ningen"><a href="#17-ningen" class="headerlink" title="17.ningen"></a>17.ningen</h3><p>又又又是图片隐写和密码爆破，使用formost分解图片，得到压缩包，使用ARCHPR工具爆破压缩包密码得到flag。</p>
+<p>18.小明的密码箱</p>
+<p>又又又，又是密码爆破直接爆破得到flag{75a3d68bf071ee188c418ea6cf0bb043}</p>
+<h3 id="19-爱因斯坦"><a href="#19-爱因斯坦" class="headerlink" title="19.爱因斯坦"></a>19.爱因斯坦</h3><p>这道题以前做到过，图片使用formost分解得到压缩包，压缩包的密码就在文件的属性里面，不要尝试暴力破解出不来。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;dd22a92bf2cceb6c0cd0d6b83ff51606&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="20-easycap"><a href="#20-easycap" class="headerlink" title="20.easycap"></a>20.easycap</h3><p> 题目附件是流量包，使用<code>wireshark</code>打开，全是<code>tcp</code>的包，追踪流量即可发现flag。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;385b87afc8671dee07550290d16a8071&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-另一个世界"><a href="#21-另一个世界" class="headerlink" title="21.另一个世界"></a>21.另一个世界</h3><p>又是一道图片隐写，这道隐写还是老办法使用winhex打开，在ascall码的最后有一段01串，这显然是不正常的，这种情况可以自己去写一个脚本，也可以找现成的工具。我个人还是喜欢在线的平台<a target="_blank" rel="noopener" href="http://1818288.com/o/?id=Mzky">二进制转字符串在线平台</a>毕竟用现成的平台可以避免重复造轮子。</p>
+<h3 id="22-隐藏的钥匙"><a href="#22-隐藏的钥匙" class="headerlink" title="22.隐藏的钥匙"></a>22.隐藏的钥匙</h3><p>啊这，这个还是使用winhex打开查找一下flag就出来了………</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;377cbadda1eca2f2f73d36277781f00a&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="23-flag"><a href="#23-flag" class="headerlink" title="23.flag"></a>23.flag</h3><p>嗯，教练我想打篮球，名场面了。 <code>stegsolve</code>打开发现在<code>LSB</code>的<code>RGB</code>这是个<code>zip</code>文件，<code>Save Bin</code>保存为<code>flag.zip</code> ，解压就行，提示损坏课上可以解压的，解压出来是一个没有拓展名的文件1，使用winhex打开，发现是 <code>ELF</code>文件 ，使用<code>IDA</code>打开就能找到flag。</p>
+<h3 id="24-假如给我三天光明"><a href="#24-假如给我三天光明" class="headerlink" title="24.假如给我三天光明"></a>24.假如给我三天光明</h3><p> 下载解压，终于这次不是给你提示让你爆破压缩包了，一张假如给我三天光明的书的图片，上面有一段盲文，通过盲文对照表得到压缩包密码<code>kmdonowg</code>， 把得到的口令输入解压密码，解压得到<code>wav</code>音频文件 ,音频文件的隐写最常见的就是莫斯电码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-.-.  -  ..-.  .--  .--.  .  ..  -----  ---..  --...  ...--  ..---  ..--..  ..---  ...--  -..  --..</span><br></pre></td></tr></table></figure>
+
+<p>对于这道题显然这就是莫斯电码，解码得到<code>CTFWPEI08732?23DZ</code>然后就是提交，注意这一堆不止是flag，直接以flag{CTFWPEI08732?23DZ}的形式提交是错误的，需要把CTF换成flag，在把那些大写字母转为小写才行。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;wpei08732?23dz&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://shierjinghuang.github.io/2021/10/03/BuuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BMisc/" data-id="ckuamibrt0000zoun0ml0gryn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-实验报告李星亮2021,9,15" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/09/29/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A%E6%9D%8E%E6%98%9F%E4%BA%AE2021,9,15/" class="article-date">
@@ -472,6 +557,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <hr>
+<center>BUGKU靶场解题记录之Cypto</center>
+
 <h4 id="1"><a href="#1" class="headerlink" title="1 /.-"></a>1 /.-</h4><blockquote>
 <p>..-./.-../.-/–./—-.–/-../…–/..-./-.-./-…/..-./.—-/–…/..-./—-./…–/—-./—-./…../—–/….-/—–.-</p>
 </blockquote>
@@ -561,10 +648,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h4><center>前言：</center></h4>
+> 学习CTF已经有一段时间了，陆陆续续也做了不少题。为了准备前段时间的全国大学生信息安全大赛，又把许多题目重新看过一遍。现在也终于闲下来一两天，正好趁这个机会把在bugku靶场做出的题目整理一下。
 
-<blockquote>
-<p>学习CTF已经有一段时间了，陆陆续续也做了不少题。为了准备前段时间的全国大学生信息安全大赛，又把许多题目重新看过一遍。现在也终于闲下来一两天，正好趁这个机会把在bugku靶场做出的题目整理一下。</p>
-</blockquote>
 <hr>
 <h6 id="web1"><a href="#web1" class="headerlink" title="web1"></a>web1</h6><p>打开看到一大堆滑稽，F12查看网页源代码就能发现flag，明显的送分题。</p>
 <h6 id="web2"><a href="#web2" class="headerlink" title="web2"></a>web2</h6><p> 题目描述输入验证码即可得到flag，正常输入发现只能输入1位，F12，将maxlength=”1”改为maxlength=”2”即可正确输入,得到flag。还是送分题。</p>
@@ -950,7 +1035,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">October 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/08/">August 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li></ul>
     </div>
   </div>
 
@@ -961,6 +1046,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2021/10/03/BuuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BMisc/">(no title)</a>
+          </li>
         
           <li>
             <a href="/2021/09/29/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A%E6%9D%8E%E6%98%9F%E4%BA%AE2021,9,15/">Python上机课汇总</a>
@@ -976,10 +1065,6 @@
         
           <li>
             <a href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BCrypto/">BUGKU靶场解题记录之Cypto</a>
-          </li>
-        
-          <li>
-            <a href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/">BUGKU靶场解题记录之web</a>
           </li>
         
       </ul>
