@@ -1,37 +1,629 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>BUGKU靶场解题记录之Cypto | 十二惊惶的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="BUGKU靶场解题记录之Cypto  1 &#x2F;.- ..-.&#x2F;.-..&#x2F;.-&#x2F;–.&#x2F;—-.–&#x2F;-..&#x2F;…–&#x2F;..-.&#x2F;-.-.&#x2F;-…&#x2F;..-.&#x2F;.—-&#x2F;–…&#x2F;..-.&#x2F;—-.&#x2F;…–&#x2F;—-.&#x2F;—-.&#x2F;…..&#x2F;—–&#x2F;….-&#x2F;—–.-  一个很简单的莫斯密码题，使用线上的解题工具即可完成。注意*%u7b和%u7d分别是{* 和 **}**。 2  聪明的小羊题干是一只小羊翻过了2个栅栏 fa{fe13f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BUGKU靶场解题记录之Cypto">
+<meta property="og:url" content="https://shierjinghuang.github.io/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BCrypto/index.html">
+<meta property="og:site_name" content="十二惊惶的博客">
+<meta property="og:description" content="BUGKU靶场解题记录之Cypto  1 &#x2F;.- ..-.&#x2F;.-..&#x2F;.-&#x2F;–.&#x2F;—-.–&#x2F;-..&#x2F;…–&#x2F;..-.&#x2F;-.-.&#x2F;-…&#x2F;..-.&#x2F;.—-&#x2F;–…&#x2F;..-.&#x2F;—-.&#x2F;…–&#x2F;—-.&#x2F;—-.&#x2F;…..&#x2F;—–&#x2F;….-&#x2F;—–.-  一个很简单的莫斯密码题，使用线上的解题工具即可完成。注意*%u7b和%u7d分别是{* 和 **}**。 2  聪明的小羊题干是一只小羊翻过了2个栅栏 fa{fe13f">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/24919094-c63759746f45889a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/24919094-df5120eed9bd6250.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2021-07-30T14:40:45.088Z">
+<meta property="article:modified_time" content="2021-10-03T02:45:54.219Z">
+<meta property="article:author" content="shierjinghuang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/24919094-c63759746f45889a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+    <link rel="alternative" href="/atom.xml" title="十二惊惶的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
 
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
 
-{% block page_class %}page-post-detail{% endblock %}
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate"></a></h1>
+        </hgroup>
 
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
 
-{% block content %}
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/Home">博客首页</a></li>
+                        
+                            <li><a href="/works">作品展示</a></li>
+                        
+                            <li><a href="/about">留言打卡</a></li>
+                        
+                            <li><a href="/FrontEndGuide">前端导航</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/luuman" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="#" title="weibo">weibo</a>
+                            
+                                <a class="fl google" target="_blank" href="#" title="google">google</a>
+                            
+                                <a class="fl twitter" target="_blank" href="#" title="twitter">twitter</a>
+                            
+                                <a class="fl linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://luuman.github.io/">name</a>
+                    
+                    </div>
+                </section>
+                
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
-
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">纯海迷、爱运动、爱交友、爱旅行、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
     </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me"></a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me"></a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/Home">博客首页</a></li>
+                
+                    <li><a href="/works">作品展示</a></li>
+                
+                    <li><a href="/about">留言打卡</a></li>
+                
+                    <li><a href="/FrontEndGuide">前端导航</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/luuman" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+                    
+                        <a class="google" target="_blank" href="#" title="google">google</a>
+                    
+                        <a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+                    
+                        <a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-BUGKU靶场解题记录之Crypto" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BCrypto/" class="article-date">
+      <time datetime="2021-07-30T14:40:45.088Z" itemprop="datePublished">2021-07-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      BUGKU靶场解题记录之Cypto
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <hr>
+<center>BUGKU靶场解题记录之Cypto</center>
+
+<h4 id="1"><a href="#1" class="headerlink" title="1 /.-"></a>1 /.-</h4><blockquote>
+<p>..-./.-../.-/–./—-.–/-../…–/..-./-.-./-…/..-./.—-/–…/..-./—-./…–/—-./—-./…../—–/….-/—–.-</p>
+</blockquote>
+<p>一个很简单的莫斯密码题，使用线上的<a target="_blank" rel="noopener" href="https://tool.bugku.com/mosi/">解题工具</a>即可完成。注意*%u7b<em>和</em>%u7d<em>分别是</em><em>{</em>* 和 **}**。</p>
+<h4 id="2-聪明的小羊"><a href="#2-聪明的小羊" class="headerlink" title="2  聪明的小羊"></a>2  聪明的小羊</h4><p>题干是一只小羊翻过了2个栅栏 fa{fe13f590lg6d46d0d0}，提示的很清楚栅栏密码，直接解码就行。</p>
+<h4 id="3-okk"><a href="#3-okk" class="headerlink" title="3 okk"></a>3 okk</h4><p>说真的我并不知道这道题的考点在哪里。下载是一个txt文件，打开一大串由okk组成的字符，使用<a target="_blank" rel="noopener" href="https://ctf.bugku.com/tool/brainfuck">在线工具解码</a>就行。</p>
+<blockquote>
+<p>okk密码实际上是一种编程语言，由okk. okk? okk!组成。</p>
+</blockquote>
+<h4 id="4-lt-gt"><a href="#4-lt-gt" class="headerlink" title="4 [+-&lt;&gt;]"></a>4 [+-&lt;&gt;]</h4><p>说真的这道题跟上一道题是接近一毛一样，这是使用的是一款可读性几乎为0的语言:Brainfuck!<br>解码还是用上一道题的链接就行，bugku本站将两种编码的在线解码放在了同一个工具里。</p>
+<h4 id="5-你以为是md5吗"><a href="#5-你以为是md5吗" class="headerlink" title="5 你以为是md5吗"></a>5 你以为是md5吗</h4><blockquote>
+<p>bci177a7a9c7udf69c248647b4dfc6fd84o 是又不是就是玩</p>
+</blockquote>
+<p>确实是md5，但是md5是16进制的包含0到9和a到f一共16个字符，这道题给的包含了超出f的字符，删去这一部分就能得到正确的编码。解码可得结果。不得不说真的666666啊。</p>
+<h4 id="6-这不是md5"><a href="#6-这不是md5" class="headerlink" title="6 这不是md5"></a>6 这不是md5</h4><p>说实话这道题还真不是md5，就是一段16进制数，直接转文本就行<strong>flag{ae73587ba56baef5}</strong></p>
+<h4 id="7-一段base64"><a href="#7-一段base64" class="headerlink" title="7 一段base64"></a>7 一段base64</h4><p>这段base64还真是够长的，用在线解题工具已经不能将其解码了。不过还是可以利用工具converter进行解码。得道形如\134\170\65\143\134\170\67\65 的一段编码。百度得知是unescape编码。继续进项解码得到形如\x5c\x75\x30\x30\x35的编码这一部分还清楚是hex编码。将他转化为text。得到一堆我又不认识的密码。。。<br>结果看了下别人的解题他们告诉我这还是unescape，继续解码发现<strong>String.fromCharCode</strong>根据大佬的介绍这是JavaScript的函数，[]内的是里面的参数。然后将这一些删去对数字就是一种dec密码。继续解码。得到decode编码。继续解码。得到Unicode编码.编码可得。</p>
+<blockquote>
+<p>&#102;&#108;&#97;&#103;&#37;&#55;&#66;&#99;&#116;&#102;&#95;&#116;&#102;&#99;&#50;&#48;&#49;&#55;&#49;&#55;&#113;&#119;&#101;&#37;&#55;&#68;</p>
+</blockquote>
+<p>其中%7b是 <strong>{</strong> ，%7d是 **}**。<br>得到flag。这道做的时候是转的最晕的一次，使用的密码太多了。</p>
+<h4 id="8-base家族"><a href="#8-base家族" class="headerlink" title="8 base家族"></a>8 base家族</h4><p>这确实不是base64，不是base32，不是base16.这是神奇的base91…….</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;554a5058c9021c76&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="9-把猪困在猪圈里"><a href="#9-把猪困在猪圈里" class="headerlink" title="9 把猪困在猪圈里"></a>9 把猪困在猪圈里</h4><p>题目提示的很清楚是与猪圈密码有关。打开是一段base64编码，我们知道猪圈密码是一堆特殊符号。这就很有可能是要将base64密码转为图片。在文本最前方加上data:image/jpg;base64,然后用在线工具编码出对应图片。<br><img src="https://upload-images.jianshu.io/upload_images/24919094-c63759746f45889a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>就是这个，对应解码得到<strong>flag{thisispigpassword}</strong></p>
+<blockquote>
+<p>由于比较忙碌这个解题，包括之前的web和之后写的杂项都会持续更新的。</p>
+</blockquote>
+<h4 id="10"><a href="#10" class="headerlink" title="10 .!?"></a>10 .!?</h4><p>这像不像前面的okk，实际上这就是一种变形的okk密码，省略okk只使用.!?进行描述。用在线工具解题即可获得flag。</p>
+<h4 id="11-散乱的密码"><a href="#11-散乱的密码" class="headerlink" title="11 散乱的密码"></a>11 散乱的密码</h4><p>看这个题第一眼以为是栅栏密码，但又有2 1 6 5 3 4这样的提示，这让我想到了ADFGX密码。仔细一数 lf5{ag024c483549d7fd@@1}一共24个数，216534一共六个数。盲猜是变形对ADFGX，将每六个作为一组，按照216534的顺序进行排列。最后删去@@得到flag。</p>
+<h4 id="12-EN-气泡"><a href="#12-EN-气泡" class="headerlink" title="12 EN-气泡"></a>12 EN-气泡</h4><p>提示的很清楚气泡，Bubble。这就是一串BubbleBubble密码。对文件多次解码得到flag。</p>
+<h4 id="13-简单加密"><a href="#13-简单加密" class="headerlink" title="13 简单加密"></a>13 简单加密</h4><p>题目信息里的AA实际上是提示，这个本质上是一个凯撒移位，但是凯撒移位是对字母进行移位，而这个是包含了字母数字和特殊符号。无法使用现成的工具。<br>写一个脚本。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">text = <span class="built_in">input</span>(<span class="string">&quot;请输入题目密文&quot;</span>)</span><br><span class="line">text1=<span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> text:</span><br><span class="line">    t=<span class="built_in">chr</span>(<span class="built_in">ord</span>(i)-<span class="number">4</span>)</span><br><span class="line">    text1+=t</span><br><span class="line"><span class="built_in">print</span>(text1)</span><br></pre></td></tr></table></figure>
+<p>将字符进行移位得到a2V5ezY4NzQzMDAwNjUwMTczMjMwZTRhNThlZTE1M2M2OGU4fQ==，明显是base64密码，解码得flag。</p>
+<h4 id="14-来自宇宙的信号"><a href="#14-来自宇宙的信号" class="headerlink" title="14 来自宇宙的信号"></a>14 来自宇宙的信号</h4><p>下载下来是一张图片，评论区告诉我这是标准银河字母（Standard Galactic Alphabet）出自《<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%8C%87%E6%8C%A5%E5%AE%98%E5%9F%BA%E6%81%A9/10345602">指挥官基恩</a>》系列。后面又了解了下，突然发现这东西还是MC的附魔符号，感觉这么多年的我的世界白玩了。</p>
+<h4 id="15-告诉你一个秘密。"><a href="#15-告诉你一个秘密。" class="headerlink" title="15 告诉你一个秘密。"></a>15 告诉你一个秘密。</h4><blockquote>
+<p>636A56355279427363446C4A49454A7154534230526D6843 56445A31614342354E326C4B4946467A5769426961453067</p>
+</blockquote>
+<p>嗯这像是16进制数也像MD5，MD5解密什么都没有得到，使用16进制转字符串得到cjV5RyBscDlJIEJqTSB0RmhCVDZ1aCB5N2lKIFFzWiBiaE0g，用base64进行编码得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">r5yG lp9I BjM tFhBT6uh y7iJ QsZ bhM </span><br></pre></td></tr></table></figure>
+
+<p>评论区有人告诉我们，这是键盘码，</p>
+<blockquote>
+<p>键盘密码应该不算是一种加密算法，但是一种有趣的设置密码方式。<br>他就是a-z(A-Z)对应成键盘上的字母，把键盘字母一行一行的对应即可。<br>例如被r5yg几个字母包围的是t。</p>
+</blockquote>
+<p>得到flag，注意最后的密码需要大写。</p>
+<h4 id="16-小山丘的秘密"><a href="#16-小山丘的秘密" class="headerlink" title="16 小山丘的秘密"></a>16 小山丘的秘密</h4><p>hill能有什么秘密呢，Hill Cipher正是希尔密码，观察图片，希尔密码需要秘钥字母表，密钥肯定就在图片中,图片看上去4和9的位置看上去像是缺了棋子，那么将它看作0，那么此处位置为 z ，其他位置如图所示，得到密钥<br><img src="https://upload-images.jianshu.io/upload_images/24919094-df5120eed9bd6250.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<p>将其作为秘钥abczadefz<br>同时我们知道提示中他说A=1，我们要让密码表中Z=0，a=1；<br>将PLGTGBQHM小写进行解码，得到whatahill。扩上{}得到flag。</p>
+<h4 id="17-你喜欢下棋吗"><a href="#17-你喜欢下棋吗" class="headerlink" title="17 你喜欢下棋吗"></a>17 你喜欢下棋吗</h4><p>题干很清楚下棋，这个是波利比奥斯方阵密码，也叫棋盘密码。使用在线工具解码得到thisispolybius。这是txt文件的解压密码。</p>
+<blockquote>
+<p>一种5bit的编码<br>bugku{11111 11001 00011 00111 01001 11011 10110 11111 10000 01110 11011 10110 11111 01001 00001}</p>
+</blockquote>
+<p>评论区告诉我这是博多电码解码，好家伙出题人你做个人吧。<br>博多电码太过于古老，导致都没什么现成的公具。<a target="_blank" rel="noopener" href="https://www.dcode.fr/baudot-code%E8%BF%99%E6%98%AF%E8%AF%84%E8%AE%BA%E5%8C%BA%E5%A4%A7%E4%BD%AC%E7%BB%99%E7%9A%84%E8%A7%A3%E7%A0%81%E7%BD%91%E5%9D%80%E3%80%82%E8%BF%98%E6%9C%89%E5%87%A0%E4%B8%AA%E7%BD%91%E5%9D%80%EF%BC%8C%E4%BD%86%E5%9B%A0%E4%B8%BA%E5%90%84%E7%A7%8D%E5%90%84%E6%A0%B7%E7%9A%84%E5%8E%9F%E5%9B%A0%E8%BF%9B%E4%B8%8D%E5%8E%BB%E3%80%82%E3%80%82%E3%80%82">https://www.dcode.fr/baudot-code这是评论区大佬给的解码网址。还有几个网址，但因为各种各样的原因进不去。。。</a><br>解码得到flag</p>
+<hr>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BCrypto/">BUGKU靶场解题记录之Cypto</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问  的个人博客"></a></p>
+        <p><span>发布时间:</span>2021年07月30日 - 22时40分</p>
+        <p><span>最后更新:</span>2021年10月03日 - 10时45分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BCrypto/" title="BUGKU靶场解题记录之Cypto">https://shierjinghuang.github.io/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BCrypto/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://shierjinghuang.github.io/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BCrypto/　　作者: " title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+<nav id="article-nav">
+  
+    <a href="/2021/08/01/BugkuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bmisc/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          BUGKU靶场解题记录之misc
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">BUGKU靶场解题记录之web</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1"><span class="toc-number">1.</span> <span class="toc-text">1 &#x2F;.-</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%81%AA%E6%98%8E%E7%9A%84%E5%B0%8F%E7%BE%8A"><span class="toc-number">2.</span> <span class="toc-text">2  聪明的小羊</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-okk"><span class="toc-number">3.</span> <span class="toc-text">3 okk</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-lt-gt"><span class="toc-number">4.</span> <span class="toc-text">4 [+-&lt;&gt;]</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E4%BD%A0%E4%BB%A5%E4%B8%BA%E6%98%AFmd5%E5%90%97"><span class="toc-number">5.</span> <span class="toc-text">5 你以为是md5吗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E8%BF%99%E4%B8%8D%E6%98%AFmd5"><span class="toc-number">6.</span> <span class="toc-text">6 这不是md5</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%E4%B8%80%E6%AE%B5base64"><span class="toc-number">7.</span> <span class="toc-text">7 一段base64</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-base%E5%AE%B6%E6%97%8F"><span class="toc-number">8.</span> <span class="toc-text">8 base家族</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#9-%E6%8A%8A%E7%8C%AA%E5%9B%B0%E5%9C%A8%E7%8C%AA%E5%9C%88%E9%87%8C"><span class="toc-number">9.</span> <span class="toc-text">9 把猪困在猪圈里</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#10"><span class="toc-number">10.</span> <span class="toc-text">10 .!?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#11-%E6%95%A3%E4%B9%B1%E7%9A%84%E5%AF%86%E7%A0%81"><span class="toc-number">11.</span> <span class="toc-text">11 散乱的密码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#12-EN-%E6%B0%94%E6%B3%A1"><span class="toc-number">12.</span> <span class="toc-text">12 EN-气泡</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#13-%E7%AE%80%E5%8D%95%E5%8A%A0%E5%AF%86"><span class="toc-number">13.</span> <span class="toc-text">13 简单加密</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#14-%E6%9D%A5%E8%87%AA%E5%AE%87%E5%AE%99%E7%9A%84%E4%BF%A1%E5%8F%B7"><span class="toc-number">14.</span> <span class="toc-text">14 来自宇宙的信号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#15-%E5%91%8A%E8%AF%89%E4%BD%A0%E4%B8%80%E4%B8%AA%E7%A7%98%E5%AF%86%E3%80%82"><span class="toc-number">15.</span> <span class="toc-text">15 告诉你一个秘密。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#16-%E5%B0%8F%E5%B1%B1%E4%B8%98%E7%9A%84%E7%A7%98%E5%AF%86"><span class="toc-number">16.</span> <span class="toc-text">16 小山丘的秘密</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#17-%E4%BD%A0%E5%96%9C%E6%AC%A2%E4%B8%8B%E6%A3%8B%E5%90%97"><span class="toc-number">17.</span> <span class="toc-text">17 你喜欢下棋吗</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: 'luuman',
+      repo: 'luuman.github.io',
+      oauth: {
+        client_id: '',
+        client_secret: '',
+      },
+    })
+    gitment.render('gitments')
+</script>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2021/08/01/BugkuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bmisc/" title="上一篇: BUGKU靶场解题记录之misc">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/" title="下一篇: BUGKU靶场解题记录之web">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/10/03/DASCTF%20X%20%E6%B5%99%E6%B1%9F%E5%B7%A5%E4%B8%9A%E5%A4%A7%E5%AD%A6%E7%A7%8B%E5%AD%A3%E6%8C%91%E6%88%98%E8%B5%9B/">浙江工业大学秋季挑战赛wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/10/03/BUU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bmisc/">BUU靶场解题记录之misc</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/29/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A%E6%9D%8E%E6%98%9F%E4%BA%AE2021,9,15/">Python上机课汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/18/QFNU%20CTF%20%E8%BF%8E%E6%96%B0%E8%B5%9B%E8%A7%A3%E9%A2%98/">QFNU_CTF迎新赛题解</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/08/01/BugkuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bmisc/">BUGKU靶场解题记录之misc</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BCrypto/">BUGKU靶场解题记录之Cypto</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/">BUGKU靶场解题记录之web</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/30/QFNUCTF%E6%98%A5%E5%AD%A3%E7%BB%83%E4%B9%A0%E8%B5%9B%E7%BB%93%E9%A2%98%E8%AE%B0%E5%BD%95/">QFNUCTF春季练习赛结题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/30/C%E8%AF%AD%E8%A8%80%E5%AE%9E%E8%AE%AD%E4%B9%8B%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">C语言课程实训：员工信息管理系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/30/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98%E6%B8%B8%E6%88%8F/">课程论文：基于C++的可视化飞机大战游戏</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/28/hello-world/">欢迎来到十二惊惶的博客</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2021 shierjinghuang
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >海贼到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

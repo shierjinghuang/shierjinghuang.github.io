@@ -1,37 +1,638 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>课程论文：基于C++的可视化飞机大战游戏 | 十二惊惶的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要： 飞机大战是一款经典的游戏，最早应追溯到打击者1945（Strikers 1945），这是日本彩京公司于1995年发售的飞行射击游戏。本作是参照打击者1945基于visual C++写成的飞行射击类游戏。本作中实现了敌机的产生功能、子弹的发射功能、飞机中弹销毁和计算得分等功能,而且通过文件读写的相关操作完成了存档与读档的相关操作。本作通过便捷的操作方式，使玩家可以轻易地上手该游戏，在游戏中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="课程论文：基于C++的可视化飞机大战游戏">
+<meta property="og:url" content="https://shierjinghuang.github.io/2021/07/30/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98%E6%B8%B8%E6%88%8F/index.html">
+<meta property="og:site_name" content="十二惊惶的博客">
+<meta property="og:description" content="摘要： 飞机大战是一款经典的游戏，最早应追溯到打击者1945（Strikers 1945），这是日本彩京公司于1995年发售的飞行射击游戏。本作是参照打击者1945基于visual C++写成的飞行射击类游戏。本作中实现了敌机的产生功能、子弹的发射功能、飞机中弹销毁和计算得分等功能,而且通过文件读写的相关操作完成了存档与读档的相关操作。本作通过便捷的操作方式，使玩家可以轻易地上手该游戏，在游戏中">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-07-30T10:54:12.942Z">
+<meta property="article:modified_time" content="2021-07-30T10:59:49.974Z">
+<meta property="article:author" content="shierjinghuang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="十二惊惶的博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
 
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
 
-{% block page_class %}page-post-detail{% endblock %}
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate"></a></h1>
+        </hgroup>
 
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
 
-{% block content %}
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/Home">博客首页</a></li>
+                        
+                            <li><a href="/works">作品展示</a></li>
+                        
+                            <li><a href="/about">留言打卡</a></li>
+                        
+                            <li><a href="/FrontEndGuide">前端导航</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/luuman" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="#" title="weibo">weibo</a>
+                            
+                                <a class="fl google" target="_blank" href="#" title="google">google</a>
+                            
+                                <a class="fl twitter" target="_blank" href="#" title="twitter">twitter</a>
+                            
+                                <a class="fl linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://luuman.github.io/">name</a>
+                    
+                    </div>
+                </section>
+                
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
-
-    <div class="post-spread">
-      {% if theme.jiathis %}
-        {% include '_partials/share/jiathis.swig' %}
-      {% elseif theme.baidushare %}
-        {% include '_partials/share/baidushare.swig' %}
-      {% elseif theme.add_this_id %}
-        {% include '_partials/share/add-this.swig' %}
-      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
-        {% include '_partials/share/duoshuo_share.swig' %}
-      {% endif %}
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">纯海迷、爱运动、爱交友、爱旅行、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
     </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me"></a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me"></a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/Home">博客首页</a></li>
+                
+                    <li><a href="/works">作品展示</a></li>
+                
+                    <li><a href="/about">留言打卡</a></li>
+                
+                    <li><a href="/FrontEndGuide">前端导航</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PAkNDgsKBQ4MCnxNTRJfU1E" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/luuman" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+                    
+                        <a class="google" target="_blank" href="#" title="google">google</a>
+                    
+                        <a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+                    
+                        <a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-基于C++的可视化飞机大战游戏" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2021/07/30/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98%E6%B8%B8%E6%88%8F/" class="article-date">
+      <time datetime="2021-07-30T10:54:12.942Z" itemprop="datePublished">2021-07-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      课程论文：基于C++的可视化飞机大战游戏
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <hr>
+<p><strong>摘要：</strong> 飞机大战是一款经典的游戏，最早应追溯到打击者1945（Strikers 1945），这是日本彩京公司于1995年发售的飞行射击游戏。本作是参照打击者1945基于visual C++写成的飞行射击类游戏。本作中实现了敌机的产生功能、子弹的发射功能、飞机中弹销毁和计算得分等功能,而且通过文件读写的相关操作完成了存档与读档的相关操作。本作通过便捷的操作方式，使玩家可以轻易地上手该游戏，在游戏中放松心情，释放压力，提高反应能力。游玩该游戏可以为玩家带来欢乐。</p>
+<hr>
+<p>关键词： <strong>可视化</strong> <strong>飞机大战</strong> <strong>游戏设计</strong></p>
+<p>引言 随着社会的不断发展，人们的生活方式也不断的在变化，人们的娱乐方式也越发的多种多样。人们对美好生活的向往，不单单局限于物质生活，人们的精神生活也在一天天的丰富。游戏是很多人精神生活中的一种重要组成部分。毫无疑问飞机大战是一款极其经典的游戏，玩家通过鼠标或键盘操作飞机攻击敌方飞机，躲避碰撞和敌方飞机攻击。极其简单的操作和轻松的上手，使得这一款游戏带给了无数人欢乐。</p>
+<h4 id="1-需求分析"><a href="#1-需求分析" class="headerlink" title="1 需求分析"></a>1 需求分析</h4><p>在飞行射击类游戏中，玩家登陆游戏后可以通过鼠标或键盘操作飞机前进，躲避敌机攻击，并通过点击鼠标左键或空格键发射子弹击败敌机。</p>
+<p>完成这个飞机大战游戏的设计，需要完成用户飞机的移动功能，敌机的产生功能、子弹的发射功能、飞机中弹销毁和计算得分等功能。在用户需要时可以暂停游戏，可以通过文件读写完成存档与读档。为丰富游戏的趣味性，相应增加了各种音效，并会根据用户的得分产生相应的敌机。</p>
+<h4 id="2-关键技术"><a href="#2-关键技术" class="headerlink" title="2 关键技术"></a>2 关键技术</h4><h5 id="2-1-C-面向对象的程序设计"><a href="#2-1-C-面向对象的程序设计" class="headerlink" title="2.1 C++面向对象的程序设计"></a>2.1 C++面向对象的程序设计</h5><p>C++起始于C语言。当C语言发展到巅峰时出现了增加关键词和类的C with class的C语言版本，而这是C语言的一大突破，开发者将这一种语言命名为C++。这便是C++最早的版本。</p>
+<blockquote>
+<p>美国AT&amp;T贝尔实验室的本贾尼·斯特劳斯特鲁普博士在20世纪80年代初期成功地实现了C++，即C with classes。当时C++是作为C语言的加强版本出现，从给C增加类开始，不断增加新的特征<sup>[1]</sup>。</p>
+</blockquote>
+<p>然而就目前而言，C++可以认为它是一门独立的编程语言，它源于C语言但是它并不依赖于C语言。C++与C语言也是有本质差别：在于C++是面向对象的，而C语言是面向过程的。或者说C++是在C语言的基础上增加了面向对象程序设计的新内容，是对C语言的一次更重要的改革，使得C++成为软件开发的重要工具。</p>
+<h5 id="2-2-C-语言的优点"><a href="#2-2-C-语言的优点" class="headerlink" title="2.2 C++语言的优点"></a>2.2 C++语言的优点</h5><p>（1）在C语言的基础上进行扩充和完善，使C++兼容了C语言的面向过程特点，又成为了一种面向对象的程序设计语言。</p>
+<p>（2）可以使用抽象数据类型进行基于对象的编程；      </p>
+<p>（3）可以使用多继承、多态进行面向对象的编程；      </p>
+<p>（4）可以担负起以模版为特征的泛型化编程。      </p>
+<p>（5）C++实现了面向对象程序设计。在高级语言当中，处理运行速度是最快的，大部分的游戏软件，系统都是由C++来编写的。</p>
+<p>（6）C++语言非常灵活，功能非常强大。如果说C语言的优点是指针，那么C++的优点就是性能和类层次结构的设计。</p>
+<p>（7）C++非常严谨、精确和数理化，标准定义很细致。</p>
+<p>（8）C++语言的语法思路层次分明、相呼应;语法结构是显式的、明确的。</p>
+<h5 id="2-3-Visual-C-的优点"><a href="#2-3-Visual-C-的优点" class="headerlink" title="2.3 Visual C++的优点"></a>2.3 Visual C++的优点</h5><p>（1）与Windows紧密结合，MFC类库集成了大量已经预先定义好的类，用户可以根据编程的需要定义相应的类，或根据需要自己定义相应的类。因此Visual C++在使用API等方面和Windows联系的最为紧密<sup>[</sup><sup>2]</sup>。</p>
+<p>（2）强大的类库支持和类改造能力。代码重用是C++追求的目标，重用就是从已有的基类派生出新的C++类；MFC提供了大量的基类供程序员们根据不同的应用要求生成新的类以满足要求。VC++有了MFC，具有非常强大对类改造的能力。只要集成MFC类，稍加修改就可以得到符合要求的控件类或应用类。</p>
+<p>（3）拥有高效的运行速度。高的运行速度取决于两点：1.软件本身编写的质量，2.编程工具的编译质量。因为VC++非常接近Windows底层，所以编译器所编译的质量相当高，从而保证了VC++编写出来的软件产品拥有高效的运行速度<sup>[</sup><sup>3]</sup>。</p>
+<h5 id="2-4-C-的语言体系"><a href="#2-4-C-的语言体系" class="headerlink" title="2.4 C++的语言体系"></a>2.4 C++的语言体系</h5><p>（1）C子语言。C++是以C语言为基础，C++几乎支持C语言的全部功能。</p>
+<p>（2）面向对象的C++。C++首先是一门面向对象的程序设计语言，并以此闻名。</p>
+<p>（3） 泛型编程语言。相比C语言，C++增加了模板，C++强大的模板功能使系统能够在编译期间就能完成许多工作，从而大大提高了运行效率<sup>[</sup><sup>4]</sup>。</p>
+<p>（4）STL。随着STL的不断发展，渐渐成为C++程序设计体系中不可或缺的一部分。其安全性与规范性的优秀使得它受到程序员的欢迎<sup>[</sup><sup>1]</sup>。</p>
+<h4 id="3-游戏总体设计"><a href="#3-游戏总体设计" class="headerlink" title="3.游戏总体设计"></a>3.游戏总体设计</h4><p>游戏被分成两个部分，一部分是与用户输入有关的更新，包括根据鼠标位置或键盘按键进行飞机的移动和炮弹发射等等。另一部分是与用户输入无关的更新，包括子弹移动，敌机移动逻辑等判断。图1为飞机大战程序设计图。</p>
+<p>图1 飞机大战程序设计图</p>
+<h4 id="4-游戏功能实现"><a href="#4-游戏功能实现" class="headerlink" title="4 游戏功能实现"></a>4 游戏功能实现</h4><h5 id="4-1-代码设计"><a href="#4-1-代码设计" class="headerlink" title="4.1 代码设计"></a>4.1 代码设计</h5><p>4.1.1 头文件<br>     (1)<strong>#include<iostream><strong>头文件，包含头文件输入输出流，c++中没有c语言中输入输出语句，而是利用数据流来解决这个问题。要使用比如cout,cin语句输入输出函数。其中#include文件的目的是把多个编译单元公用的内容单独放在一个文件里减少整体代码尺寸，或者提供可跨工程使用的公共代码；<br>   (2)</strong>#include<fstream><strong>头文件#include 是C++的预编译语句，作用是包含对应的文件，在这里是包含C++的STL头文件fstream。在包含了这个文件后，就可以使用fstream中定义的类及各种成员函数了。fstream是C++ STL中对文件操作的合集，包含了常用的所有文件操作。在C++中，所有的文件操作，都是以流(stream)的方式进行的，fstream也就是文件流file stream<sup>[</sup><sup>5]</sup>。<br>  (3)</strong>#include<iomanip><strong>头文件,这个头文件是声明一些 “流操作符”的，比较常用的setw(int);//设置显示宽度、left//right//设置左右对齐、setprecision(int);//设置浮点数的精确度。<br>  (4)</strong>#include<fstream><strong>包含读写文件头文件，实际上是一个输出流的类模板，含有ifstream和ofstream两个派生类。<br>(5)</strong>#include &lt;math.h&gt;</strong> 是包含math头文件的意思，math.h头文件中声明了常用的一些数学运算，比如乘方，开方运算等等。<br>(6)**#include&lt;graphics.h&gt;**头文件是C语言和visual studio的图形库文件，包含像素函数、线型函数、画线函数、相对画线函数等多种函数，可进行图形的快速编程。这也是实现可视化的最重要工具。使用easyx.exe，可以直接运行安装图形库到visual studio。然后直接使用。<br>(7)#include&lt;windows.h&gt;头文件是最重要的头文件之一，它包含了其他Windows头文件，这些头文件也包含了其他头文件，其中有用户界面函数&lt;Winuser.h&gt;、图形设备接口函数&lt;Wingdi.h&gt;<sup>[</sup><sup>6]</sup>。<br>(8)#include&lt;conio.h&gt;是Console Input/Output（控制台输入输出）的简写，其中定义了通过控制台进行数据输入和数据输出的函数，主要是一些用户通过按键盘产生的对应操作，比如getch()函数等等<sup>[</sup><sup>4]</sup>。<br>(9)#pragma comment(lib,”Winmm.lib”)声明程序使用了winmm.lib库，这个库是是Windows多媒体相关应用程序接口，用于低档的音频和游戏手柄。可以用来实现音频的添加和利用。在该飞机大战程序中这个库中的内容实现了游戏运行时中的背景音乐的开始和结束放映等功能。</p>
+<p>4.1.2使用函数</p>
+<p>settextstyle() 设置文本型式函数，函数settextstyle() 设置图形文本当前字体、文本显示方向（水平显示或垂直显示）以及字符大小。在使用中用于显示得分和成绩。通常与Outtextxy配套使用。</p>
+<p>Outtextxy()函数，这个函数用于在指定位置输出字符串。</p>
+<p>loadimageLoadImage()函数，功能是装载图标，光标，或位图。在本程序中用于加载图片。</p>
+<p>Initgraph()函数功能为初始化图形系统。pathtodriver表示存放图形驱动文件的路径。</p>
+<p>SetTextColor()，Windows API 函数，设置指定DC中的文字颜色。</p>
+<p>kbhit()是一个C和C++函数，用于非阻塞地响应键盘输入事件。其中文可译为“键盘敲击”(keyboard hit)，注意这个函数在高版本VC下已被淘汰，应使用_kbhit()函数。</p>
+<p>MouseHit()函数是实现鼠标操作最关键的函数，用于判断是否有鼠标信息。<sup>[</sup><sup>5]</sup>使用MouseHit()函数效果与kbhit()函数效果类似，如果没有鼠标信息自动跳过。避免了因为没有鼠标信息导致程序无法运行的状况<sup>[7]</sup>。</p>
+<p>getch()是编程中所用的函数，这个函数是一个不回显函数，当用户按下某个字符时，函数自动读取，无需按回车，有的C语言命令行程序会用到此函数做游戏，但是这个函数并非标准函数。在高版本VC或者VS中已经无法使用应该使用_getch()函数<sup>[8]</sup>。</p>
+<p>SetBkMode()函数这就需要使用SetBkMode函数来设置DrawText函数的输出方式，显示设备共有两种输出方式：OPAQUE和TRANSPARENT。OPAQUE的方式是用当前背景的画刷的颜色输出显示文字的背景，而TRANSPARENT是使用透明的输出，也就是文字的背景是不改变的。</p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/MCI">MCI</a>(Media Control Interface，媒体控制接口)函数中，有些只适用于一种<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%8E%A5%E5%8F%A3%E6%96%B9%E5%BC%8F/4582310">接口方式</a>，有些则两种接口都可以用。mciSendString只适用于命令串接口方式（命令串中不区分大小写）以形如mciSendString(“play movie”,buf,sizeof(buf),NULL);的方式进行音频播放，以形如mciSendString(“pause movie”,buf,sizeof(buf),NULL);的方式暂停播放。以形如mciSendString(“close movie”,buf,sizeof(buf),NULL)的形式关闭播放。</p>
+<h5 id="4-2操作逻辑"><a href="#4-2操作逻辑" class="headerlink" title="4.2操作逻辑"></a>4.2操作逻辑</h5><p>本程序使用两种操作方式，依靠键盘按键操作和依靠鼠标位置进行操作。图2为飞机移动操作逻辑示意图。</p>
+<center>图2 飞机移动操作逻辑示意图</center>
+
+<p>使用鼠标操作代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (isExpolde == <span class="number">0</span>)</span><br><span class="line">&#123;</span><br><span class="line">    MOUSEMSG m;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">MouseHit</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        m = <span class="built_in">GetMouseMsg</span>();</span><br><span class="line">        <span class="keyword">if</span>(m.uMsg == WM_MOUSEMOVE)</span><br><span class="line">        &#123;</span><br><span class="line">            position_x = m.x;</span><br><span class="line">            position_y = m.y;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (m.uMsg == WM_LBUTTONDOWN)</span><br><span class="line">        &#123;</span><br><span class="line">            bullet_x = position_x;</span><br><span class="line">            bullet_y = position_y - <span class="number">85</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对应的使用键盘操作代码为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> input;</span><br><span class="line"><span class="keyword">if</span> (_kbhit())  <span class="comment">// 判断是否有输入</span></span><br><span class="line">&#123;</span><br><span class="line">    input = _getch();  <span class="comment">// 根据用户的不同输入来移动，不必输入回车</span></span><br><span class="line">    <span class="keyword">if</span> (input == <span class="number">27</span>) <span class="comment">// ESC键的ACSII码为27</span></span><br><span class="line">        gameStatus = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">if</span> (input == <span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">        position_x -= <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">if</span> (input == <span class="string">&#x27;d&#x27;</span>)</span><br><span class="line">        position_x += <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">if</span> (input == <span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">        position_y += <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">if</span> (input == <span class="string">&#x27;s&#x27;</span>)</span><br><span class="line">        position_y -= <span class="number">10</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>先定义MOUSEMSG的鼠标类型参数m;通过<strong>while (MouseHit())</strong> 进行操作，既能保证能够使用鼠标进行操作也避免了，在没有鼠标操作时游戏的停止。</p>
+<p>类似的有定义char 类型的的变量通过**while(_kbhit())<strong>来进行是否有键盘信息的判断，用</strong>_getch()**函数获取键盘的敲击值。</p>
+<h5 id="4-3-与用户输出无关的逻辑"><a href="#4-3-与用户输出无关的逻辑" class="headerlink" title="4.3 与用户输出无关的逻辑"></a>4.3 与用户输出无关的逻辑</h5><p><strong>4.3.1 敌机生成逻辑</strong></p>
+<p>使用rand()函数生成一个最大为32767的数，并通过%(Width-50)得到飞机的初始坐标，并同时将blood等参数复原。</p>
+<p><strong>4.3.2 敌机简单移动逻辑</strong><br>代码如下:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (enemy_y &lt; High - <span class="number">25</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (enemy_x == <span class="number">0</span>)</span><br><span class="line">        flag = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (enemy_x == <span class="number">500</span>)</span><br><span class="line">        flag = <span class="number">1</span>;</span><br><span class="line">    enemy_y = enemy_y + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (flag == <span class="number">1</span>)</span><br><span class="line">        enemy_x = enemy_x--;</span><br><span class="line">    <span class="keyword">else</span> enemy_x = enemy_x++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该模块通过定义全局变量static flag 进行操控飞机的飞行方向，同时在每个循环过程中使飞机能够实现摆动下降。</p>
+<h5 id="4-4暂停页面与存储逻辑"><a href="#4-4暂停页面与存储逻辑" class="headerlink" title="4.4暂停页面与存储逻辑"></a>4.4暂停页面与存储逻辑</h5><p>通过**_getch()**函数读取输入，如存在按键为Esc时，将gameStatus设置为3，出现暂停页面，图3为游戏暂停页面。<br>图3 游戏暂停页面<br>游戏数据储存逻辑</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">void read() </span><br><span class="line">&#123;</span><br><span class="line">    ifstream file2;//输入指针</span><br><span class="line">    file2.<span class="built_in">open</span>(<span class="string">&quot;../data.txt&quot;</span>);</span><br><span class="line">    file2 &gt;&gt; position_x &gt;&gt; position_y &gt;&gt; bullet_x &gt;&gt; enemy_x &gt;&gt; enemy_y &gt;&gt; isExpolde &gt;&gt; score;</span><br><span class="line">    file2.close();&#125;;</span><br><span class="line">void write() &#123;</span><br><span class="line">    ofstream file1;</span><br><span class="line">    file1.<span class="built_in">open</span>(<span class="string">&quot;./data.txt&quot;</span>, std::ios::app);</span><br><span class="line">    <span class="keyword">if</span> (!file1.is_open()) </span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;打开文件失败！！\n&quot;</span>;</span><br><span class="line">        exit(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    file1 &lt;&lt; position_x &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; position_y &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; bullet_x &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; enemy_x &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; enemy_y &lt;&lt;<span class="string">&quot; &quot;</span> &lt;&lt; isExpolde &lt;&lt;<span class="string">&quot; &quot;</span> &lt;&lt; score &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    file1.close();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>通过ifstream和ofstream两个类进行操作，实现数据的存储于写入。也通过键盘操作识别Esc按钮实现暂停操作。</p>
+<p>图4为飞机大战程序登录界面，图5为程序运行截图。</p>
+<center>  图4 程序登录界面 </center>
+
+<center> 图5 程序运行截图</center>
+
+<h4 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h4><p>基于C++的可视化飞机大战游戏是一个简单的可视化的小游戏，玩家能够通过鼠标或键盘进行操控飞机的移动和攻击，并且运用了文件操作技术，可以实现数据的永久性保存。基于C++的飞机大战游戏是采用C++语言及其easyX拓展模块开发完成的。本项目实现了游戏流程中的所有功能，界面布局更加人性化,并有着良好的可扩展性。但游戏依旧存在一些不足之处，比如说本游戏还没有实现对玩家操纵飞机进行血量的显示，敌方飞机尚无法发射子弹，对击中逻辑的判断还存在问题。</p>
+<h4 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h4><p>[1]黄宝贵等.C++面向对象程序设计[M] 北京:清华大学出版社，2019:2-3<br>[2]童晶编著.C语言程序设计与游戏开发实践教程[M] 北京:清华大学出版社 2017:16<br>[3]黄维通等.Visual C++面向对象与可视化程序设计[M]（第三版）北京:清华大学出版社 2011:14<br>[4]郑莉等编著.C++程序设计语言(第三版)[M].北京:清华大学出版社,2005:134-139.<br>[5]刘振安等编著.C++程序设计课程设计[M] 北京:机械工业出版社,2004:23-31  [6]朱立华等编著.面向对象程设计及C++[M].北京:人民邮电出版社,2008:43  [7]郑莉,董渊.C++语言程序设计(第二版) [M].北京清华大学出版社,2002:23  [8]陈维兴,林小茶.C++面向对象程序设计教程(第2版)[M].北京清华大学出版社.2007:34</p>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2021/07/30/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98%E6%B8%B8%E6%88%8F/">课程论文：基于C++的可视化飞机大战游戏</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问  的个人博客"></a></p>
+        <p><span>发布时间:</span>2021年07月30日 - 18时54分</p>
+        <p><span>最后更新:</span>2021年07月30日 - 18时59分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2021/07/30/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98%E6%B8%B8%E6%88%8F/" title="课程论文：基于C++的可视化飞机大战游戏">https://shierjinghuang.github.io/2021/07/30/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98%E6%B8%B8%E6%88%8F/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://shierjinghuang.github.io/2021/07/30/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98%E6%B8%B8%E6%88%8F/　　作者: " title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
 
-{% endblock %}
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+<nav id="article-nav">
+  
+    <a href="/2021/07/30/C%E8%AF%AD%E8%A8%80%E5%AE%9E%E8%AE%AD%E4%B9%8B%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          C语言课程实训：员工信息管理系统
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/07/28/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">欢迎来到十二惊惶的博客</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-number">1.</span> <span class="toc-text">1 需求分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF"><span class="toc-number">2.</span> <span class="toc-text">2 关键技术</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1-C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 C++面向对象的程序设计</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-C-%E8%AF%AD%E8%A8%80%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 C++语言的优点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-Visual-C-%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 Visual C++的优点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-4-C-%E7%9A%84%E8%AF%AD%E8%A8%80%E4%BD%93%E7%B3%BB"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 C++的语言体系</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%B8%B8%E6%88%8F%E6%80%BB%E4%BD%93%E8%AE%BE%E8%AE%A1"><span class="toc-number">3.</span> <span class="toc-text">3.游戏总体设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%B8%B8%E6%88%8F%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.</span> <span class="toc-text">4 游戏功能实现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-1-%E4%BB%A3%E7%A0%81%E8%AE%BE%E8%AE%A1"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 代码设计</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-2%E6%93%8D%E4%BD%9C%E9%80%BB%E8%BE%91"><span class="toc-number">4.2.</span> <span class="toc-text">4.2操作逻辑</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-3-%E4%B8%8E%E7%94%A8%E6%88%B7%E8%BE%93%E5%87%BA%E6%97%A0%E5%85%B3%E7%9A%84%E9%80%BB%E8%BE%91"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 与用户输出无关的逻辑</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-4%E6%9A%82%E5%81%9C%E9%A1%B5%E9%9D%A2%E4%B8%8E%E5%AD%98%E5%82%A8%E9%80%BB%E8%BE%91"><span class="toc-number">4.4.</span> <span class="toc-text">4.4暂停页面与存储逻辑</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">5.总结</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%EF%BC%9A"><span class="toc-number">6.</span> <span class="toc-text">参考文献：</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: 'luuman',
+      repo: 'luuman.github.io',
+      oauth: {
+        client_id: '',
+        client_secret: '',
+      },
+    })
+    gitment.render('gitments')
+</script>
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2021/07/30/C%E8%AF%AD%E8%A8%80%E5%AE%9E%E8%AE%AD%E4%B9%8B%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/" title="上一篇: C语言课程实训：员工信息管理系统">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2021/07/28/hello-world/" title="下一篇: 欢迎来到十二惊惶的博客">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2021/10/03/DASCTF%20X%20%E6%B5%99%E6%B1%9F%E5%B7%A5%E4%B8%9A%E5%A4%A7%E5%AD%A6%E7%A7%8B%E5%AD%A3%E6%8C%91%E6%88%98%E8%B5%9B/">浙江工业大学秋季挑战赛wp</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/10/03/BUU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bmisc/">BUU靶场解题记录之misc</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/29/%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A%E6%9D%8E%E6%98%9F%E4%BA%AE2021,9,15/">Python上机课汇总</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/09/18/QFNU%20CTF%20%E8%BF%8E%E6%96%B0%E8%B5%9B%E8%A7%A3%E9%A2%98/">QFNU_CTF迎新赛题解</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/08/01/BugkuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bmisc/">BUGKU靶场解题记录之misc</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BCrypto/">BUGKU靶场解题记录之Cypto</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/">BUGKU靶场解题记录之web</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/30/QFNUCTF%E6%98%A5%E5%AD%A3%E7%BB%83%E4%B9%A0%E8%B5%9B%E7%BB%93%E9%A2%98%E8%AE%B0%E5%BD%95/">QFNUCTF春季练习赛结题记录</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/30/C%E8%AF%AD%E8%A8%80%E5%AE%9E%E8%AE%AD%E4%B9%8B%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">C语言课程实训：员工信息管理系统</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/30/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98%E6%B8%B8%E6%88%8F/">课程论文：基于C++的可视化飞机大战游戏</a></li><li class="post-list-item"><a class="post-list-link" href="/2021/07/28/hello-world/">欢迎来到十二惊惶的博客</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2021 shierjinghuang
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/luuman/hexo-theme-spfk" target="_blank">spfk</a> by luuman
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >海贼到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
