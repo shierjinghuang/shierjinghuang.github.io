@@ -6,7 +6,7 @@
   <link href="https://shierjinghuang.github.io/atom.xml" rel="self"/>
   
   <link href="https://shierjinghuang.github.io/"/>
-  <updated>2021-10-05T11:04:02.908Z</updated>
+  <updated>2021-10-05T11:43:04.989Z</updated>
   <id>https://shierjinghuang.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Bandit靶场记录</title>
+    <link href="https://shierjinghuang.github.io/2021/10/05/bandit/"/>
+    <id>https://shierjinghuang.github.io/2021/10/05/bandit/</id>
+    <published>2021-10-05T11:43:27.189Z</published>
+    <updated>2021-10-05T11:43:04.989Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Bandit靶场记录"><a href="#Bandit靶场记录" class="headerlink" title="Bandit靶场记录"></a>Bandit靶场记录</h2><p>上古博客了，在之前我使用的是简书的博客，在我写的博客一次次被ban之后，我才搭建的静态博客。现在发现这个博客没有转移过来，随手往博客里放一下。稍后会进行补充</p><p>靶场名称：<a href="https://overthewire.org/wargames/bandit/">Bandit</a><br>bandit.labs.overthewire.org<br>Port: 2220</p><p>level 0</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">The goal of this level is for you to log into the game using SSH. </span><br><span class="line">The host to which you need to connect is bandit.labs.overthewire.org, on port 2220. </span><br><span class="line">The username is bandit0 and the password is bandit0. </span><br><span class="line">Once logged in, go to the Level page to find out how to beat Level 1.</span><br></pre></td></tr></table></figure><p>很明显这一个等级只是登入bandit，在输入账号密码后就连接上了服务器。<br><img src="https://upload-images.jianshu.io/upload_images/24919094-221f58652410ac06.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p><h4 id="level-0-1"><a href="#level-0-1" class="headerlink" title="level 0~1"></a>level <code>0~1</code></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">The password for the next level is stored in a file called readme located in the home directory. </span><br><span class="line">Use this password to log into bandit1 using SSH.</span><br><span class="line"> Whenever you find a password for a level.</span><br><span class="line"> use SSH (on port 2220) to log into that level and continue the game.</span><br></pre></td></tr></table></figure><p>通过cd ~指令切换到主菜单<br>在通过cat指令打开readme文件夹，得到bandit1的密码：boJ9jbbUNNfktd78OOpsqOltutMc3MY1</p><h4 id="level-1-2"><a href="#level-1-2" class="headerlink" title="level 1~2"></a>level <code>1~2</code></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The password for the next level is stored in a file called - located in the home directory</span><br></pre></td></tr></table></figure><p>我以为这个题目还是跟上一级一样是通过cat能够简单得到,<br><img src="https://upload-images.jianshu.io/upload_images/24919094-7078cbe3051d526b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>使用之前的步骤并不能把这一级的密码获取出来。在进入靶场提供的参考网址后<br><a href="http://tldp.org/LDP/abs/html/special-chars.html">Advanced Bash-scripting Guide - Chapter 3 - Special Characters</a><br>找到了这一句话</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Filenames beginning with &quot;-&quot; may cause problems when coupled with the &quot;-&quot; redirection operator.</span><br></pre></td></tr></table></figure><p><img src="https://upload-images.jianshu.io/upload_images/24919094-3dd9f5b6b5402e42.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>使用cat &lt;-指令可以调出这一级的密码</p><blockquote><p>bandit1@bandit:~$ cat &lt;-<br>CV1DtqXWVFXTvM2F0k09SHz0YwRINYA</p></blockquote><h4 id="level2-3"><a href="#level2-3" class="headerlink" title="level2~3"></a>level<code>2~3</code></h4><p>The password for the next level is stored in a file called spaces in this filename located in the home directory。<br>这一级密码储村在spaces in this filename里面这一级的难点在于是文件名有空格<br>通过引号可以打开文件<br><img src="https://upload-images.jianshu.io/upload_images/24919094-804621cacf19f786.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK</p><h4 id="level3-4"><a href="#level3-4" class="headerlink" title="level3~4"></a>level<code>3~4</code></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The password for the next level is stored in a hidden file in the inhere directory.</span><br></pre></td></tr></table></figure><p>好样的，这一级答案有到了隐藏文件中去了。。。。<br>通过ls指令看下有什么文件<br>进入这个文件ls一下，啥都没有</p><img src="https://upload-images.jianshu.io/upload_images/24919094-0b701a9812ec31d3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png" style="zoom:80%;" />12个文件。。。。。群里有人问过这个问题师哥说暴力跑跑，好吧一个一个试验。接连打开. ..都没有提示当进入.hidden出现了提示这个文件不是一个文件夹，哪应该用cat指令进入一下试试，![image.png](https://upload-images.jianshu.io/upload_images/24919094-74ee22431c459070.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)<blockquote><p>bandit3@bandit:~/inhere$ cat .hidden<br>pIwrPrtPN36QITSp3EQaw936yaFoFgAB</p></blockquote><h4 id="level-4-5"><a href="#level-4-5" class="headerlink" title="level 4 ~ 5"></a>level <code>4 ~ 5</code></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The password for the next level is stored in the only human-readable file in the inhere directory</span><br></pre></td></tr></table></figure><p>先进入inhere，ls一下发现用-flle00到file09九个文件<br>通过file ./*指令看一看文件类型，</p><blockquote><p>./-file00: data./-file01: data./-file02: data./-file03: data./-file04: data./-file05: data<br>./-file06: data./-file07: ASCII text./-file08: data./-file09: data<br>-file07: </p></blockquote><p> ASCII text.是一个ascll编码的文件，那这个肯定是答案了<br><img src="https://upload-images.jianshu.io/upload_images/24919094-e238376010b822e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Bandit靶场记录&quot;&gt;&lt;a href=&quot;#Bandit靶场记录&quot; class=&quot;headerlink&quot; title=&quot;Bandit靶场记录&quot;&gt;&lt;/a&gt;Bandit靶场记录&lt;/h2&gt;&lt;p&gt;上古博客了，在之前我使用的是简书的博客，在我写的博客一次次被ban之后，我才</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>BuuCTF之Crypto解题记录</title>
