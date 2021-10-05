@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/function%20small()%20%7B%20%5Bnative%20code%5D%20%7D?v=0.5.0">
+
+
+
+
+
+
+  <meta name="keywords" content="为学,willxue,willxue.top" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言： &gt; 学习CTF已经有一段时间了，陆陆续续也做了不少题。为了准备前段时间的全国大学生信息安全大赛，又把许多题目重新看过一遍。现在也终于闲下来一两天，正好趁这个机会把在bugku靶场做出的题目整理一下。   web1打开看到一大堆滑稽，F12查看网页源代码就能发现flag，明显的送分题。 web2 题目描述输入验证码即可得到flag，正常输入发现只能输入1位，F12，将maxlength&#x3D;”1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BUGKU靶场解题记录之web">
+<meta property="og:url" content="https://shierjinghuang.github.io/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/index.html">
+<meta property="og:site_name" content="十二惊惶">
+<meta property="og:description" content="前言： &gt; 学习CTF已经有一段时间了，陆陆续续也做了不少题。为了准备前段时间的全国大学生信息安全大赛，又把许多题目重新看过一遍。现在也终于闲下来一两天，正好趁这个机会把在bugku靶场做出的题目整理一下。   web1打开看到一大堆滑稽，F12查看网页源代码就能发现flag，明显的送分题。 web2 题目描述输入验证码即可得到flag，正常输入发现只能输入1位，F12，将maxlength&#x3D;”1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/24919094-ff37e575621d6bc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/24919094-fea2aa6bcd261fd2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2021-07-30T14:28:07.903Z">
+<meta property="article:modified_time" content="2021-10-03T02:46:03.077Z">
+<meta property="article:author" content="shierjinghuang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/24919094-ff37e575621d6bc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '0.5.0',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    fastclick: ,
+    lazyload: ,
+    tabs: ,
+    motion: "",
+    duoshuo: {
+      userId: '6262178932196378000',
+      author: '神'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title>BUGKU靶场解题记录之web | 十二惊惶</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">十二惊惶</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">犁牛之子骍且角，虽欲勿用，山川其舍诸</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Commonweal 404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shierjinghuang.github.io/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://7xrz9n.com1.z0.glb.clouddn.com/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十二惊惶">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BUGKU靶场解题记录之web</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2021/07/30/BUGKU靶场解题记录之web/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/" class="leancloud_visitors" data-flag-title="BUGKU靶场解题记录之web">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4><center>前言：</center></h4>
+> 学习CTF已经有一段时间了，陆陆续续也做了不少题。为了准备前段时间的全国大学生信息安全大赛，又把许多题目重新看过一遍。现在也终于闲下来一两天，正好趁这个机会把在bugku靶场做出的题目整理一下。
+
+<hr>
+<h6 id="web1"><a href="#web1" class="headerlink" title="web1"></a>web1</h6><p>打开看到一大堆滑稽，F12查看网页源代码就能发现flag，明显的送分题。</p>
+<h6 id="web2"><a href="#web2" class="headerlink" title="web2"></a>web2</h6><p> 题目描述输入验证码即可得到flag，正常输入发现只能输入1位，F12，将maxlength=”1”改为maxlength=”2”即可正确输入,得到flag。还是送分题。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;ea008b7aaab0d3ea27c8580df13f52c3&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="web3"><a href="#web3" class="headerlink" title="web3"></a>web3</h5><p>根据题意构造url即可得到flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http://114.67.246.176:14287/?what=flag</span><br><span class="line">flag&#123;45240136ecbcb3c6db9d1dcb756ced4b&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="web4"><a href="#web4" class="headerlink" title="web4"></a>web4</h6><p>跟上一道题类似，只不过这次是post，使用Firefox插架Max HackBar输入what=flag得到flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;1e7a6931002d229ac37085a846d21e6d&#125; </span><br></pre></td></tr></table></figure>
+
+<h6 id="web5"><a href="#web5" class="headerlink" title="web5"></a>web5</h6><p>题目描述<strong>矛盾</strong>，打开链接看到相应php代码描述。if=($num==1) 意思就是num等于数字1就会打印flag 但是is_numeric函数检测数字意味着，<strong>既要是数字1，又不能是数字。</strong><br>在评论区有这个介绍。</p>
+<blockquote>
+<p>PHP一个数字和一个字符串进行比较或者进行运算时，PHP会把字符串转换成数字再进行比较。PHP转换的规则的是：若字符串以数字开头，则取开头数字作为转换结果，若无则输出0。 在PHP中，== 会先进行类型转换，再进行对比，而===会先比较类型，如果类型不同直接返回不相等。</p>
+</blockquote>
+<p>题目中正好使用的是==号我们可以构造类似1a的数字加字母的组合。<br>构建url得到flag：<br><em>flag{2b16dd84ae5d35c74fe16c759849b871}</em></p>
+<h6 id="web6"><a href="#web6" class="headerlink" title="web6"></a>web6</h6><p>直接查看网页源代码，得到unicode编码解码得到相flag。<br> <strong>flag{f41c9ed6534a088591cfc7cb118d8b46}</strong></p>
+<h6 id="web7-你必须让他停下来"><a href="#web7-你必须让他停下来" class="headerlink" title="web7 你必须让他停下来"></a>web7 你必须让他停下来</h6><p>右键查看源代码，然后一直刷新源代码的页面，就能得到flag，当然有burpsuit抓包，然后sendtorepeter，一直send也一样，在第10张jpg的响应里边就有flag.<br>这两种方法本质上是一样的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;222c6ea6e3f1b78d0e47688932d6c097&#125;</span><br></pre></td></tr></table></figure>
+<p>在补充一点提交flag时要记得把代理关上。</p>
+<h6 id="web8-文件包含"><a href="#web8-文件包含" class="headerlink" title="web8 文件包含"></a>web8 文件包含</h6><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">    <span class="keyword">include</span> <span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line">    <span class="variable">$a</span> = @<span class="variable">$_REQUEST</span>[<span class="string">&#x27;hello&#x27;</span>];</span><br><span class="line">    <span class="keyword">eval</span>( <span class="string">&quot;var_dump(<span class="subst">$a</span>);&quot;</span>);</span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
+<p>审计PHP代码得到以下信息。</p>
+<blockquote>
+<p>request函数表明可以任选get或post方法提交<br>helloeval() 函数把字符串按照 PHP 代码来执行<br>show_source用来返回文件内容<br>include函数会将flag.php包含在该文件中</p>
+</blockquote>
+<p>由此我们可以构建url <strong>/?hello=show_source(‘flag.php’)<strong>或者</strong>?hello=file(‘flag.php’)<strong>均能得到flag。</strong>flag{e5d1a21b2cf1819415ce4ba106e868d9}</strong></p>
+<h6 id="web9"><a href="#web9" class="headerlink" title="web9"></a>web9</h6><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;flag1.php&quot;</span>;</span><br><span class="line">highlight_file(<span class="keyword">__file__</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;args&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$args</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;args&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(!preg_match(<span class="string">&quot;/^\w+$/&quot;</span>,<span class="variable">$args</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;args error!&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">eval</span>(<span class="string">&quot;var_dump($<span class="subst">$args</span>);&quot;</span>);&#125;</span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
+<p>php代码实际上就是最大的提示。</p>
+<blockquote>
+<p>flag in the variable：提示flag在变量里面<br>preg_match：使用正则表达式匹配，/^\w+$/ 表明只能输入数字和英文字母及下划线<br>说明此时只能用全局变量查看GLOBALS</p>
+</blockquote>
+<p>构造?args=GLOBALS得到flag：<br><em>flag{6ee63ee40bbaf7d0992a373217f73f43}</em></p>
+<h6 id="web10-头等舱"><a href="#web10-头等舱" class="headerlink" title="web10 头等舱"></a>web10 头等舱</h6><p>我觉得这道题真的是送分的，F12查看网络在响应头里就能得到flag。当然抓包也一样但是麻烦了。</p>
+<h6 id="web-11-网站被黑"><a href="#web-11-网站被黑" class="headerlink" title="web 11 网站被黑"></a>web 11 网站被黑</h6><blockquote>
+<p> 描　　述: 网站被黑了 黑客会不会留下后门 </p>
+</blockquote>
+<p>既然提示了后门的存在就用，扫描工具扫描下。利用御剑扫描，扫出来两个.php一个是那个黑页，另一个是一张登录界面。<br><img src="https://upload-images.jianshu.io/upload_images/24919094-ff37e575621d6bc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>在得到网址后进项抓包，直接用burp suit自带的爆破功能爆破下就OK了。（注burp suite的社区版爆破功能好像不是很全，推荐去找一个别人破解的专业版）<br><img src="https://upload-images.jianshu.io/upload_images/24919094-fea2aa6bcd261fd2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<h6 id="web-12-本地管理员"><a href="#web-12-本地管理员" class="headerlink" title="web 12 本地管理员"></a>web 12 本地管理员</h6><p>查看网页源代码在一堆n后面有个base64，解码得到管理员密码，账户盲猜admin登录，提示IP禁止访问，请联系本地管理员登陆，IP已被记录.使用本地管理员登录，就要进行IP伪造，编辑消息头，X-Forwarded-For:127.0.0.1。得到flag</p>
+<h6 id="game1"><a href="#game1" class="headerlink" title="game1"></a>game1</h6><p>一道游戏题，正常来说游戏应该是杂项吧，这一次的游戏题有一说一竟然让我忘了我是来做题的。<br>在评论区得到大佬的提示，这一道游戏题分数上限是99999，使用burp suite抓包，在最后出成绩时能看到</p>
+<blockquote>
+<p>GET /score.php?score=200&amp;ip=223.104.190.201&amp;sign=zMMjAw== HTTP/1.1</p>
+</blockquote>
+<p>sign=zMMjAw像是base64加密，但是直接解算不出来，多玩几次游戏，发现zM是一直都有的，对后面的部分解码正是游戏得到的分数。构造url</p>
+<blockquote>
+<p>score.php?score=99999&amp;ip=223.104.190.201&amp;sign=zMOTk5OTk==</p>
+</blockquote>
+<p>得到flag。<em>flag{78544bfa1e21dcf4dcbd7488870b267f}</em></p>
+<h6 id="web13-看看源码吧"><a href="#web13-看看源码吧" class="headerlink" title="web13 看看源码吧"></a>web13 看看源码吧</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var p1 = &#x27;%66%75%6e%63%74%69%6f%6e%20%63%68%65%63%6b%53%75%62%6d%69%74%28%29%7b%76%61%72%20%61%3d%64%6f%63%75%6d%65%6e%74%2e%67%65%74%45%6c%65%6d%65%6e%74%42%79%49%64%28%22%70%61%73%73%77%6f%72%64%22%29%3b%69%66%28%22%75%6e%64%65%66%69%6e%65%64%22%21%3d%74%79%70%65%6f%66%20%61%29%7b%69%66%28%22%36%37%64%37%30%39%62%32%62&#x27;;</span><br><span class="line">var p2 = &#x27;%61%61%36%34%38%63%66%36%65%38%37%61%37%31%31%34%66%31%22%3d%3d%61%2e%76%61%6c%75%65%29%72%65%74%75%72%6e%21%30%3b%61%6c%65%72%74%28%22%45%72%72%6f%72%22%29%3b%61%2e%66%6f%63%75%73%28%29%3b%72%65%74%75%72%6e%21%31%7d%7d%64%6f%63%75%6d%65%6e%74%2e%67%65%74%45%6c%65%6d%65%6e%74%42%79%49%64%28%22%6c%65%76%65%6c%51%75%65%73%74%22%29%2e%6f%6e%73%75%62%6d%69%74%3d%63%68%65%63%6b%53%75%62%6d%69%74%3b&#x27;;</span><br><span class="line">eval(unescape(p1) + unescape(&#x27;%35%34%61%61%32&#x27; + p2));</span><br></pre></td></tr></table></figure>
+<p>使用<a target="_blank" rel="noopener" href="http://tool.chinaz.com/tools/urlencode.aspx">在线工具解码</a>得到三段url按照要求进行拼接</p>
+<blockquote>
+<p>function checkSubmit(){var a=document.getElementById(“password”);if(“undefined”!=typeof a){if(“67d709b2b54aa2aa648cf6e87a7114f1”==a.value)return!0;alert(“Error”);a.focus();return!1}}document.getElementById(“levelQuest”).onsubmit=checkSubmit;</p>
+</blockquote>
+<p>中间那一段就是要在网页上提交的东西,提交得到flag；</p>
+<blockquote>
+<p>flag{f51a5a7335f538b979ac5eaf43e4cad6}</p>
+</blockquote>
+<h6 id="web14"><a href="#web14" class="headerlink" title="web14"></a>web14</h6><p>怎么说呢？这道题考察了<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32393893/article/details/110228864">文件包含&amp;PHP伪协议</a>这个作者整理的很好，可以去借鉴借鉴。<br>构造一个url</p>
+<blockquote>
+<p>php?file=php://filter/read=convert.base64-encode/resource=index.php<br>读取目标服务器文件内容，并讲这些内容进行base64编码，我们只需要解码就可以了。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DQogICAgDQo8P3BocA0KCWVycm9yX3JlcG9ydGluZygwKTsNCglpZighJF9HRVRbZmlsZV0pe2VjaG8gJzxhIGhyZWY9Ii4vaW5kZXgucGhwP2ZpbGU9c2hvdy5waHAiPmNsaWNrIG1lPyBubzwvYT4nO30NCgkkZmlsZT0kX0dFVFsnZmlsZSddOw0KCWlmKHN0cnN0cigkZmlsZSwiLi4vIil8fHN0cmlzdHIoJGZpbGUsICJ0cCIpfHxzdHJpc3RyKCRmaWxlLCJpbnB1dCIpfHxzdHJpc3RyKCRmaWxlLCJkYXRhIikpew0KCQllY2hvICJPaCBubyEiOw0KCQlleGl0KCk7DQoJfQ0KCWluY2x1ZGUoJGZpbGUpOyANCi8vZmxhZzpmbGFne2U4M2VlOWM2YWY5MjdkYWFmMjAyMTExNjE1ZWJjOWYxfQ0KPz4NCjwvaHRtbD4NCg</span><br></pre></td></tr></table></figure>
+<p>对着一长串进行解码得到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	error_reporting(0);</span><br><span class="line">	if(!$_GET[file])&#123;echo &#x27;&lt;a href=&quot;./index.php?file=show.php&quot;&gt;click me? no&lt;/a&gt;&#x27;;&#125;</span><br><span class="line">	$file=$_GET[&#x27;file&#x27;];</span><br><span class="line">	if(strstr($file,&quot;../&quot;)||stristr($file, &quot;tp&quot;)||stristr($file,&quot;input&quot;)||stristr($file,&quot;data&quot;))&#123;</span><br><span class="line">		echo &quot;Oh no!&quot;;</span><br><span class="line">		exit();</span><br><span class="line">	&#125;</span><br><span class="line">	include($file); </span><br><span class="line">//flag:flag&#123;e83ee9c6af927daaf202111615ebc9f1&#125;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>得到flag。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/07/30/QFNUCTF%E6%98%A5%E5%AD%A3%E7%BB%83%E4%B9%A0%E8%B5%9B%E7%BB%93%E9%A2%98%E8%AE%B0%E5%BD%95/" rel="next" title="QFNUCTF春季练习赛结题记录">
+                <i class="fa fa-chevron-left"></i> QFNUCTF春季练习赛结题记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BCrypto/" rel="prev" title="BUGKU靶场解题记录之Cypto">
+                BUGKU靶场解题记录之Cypto <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2021/07/30/BUGKU靶场解题记录之web/"
+     data-title="BUGKU靶场解题记录之web"
+     data-content=""
+     data-url="https://shierjinghuang.github.io/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2021/07/30/BUGKU靶场解题记录之web/"
+           data-title="BUGKU靶场解题记录之web" data-url="https://shierjinghuang.github.io/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bweb/">
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://7xrz9n.com1.z0.glb.clouddn.com/logo.png"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="undefined" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="undefined" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="undefined" target="_blank" title="Others">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Others</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-text">前言：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#web1"><span class="nav-text">web1</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#web2"><span class="nav-text">web2</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#web3"><span class="nav-text">web3</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#web4"><span class="nav-text">web4</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#web5"><span class="nav-text">web5</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#web6"><span class="nav-text">web6</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#web7-%E4%BD%A0%E5%BF%85%E9%A1%BB%E8%AE%A9%E4%BB%96%E5%81%9C%E4%B8%8B%E6%9D%A5"><span class="nav-text">web7 你必须让他停下来</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#web8-%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB"><span class="nav-text">web8 文件包含</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#web9"><span class="nav-text">web9</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#web10-%E5%A4%B4%E7%AD%89%E8%88%B1"><span class="nav-text">web10 头等舱</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#web-11-%E7%BD%91%E7%AB%99%E8%A2%AB%E9%BB%91"><span class="nav-text">web 11 网站被黑</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#web-12-%E6%9C%AC%E5%9C%B0%E7%AE%A1%E7%90%86%E5%91%98"><span class="nav-text">web 12 本地管理员</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#game1"><span class="nav-text">game1</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#web13-%E7%9C%8B%E7%9C%8B%E6%BA%90%E7%A0%81%E5%90%A7"><span class="nav-text">web13 看看源码吧</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#web14"><span class="nav-text">web14</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shierjinghuang</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"imwillxue"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="//ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=0.5.0"></script>
+    
+    
+    <script src="//ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("QImiFijLSOHYufsazlBVlwLg-gzGzoHsz", "AMcYaNHy9Y5OdH42k0d4uSED");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

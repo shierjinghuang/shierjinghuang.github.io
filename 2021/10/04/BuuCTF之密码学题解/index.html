@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/function%20small()%20%7B%20%5Bnative%20code%5D%20%7D?v=0.5.0">
+
+
+
+
+
+
+  <meta name="keywords" content="为学,willxue,willxue.top" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1 md 5 题如其名就是md5，这里推荐一个md5在线解码网站，直接解码就行了，答案admain1 2  一眼就解密 考察的是base64编码，下面的字符串解密后便能获得flag：ZmxhZ3tUSEVfRkxBR19PRl9USElTX1NUUklOR30&#x3D;  3 url编码 这个一样是使用是URL在线工具解码就行,flag&amp;#123;and 1&#x3D;1&amp;#125;  url编码是一种浏览器用来打">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BuuCTF之Crypto解题记录">
+<meta property="og:url" content="https://shierjinghuang.github.io/2021/10/04/BuuCTF%E4%B9%8B%E5%AF%86%E7%A0%81%E5%AD%A6%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:site_name" content="十二惊惶">
+<meta property="og:description" content="1 md 5 题如其名就是md5，这里推荐一个md5在线解码网站，直接解码就行了，答案admain1 2  一眼就解密 考察的是base64编码，下面的字符串解密后便能获得flag：ZmxhZ3tUSEVfRkxBR19PRl9USElTX1NUUklOR30&#x3D;  3 url编码 这个一样是使用是URL在线工具解码就行,flag&amp;#123;and 1&#x3D;1&amp;#125;  url编码是一种浏览器用来打">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:/Users/888888/Desktop/20200503121022650.png">
+<meta property="article:published_time" content="2021-10-04T12:48:51.690Z">
+<meta property="article:modified_time" content="2021-10-05T11:04:02.908Z">
+<meta property="article:author" content="shierjinghuang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/888888/Desktop/20200503121022650.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '0.5.0',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    fastclick: ,
+    lazyload: ,
+    tabs: ,
+    motion: "",
+    duoshuo: {
+      userId: '6262178932196378000',
+      author: '神'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title>BuuCTF之Crypto解题记录 | 十二惊惶</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">十二惊惶</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">犁牛之子骍且角，虽欲勿用，山川其舍诸</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Commonweal 404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shierjinghuang.github.io/2021/10/04/BuuCTF%E4%B9%8B%E5%AF%86%E7%A0%81%E5%AD%A6%E9%A2%98%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://7xrz9n.com1.z0.glb.clouddn.com/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十二惊惶">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BuuCTF之Crypto解题记录</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/10/04/BuuCTF%E4%B9%8B%E5%AF%86%E7%A0%81%E5%AD%A6%E9%A2%98%E8%A7%A3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2021/10/04/BuuCTF之密码学题解/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2021/10/04/BuuCTF%E4%B9%8B%E5%AF%86%E7%A0%81%E5%AD%A6%E9%A2%98%E8%A7%A3/" class="leancloud_visitors" data-flag-title="BuuCTF之Crypto解题记录">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1 md 5</p>
+<p>题如其名就是md5，这里推荐一个<a target="_blank" rel="noopener" href="https://www.cmd5.com/">md5在线解码</a>网站，直接解码就行了，答案admain1</p>
+<p>2  一眼就解密</p>
+<p>考察的是base64编码，下面的字符串解密后便能获得flag：ZmxhZ3tUSEVfRkxBR19PRl9USElTX1NUUklOR30= </p>
+<p>3 url编码</p>
+<p>这个一样是使用是<a target="_blank" rel="noopener" href="https://www.bejson.com/enc/urlencode/">URL在线工具</a>解码就行,<code>flag&#123;and 1=1&#125;</code></p>
+<blockquote>
+<p>url编码是一种浏览器用来打包表单输入的格式。浏览器从表单中获取所有的name和其中的值 ，将它们以name/value参数编码作为URL的一部分或者分离地发给服务器。</p>
+</blockquote>
+<blockquote>
+<p>URL编码遵循下列规则： 每对name/value由&amp;；符分开；每对来自表单的name/value由=符分开。 如果用户没有输入值给个name，那么这个name还是出现，只是无值。任何特殊的字符（如汉字）将以百分符%用十六进制编码，当然也包括象 =,&amp;；，和 % 这些特殊的字符。其实url编码就是一个字符ascii码的十六进制。不过稍微有些变动，需要在前面加上“%”。比如“\”，它的ascii码是92，92的十六进制是5c，所以“\”的url编码就是%5c。 </p>
+</blockquote>
+<p>4 看我回旋踢</p>
+<p>考的是凯撒密码，偏移量我们不知道，所以直接上枚举，得到<code>flag&#123;5cd1004d-86a5-46d8-b720-beb5ba0417e1&#125;</code></p>
+<p>5 摩斯</p>
+<p><code>.. .-.. --- ...- . -.-- --- ..-</code>确实是摩斯密码直接导入解码工具中，他们给我了<code>ᎊf9</code>这个仔细一看这个是用<code> </code>来分割的，解码后得到flag<code>ILOVEYOU</code></p>
+<p>6 password</p>
+<blockquote>
+<p>姓名：张三<br>生日：19900315</p>
+<p>key格式为key{xxxxxxxxxx}        其实很容易猜到key{zs19900315}</p>
+</blockquote>
+<p>这个提示给的不错了，这个是考察的简单的社会工程系，或者说是弱密码，过段时间关于弱密码做一个专题讲一讲。<br>7 变异凯撒</p>
+<p>凯撒密码是一种通过移位进行加密的方式，也叫做凯撒移位，这个对比一下<code>afz_</code>与<code>flag</code>的ascall码。</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">差值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">a</td>
+<td align="left">f</td>
+<td align="left">5</td>
+</tr>
+<tr>
+<td align="left">f</td>
+<td align="left">l</td>
+<td align="left">6</td>
+</tr>
+<tr>
+<td align="left">Z</td>
+<td align="left">a</td>
+<td align="left">7</td>
+</tr>
+<tr>
+<td align="left">_</td>
+<td align="left">g</td>
+<td align="left">8</td>
+</tr>
+</tbody></table>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">c = <span class="string">&quot;afZ_r9VYfScOeO_UL^RWUc&quot;</span></span><br><span class="line">move = <span class="number">5</span></span><br><span class="line">flag = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> c:</span><br><span class="line">    flag += <span class="built_in">chr</span>(<span class="built_in">ord</span>(i) + move)</span><br><span class="line">    move += <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+
+<p>得到flag<code>flag&#123;Caesar_variation&#125;</code> </p>
+<p>8 Quoted-printable </p>
+<p>确实是一种我没见过的编码方式，在别人的博客上看到这些介绍：博客在此奉上 <code>http://blog.chacuo.net/494.html</code></p>
+<blockquote>
+<p>  Quoted-printable 可译为“可打印字符引用编码”、“使用可打印字符的编码”，我们收邮件，查看信件原始信息，经常会看到这种类型的编码！ </p>
+<p>它是<strong>多用途互联网邮件扩展</strong>（MIME) 一种实现方式。其中MIME是一个互联网标准，它扩展了电子邮件标准，致力于使其能够支持非ASCII字符、二进制格式附件等多种格式的邮件消息。目前http协议中，很多采用MIME框架！quoted-printable 就是说用一些可打印常用字符，表示一个字节（8位）中所有非打印字符方法！ </p>
+</blockquote>
+<p>上网找到了一个<a target="_blank" rel="noopener" href="http://web.chacuo.net/charsetquotedprintable/">解码工具</a>注意要使用<code>iso-8859-1</code>单字符集解码。</p>
+<p>9 Rabbit</p>
+<p>确实有个rabbit加密算法通过在线解码工具就能完成解码，得到flag。<img src="C:\Users\888888\Desktop\20200503121022650.png"></p>
+<p>10 </p>
+<p>不难看出字符串仍具有类似flag的格式，由于’{‘前面并非四个字符，首字符’f’也没有被替换，所以应该不是凯撒加密，或单字母替换再根据标题提示信息，猜测是栅栏密码。</p>
+<p>felhaagv{ewtehtehfilnakgw}</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">1</th>
+<th>2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">1</td>
+<td align="left">f</td>
+<td>e</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">l</td>
+<td>h</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">a</td>
+<td>a</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">g</td>
+<td>v</td>
+</tr>
+</tbody></table>
+<p>通过对比这是两组文字，可以解出<code>flag&#123;wethinkwehavetheflag&#125;</code><br>11 RSA</p>
+<p>简单介绍一下RSA吧，这个也是现在密码学题目的一个重点方向</p>
+<blockquote>
+<p>RSA公钥密码体制<br>RSA公钥算法是由MIT的Rivest, Shamir和Adleman在I 978年提出来的。RSA方案是被最广泛接受并实现的通用公开密钥密码算法，目前已成为公钥密码的国际标准。该算法的数学基础是初等数论中的欧拉定理，其安全性建立在大整数因子分解的困难性之上。</p>
+</blockquote>
+<blockquote>
+<p>RSA的算法描述<br>密钥的生成</p>
+<ol>
+<li>选择两个大素数 p，q，（p，q为互异素数，需要保密），</li>
+<li>计算n = p×q， (n) = (p－1)×(q－1)</li>
+<li>选择整数 e 使 ((n)，e) =1,   1&lt;e&lt; (n) </li>
+<li>计算d，使d = e－1mod (n),得到：公钥 为{e,n}； 私钥为{d}</li>
+</ol>
+</blockquote>
+<p>题目给了这个tip 注意：得到的 flag 请 将 noxCTF 替换为 flag ，格式为 flag{} 提交。 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">p=<span class="number">473398607161</span></span><br><span class="line">q=<span class="number">4511491</span></span><br><span class="line">e=<span class="number">17</span></span><br><span class="line">d=gmpy2.invert(e,(q-<span class="number">1</span>)*(p-<span class="number">1</span>))</span><br><span class="line"><span class="built_in">print</span> (d)</span><br></pre></td></tr></table></figure>
+
+<p>写一个脚本就行，值得注意的是noxCTF就没有出现。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/10/03/DASCTF%20X%20%E6%B5%99%E6%B1%9F%E5%B7%A5%E4%B8%9A%E5%A4%A7%E5%AD%A6%E7%A7%8B%E5%AD%A3%E6%8C%91%E6%88%98%E8%B5%9B/" rel="next" title="浙江工业大学秋季挑战赛wp">
+                <i class="fa fa-chevron-left"></i> 浙江工业大学秋季挑战赛wp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/10/05/bandit/" rel="prev" title="Bandit靶场记录">
+                Bandit靶场记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2021/10/04/BuuCTF之密码学题解/"
+     data-title="BuuCTF之Crypto解题记录"
+     data-content=""
+     data-url="https://shierjinghuang.github.io/2021/10/04/BuuCTF%E4%B9%8B%E5%AF%86%E7%A0%81%E5%AD%A6%E9%A2%98%E8%A7%A3/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2021/10/04/BuuCTF之密码学题解/"
+           data-title="BuuCTF之Crypto解题记录" data-url="https://shierjinghuang.github.io/2021/10/04/BuuCTF%E4%B9%8B%E5%AF%86%E7%A0%81%E5%AD%A6%E9%A2%98%E8%A7%A3/">
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://7xrz9n.com1.z0.glb.clouddn.com/logo.png"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="undefined" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="undefined" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="undefined" target="_blank" title="Others">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Others</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shierjinghuang</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"imwillxue"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="//ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=0.5.0"></script>
+    
+    
+    <script src="//ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("QImiFijLSOHYufsazlBVlwLg-gzGzoHsz", "AMcYaNHy9Y5OdH42k0d4uSED");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next pisces" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/function%20small()%20%7B%20%5Bnative%20code%5D%20%7D?v=0.5.0">
+
+
+
+
+
+
+  <meta name="keywords" content="为学,willxue,willxue.top" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="[TOC]  1、签到题直接扫描二维码就行，这是最简单的签到题 2、 0和1的故事这道题是一个较为常见的二维码隐写题目，用0和1分别作为二维码的黑色与白色部分。在使用工具扫码得到flag。 这种题目的难点在于，二维码的生成，个人感觉还是用python写一个脚本做最方便。 12345678910111213141516171819202122232425262728from PIL import I">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BUGKU靶场解题记录之misc">
+<meta property="og:url" content="https://shierjinghuang.github.io/2021/08/01/BugkuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bmisc/index.html">
+<meta property="og:site_name" content="十二惊惶">
+<meta property="og:description" content="[TOC]  1、签到题直接扫描二维码就行，这是最简单的签到题 2、 0和1的故事这道题是一个较为常见的二维码隐写题目，用0和1分别作为二维码的黑色与白色部分。在使用工具扫码得到flag。 这种题目的难点在于，二维码的生成，个人感觉还是用python写一个脚本做最方便。 12345678910111213141516171819202122232425262728from PIL import I">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://shierjinghuang.github.io/2021/08/01/BugkuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bmisc/ada.jpg">
+<meta property="og:image" content="c:/Users/888888/Desktop/故事1.png">
+<meta property="article:published_time" content="2021-08-01T08:53:41.920Z">
+<meta property="article:modified_time" content="2021-10-03T02:44:10.231Z">
+<meta property="article:author" content="shierjinghuang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://shierjinghuang.github.io/2021/08/01/BugkuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bmisc/ada.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '0.5.0',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    fastclick: ,
+    lazyload: ,
+    tabs: ,
+    motion: "",
+    duoshuo: {
+      userId: '6262178932196378000',
+      author: '神'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: "",
+      labels: ""
+    }
+  };
+</script>
+
+
+
+
+
+
+
+  <title>BUGKU靶场解题记录之misc | 十二惊惶</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">十二惊惶</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">犁牛之子骍且角，虽欲勿用，山川其舍诸</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            Commonweal 404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://shierjinghuang.github.io/2021/08/01/BugkuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bmisc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://7xrz9n.com1.z0.glb.clouddn.com/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="十二惊惶">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">BUGKU靶场解题记录之misc</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/08/01/BugkuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bmisc/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2021/08/01/BugkuCTF解题记录之misc/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2021/08/01/BugkuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bmisc/" class="leancloud_visitors" data-flag-title="BUGKU靶场解题记录之misc">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>[TOC]</p>
+<hr>
+<h5 id="1、签到题"><a href="#1、签到题" class="headerlink" title="1、签到题"></a>1、签到题</h5><p>直接扫描二维码就行，这是最简单的签到题</p>
+<h5 id="2、-0和1的故事"><a href="#2、-0和1的故事" class="headerlink" title="2、 0和1的故事"></a>2、 0和1的故事</h5><p>这道题是一个较为常见的二维码隐写题目，用0和1分别作为二维码的黑色与白色部分。在使用工具扫码得到flag。</p>
+<p>这种题目的难点在于，二维码的生成，个人感觉还是用python写一个脚本做最方便。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;1和0的故事.txt&quot;</span>, <span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    data = [<span class="built_in">list</span>(i.strip()) <span class="keyword">for</span> i <span class="keyword">in</span> f.readlines()]</span><br><span class="line"><span class="comment"># 7*7的定位标志</span></span><br><span class="line">flag = [</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">    [<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>]</span><br><span class="line">]</span><br><span class="line">img = Image.new(<span class="string">&quot;1&quot;</span>, (<span class="number">25</span>, <span class="number">25</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data[<span class="number">1</span>])):</span><br><span class="line">        <span class="comment"># 左上角定位标志</span></span><br><span class="line">        <span class="keyword">if</span> i &lt; <span class="number">7</span> <span class="keyword">and</span> j &lt; <span class="number">7</span>:</span><br><span class="line">            img.putpixel((i, j), flag[i][j] ^ <span class="number">1</span>)</span><br><span class="line">        <span class="comment"># 左下角定位标志</span></span><br><span class="line">        <span class="keyword">elif</span> i &gt; <span class="number">17</span> <span class="keyword">and</span> j &lt; <span class="number">7</span>:</span><br><span class="line">            img.putpixel((i, j), flag[i-<span class="number">18</span>][j] ^ <span class="number">1</span>)</span><br><span class="line">        <span class="comment"># 右上角定位标志</span></span><br><span class="line">        <span class="keyword">elif</span> i &lt; <span class="number">7</span> <span class="keyword">and</span> j &gt; <span class="number">17</span>:</span><br><span class="line">            img.putpixel((i, j), flag[i][j-<span class="number">18</span>] ^ <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            img.putpixel((i, j), <span class="built_in">int</span>(data[i][j]) ^ <span class="number">1</span>)</span><br><span class="line">img.resize((<span class="number">500</span>, <span class="number">500</span>)).show()</span><br></pre></td></tr></table></figure>
+
+<p>不过我还是看到了一个神奇的解法，<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_52715164/article/details/119054663">来自评论区的神奇解法</a>，这个解法是一种很神奇的操作，将01串放在Excel里，将其设计成正方形的单元格。在把为1的用黑色填充。最后把其他的部分p上……</p>
+<ol>
+<li>之前解其他题也用过一个类似的脚本</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line">x = <span class="number">25</span></span><br><span class="line">y = <span class="number">25</span></span><br><span class="line">im = Image.new(<span class="string">&#x27;RGB&#x27;</span>, (x, y))</span><br><span class="line">white = (<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>)</span><br><span class="line">black = (<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;1.txt&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(x):</span><br><span class="line">        ff = f.readline()</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(y):</span><br><span class="line">            <span class="keyword">if</span> ff[j] == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">                im.putpixel((i, j), black)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                im.putpixel((i, j), white)</span><br><span class="line">im.resize((<span class="number">1000</span>, <span class="number">1000</span>)).show()</span><br></pre></td></tr></table></figure>
+
+<p>不过这个脚本的问题是在这个题中你还得将三个角上面的01串改成正常的识别区域（下面这个脚本生成的图片清晰度一直令人发指）。</p>
+<p>使用工具扫描二维码得到flag。</p>
+<blockquote>
+<p>flag{QR_c0de_1s_1nterest1n9}</p>
+</blockquote>
+<h5 id="3、这是一张单纯的图片"><a href="#3、这是一张单纯的图片" class="headerlink" title="3、这是一张单纯的图片"></a>3、这是一张单纯的图片</h5><p>这个题怎么说呢？解法多种多样….</p>
+<p>用winhex或者直接用记事本打开都能看到这一串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#107;&amp;#101;&amp;#121;&amp;#123;&amp;#121;&amp;#111;&amp;#117;&amp;#32;&amp;#97;&amp;#114;&amp;#101;&amp;#32;&amp;#114;&amp;#105;&amp;#103;&amp;#104;&amp;#116;&amp;#125;</span><br></pre></td></tr></table></figure>
+
+<p>实际上这个是 html 编码后的串直接解码得到&#107;&#101;&#121;&#123;&#121;&#111;&#117;&#32;&#97;&#114;&#101;&#32;&#114;&#105;&#103;&#104;&#116;&#125;</p>
+<p>当然我看到评论区有个人的方法是直接改拓展名为是HTML，这样更方便，毕竟这都不需要多一步解码了。</p>
+<h5 id="4、隐写"><a href="#4、隐写" class="headerlink" title="4、隐写"></a>4、隐写</h5><p>这个是最简单的隐写，鼠标右键属性可以查看图片的行高和列宽，都是500，用winhex打开，发现行长为01F4，列高为01A4，修改列高再看图片就行了。</p>
+<blockquote>
+<p>BUGKU{a1e5aSA}</p>
+</blockquote>
+<h5 id="5、telnet"><a href="#5、telnet" class="headerlink" title="5、telnet"></a>5、telnet</h5><p>这个题使用wireshark里面的追踪Tcp流就能直接得到flag。</p>
+<h5 id="6、眼见非实"><a href="#6、眼见非实" class="headerlink" title="6、眼见非实"></a>6、眼见非实</h5><p>打开文件发现里面写了PK，好吧压缩包，改拓展名改为zip，最基础的方式是一个个找好在文件不多用不了几分钟，当然有很多公具能够帮我们完成检索。这里就不一一列举</p>
+<p>得到<strong>flag{F1@g}</strong></p>
+<h5 id="7、啊哒"><a href="#7、啊哒" class="headerlink" title="7、啊哒"></a>7、啊哒</h5><p>这里引入一个工具Formost，这个工具可以拆解文件。下载图片发送到Formost分解得到一个压缩包，压缩包需要密码进行解压，这个时候不要忘记观察图片的属性，属性里有一串16进制的代码，将其转化成字符串就是相应的解压密码sdnisc_2018。得到flag<img src="ada.jpg" alt="ad" style="zoom:50%;" /></p>
+<blockquote>
+<p>flag : flag{3XiF_iNf0rM@ti0n}</p>
+</blockquote>
+<h5 id="8、ping"><a href="#8、ping" class="headerlink" title="8、ping"></a>8、ping</h5><p>这道题我一时间想不到说什么好，这个是正常人想出来的操作，下载得到一个流量包，这个流量包全部是ICMP流，这道题真的跟题目一样是拼， 最简单的解法wireshark打开一个包一个包看下面字符，进行拼接得到flag 。</p>
+<h5 id="9、可爱的故事"><a href="#9、可爱的故事" class="headerlink" title="9、可爱的故事"></a>9、可爱的故事</h5><blockquote>
+<p>可可爱爱没有脑袋</p>
+<p>一‌‍‍‎‍‎‍‌‌‎‌‎‍‌‏‍‏‌‎‌‏‏‍‌‎‍‍‌‎‏‎‍‌‏‎‍‏‏‌‎‍‎‍‌‌‌‎‍‌‌‍‍‌‎‏‍‍‌‏‌‎‍‌‍‌‌‍‌‌‍‌‌‍‌‎‍‍‌‎‌‎‏‍‏‏‌‌‎‌‍‏‎‌‌‍‍‍‌‎个可爱的故事<br>这‍‌‍‌‎‌‏‏‍‌‎‍‌‍‍‎‏‏‌‌‏‌‌‏‌‍‍‌‎‏‍‏‏‌‏‎‎‏‌‌‍‏‍‍‌‎‏‎‌‌‌‏‎‎‎‌‍‍‎‏‎‎‏‏‍‌‌‌‏‏‍‌‌‌‏‏‍‌‌‌是一种奇怪的文字写的故事<br>f‍‌‎‏‎‍‌‏‎‍‏‏‌‏‎‎‏‏‌‏‎‍‎‎‌‌‍‌‌‍‌‌‍‌‎‍‌‏‌‏‎‍‌‎‏‍‍‌‏‌‎‍‌‍lag就藏在其中<br>flag为大兔子说的一句带bugku的话<br>如‌‌‎‎‌‍‌‏‎‎‏‌‌‍‏‍‏‏‍‌‎‍‌‌‎‎‌‍‌‏‎‎‏‌‌‍‏‍‏‏‍‌‎‍‌‌‌‏‏‌‌‌‍‌‎‌‍‏‌‌‏‌‍‍‌‎‍‍‎‏‍‌‎‍‍‎‏‍‍‌‎‏‎‌‌‎‎‌‎‌‍‎‎‎‍‎‌‎‌‏‌‌‏‌‌‍‌‌‍‌‌‍‌‎‌‎‌‍‏‎‌‌‍‍‍‌‎‌‌‏‍‌‎‎‏‏‍‌‌‌果找到了<br>就‌‌‍‏‍‌‌‍‌‎‌‍‏‌‎‏‍‍‌‏‌‎‍‌‍‌‌‏‌‎‌‍‌‏‍‌‏‎‌‍‌‌‍‎‎‌‍‏‎‌‏‌‏‎‍‎‎‍‌‍‌‍‌‍‍‍‏‌‍‌‍‌‌‍‍‏‌‌‏‍‏‏‎‍‌‏‏‎‍‏‍‌‏‎‍‎‍‍‎‎‎‍‌‏‏‌‍‌‍‌‌‌‍‌‌‎‎‌‍‏‏‍‍‍‌把他全部变成小写然后包上bugku{}</p>
+</blockquote>
+<p>来看下这个题给的图片……</p>
+<img src="C:\Users\888888\Desktop\故事1.png" style="zoom:25%;" />
+
+<blockquote>
+<p> 这是人的语言吗？？？？？</p>
+</blockquote>
+<p>直到我看到别人的解答里来了一句，原神里面的提瓦特字母 …….</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bugku&#123;iamlearningteyvatinbugku&#125;</span><br></pre></td></tr></table></figure>
+
+<p>得，我裂开了……</p>
+<h5 id="10、赛博朋克"><a href="#10、赛博朋克" class="headerlink" title="10、赛博朋克"></a>10、赛博朋克</h5><p>flag{Hel1o_Wor1e}</p>
+<h5 id="11、猜"><a href="#11、猜" class="headerlink" title="11、猜"></a>11、猜</h5><p>这题还真是猜……, 图中人物名字全拼。打开照片一看刘亦菲，嗯金币-1……</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag:   key&#123;liuyifei&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="12、又一张图片还单纯吗？"><a href="#12、又一张图片还单纯吗？" class="headerlink" title="12、又一张图片还单纯吗？"></a>12、又一张图片还单纯吗？</h5><p>这个题，最简单的方法是使用formost进行分解，分解得到的那张图片上面的就是flag，正常的做法实际上不应该直接使用formost。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//对于图片隐写题目，推荐先看属性查看是否有隐藏的信息，再使用 010edit 或者winhex查看图片信息</span></span><br><span class="line"><span class="comment">//使用winhex查看文件， 搜索504b 0304（压缩包头），FFD8FF（jpg文件头） ，89504E47（png文件头）</span></span><br><span class="line"><span class="comment">//确定在文件中隐藏其他文件时再使用formost进行分解。</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="13、社会主义核心价值观"><a href="#13、社会主义核心价值观" class="headerlink" title="13、社会主义核心价值观"></a>13、社会主义核心价值观</h5><p>嗯，这道题是不是可以扔到密码学里面，这是一个神奇的编码，知道有这种编码方式解决就行。</p>
+<h5 id="14、where-is-flag-番外篇"><a href="#14、where-is-flag-番外篇" class="headerlink" title="14、where is flag 番外篇"></a>14、where is flag 番外篇</h5><p>这道题的脑洞是真大……</p>
+<ol>
+<li><p>解压全部文件得到一个加密压缩包，和一堆经过修改的出师表…..</p>
+</li>
+<li><p>在看到这一堆出师表后，我觉得还不如去看看，那个加密压缩包是不是伪加密，用winhex打开，最后一通操作下来确定这个是正常加密……</p>
+</li>
+<li><p>经过刚刚的两部操作，实际上已经确认了这个的解压密码与这一堆叫做出师表文件有关。但是看文件那一堆AAAAA，CCCCC，我觉得这个密码可能是这些字母的数量….结果还是小瞧了出题人。</p>
+</li>
+<li><p> 在评论区有大佬这么提示：**每个文档的字数不一样会对文档的大小产生影响，而有的文档最后之所有有大写字母来填充，那么就是为了凑文档大小的数字！！！ **</p>
+</li>
+<li><p>好家伙这一层实际上是用压缩前的大小减去压缩后大小的差…..</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">75 101 121 58 90 104 117 71 76 64 64 46 48</span><br></pre></td></tr></table></figure>
+
+<p>得到这一串，这一串实际上是ascll码的形式，<strong>ZhuGL@@.0</strong>这个就是最好的密码…..</p>
+</li>
+<li><p>得，又一张图片看下里面属性啥也没有，使用winhex打开，拖到最后看到这一串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag in here &#123;LjFWBuxFNTzEWv6t2NfxjNFSH1sQEwBt5wTTLD1fJ&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结果这个并不是flag…..出题人我劝你善良…..</p>
+<p>里面这一串是base编码，但是不是我们最熟悉的base64，是神奇的base58……</p>
+<blockquote>
+<p><strong>base58</strong>:编码去掉了几个看起来会产生歧义的字符，如 0 (零), O (大写字母O), I (大写的字母i) and l (小写的字母L) ，和几个影响双击选择的字符，如/, +。结果字符集正好58个字符(包括9个数字，24个大写字母，25个小写字母)。 </p>
+</blockquote>
+</li>
+</ol>
+<p> 最后 bugku{th1s_1s_chu_Sh1_B1A0!!@} …..</p>
+<p>说真的出题人我劝你善良…………</p>
+<h5 id="15、贝斯手"><a href="#15、贝斯手" class="headerlink" title="15、贝斯手"></a>15、贝斯手</h5><p>看下题目给的提示……</p>
+<blockquote>
+<p>这剧叫做《缝纫机乐队》，女主叫丁建国，是一名贝斯手，剧中面试的时候，问到腿是怎么回事的时候，回答了”又长又白又细”，我爱了，成功圈粉</p>
+</blockquote>
+<p>txt看上去是没东西了，但实际上这是个假象，在txt最后还有一段提示</p>
+<blockquote>
+<p> 密码我4不会告诉你的，除非你知道我的女神是哪一年出生的给你个提示：申猴，闰年</p>
+</blockquote>
+<p>这里如果说考了什么内容的话，应该说是细心观察和知识检索的能力….</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">5+58==327a6c4304ad5938eaf0efb6cc3e53dcCFmZknmK3SDEcMEue1wrsJdqqkt7dXLuS</span><br></pre></td></tr></table></figure>
+
+<p>这个其实是一段md5和一段base58，千万别以为是先md5后base58来着….小写的那部分是md5，因为存在0很容易确认，相应的大写的范围是base58</p>
+<p>得到<strong>flag{this_is_md5_and_base58}</strong></p>
+<h5 id="16、隐写2"><a href="#16、隐写2" class="headerlink" title="16、隐写2"></a>16、隐写2</h5><ul>
+<li><p>这个隐写题的难度也不是很大， 从网站上下载下来就是一张图片，同过winhex分析其中包含一个zip压缩包。 使用formost分解即可。得到一个名为flag的压缩包还有一个图片。根据图片提示的信息三位数字…这样直接暴力跑就能得出来了。使用ARCHPR暴力破解就能得到密码871</p>
+</li>
+<li><p>单纯给了三个字母，对应三个数字，肯定不可能是在字母表里的顺序，对应键盘，则Q对应数字1，J对应数字7，K对应数字8（在键盘同一列）。</p>
+<p>得到的是一张图片用winhex打开在最后发现这一串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f1@g&#123;eTB1IEFyZSBhIGhAY2tlciE=&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不过里面的是base64编码，稍微解码下得到<strong>flag{y0u Are a h@cker!}</strong></p>
+</li>
+</ul>
+<h5 id="17、普通的二维码"><a href="#17、普通的二维码" class="headerlink" title="17、普通的二维码"></a>17、普通的二维码</h5><ol>
+<li><p>下载得到一张图片是一张二维码，使用工具扫码，他告诉我flag不在这里….</p>
+</li>
+<li><p>使用winhex打开有这一段（这里我已经将其三个一组分开）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">146，154，141，147，173，110，141，166，145，137，171，060，125，137，120，171，137，163，143，162，151，160，164，137，117，164，143，137，124，157，137，124，145，156，137，101，163，143，151，151，041，175，@xjseck!</span><br></pre></td></tr></table></figure>
+
+<p>这里能看出数字永远是0到7，应该是八进制将其转化为10进制，在将其视为对应的ascill码</p>
+</li>
+<li><p>对应脚本</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> misc1[<span class="number">42</span>]=&#123;<span class="number">146</span>,<span class="number">154</span>,<span class="number">141</span>,<span class="number">147</span>,<span class="number">173</span>,<span class="number">110</span>,<span class="number">141</span>,<span class="number">166</span>,<span class="number">145</span>,<span class="number">137</span>,<span class="number">171</span>,<span class="number">60</span>,<span class="number">125</span>,<span class="number">137</span>,<span class="number">120</span>,<span class="number">171</span>,<span class="number">137</span>,<span class="number">163</span>,<span class="number">143</span>,<span class="number">162</span>,<span class="number">151</span>,<span class="number">160</span>,<span class="number">164</span>,<span class="number">137</span>,<span class="number">117</span>,<span class="number">164</span>,<span class="number">143</span>,<span class="number">137</span>,<span class="number">124</span>,<span class="number">157</span>,<span class="number">137</span>,<span class="number">124</span>,<span class="number">145</span>,<span class="number">156</span>,<span class="number">137</span>,<span class="number">101</span>,<span class="number">163</span>,<span class="number">143</span>,<span class="number">151</span>,<span class="number">151</span>,<span class="number">41</span>,<span class="number">175</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span> misc2[<span class="number">42</span>];</span><br><span class="line">	<span class="keyword">int</span> a1,a2,a3;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">42</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		a1=misc1[i]/<span class="number">100</span>;</span><br><span class="line">		a2=misc1[i]/<span class="number">10</span>%<span class="number">10</span>;</span><br><span class="line">		a3=misc1[i]%<span class="number">10</span>;</span><br><span class="line">        misc2[i]=a1*<span class="number">8</span>*<span class="number">8</span>+a2*<span class="number">8</span>+a3;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">42</span>;j++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,misc2[j]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后得到flag。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;Have_y0U_Py_script_Otc_To_Ten_Ascii!&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="18、多种方法解决"><a href="#18、多种方法解决" class="headerlink" title="18、多种方法解决"></a>18、多种方法解决</h5></li>
+</ol>
+<ul>
+<li><p>将文件转化成txt格式，打开文件里面是这么一堆东西</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data:image/jpg;base64,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</span><br></pre></td></tr></table></figure>
+
+<p>最后的==很明显能够说明这里是一个base编码，盲猜base64，同时题目信息又有提示说：在解题过程中会得到一张二维码….显然这个是考的base64转图片。</p>
+<p>通过线上的工具将base64编码转换为图片，扫码得到flag。<strong>KEY{dca57f966e4e4e31fd5b15417da63269}</strong></p>
+<h5 id="19、where-is-flag"><a href="#19、where-is-flag" class="headerlink" title="19、where is flag"></a>19、where is flag</h5></li>
+<li><p>之前做的那个where is flag番外篇的灵感估计就是来自于这里…..</p>
+</li>
+<li><p>解压得到十个空的txt文件，但是这个大小却绝对不是空txt文件该有的样子，应该是在文件里隐藏了什么…</p>
+</li>
+<li><p>使用winhex打开里面都是用的0来占位，对应到txt里面就是一个个的空格</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">11</span>):</span><br><span class="line">    name = <span class="built_in">str</span>(n)+<span class="string">&#x27;.txt&#x27;</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(name) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="built_in">print</span>(<span class="built_in">len</span>(f.read()),end=<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>使用python脚本解出来一串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">98，117，103，107，117，123，110，97，48，100，48，110，103，100，97，107，97，49，125</span><br></pre></td></tr></table></figure>
+
+<p>跟之前的那组一样转化为ascll码，就能知道flag<strong>bugku{na0d0ngdaka1}</strong></p>
+<h5 id="20、闪的好快啊"><a href="#20、闪的好快啊" class="headerlink" title="20、闪的好快啊"></a>20、闪的好快啊</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SYC&#123;F1aSh_so_f4sT&#125;</span><br></pre></td></tr></table></figure>
+
+<p>十八张图真没必要……好在WPS图片有相应的功能将GIF图片一一分开，在通过QR research可以读取二维码里面的信息，得到flag。这里其实还有一个疑点，为什么这个GIF图片在PS里面打开是半张，在别的软件中打开是整张二维码呢？</p>
+<blockquote>
+<p> 文件损坏了，偶尔是会发生这种情况的，你另存为下，然后重新导出。 (百度知道如是说道，但是我还没明白……)</p>
+</blockquote>
+<h5 id="21、白哥的鸽子"><a href="#21、白哥的鸽子" class="headerlink" title="21、白哥的鸽子"></a>21、白哥的鸽子</h5><p>属性中没有任何可用信息，使用formost进行分解，证明没有存有其他的文件。在使用winhex打开文件看到最后有**fg2ivyo}l{2s3_o@aw__rcl@**这一串明显是一段栅栏密码…找一个有枚举解码能力的工具进行解码就得到flag</p>
+<h5 id="22、放松一下吧-对于我这个手残来说这个根本不叫放松…"><a href="#22、放松一下吧-对于我这个手残来说这个根本不叫放松…" class="headerlink" title="22、放松一下吧::对于我这个手残来说这个根本不叫放松….."></a>22、放松一下吧::对于我这个手残来说这个根本不叫放松…..</h5>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/07/30/BUGKU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8BCrypto/" rel="next" title="BUGKU靶场解题记录之Cypto">
+                <i class="fa fa-chevron-left"></i> BUGKU靶场解题记录之Cypto
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/09/18/QFNU%20CTF%20%E8%BF%8E%E6%96%B0%E8%B5%9B%E8%A7%A3%E9%A2%98/" rel="prev" title="QFNU_CTF迎新赛题解">
+                QFNU_CTF迎新赛题解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2021/08/01/BugkuCTF解题记录之misc/"
+     data-title="BUGKU靶场解题记录之misc"
+     data-content=""
+     data-url="https://shierjinghuang.github.io/2021/08/01/BugkuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bmisc/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2021/08/01/BugkuCTF解题记录之misc/"
+           data-title="BUGKU靶场解题记录之misc" data-url="https://shierjinghuang.github.io/2021/08/01/BugkuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bmisc/">
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://7xrz9n.com1.z0.glb.clouddn.com/logo.png"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="undefined" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="undefined" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="undefined" target="_blank" title="Others">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Others</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81%E7%AD%BE%E5%88%B0%E9%A2%98"><span class="nav-text">1、签到题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81-0%E5%92%8C1%E7%9A%84%E6%95%85%E4%BA%8B"><span class="nav-text">2、 0和1的故事</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3%E3%80%81%E8%BF%99%E6%98%AF%E4%B8%80%E5%BC%A0%E5%8D%95%E7%BA%AF%E7%9A%84%E5%9B%BE%E7%89%87"><span class="nav-text">3、这是一张单纯的图片</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4%E3%80%81%E9%9A%90%E5%86%99"><span class="nav-text">4、隐写</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5%E3%80%81telnet"><span class="nav-text">5、telnet</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6%E3%80%81%E7%9C%BC%E8%A7%81%E9%9D%9E%E5%AE%9E"><span class="nav-text">6、眼见非实</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7%E3%80%81%E5%95%8A%E5%93%92"><span class="nav-text">7、啊哒</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8%E3%80%81ping"><span class="nav-text">8、ping</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9%E3%80%81%E5%8F%AF%E7%88%B1%E7%9A%84%E6%95%85%E4%BA%8B"><span class="nav-text">9、可爱的故事</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10%E3%80%81%E8%B5%9B%E5%8D%9A%E6%9C%8B%E5%85%8B"><span class="nav-text">10、赛博朋克</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11%E3%80%81%E7%8C%9C"><span class="nav-text">11、猜</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#12%E3%80%81%E5%8F%88%E4%B8%80%E5%BC%A0%E5%9B%BE%E7%89%87%E8%BF%98%E5%8D%95%E7%BA%AF%E5%90%97%EF%BC%9F"><span class="nav-text">12、又一张图片还单纯吗？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#13%E3%80%81%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89%E6%A0%B8%E5%BF%83%E4%BB%B7%E5%80%BC%E8%A7%82"><span class="nav-text">13、社会主义核心价值观</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#14%E3%80%81where-is-flag-%E7%95%AA%E5%A4%96%E7%AF%87"><span class="nav-text">14、where is flag 番外篇</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#15%E3%80%81%E8%B4%9D%E6%96%AF%E6%89%8B"><span class="nav-text">15、贝斯手</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#16%E3%80%81%E9%9A%90%E5%86%992"><span class="nav-text">16、隐写2</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#17%E3%80%81%E6%99%AE%E9%80%9A%E7%9A%84%E4%BA%8C%E7%BB%B4%E7%A0%81"><span class="nav-text">17、普通的二维码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#18%E3%80%81%E5%A4%9A%E7%A7%8D%E6%96%B9%E6%B3%95%E8%A7%A3%E5%86%B3"><span class="nav-text">18、多种方法解决</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#19%E3%80%81where-is-flag"><span class="nav-text">19、where is flag</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#20%E3%80%81%E9%97%AA%E7%9A%84%E5%A5%BD%E5%BF%AB%E5%95%8A"><span class="nav-text">20、闪的好快啊</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#21%E3%80%81%E7%99%BD%E5%93%A5%E7%9A%84%E9%B8%BD%E5%AD%90"><span class="nav-text">21、白哥的鸽子</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#22%E3%80%81%E6%94%BE%E6%9D%BE%E4%B8%80%E4%B8%8B%E5%90%A7-%E5%AF%B9%E4%BA%8E%E6%88%91%E8%BF%99%E4%B8%AA%E6%89%8B%E6%AE%8B%E6%9D%A5%E8%AF%B4%E8%BF%99%E4%B8%AA%E6%A0%B9%E6%9C%AC%E4%B8%8D%E5%8F%AB%E6%94%BE%E6%9D%BE%E2%80%A6"><span class="nav-text">22、放松一下吧::对于我这个手残来说这个根本不叫放松…..</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shierjinghuang</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=0.5.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"imwillxue"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="//ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js?v=0.5.0"></script>
+    
+    
+    <script src="//ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("QImiFijLSOHYufsazlBVlwLg-gzGzoHsz", "AMcYaNHy9Y5OdH42k0d4uSED");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
