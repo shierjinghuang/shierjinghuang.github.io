@@ -6,7 +6,7 @@
   <link href="https://shierjinghuang.github.io/atom.xml" rel="self"/>
   
   <link href="https://shierjinghuang.github.io/"/>
-  <updated>2021-10-05T11:43:04.989Z</updated>
+  <updated>2021-10-05T11:49:31.347Z</updated>
   <id>https://shierjinghuang.github.io/</id>
   
   <author>
@@ -15,6 +15,19 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>BuuCTF题目之web</title>
+    <link href="https://shierjinghuang.github.io/2021/10/05/BuuCTF%E9%A2%98%E7%9B%AE%E4%B9%8Bweb/"/>
+    <id>https://shierjinghuang.github.io/2021/10/05/BuuCTF%E9%A2%98%E7%9B%AE%E4%B9%8Bweb/</id>
+    <published>2021-10-05T11:49:31.000Z</published>
+    <updated>2021-10-05T11:49:31.347Z</updated>
+    
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Bandit靶场记录</title>
