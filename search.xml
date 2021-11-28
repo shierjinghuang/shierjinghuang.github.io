@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>ctfshow解题之Misc入门</title>
+      <link href="/2021/11/23/ctfshow%E8%A7%A3%E9%A2%98%E4%B9%8BMisc%E5%85%A5%E9%97%A8/"/>
+      <url>/2021/11/23/ctfshow%E8%A7%A3%E9%A2%98%E4%B9%8BMisc%E5%85%A5%E9%97%A8/</url>
+      
+        <content type="html"><![CDATA[<p>[TOC]</p><h2 id="图片篇（基础操作）"><a href="#图片篇（基础操作）" class="headerlink" title="图片篇（基础操作）"></a>图片篇（基础操作）</h2><h3 id="Misc-一"><a href="#Misc-一" class="headerlink" title="Misc 一"></a>Misc 一</h3><p>打开图片，看到flag <strong>ctfshow{22f1fb91fc4169f1c9411ce632a0ed8d}</strong></p><h3 id="Misc-二"><a href="#Misc-二" class="headerlink" title="Misc 二"></a>Misc 二</h3><p>图片篇，这个文件的拓展名是txt，但是使用<code>winhex</code>或者<code>01editor</code>打开都可以发现这实际是一个<code>png</code>文件可以看到flag。<strong>ctfshow{6f66202f21ad22a2a19520cdd3f69e7b}</strong></p><h3 id="Misc-三"><a href="#Misc-三" class="headerlink" title="Misc 三"></a>Misc 三</h3><p>这一道题的难点是特殊的文件形式<code>bpg</code>格式，没有相应工具的话无法正常打开，<a href="https://bellard.org/bpg/">bpg下载</a>下载该软件，在cmd界面进行操作，读取图片，得到<code>flag</code>。 <strong>ctfshow{aade771916df7cde3009c0e631f9910d}</strong></p><h3 id="Misc-四"><a href="#Misc-四" class="headerlink" title="Misc 四"></a>Misc 四</h3><p>给了6个”txt”文件,分别用<code>winhex</code>打开，查看文件头，发现需要修改后缀。依次分别改为<code>png、jpg、bmp、gif、tif、webp</code>把这些文件的内容拼接起来就得到<strong>ctfshow{4314e2b15ad9a960e7d9d8fc2ff902da}</strong></p><h2 id="图片篇（信息附加）"><a href="#图片篇（信息附加）" class="headerlink" title="图片篇（信息附加）"></a>图片篇（信息附加）</h2><h3 id="Misc-五"><a href="#Misc-五" class="headerlink" title="Misc 五"></a>Misc 五</h3><p> winhex打开，在尾部能看到flag。 <strong>ctfshow{2a476b4011805f1a8e4b906c8f84083e}</strong></p><h3 id="Misc-六"><a href="#Misc-六" class="headerlink" title="Misc 六"></a>Misc 六</h3><p> 这道题把flag藏到了中间，用<code>winhex</code>打开，搜索<code>flag</code>得到的<strong>ctfshow{d5e937aefb091d38e70d927b80e1e2ea}</strong></p><h3 id="Misc-七"><a href="#Misc-七" class="headerlink" title="Misc 七"></a>Misc 七</h3><p>这个….用记事本打开就行搜索ctfshow就能得到<strong>ctfshow{c5e77c9c289275e3f307362e1ed86bb7}</strong></p><h3 id="Misc-八"><a href="#Misc-八" class="headerlink" title="Misc 八"></a>Misc 八</h3><p>用winhex打开图片，可以发现在第一个png图片尾后面有另一张png的头，可以说明图片中隐写了其他图片，用foremost分离出图片。 得到<strong>ctfshow{5c5e819508a3ab1fd823f11e83e93c75}</strong></p><h3 id="Misc-九"><a href="#Misc-九" class="headerlink" title="Misc 九"></a>Misc 九</h3><p>这个跟第Misc7一样的解法，用记事本打开搜索ctfshow就能得到flag。<strong>ctfshow{5c5e819508a3ab1fd823f11e83e93c75}</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 网安 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Misc </tag>
+            
+            <tag> ctfshow </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>python绘图及可视化备课</title>
       <link href="/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/"/>
       <url>/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/</url>
