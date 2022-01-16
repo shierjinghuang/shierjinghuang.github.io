@@ -67,6 +67,32 @@
   </entry>
   
   <entry>
+    <title>Matlab数据处理</title>
+    <link href="https://shierjinghuang.github.io/2022/01/12/Matlab%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/"/>
+    <id>https://shierjinghuang.github.io/2022/01/12/Matlab%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/</id>
+    <published>2022-01-12T07:05:38.000Z</published>
+    <updated>2022-01-16T10:22:32.675Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="数据统计分析"><a href="#数据统计分析" class="headerlink" title="数据统计分析"></a>数据统计分析</h2><h3 id="求最大值与最小元素"><a href="#求最大值与最小元素" class="headerlink" title="求最大值与最小元素"></a>求最大值与最小元素</h3><ul><li>max(): 求向量或矩阵的最大元素</li><li>min():求向量或矩阵的最小元素</li></ul><p>当参数为向量时函数有两种调用格式：</p><p>(1) y=max(X):返回向量X的最大值存入y，如果X中包含复数元素，则按模取最大值。</p><p>(2)[y,k]=max(X): 返回向量X的最大值存入y，最大值元素的序号存入k，如果X中包含复数元素，则按模取最大值。</p><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%例1:</span></span><br><span class="line">x=[<span class="number">-43</span>,<span class="number">72</span>,<span class="number">9</span>,<span class="number">16</span>,<span class="number">23</span>,<span class="number">47</span>];</span><br><span class="line">y=<span class="built_in">max</span>(x)</span><br><span class="line">[y,k]=<span class="built_in">max</span>(x)</span><br></pre></td></tr></table></figure><p>当参数为矩阵时，函数有三种调用格式：</p><p>(1)max(A):返回一个行向量，向量的第i个元素是矩阵A的第i列上的最大值。<br>(2)[Y,U]=max(A):返回行向量Y和U，Y向量记录A的每列的最大值，U向量记录每列最大值元素的行号。<br>( 3 ) max(A,0,dim): dim取1或2。dim取1时，该函数的功能和max(A)完全相同;dim取2时，该函数返回一个列向量，其第i个元素是A矩阵的第i行上的最大值。其中的[]不可省略</p><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%例二 求矩阵A的每行及每列的最大元素，并求整个矩阵的最大元素</span></span><br><span class="line"><span class="built_in">max</span>(A) <span class="comment">%求每列的最大值</span></span><br><span class="line"><span class="built_in">max</span>(A,[],<span class="number">2</span>) <span class="comment">%将矩阵转置求每行的最大值</span></span><br><span class="line"><span class="built_in">max</span>(<span class="built_in">max</span>(A)) <span class="comment">%两次调用max函数，求整个矩阵的最大值</span></span><br><span class="line"><span class="comment">%在实际上，可以通过max(A(:))的调用方式，只用一次max函数就得到最大值。</span></span><br></pre></td></tr></table></figure><h3 id="求平均值和中值"><a href="#求平均值和中值" class="headerlink" title="求平均值和中值"></a>求平均值和中值</h3><p>平均值: 指算术平均值，即每项数据之和除以项数。<br>中值: 指在数据序列中其值的大小恰好处在中间的元素。如果数据个数为奇数，则取值为大小位于中间的元素;如果数据个数为偶数，则取中间两个元素的平均值。</p><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mean</span>()      <span class="comment">% 求算术平均值</span></span><br><span class="line">median（）  <span class="comment">% 求中值 </span></span><br></pre></td></tr></table></figure><h3 id="求和与求积"><a href="#求和与求积" class="headerlink" title="求和与求积"></a>求和与求积</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sum()    <span class="comment">% 求和</span></span><br><span class="line">prod（） <span class="comment">% 求积</span></span><br></pre></td></tr></table></figure><h3 id="累加和与累乘积"><a href="#累加和与累乘积" class="headerlink" title="累加和与累乘积"></a>累加和与累乘积</h3><p><img src="/.io//blog\shierjinghuang\source_posts\Matlab\25.png"></p><p>cumsum(): 累加和函数 ，cumprod():累乘积函数。</p><h3 id="求标准差与相关系数"><a href="#求标准差与相关系数" class="headerlink" title="求标准差与相关系数"></a>求标准差与相关系数</h3><p><img src="https://img-blog.csdnimg.cn/20200227193437501.png" alt="在这里插入图片描述"></p><p>std( ):计算标准差函数。</p><p>调用格式:</p><ol><li>std(X):计算向量X的标准差。</li><li>std(A):计算矩阵A的各列的标准差。</li><li>std(A,flag,dim): flag取0或1，当flag=0时，按S所列公式计算样本标准差;当flag=1时，按Sz所列公式计算总体标准差。默认情况下，flag=0，dim=l。</li></ol><p><img src="https://img-blog.csdnimg.cn/2020022722014543.png"></p><p>corrcoef( ):相关系数函数。</p><p>调用格式:</p><ul><li>corrcoef(A):返回由矩阵A所形成的一个相关系数矩阵，其中,第i行第j列的元素表示原矩阵A中第i列和第j列的相关系数。</li><li>corrcoef(X,Y):在这里，X、Y是向量，它们与corrcoef([X,Y)的作用一样,用于求X、Y向量之间的相关系数。</li></ul><h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><p><strong>sort( ):排序函数</strong> 调用格式:</p><ul><li>sort(X):对向量X按升序排列。</li><li>[Y,I]=sort(A,dim,mode)</li></ul><p>其中，dim指明对A的列还是行进行排序。mode指明按升序还是降序排序，若取“ascend”，则按升序;若取“descend”，则按降序，默认为升序。输出参数中，Y是排序后的矩阵，而l记录Y中的元素在A中位置。</p><h2 id="多项式计算"><a href="#多项式计算" class="headerlink" title="多项式计算"></a>多项式计算</h2><h3 id="多项式的表示"><a href="#多项式的表示" class="headerlink" title="多项式的表示"></a>多项式的表示</h3><p><img src="/.io//blog\shierjinghuang\source_posts\Matlab\26.png"></p><p>在MATLAB中创建多项式向量时，注意三点：</p><ol><li>多项式系数向量的顺序是从高到低。</li><li>多项式系数向量包含0次项系数，所以其长度为多项式最高次数加1。</li><li>如果有的项没有，系数向量相应位置应用0补足。</li></ol><h3 id="多项式的四则运算"><a href="#多项式的四则运算" class="headerlink" title="多项式的四则运算"></a>多项式的四则运算</h3><ol><li>多项式的加减运算      </li></ol><p>多项式的加减运算非常简单，即相应向量相加减。</p><ol start="2"><li>多项式乘法      </li></ol><p>conv (P1,P2):多项式相乘函数，在这里，P1、P2是两个多项式系数向量。</p><ol start="3"><li>多项式除法      </li></ol><p>[Q,r]=deconv(P1,P2):多项式相除i函数。其中，Q返回多项式Pl除以P2的商式，r返回Pl除以P2的余式。这里，Q和r仍是多项式系数向量。deconv是conv的逆函数，因此有Pl=conv(Q,P2)+r</p><h3 id="多项式的求导-polyder"><a href="#多项式的求导-polyder" class="headerlink" title="多项式的求导(polyder)"></a>多项式的求导(polyder)</h3><p>polyder( ):    多项式求导函数。</p><p>调用格式:</p><ol><li>p=polyder(P)   :   求多项式P的导函数。</li><li>p=polyder(P,Q)   :   求P · Q的导函数。</li><li>[p , q]=polyder(P,Q)   :   求P/Q的导函数，导函数的分子存入p，分母存入q。</li></ol><h3 id="多项式积分-polyder"><a href="#多项式积分-polyder" class="headerlink" title="多项式积分(polyder)"></a>多项式积分(polyder)</h3><p><code>q = polyint(p,k)</code> 使用积分常量 k 返回 p 中系数所表示的多项式积分。</p><h3 id="多项式的求值-polyval-polyvalm"><a href="#多项式的求值-polyval-polyvalm" class="headerlink" title="多项式的求值(polyval;polyvalm)"></a>多项式的求值(polyval;polyvalm)</h3><p><img src="https://img-blog.csdnimg.cn/20200227223355703.png"></p><p><strong>polyval(p,x)</strong></p><p>其中，p为多项式系数向量;x可以是标量、向量或矩阵。若x为标量，则求多项式在该点的值;若x为向量或矩阵，则对向量或矩阵中的每个元素求多项式的值。<br><strong>polyvalm(p,x)</strong><br>其调用格式与polyval相同，但含义不同。polyvalm函数要求x为方阵，以方阵为自变量求多项式的值。</p><h3 id="多项式的求根-roots-poly"><a href="#多项式的求根-roots-poly" class="headerlink" title="多项式的求根(roots;poly)"></a>多项式的求根(roots;poly)</h3><p>一元二次多项式求根: <img src="/.io//blog\shierjinghuang\source_posts\Matlab\27.png" alt="1642326506365"></p><p>一元高次多项式求根： roots(p): 多项式求根函数，其中，p为多项式的系数向量。</p><p>若已知多项式的全部根，则可以用poly函数建立起该多项式，其调用格式为：  p=poly(x)</p><h2 id="数据插值-interp"><a href="#数据插值-interp" class="headerlink" title="数据插值(interp)"></a>数据插值(interp)</h2><p>数据插值可以根据有限个点的取值状况，合理估算出附近其他点的取值，从而节约大量的实验和测试资源，节省大量的人力、物力和财力。</p><h3 id="数据插值的计算机制"><a href="#数据插值的计算机制" class="headerlink" title="数据插值的计算机制"></a>数据插值的计算机制</h3><p><img src="/.io//blog\shierjinghuang\source_posts\Matlab\28.png"></p><p>interp1( ):一维插值函数。</p><p>调用格式:     <strong>Y=interp1(X,Y,X1,method)</strong></p><p>根据X、Y的值，计算函数在×1处的值。其中，X、Y是两个等长的已知向量，分别表示采样点和采样值。Xl是一个向量或标量，表示要插值的点。</p><h3 id="数据插值的实现方法"><a href="#数据插值的实现方法" class="headerlink" title="数据插值的实现方法"></a>数据插值的实现方法</h3><p>method用于指定插值方法，常用的取值有以下四种:</p><ol><li>linear:    线性插值，默认方法。将与插值点靠近的两个数据点用直线连接，然后在直线上选取对应插值点的数据。</li><li>nearest:    最近点插值。选择最近样本点的值作为插值数据。</li><li>pchip:    分段3次埃尔米特抽值。米用分段三次多项式，乐满疋插值条件，还需满足在若干节点处相邻段插值函数的一阶导数相等，使得曲线光滑的同时，还具有保形性。</li><li>spline:     3次样条插值。每个分段内构造一个三次多项式，使其插值函数除满足插值条件外，还要求在各节点处具有连续的一阶和二阶导数。</li></ol><p>多项式次数并非越高越好。次数越高，越容易产生震荡而偏离原函数，这种现象称为龙格(Runge）现象。</p><h4 id="四种方法的比较："><a href="#四种方法的比较：" class="headerlink" title="四种方法的比较："></a>四种方法的比较：</h4><p>线性插值和最近点插值方法比较简单。其中线性插值方法的计算量与样本点n无关。n越大，误差越小。<br>3次埃尔米特插值和3次样条插值都能保证曲线的光滑性。相比较而言,3次埃尔米特插值具有保形性;而3次样条插值要求其二阶导数也连续,所以插值函数的性态更好。</p><p><strong>interp2( ):    二维插值函数</strong></p><p>调用格式:     <strong>Z1=interp2(X,Y,Z,X1,Y1,method)</strong></p><p>其中，X、Y是两个向量，表示两个参数的采样点,Z是采样点对应的函数值。X1、YI是两个标量或向量，表示要插值的点。</p><p>数据插值能够根据已知数据推算未知数据，这使得人们解决问题的能力得到了拓展和延伸。</p><h2 id="曲线拟合-plotfit"><a href="#曲线拟合-plotfit" class="headerlink" title="曲线拟合(plotfit)"></a>曲线拟合(plotfit)</h2><p>插值要求逼近函数在采样点的数值与原函数相等，然而在实验中，测量的数据不一定准确，如果强求逼近函数过样本点，显然是不合理的。使用曲线拟合可以避免这种情况。</p><h3 id="曲线拟合的原理"><a href="#曲线拟合的原理" class="headerlink" title="曲线拟合的原理"></a>曲线拟合的原理</h3><p><img src="/.io//blog\shierjinghuang\source_posts\Matlab\29.png"></p><p><img src="/.io//blog\shierjinghuang\source_posts\Matlab\30.png"></p><h3 id="曲线拟合的实现方法"><a href="#曲线拟合的实现方法" class="headerlink" title="曲线拟合的实现方法"></a>曲线拟合的实现方法</h3><p><strong>polyfit( ):多项式拟合函数</strong>     函数功能:求得最小二乘拟合多项式系数。</p><p>调用格式:</p><ol><li>P=polyfit(X,Y,m)</li><li>[P,S]=polyfit(X,Y,m)</li><li>[P,S,mu]=polyfit(X,Y,m)</li></ol><p>根据样本数据X和Y，产生一个m次多项式P及其在采样点误差数据S，mu是一个二元向量，mu(l)是mean(X),而mu(2)是std(X)。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;数据统计分析&quot;&gt;&lt;a href=&quot;#数据统计分析&quot; class=&quot;headerlink&quot; title=&quot;数据统计分析&quot;&gt;&lt;/a&gt;数据统计分析&lt;/h2&gt;&lt;h3 id=&quot;求最大值与最小元素&quot;&gt;&lt;a href=&quot;#求最大值与最小元素&quot; class=&quot;headerlink</summary>
+      
+    
+    
+    
+    <category term="学习笔记" scheme="https://shierjinghuang.github.io/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="学习记录" scheme="https://shierjinghuang.github.io/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+    
+    <category term="Matlab" scheme="https://shierjinghuang.github.io/tags/Matlab/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Matlab入门(一)</title>
     <link href="https://shierjinghuang.github.io/2022/01/10/Matlab/"/>
     <id>https://shierjinghuang.github.io/2022/01/10/Matlab/</id>
@@ -440,19 +466,6 @@
     <id>https://shierjinghuang.github.io/2021/10/05/%E5%8D%B3%E8%A7%81%E6%9C%AA%E6%9D%A5%EF%BC%8C%E4%B8%BA%E4%BD%95%E4%B8%8D%E6%8B%9C/</id>
     <published>2021-10-05T12:02:42.000Z</published>
     <updated>2021-10-24T10:04:41.602Z</updated>
-    
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>BuuCTF题目之web</title>
-    <link href="https://shierjinghuang.github.io/2021/10/05/BuuCTF%E9%A2%98%E7%9B%AE%E4%B9%8Bweb/"/>
-    <id>https://shierjinghuang.github.io/2021/10/05/BuuCTF%E9%A2%98%E7%9B%AE%E4%B9%8Bweb/</id>
-    <published>2021-10-05T11:49:31.000Z</published>
-    <updated>2021-10-05T11:49:31.347Z</updated>
     
     
     
