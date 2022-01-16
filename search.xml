@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Matlab符号运算</title>
+      <link href="/2022/01/16/Matlab%E7%AC%A6%E5%8F%B7%E8%BF%90%E7%AE%97/"/>
+      <url>/2022/01/16/Matlab%E7%AC%A6%E5%8F%B7%E8%BF%90%E7%AE%97/</url>
+      
+        <content type="html"><![CDATA[<h2 id="符号对象"><a href="#符号对象" class="headerlink" title="符号对象"></a>符号对象</h2><h3 id="符号对象的建立"><a href="#符号对象的建立" class="headerlink" title="符号对象的建立"></a>符号对象的建立</h3><ul><li><code>sym</code>函数</li><li><code>syms</code>命令</li></ul><h4 id="1-sym函数"><a href="#1-sym函数" class="headerlink" title="1 sym函数"></a><strong>1 sym函数</strong></h4><p>sym函数用于建立单个符号对象，其常用调用格式为：<code>符号对象名=sym(A)</code><br>将由A来建立符号对象。其中，A可以是一个数值常量、数值矩阵或数值表达式（<code>不加单引号</code>），此时符号对象为一个符号常量；A也可以是一个变量名（<code>加单引号</code>），这是符号对象为一个符号常量。</p><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; t=sym(<span class="number">2</span>);</span><br><span class="line">&gt;&gt; t+<span class="number">1</span>/<span class="number">2</span></span><br><span class="line">&gt;&gt; <span class="built_in">sin</span>(sym(<span class="built_in">pi</span>/<span class="number">3</span>))   <span class="comment">%sin(sym(pi/3))得到的是一个表达式</span></span><br><span class="line">&gt;&gt; <span class="built_in">sin</span>(<span class="built_in">pi</span>/<span class="number">3</span>)   <span class="comment">%sin(pi/3)得到的是一个数值</span></span><br></pre></td></tr></table></figure><p><strong>结论：符号计算的结果是一个精确的数学表达式。数值计算的结果是一个数值。</strong>将符号表达式转化为数值结果，使用<code>eval()</code><strong>sym一次只能定义单个符号对象，如果符号对象很多，就不方便。</strong></p><h4 id="2-syms命令"><a href="#2-syms命令" class="headerlink" title="2 syms命令"></a><strong>2 syms命令</strong></h4><p>syms命令可以一次定义多个符号变量，其一般调用格式如下：<code>syms 符号变量1 符号变量2 ... 符号变量n</code></p><p>其中，变量名不能加单引号，相互之间用空格隔开。建立完符号对象，再用符号运算符连接起来，就组成了符号表达式。</p><h3 id="符号对象的运算"><a href="#符号对象的运算" class="headerlink" title="符号对象的运算"></a>符号对象的运算</h3><p><strong>&lt;1&gt;四则运算</strong><br>符号表达式的四则运算与数值运算一样，用<code>+、-、*、/</code>运算符实现，其运算结果依然是一个符号表达式。</p><p><strong>&lt;2&gt;关系运算</strong></p><ul><li>6种关系运算符：<code>&lt;、&lt;=、&gt;、&gt;=、==、~=</code>。</li><li>对应的6个函数：<code>lt()、le()、gt()、ge()、ge()、eq()、ne()</code>。</li></ul><p>若参与运算的是<code>符号表达式</code>，其结果是一个符<code>号关系表达式</code>；若参与运算的是<code>符号矩阵</code>，其结果是由符号关系表达式组成的矩阵。</p><p>在进行符号对象的运算前，可用<code>assume</code>函数对符号对象设置域，函数调用格式为：<br><code>assume(condition)</code><br><code>assume(expr, set)</code></p><p>第一种格式指定变量满足条件condition，第二种格式指定表达式expr属于set</p><p><strong>&lt;3&gt;逻辑运算</strong></p><ul><li>3种逻辑运算符：<code>&amp;(与)、|(或)和~(非)</code></li><li>4个逻辑运算函数：<code>and()、or()、not()和xor()</code></li></ul><p><strong>&lt;4&gt;因式分解与展开运算</strong><br>MATLAB提供了对符号表达式进行因式分解、展开、合并的函数，函数的调用格式为：<br><code>fator(s)</code>：对符号表达式s分解因式。</p><p><code>expand(s)</code>：对符号表达式s进行展开。<br><code>collect(s)</code>：对符号表达式s合并同类项。<br><code>collect(s, v)</code>：对符号表达式s按变量v合并同类项。</p><p><strong>&lt;5&gt;其他计算</strong></p><ul><li><p>1 提取有理分式的分子分母：<code>[n, d]=numden(s)</code></p></li><li><p>2 提取符号表达式的系数(低位到高位)：<code>c=coeffs(s, x)</code></p></li><li><p>3 符号表达式化简：<code>simplify(s)</code></p></li><li><p>4符号多项式与多项式系数向量之间的转换：<br>符号多项式转换为多项式系数向量：<code>p=sym2poly(s)</code><br>多项式系数向量转换为符号多项式：<code>s=ploy2sum()</code></p></li></ul><p><strong>f只能有一种符号变量</strong></p><p><strong>&lt;6&gt;符号运算中变量的确定</strong></p><ul><li><p>如果没有明确指定自变量，MATLAB将按以下原则确定主变量并对其进行相应运算：<br>寻找除了i、j之外，在字母顺序上最接近x的小写字母。<br>若表达式中有两个符号变量与x的距离相等，则ASCII码大者优先。</p></li><li><p><code>symvar()</code>函数可以用于查找一个符号表达式中的符号变量，函数的调用格式为：<code>symvar(s,n)</code>。函数返回符号符号表达式s中的n个符号变量。因此，可以用<code>symvar(s, 1)</code>查找表达式s的主变量。</p></li></ul><h3 id="符号矩阵"><a href="#符号矩阵" class="headerlink" title="符号矩阵"></a>符号矩阵</h3><p>符号矩阵也是一种符号表达式，所以符号表达式运算都可以在矩阵意义下进行。<br>注意：这些函数作用于符号矩阵时，是分别作用于矩阵的每一个元素。</p><p><strong>由于符号矩阵也是矩阵，所以有关矩阵的函数也可以使用。</strong></p><h2 id="符号微积分"><a href="#符号微积分" class="headerlink" title="符号微积分"></a>符号微积分</h2><h3 id="符号函数的极限"><a href="#符号函数的极限" class="headerlink" title="符号函数的极限"></a>符号函数的极限</h3><p><strong>&lt;1&gt;符号函数的极限</strong></p><ul><li>求符号函数极限的命令<code>limit</code>，其调用格式为：<code>limit(f, X, a)</code>即求函数f关于变量x在a点的极限。若x省略，则采用系统默认的自变量。a的默认值为0。</li><li><code>limit</code>函数的另一种功能是求单边极限，其调用格式为：<br><code>limit(f, x, a, &#39;right&#39;)</code><br><code>limit(f,x,a,&#39;left&#39;)</code></li></ul><h3 id="符号函数的导数"><a href="#符号函数的导数" class="headerlink" title="符号函数的导数"></a>符号函数的导数</h3><p>MATLAB中的求导函数为：<code>diff(f, x, n)</code><br>即求函数f关于变量x的n阶导数。参数x的用法同求极限函数<code>limit</code>，可以缺省，默认值与<code>limit</code>相同，n的默认值是1。</p><p>极限、导数、微分的概念是紧密关联的。有极限是可导的前提，而导数是微分之商，因此导数也称为微商。</p><h3 id="符号函数的积分"><a href="#符号函数的积分" class="headerlink" title="符号函数的积分"></a>符号函数的积分</h3><p><strong>&lt;1&gt;不定积分</strong></p><p>在MATLAB中，求不定积分的函数是<code>int</code>，其常用调用格式为：<code>int(f, x)</code>求函数f对变量x的不定积分。</p><p><strong>&lt;2&gt;定积分</strong><br>在MATLAB中，定积分的计算也使用int命令，但调用格式有区别：<br><code>int(f, a, b)</code><br>其中，a、b分别表示定积分的下限和上限。</p><ul><li>当函数关于变量x在闭区间[a, b]可积时，函数返回一个定积分的结果。</li><li>当a、b中有一个是inf时，函数返回一个广义积分。</li><li>当a、b中有一个是符号表达式时，函数返回一个符号函数。</li></ul><h2 id="级数"><a href="#级数" class="headerlink" title="级数"></a>级数</h2><h3 id="级数求和"><a href="#级数求和" class="headerlink" title="级数求和"></a>级数求和</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习笔记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 学习记录 </tag>
+            
+            <tag> Matlab </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Matlab绘图</title>
       <link href="/2022/01/12/Matlab%E4%B9%8B%E5%9B%BE%E5%83%8F%E7%BB%98%E5%88%B6/"/>
       <url>/2022/01/12/Matlab%E4%B9%8B%E5%9B%BE%E5%83%8F%E7%BB%98%E5%88%B6/</url>
