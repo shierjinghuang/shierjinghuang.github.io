@@ -1,0 +1,1504 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="数据库复习资料整理, 十二惊惶">
+    <meta name="description" content="# 数据库复习资料整理
+[TOC]
+# 第 1 章  数据库概述
+# 1.1 数据与信息
+** 数据 (Data)** 是描述事物的符号记录，是信息的符号表示或载体，也是数据库中存储的基本对象，数据描述现实世界中各种具体事物或抽象概念的、可">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>数据库复习资料整理 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">数据库复习资料整理</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                <span class="chip bg-color">数据库</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                学习笔记
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-07-15
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-07-15
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    8.7k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    30 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="数据库复习资料整理"><a class="markdownIt-Anchor" href="#数据库复习资料整理">#</a> 数据库复习资料整理</h1>
+<p>[TOC]</p>
+<h2 id="第1章-数据库概述"><a class="markdownIt-Anchor" href="#第1章-数据库概述">#</a> 第 1 章  数据库概述</h2>
+<h3 id="11-数据与信息"><a class="markdownIt-Anchor" href="#11-数据与信息">#</a> 1.1 数据与信息</h3>
+<p>** 数据 (Data)** 是描述事物的符号记录，是信息的符号表示或载体，也是数据库中存储的基本对象，数据描述现实世界中各种具体事物或抽象概念的、可存储并具有明确意义的符号记录。</p>
+<p>数据本身无意义，具有客观性，经过解释才能表示一定的意义。数据的含义是对数据的解释，称为数据的语义，数据与其语义是不可分的</p>
+<p>** 信息（Information）** 是数据的内涵，是数据的语义解释。</p>
+<h3 id="12-数据管理技术的发展"><a class="markdownIt-Anchor" href="#12-数据管理技术的发展">#</a> 1.2 数据管理技术的发展</h3>
+<h4 id="人工管理阶段"><a class="markdownIt-Anchor" href="#人工管理阶段">#</a> 人工管理阶段</h4>
+<blockquote>
+<p>时期：40 年代中–50 年代中<br>
+应用需求：科学计算	      硬件水平：无直接存取存储设备	 软件水平：没有操作系统	  处理方式：批处理</p>
+<p>人工管理阶段的特点：数据不保存，应用程序管理数据，数据不共享，数据不具有独立性</p>
+</blockquote>
+<h4 id="文件管理阶段"><a class="markdownIt-Anchor" href="#文件管理阶段">#</a> 文件管理阶段</h4>
+<blockquote>
+<p>时期：50 年代末–60 年代中<br>
+应用需求：科学计算、管理   硬件水平：磁盘、磁鼓   软件水平：有文件系统      处理方式：联机实时处理、批处理</p>
+<p>文件管理阶段的特点：数据以文件的形式长期保存在外存储器中数据独立性差，由文件系统对数据进行管理，数据共享性差，冗余度大，数据独立性差。</p>
+</blockquote>
+<h4 id="数据库管理阶段"><a class="markdownIt-Anchor" href="#数据库管理阶段">#</a> 数据库管理阶段</h4>
+<blockquote>
+<p>时期：60 年代末以来<br>
+背景：大规模管理  硬件背景：大容量磁盘 软件背景：有数据库管理系统  处理方式：联机实时处理，分布处理，批处理</p>
+<p>数据库管理系统阶段的特点： 数据结构化，数据的共享性高，冗余度低，易扩充，数据独立性高，数据由 DBMS 统一管理和控制</p>
+</blockquote>
+<h3 id="13-数据库系统的基本概念"><a class="markdownIt-Anchor" href="#13-数据库系统的基本概念">#</a> 1.3 数据库系统的基本概念</h3>
+<p>** 数据库 (Database，DB)** 是长期储存在计算机内、有组织的、可共享的大量数据的集合</p>
+<blockquote>
+<p>数据库的基本特征<br>
+数据按一定的数据模型组织、描述和储存，冗余度较小，数据独立性较高，易扩展，可为各种用户共享</p>
+</blockquote>
+<p><strong>数据库管理系统 (DataBase Management System, DBMS)</strong>：是数据库系统的核心，位于用户与操作系统之间的一层数据管理软件</p>
+<blockquote>
+<p>DBMS 的主要功能包括：<br>
+数据定义功能，数据操纵功能，数据组织、存储和管理，数据库运行管理，数据库的建立和维护功能</p>
+</blockquote>
+<p>** 数据库系统 (DataBase System， DBS)** 是指在计算机系统中引入数据库后的系统。</p>
+<h3 id="14-数据模型"><a class="markdownIt-Anchor" href="#14-数据模型">#</a> 1.4 数据模型</h3>
+<h4 id="三个世界的划分"><a class="markdownIt-Anchor" href="#三个世界的划分">#</a> 三个世界的划分</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">为了把现实世界中的具体事物抽象、组织为某一DBMS支持的数据模型，首先将现实世界的事物及其联系进行特征抽取，形成信息世界的概念模型，这种模型不依赖于具体的计算机系统，然后再将概念模型转换为某一DBMS所支持的逻辑模型和物理模型。</span><br></pre></td></tr></table></figure>
+<ol>
+<li>现实世界 现实世界即客观存在的世界</li>
+<li>信息世界是现实世界在人们头脑中的反映，经过人脑的分析、归纳、抽象，形成信息，把这些信息进行记录、整理、归类和格式化后，就构成了信息世界。
+<ul>
+<li>实体（Entity）：客观存在并且可以相互区分的事物称为实体</li>
+<li>属性（Attribute）：实体所具有的某一特性称为属性</li>
+<li>码（Key）：能唯一标识实体的属性或属性的组合称为码，也称为键</li>
+<li>域（Domain）：属性的取值范围称为该属性的域</li>
+<li>实体型（Entity Type）：用实体名及其所有属性的集合来描述同类实体，称为实体型</li>
+<li>实体集（Entity Set）：同一类型实体的集合称为实体集</li>
+<li>联系
+<ul>
+<li>一对一联系（1:1）如果对于实体集 E1 中的每一个实体，实体集 E2 中至多有一个（也可以没有）实体与之联系，反之亦然，则称实体集 E1 与实体集 E2 具有一对一联系，记为 1:1</li>
+<li>一对多联系（1:n）如果对于实体集 E1 中的每一个实体，实体集 E2 中至多有 n 个实体（n≥0）与之联系；反之，对于实体集 E2 中的每一个实体，实体集 E1 中至多有一个实体与之联系，则称实体集 E1 与实体集 E2 具有一对多联系，记为 1:n。</li>
+<li>多对多联系（m:n）如果对于实体集 E1 中的每一个实体，实体集 E2 中有 n 个实体（n≥0）与之联系，反之，对于实体集 E2 中的每一个实体，实体集 E1 中也有 m 个实体（m≥0）与之联系，则称实体集 E1 与实体集 E2 具有多对多联系，记为 m:n</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>机器世界是信息世界中信息的数据化，就是将信息用字符和数值等数据表示，便于存储在计算机中，并由计算机进行识别和处理
+<ul>
+<li>文件（file）：同一类记录的集合称为文件，文件是用来描述实体集的</li>
+<li>关键字（key）：能唯一标识文件中每条记录的字段或字段集，称为记录的关键字，或者简称为键。</li>
+</ul>
+</li>
+</ol>
+<h4 id="e-r图的相关信息"><a class="markdownIt-Anchor" href="#e-r图的相关信息">#</a> E-R 图的相关信息</h4>
+<p>概念模型是对信息世界的建模，它能方便、准确地描述信息世界中的概念。</p>
+<p>概念模型有很多表示方法，其中最著名、最常用的是 P.P.S.Chen 于 1976 年提出的实体－联系方法，也称为实体－联系模型，该方法用 E-R 图来表示实体、属性以及实体间的联系。</p>
+<blockquote>
+<ol>
+<li>实体用矩形表示，矩形框内写明实体名</li>
+<li>属性用椭圆形表示，并用无向边将其与相应的实体连接起来</li>
+<li>联系用菱形表示，菱形框内写明联系名，并用无向边分别与有关实体连接起来，同时在无向边旁标上联系的类型（1:1、1:n 或 m:n）</li>
+<li>联系也可能有属性，联系的属性用椭圆形表示，并用无向边与该联系连接起来。</li>
+<li>一对一联系（1:1）如果对于实体集 E1 中的每一个实体，实体集 E2 中至多有一个（也可以没有）实体与之联系，反之亦然，则称实体集 E1 与实体集 E2 具有一对一联系，记为 1:1</li>
+<li>一对多联系（1:n）如果对于实体集 E1 中的每一个实体，实体集 E2 中至多有 n 个实体（n≥0）与之联系；反之，对于实体集 E2 中的每一个实体，实体集 E1 中至多有一个实体与之联系，则称实体集 E1 与实体集 E2 具有一对多联系，记为 1:n。</li>
+<li>多对多联系（m:n）如果对于实体集 E1 中的每一个实体，实体集 E2 中有 n 个实体（n≥0）与之联系，反之，对于实体集 E2 中的每一个实体，实体集 E1 中也有 m 个实体（m≥0）与之联系，则称实体集 E1 与实体集 E2 具有多对多联系，记为 m:n。</li>
+<li>多个实体集之间多对多联系的定义：若实体型 Ej（j=1，2，…，i-1，i+1，…，n）中的给定实体，和 Ei 中的多个实体相联系，则 Ei 与 E1，E2，…，Ei-1，Ei+1，…，En 之间的联系是多对多的</li>
+</ol>
+</blockquote>
+<h4 id="数据模型的组成要素"><a class="markdownIt-Anchor" href="#数据模型的组成要素">#</a> 数据模型的组成要素</h4>
+<ul>
+<li>数据结构：描述数据的类型、内容、性质及数据间的联系，是对系统静态特征的描述，是数据模型中最基本的部分，不同的数据模型采用不同的数据结构。</li>
+<li>数据操作：主要描述在相应的数据结构上允许执行的操作的集合，包括操作以及有关的操作规则，是对系统动态特征的描述。对数据库的操作主要有查询和更新（插入、删除、修改）两类操作</li>
+<li>完整性约束：主要描述数据结构内的数据及其联系所具有的制约和依存规则，用以限定符合数据模型的数据库状态以及状态的变化，以保证数据的正确性、有效性和相容性。</li>
+</ul>
+<p>关系模型：建立在严格的数学概念基础之上，采用二维表来表示实体和实体之间的联系，是目前应用最多、最重要的一种数据模型</p>
+<blockquote>
+<p>关系（Relation）一个关系对应通常说的一张表。<br>
+元组（Tuple）表中的一行即为一个元组。（第一行除外）<br>
+属性（Attribute）表中的一列即为一个属性，列名即是属性名，列值即是属性值<br>
+域（Domain）：属性的取值范围。<br>
+分量：元组中的一个属性值<br>
+码（Key）：属性或属性的组合，能唯一确定一个元组。一个关系中可以有多个码。<br>
+关系模式：对关系的描述，表示为：关系名（属性 1，属性 2，…，属性 n）</p>
+</blockquote>
+<h3 id="15-数据库系统的内部结构"><a class="markdownIt-Anchor" href="#15-数据库系统的内部结构">#</a> 1.5 数据库系统的内部结构</h3>
+<p>数据库系统内部采用三级模式二级映像结构，三级模式为：外模式，模式，内模式。二级映像：外模式 / 模式映射，模式 / 内模式映射</p>
+<p>1．模式：是数据库中全体数据的逻辑结构和特征的描述，是所有用户的公共数据视图，一个数据库只能有一个概念模式。<br>
+2．内模式：是数据库中全体数据的物理结构和存储方式的描述，是数据在数据库内部的表示方式，一个数据库只能有一个内模式。</p>
+<p>3．外模式：又称为子模式或用户模式，是模式的子集，是数据库用户能够看到和使用的局部数据的逻辑结构和特征的描述，是数据库用户的数据视图，是与某一应用有关的数据的逻辑表示，一个数据库可以有多个外模式。</p>
+<p>4．外模式 / 模式映像：对于每一个外模式，都有一个外模式 / 模式映像。它定义了该外模式与模式之间的对应关系。</p>
+<p>5．模式 / 内模式映像，数据库中有唯一的一个模式 / 内模式映像，它定义了数据全局逻辑结构与存储结构之间的对应关系。</p>
+<h3 id="16-数据库系统的外部结构"><a class="markdownIt-Anchor" href="#16-数据库系统的外部结构">#</a> 1.6 数据库系统的外部结构</h3>
+<p>略</p>
+<h3 id="17-常见的关系数据库"><a class="markdownIt-Anchor" href="#17-常见的关系数据库">#</a> 1.7 常见的关系数据库</h3>
+<blockquote>
+<p>Oracle 数据库</p>
+<p>由数据库软件领域的第一大厂商     Oracle 公司研发<br>
+主要应用于大型企业数据库领域；跨平台，支持 Windows、UNIX 等多种操作系统；运行稳定、功能齐全、性能超群</p>
+</blockquote>
+<blockquote>
+<p>SQL Server 数据库管理系统            由微软公司研发的中大型数据库管理系统<br>
+只能运行于 Windows 平台上；界面友好，易学易用；支持 C/S、B/S 模式</p>
+</blockquote>
+<blockquote>
+<p>Sybase                                               由 Sybase 公司研发的大型数据库管理系统<br>
+可以运行于 UNIX、VXM、Windows 等多种操作系统平台上，支持标准的 SQL 语言：使用 C/S 工作模式</p>
+</blockquote>
+<blockquote>
+<p>DB2<br>
+ 是 IBM 公司研发的一个多媒体、Web 关系型数据库<br>
+起初主要应用在大型机上，目前支持多种机型</p>
+</blockquote>
+<blockquote>
+<p>MySQL                                               Oracle 公司旗下产品<br>
+体积小、速度快、功能有限；开放源码软件</p>
+</blockquote>
+<h2 id="第2章-数据库系统原理"><a class="markdownIt-Anchor" href="#第2章-数据库系统原理">#</a> 第 2 章 数据库系统原理</h2>
+<h3 id="21关系的形式化定义及有关概念"><a class="markdownIt-Anchor" href="#21关系的形式化定义及有关概念">#</a> 2.1 关系的形式化定义及有关概念</h3>
+<p>关系模型以集合代数理论为基础，本节将从集合论角度给出关系的形式化定义</p>
+<blockquote>
+<ol>
+<li>域（Domain）</li>
+<li>笛卡尔积（Cartesian Product）</li>
+<li>关系（Relation）</li>
+</ol>
+</blockquote>
+<p><strong>域</strong>是一组具有相同数据类型的值的集合，又称为值域，用 D 表示.</p>
+<p (d1,d2,…,dn)｜didi,i＝1,2,…,n>** 笛卡尔积 (Cartesian Product)** 给定一组域 D1,D2,…,Dn, 它们中可以有相同的域。D1,D2,…,Dn 的笛卡尔积为：D=D1×D2×…×Dn＝</p>
+<p>笛卡尔积的元组可以用二维表的形式表示</p>
+<p>** 关系（Relation）**D1×D2×…×Dn 的有意义的子集称为在域 D1，D2，…，Dn 上的关系，表示为 R（D1，D2，…，Dn） student (sno,sname,ssex)，R：关系名，n：关系的目或度（Degree）<br>
+当 n=1 时，称该关系为单元关系，当 n=2 时，称该关系为二元关系</p>
+<blockquote>
+<p>列是同质的，即每一列的分量是同一类型的数据，来自同一个域；<br>
+属性名是唯一的，不同的列可以出自同一个域，但属性名必须不同；<br>
+码的唯一性，即任意两个元组的码不能相同，从而任意两个元组不相同；<br>
+列的顺序无关性，即交换任意两列的次序，得到的还是同一个关系；<br>
+行的顺序无关性，即交换任意两行的次序，得到的还是同一个关系；<br>
+分量的原子性，即每个分量都是不可分的数据项。</p>
+</blockquote>
+<p>关系模式：关系模式是对一个关系结构的描述，包括关系由哪些属性构成，这些属性来自哪些域，以及属性和域之间的映射关系 (mapping)。因此，一个关系模式应当是一个五元组。<br>
+关系模式（Relation Schema）是对关系的描述，可形式化地表示为 R (U，D，DOM，F)      student (sno, sname, ssex)</p>
+<blockquote>
+<p>R 为关系模式名<br>
+ U 为组成该关系的属性名的集合<br>
+ D 为属性组 U 中属性所来自的域的集合<br>
+ DOM 为属性向域映像的集合<br>
+ F 为属性间函数依赖关系的集合</p>
+</blockquote>
+<ul>
+<li>关系  关系是由满足关系模式结构的元组构成的集合，是关系模式在某一时刻的状态或内容</li>
+<li>关系数据库  在一个给定的应用领域中，所有实体 entity 以及实体间联系 (relationship) 的集合构成一个关系数据库</li>
+</ul>
+<h3 id="22关系数据库示例"><a class="markdownIt-Anchor" href="#22关系数据库示例">#</a> 2.2 关系数据库示例</h3>
+<ol>
+<li>码（Key）：又称为候选码（Candidate  Key）能唯一标识关系中的每一个元组的最少属性的集合。一个关系可能有多个候选码</li>
+<li>主码（Primary  Key）：又称为主键，在候选码中选出一个即可作为主码在一个关系中，主码只能有一个</li>
+<li>全码（ALL- Key）：关系中所有属性的组合才是该关系的码，一个关系最多只有一个全码</li>
+<li>外码（Foreign  Key）：设属性 F 是关系 R 的一个属性，但不是 R 的码，如果 F 与关系 S 中的主码 Ks 相对应，则称 F 是 R 的外码，R 为参照关系（Referencing  Relation），S 为被参照关系（Referenced  Relation）。R 和 S 不一定是不同的关系，通过外码可以建立两个表之间的联系，在一个关系中，外码可能有多个</li>
+<li>主属性（Prime  Attribute）：包含在所有候选码中的属性称为主属性</li>
+<li>非主属性（Nonprime  Attribute）：不包含在任何一个候选码中的属性称为非主属性。</li>
+</ol>
+<h3 id="23关系模型的完整性"><a class="markdownIt-Anchor" href="#23关系模型的完整性">#</a> 2.3 关系模型的完整性</h3>
+<blockquote>
+<p>作用：为了确保数据库里边的数据是正确的、有效的、一致的。</p>
+</blockquote>
+<p><strong>实体完整性</strong> (Entity Integrity)：1. 若属性 A 是基本关系 R 的主属性，则属性 A 不能取空值；2. 关系的所有的主属性都不能取空值，而不仅是主码整体不能取空值</p>
+<p><strong>参照完整性</strong>若属性（或属性组）F 是基本关系 R 的外码，它与基本关系 S 的主码 KS 相对应，则对于 R 中的每个元组在 F 上的值必须为：要么取空值，要么等于被参照关系中的主键的某个值</p>
+<p><strong>用户自定义完整性</strong>属性的取值应当满足用户定义的约束条件，反映了某一具体应用所涉及的数据必须满足的语义要求。</p>
+<h3 id="24关系模型的数据操作"><a class="markdownIt-Anchor" href="#24关系模型的数据操作">#</a> 2.4 关系模型的数据操作</h3>
+<p>数据模型三要素：数据结构、数据操作、完整性约束</p>
+<p>数据查询 (Query)：选择 (Select)、投影 (Project)、连接 (Join)、除 (Divide)、并 (Union)、交 (Intersection)、差 (Difference)、笛卡儿积<br>
+数据更新 (Update)：插入 (Insert)、删除 (Delete)、修改 (Modify)</p>
+<h3 id="25关系代数"><a class="markdownIt-Anchor" href="#25关系代数">#</a> 2.5 关系代数</h3>
+<p>关系代数是一种抽象的查询语言，是研究关系数据语言的数学工具</p>
+<h4 id="关系的运算符"><a class="markdownIt-Anchor" href="#关系的运算符">#</a> 关系的运算符</h4>
+<blockquote>
+<ul>
+<li>集合运算符：将关系看成元组的集合运算，是从关系的 “水平” 方向即行的角度来进行</li>
+<li>专门的关系运算符：不仅涉及行而且涉及列</li>
+<li>比较运算符：辅助专门的关系运算符进行操作</li>
+<li>逻辑运算符：辅助专门的关系运算符进行操作</li>
+</ul>
+</blockquote>
+<h4 id="集合运算"><a class="markdownIt-Anchor" href="#集合运算">#</a> 集合运算</h4>
+<h5 id="并"><a class="markdownIt-Anchor" href="#并">#</a> 并</h5>
+<p>关系 R 和关系 S 的要求：具有相同的目 n，即两个关系都有 n 个属性，相应的属性取自同一个域。</p>
+<blockquote>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mo>∪</mo><mi>S</mi><mtext>结果仍为</mtext><mi>n</mi><mtext>目关系，由属于</mtext><mi>R</mi><mtext>或属于</mtext><mi>S</mi><mtext>的元组组成</mtext><mi>R</mi><mo>∪</mo><mi>S</mi><mo>=</mo><mo stretchy="false">{</mo><mi>t</mi><mi mathvariant="normal">∣</mi><mi>t</mi><mo>∈</mo><mi>R</mi><mo>∨</mo><mi>t</mi><mo>∈</mo><mi>S</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">R∪S 结果仍为n目关系，由属于R或属于S的元组组成R∪S = \{ t|t \in R∨t \in S \}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord cjk_fallback">结</span><span class="mord cjk_fallback">果</span><span class="mord cjk_fallback">仍</span><span class="mord cjk_fallback">为</span><span class="mord mathnormal">n</span><span class="mord cjk_fallback">目</span><span class="mord cjk_fallback">关</span><span class="mord cjk_fallback">系</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">由</span><span class="mord cjk_fallback">属</span><span class="mord cjk_fallback">于</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord cjk_fallback">或</span><span class="mord cjk_fallback">属</span><span class="mord cjk_fallback">于</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">元</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">成</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathnormal">t</span><span class="mord">∣</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∨</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.65418em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">}</span></span></span></span></span></p>
+</blockquote>
+<h5 id="差"><a class="markdownIt-Anchor" href="#差">#</a> 差</h5>
+<p>关系 R 和关系 S 的要求：具有相同的目 n，相应的属性取自同一个域</p>
+<blockquote>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mo>−</mo><mi>S</mi><mtext>结果仍为</mtext><mi>n</mi><mtext>目关系，由属于</mtext><mi>R</mi><mtext>而不属于</mtext><mi>S</mi><mtext>的所有元组组成 </mtext><mi>R</mi><mo>−</mo><mi>S</mi><mo>=</mo><mo stretchy="false">{</mo><mi>t</mi><mi mathvariant="normal">∣</mi><mi>t</mi><mo>∈</mo><mi>R</mi><mo>∧</mo><mi>t</mi><mo mathvariant="normal">∉</mo><mi>S</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">R - S 
+结果仍为n目关系，由属于R而不属于S的所有元组组成
+                R -S = \{ t|t\in R∧t \notin S \}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord cjk_fallback">结</span><span class="mord cjk_fallback">果</span><span class="mord cjk_fallback">仍</span><span class="mord cjk_fallback">为</span><span class="mord mathnormal">n</span><span class="mord cjk_fallback">目</span><span class="mord cjk_fallback">关</span><span class="mord cjk_fallback">系</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">由</span><span class="mord cjk_fallback">属</span><span class="mord cjk_fallback">于</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord cjk_fallback">而</span><span class="mord cjk_fallback">不</span><span class="mord cjk_fallback">属</span><span class="mord cjk_fallback">于</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">所</span><span class="mord cjk_fallback">有</span><span class="mord cjk_fallback">元</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">成</span><span class="mord"> </span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathnormal">t</span><span class="mord">∣</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∧</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mord"><span class="mrel">∈</span></span><span class="mord vbox"><span class="thinbox"><span class="llap"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="inner"><span class="mord"><span class="mord">/</span><span class="mspace" style="margin-right:0.05555555555555555em;"></span></span></span><span class="fix"></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">}</span></span></span></span></span></p>
+</blockquote>
+<h5 id="交"><a class="markdownIt-Anchor" href="#交">#</a> 交</h5>
+<p>关系 R 和关系 S 的要求：具有相同的目 n，相应的属性取自同一个域</p>
+<blockquote>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mo>∩</mo><mi>S</mi><mtext>结果仍为</mtext><mi>n</mi><mtext>目关系，由既属于</mtext><mi>R</mi><mtext>又属于</mtext><mi>S</mi><mtext>的元组组成</mtext><mo separator="true">,</mo><mi>R</mi><mo>∩</mo><mi>S</mi><mo>=</mo><mo stretchy="false">{</mo><mi>t</mi><mi mathvariant="normal">∣</mi><mi>t</mi><mo>∈</mo><mi>R</mi><mo>∧</mo><mi>t</mi><mo>∈</mo><mi>S</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">R∩S
+结果仍为n目关系，由既属于R又属于S的元组组成,R∩S = \{ t|t \in R∧t \in S \}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord cjk_fallback">结</span><span class="mord cjk_fallback">果</span><span class="mord cjk_fallback">仍</span><span class="mord cjk_fallback">为</span><span class="mord mathnormal">n</span><span class="mord cjk_fallback">目</span><span class="mord cjk_fallback">关</span><span class="mord cjk_fallback">系</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">由</span><span class="mord cjk_fallback">既</span><span class="mord cjk_fallback">属</span><span class="mord cjk_fallback">于</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mord cjk_fallback">又</span><span class="mord cjk_fallback">属</span><span class="mord cjk_fallback">于</span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">元</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">成</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathnormal">t</span><span class="mord">∣</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∧</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.65418em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">}</span></span></span></span></span></p>
+</blockquote>
+<h5 id="笛卡尔积"><a class="markdownIt-Anchor" href="#笛卡尔积">#</a> 笛卡尔积</h5>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">R：n目关系，k1个元组</span><br><span class="line">S：m目关系，k2个元组</span><br><span class="line">R×S：</span><br><span class="line">列：（n+m）列的元组的集合，元组的前n列是关系R的一个元组，后m列是关系S的一个元组</span><br><span class="line">行：k1×k2个元组</span><br></pre></td></tr></table></figure>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>R</mi><mo>×</mo><mi>S</mi><mo>=</mo><mo stretchy="false">{</mo><mi>t</mi><mi>r</mi><mo>∩</mo><mi>t</mi><mi>s</mi><mi mathvariant="normal">∣</mi><mi>t</mi><mi>r</mi><mo>∈</mo><mi>R</mi><mo>∧</mo><mi>t</mi><mi>s</mi><mo>∈</mo><mi>S</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">R×S = \{ tr∩ts |tr \in R ∧ ts \in S \}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∩</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal">s</span><span class="mord">∣</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∧</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.65418em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">t</span><span class="mord mathnormal">s</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mclose">}</span></span></span></span></span></p>
+<h4 id="专门的关系运算"><a class="markdownIt-Anchor" href="#专门的关系运算">#</a> 专门的关系运算</h4>
+<h5 id="选择"><a class="markdownIt-Anchor" href="#选择">#</a> 选择</h5>
+<h5 id="投影"><a class="markdownIt-Anchor" href="#投影">#</a> 投影</h5>
+<h5 id="连接"><a class="markdownIt-Anchor" href="#连接">#</a> 连接</h5>
+<h5 id="除"><a class="markdownIt-Anchor" href="#除">#</a> 除</h5>
+<h2 id="第5章-数据库的安全性"><a class="markdownIt-Anchor" href="#第5章-数据库的安全性">#</a> 第 5 章  数据库的安全性</h2>
+<blockquote>
+<p>数据库的安全性是指保护数据库，以防止不合法的使用造成数据泄露、更改或破坏<br>
+不合法的使用一般是指合法用户进行的非法操作以及非法用户进行的所有操作<br>
+数据库的安全性就是保证所有合法的用户进行合法的操作</p>
+</blockquote>
+<h3 id="51-计算机安全性概述"><a class="markdownIt-Anchor" href="#51-计算机安全性概述">#</a> 5.1 计算机安全性概述</h3>
+<p>计算机系统的安全性问题可分为三大类：技术安全，管理安全，政策法律</p>
+<h3 id="52-数据库安全性控制"><a class="markdownIt-Anchor" href="#52-数据库安全性控制">#</a> 5.2 数据库安全性控制</h3>
+<p>在一般的计算机系统中，安全措施是一级一级层层设置的</p>
+<p><img src="/.io//C:%5CUsers%5C888888%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1657872425851.png" alt></p>
+<h4 id="用户标识与鉴别"><a class="markdownIt-Anchor" href="#用户标识与鉴别">#</a> 用户标识与鉴别</h4>
+<p>用户标识与鉴别是数据库系统的最外层安全保护措施<br>
+其方法是由系统提供一定的方式让用户标识自己的身份，每次用户要求进入系统时，由系统进行核对，通过鉴定后才会提供系统使用权</p>
+<h4 id="存取控制机制"><a class="markdownIt-Anchor" href="#存取控制机制">#</a> 存取控制机制</h4>
+<p>数据库的安全性措施中最重要的是 DBMS 的存取控制机制</p>
+<p>合法权限检查<br>
+当用户发出存取数据的操作请求后，DBMS 查找数据字典，根据安全规则进行合法权限检查。<br>
+若用户的操作请求超出了定义的权限，系统将拒绝执行该操作。</p>
+<p>大多数 DBMS 支持的存取控制策略主要有两种：自主存取控制，强制存取控制</p>
+<p>自主存取控制方法的特点如下：<br>
+① 同一用户对于不同的数据库对象有不同的存取权限；<br>
+② 不同的用户对同一对象也有不同的权限；<br>
+③ 用户还可将其拥有的存取权限转授给其他用户</p>
+<p>强制存取控制</p>
+<p>在 MAC 中，DBMS 管理的全部实体分为主体和客体<br>
+主体<br>
+是指系统中活动的实体，如用户、进程等<br>
+客体<br>
+是系统中的被动实体，如文件、基本表、视图等<br>
+对主体和客体的每一个实例（值）都指派一个敏感度标记<br>
+主体的敏感度标记称为 “许可证级别”<br>
+ 客体的敏感度标记称为 “密级”<br>
+ 敏感度标记的级别从高到低依次为：绝密、机密、可信和公开等</p>
+<p>强制存取控制方法的特点如下：<br>
+① 每一个数据对象被标以一定的密级；<br>
+② 每一个用户也被授予某一个级别的许可证；<br>
+③ 通过对比主体和客体的级别，最终确定主体能否存取客体，只有具有合法许可证的用户才可以存取数据。<br>
+在 MAC 中，主体存取客体要遵循如下规则：<br>
+① 仅当主体的许可证级别大于或等于客体的密级时，该主体才能读取相应的客体；<br>
+② 仅当主体的许可证级别等于客体的密级时，该主体才能写相应的客体。</p>
+<h4 id="视图机制"><a class="markdownIt-Anchor" href="#视图机制">#</a> 视图机制</h4>
+<p>在进行存取权限控制时，可以为不同的用户定义不同的视图，把数据对象限制在一定的范围内<br>
+也就是说，通过视图机制把要保密的数据对无权存取的用户隐藏起来，从而自动地对数据提供一定程度的<br>
+但视图机制的安全保护功能太不精细，往往不能达到应用系统的要求，其主要功能在于提供了数据库的逻辑独立性<br>
+在实际应用中，通常将视图机制与授权机制结合起来使用，首先利用视图机制屏蔽一部分保密数据，然后在视图上再进一步定义存取权限安全保护</p>
+<h4 id="审计跟踪"><a class="markdownIt-Anchor" href="#审计跟踪">#</a> 审计跟踪</h4>
+<p>审计功能是一种监视措施，它把用户对数据库的所有操作自动记录下来，存入审计日志中<br>
+记录的内容一般包括：操作类型（查询、插入、更新、删除），操作终端标识与操作者标识，操作日期和时间，操作所涉及的相关数据，数据的前象和后象等<br>
+ DBA 可以利用审计跟踪的信息，重现导致数据库现有状况的一系列事件，找出非法存取数据的人、时间和内容等。<br>
+审计通常是很费时间和空间的，所以 DBMS 把它作为系统的可选特征，DBA 根据应用环境对安全性的要求，可以灵活地打开或关闭审计功能。</p>
+<h4 id="数据加密"><a class="markdownIt-Anchor" href="#数据加密">#</a> 数据加密</h4>
+<p>数据加密是防止数据库中数据在存储和传输中失密的有效手段<br>
+加密的基本思想是根据一定的算法将原始数据变化为不可直接识别的格式，数据以密文的形式存储和传输<br>
+加密方法主要有两种<br>
+一种是替换方法<br>
+一种是置换方法<br>
+数据加密功能通常也作为可选特征</p>
+<h4 id="统计数据库的安全性"><a class="markdownIt-Anchor" href="#统计数据库的安全性">#</a> 统计数据库的安全性</h4>
+<h2 id="第6章-事务与并发控制"><a class="markdownIt-Anchor" href="#第6章-事务与并发控制">#</a> 第 6 章  事务与并发控制</h2>
+<h3 id="61-事务"><a class="markdownIt-Anchor" href="#61-事务">#</a> 6.1 事务</h3>
+<p>事务（Transaction）是用户定义的一个数据库操作序列，这些操作要么全做，要么全不做，是一个不可分割的工作单位。</p>
+<p>一个程序在后台运行时通常被分割成多个事务，即一个程序由多个事务组成。事务可以是一条 SQL 语句，一组 SQL 语句或整个程序<br>
+事务的划分有两种方式：隐式划分，显式划分</p>
+<h4 id="事务的特征"><a class="markdownIt-Anchor" href="#事务的特征">#</a> <strong>事务的特征:</strong></h4>
+<ol>
+<li>
+<p>原子性：事务是数据库的逻辑工作单位，是不可分割的工作单元，事务中的诸操作要么都做，要么都不做。</p>
+</li>
+<li>
+<p>持久性：也称永久性，一个事务一旦提交它对数据库中数据的改变就应该是永久性的，接下来的其他操作或故障不应该对其执行结果由任何影响</p>
+</li>
+<li>
+<p>隔离性：一个事务的执行不能被其他事务干扰，即一个事务内部的操作及使用的数据对于其他事务是隔离的，并发执行的各个事务之间不能互相干扰。</p>
+</li>
+<li>
+<p>一致性：事务的执行结果必须是使数据库从一个一致性状态变到另一个一致性状态，一致性状态是指数据库中只包含成功事务提交的结果，不一致状态是指数据库中包含失败事务提交的部分结果。</p>
+</li>
+</ol>
+<h4 id="事务的执行方式"><a class="markdownIt-Anchor" href="#事务的执行方式">#</a> <strong>事务的执行方式</strong></h4>
+<ol>
+<li>
+<p>串行：按顺序依次执行，执行完一个事务后才能开始另一个事务</p>
+</li>
+<li>
+<p>交叉并发执行：是指多个事务轮流交叉并发执行</p>
+</li>
+</ol>
+<h3 id="62-并发控制"><a class="markdownIt-Anchor" href="#62-并发控制">#</a> 6.2 并发控制</h3>
+<p>丢失修改:</p>
+<p>丢失修改的含义：两个事务 T1 和 T2 读取同一数据并分别进行修改，T1 先提交了修改结果，T2 后提交的修改结果覆盖了 T1 提交的结果，导致 T1 的修改结果丢失</p>
+<p>读 “脏” 数据:</p>
+<p>读 “脏” 数据的含义：事务 T1 修改某一数据，并将其写回磁盘。事务 T2 读取同一数据后，事务 T1 由于某种原因被撤销，这时事务 T1 修改过的数据恢复原值，而事务 T2 读取到的是一个过渡性的不再需要的脏数据，与数据库中的数据不同。</p>
+<p>不可重复读:</p>
+<h3 id="63-封锁"><a class="markdownIt-Anchor" href="#63-封锁">#</a> 6.3 封锁</h3>
+<h3 id="64-并发调度的可串行性"><a class="markdownIt-Anchor" href="#64-并发调度的可串行性">#</a> 6.4 并发调度的可串行性</h3>
+<h3 id="65-两段锁协议"><a class="markdownIt-Anchor" href="#65-两段锁协议">#</a> 6.5 两段锁协议</h3>
+<h1 id="数据库系统原理复习大纲"><a class="markdownIt-Anchor" href="#数据库系统原理复习大纲">#</a> 数据库系统原理复习大纲</h1>
+<blockquote>
+<p>一、选择题共 20 个小题，共 20 分。</p>
+<p>复习要求：以课后习题中的选择题为主</p>
+<p>二、简答题共 4 个小题，共 20 分，</p>
+<p>复习要求：以课后习题中的简答题为主，重点复习以下几个。</p>
+<p>第一章：</p>
+<p><strong>7. 简述数据库的三级模式二级映像结构</strong></p>
+<p>数据库三级模式分别是外模式，模式，内模式，二级映像是指内模式与模式的映像，模式与外模式之间的映像。</p>
+<p>模式是全体数据的逻辑结构和特征的描述，是所有用户的公共数据视图</p>
+<p>内模式是全体数据的物理结构和存储方式的描述，是数据库的内部表示方法。</p>
+<p>外模式也称子模式，是模式的子集，是数据库用户能够看见和使用的局部数据的逻辑结构和特征的描述，是数据库用户的数据视图 一个数据库可以有多个外模式。</p>
+<p><strong>8. 简述数据与应用程序的逻辑独立性与物理独立性</strong></p>
+<p>对于每一个外模式，数据库系统都有一个外模式 / 模式映射。当模式被改变时，数据库管理员对各个外模式 / 模式映射做相应的改变，可以使外模式保持不变，保证了数据与程序的逻辑独立性。</p>
+<p>数据库中只有一个模式和一个内模式，所以模式 / 内模式的映射是唯一的，它定义了数据库的全局逻辑结构与存储结构之间的对应关系。当数据库的存储结构被改变时，数据库管理员对模式 / 内模式映射做相应的改变，可以使模式保持不变，应用程序相应地也不做变动。这样，保证了数据与程序的物理独立性。</p>
+<p><strong>3. 关系的性质</strong></p>
+<p>关系是规范化二维表中行的集合</p>
+<p>列是同质的，即每一列的分量是同一类型的数据，来自同一个域。</p>
+<p>属性名是唯一的，不同列可出自同一个域，但属性名必须不同。</p>
+<p>码的唯一性，任意两个元组的码不能相同，从而任意两个码不能相同。</p>
+<p>列的顺序无关性，即交换任意两列的次序，得到的还是同一个关系。</p>
+<p>行的顺序无关性，即交换任意两行的次序，得到的还是同一个关系。</p>
+<p>分量的原子性，即每个分量都是不可分的数据项</p>
+<p><strong>2 简述相关子查询和不相关子查询的区别：</strong></p>
+<p>一、处理次数不同</p>
+<p>1、相关子查询：相关子查询被多次处理，需要重复求值以供外部查询使用。</p>
+<p>2、不相关子查询：不相关子查询的处理一次完成，执行后传递给外部查询。</p>
+<p>二、依赖不同</p>
+<p>1、相关子查询：相关子查询中的查询条件取决于外部查询中的值。</p>
+<p>2、不相关子查询：无关子查询是独立于外部查询的子查询，不依赖于外部查询中的值。</p>
+<p>三、效率不同</p>
+<p>1、相关子查询：相关子查询可以嵌套在多个层中，但嵌套层越多，效率越低。</p>
+<p>2、不相关子查询：不相关子查询不能嵌套，效率高于相关子查询。</p>
+<p><strong>3 简述视图的定于及分类</strong></p>
+<p>视图是外模式的基本单位，是从一个或几个基本表导出来的虚拟的表，是到基本表的一种映射，视图中不存储数据，只存放视图的定义。</p>
+<p><strong>2. 简述显示游标的处理步骤：</strong></p>
+<p>声明游标，打开游标，处理数据，关闭游标</p>
+<p><strong>3. 简述 MAC 中主体存取客体要遵守的规则</strong></p>
+<p>仅当主体的许可证级别大于或等于客体的密级时，该主体才能读取相应的客体</p>
+<p>仅当主体的许可证级别等于客体的密级时，该主体才能写相应的客体</p>
+<p><strong>1. 简述事务的概念及特征</strong></p>
+<p>事务的概念:</p>
+<p>事务是并发控制的基本单位，是用户定义的一个数据库操作序列，这些操作要么全做要么全不做是不可划分的工作单位</p>
+<p>事务的特征:</p>
+<ol>
+<li>
+<p>原子性：事务是数据库的逻辑工作单位，是不可分割的工作单元，事务中的诸操作要么都做，要么都不做。</p>
+</li>
+<li>
+<p>持久性：也称永久性，一个事务一旦提交它对数据库中数据的改变就应该是永久性的，接下来的其他操作或故障不应该对其执行结果由任何影响</p>
+</li>
+<li>
+<p>隔离性：一个事务的执行不能被其他事务干扰，即一个事务内部的操作及使用的数据对于其他事务是隔离的，并发执行的各个事务之间不能互相干扰。</p>
+</li>
+<li>
+<p>一致性：事务的执行结果必须是使数据库从一个一致性状态变到另一个一致性状态，一致性状态是指数据库中只包含成功事务提交的结果，不一致状态是指数据库中包含失败事务提交的部分结果。</p>
+</li>
+</ol>
+<p><strong>1. 简述事务故障及其恢复步骤</strong></p>
+<p>事务故障是事务在运行至正常终止前被终止，这时恢复子系统应该用日志文件撤销（UNDO）此事务已对数据库进行的修改。事务故障的恢复是由系统自动完成的，对用户是透明的。系统具体恢复步骤是：</p>
+<p>反向扫描日志文件，即从最后向前扫描日志文件，查找该事务的更新操作。</p>
+<p>对该事务更新操作逆操作，即将日志文件更新前的值写入数据库。如果记录中操作是插入操作，则对其执行删除操作；如果记录中操作是删除操作，则对其执行插入操作；如果记录中操作是修改操作，则用修改前的值代替修改后的值。</p>
+<p>继续反向扫描日志文件，查找该事务的其他操作，做同样操作；</p>
+<p>如此反复，直至扫描到此事务的开始标记。</p>
+<p><strong>2. 简述系统故障及其恢复步骤</strong></p>
+<p>系统故障的恢复是由系统在启动时，由系统自动完成的，不需要用户干扰。具体恢复步骤是：</p>
+<p>正向扫描日志文件，标记事务。即从头扫描日志文件，找出在故障发生前已经提交的事务（既有 BEGIN TRANSACTION 记录，也有 COMMIT 记录），并将其记入重做记录（REDO-LIST），同时找出故障发生时尚未完成的记录（只有 BEGIN TRANSACTION 记录，没有 COMMIT 记录），将其记入撤销队列。</p>
+<p>对撤销队列中的事务进行撤销操作，反向扫描日志文件，对每个撤销事务的操作执行逆操作，将日志文件更新前的值写入数据库。</p>
+<p>对重做队列中的事务重做处理。正向扫描日志文件，对每个重做事务执行日志文件登记，将日志文件中的更新后的值写入数据库。</p>
+<p>三、SQL 操作题共 10 个小题，共 20 分。包含关系代数操作和 SQL 语句操作。</p>
+<p>复习要求：参照第二章的课后习题三.2 和第三章课后习题三。</p>
+<p>四、数据库编程题，共 2 题，共 10 分。</p>
+<p>复习要求：创建存储过程和触发器，参照第四章的补充资料里的例题、课后作业题及相应的实验内容。</p>
+<p>五、关系模式判断题 2 个，共 14 分，一个是抽象的关系模式判断，一个是具体的关系模式判断。</p>
+<p>复习要求：参照 P233 例 6 和第八章课后习题里相关的题目。</p>
+<p>六、数据库设计题 1 个，共 16 分</p>
+<p>复习要求：参照第九章的课后习题三。</p>
+</blockquote>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86/20220715/">https://shierjinghuang.github.io/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%86%85%E5%AE%B9%E6%95%B4%E7%90%86/20220715/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                    <span class="chip bg-color">数据库</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/20220803/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="Linux操作系统">
+                        
+                        <span class="card-title">Linux操作系统</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-03
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    学习笔记
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+                        <span class="chip bg-color">学习记录</span>
+                    </a>
+                    
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/CTFshow%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/20220711/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="CTFshow之web入门反序列化">
+                        
+                        <span class="card-title">CTFshow之web入门反序列化</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E5%AE%89/" class="post-category">
+                                    网安
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Web/">
+                        <span class="chip bg-color">Web</span>
+                    </a>
+                    
+                    <a href="/tags/ctfshow/">
+                        <span class="chip bg-color">ctfshow</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2023</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">318.8k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

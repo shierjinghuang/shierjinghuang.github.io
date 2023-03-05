@@ -1,0 +1,1343 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="python绘图及可视化备课, 十二惊惶">
+    <meta name="description" content="# python 绘图及数据可视化备课
+[TOC]
+# 补充 上次实验课的库与爬虫
+于刊老师担心我准备的内容不够讲两节课的，如果我讲完这一章的内容还没有结束的话我就讲一讲我最近捣鼓的东西
+# 1 jieba 库进行词频分析
+# 一、jieb">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>python绘图及可视化备课 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">python绘图及可视化备课</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+                                <span class="chip bg-color">基础知识</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                学习笔记
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-11-06
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-11-13
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    11.3k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    51 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="python绘图及数据可视化备课"><a class="markdownIt-Anchor" href="#python绘图及数据可视化备课">#</a> python 绘图及数据可视化备课</h1>
+<p>[TOC]</p>
+<h2 id="补充-上次实验课的库与爬虫"><a class="markdownIt-Anchor" href="#补充-上次实验课的库与爬虫">#</a> 补充 上次实验课的库与爬虫</h2>
+<p>于刊老师担心我准备的内容不够讲两节课的，如果我讲完这一章的内容还没有结束的话我就讲一讲我最近捣鼓的东西</p>
+<h3 id="1-jieba库进行词频分析"><a class="markdownIt-Anchor" href="#1-jieba库进行词频分析">#</a> 1 jieba 库进行词频分析</h3>
+<h4 id="一-jieba库基本介绍"><a class="markdownIt-Anchor" href="#一-jieba库基本介绍">#</a> 一、jieba 库基本介绍</h4>
+<blockquote>
+<p>jieba 是优秀的中文分词第三方库，需要额外安装，安装方式为<strong> pip install jieba</strong>,jieba 库提供三种分词模式，最简单只需掌握一个函数</p>
+<p>利用一个中文词库，可以确定汉字之间的关联概率，汉字间概率大的组成词组，形成分词结果</p>
+</blockquote>
+<h4 id="二-jieba库使用说明"><a class="markdownIt-Anchor" href="#二-jieba库使用说明">#</a> 二、jieba 库使用说明</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#精确模式、全模式、搜索引擎模式精确模式：</span></span><br><span class="line"><span class="comment">#把文本精确的切分开，不存在冗余单词</span></span><br><span class="line"><span class="comment">#全模式：把文本中所有可能的词语都扫描出来，有冗余</span></span><br><span class="line"><span class="comment">#搜索引擎模式：在精确模式基础上，对长词再次切分</span></span><br></pre></td></tr></table></figure>
+<p>把文本精确的切分开，不存在冗余单词</p>
+<p>全模式：把文本中所有可能的词语都扫描出来，有冗余</p>
+<p>搜索引擎模式：在精确模式基础上，对长词再次切分</p>
+<p><strong>jieba 库常用函数</strong> <img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/1.png" alt></p>
+<h3 id="2-re库进行正则匹配"><a class="markdownIt-Anchor" href="#2-re库进行正则匹配">#</a> <strong>2 re 库进行正则匹配</strong></h3>
+<p><strong>正则表达式（英文名称：regular expression，regex，RE）是用来简洁表达一组字符串特征的表达式。最主要应用在字符串匹配中。</strong></p>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/2.png" alt></p>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/3.png"> 
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/4.png" alt></p>
+<p>在这里需要注意，match 对象是一种特殊的类型，如 **re.search ()<strong> 与</strong> re.match ()<strong> 虽然也能做到类似的效果，但实际使用是有问题的，在这里使用的</strong> findall ()** 函数实现。</p>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/5.png" alt></p>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/6.png"> 
+<h5 id="校验数字的表达式"><a class="markdownIt-Anchor" href="#校验数字的表达式">#</a> 校验数字的表达式</h5>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">数字：^[<span class="number">0</span>-<span class="number">9</span>]\*$</span><br><span class="line">n位的数字：^\d&#123;n&#125;$</span><br><span class="line">至少n位的数字：^\d&#123;n,&#125;$</span><br><span class="line">m-n位的数字：^\d&#123;m,n&#125;$</span><br><span class="line">零和非零开头的数字：^(<span class="number">0</span>|[<span class="number">1</span>-<span class="number">9</span>][<span class="number">0</span>-<span class="number">9</span>]\*)$</span><br><span class="line">非零开头的最多带两位小数的数字：^([<span class="number">1</span>-<span class="number">9</span>][<span class="number">0</span>-<span class="number">9</span>]\*)+(\.[<span class="number">0</span>-<span class="number">9</span>]&#123;<span class="number">1</span>,<span class="number">2</span>&#125;)?$</span><br><span class="line">带<span class="number">1</span>-<span class="number">2</span>位小数的正数或负数：^(\-)?\d+(\.\d&#123;<span class="number">1</span>,<span class="number">2</span>&#125;)$</span><br><span class="line">正数、负数、和小数：^(\-|\+)?\d+(\.\d+)?$</span><br><span class="line">有两位小数的正实数：^[<span class="number">0</span>-<span class="number">9</span>]+(\.[<span class="number">0</span>-<span class="number">9</span>]&#123;<span class="number">2</span>&#125;)?$</span><br><span class="line">有<span class="number">1</span>~<span class="number">3</span>位小数的正实数：^[<span class="number">0</span>-<span class="number">9</span>]+(\.[<span class="number">0</span>-<span class="number">9</span>]&#123;<span class="number">1</span>,<span class="number">3</span>&#125;)?$</span><br><span class="line">非零的正整数：^[<span class="number">1</span>-<span class="number">9</span>]\d\*$ 或 ^([<span class="number">1</span>-<span class="number">9</span>][<span class="number">0</span>-<span class="number">9</span>]\*)&#123;<span class="number">1</span>,<span class="number">3</span>&#125;$ 或 ^\+?[<span class="number">1</span>-<span class="number">9</span>][<span class="number">0</span>-<span class="number">9</span>]\*$</span><br><span class="line">非零的负整数：^\-[<span class="number">1</span>-<span class="number">9</span>][]<span class="number">0</span>-<span class="number">9</span><span class="string">&quot;\*$ 或 ^-[1-9]\d\*$</span></span><br><span class="line"><span class="string">非负整数：^\d+$ 或 ^[1-9]\d\*|0$</span></span><br><span class="line"><span class="string">非正整数：^-[1-9]\d\*|0$ 或 ^((-\d+)|(0+))$</span></span><br><span class="line"><span class="string">非负浮点数：^\d+(\.\d+)?$ 或 ^[1-9]\d\*\.\d\*|0\.\d\*[1-9]\d\*|0?\.0+|0$</span></span><br><span class="line"><span class="string">非正浮点数：^((-\d+(\.\d+)?)|(0+(\.0+)?))$ 或 ^(-([1-9]\d\*\.\d\*|0\.\d\*[1-9]\d\*))|0?\.0+|0$</span></span><br><span class="line"><span class="string">正浮点数：^[1-9]\d\*\.\d\*|0\.\d\*[1-9]\d\*$ 或 ^(([0-9]+\.[0-9]\*[1-9][0-9]\*)|([0-9]\*[1-9][0-9]\*\.[0-9]+)|([0-9]\*[1-9][0-9]\*))$</span></span><br><span class="line"><span class="string">- 负浮点数：^-([1-9]\d\*\.\d\*|0\.\d\*[1-9]\d\*)$ 或 ^(-(([0-9]+\.[0-9]\*[1-9][0-9]\*)|([0-9]\*[1-9][0-9]\*\.[0-9]+)|([0-9]\*[1-9][0-9]\*)))$</span></span><br><span class="line"><span class="string">- 浮点数：^(-?\d+)(\.\d+)?$ 或 ^-?([1-9]\d\*\.\d\*|0\.\d\*[1-9]\d\*|0?\.0+|0)$</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="校验字符的表达式"><a class="markdownIt-Anchor" href="#校验字符的表达式">#</a> 校验字符的表达式</h5>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">汉字：^[\u4e00-\u9fa5]&#123;<span class="number">0</span>,&#125;$</span><br><span class="line">英文和数字：^[A-Za-z0-<span class="number">9</span>]+$ 或 ^[A-Za-z0-<span class="number">9</span>]&#123;<span class="number">4</span>,<span class="number">40</span>&#125;$</span><br><span class="line">长度为<span class="number">3</span>-<span class="number">20</span>的所有字符：^.&#123;<span class="number">3</span>,<span class="number">20</span>&#125;$</span><br><span class="line">由<span class="number">26</span>个英文字母组成的字符串：^[A-Za-z]+$</span><br><span class="line">由<span class="number">26</span>个大写英文字母组成的字符串：^[A-Z]+$</span><br><span class="line">由<span class="number">26</span>个小写英文字母组成的字符串：^[a-z]+$</span><br><span class="line">由数字和<span class="number">26</span>个英文字母组成的字符串：^[A-Za-z0-<span class="number">9</span>]+$</span><br><span class="line">由数字、<span class="number">26</span>个英文字母或者下划线组成的字符串：^\w+$ 或 ^\w&#123;<span class="number">3</span>,<span class="number">20</span>&#125;$</span><br><span class="line">中文、英文、数字包括下划线：^[\u4E00-\u9FA5A-Za-z0-9_]+$</span><br><span class="line">中文、英文、数字但不包括下划线等符号：^[\u4E00-\u9FA5A-Za-z0-<span class="number">9</span>]+$ 或 ^[\u4E00-\u9FA5A-Za-z0-<span class="number">9</span>]&#123;<span class="number">2</span>,<span class="number">20</span>&#125;$</span><br><span class="line">可以输入含有^%&amp;<span class="string">&#x27;,;=?$\&quot;等字符：**[^%&amp;&#x27;</span>,;=?$\x22]+</span><br><span class="line">禁止输入含有~的字符：[^~\x22]+</span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="特殊需求表达式"><a class="markdownIt-Anchor" href="#特殊需求表达式">#</a> 特殊需求表达式</h5>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Email地址：**^\w+([-+.]\w+)\*@\w+([-.]\w+)\*\.\w+([-.]\w+)\*$**</span><br><span class="line">域名：**[a-zA-Z0-<span class="number">9</span>][-a-zA-Z0-<span class="number">9</span>]&#123;<span class="number">0</span>,<span class="number">62</span>&#125;(\.[a-zA-Z0-<span class="number">9</span>][-a-zA-Z0-<span class="number">9</span>]&#123;<span class="number">0</span>,<span class="number">62</span>&#125;)+\.?**</span><br><span class="line">InternetURL：**[a-zA-z]+://[^\s]\* 或 ^http://([\w-]+\.)+[\w-]+(/[\w-./?%&amp;=]\*)?$**</span><br><span class="line">手机号码：**^(<span class="number">13</span>[<span class="number">0</span>-<span class="number">9</span>]|<span class="number">14</span>[<span class="number">5</span>|<span class="number">7</span>]|<span class="number">15</span>[<span class="number">0</span>|<span class="number">1</span>|<span class="number">2</span>|<span class="number">3</span>|<span class="number">4</span>|<span class="number">5</span>|<span class="number">6</span>|<span class="number">7</span>|<span class="number">8</span>|<span class="number">9</span>]|<span class="number">18</span>[<span class="number">0</span>|<span class="number">1</span>|<span class="number">2</span>|<span class="number">3</span>|<span class="number">5</span>|<span class="number">6</span>|<span class="number">7</span>|<span class="number">8</span>|<span class="number">9</span>])\d&#123;<span class="number">8</span>&#125;$**</span><br><span class="line">电话号码(<span class="string">&quot;XXX-XXXXXXX&quot;</span>、<span class="string">&quot;XXXX-XXXXXXXX&quot;</span>、<span class="string">&quot;XXX-XXXXXXX&quot;</span>、<span class="string">&quot;XXX-XXXXXXXX&quot;</span>、<span class="string">&quot;XXXXXXX&quot;</span>和<span class="string">&quot;XXXXXXXX)：**^(\(\d&#123;3,4&#125;-)|\d&#123;3.4&#125;-)?\d&#123;7,8&#125;$**</span></span><br><span class="line"><span class="string">国内电话号码(0511-4405222、021-87888822)：**\d&#123;3&#125;-\d&#123;8&#125;|\d&#123;4&#125;-\d&#123;7&#125;**</span></span><br><span class="line"><span class="string">电话号码正则表达式（支持手机号码，3-4位区号，7-8位直播号码，1－4位分机号）: **((\d&#123;11&#125;)|^((\d&#123;7,8&#125;)|(\d&#123;4&#125;|\d&#123;3&#125;)-(\d&#123;7,8&#125;)|(\d&#123;4&#125;|\d&#123;3&#125;)-(\d&#123;7,8&#125;)-(\d&#123;4&#125;|\d&#123;3&#125;|\d&#123;2&#125;|\d&#123;1&#125;)|(\d&#123;7,8&#125;)-(\d&#123;4&#125;|\d&#123;3&#125;|\d&#123;2&#125;|\d&#123;1&#125;))$)**</span></span><br><span class="line"><span class="string">身份证号(15位、18位数字)，最后一位是校验位，可能为数字或字符X：**(^\d&#123;15&#125;$)|(^\d&#123;18&#125;$)|(^\d&#123;17&#125;(\d|X|x)$)**</span></span><br><span class="line"><span class="string">帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)：**^[a-zA-Z][a-zA-Z0-9_]&#123;4,15&#125;$**</span></span><br><span class="line"><span class="string">密码(以字母开头，长度在6~18之间，只能包含字母、数字和下划线)：**^[a-zA-Z]\w&#123;5,17&#125;$**</span></span><br><span class="line"><span class="string">强密码(必须包含大小写字母和数字的组合，不能使用特殊字符，长度在 8-10 之间)：**^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z])[a-zA-Z0-9]&#123;8,10&#125;$**</span></span><br><span class="line"><span class="string">强密码(必须包含大小写字母和数字的组合，可以使用特殊字符，长度在8-10之间)：**^(?=.\*\d)(?=.\*[a-z])(?=.\*[A-Z]).&#123;8,10&#125;$**</span></span><br><span class="line"><span class="string">日期格式：**^\d&#123;4&#125;-\d&#123;1,2&#125;-\d&#123;1,2&#125;**</span></span><br><span class="line"><span class="string">一年的12个月(01～09和1～12)：**^(0?[1-9]|1[0-2])$**</span></span><br><span class="line"><span class="string">一个月的31天(01～09和1～31)：**^((0?[1-9])|((1|2)[0-9])|30|31)$**</span></span><br></pre></td></tr></table></figure>
+<p>在这里我们需要注意的是 **<span>\u4e00-\u9fa5</span><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>{0,}**，这个是汉字的编码范围，在爬虫过程中经常会有一个爬目录的操作^http://([\w-]+\.)+[\w-]+(/[\w-./?%&=]\*)? 对于<strong> URL</strong> 编码的正则匹配同样很重要。</p>
+<p>3 python 爬虫实战</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> Pattern</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5200804</span>,<span class="number">5719275</span>):</span><br><span class="line">    url=<span class="string">f&#x27;https://www.1biquge.com/8/8145/<span class="subst">&#123;i&#125;</span>.html&#x27;</span></span><br><span class="line">    a=requests.get(url)</span><br><span class="line">    <span class="built_in">print</span>(url)</span><br><span class="line">    a.encoding=<span class="string">&quot;utf-8&quot;</span></span><br><span class="line">    file=<span class="built_in">open</span>(<span class="string">&quot;./源代码.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,encoding=<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">    file.write(a.text)</span><br><span class="line">    file.close()</span><br><span class="line">    f = <span class="built_in">open</span>(<span class="string">&quot;源代码.txt&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">    file_handle = <span class="built_in">open</span>(<span class="string">&#x27;小说文本.txt&#x27;</span>, mode=<span class="string">&#x27;a&#x27;</span>,encoding=<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">    line = f.read()</span><br><span class="line">    newa = re.<span class="built_in">compile</span>(<span class="string">u&#x27;[\n\s*\r\u3002\uff1b\uff0c\uff1a\u201c\u201d\uff08\uff09\u3001\uff1f\u300a\u300b\u4e00-\u9fa5]&#x27;</span>)</span><br><span class="line">    b=newa.findall(line)</span><br><span class="line">    n=<span class="built_in">len</span>(b)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n): </span><br><span class="line">        file_handle.write(b[i-<span class="number">1</span>])</span><br><span class="line">    line = f.readline()</span><br><span class="line">    file_handle.close()</span><br><span class="line">    f.close()</span><br></pre></td></tr></table></figure>
+<p>这个实际上是一个还没有弄完的脚本，因为我爬取的是笔趣阁的小说，毕竟笔趣阁本身就是盗版网站加密也没那么麻烦，还真让我爬出来了一些信息。但是在爬取过程在还是注意到开发者是做了简易的防爬虫操作的，在一定的章节后，他随机的增加了一个四位数字，这导致了以上代码在进行无意义的空跑，但是还是发现这个代码可以应用于同网站少数小说的爬取，猜测是当时网站还没有做防爬虫的操作。</p>
+<p>之后在类似的爬取其他内容过程中，发现有些网站爬虫根本无法爬取。花了一些时间研究，找到结论，我们一般写的爬虫会默认告诉服务器自己发送了一个 Python 爬取请求，而一般网站是不允许被爬虫访问的，估计是因为会涉及到企业根本吧。最后，我们可以通过更改 User-Agent 字段就可以轻易骗过该网站。</p>
+<p>我们可以使用<strong> fake_useragent</strong> 进行 User-Agent 字段的欺骗，这里就不再展示</p>
+<p>最后提示一句 **《刑法》第 217 条第 1 项规定，以营利为目的，未经著作权人许可，复制发行其文字作品、音乐、电影、电视、录像作品、计算机软件及其他作品，处以有期徒刑，并处或单 处罚金。 ** 大家未来对爬虫技术掌握爬虫技术之后，能从网络上爬取一些东西，但绝对不要违法。</p>
+<h2 id="50-问题导入"><a class="markdownIt-Anchor" href="#50-问题导入">#</a> 5.0 问题导入</h2>
+<blockquote>
+<p>使用 wordcloud 和 matplotlib.pyplot 方法对 “222.txt” 中的分词制作 分词云图，并保存为 “分词云图 1.png”。</p>
+<p>使用 “222.txt” 中出现频率最高的前 10 个词语，制作条形图，X 轴对应 10 个词语，y 轴对应每个词语的频率值，保存成 “条形图 2.png”。</p>
+</blockquote>
+<p>上面是上一次实验课，于刊老师的问题，下面是我解决这两道题目的方式，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment">#课本提示我们汉语要设置字体，不然乱码</span></span><br><span class="line">matplotlib.rcParams[<span class="string">&#x27;font.family&#x27;</span>]=<span class="string">&#x27;SimHei&#x27;</span></span><br><span class="line">a=pd.read_table(<span class="string">&#x27;333.txt&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>,sep=<span class="string">&#x27;       &#x27;</span>,engine=<span class="string">&#x27;python&#x27;</span>)</span><br><span class="line"><span class="comment">#这个是之前李师姐讲到的读写操作</span></span><br><span class="line">df=pd.DataFrame(a)</span><br><span class="line"><span class="comment">#print (a)</span></span><br><span class="line"><span class="comment">#print(df[&#x27;词语&#x27;])</span></span><br><span class="line"><span class="comment">#测试用数据可以忽略</span></span><br><span class="line">x=df[<span class="string">&#x27;词语&#x27;</span>]</span><br><span class="line">y=df[<span class="string">&#x27;次数&#x27;</span>]</span><br><span class="line">figure=plt.Figure()</span><br><span class="line">plt.bar(x,y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_1.png" alt></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment"># 要先pip install wordcloud</span></span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud</span><br><span class="line">a=pd.read_table(<span class="string">&#x27;333.txt&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>,sep=<span class="string">&#x27;       &#x27;</span>,engine=<span class="string">&#x27;python&#x27;</span>)</span><br><span class="line">df=pd.DataFrame(a)</span><br><span class="line"><span class="comment">#fit_word函数，接受字典类型，其他类型会报错</span></span><br><span class="line">dic=<span class="built_in">dict</span>(<span class="built_in">zip</span>(df[<span class="string">&#x27;词语&#x27;</span>],df[<span class="string">&#x27;次数&#x27;</span>]))</span><br><span class="line">wordcloud = WordCloud(font_path=<span class="string">&#x27;simhei.ttf&#x27;</span>,background_color=<span class="string">&quot;white&quot;</span>,width =<span class="number">4000</span>,height= <span class="number">2000</span>,margin= <span class="number">10</span> ).fit_words(dic)</span><br><span class="line">plt.imshow(wordcloud)</span><br><span class="line"><span class="comment"># 显示</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_2.png" style="zoom:72%;">
+<p>这里使用了<strong> matplotlib 库</strong>和<strong> wordcloud 库</strong>两个库实现，</p>
+<p>其实做 Python 的数据可视化，可以使用的库分别是<strong> Matplotlib</strong>，<strong>Seaborn</strong>，<strong>Bokeh</strong>，<strong>Plotly</strong>，<strong>Pyecharts</strong> 等。</p>
+<p>我们课本主要将的是<strong> Matplotlib</strong> 库，我其实没有在互联网上找到 matplotlib 库的官方中文文档的，关于这些自学起来实际上是看的浏览器的翻译，如有错误还请海涵…</p>
+<h2 id="51-matplotlib库基础"><a class="markdownIt-Anchor" href="#51-matplotlib库基础">#</a> 5.1 matplotlib 库基础</h2>
+<h3 id="拓展默认值相关"><a class="markdownIt-Anchor" href="#拓展默认值相关">#</a> 拓展：默认值相关</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fig=plt.figure()</span><br><span class="line">ax=fig.add_axes([<span class="number">0.1</span>,<span class="number">0.1</span>,<span class="number">0.8</span>,<span class="number">0.8</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><strong>fig.add_axes([])<strong> 里面的参数分别指的距离左边，下边，坐标轴宽度，坐标轴高度，范围是 (0, 1) 等价于</strong> plt.axes ()</strong></p>
+<p><strong>ax=fig.add_axes([0.1,0.1,0.8,0.8])<strong> 语句表示的是在画布中，坐标轴距离画布左边 0.1 倍的位置，距离下边 0.1 倍的位置，确定了这两个位置后，坐标轴的整体宽度和高度占 0.8 倍的大小，换句话说，距离右边和上边 0.9~~（0.1+0.8）~~ 倍。执行如下代码，会生成一张带有坐标轴的白色，两个语句实际上都是</strong>默认值</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">pyplot.grid(b=<span class="literal">None</span>, which=<span class="string">&#x27;major&#x27;</span>, axis=<span class="string">&#x27;both&#x27;</span>, **kwargs)</span><br><span class="line"><span class="comment">##**kwargs 允许你将不定长度的键值对, 作为参数传递给一个函数。 如果你想要在一个函数里处理带名字的参数, 你应该使用**kwargs</span></span><br><span class="line"><span class="comment">#以下是一个实例：</span></span><br><span class="line">plt.grid(<span class="literal">True</span>, linestyle = <span class="string">&quot;--&quot;</span>,color = <span class="string">&quot;gray&quot;</span>, linewidth = <span class="string">&quot;0.5&quot;</span>,axis = <span class="string">&#x27;both&#x27;</span>)  </span><br><span class="line"><span class="comment"># 显示网格，这个参数默认为forse</span></span><br><span class="line"><span class="comment"># linestyle：线型</span></span><br><span class="line"><span class="comment"># color：颜色</span></span><br><span class="line"><span class="comment"># linewidth：宽度</span></span><br><span class="line"><span class="comment"># axis：x，y，both，显示x/y/两者的格网</span></span><br><span class="line">pyplot.title(label, fontdict=<span class="literal">None</span>, loc=<span class="literal">None</span>, pad=<span class="literal">None</span>, *, y=<span class="literal">None</span>,**kwargs)</span><br><span class="line">plt.tick_params(bottom=<span class="string">&#x27;on&#x27;</span>,top=<span class="string">&#x27;off&#x27;</span>,left=<span class="string">&#x27;on&#x27;</span>,right=<span class="string">&#x27;off&#x27;</span>)  </span><br><span class="line"><span class="comment"># 显示刻度的那根轴线，凸出来的地方。设置为off时都不显示。默认为全显示</span></span><br><span class="line"><span class="comment">#plt.axis(&#x27;off&#x27;)</span></span><br><span class="line"><span class="comment"># 关闭坐标轴</span></span><br></pre></td></tr></table></figure>
+<p>如果想要了解这些具体的参数还是推荐去看下那个纯英文的 matplotlib 库手册</p>
+<p>显示创建画布和坐标轴的好处是让我们对绘图过程有了完全的控制权（比如可以指定在什么地方绘图），而且绘图的逻辑更强 。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment"># 新建figure</span></span><br><span class="line">fig = plt.figure()</span><br><span class="line"><span class="comment"># 定义数据</span></span><br><span class="line">x = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]</span><br><span class="line">y = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">6</span>]</span><br><span class="line"><span class="comment"># 新建区域ax1</span></span><br><span class="line"><span class="comment"># figure的百分比,从figure 10%的位置开始绘制, 宽高是figure的80%</span></span><br><span class="line">left, bottom, width, height = <span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.8</span>, <span class="number">0.8</span></span><br><span class="line"><span class="comment"># 获得绘制的句柄</span></span><br><span class="line">ax1 = fig.add_axes([left, bottom, width, height])</span><br><span class="line">ax1.plot(x, y, <span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">ax1.set_title(<span class="string">&#x27;area1&#x27;</span>)</span><br><span class="line"><span class="comment"># 新增区域ax2,嵌套在ax1内</span></span><br><span class="line">left, bottom, width, height = <span class="number">0.2</span>, <span class="number">0.6</span>, <span class="number">0.25</span>, <span class="number">0.25</span></span><br><span class="line"><span class="comment"># 获得绘制的句柄</span></span><br><span class="line">ax2 = fig.add_axes([left, bottom, width, height])</span><br><span class="line">ax2.plot(x, y, <span class="string">&#x27;b&#x27;</span>)</span><br><span class="line">ax2.set_title(<span class="string">&#x27;area2&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_3.png" alt></p>
+<blockquote>
+<p>补充知识点，在课本表 5—2 中出现的函数均有 add_函数名 (参数) 和 plt. 函数名 (参数) 两种形式，实际使用中记住一种就行。</p>
+</blockquote>
+<h2 id="52-pltplot绘图"><a class="markdownIt-Anchor" href="#52-pltplot绘图">#</a> 5.2 plt.plot () 绘图</h2>
+<p><strong>plt.plot (x, y, c=“b”,ls=&quot;-&quot;, lw=2, label=“文本串”)</strong><br>
+ 其中，第二个简单的格式是最常用的格式，参数 x 表示指定的 x 轴上的数值，参数 y 表示指定的 y 轴上的数值，参数 c 指定绘制线条的颜色，参数 ls 指定的折线图的线条风格，参数 lw 指定绘制的线条宽度，参数 label 指定标记图内容的标签文本。</p>
+<p>**plt.plot()<strong> 函数中可以明确地给出了 x,y 的值，然后得到相应的 (x,y) 坐标点，把这些点再连接成线。当</strong> plt.plot ()** 函数也允许只给出 y 值的情况，这时系统给自动将 x 值指定为 range (len (y))，然后根据 x,y 的值进行点连线。</p>
+<blockquote>
+<p>len () 函数返回对象中项目的数量。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment">#只给出y值，画出相应图像</span></span><br><span class="line">plt.plot([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>在 5.2plt.plot () 绘图这一节里，我们以实例 5-1 为例，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">fig=plt.figure()</span><br><span class="line">ax = fig.add_axes([<span class="number">0.1</span>, <span class="number">0.1</span>, <span class="number">0.8</span>, <span class="number">0.8</span>])</span><br><span class="line">x=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">y=[<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">12</span>]</span><br><span class="line">plt.plot(x,y)</span><br><span class="line">plt.show()</span><br><span class="line"><span class="comment">#带有默认设置的程序</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">y=[<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">12</span>]</span><br><span class="line">plt.plot(x,y)</span><br><span class="line">plt.show()</span><br><span class="line"><span class="comment">#去除默认值的程序</span></span><br></pre></td></tr></table></figure>
+<p>再 pycharm 环境中允许，生成的图片实际上是一模一样的，这是因为在使用了 plt.plot () 语句，会默认创建一个 figure 对象和 axes 坐标系。</p>
+<p><strong>例 5-2</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">y1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">y2 = [<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">8</span>,<span class="number">10</span>]</span><br><span class="line">y3 = [<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>,<span class="number">12</span>,<span class="number">15</span>]</span><br><span class="line">plt.plot(x, y1, color=<span class="string">&quot;g&quot;</span>,linestyle=<span class="string">&quot;-&quot;</span>,marker=<span class="string">&quot;o&quot;</span>,markerfacecolor=<span class="string">&quot;g&quot;</span>,markersize=<span class="number">20</span>)</span><br><span class="line">plt.plot(x, y2, color=<span class="string">&quot;r&quot;</span>,linestyle=<span class="string">&quot;:&quot;</span>,marker=<span class="string">&quot;D&quot;</span>,markerfacecolor=<span class="string">&quot;r&quot;</span>,markersize=<span class="number">20</span>)</span><br><span class="line">plt.plot(x, y3, color=<span class="string">&quot;b&quot;</span>,linestyle=<span class="string">&quot;-.&quot;</span>,marker=<span class="string">&quot;s&quot;</span>,markerfacecolor=<span class="string">&quot;b&quot;</span>,markersize=<span class="number">20</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>引例：画一张二次曲线</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="comment">#从-1到1之间等间隔采66个数.也就是说所画出来的图形是66个点连接得来的</span></span><br><span class="line"><span class="comment">#注意：如果点数过小的话会导致画出来二次函数图像不平滑</span></span><br><span class="line">x = np.linspace(-<span class="number">1</span>, <span class="number">1</span>,<span class="number">66</span>)</span><br><span class="line"><span class="comment">#linspace(start,stop,num,endpoint= True)函数在[start,stop]范围内计算返回num个均匀间隔的点，可以通过endpoint确认是否包含间隔点</span></span><br><span class="line"><span class="comment"># 绘制x^2函数的图像</span></span><br><span class="line">y = x**<span class="number">2</span></span><br><span class="line">plt.plot(x, y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numpy.random.randint(low, high=<span class="literal">None</span>, size=<span class="literal">None</span>, dtype=<span class="string">&#x27;l&#x27;</span>)</span><br><span class="line"><span class="comment">#返回一个随机整型数，范围从低（包括）到高（不包括），即[low, high)。</span></span><br><span class="line"><span class="comment">#如果没有写参数high的值，则返回[0,low)的值。</span></span><br><span class="line"><span class="comment">#输出随机数的尺寸，比如size = (m * n* k)则输出同规模即m * n* k个随机数。默认是None的，仅仅返回满足要求的单一随机数。</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_4.png" alt></p>
+<p>我们可以看到当图像间隔足够小的时候，折线图可以模拟出二次曲线的形式，类似的方法可以实现正弦函数的产生</p>
+<p><strong>例 5-4</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">x = np.linspace(<span class="number">0</span>,<span class="number">2</span>*np.pi, <span class="number">100</span>)</span><br><span class="line">y = np.sin(x)</span><br><span class="line">plt.plot(x, y,c=<span class="string">&#x27;r&#x27;</span>,ls=<span class="string">&quot;-&quot;</span>, lw=<span class="number">3</span>, label=<span class="string">&quot;sin&quot;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_5.png" alt></p>
+<p><strong>例 5-5</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">t= np.arange(<span class="number">12</span>)</span><br><span class="line">x= t.reshape((<span class="number">4</span>,<span class="number">3</span>))<span class="comment">#将arange(12)生成的12个数展成[4,3]的二维数组</span></span><br><span class="line">y=np.random.randint(<span class="number">2</span>,<span class="number">9</span>,size=[<span class="number">4</span>,<span class="number">3</span>])</span><br><span class="line">plt.plot(x,y)</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_6.png" alt></p>
+<h2 id="53-划分子图"><a class="markdownIt-Anchor" href="#53-划分子图">#</a> 5.3 划分子图</h2>
+<p>例 5-7:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">y = [<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">12</span>]</span><br><span class="line">plt.plot(x,y)</span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">y = [<span class="number">2.0</span>,<span class="number">3.5</span>,<span class="number">4.6</span>]</span><br><span class="line">plt.plot(x,y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_7.png" alt></p>
+<p>在这个情况下，两个折线是被默认存储到同一个画布上，然而我们在中间多添加一个 plt.show () 就会是分别位于一张画布上。在这个实例中也能看出来在，两张图片的 X 轴范围不同的情况下，放在同一张画布下是不容易显示的.</p>
+<p>为此我们要进行划分子图</p>
+<p>格式一：**plt.subplot (nrows,ncols,plot_number)** 将一个画布分成 “行 × 列” 个部分，其中 nrows 表示要划分的行数，ncols 表示要划分的列数，plot_number 表示当前子图区。</p>
+<p>格式二：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">figure = plt.figure()</span><br><span class="line">figure.add_subplot(nrows,ncols,plot_number)</span><br></pre></td></tr></table></figure>
+<p><strong>实例 5-8 : 一个 figure 对象画风两个子图实例</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">y = [<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">12</span>]</span><br><span class="line">figure = plt.figure()</span><br><span class="line">axes1 = figure.add_subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">plt.plot(x,y)</span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">y = [<span class="number">2.0</span>,<span class="number">3.5</span>,<span class="number">4.6</span>]</span><br><span class="line">axes2 = figure.add_subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">plt.plot(x,y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>以格式一重写代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">y = [<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">12</span>]</span><br><span class="line">figure = plt.figure()</span><br><span class="line">plt.subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>)</span><br><span class="line">plt.plot(x,y)</span><br><span class="line"><span class="comment">#补充一点课本上出现了两次的plt.show这可能是教材编写老师的失误，因为两编plt.show是得不到目标格式的</span></span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">y = [<span class="number">2.0</span>,<span class="number">3.5</span>,<span class="number">4.6</span>]</span><br><span class="line">plt.subplot(<span class="number">2</span>,<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">plt.plot(x,y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_8.png" alt></p>
+<p><strong>例 5-9：设置绘图的各种参数实例</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment">#以下两句代码的作用是显示汉字图标题</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>]=[<span class="string">&#x27;SimHei&#x27;</span>]</span><br><span class="line">plt.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>]=<span class="literal">False</span></span><br><span class="line"><span class="comment">#创建figure对象，划分子图</span></span><br><span class="line">figure = plt.figure()</span><br><span class="line">axes1 = figure.add_subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">axes2 = figure.add_subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line"><span class="comment">#指定x,y列表值</span></span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">y = [<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">12</span>]</span><br><span class="line">axes1.plot(x,y)</span><br><span class="line"><span class="comment">#设置子图2的基本元素</span></span><br><span class="line">axes2.set_title(<span class="string">&#x27;图标题&#x27;</span>)</span><br><span class="line">axes2.set_xlabel(<span class="string">&#x27;x轴标题&#x27;</span>)</span><br><span class="line">axes2.set_ylabel(<span class="string">&#x27;y轴标题&#x27;</span>)</span><br><span class="line"><span class="comment">#设置坐标轴范围</span></span><br><span class="line">axes2.set_xlim(<span class="number">0</span>,<span class="number">5</span>)</span><br><span class="line">axes2.set_ylim(<span class="number">0</span>,<span class="number">10</span>)</span><br><span class="line"><span class="comment">#设置绘制的线型和颜色及标注内容</span></span><br><span class="line">plot1=axes2.plot(x,y,marker=<span class="string">&#x27;o&#x27;</span>,color=<span class="string">&#x27;r&#x27;</span>,label=<span class="string">&#x27;点型红色&#x27;</span>)</span><br><span class="line">plot2=axes2.plot(x,y,linestyle=<span class="string">&#x27;--&#x27;</span>,color=<span class="string">&#x27;b&#x27;</span>,label=<span class="string">&#x27;线型蓝色&#x27;</span>)</span><br><span class="line">axes2.legend(loc=<span class="string">&#x27;upper left&#x27;</span>) <span class="comment">#在指定位置显示标注</span></span><br><span class="line"><span class="comment">#显示网格绘制子图2</span></span><br><span class="line">axes2.grid(b=<span class="literal">True</span>,which=<span class="string">&#x27;major&#x27;</span>,axis=<span class="string">&#x27;both&#x27;</span>,alpha= <span class="number">0.5</span>,color=<span class="string">&#x27;skyblue&#x27;</span>,linestyle=<span class="string">&#x27;--&#x27;</span>,linewidth=<span class="number">2</span>)</span><br><span class="line">axes2.plot(x,y)</span><br><span class="line">plt.savefig(<span class="string">&#x27;tu1.jpg&#x27;</span>,dpi=<span class="number">300</span>) <span class="comment">#保存图形</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_9.png" alt></p>
+<p>在 python 绘图中，不能直接显示汉字，但是我们经常希望绘制的图形中的标题及题注等能以汉字的形式显示，可以在代码中倒入库语句后面添加一下两句代码可以显示汉字<strong> plt.rcParams [‘font.sans-serif’]=[‘SimHei’]<strong> 与</strong> plt.rcParams [‘axes.unicode_minus’]=False</strong> 这两个一个是设置字符显示，一个是设置字体，<strong>SimHei</strong> 这个实际上就是我们生活中常用到的<strong>黑体</strong></p>
+<p><strong>例 5-10: 将一个 figure 对象划分为六个子图，分别绘制不同线型、不同颜色和标记的线条。</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">y = [<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">12</span>]</span><br><span class="line">figure = plt.figure()</span><br><span class="line">axes1 = figure.add_subplot(<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>)</span><br><span class="line">axes2 = figure.add_subplot(<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line">axes3 = figure.add_subplot(<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>)</span><br><span class="line">axes4 = figure.add_subplot(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line">axes5 = figure.add_subplot(<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>)</span><br><span class="line">axes6 = figure.add_subplot(<span class="number">2</span>,<span class="number">3</span>,<span class="number">6</span>)</span><br><span class="line">axes1.plot(x,y, <span class="string">&#x27;ro&#x27;</span>) <span class="comment"># 红色圆点</span></span><br><span class="line">axes2.plot(x,y, <span class="string">&#x27;r-*&#x27;</span>) <span class="comment">#红色星花直线</span></span><br><span class="line">axes3.plot(x,y, <span class="string">&#x27;bs&#x27;</span>) <span class="comment">#蓝色方块</span></span><br><span class="line"><span class="comment">#axes4.plot(x,y, &#x27;g^-.&#x27;) #绿色三角点划线</span></span><br><span class="line">axes4.plot(x,y, <span class="string">&#x27;^g-.&#x27;</span>)</span><br><span class="line">axes5.plot(x,y, <span class="string">&#x27;m8&#x27;</span>)  <span class="comment">#洋红八边形</span></span><br><span class="line">axes6.plot(x,y, <span class="string">&#x27;yd:&#x27;</span>) <span class="comment">#黄色小菱形虚线</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>在绘图时需要指定线条的线型，标记的符号及线条的颜色的参数值写进同一个大括号，而且对三个参数的前后顺序没有要求。</p>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_10.png" alt></p>
+<h3 id="拓展三张图如何划分"><a class="markdownIt-Anchor" href="#拓展三张图如何划分">#</a> 拓展三张图如何划分？</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">t</span>):</span></span><br><span class="line">    <span class="keyword">return</span> np.exp(-t) * np.sin(<span class="number">2</span> * np.pi * t)</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    t1 = np.arange(-<span class="number">5</span>, <span class="number">5</span>, <span class="number">0.1</span>)</span><br><span class="line">    t2 = np.arange(-<span class="number">5</span>, <span class="number">5</span>, <span class="number">0.2</span>)</span><br><span class="line">    plt.figure()</span><br><span class="line">    plt.subplot(<span class="number">221</span>)</span><br><span class="line">    plt.plot(t1, f(t1), <span class="string">&#x27;bo&#x27;</span>, t2, f(t2), <span class="string">&#x27;g--&#x27;</span>)</span><br><span class="line">    plt.subplot(<span class="number">222</span>)</span><br><span class="line">    plt.plot(t2, np.cos(<span class="number">2</span> * np.pi * t2), <span class="string">&#x27;g--&#x27;</span>)</span><br><span class="line">    plt.subplot(<span class="number">212</span>)</span><br><span class="line">    plt.plot([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>])</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_11.png" alt></p>
+<p>这种方式是通过<strong> plt.subplot</strong> 再次划分整个图片的区域，虽然我们是将图片划分为了 (2,2) 总共四份的区域，但是由于前两张图只上半部分，我们可以将整个图看成两部分，即 (2,1) 结构划分，使第三张图片占据 2 号位置，就是实现了三张图片的划分</p>
+<p>另一种方式<strong> subplot2grid ()</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">subplot2grid(shape, loc, rowspan=<span class="number">1</span>, colspan=<span class="number">1</span>, fig=<span class="literal">None</span>, **kwargs)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>shape :</strong> 组合图框架形状，以元组形式传递，如 2 行 3 列可以表示为（2,3）<br>
+<strong>loc ：</strong> 指定子图所在位置，如第一个位置是（0，0）<br>
+<strong>rowspan</strong> ：指定子图需要跨几行<br>
+<strong> colspan</strong> ： 指定子图需要跨几列</p>
+</blockquote>
+<h2 id="54-条形图"><a class="markdownIt-Anchor" href="#54-条形图">#</a> 5.4:  条形图</h2>
+<p>条形图是数据分析中使用较多的数据可视化方式之一。在条形图中可以非常直观地通过位置比较数值大小。因为在条形图中条的高度就是数值，所以一眼就可以看出数值的高底。</p>
+<p><strong>bar(x, height, width=0.8, bottom=None, …, align=‘center’)</strong></p>
+<p>例 5-11 : 简单条形图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">y = [<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">12</span>]</span><br><span class="line">figure = plt.figure()</span><br><span class="line">plt.bar(x, y) <span class="comment">#默认颜色，默认宽度为0.8</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_12.png" alt></p>
+<p>例 5-12 : 横向条形图。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">y = [<span class="number">3</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">12</span>]</span><br><span class="line"><span class="comment"># x指定起始位置从0开始， bottom指定水平条起始位置为左侧， height指定绘制的水平条的宽度， width 指定绘制的水平条的长度。orientation指定要绘制的是水平条，color指定绘制的条形为红色。</span></span><br><span class="line">plt.bar(x=<span class="number">0</span>, bottom=y, height=<span class="number">0.5</span>, width=x, orientation=<span class="string">&quot;horizontal&quot;</span>,color=<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_13.png" alt>)</p>
+<h3 id="542-多组条形图"><a class="markdownIt-Anchor" href="#542-多组条形图">#</a> 5.4.2  多组条形图</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x = np.arange(<span class="number">5</span>)</span><br><span class="line">y1= [<span class="number">12</span>, <span class="number">33</span>, <span class="number">53</span>, <span class="number">66</span>,<span class="number">77</span>]</span><br><span class="line">y2 = [<span class="number">22</span>, <span class="number">43</span>, <span class="number">65</span>, <span class="number">55</span>,<span class="number">68</span>]</span><br><span class="line">y3=[<span class="number">23</span>,<span class="number">35</span>,<span class="number">46</span>,<span class="number">57</span>,<span class="number">67</span>]</span><br><span class="line">bar_width = <span class="number">0.3</span></span><br><span class="line">plt.bar(x, y1, bar_width,color=<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">plt.bar(x+bar_width,y2, bar_width, align=<span class="string">&quot;center&quot;</span>,color=<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">plt.bar(x+bar_width+bar_width,y3, bar_width, align=<span class="string">&quot;center&quot;</span>,color=<span class="string">&#x27;b&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_14.png" alt></p>
+<p>在绘制多组条形图进行对比的时候需要注意一点，bar_width 的范围是 (0,1) 没错，但是多组图表需要保证几组图表的范围之和不超过 1，以这个题为例，当 bar_width 设置为 0.4 三个表得到总和就超过了 1，会导致重叠的发生。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x = np.arange(<span class="number">5</span>)</span><br><span class="line">y1= [<span class="number">12</span>, <span class="number">33</span>, <span class="number">53</span>, <span class="number">66</span>,<span class="number">77</span>]</span><br><span class="line">y2 = [<span class="number">22</span>, <span class="number">43</span>, <span class="number">65</span>, <span class="number">55</span>,<span class="number">68</span>]</span><br><span class="line">bar_width = <span class="number">0.5</span></span><br><span class="line">plt.bar(x, y1, bar_width,color=<span class="string">&#x27;b&#x27;</span>)</span><br><span class="line">plt.bar(x, y2, bar_width, bottom=y1,color=<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_15.png" alt></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment">#字体设置为黑体</span></span><br><span class="line">matplotlib.rcParams[<span class="string">&#x27;font.family&#x27;</span>] = <span class="string">&#x27;SimHei&#x27;</span></span><br><span class="line">x = np.arange(<span class="number">5</span>)</span><br><span class="line">y1=[<span class="number">90</span>, <span class="number">88</span>, <span class="number">78</span>, <span class="number">99</span>, <span class="number">87</span>]</span><br><span class="line">y2=[<span class="number">98</span>, <span class="number">77</span>, <span class="number">86</span>, <span class="number">85</span>, <span class="number">67</span>]</span><br><span class="line">bar_width = <span class="number">0.3</span></span><br><span class="line">str1 = (<span class="string">&quot;数学&quot;</span>,<span class="string">&quot;英语&quot;</span>,<span class="string">&quot;语文&quot;</span>,<span class="string">&quot;计算机&quot;</span>,<span class="string">&quot;体育&quot;</span>)</span><br><span class="line"><span class="comment"># 绘图</span></span><br><span class="line">plt.bar(x, height=y1, width=bar_width, label=<span class="string">&quot;王晨&quot;</span>, tick_label=str1,color=<span class="string">&#x27;b&#x27;</span>)</span><br><span class="line"><span class="comment">#tick_label下标的标签，label直接是标签</span></span><br><span class="line">plt.bar(x+bar_width, height=y2, width=bar_width, label=<span class="string">&quot;刘星&quot;</span>,color=<span class="string">&#x27;r&#x27;</span>,align=<span class="string">&quot;center&quot;</span>)</span><br><span class="line"><span class="comment">#添加图例</span></span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_16.png" alt></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment"># 显示汉字设置</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>] = [<span class="string">&#x27;SimHei&#x27;</span>]</span><br><span class="line">plt.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="literal">False</span></span><br><span class="line"><span class="comment"># 定义函数来显示柱状上的数值</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">autolabel</span>(<span class="params">rects</span>):</span></span><br><span class="line">    <span class="keyword">for</span> rect <span class="keyword">in</span> rects:</span><br><span class="line">        height = rect.get_height()</span><br><span class="line">        plt.text(rect.get_x() + rect.get_width() / <span class="number">2.</span> - <span class="number">0.2</span>, <span class="number">1.03</span> * height, <span class="string">&#x27;%s&#x27;</span> % <span class="built_in">float</span>(height))</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    l1 = [<span class="number">68</span>, <span class="number">96</span>, <span class="number">85</span>, <span class="number">86</span>, <span class="number">76</span>, <span class="number">87</span>, <span class="number">95</span>]</span><br><span class="line">    l2 = [<span class="number">85</span>, <span class="number">68</span>, <span class="number">79</span>, <span class="number">89</span>, <span class="number">94</span>, <span class="number">82</span>, <span class="number">90</span>]</span><br><span class="line">    name = [<span class="string">&#x27;赵临&#x27;</span>, <span class="string">&#x27;呼俞&#x27;</span>, <span class="string">&#x27;侯亚&#x27;</span>, <span class="string">&#x27;翟蓉&#x27;</span>, <span class="string">&#x27;张婷&#x27;</span>, <span class="string">&#x27;赵九&#x27;</span>, <span class="string">&#x27;赵泽&#x27;</span>]</span><br><span class="line">    total_width, n = <span class="number">0.8</span>, <span class="number">2</span></span><br><span class="line">    width = total_width / n</span><br><span class="line">    x = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">    a = plt.bar(x, l1, width=width, label=<span class="string">&#x27;大学IT&#x27;</span>, fc=<span class="string">&#x27;b&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(x)):</span><br><span class="line">        x[i] = x[i] + width</span><br><span class="line">    b = plt.bar(x, l2, width=width, label=<span class="string">&#x27;图像处理&#x27;</span>, tick_label=name, fc=<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">    autolabel(a)</span><br><span class="line">    autolabel(b)</span><br><span class="line">    plt.xlabel(<span class="string">&#x27;姓名&#x27;</span>)</span><br><span class="line">    plt.ylabel(<span class="string">&#x27;成绩&#x27;</span>)</span><br><span class="line">    plt.title(<span class="string">&#x27;学生成绩&#x27;</span>)</span><br><span class="line">    plt.legend()</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_17.png" alt></p>
+<h3 id="拓展图例的位置"><a class="markdownIt-Anchor" href="#拓展图例的位置">#</a> 拓展图例的位置</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">在legend的参数中， loc参数设置图例的显示位置的：</span><br><span class="line"> plt.legend([l1, l2], [<span class="string">&#x27;first&#x27;</span>, <span class="string">&#x27;second&#x27;</span>], loc = <span class="string">&#x27;upper right&#x27;</span>)<span class="comment">#其中，loc表示位置的；</span></span><br><span class="line"><span class="string">&#x27;best&#x27;</span>         : <span class="number">0</span>, (only implemented <span class="keyword">for</span> axes legends)(自适应方式)</span><br><span class="line"><span class="string">&#x27;upper right&#x27;</span>  : <span class="number">1</span>,</span><br><span class="line"><span class="string">&#x27;upper left&#x27;</span>   : <span class="number">2</span>,</span><br><span class="line"><span class="string">&#x27;lower left&#x27;</span>   : <span class="number">3</span>,</span><br><span class="line"><span class="string">&#x27;lower right&#x27;</span>  : <span class="number">4</span>,</span><br><span class="line"><span class="string">&#x27;right&#x27;</span>        : <span class="number">5</span>,</span><br><span class="line"><span class="string">&#x27;center left&#x27;</span>  : <span class="number">6</span>,</span><br><span class="line"><span class="string">&#x27;center right&#x27;</span> : <span class="number">7</span>,</span><br><span class="line"><span class="string">&#x27;lower center&#x27;</span> : <span class="number">8</span>,</span><br><span class="line"><span class="string">&#x27;upper center&#x27;</span> : <span class="number">9</span>,</span><br><span class="line"><span class="string">&#x27;center&#x27;</span>       : <span class="number">10</span></span><br><span class="line"><span class="comment">#实际上bbox_to_anchor()函数的范围是(0,1),也就是将整张图看做1 * 1大小</span></span><br><span class="line"><span class="comment">#对于两个元素的bbox_to_anchor()，也就是(x,y)，这个参数是代表了lengend_box的起点，并且是有后面的loc决定 的。</span></span><br><span class="line"><span class="comment">#例如，设置(0.5,0.5), loc=&#x27;center&#x27;，那么代表lengend_box的中心点（center）坐标是(0.5, 0.5)</span></span><br></pre></td></tr></table></figure>
+<h2 id="55-散点图"><a class="markdownIt-Anchor" href="#55-散点图">#</a> 5.5 散点图</h2>
+<p>在实际数据分析应用中，散点图是一种常用于观测数据的相关性的数据可视化方式。数据的相关性通常有正相关、负相关及不相关。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(x, y, s, c ,marker, alpha)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x = [<span class="number">1</span>, <span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">y = [<span class="number">33</span>, <span class="number">38</span>,<span class="number">55</span>,<span class="number">59</span>, <span class="number">66</span>, <span class="number">77</span>]</span><br><span class="line">plt.scatter(x, y,c=<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="拓展三维散点图"><a class="markdownIt-Anchor" href="#拓展三维散点图">#</a> 拓展：三维散点图</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D  <span class="comment"># 空间三维画图</span></span><br><span class="line"><span class="comment"># 数据１</span></span><br><span class="line">data1 = np.arange(<span class="number">24</span>).reshape((<span class="number">8</span>, <span class="number">3</span>))</span><br><span class="line">x1 = data1[:, <span class="number">0</span>]  <span class="comment"># [ 0  3  6  9 12 15 18 21]</span></span><br><span class="line">y1 = data1[:, <span class="number">1</span>]  <span class="comment"># [ 1  4  7 10 13 16 19 22]</span></span><br><span class="line">z1 = data1[:, <span class="number">2</span>]  <span class="comment"># [ 2  5  8 11 14 17 20 23]</span></span><br><span class="line"><span class="comment"># 数据２</span></span><br><span class="line">data2 = np.random.randint(<span class="number">0</span>, <span class="number">23</span>, (<span class="number">6</span>, <span class="number">3</span>))</span><br><span class="line">x2 = data2[:, <span class="number">0</span>]</span><br><span class="line">y2 = data2[:, <span class="number">1</span>]</span><br><span class="line">z2 = data2[:, <span class="number">2</span>]</span><br><span class="line"><span class="comment"># 绘制散点图</span></span><br><span class="line">fig = plt.figure()</span><br><span class="line">ax = Axes3D(fig)</span><br><span class="line">ax.scatter(x1, y1, z1, c=<span class="string">&#x27;r&#x27;</span>, label=<span class="string">&#x27;顺序点&#x27;</span>)</span><br><span class="line">ax.scatter(x2, y2, z2, c=<span class="string">&#x27;g&#x27;</span>, label=<span class="string">&#x27;随机点&#x27;</span>)</span><br><span class="line"><span class="comment"># 绘制图例</span></span><br><span class="line">ax.legend(loc=<span class="string">&#x27;best&#x27;</span>)</span><br><span class="line"><span class="comment"># 添加坐标轴(顺序是Z, Y, X)</span></span><br><span class="line">ax.set_zlabel(<span class="string">&#x27;Z&#x27;</span>, fontdict=&#123;<span class="string">&#x27;size&#x27;</span>: <span class="number">15</span>, <span class="string">&#x27;color&#x27;</span>: <span class="string">&#x27;red&#x27;</span>&#125;)</span><br><span class="line">ax.set_ylabel(<span class="string">&#x27;Y&#x27;</span>, fontdict=&#123;<span class="string">&#x27;size&#x27;</span>: <span class="number">15</span>, <span class="string">&#x27;color&#x27;</span>: <span class="string">&#x27;red&#x27;</span>&#125;)</span><br><span class="line">ax.set_xlabel(<span class="string">&#x27;X&#x27;</span>, fontdict=&#123;<span class="string">&#x27;size&#x27;</span>: <span class="number">15</span>, <span class="string">&#x27;color&#x27;</span>: <span class="string">&#x27;red&#x27;</span>&#125;)</span><br><span class="line"><span class="comment"># 展示</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_18.png" alt></p>
+<p>拓展三维散点图，就要讲到 matplotlib 库里的另一个模块，mpl_toolkits.mplot3d，这个本身就来源于 matplotlib 不需要再行安装。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ax.scatter(xs, ys, zs, s=<span class="number">20</span>, c=<span class="literal">None</span>, depthshade=<span class="literal">True</span>, *args, *kwargs)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>xs,ys,zs：输入数据；</li>
+<li>s:scatter 点的尺寸</li>
+<li>c: 颜色，如 c = 'r’就是红色；</li>
+<li>depthshase: 透明化，True 为透明，默认为 True，False 为不透明</li>
+<li>*args 等为扩展变量，如 maker = ‘o’，则 scatter 结果为’o‘的形状</li>
+</ul>
+<p>我们可以看到同一个函数的参数列表基本一致。三维散点图与二维散点图的去别在于需要使用 Axes3D 对象或使用 projection ='3d’关键字的任何其他轴一样创建。 创建一个新的 matplotlib.figure.Figure 并为其添加一个类型为 Axes3D 的新轴。</p>
+<h2 id="5-6-饼图"><a class="markdownIt-Anchor" href="#5-6-饼图">#</a> 5 . 6  饼图</h2>
+<p>由于我在制作过程中发现图片使用过多真的太大了，所以后面的代码除了我重点想为大家拓展的，其他会直接进行演示</p>
+<p>饼图是一种将各项数据的大小与各项数据的总和的比例显示在一张饼中的数据可视化方式。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.pie(x, explode=<span class="literal">None</span>, labels=<span class="literal">None</span>, colors=<span class="literal">None</span>, autopct=<span class="literal">None</span>, pctdistance=<span class="number">0.6</span>, shadow=<span class="literal">False</span>, labeldistance=<span class="number">1.1</span>, startangle=<span class="literal">None</span>, radius=<span class="literal">None</span>, counterclock=<span class="literal">True</span>, wedgeprops=<span class="literal">None</span>, textprops=<span class="literal">None</span>, center=(<span class="number">0</span>, <span class="number">0</span>), frame=<span class="literal">False</span>) </span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment">#添加以下两句代码，显示汉字标题</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>]=[<span class="string">&#x27;SimHei&#x27;</span>]</span><br><span class="line">plt.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>]=<span class="literal">False</span></span><br><span class="line"><span class="comment"># 数据</span></span><br><span class="line">labels = [<span class="string">&quot;数学&quot;</span>, <span class="string">&quot;语文&quot;</span>, <span class="string">&quot;英语&quot;</span>, <span class="string">&quot;物理&quot;</span>,<span class="string">&quot;化学&quot;</span>]</span><br><span class="line">cj = [<span class="number">91</span>, <span class="number">88</span>, <span class="number">89</span>, <span class="number">89</span>,<span class="number">92</span>]</span><br><span class="line"><span class="comment"># 画图</span></span><br><span class="line">plt.pie(x=cj, labels=labels)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment">#添加以下两句代码，显示汉字标题</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>]=[<span class="string">&#x27;SimHei&#x27;</span>]</span><br><span class="line">plt.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>]=<span class="literal">False</span></span><br><span class="line"><span class="comment"># 数据</span></span><br><span class="line">labels = [<span class="string">&quot;数学&quot;</span>, <span class="string">&quot;语文&quot;</span>, <span class="string">&quot;英语&quot;</span>, <span class="string">&quot;物理&quot;</span>,<span class="string">&quot;化学&quot;</span>]</span><br><span class="line">cj = [<span class="number">91</span>, <span class="number">88</span>, <span class="number">89</span>, <span class="number">89</span>,<span class="number">92</span>]</span><br><span class="line">tuchu= [<span class="number">0</span>, <span class="number">0.1</span>, <span class="number">0</span>, <span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line"><span class="comment"># 画图</span></span><br><span class="line">plt.pie(x=cj, labels=labels,explode=tuchu, shadow=<span class="literal">True</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>这个实例添加了两个参数，explode=tuchu, shadow=True, <code>explode=tuchu</code>  控制突出显示效果，<s>其实这个突出效果是用便宜实现的，可以自己设置偏移量的多少</s>， <code>shadow=True</code>  控制添加阴影效果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment">#添加以下两句代码，显示汉字标题</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>]=[<span class="string">&#x27;SimHei&#x27;</span>]</span><br><span class="line">plt.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>]=<span class="literal">False</span></span><br><span class="line"><span class="comment"># 数据</span></span><br><span class="line">labels = [<span class="string">&quot;数学&quot;</span>, <span class="string">&quot;语文&quot;</span>, <span class="string">&quot;英语&quot;</span>, <span class="string">&quot;物理&quot;</span>,<span class="string">&quot;化学&quot;</span>]</span><br><span class="line">cj = [<span class="number">91</span>, <span class="number">88</span>, <span class="number">89</span>, <span class="number">89</span>,<span class="number">92</span>]</span><br><span class="line">tuchu = [<span class="number">0</span>, <span class="number">0.1</span>, <span class="number">0</span>, <span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line"><span class="comment"># 画图</span></span><br><span class="line">plt.pie(x=cj, labels=labels,explode=tuchu, shadow=<span class="literal">True</span>,autopct=<span class="string">&quot;%0.1f%%&quot;</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>本实例通过 autopct=&quot;%0.1f%% 显示数据标签，其中 %0.1f 指定显示小数点后一位的浮点数，后面的两个 %% 用于显示一个 % 号，通过 plt.legend () 控制了显示图例。</p>
+<h3 id="拓展极轴饼图"><a class="markdownIt-Anchor" href="#拓展极轴饼图">#</a> 拓展：极轴饼图</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">19680801</span>)<span class="comment">#生成随机数</span></span><br><span class="line"></span><br><span class="line">N = <span class="number">10</span><span class="comment">#显示几个圆圈</span></span><br><span class="line">theta = np.linspace(<span class="number">0.0</span>, <span class="number">2</span> * np.pi, N, endpoint=<span class="literal">False</span>)</span><br><span class="line">radii = <span class="number">10</span> * np.random.rand(N)<span class="comment">#</span></span><br><span class="line">width = np.pi / <span class="number">4</span> * np.random.rand(N)<span class="comment">#</span></span><br><span class="line"><span class="comment">#在添加projection=&#x27;polar&#x27;之后解释器会自动绘制出一张即坐标图</span></span><br><span class="line">ax = plt.subplot(<span class="number">111</span>, projection=‘polar’)</span><br><span class="line"><span class="comment">#bars = ax.bar(theta, radii, width=width, bottom=0.0)</span></span><br><span class="line"><span class="comment">#前三个参数分别对应left,height,width,left表示从哪开始，表示开始 位置，</span></span><br><span class="line"><span class="comment">#height表示从中心点向边缘绘制的长度</span></span><br><span class="line">bars = ax.bar(theta, radii, width=width, bottom=<span class="number">0.0</span>)</span><br><span class="line"><span class="comment">#left表示从哪开始，</span></span><br><span class="line"><span class="comment">#radii表示从中心点向边缘绘制的长度（半径）</span></span><br><span class="line"><span class="comment">#width表示末端的弧长</span></span><br><span class="line"><span class="comment">#bottom意思是底部</span></span><br><span class="line"><span class="comment">#自定义颜色和不透明度，下面代码是在极坐标系中画出扇形图的</span></span><br><span class="line"><span class="keyword">for</span> r, bar <span class="keyword">in</span> <span class="built_in">zip</span>(radii, bars):</span><br><span class="line">bar.set_facecolor(plt.cm.viridis(r/<span class="number">11.</span>))<span class="comment">#定义颜色r/10.代表颜色与半径有关</span></span><br><span class="line">bar.set_alpha(<span class="number">0.3</span>)<span class="comment">#定义不透明度，越小越透明</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_19.png" alt></p>
+<h3 id="拓展-多层嵌套饼图"><a class="markdownIt-Anchor" href="#拓展-多层嵌套饼图">#</a> 拓展：多层嵌套饼图</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">size = <span class="number">0.25</span></span><br><span class="line">base = <span class="number">50</span></span><br><span class="line">plt.rcParams[<span class="string">&#x27;font.family&#x27;</span>] = <span class="string">&#x27;SimHei&#x27;</span></span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">10</span>, <span class="number">10</span>))</span><br><span class="line">vals_middle = np.array([</span><br><span class="line">    [<span class="number">47.5</span>, <span class="number">11.7</span>, <span class="number">15.2</span>, <span class="number">9.6</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">44.8</span>, <span class="number">7.5</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">9.2</span>, <span class="number">68.5</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1.2</span>, <span class="number">7.2</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">80</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1.7</span>, <span class="number">18.9</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">])</span><br><span class="line">vals_outer = np.array([</span><br><span class="line">    [<span class="number">47.5</span>, <span class="number">11.7</span>, <span class="number">15.2</span>, <span class="number">9.6</span>],</span><br><span class="line">    [<span class="number">0</span>, <span class="number">36.6</span>, <span class="number">8.2</span>, <span class="number">7.5</span>],</span><br><span class="line">    [<span class="number">9.2</span>, <span class="number">38.1</span>, <span class="number">30.4</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1.2</span>, <span class="number">5.8</span>, <span class="number">1.4</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">80</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>],</span><br><span class="line">    [<span class="number">1.7</span>, <span class="number">18.9</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">])</span><br><span class="line">vals_inner = vals_middle.<span class="built_in">sum</span>(axis=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># 最内圈使用的数值为内圈各类数据加上base</span></span><br><span class="line">vals_first = vals_inner + base</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">第二圈使用的数值, 因为最内圈每个类别都加上了base, 所以为了确保第二圈的数值和内圈相匹配, 第二圈的各类别要按照各自所占的比例分配各类的总数值.</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line">vals_second = np.zeros((<span class="number">6</span>, <span class="number">4</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">6</span>):</span><br><span class="line">    s_a = vals_first[i]</span><br><span class="line">    s_b = vals_middle[i].<span class="built_in">sum</span>()</span><br><span class="line">    <span class="comment"># 如果第二圈某类总数值为0, 则分配base.</span></span><br><span class="line">    <span class="keyword">if</span> s_b == <span class="number">0.0</span>:</span><br><span class="line">        vals_second[i][<span class="number">1</span>] = base</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">        vals_second[i][j] = (vals_middle[i][j] / s_b) * s_a</span><br><span class="line"><span class="comment"># 第三圈使用的数值, 和上方同理</span></span><br><span class="line">vals_third = np.zeros((<span class="number">6</span>, <span class="number">4</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">6</span>):</span><br><span class="line">    s_a = vals_first[i]</span><br><span class="line">    s_b = vals_outer[i].<span class="built_in">sum</span>()</span><br><span class="line">    <span class="keyword">if</span> s_b == <span class="number">0.0</span>:</span><br><span class="line">        vals_third[i][<span class="number">1</span>] = base</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">        vals_third[i][j] = (vals_outer[i][j] / s_b) * s_a</span><br><span class="line"><span class="comment"># 获取colormap tab20c和tab20b的颜色</span></span><br><span class="line">cmap_c = plt.get_cmap(<span class="string">&quot;tab20c&quot;</span>)</span><br><span class="line">cmap_b = plt.get_cmap(<span class="string">&quot;tab20b&quot;</span>)</span><br><span class="line"><span class="comment"># 使用tab20c的全部颜色和tab20b中的 5至8 颜色</span></span><br><span class="line">cmap_1 = cmap_c(np.arange(<span class="number">20</span>))</span><br><span class="line">cmap_2 = cmap_b(np.array([<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>]))</span><br><span class="line"><span class="comment"># 内圈的颜色是每4个颜色中色彩最深的那个. vstack是将两类颜色叠加在一起</span></span><br><span class="line">inner_colors = np.vstack((cmap_1[::<span class="number">4</span>], cmap_2[<span class="number">0</span>]))</span><br><span class="line"><span class="comment"># 外圈的颜色是全部24种颜色</span></span><br><span class="line">outer_colors = np.vstack((cmap_1, cmap_2))</span><br><span class="line">labels_first = [<span class="string">&quot;餐厨废弃物\n&#123;&#125;万吨&quot;</span>.<span class="built_in">format</span>(vals_inner[<span class="number">0</span>]),</span><br><span class="line">                <span class="string">&quot;农业秸秆\n&#123;&#125;万吨&quot;</span>.<span class="built_in">format</span>(vals_inner[<span class="number">1</span>]),</span><br><span class="line">                <span class="string">&quot;水草\n151.2万吨&quot;</span>,</span><br><span class="line">                <span class="string">&quot;园林绿化\n废弃物\n&#123;&#125;万吨&quot;</span>.<span class="built_in">format</span>(vals_inner[<span class="number">3</span>]),</span><br><span class="line">                <span class="string">&quot;淤泥\n432.0万吨&quot;</span>,</span><br><span class="line">                <span class="string">&quot;畜禽粪便\n21.6万吨&quot;</span></span><br><span class="line">                ]</span><br><span class="line">labels_seocnd = [</span><br><span class="line">    <span class="string">&quot;未分类收集\n67.6万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;生物干化\n3.7万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;厌氧发酵\n10.2万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;油水分离\n2.6万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;粉碎\n46.8万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;好氧发酵\n3.5万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;未处理\n4.2万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;藻水分离\n147.0万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;未处理\n1.2万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;粉碎\n7.2万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;堆放\n432.0万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;未处理\n0.7万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;好氧发酵\n19.9万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;&quot;</span>,</span><br><span class="line">]</span><br><span class="line">labels_third = [</span><br><span class="line">    <span class="string">&quot;未处理\n67.5万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;肥料化、发电\n3.7万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;沼气、沼渣发电\n10.2万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;焚烧\n2.6万吨&quot;</span>,</span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;还田\n42.6万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;燃料化\n4.2万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;肥料化\n3.5万吨&quot;</span>,</span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;未利用\n4.2万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;燃料化\n80.2万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;肥料化\n66.8万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;&quot;</span>,</span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;未利用\n1.2万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;肥料化\n5.8万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;燃料化\n1.4万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;&quot;</span>,</span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;未利用\n432.0万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;&quot;</span>,</span><br><span class="line"></span><br><span class="line">    <span class="string">&quot;未利用\n0.7万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;肥料化\n19.9万吨&quot;</span>,</span><br><span class="line">    <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="string">&quot;&quot;</span>,</span><br><span class="line">]</span><br><span class="line">handles, labels = ax.pie(vals_first, radius=<span class="number">1</span> - size - size,</span><br><span class="line">                         labels=labels_first,</span><br><span class="line">                         labeldistance=<span class="number">0.5</span>, rotatelabels=<span class="literal">True</span>, textprops=&#123;<span class="string">&#x27;fontsize&#x27;</span>: <span class="number">11</span>&#125;,</span><br><span class="line">                         colors=inner_colors, wedgeprops=<span class="built_in">dict</span>(width=size, edgecolor=<span class="string">&#x27;w&#x27;</span>))</span><br><span class="line">ax.pie(vals_second.flatten(), radius=<span class="number">1</span> - size, colors=outer_colors,</span><br><span class="line">       labels=labels_seocnd,</span><br><span class="line">       labeldistance=<span class="number">0.7</span>, rotatelabels=<span class="literal">True</span>, textprops=&#123;<span class="string">&#x27;fontsize&#x27;</span>: <span class="number">11</span>&#125;,</span><br><span class="line">       wedgeprops=<span class="built_in">dict</span>(width=size, edgecolor=<span class="string">&#x27;w&#x27;</span>))</span><br><span class="line">ax.pie(vals_third.flatten(), radius=<span class="number">1</span>, colors=outer_colors,</span><br><span class="line">       labels=labels_third,</span><br><span class="line">       labeldistance=<span class="number">0.8</span>, rotatelabels=<span class="literal">True</span>, textprops=&#123;<span class="string">&#x27;fontsize&#x27;</span>: <span class="number">11</span>&#125;,</span><br><span class="line">       wedgeprops=<span class="built_in">dict</span>(width=size, edgecolor=<span class="string">&#x27;w&#x27;</span>))</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">&#x27;某市有机废弃物产生、处理、利用情况&#x27;</span>, fontsize=<span class="number">25</span>)</span><br><span class="line">plt.legend(handles=handles, labels=[</span><br><span class="line">    <span class="string">&quot;餐厨废弃物&quot;</span>,</span><br><span class="line">    <span class="string">&quot;农业秸秆&quot;</span>,</span><br><span class="line">    <span class="string">&quot;水草&quot;</span>,</span><br><span class="line">    <span class="string">&quot;园林绿化废弃物&quot;</span>,</span><br><span class="line">    <span class="string">&quot;淤泥&quot;</span>,</span><br><span class="line">    <span class="string">&quot;畜禽粪便&quot;</span>],</span><br><span class="line">           loc=<span class="number">1</span></span><br><span class="line">           )</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_20.png" alt></p>
+<p>这个例子来源于 CSDN 不是我自己写的，权拿过来做一个参考。</p>
+<p>下面写个简单的</p>
+<p>目前 matplotlib 的官方文档中尚无双层饼图绘制的专门介绍<s>我那个渣渣的英语即使有也多半找不到</s>，但是 pie（）函数中有个饼图半径的设置<strong> radius</strong>，我们可以通过手动规定饼图半径，pie () 由于是通过一层一层的堆叠，后面一层覆盖掉前面的层次，我们可以这样来实现两张图片的堆叠。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">vals1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">vals2 = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">labels = <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;D&#x27;</span></span><br><span class="line">ax.pie(vals1, radius=<span class="number">1.2</span>)</span><br><span class="line">ax.pie(vals2, radius=<span class="number">1</span>)</span><br><span class="line">ax.<span class="built_in">set</span>(aspect=<span class="string">&quot;equal&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>进一步实现环图，这也是这个道理，使用一张纯白的饼图去覆盖上两张图片就能实现多层嵌套饼图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">vals1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">vals2 = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">vals3 = [<span class="number">1</span>]</span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">labels = <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;D&#x27;</span></span><br><span class="line">ax.pie(vals1, radius=<span class="number">1.2</span>)</span><br><span class="line">ax.pie(vals2, radius=<span class="number">1</span>)</span><br><span class="line">ax.pie(vals3,colors=<span class="string">&#x27;w&#x27;</span>,radius=<span class="number">0.7</span>)</span><br><span class="line">ax.<span class="built_in">set</span>(aspect=<span class="string">&quot;equal&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_31.png" alt></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">matplotlib.rcParams[<span class="string">&#x27;font.family&#x27;</span>]=<span class="string">&#x27;SimHei&#x27;</span></span><br><span class="line">vals1 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">vals2 = [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">vals3=[<span class="number">1</span>]</span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">labels = <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;D&#x27;</span></span><br><span class="line">ax.pie(vals1, radius=<span class="number">1.2</span>,autopct=<span class="string">&#x27;%1.1f%%&#x27;</span>,pctdistance=<span class="number">0.9</span>)</span><br><span class="line">ax.pie(vals2, radius=<span class="number">1</span>,autopct=<span class="string">&#x27;%1.1f%%&#x27;</span>,pctdistance=<span class="number">0.75</span>)</span><br><span class="line">ax.pie(vals3, radius=<span class="number">0.6</span>,colors=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">ax.<span class="built_in">set</span>(aspect=<span class="string">&quot;equal&quot;</span>, title=<span class="string">&#x27;多层嵌套饼图&#x27;</span>)</span><br><span class="line"><span class="comment">#plt.legend()</span></span><br><span class="line">plt.legend(labels,bbox_to_anchor=(<span class="number">1</span>, <span class="number">1</span>), loc=<span class="string">&#x27;best&#x27;</span>, borderaxespad=<span class="number">0.</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_32.png" alt></p>
+<h2 id="57-直方图"><a class="markdownIt-Anchor" href="#57-直方图">#</a> 5.7 直方图</h2>
+<p>在数据分析应用中，直方图是一种对数据分布情况进行表达的数据可视化形式，其横坐标通常表示统计样本，纵坐标表示某个样本对应的某个属性的度量值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.hist(x, bins=<span class="literal">None</span>, density=<span class="literal">None</span>,…)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">figure = plt.figure()</span><br><span class="line">axes1 = figure.add_subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br><span class="line">axes2 = figure.add_subplot(<span class="number">1</span>,<span class="number">2</span>,<span class="number">2</span>)</span><br><span class="line">x = np.random.randint(<span class="number">0</span>,<span class="number">100</span>,size=<span class="number">50</span>)</span><br><span class="line"><span class="comment">#在0到100的范围内，随机生成五十个随机数,</span></span><br><span class="line">axes1.hist(x)</span><br><span class="line">axes2.hist(x,bins=<span class="number">5</span>,<span class="built_in">range</span>=[<span class="number">0</span>,<span class="number">100</span>],histtype=<span class="string">&#x27;barstacked&#x27;</span>,color=<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line"><span class="comment">#这个实际上频率分布直方图，y坐标是x在一定范围内出现的次数</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_21.png" alt></p>
+<h2 id="58-箱线图"><a class="markdownIt-Anchor" href="#58-箱线图">#</a> 5.8 箱线图</h2>
+<p>箱线图又称为盒式图、盒状图或箱形图，是一种用于显示一组数据分散情况资料的统计图。箱线图一般不受异常值的影响，是一种相对稳定的数据离散分布情况的描述方式。箱线图中显示的是一组数据的最大值、最小值、中位数、上下四分位数及异常值。</p>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/箱线图.png" alt="1636276528346" style="zoom:50%;">
+<p>将整组数据等分成 4 份，就是四分位数，四分位数有 3 个<br>
+第 1 个四分位数就是通常所说的四分位数，称为下四分位数，通常用 Q1 表示，等于整组数据中所有数值由小到大排列后第 25% 的数字，第 2 个四分位数是中位数，用 Q2 表示，等于整组数据中所有数值由小到大排列后第 50% 的数字，第 3 个四分位数是上四分位数，用 Q3 表示，等于整组数据中所有数值由小到大排列后第 75% 的数字</p>
+<p>箱线图的大小是由数据升序排列后，中间的 50% 个数据决定的。因此，前 25% 数据和后 25% 数据都无法影响箱线图，它们可以变得任意远，且不会扰动四分位值。若数据集呈标准正态分布，则中位数位于 Q1 和 Q3 中间，箱线图的中间线恰好位于上底和下底的正中央。若中位数偏向于下底，则数据集倾向于左偏态；若中位数偏向于上底，则数据集倾向于右偏态。箱线图的宽度在一定程度上反映了数据的波动程度。因为箱线图包含中间 50% 的数据，若它越扁，则说明数据较为集中，若它越宽，则说明数据越分散。</p>
+<p>可以通过观察中位线位于箱体的哪个部分判断数据分布是否均匀，如果中位线位于箱体的中心位置附近则数据部比较均匀，反之则不均匀。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.boxplot(x, notch=<span class="literal">None</span>, sym=<span class="literal">None</span>, vert=<span class="literal">None</span>, whis=<span class="literal">None</span>, positions=<span class="literal">None</span>, widths=<span class="literal">None</span>, patch_artist=<span class="literal">None</span>, meanline=<span class="literal">None</span>, showmeans=<span class="literal">None</span>, showcaps=<span class="literal">None</span>, showbox=<span class="literal">None</span>, showfliers=<span class="literal">None</span>, boxprops=<span class="literal">None</span>, labels=<span class="literal">None</span>, flierprops=<span class="literal">None</span>, medianprops=<span class="literal">None</span>, meanprops=<span class="literal">None</span>, capprops=<span class="literal">None</span>, whiskerprops=<span class="literal">None</span>)</span><br></pre></td></tr></table></figure>
+<p><strong>例 5-23</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">plt.boxplot(x)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><strong>横版 5-23：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">plt.boxplot(x,vert = <span class="literal">False</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_22.png" alt></p>
+<p>例 5-24：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">x1=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line">x2=[<span class="number">1</span>,<span class="number">3</span>,<span class="number">7</span>,<span class="number">9</span>,<span class="number">20</span>]</span><br><span class="line">x3= [<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">8</span>,<span class="number">10</span>]</span><br><span class="line">plt.boxplot((x1,x2,x3),labels=(<span class="string">&#x27;x1&#x27;</span>,<span class="string">&#x27;x2&#x27;</span>,<span class="string">&#x27;x3&#x27;</span>))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_23.png" alt></p>
+<p>从运行结果可以看出，x2 数据有一个异常数据点，绘制在箱线图外部。</p>
+<p>在进行数据预处理时，常常需要进行数据的异常值分析，来检测数据是否有错误和不合理的数据。异常值会影响整租数据，应该从本组数据中丢弃异常值。</p>
+<p>例 5-25：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.rcParams[<span class="string">&#x27;font.family&#x27;</span>] = <span class="string">&#x27;SimHei&#x27;</span></span><br><span class="line">data = &#123;</span><br><span class="line"><span class="string">&#x27;苹果&#x27;</span>: [<span class="number">102</span>, <span class="number">120</span>, <span class="number">130</span>, <span class="number">140</span>, <span class="number">150</span>, <span class="number">162</span>, <span class="number">170</span>, <span class="number">180</span>, <span class="number">190</span>, <span class="number">250</span>],</span><br><span class="line"><span class="string">&#x27;西瓜&#x27;</span>: [<span class="number">120</span>, <span class="number">133</span>, <span class="number">140</span>, <span class="number">150</span>, <span class="number">169</span>, <span class="number">170</span>, <span class="number">183</span>, <span class="number">190</span>, <span class="number">200</span>, <span class="number">210</span>],</span><br><span class="line"><span class="string">&#x27;桃&#x27;</span>: [<span class="number">100</span>, <span class="number">120</span>, <span class="number">135</span>, <span class="number">140</span>, <span class="number">158</span>, <span class="number">160</span>, <span class="number">170</span>, <span class="number">180</span>, <span class="number">195</span>, <span class="number">200</span>],</span><br><span class="line"><span class="string">&quot;香蕉&quot;</span>: [<span class="number">80</span>, <span class="number">100</span>, <span class="number">120</span>, <span class="number">137</span>, <span class="number">140</span>, <span class="number">150</span>, <span class="number">160</span>, <span class="number">170</span>, <span class="number">180</span>, <span class="number">197</span>]</span><br><span class="line">&#125;</span><br><span class="line">df = pd.DataFrame(data)</span><br><span class="line">df.plot.box(title=<span class="string">&quot;每种水果的销售额对比&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_24.png" alt></p>
+<h2 id="59小提琴图"><a class="markdownIt-Anchor" href="#59小提琴图">#</a> 5.9 小提琴图</h2>
+<p>小提琴图是用来展示多组数据的分布状态及概率密度的一种数据可视化形式。小提琴图结合了箱线图和密度图的特征，主要用来显示数据的分布形状，特别适用于大数据统计分析。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data=np.random.normal(<span class="number">0</span>, <span class="number">1</span>, <span class="number">100</span>)</span><br><span class="line">plt.violinplot(data,showmeans=<span class="literal">False</span>,showmedians=<span class="literal">True</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_25.png" alt></p>
+<h2 id="510热力图"><a class="markdownIt-Anchor" href="#510热力图">#</a> 5.10 热力图</h2>
+<p>Seaborn 是基于 matplotlib 库的 Python 可视化库， 它提供了一个高级界面来绘制有吸引力的统计图形。<br>
+Seaborn 其实是在 matplotlib 的基础上进行了更高级的 API 封装，从而使作图更加容易，不需要经过大量的调整就能使图变得更精致。<br>
+绘图热力图是大数据分析应用的一种常用可视化形式，用来表示大量数据的关联关系。<br>
+在实际应用中，通常使用 seaborn 来绘制热力图。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">seaborn.heatmap(data, vmin=<span class="literal">None</span>, vmax=<span class="literal">None</span>,cmap=<span class="literal">None</span>, center=<span class="literal">None</span>, robust=<span class="literal">False</span>, annot=<span class="literal">None</span>, fmt=’<span class="number">.2</span>g’, annot_kws=<span class="literal">None</span>,linewidths=<span class="number">0</span>, linecolor=’white’, cbar=<span class="literal">True</span>, cbar_kws=<span class="literal">None</span>, cbar_ax=<span class="literal">None</span>,square=<span class="literal">False</span>, xticklabels=’auto’, yticklabels=’auto’, mask=<span class="literal">None</span>,…)</span><br></pre></td></tr></table></figure>
+<p>热力图绘制属于 Python 绘图的中高级应用，在绘制前要先添加如下语句。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br></pre></td></tr></table></figure>
+<p>例 5-27：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">x = np.random.randn(<span class="number">4</span>, <span class="number">4</span>)</span><br><span class="line">f, ax = plt.subplots(nrows=<span class="number">2</span>)</span><br><span class="line">sns.heatmap(x, ax=ax[<span class="number">0</span>])</span><br><span class="line">sns.heatmap(x, annot=<span class="literal">True</span>, ax=ax[<span class="number">1</span>], annot_kws=&#123;<span class="string">&#x27;size&#x27;</span>:<span class="number">9</span>,<span class="string">&#x27;weight&#x27;</span>:<span class="string">&#x27;bold&#x27;</span>, <span class="string">&#x27;color&#x27;</span>:<span class="string">&#x27;blue&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_26.png" alt></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">x = np.random.randn(<span class="number">7</span>, <span class="number">7</span>)</span><br><span class="line">f, ax = plt.subplots(nrows=<span class="number">3</span>)</span><br><span class="line">sns.heatmap(x, cmap=<span class="string">&quot;YlGnBu_r&quot;</span>, linewidths = <span class="number">0.05</span>, linecolor= <span class="string">&#x27;red&#x27;</span>, ax = ax[<span class="number">0</span>])</span><br><span class="line">p1 = sns.heatmap(x, ax=ax[<span class="number">1</span>], cmap=<span class="string">&quot;hot&quot;</span>, center=<span class="literal">None</span>, xticklabels=<span class="literal">False</span>)</span><br><span class="line">p2 = sns.heatmap(x, ax=ax[<span class="number">2</span>], cmap=<span class="string">&quot;OrRd&quot;</span>, center=<span class="literal">None</span>, xticklabels=<span class="number">2</span>, yticklabels=<span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">5</span>)))</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_27.png" alt></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">x = np.random.randn(<span class="number">4</span>, <span class="number">4</span>)</span><br><span class="line">f, ax = plt.subplots(nrows=<span class="number">4</span>)</span><br><span class="line">sns.heatmap(x, cmap=<span class="string">&quot;YlGnBu&quot;</span>,annot=<span class="literal">True</span>, ax=ax[<span class="number">0</span>], annot_kws=&#123;<span class="string">&#x27;size&#x27;</span>:<span class="number">9</span>,<span class="string">&#x27;weight&#x27;</span>:<span class="string">&#x27;bold&#x27;</span>, <span class="string">&#x27;color&#x27;</span>:<span class="string">&#x27;red&#x27;</span>&#125;)</span><br><span class="line">sns.heatmap(x, cmap=<span class="string">&quot;YlGnBu_r&quot;</span>,annot=<span class="literal">True</span>, ax=ax[<span class="number">1</span>])</span><br><span class="line">sns.heatmap(x, cmap=<span class="string">&quot;hot&quot;</span>,annot=<span class="literal">True</span>, ax=ax[<span class="number">2</span>], annot_kws=&#123;<span class="string">&#x27;size&#x27;</span>:<span class="number">9</span>,<span class="string">&#x27;weight&#x27;</span>:<span class="string">&#x27;bold&#x27;</span>, <span class="string">&#x27;color&#x27;</span>:<span class="string">&#x27;blue&#x27;</span>&#125;)</span><br><span class="line">sns.heatmap(x, cmap=<span class="string">&quot;hot_r&quot;</span>,annot=<span class="literal">True</span>, ax=ax[<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_28.png" alt></p>
+<h2 id="511云图"><a class="markdownIt-Anchor" href="#511云图">#</a> 5.11 云图</h2>
+<p>词云图是目前文本大数据分析中常用的一种数据可视化方式，通过词云图可以直观的看到相应数据文本中的高频词。目前制作词云图使用最多的是 Python 库中的 wordcloud 库，wordcloud 库中有 3 个主要的函数，分别是<strong> wordcloud.Woedcloud ()</strong>,<strong>wordcloud.ImageColorGenerator()<strong> 及</strong> wordcloud.random_color_func ()</strong></p>
+<p>由于于老师没有给我，这些数据，我自己从网上下载了个 txt 格式的红楼梦，做了一下。</p>
+<p><strong>matplotlib.pyplot</strong> 模块用于绘图展示，<strong>jieba</strong> 库用于分词，<strong>numpy</strong> 模块和<strong> PIL.image</strong> 模块用于制作背景图，<strong>re</strong> 用于正则匹配，</p>
+<p>注意<strong> PIL.image</strong> 模块的真名是 pillow, 不要试图使用 PIL 之类的找到添加这个库。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pillow</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="comment"># 要先pip install wordcloud</span></span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&quot;红楼梦.txt&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">file_handle = <span class="built_in">open</span>(<span class="string">&#x27;红楼梦去字符.txt&#x27;</span>, mode=<span class="string">&#x27;a&#x27;</span>,encoding=<span class="string">&quot;utf-8&quot;</span>)</span><br><span class="line">line = f.read()</span><br><span class="line">a = re.<span class="built_in">compile</span>(<span class="string">u&#x27;[\u4e00-\u9fa5]+&#x27;</span>)</span><br><span class="line">b=a.findall(line)</span><br><span class="line">n=<span class="built_in">len</span>(b)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,n):</span><br><span class="line">    file_handle.write(b[i-<span class="number">1</span>])</span><br><span class="line">line = f.readline()</span><br><span class="line">file_handle.close()</span><br><span class="line">f.close()</span><br><span class="line">f = <span class="built_in">open</span>(<span class="string">&quot;红楼梦去字符.txt&quot;</span>, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>).read()</span><br><span class="line">words = jieba.lcut(f)  <span class="comment"># 使用精确模式对文本进行分词</span></span><br><span class="line">counts = &#123;&#125;  <span class="comment"># 通过键值对的形式存储词语及其出现的次数</span></span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(word) == <span class="number">1</span>:  <span class="comment"># 单个汉字不计算在内</span></span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        counts[word] = counts.get(word, <span class="number">0</span>) + <span class="number">1</span>  <span class="comment"># 遍历所有词语，每出现一次其对应的值加 1</span></span><br><span class="line">lists = <span class="built_in">list</span>(counts.items())  <span class="comment"># 将键值对转换成列表</span></span><br><span class="line">lists.sort(key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>], reverse=<span class="literal">True</span>)  <span class="comment"># 根据词语出现的次数进行从大到小排序</span></span><br><span class="line"><span class="comment">#file=open(&quot;./333.txt&quot;,&quot;w&quot;,encoding=&quot;utf&quot;)</span></span><br><span class="line"><span class="comment">#for i in range(len(lists)):</span></span><br><span class="line"><span class="comment">#    word,count=lists[i]</span></span><br><span class="line"><span class="comment">#    print(&quot;&#123;0:&lt;5&#125;&#123;1:&gt;5&#125;&quot;.format(word, count))</span></span><br><span class="line"><span class="comment">#    file.write(word+f&#x27;&#123;count&#125;&#x27;)</span></span><br><span class="line"><span class="comment">#这一部分我是想把所有的词语都导出了写到333.txt里面，之后可能会有用</span></span><br><span class="line"><span class="comment">#file.close()</span></span><br><span class="line">file=<span class="built_in">open</span>(<span class="string">&quot;./红楼梦词频统计.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,encoding=<span class="string">&quot;utf&quot;</span>)</span><br><span class="line">file.write(<span class="string">f&#x27;词语       次数\n&#x27;</span>)</span><br><span class="line"><span class="comment">#在这里先写入表头</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">    word, count = lists[i]</span><br><span class="line">    file.write(word + <span class="string">f&#x27;       <span class="subst">&#123;count&#125;</span>\n&#x27;</span>)</span><br><span class="line">file.close()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">    word, count = lists[i]</span><br><span class="line">    <span class="comment">#for循环输出频率前100的</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;&#123;0:&lt;5&#125;&#123;1:&gt;5&#125;&quot;</span>.<span class="built_in">format</span>(word, count))</span><br><span class="line">a=pd.read_table(<span class="string">&#x27;红楼梦词频统计.txt&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>,sep=<span class="string">&#x27;       &#x27;</span>,engine=<span class="string">&#x27;python&#x27;</span>)</span><br><span class="line">df=pd.DataFrame(a)</span><br><span class="line"><span class="comment">#fit_word函数，接受字典类型，其他类型会报错</span></span><br><span class="line">dic=<span class="built_in">dict</span>(<span class="built_in">zip</span>(df[<span class="string">&#x27;词语&#x27;</span>],df[<span class="string">&#x27;次数&#x27;</span>]))</span><br><span class="line"><span class="comment">#通过PIL库设置背景图片</span></span><br><span class="line">bg=np.array(Image.<span class="built_in">open</span>(<span class="string">&quot;城市.png&quot;</span>))</span><br><span class="line"><span class="comment">#当使用PlL.Image.open()打开图片后，如果要使用函数，需要先将image形式转换成array数组,这里是由于两个数组存储顺序不一致，</span></span><br><span class="line">wordcloud = WordCloud(font_path=<span class="string">&#x27;simhei.ttf&#x27;</span>,mask=bg,background_color=<span class="string">&quot;white&quot;</span>).fit_words(dic)</span><br><span class="line">plt.imshow(wordcloud)</span><br><span class="line"><span class="comment"># 显示</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2021/11/06/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/Figure_29.png" alt></p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>\u4e00-\u9fa5 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/20211106/">https://shierjinghuang.github.io/python%E7%BB%98%E5%9B%BE%E5%8F%8A%E5%8F%AF%E8%A7%86%E5%8C%96%E5%A4%87%E8%AF%BE/20211106/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+                                    <span class="chip bg-color">基础知识</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/ctfshow%E8%A7%A3%E9%A2%98%E4%B9%8BMisc%E5%85%A5%E9%97%A8/20211123/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="ctfshow解题之Misc入门">
+                        
+                        <span class="card-title">ctfshow解题之Misc入门</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-23
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CTF/" class="post-category">
+                                    CTF
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Misc/">
+                        <span class="chip bg-color">Misc</span>
+                    </a>
+                    
+                    <a href="/tags/ctfshow/">
+                        <span class="chip bg-color">ctfshow</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/%E4%B9%8C%E5%90%88%E9%BA%92%E9%BA%9F/20211028/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="艺术鉴赏">
+                        
+                        <span class="card-title">艺术鉴赏</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E4%B8%AA%E4%BA%BA/" class="post-category">
+                                    个人
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%9D%82%E8%B0%88/">
+                        <span class="chip bg-color">杂谈</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2023</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">318.8k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

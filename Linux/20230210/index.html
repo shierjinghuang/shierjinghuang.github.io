@@ -1,0 +1,2034 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Linux 知识点汇总, 十二惊惶">
+    <meta name="description" content="Linux 知识点汇总
+12345# 选择题	  1 * 20# 判断题	  1 * 20# 名词解释	 2 * 10# 命令题	  5 * 4 （每小题5步，一命令一分）# 问答题	  5 * 4
+[TOC]
+# P4: Linux 的基">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Linux 知识点汇总 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Linux 知识点汇总</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Linux/">
+                                <span class="chip bg-color">Linux</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                学习笔记
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-02-10
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-02-20
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    12.2k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    45 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2><center>Linux 知识点汇总</center></h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 选择题	  1 * 20</span></span><br><span class="line"><span class="comment"># 判断题	  1 * 20</span></span><br><span class="line"><span class="comment"># 名词解释	 2 * 10</span></span><br><span class="line"><span class="comment"># 命令题	  5 * 4 （每小题5步，一命令一分）</span></span><br><span class="line"><span class="comment"># 问答题	  5 * 4</span></span><br></pre></td></tr></table></figure>
+<p>[TOC]</p>
+<h4 id="p4-linux的基本特征-8个"><a class="markdownIt-Anchor" href="#p4-linux的基本特征-8个">#</a> P4: Linux 的基本特征 8 个</h4>
+<ul>
+<li><strong>开放性</strong>：系统遵循世界标准规范，特别是遵循开放系统互连 (OSI) 国际标准</li>
+<li><strong>多用户</strong>：系统资源可以被不同的用户各自拥有使用。每个用户对自己的资源有特定的权限，互不影响。</li>
+<li><strong>多任务</strong>：计算机同时执行多个程序，而且各个程序的运行互相独立。Linux 系统调度每一个进程平等地访问微处理器</li>
+<li><strong>快速性</strong>：Linux 不大在意 CPU 的速度，它可以把处理器的性能发挥到极限</li>
+<li><strong>安全性</strong>：Iinux 采取了许多安全技术措施，包括对读、写进行权限控制，带保护的子系统、审计跟踪、核心授权等，这为网络多用户环境中的用户提供了必要的安全保障</li>
+<li><strong>网络性</strong>：Linux 是在 Internet 的基础上产生并发展起来的，因此，完善的内置网络是 Linux 的一大特点。</li>
+<li><strong>移植性</strong>：Linux 能够在从微型计算机到大型计算机的任何环境中和任何平台上运行。</li>
+<li><strong>兼容性</strong>：Linux 是一款与 POSI (Portable Operating System Interface) 相兼容的操作系统，它所构成的子系统支持所有相关的 ANSI、ISO、 IETF 和 W3C 业界标准。</li>
+</ul>
+<h4 id="p25-26-关机与注销"><a class="markdownIt-Anchor" href="#p25-26-关机与注销">#</a> P25-26: 关机与注销</h4>
+<ol>
+<li>
+<p>从图形界面关机：右上角齿轮</p>
+</li>
+<li>
+<p>从命令行关机</p>
+<ul>
+<li>
+<p><strong>关机命令 shutdown</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> shutdown //要等待一会儿</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> shutdown +5 //5min后关机</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> shutsown 19:20 //19：20关机</span></span><br><span class="line">-f/-F 重新启动时执行/不执行fsck</span><br><span class="line">-k 仅送出信息给所有用户，不会实际关机</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>注销命令 exit</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">exit [状态值]</span><br><span class="line">// 0表示执行成功，其他值表示失败</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>重启命令 reboot</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-d 重启时不把数据写入记录文件</span><br><span class="line">-n 重开机前不检查有未结束的程序</span><br><span class="line">-w 仅测试不重启，把数据写入记录文件</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>（第三章 考试重点）</strong></p>
+<h4 id="p57-shell常用特殊符号-7个"><a class="markdownIt-Anchor" href="#p57-shell常用特殊符号-7个">#</a> P57: Shell 常用特殊符号 7 个</h4>
+<ul>
+<li>&quot;*****&quot; 表示一个 (包括空字符) 或多个字符组成的字符串</li>
+<li>&quot; <strong>?</strong> &quot; 表示单个字符</li>
+<li>&quot; <strong>[]</strong> &quot; 用于指定显示内容范围</li>
+<li>&quot; <strong>!</strong> &quot;用于指定不显示内容，与&quot; <strong>[]</strong> &quot; 一同使用</li>
+<li>&quot; <strong>;</strong> &quot; 用于同一行中分隔多个命令</li>
+<li>&quot; <strong>`</strong> &quot; 命令替代符，包含内容在 Shell 中为一条命令，并被执行</li>
+<li>&quot; <strong>#</strong> &quot; 注释符号，该行内容不被执行</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ls -l /bin/e*  //查看/bin目录下的e开头的所有文件和文件夹</span><br><span class="line">ls -l /bin/e？ //查看e开头，长度为2的所有文件和文件夹</span><br><span class="line">ls [a-c]	  //为a b c的文件和文件夹</span><br><span class="line">ls [!a-c]     //显示名不为为a b c的文件和文件夹</span><br><span class="line">ls -l		  //显示目录下的文件和文件夹和查看其详细信息</span><br><span class="line">echo `ls -l`  //字符串输出为指令执行结果</span><br></pre></td></tr></table></figure>
+<h4 id="p57-shell常用操作-4个"><a class="markdownIt-Anchor" href="#p57-shell常用操作-4个">#</a> P57: Shell 常用操作 4 个</h4>
+<ul>
+<li>
+<p>自动命令补全功能 ——TAB 键</p>
+</li>
+<li>
+<p>自动输入历史命令 ——history 命令</p>
+</li>
+<li>
+<p>重定向</p>
+<p>让用户从文件输入命令，或将输出结果存储在文件及设备中，不需要输入输出设备</p>
+<ul>
+<li>输出重定向符 **&quot;&gt;&quot;(写入并覆盖)<strong> 和</strong> &quot;&gt;&gt;&quot;(追加)**，输入重定向符 &quot;&lt;&quot;</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls -l &gt; test //将执行结果写入test文件中，没有test就自动创建</span><br><span class="line">//显示器无结果表示重定向成功</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>管道</p>
+<blockquote>
+<p>管道是一种通信机制，是一种特殊文件，可以进行读写。</p>
+</blockquote>
+<blockquote>
+<p>除首尾的两个命令，每一个命令的输入都来自前一个命令的输出</p>
+</blockquote>
+<blockquote>
+<p>&quot; <strong>|</strong> &quot; 将多个简单命令结合在一起，实现复杂的功能</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls -l | grep test //查看当前目录下test的详细信息</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="p61-shell常用命令-10个"><a class="markdownIt-Anchor" href="#p61-shell常用命令-10个">#</a> P61: Shell 常用命令 10 个</h4>
+<p>（第四题考 书上命令要很了解）</p>
+<ul>
+<li>
+<p><strong>ls 查看指定工作目录下的内容</strong></p>
+<blockquote>
+<p style="color:blue;">ls [选项] [路径]</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls -a/-A 显示所有文件及目录，列出/不列出隐藏文档(隐藏文档名称开头有&quot;.&quot;)</span><br><span class="line">ls -l 除文件名外，显示详细信息</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>pwd 查看当前工作目录的绝对路径</strong></p>
+</li>
+<li>
+<p><strong>uname 查看当前系统内核信息</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uname 显示内核名</span><br><span class="line">uname -r 显示内核版本号</span><br><span class="line">uname -o 显示系统信息</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>cd 切换目录</strong></p>
+<blockquote>
+<ul>
+<li>
+<p style="color:blue;">cd [路径]</p>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd / //切换到/目录</span><br><span class="line">cd ~ //切换到当前用户主目录</span><br><span class="line">cd .. //切换到上一级目录</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>cat 显示文件内容</strong></p>
+<blockquote>
+<ul>
+<li>
+<p style="color:blue;">cat [选项] [文件] </p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p><strong>clear 清屏</strong></p>
+</li>
+<li>
+<p><strong>sudo 切换用户身份执行</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">sudo adduser Me //以root用户运行adduser命令</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>su 切换用户</strong></p>
+<blockquote>
+<ul>
+<li>
+<p style="color:blue;">sudo	[选项] [命令]	</p>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">sudo su root //切换到root用户</span></span><br><span class="line"><span class="meta">#</span><span class="bash">su Me //切换到Me用户</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>ifconfig 显示和配置网络设备属性</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interface 网络接口的名称，如eth0(网卡) </span><br><span class="line">ifconfig eth0 //查看eth0的网络情况</span><br><span class="line">ifconfig eth0 up/down //激活或关闭eth0</span><br><span class="line">ifconfig eth0 192.168.0.25 netmask 255.255.255.0 //设置eth0的IP地址和子网掩码</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>man 系统帮助 (命令的详细内容和使用方法)</p>
+<blockquote>
+<ul>
+<li>
+<p style="color:blue;">man [命令名]</p>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man ls //查看ls命令的详细内容</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="p65-96-编辑器-2个"><a class="markdownIt-Anchor" href="#p65-96-编辑器-2个">#</a> P65-96: 编辑器 2 个</h4>
+<p>(编辑器的基本使用，考察，至少知道哪个是编辑器)</p>
+<p><strong>1.Gedit 编辑文档</strong></p>
+<p>窗口四个部分：菜单栏、工具栏、文档编辑栏、状态栏</p>
+<p>菜单栏：文件、编辑、查看、搜索、工具、文档、帮助</p>
+<ul>
+<li>文件：新建、打开、保存、保存为、还原、打印预览、打印、关闭、推出</li>
+<li>编辑：撤销、重做、剪切、复制、粘贴、删除、全部选中、插入日期和时间、首选项</li>
+<li>查看：……</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gedit test.cpp</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>“+” 前台运行</p>
+<p>“&amp;” 后台运行，进入自己的编辑器</p>
+</blockquote>
+<p><strong>2.VIM 的使用和配置</strong></p>
+<p><strong>3 种工作模式：输入模式、指令模式、底行模式</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim test //光标置于最后一行</span><br><span class="line">vim n test //光标置于第n行</span><br><span class="line">vim pattern test //光标置于第一个与pattern匹配的串处</span><br><span class="line">vim -r test //发生系统崩溃，恢复文件</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>只读模式切输入模式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">i 光标前(光标在第一行第一列)</span><br><span class="line">a 光标后(光标在第一行第二列)</span><br><span class="line">I 当前行首</span><br><span class="line">A 当前行尾</span><br><span class="line">o/O 当前行之下/上新开一行</span><br><span class="line">r 替换当前字符</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>输入模式切指令模式 <strong>Ecs 键</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">移动光标类指令：</span><br><span class="line">光标上移一行 k ; 光标下移一行 j</span><br><span class="line">光标左移一字符 h ; 光标右移一字符 l</span><br><span class="line">……</span><br><span class="line">屏幕翻滚类指令：</span><br><span class="line">Ctrl+u 文件首翻半屏</span><br><span class="line">……</span><br><span class="line">复制、删除、粘贴类指令：</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>指令模式切底行模式  <strong>: 或？或 /</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/pattern 从光标开始处向文件尾搜索pattern</span><br><span class="line">?pattern 从光标开始处向文件首搜索pattern</span><br><span class="line">:w 保存  :x 保存并退出  :q 退出  :! 强制退出</span><br><span class="line">:q! 不保存文件并退出</span><br><span class="line">:wq 保存并退出</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>VIM 配置</strong></p>
+<p>定制 VIM 编辑器属性方便编写文档，配置文件地址为 /etc/vim/vimrc，该文件会在启动时读取，该命令为底行模式命令，命令写入文件后使用时不必重复键入命令</p>
+<p>更新最新 vim 版本 (vim,vim-common,vim-doc,vim-runtiem)，切换到 root 权限下，打开 vim 配置文件 (vim /etc/vim/vimrc)，将需要命令前的注释键 #删除。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">syntax on 关键字高亮</span><br><span class="line">set tabstop=4 按下tab键跳跃4个光标</span><br><span class="line">set background=dark 更改背景为深色</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+<h4 id="p77-挂载"><a class="markdownIt-Anchor" href="#p77-挂载">#</a> P77: 挂载</h4>
+<p>挂载：在 Linux 或 UNIX 系统中，<strong>任何个种类的文件系统被创建后，都需要挂载到某个特定的目录才能使用，这个过程相当于激活一个文件系统</strong>，使它能够被使用。</p>
+<p>Linux 使用<strong> mount 工具</strong>来对文件系统进行挂载。挂载文件系统时需要明确挂载点，比如在安装 Ubuntu 的过程中，读者实际上已经接触过挂载的过程了，在创建文件系统后，操作系统会提示将此文件系统挂载至哪个位置，而这个位置就是挂载点，在那个时候，通常都选择挂载点为 “/”，即根目录。此外，还可以利用该工具挂载其他种类的文件系统，也需要涉及挂载点的选择，挂载点的实质是一个空置的目录。</p>
+<p>Windws 文件系统的挂获原理是将磁盘分成若干分区，在各个分区中挂载文件系统。而 Linux 的挂载原理与 Windows 不同，它是将磁盘空间挂载在一个目录下。</p>
+<h4 id="p81-swap交换分区"><a class="markdownIt-Anchor" href="#p81-swap交换分区">#</a> P81: swap 交换分区</h4>
+<ul>
+<li>
+<p>什么是交换分区？</p>
+<ul>
+<li>在 Linux 中，交换分区是 “虚拟内存” 技术的集中体现。它代替了 Windows 中交换文件的概念，但实质都是<strong>利用硬盘空间，临时当作内存使用</strong></li>
+<li>虚拟内存在功能上突破了物理内存的限制，是程序可以操纵大于实际物理内存的空间，更重要的是，虚拟内存是隔离每个进程的安全保护网，可以使每个进程都不受其他程序的干扰</li>
+</ul>
+</li>
+<li>
+<p><font color="Brown">怎么交换？有什么功能？交换多少合适？</font></p>
+<ul>
+<li>
+<p>当系统的物理内存不够用的时候，才进行分区的交换。将物理内存中的一部分空间释放出来，以供当前运行的程序使用，被释放的空间的程序被临时保存到交换分区中，等到那些程序要运行时，再从交换分区中恢复保存的数据到内存中。被释放的空间可能来自一些很长时间没有什么操作的程序。</p>
+</li>
+<li>
+<p>分配太多的交换分区会浪费磁盘空间，而交换分区太少，系统则会发生错误。通常情况下，交换分区应<strong>大于或等于物理内存的大小</strong>，最小<strong>不应小于 64M</strong>，通常交换分区得大小应是物理内存 (虚拟机的) 得<strong> 2~2.5 倍</strong>。</p>
+<blockquote>
+<ul>
+<li>
+<p>不是所有物理内存中交换出来的数据都会被放到交换分区中，会导致不堪负重，有相当一部分数据会被直接交换到文件系统，如文件读写</p>
+</li>
+<li>
+<p>交换分区是” 匿名 “内存数据的交换空间。” 匿名 “内存数据如 malloc 和 new 函数生成的对象的数据，以及堆栈中一些状态和变量数据等。malloc 和 new 函数生成的对象的数据，即人为在内存上进行的空间操作，它们在文件系统中没有相应的” 存储 “文件，需要交换分区。</p>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> swapon -s //查看当前系统的交换分区情况</span></span><br><span class="line"></span><br><span class="line">Filename表示当前交换分区挂载的位置，Type表示该分区的文件格式，partition表示交换分区，/dev/sda5表示第一块硬盘的第一个扩展分区的第一个逻辑磁盘</span><br><span class="line">/dev/hda, /dev/hdb, /dev/sda, /dev/sdb</span><br><span class="line">hda一般是指IDE接口的硬盘，hda指第一块硬盘，hdb指第二块硬盘,等等；sda一般是指SATA接口的硬盘，sda指第一块硬盘，sdb指第二块硬盘</span><br></pre></td></tr></table></figure>
+<ul>
+<li>交换分区的数量对性能有很大的影响。因为分区的交换操作是磁盘 I/O 的操作，多个交换分区可以轮流使用，均衡 I/O 的负载，而单一交换分区会很忙使系统大多数时间处于等待状态，效率很低。系统很慢，但 CPU 不忙，说明问题在 I/O 上。</li>
+</ul>
+<p><strong>交换分区的管理</strong></p>
+<p>交换分区是分页管理的，每一页的大小和内存也得大小一样，以方便数据交换。</p>
+<blockquote>
+<p>旧版本实现交换分区，用交换分区第 1 页作为所有交换分区的一个” 映射 “，即第 1 页的每一位都对应一页交换分区。如果这一位是 1，表示此页可用；如果这一位是 0，表示此页是环块，不可用。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vmstat 3  //每3秒捕获一次系统性能指标</span></span><br><span class="line"></span><br><span class="line">Procs下的r表示正在等待的进程数量（等待块），b表示输入输出</span><br><span class="line">Memory下的swpd表示使用的Swap空间的大小</span><br><span class="line">Swap下的si表示系统的交换回内存的总量，so表示CPU每秒交换总量</span><br><span class="line">以上指标的数值越大，表示系统越繁忙，其繁忙程度与系统具体的配置有关。</span><br></pre></td></tr></table></figure>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20230209224236885.png" alt></p>
+<p><font color="red"><strong>交换分区常用管理方法</strong></font></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1.切换为超级用户（管理员），cd到/root目录下</span><br><span class="line">sudo su root</span><br><span class="line">cd /root</span><br><span class="line">2.创建一个swap文件（有连续空间的），其路径为/root/swapfile</span><br><span class="line">dd if=/dev/zero of=/root/swapfile bs=1024 count=65536</span><br><span class="line">(ls //存在一个snap和swapfile文件)</span><br><span class="line">3.格式化swap分区</span><br><span class="line">mkswap swapfile //将刚才建立的/root/swapfile文件格式化为swap格式</span><br><span class="line">4.激活swap分区</span><br><span class="line">swapon swapfile</span><br><span class="line">5.检查刚建立的交换分区文件是否存在</span><br><span class="line">swapon -s</span><br><span class="line">6.回收/root/swapfile文件所占用的交换空间</span><br><span class="line">swapoff swapfile</span><br><span class="line">7.删除/root/swapfile文件</span><br><span class="line">rm swapfile</span><br><span class="line"></span><br><span class="line">(永久创建 vim /etc/fstab)</span><br></pre></td></tr></table></figure>
+<h4 id="p88-91-压缩和解压-3个"><a class="markdownIt-Anchor" href="#p88-91-压缩和解压-3个">#</a> P88-91: 压缩和解压 3 个</h4>
+<ul>
+<li>
+<p><strong>zip 和 unzip</strong></p>
+<ul>
+<li>
+<p>zip 命令一般解压有规则特征的应用程序</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zip -m abc.zip a b c //-m:压缩后，删除原始文件(将文件移入压缩文件) </span><br><span class="line">zip -r test.zip test/ //-r:递归处理，压缩指定目录下的所有文件和子目录</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>unzip 解压</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">unzip abc.zip //直接解压，压缩文件依然存在</span><br><span class="line">unzip -d test1 abc.zip //-d&lt;目录&gt;:指定文件解压后的存储目录，没有的话新建</span><br><span class="line">unzip abc.zip -x a //-x&lt;文件&gt;：指定压缩文件中不解压的文件</span><br><span class="line"></span><br><span class="line">unzip -l abc.zip //-l:显示压缩文件所包含的文件</span><br><span class="line">unzip -Z abc.zip //-Z:显示压缩文件中文件的具体信息，不解压</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>tar 解压规则 / 不规则程序</strong></p>
+<p>（1）-cvf：文件归档但不压缩</p>
+<center><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/wps15.jpg" alt="img" style="zoom: 67%;"> </center>
+</li>
+</ul>
+<p>（2）gzip 压缩和解压缩 -z</p>
+<p>-c：压缩；-x：解压缩</p>
+<center><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/wps16.jpg" alt="img" style="zoom: 67%;"> </center>
+  <center><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/wps17.jpg" alt="img" style="zoom:67%;"> </center>
+（3）bzip2压缩和解压缩 -j
+<p>-c：压缩；-x：解压缩</p>
+<center><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/wps18.jpg" alt="img" style="zoom:67%;"> </center>
+  <center><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/wps19.jpg" alt="img" style="zoom:67%;"> </center>
+<h4 id="p92文件系统管理命令-6类20个"><a class="markdownIt-Anchor" href="#p92文件系统管理命令-6类20个">#</a> P92：文件系统管理命令 6 类 20 个</h4>
+<ol>
+<li>
+<p>文件的基本操作</p>
+<ul>
+<li>
+<p><strong>touch 创建一个新文件，存在则修改文件最后修改日期</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch [参数] [文件名]</span><br><span class="line">touch a</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>cp 复制一个或多个文件，也可以复制一个目录</strong></p>
+<blockquote>
+<ul>
+<li>
+<p style="color:blue;">touch [参数] [源地址] [目的地址]</p>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cp a.cpp c.cpp //复制a.cpp到当前目录c.cpp中</span><br><span class="line">-v 查看复制过程</span><br><span class="line">-i 询问，是否覆盖原来已经存在的同名文件</span><br><span class="line">-r 递归处理，实现目录复制</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>mv 移动文件或目录，也可以进行重命名</strong></p>
+<blockquote>
+<ul>
+<li>
+<p style="color:blue;">mv [参数] [源地址] [目的地址]</p>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv dir1/a dir2/</span><br><span class="line">mv b bbb //b重命名为bbb</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>rm 删除一个或多个文件，也可以递归删除目录</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm dir1/bbb</span><br><span class="line">rm -ri dir1/ //递归处理来删除目录，并询问</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>目录的基本操作</p>
+<ul>
+<li>
+<p><strong>mkdir 创建一个目录</strong></p>
+<blockquote>
+<ul>
+<li>
+<p style="color:blue;">mkdir [参数] [目的地址]</p>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir dir1 //当前目录下创建一个目录</span><br><span class="line">mkdir -p dir2/dir22/dir222 //-p实现多层目录的建立</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>rmdir 删除一个目录</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rmdir dir1</span><br><span class="line">rmdir -p dir2/dir22/dir22 //-p实现多层目录的全部删除</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>查看文件内容</p>
+<ul>
+<li>
+<p><strong>more 在终端屏幕按屏显示文本文件</strong></p>
+<p>在终端屏幕显示文本文件：Enter 一行，空格一屏（如果 - num 有参数，显示 num 行），q 退出</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">more -8 /etc/passwd //每屏显示8行</span><br><span class="line">ls /etc/ | more -10 //查看/etc目录的文件信息，每屏显示10行</span><br><span class="line">-p 实现清屏</span><br><span class="line">-d 显示友好信息</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>less 在终端屏幕按屏显示文本文件</strong></p>
+<p>在终端屏幕显示文本文件，不能 Enter 和 Space 翻阅，增加：鼠标滑动显示内容；底部提示符为 “:”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /etc/ | less</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>head 显示前几行或几字节</strong></p>
+  <img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20230210001613397.png" alt="image-20230210001613397" style="zoom:67%;">
+</li>
+<li>
+<p><strong>tail 显示前 / 最后几行或几字节</strong></p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20230212191142439.png" alt="image-20230212191142439" style="zoom:67%;">
+<p>（head 和 tail 这两命令同理）</p>
+</li>
+<li>
+<p>od 按照特殊格式查看文件内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">字码基数 -d 十进制；-o 八进制(默认)；-x 十六进制 -t 设置输出格式</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>文件类型</p>
+<ul>
+<li>
+<p><strong>文件类型</strong></p>
+<p><font color="red"><strong>- 普通文件</strong>，<strong>d 目录</strong>，c 字符设备（串口设备：调制解调器），b 块设备（接口设备：硬盘、光驱），l 符号链接文件（快捷方式），s 套接口文件（网络通信文件），p 管道文件（FIFO 文件，进程间通信机制）</font></p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20230210003215624.png" alt="image-20230210003215624" style="zoom:67%;">
+</li>
+<li>
+<p><strong>file 辨识文件类型</strong></p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20230210001908362.png" alt="image-20230210001908362" style="zoom:67%;">
+</li>
+</ul>
+</li>
+<li>
+<p>查询文件</p>
+<ol>
+<li>
+<p><strong>find 在目录结构中查找文件</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find /etc -name vim* //查找文件名中以vim开头的所有文件</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>locate 查找符合条件的文件</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">locate cpuinfo //查找含有cpuinfo的文件</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>grep 查找包含指定关键字的文件</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -ir &quot;Ubuntu&quot; /user | less //</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li>
+<p>其他管理命令</p>
+<ul>
+<li>
+<p><strong>ln 创建连接文件</strong></p>
+<blockquote>
+<ul>
+<li>
+<p style="color:blue;">ln [参数] [目的地址] [链接文件名]</p>
+</li>
+</ul>
+</blockquote>
+<p><font color="blue">两种链接：硬链接和软连接：</font></p>
+<ul>
+<li><strong>硬链接利用每个文件分配的物理编号 inode 建立的，因此不能跨越文件系统。修改硬链接的目标文件名，链接依然有效；</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>
+<p><strong>软连接利用文件路径名建立链接，通常为绝对路径，增加可移植性。修改软链接目标文件名，链接将断开</strong></p>
+ <img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20230210002324999.png" alt="image-20230210002324999" style="zoom:67%;">
+</li>
+<li>
+<p><strong>wc 统计文件的字数、字节数、行数等信息</strong></p>
+</li>
+</ul>
+  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   wc -c 字节</span><br><span class="line">wc -l 行数</span><br><span class="line">   wc -w 字数</span><br></pre></td></tr></table></figure>
+<pre><code> &lt;img src=&quot;https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20230212191405117.png&quot; alt=&quot;image-20230212191405117&quot; style=&quot;zoom:67%;&quot; /&gt;
+</code></pre>
+<ul>
+<li>
+<p><strong>comm 逐行比较两个<font color="blue">已排序</font>文件的差异，并显示</strong></p>
+</li>
+<li>
+<p><strong>diff 逐行比较文本文件的异同处</strong></p>
+<p>逐行比较文本文件的异同处。指定比较目录，会比较相同文件名的文件，不会比较子目录</p>
+</li>
+</ul>
+<h4 id="p105-ubuntu用户系统概述"><a class="markdownIt-Anchor" href="#p105-ubuntu用户系统概述">#</a> P105: Ubuntu 用户系统概述</h4>
+<p>Ubuntu Linux 系统是一个<font color="red">多用户、多任务的分时</font>操作系统</p>
+<p><font color="Brown">Ubuntu 用户类型:  3 个</font></p>
+<ul>
+<li><font color="Brown">初次创建的用户：完成比普通用户多的功能</font></li>
+<li><font color="Brown">root 用户 #：系统管理员，完成对系统的所有管理功能，拥有最高权限</font></li>
+<li><font color="Brown">普通用户～：在安装完操作系统后，被创建的其他所有用户</font></li>
+</ul>
+<p>查看各个用户的相关信息：<strong>配置文件 /etc/passwd</strong></p>
+<p><strong>记录当前操作系统中所有用户的基本信息：用户名、用户 UID、用户组 ID (GID)、主目录路径、登录 Shell 等。</strong></p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20230210004522336.png" alt="image-20230210004522336" style="zoom:67%;">
+<h4 id="p113-用户管理命令"><a class="markdownIt-Anchor" href="#p113-用户管理命令">#</a> P113: 用户管理命令</h4>
+<p>sudo 和 su 的配置文件 /etc/sudoers</p>
+<ol>
+<li>
+<p><font color="Brown"><strong>添加用户 adduser</strong></font></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> adduser abc //添加一个名为abc的普通用户</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> adduser --system --home /home/xyz --shell /bin/bash xyz //添加一个名为xyx的系统用户，指定主目录为/home/xyz，默认shell为bash</span></span><br><span class="line">(ls /home -&gt; abc xyz)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><font color="Brown"><strong>显示用户信息  finger</strong></font></p>
+<p>finger 命令用于查找用户，并显示对应用户的相关信息</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> sudo apt install finger</span></span><br><span class="line">finger -l abc  //列出用户abc的详细信息</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>更改用户密码 passwd</p>
+<p>passwd 命令用于更改用户密码。如果当前用户为普通用户，只更改自己密码；当前用户为超级管理员，能更改所有用户密码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">passwd abc //更改用户abc的密码</span><br><span class="line">passwd -d abc //删除用户abc的密码</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><font color="Brown"><strong>修改用户登录信息 usermode</strong></font></p>
+<p>usermode 命令用于修改已添加到系统中的某个用户的登录名、主目录、默认 shell 等与登录相关的信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">usermode -l abcd abc //将用户abc改名为abcd</span><br><span class="line">finger abc //查找登录名为abc的用户，不存在</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><font color="Brown"><strong>显示用户 ID id</strong></font></p>
+<p>id 命令用于显示系统中某个用户的 UID、GID 等识别号信号。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">id root //显示用户root的所有ID</span><br><span class="line">id -u abc //显示用户abc的UID</span><br><span class="line">-g 组ID  -G 所有组ID</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>修改用户个人信息 chfn</p>
+<p>chfn 命令用于修改用户的基本个人信息，如真实姓名、电话号码等。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chfn -f abcdefg abc //将用户abc的真实姓名改为abcdefg</span><br><span class="line">chfn -h 1111111 abc //设置用户abc的电话号码</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><font color="Brown"><strong>删除用户 deluser</strong></font></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deluser --remove-all-files abc //删除用户abc以及一切相关文件</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="p117-组管理命令"><a class="markdownIt-Anchor" href="#p117-组管理命令">#</a> P117: 组管理命令</h4>
+<p>cat /etc/passwd 看用户信息；cat /etc/group 看组相关信息</p>
+<ol>
+<li>
+<p><strong>添加用户组 addgroup</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">addgroup abc //添加一个普通用户组</span><br><span class="line">addgroup --system abc //添加一个系统用户</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>显示组内用户 groups</p>
+<p>groups 命令用于显示某个组里包含的用户</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">groups root //显示用户组root内的用户</span><br><span class="line">groups abc //显示用户组abc内的用户</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>修改用户组信息 groupmod</strong></p>
+<p>groupmod 命令用于更改用户组的名称、ID 等信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">groupmod -g 1002 abc //更改用户组abc的GID为1002</span><br><span class="line">groupmod -n abcd abc //更改用户组abc名称为abc</span><br><span class="line">cat /etc/group | grep abc //查看配置文件中abc信息</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>删除用户组 delgroup</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delgroup abc //删除用户组abc</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="p118-权限管理"><a class="markdownIt-Anchor" href="#p118-权限管理">#</a> P118: 权限管理</h4>
+<p>Ubuntu 在管理自己的用户和文件时，都是依靠权限体系来提高安全性。</p>
+<p>权限是指某一个用户或用户组能够使用系统资源的限制情况。root 管理员拥有系统的最高权限；初次创建的用户拥有管理员的部分权限；其他普通用户的权限最低。</p>
+<p><font color="Brown">对于文件，有读 r、写 w、修改 x (可执行权限) 三种权限。(二进制表示：100, 010, 001 ; <strong>八进制表示：4, 2, 1 -&gt; r+w+x=7，故 7 为最高权限</strong>)</font></p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20230210225153846.png" alt="image-20230210225153846" style="zoom:50%;">
+<ul>
+<li>“drwxr-xr-x&quot; 表明了权限与用户组的关系，除第 1 位表示<strong>文件类型</strong>，剩余 9 位以 3 位为一组，分别表示<strong>文件归属用户的权限 u</strong>、归属用户组的权限 g、其他用户的权限 o。</li>
+<li>“26” 表示链接数</li>
+<li>”bd bd&quot; 表示文件拥有者和该用户所归属的用户组</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">bd的3类用户和对应权限情况：</span><br><span class="line">它的拥有者是bd用户，对应权限是“rwx&quot;，对该文件具有读写修改的权限</span><br><span class="line">与bd用户同组的其他用户，对应权限是&quot;r-x&quot;，对该文件具有读和修改的权限</span><br><span class="line">其他用户，对应权限是&quot;r-x&quot;，对该文件具有读和修改的权限</span><br></pre></td></tr></table></figure>
+<p><strong>权限字母表示法：</strong></p>
+<table>
+<thead>
+<tr>
+<th>字母</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>r, w, x 表示权限</td>
+<td>可读，可写，可执行权限</td>
+</tr>
+<tr>
+<td>a, u, g, o 表示文件归属关系</td>
+<td>所有用户，归属用户，归属组，其他用户</td>
+</tr>
+<tr>
+<td>=, +, - 表示权限变化</td>
+<td>具备权限，添加某权限，去除某权限</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">例子：</span><br><span class="line">a+x：对所有用户添加可执行权限</span><br><span class="line">go-x：对归属组和其他用户去除原有可执行权限</span><br><span class="line">u=rxw：对归属用户具备可读、可写、可执行权限</span><br></pre></td></tr></table></figure>
+<p><strong><font color="Brown">常用权限管理命令：</font></strong></p>
+<p>利用 shell 命令，可以方便地查看文件和文件夹的权限，也可以方便地对权限作出修改，还可以对文件所属用户及群组进行修改</p>
+<ul>
+<li>
+<p><strong>chmod 修改文件或文件夹的权限</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">字母表示法：</span><br><span class="line">chmod a+w a.cpp //对a.cpp文件的所有用户增加可写权限</span><br><span class="line">数字表示法：</span><br><span class="line">chmod 777 test //修改目录test的权限为777，即所有用户都拥有可读、可写、可执行权限</span><br><span class="line">-R实现对目录下的文件权限的递归修改：</span><br><span class="line">chmod -cR 755 test/ //将test目录下所有文件权限改为755，包括目录本身，使用-c参数显示修改结果</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>chown 修改文件或目录的归属用户或归属组</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chown abc a.cpp //修改a.cpp文件的归属用户为abc</span><br><span class="line">chown -c abc.abc a.cpp //同时改变a.cpp文件的归属用户和用户组</span><br><span class="line">chown -v .abc a.cpp //改变a.cpp文件的归属用户组</span><br><span class="line">迭代：chown -cR abc test //修改目录中所有文件的归属</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>chgrp 专门修改文件或目录的归属组</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chgrp -c abc a.cpp //修改文件的归属组为abc</span><br><span class="line">chgrp -cR abc test</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="p127-磁盘概述"><a class="markdownIt-Anchor" href="#p127-磁盘概述">#</a> P127: 磁盘概述</h4>
+<p>配置文件 /etc/fstab 查看磁盘分区的情况及别名</p>
+<p>没有实际的硬盘。<font color="Brown"><strong>主分区 / 主挂载点的别名是 /dev/sda1</strong>，即 “/” 挂载点</font>。/dev/sda5 表示逻辑分区，虚拟设备：<font color="Brown"><strong>/dev/scd0 光驱</strong></font>，<font color="Brown"><strong>/dev/fd0 软驱</strong></font>。SWAP<font color="Brown"><strong>交换分区被挂载至 /root/swapfile</strong></font></p>
+<p>/dev/ 后面部分表示一个具体的分区，hd 表示 IDE 硬盘，sd 表示 SATA 硬盘或其他外部设备，had 中的第 3 位 a 表示这是该类型接口上的第 1 个设备。每一个 IDE 接口可以允许有两个设备，一个是主设备，另一个为从设备，可以分别用 hda、hdb 表示第 1 个 IDE 接口上的两个设备。</p>
+<p><font color="Brown"><strong>/dev/hda1~/dev/hda4 都表示主分区</strong></font>，<font color="Brown"><strong>/dev/hda5 表示该硬盘上的第 1 个逻辑分区</strong></font>，分区的顺序是不能随意修改。</p>
+<h4 id="p128-磁盘管理方法"><a class="markdownIt-Anchor" href="#p128-磁盘管理方法">#</a> P128: 磁盘管理方法</h4>
+<ul>
+<li>
+<p><strong>fdisk 磁盘分区</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fdisk /dev/hda //对IDE硬盘进行分区</span><br><span class="line">fdisk -l //列出当前操作系统</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>mkfs</strong> 在分区上<strong>建立文件系统</strong>或格式化指定形式</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkfs -v //显示命令使用方法</span><br><span class="line">mkfs -V //显示版本信息</span><br><span class="line">mkfs -t ext3 /dev/sda3 //将/dev/sda3的文件系统建立为ext3类型</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>mkswap 设置交换分区</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkswap -c -vl /dev/sda5 102400 //在/dev/sda5建立大小为100MB的交换分区，建立前先检查是否有损坏的区块</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>df 显示磁盘信息</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df -a //显示所有的磁盘信息</span><br><span class="line">-l 仅显示本地的文件系统信息 -i 显示索引节点信息</span><br><span class="line">df -t ext3 //显示系统中ext3类型的分区信息</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>du 显示目录的容量</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -a /root //显示/root目录下每个文件的大小，以K为单位</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="p193-195-进程管理"><a class="markdownIt-Anchor" href="#p193-195-进程管理">#</a> P193-195: 进程管理</h4>
+<p><font color="Brown"><strong>什么是进程？什么是程序？进程有什么特点？父子进程的关系？</strong></font></p>
+<p><strong><font color="Brown">进程的 3 种类型，基本信息 (PID,PPID…)，3 种基本状态 (state,wait,running)</font></strong></p>
+<p><strong>1. 进程的概念：</strong></p>
+<p>Ubuntu Linux 的所有任务都是在操作系统内核的调度下由 CPU 执行，很多时候，Linux 是将任务和进程的慨念合在一起。** 进程的标准定义：进程是可开发执行的程序在一个数据集合上的运行过程。** 进程是一个动态的使用系统资源，处于活动状态的应用程序。<strong>进程和程序有着显著的区别。</strong></p>
+<ul>
+<li>程序是静态概念，本身可以作为一种资源长期保存在磁盘上；进程是一个程序的执行过程，是动态概念，有一定的生命周期，如果进程一旦执行结束，就不再存在于操作系统中</li>
+<li>进程是一个能独立运行的单位，能与其他进程并发执行，它是操作系统中资源申请调度的最小单位；而程序不能作为一个独立运行的单位，它也不占用 CPU 资源</li>
+<li>程序并不是和进程一一对应的 一个程序可以由多个进程共用，一个进程也可以在活动中有顺序地执行多个程序</li>
+</ul>
+<p>在 Ubuntu Linux 中，init 进程是所有进程的发起者和控制者，每个进程都有一个编号<strong> PID</strong>，是进程在当前系统中运行的顺序。<strong>Init 用于终结父进程</strong>，如果该进程出现了问题，操作系统会崩溃。</p>
+<p>因为 init 进程在系统运行期间始终不会消亡或停止，所以系统总是可以确信它的存在，并在必要的时候以此为参照。因此，<strong>系统调用 fork () 函数来创建一个新进程</strong>，并且作为 init 的子进程，从而最终形成系统中运行的所有其他进程。</p>
+<p>为了标识和管理进程，使用 PCB 进程控制块来进行此项重要工作。进程有以下几个主要参数：</p>
+<ul>
+<li><font color="Brown">PID</font>：进程号，唯一标识进程（父进程为 1）		Process ID</li>
+<li><font color="Brown">PPID</font>：父进程号，创建某个进程的上一个进程号      Parent PID</li>
+<li>USER：启动某个进程的用户 ID (UID) 和该用户归属的组 ID (GID)</li>
+<li>STAT：进程状态。一个进程可能处于多种状态，包括运行状态、等待状态（可被中断或不可被中断）、停止状态、睡眠状态和僵死状态等</li>
+<li>PRIORITY：优先级</li>
+<li>资源占用：占用系统资源</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- ps aux  //查看当前所有运行着的进程信息</span><br></pre></td></tr></table></figure>
+<p><strong><font color="Brown">Ubuntu Linux 进程的 3 种类型：</font></strong></p>
+<ul>
+<li>交互进程：由 Shell 启动的进程</li>
+<li>批处理进程：与终端联系不大，在等待队列中按序执行</li>
+<li>守护进程：后台运行的进程，一般总是活动状态</li>
+</ul>
+<p>2.<font color="Brown"><strong>进程的运行状态</strong></font></p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20230212115553914.png" alt="image-20230212115553914" style="zoom:67%;">
+<ul>
+<li>等待状态 wait：该状态有两种模式，一种是可被中断的，另一种不可被中断。这种状态下的进程处于等待系统分配给它资源，如果一旦得到资源，将转入就绪状态。</li>
+<li>就绪状态 running：这种状态的进程当前没有运行，但所有申请的资源已经具备。只要内核对其进行调度，将立即拥有 CPU 的控制权，开始运行。</li>
+<li>僵死状态 zombie：也称僵尸状态或僵尸进程。这种状态下的进程已经运行完毕，执行了相应的任务，已经不再存在，但它的父进程留下了一个记录，包括一个退出码和一些时间信息等。</li>
+<li>停止状态 stop：正在运行的进程由于某些原因的影响而退出，将进入停止状态，例遇到更高优先级的进程占用了 CPU 资源。</li>
+<li>中断状态 interupt</li>
+</ul>
+<blockquote>
+<p>进程状态 60</p>
+</blockquote>
+<p>3. 进程管理操作</p>
+<ul>
+<li>
+<p><strong>ps 查看系统进程信息（静态信息）</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-f:产生某个进程的一个完整信息清单。</span><br><span class="line">-a:显示所有用户的进程清单。</span><br><span class="line">-u:产生某个特定用户的进程清单。</span><br><span class="line">-x:显示后台运行进程。</span><br><span class="line">ps //显示与控制终端相关进程的基本信息</span><br><span class="line">ps -u abc -f //显示abc用户所有完整信息</span><br><span class="line">ps aux //显示系统中的所有进程信息</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>top 动态显示运行中的进程详细信息</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top -d 3 //每3秒动态更新进程信息</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>nice 设置进程运行优先级</strong></p>
+<p>每个进程都有一个优先级参数，表示占有 CPU 资源的等级，优先级越高进程更容易获取 CPU 控制权。进程优先级一般为 - 20~19，-20 为最高优先级。修改进程 nice 值，可以修改进程优先级。系统进程默认的优先级是 0。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nice -5 process //优先级置为5。若没有指定默认置为10</span><br><span class="line">nice --12 process //优先级置为-12</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong><font color="blue">renice 修改进程的优先级</font></strong></p>
+<p>可调范围 - 20~19</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo renice 12 7716 //修改PID7716的进程的优先级为12</span><br><span class="line">sudo renice 6 -u abc //修改abc用户所有进程优先级为6</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>kill 终止进程命令</p>
+<p>一般情况，可以通过停止一个进程的方法来正常结束该进程。但在某种情况下，进程没有响应，可使用 kill 命令停止某个活动。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kill -STOP 4385 //停止4385进程，但不退出</span><br><span class="line">kill -CONT 4385 //重新开始4385进程</span><br><span class="line">kill -9 4385 //强制终止4385进程</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>killall 终止所有同名进程</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall -9 process //终止系统中所有名为process的进程</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="p200-临时工作安排at"><a class="markdownIt-Anchor" href="#p200-临时工作安排at">#</a> P200: 临时工作安排 at</h4>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20230212141653461.png" alt="image-20230212141653461" style="zoom: 50%;">
+<ol>
+<li>
+<p>服务启动</p>
+<p>at 命令用来安排完成临时性工作，即只需要执行一次的系统任务。使用该命令，需要提前启动一个进程，即启动一个服务。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/atd restart  //重新启动at服务</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>使用 at 命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo at 23:50 2009-12-15 //在2009-12-15的23：50执行以下命令</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>维护当前系统中的 at 服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo atq //查询当前系统中的所有at进程</span><br><span class="line">sudo atrm 1 //删除1号工作任务</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong>周期性工作安排 cron</strong></p>
+<center><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/wps1.jpg" alt="img" style="zoom:67%;"> </center>
+#### P211: TCP/IP基础
+<p>（尽可能写全面）</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221016160838763.png" alt="image-20221016160838763" style="zoom:80%;">
+<ul>
+<li>
+<p><strong>网络接口层</strong>（Network Interface Physical)：模型的基层，负责数据帧的发送和接收（帧 Frame 是独立的网络信息传输单元)。网络接口层将帧格式的数据放到网络上，或从网上把帧取下来。</p>
+</li>
+<li>
+<p><strong>互联层（Internet）</strong>：互联协议将数据包封装成 Internet 数掂包（IP packet)，并运行必要的路由算法。这里有 4 种互联协议。</p>
+<ul>
+<li><strong>网际协议 (IP)</strong>: 负责在主机和网络之间路径寻址和路由数据包。</li>
+<li><strong>地址解析协议（ARP)</strong>: 获取同一物理网络中的硬件主机地址。</li>
+<li><strong>因特网控制消息协议（(ICMP)</strong>: 发送消息，并报告有关数据包的传送错误。</li>
+<li><strong>互联组管理协议（IGMP)</strong>: 实现本地多路广播路由器报告。</li>
+</ul>
+</li>
+<li>
+<p><strong>传输层</strong>：传输协议在主机之间提供通信会话。传输协议的选择根据数据传输方式而定。主要有以下两个传输协议。</p>
+<ul>
+<li>传输控制协议 (<strong>TCP</strong>)：为应用程序提供<strong>可靠的</strong>通信连接。适合于一次传输<strong>大批数据</strong>的情况，并适用于要求得到响应的应用程序。</li>
+<li>用户数据包协议（<strong>UDP</strong>）: 提供了无连接通信，且不对传送包进行可靠性确认。适合于一次传输<strong>小量数据</strong>可靠性则由应用层确认。</li>
+</ul>
+</li>
+<li>
+<p><strong>应用层</strong>：应用程序通过这一层访问网络，主要包括常见的 FTP、HTTP、DNS 和 TELNET 等协议。</p>
+<ul>
+<li><strong>Telnet</strong>: 提供远程登录 (终端仿真）服务。</li>
+<li><strong>FTP</strong>: 提供应用级的文件传送协议。,</li>
+<li><strong>SMTP</strong>: 简单邮件传送协议。</li>
+<li><strong>SNMP</strong>: 简单网络管理协议，使用传输层 UDP 协议。</li>
+<li><strong>DNS</strong>: 域名解析服务，也就是将域名映像成 IP 地址的协议，使用传输层 UDP 协议。</li>
+<li><strong>HTTP</strong>: 超文本传输协议，访问 Web 所用的协议。</li>
+</ul>
+</li>
+</ul>
+<p>TCP/IP 协议簇体系结构及各层协议结构如图。 在网络接口层，最重要的信息之一是主机的 MAC 地址，为 48bit，在物理上唯一标识某台主机；IP 层的 IP 地址在逻辑上唯一标识某台主机；在主机内部，传输层的端口对应唯一的应用服务。</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20230212134419401.png" alt="image-20230212134419401" style="zoom:67%;">
+<h4 id="p212-ip地址表示形式及分类"><a class="markdownIt-Anchor" href="#p212-ip地址表示形式及分类">#</a> P212: IP 地址表示形式及分类</h4>
+<p>1. 表示形式：</p>
+<ul>
+<li>
+<p>二进制表示法</p>
+</li>
+<li>
+<p>点分十进制表示法</p>
+<p>IP 地址由网络号和主机号组成，程度为 4 字节</p>
+<ul>
+<li>网络号：标识一个物理的网络，同一个网络上的所有主机使用同一个网络号，该号在互联网中是唯一的。</li>
+<li>主机号：确定网络中的一个工作端、服务器、路由器或者其他 TCP/IP 主机。对于同一个网络号来说，主机号是唯一的。每个 TCP/IP 主机由一个逻辑 IP 地址确定网络号和主机号。</li>
+</ul>
+</li>
+</ul>
+<p>2.IP 地址分类</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20230212135517579.png" alt="image-20230212135517579" style="zoom:50%;">
+<ul>
+<li><strong>A 类地址</strong>：可以拥有最大数量的主机，最高位为 0，紧跟的 7 位表示网络号，其余 24 位表示主机号，总共允许有 126 个网络。</li>
+<li><strong>B 类地址</strong>：被分配到中等规模和大规候的网络中，最高两位总被置为二进制的 10，前 16 位为网络号，后 16 位 为主机号，允许有 16384 个网络。</li>
+<li><strong>C 类地址</strong>：高 3 为被置为二进制的 110，前 24 位为网络号，后 8 位为主机号，允许有大约 200 万个网络。</li>
+<li>D 类地址：被用于多路广播组用户，高 4 位总被置为 1110, 余下的位用于标明客户机所属的组。</li>
+<li>E 类地址是一种仅供试验的地址。</li>
+</ul>
+<p>几条准则：</p>
+<ul>
+<li>网络号不能为 127。该标识号被保留作为回路及诊断功能。</li>
+<li>不能将网络号和主机号的各位均置为 1。如果每位都是 1, 该地址会被解释为网内广播而不是一个主机号</li>
+<li>各位均不能置 0，否则该地址被解释为 “就是本网络”。</li>
+<li>对于本网络来说，主机号应核唯一，否则会出现 IP 地址已分配或有冲突的错</li>
+</ul>
+<p><strong>网络划分标准</strong></p>
+<h4 id="p217-tcp包头"><a class="markdownIt-Anchor" href="#p217-tcp包头">#</a> P217: TCP 包头</h4>
+<p>cat /usr/include/linux/tcp.h</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20230212221150069.png" alt="image-20230212221150069" style="zoom: 67%;">
+<ol>
+<li>源端口和目标端口 (Source Port&amp;Destinaton Port): 传送 / 接收数据使用的端口。</li>
+<li>数据包序号 (Sequence Number)：数据包过大而进行分段后，记录数据包序号，接收方可以组合成功</li>
+<li>回应序号 (Acknowledge Number): 为了确认接收端收到发送端所送出的数据包数据，发送端希望能吸收到接收端的响应。</li>
+<li><strong>数据补偿（Data Offset): 补偿位。</strong></li>
+<li>保留位（Reserved ): 未使用的保留字段。</li>
+<li>控制标志码（Control Flag): 当进行网络连接时，必须说明这个联机的状态，使接收端了解这个数据包的主要动作。这个子段为 6bits，分别代表 6 个句柄，若为 1 则为启动。说明如下所示。
+<ul>
+<li>URG （Urgent)）: 为 1 表示该数据包为紧急数据包，接收端应该紧急处理。</li>
+<li>ACK (Acknowledge): 为 1 表示这个数据包为确认数据包，与 Acknowledge Number 有关</li>
+<li>PSH (Push function): 为 1 表示要求对方立即传送缓冲区内的其他对应数据包，而无须等待缓冲区满。</li>
+<li>RST （Reset): 为 1 表示联机会马上结束，而无须等待终止确认手续。这是个强制结束的联机，且发送端已断线。</li>
+<li>SYN (Svnchronous): 为 1 表示发送端希望双方建立同步处理，即要求建立联机。通常带有 SYN 标志的数据包表示 “主动” 要连接到对方的意思。</li>
+</ul>
+</li>
+<li><strong>滑动窗口</strong>（Window): 用于控制数据包的流量，可以告知对方目前有多少缓冲区容量 (Receive Buffer) 可以接收数据包。当 Window=0 时，表示缓冲器已经额满。</li>
+<li><strong>确认校验码</strong>（Checksum); 数据由发送端送出前会进行一个检验的动作，并将该动作的检验值标注在这个字段上。而接收者收到这个数据包之后，会再次对数据包进行验证，并且与原来发送的确认校验码值进行对比，如果相符就接收，若不符就认为该数据包已经损毁，要求对方</li>
+<li><strong>紧急信息</strong> （Urgent Pointer ): 该字段在 Code 字段内的 URG 值为 1 时才会产生作用，告知紧急数据所在的位置。</li>
+<li>任意资料（Options）</li>
+</ol>
+<h4 id="p220-arprarp概念"><a class="markdownIt-Anchor" href="#p220-arprarp概念">#</a> P220: ARP/RARP 概念</h4>
+<p>任何一台主机（确切的说是任何一个网络适配器）在物理上唯一的标识是 48bit 适配器的地址，即 MAC 地址 (Media Access Controladdress)。这个地址保存在网络适配器的 ROM 中，是不能修改的。在实际应用中，田户可 以为任意一个网络适配器指定不同的 IP 地址。</p>
+<p>MAC 地址是所有网络活动的基础，但是网上的主机之间的通信是通过 IP 地址讲行的，因此在这个过程中就存在一个转换，即 MAC 地址与 IP 地址的对应，实现这一地址解析的协议为 ARP (地址解析协议）和 RARP（逆地址解析协议）。</p>
+<ul>
+<li>ARP 为 IP 地址到对应的硬件 MAC 地址之间提供动态映射，这个过程是自动完成的，一般应用程序或系统管理员不必操作中间流程。</li>
+<li>RARP 用于那些没有磁盘驱动器的系统（一般是无盘工作站或 X 终端)，它需要系统管理员进行手工设置，提供 MAC 地址到 IP 地址的解析。</li>
+</ul>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20230212221237222.png" alt="image-20230212221237222" style="zoom: 80%;">
+<h4 id="p225-227-网络配置文件"><a class="markdownIt-Anchor" href="#p225-227-网络配置文件">#</a> P225-227: 网络配置文件</h4>
+<p>Ubuntu Linux 为适应不同需求，在进行网络访问时，需要配置网络配置文件，这些配置文件位于”/etc“目录下。</p>
+<p><strong>1./etc/network/interfaces 网络基本信息配置文件</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/network/interfaces</span><br><span class="line">//lo接口的配置信息</span><br><span class="line">1 auto lo //系统开机时，自动启动lo接口</span><br><span class="line">2 iface lo inet loopback //设置lo接口的地址信息，此处设置为本地回环(loopback)</span><br><span class="line">3</span><br><span class="line">//系统中一块网卡eth0接口的配置信息</span><br><span class="line">//一个网卡对应一个地址的基本配置方法：</span><br><span class="line">4 auto eth0 //系统开机时，自动启动eth0接口，该接口为系统默认的第一块网卡所在的接口</span><br><span class="line">5 iface eth0 inet dhcp //设置eth0接口的地址信息，此处设置为动态自动获取(dhcp)</span><br><span class="line">6 address 192.168.1.21 //设置eth0接口的一个静态IP地址为192.168.1.21</span><br><span class="line">7 netmask 255.255.255.0 //设置eth0接口的子网掩码为255.255.255.0</span><br><span class="line">8 gateway 192.168.1.1 //设置eth0接口的静态网关地址为192.168.1.1</span><br><span class="line"></span><br><span class="line">//同一个物理网卡设备上有多个地址的基本配置方法：</span><br><span class="line">11 auto eth0 eth0:1</span><br><span class="line">12 iface eth0 inet static</span><br><span class="line">13 address 192.168.1.100</span><br><span class="line">14 netmask 255.255.255.0</span><br><span class="line">15 gateway 192.168.1.1 </span><br><span class="line">16 iface eth0:1 inet static</span><br><span class="line">17 address 192.168.1.200</span><br><span class="line">18 netmask 255.255.255.0</span><br><span class="line">19 gateway 192.168.1.1 </span><br><span class="line"></span><br><span class="line">//不同接口上配置多个网卡的基本配置方法：</span><br><span class="line">21 auto eth0 eth1</span><br><span class="line">22 iface eth0 inet static</span><br><span class="line">23 address 192.168.0.125</span><br><span class="line">24 netmask 255.255.255.0</span><br><span class="line">25 gateway 192.168.1.1 </span><br><span class="line">26 iface eth1 inet static</span><br><span class="line">27 address 192.168.0.137</span><br><span class="line">28 netmask 255.255.255.0</span><br><span class="line">29 gateway 192.168.1.1 </span><br></pre></td></tr></table></figure>
+<p>(auto lo)</p>
+<p><strong>2. 其他网络相关配置文件</strong></p>
+<p>（考基本的端口号）</p>
+<ul>
+<li>
+<p>/etc/hosts 主机名映射文件</p>
+<p>在网络上实现域名和 IP 地址的映射的两种方法：大量域名解析采用 DNS 服务器，小型网络可使用 /etc/hosts 文件提供解析。文件包含部分常用 IP 地址和主机名 / 主机名别名之间的映射</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//文件种没有tom主机信息，因此会登陆失败。添加tom记录：</span><br><span class="line">$ sudo vim /etc/hosts</span><br><span class="line">127.0.0.1 localhost</span><br><span class="line">127.0.1.1 abc //当前用户</span><br><span class="line">192.168.1.93 netservice.webservice.bamms.com tom</span><br><span class="line">//登录主机</span><br><span class="line">$ftp tom</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>/etc/host.conf 配置名称解析器</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/host.conf</span><br><span class="line">order hosts,bind</span><br><span class="line">multi on</span><br></pre></td></tr></table></figure>
+<p>”order&quot; 指定主机名查询顺序，其参数用逗号隔开的查找方法。支持的查找方法为 bind 和 hosts，分别代表 DNS、/etc/hosts，此处规定先查询 /etc/hosts 文件，然后再使用 DNS 来解析域名</p>
+</li>
+<li>
+<p><font color="Brown"><strong>/etc/services 端口映射文件</strong></font></p>
+<p>(判断)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ftp-data 20/tcp</span><br><span class="line">ftp 21/tcp</span><br><span class="line">fsp 21/udp  fspd</span><br><span class="line">ssh 22/tcp</span><br><span class="line">telnet 23/tcp</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>/etc/resolv.conf 配置 DNS 客户</p>
+</li>
+</ul>
+<h4 id="p228-p233-常用网络管理工具"><a class="markdownIt-Anchor" href="#p228-p233-常用网络管理工具">#</a> P228-P233: 常用网络管理工具</h4>
+<ul>
+<li>
+<p><strong>ifconfig 配置网络地址信息</strong></p>
+<p>显示或临时配置当前主机某张网卡的 IP 地址。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interface 网络接口的名称，如eth0(网卡) </span><br><span class="line">ifconfig eth0 //查看eth0的网络情况</span><br><span class="line">ifconfig eth0 up/down //激活或关闭eth0</span><br><span class="line">ifconfig eth0 192.168.0.25 netmask 255.255.255.0 //设置eth0的IP地址和子网掩码</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>nslookup 域名解析测试</strong></p>
+<p>查询一台机器的 IP 地址和其对应的域名，使用权限为所有用户，它一般需要一台域名服务器来提供域名服务。“&gt;” 后输入查询 IP 地址，“exit” 退出。</p>
+</li>
+<li>
+<p><strong>ping 测试网络状态</strong></p>
+<p>测试网络是否可达。“Time out” 主机不可达，若数据包丢失严重则说明网络很不稳定。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping www.baidu.com -c 3 //发送三个数据包来测试</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>ip 网络配置工具</p>
+<p>ip [options] object [ command [arguments] ]</p>
+<ul>
+<li>
+<p>options 参数</p>
+<ul>
+<li>-v 打印 iproute 信息</li>
+<li>-r 将 ip 地址转换成域名</li>
+<li>-s 输出详细结果</li>
+</ul>
+</li>
+<li>
+<p>object 管理对象</p>
+<ul>
+<li>Link 网络接口设备，通常网卡</li>
+<li>Address IP 地址</li>
+<li>Neighbour ARP 记录</li>
+<li>Rule 路由策略</li>
+</ul>
+<p>……</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ip addr add 192.168.44.122 dev eth0 //添加IP地址到eth0网卡上</span><br><span class="line">sudo ip rule add from 192.168.0.25 prio 32777 reject //丢弃源地址属于192.168.0.25网络的所有数据包</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>netstat</strong></p>
+<p>用来显示活动的 TCP 连接、计算机侦听端口、以太网统计信息、IP 路由表、IPv4 统计信息 (IP,ICMP,TCP,UDP) 以及 IPv6 统计信息 (TCP,UDP)。</p>
+<ul>
+<li>-a  所有</li>
+<li>-e 以太网的统计信息</li>
+<li>-n 活动的 TCP 连接，数字形式</li>
+<li>-o 活动的 TCP 连接</li>
+<li>-p 协议</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">netstat -p -tcp //查看tcp协议类型的连接</span><br><span class="line">netstat -p -tcp -udp //仅显示TCP和UDP协议的统计信息</span><br><span class="line">netstat -o 5 //每5秒显示一次活动的TCP连接和进程ID</span><br><span class="line">netstat -n Co //以数字形式显示活动的TCP连接和进程ID</span><br><span class="line">netstat -e -s //显示以太网统计信息和所有协议的统计信息</span><br><span class="line">netstat -a //显示处于监听状态的所有端口</span><br><span class="line">neystat -ln //显示当前主机监听的所有端口</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><strong>ftp 访问命令</strong></p>
+<p>用来进行远程文件传输。是标准的文件传输协议的用户接口，是 TCP/IP 网络计算机之间传输文件的简单有效的方法，允许传输 ASCII 和二进制文件。</p>
+<p>ftp [-dignv] [主机名称 IP 地址]</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">ftp&gt;</span><span class="bash">命令</span></span><br><span class="line">ls //列出远程机的当前目录</span><br><span class="line">cd //在远程机上改变工作目录</span><br><span class="line">lcd //在本地机上改变工作目录</span><br><span class="line">close //终止当前的ftp会话</span><br><span class="line">hash //每次传输完数据缓冲区中的数据后就显示一个#号</span><br><span class="line">get (mget) //从远程机传送指定文件到本地机</span><br><span class="line">put (mput) //从本地机传送指定文件到远程机</span><br><span class="line">quit //断开与远程机的连接，并退出ftp</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>route 路由设置</p>
+</li>
+</ul>
+<h4 id="p250ssh服务使用"><a class="markdownIt-Anchor" href="#p250ssh服务使用">#</a> P250：SSH 服务使用</h4>
+<p>SSH 远程登录，端口号 22</p>
+<p><strong>安装 SSH 软件包</strong></p>
+<center><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/wps3.jpg" alt="img" style="zoom: 67%;"> </center>
+启动服务，使用netstat监听ssh服务状态
+<center><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/wps4.jpg" alt="img" style="zoom:67%;"> </center>
+打开命令行输入ssh **用户@ip**进行远程连接
+<center><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/wps5.jpg" alt="img" style="zoom: 50%;"> </center>
+#### P255: 信息安全基础
+<p>例：什么是数字签名，什么是网络攻击，网络传输特性，是否具有保密性，什么是安全性</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/D1D3D1E4122B157885510E5764E3F031.jpg" alt="img" style="zoom: 25%;">
+<p>网络攻击：</p>
+<ul>
+<li>中断：正在传输的信息被中止。</li>
+<li>截获：在传输的过程中被其他窃听者获取敏感信息。</li>
+<li>修改：正在传输的信息被其他人修改后再发送给接收方。</li>
+<li>捏造：网络上的其他非法用户以真实用户的名义发送虚假信息。</li>
+</ul>
+<p>网络传输特性：</p>
+<ul>
+<li>Integrity（完整性): 实现数据完整地传输给对方，即在传输的过程中不被修改。</li>
+<li>Confidentiality（保密性): 保证信息在传输的过程中不被其他人窃听获取。</li>
+<li>Availability（可用性): 网络上的服务器可以实时被利用。</li>
+</ul>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20230212223644220.png" alt="image-20230212223644220" style="zoom:50%;">
+<p>加密方式：</p>
+<ul>
+<li>
+<p>对称加密（单钥）</p>
+<ul>
+<li>同一个密钥去加密和解密数据。发送方在发送信息前使用密钥（只有发送方和接收方知道）对数据进行加密，然后传输密文给接收方，接收方使用同样的密钥来解密密文，得到明文信息。</li>
+<li>好处：算法成熟，易于实现；弊端：密钥管理</li>
+<li>DES, 3DES, AES</li>
+</ul>
+</li>
+<li>
+<p>非对称加密（双钥）</p>
+<ul>
+<li>发送方在发送信息前使用接收方的公钥（所有人都知道）进行加密，然后传输密文给接收方，接收方使用自己的私钥（只有接收方自己知道）来解密密文，得到明文信息。</li>
+<li>好处：不进行密钥传输，降低密钥管理风险；弊端：算法实现难度，速度慢</li>
+<li>背包算法，RSA</li>
+</ul>
+<p>一般使用非对称方式加密密钥进行数据传输，使用传递的密钥来加密数据。</p>
+</li>
+</ul>
+<p>数字签名：</p>
+<p>解决问题：发送方否认问题，即发送方否认发送过某一信息；接收方否认问题，即接收方否认接收到某个消息</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20230212224831381.png" alt="image-20230212224831381" style="zoom: 50%;">
+<ul>
+<li>
+<p>消息加密：整个消息的密文作为认证符。</p>
+</li>
+<li>
+<p>消息认证码：MAC 消息和密钥的公开函数，产生定长的值作为认证符。</p>
+</li>
+<li>
+<p>Hash 函数：将任意长的消息映射为定长的 hash 值的公开函数，以该 hash 值作为认证符。目前主要使用的数字签名算法有以下几种:</p>
+</li>
+<li>
+<p>RSA 算法：是目前应用最广泛的数字签名，Linux 下的 OpenSSH 中即使用这一算法。DSA (Digital Signature Algorithm）算法：基于有限域上的离散对数问题即 DSS（数字签名标准)。</p>
+</li>
+<li>
+<p>GOST 算法：俄罗斯采用的数字签名标准算法。</p>
+</li>
+</ul>
+<h4 id="p266-ftp"><a class="markdownIt-Anchor" href="#p266-ftp">#</a> P266: FTP</h4>
+<center><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/wps2.jpg" alt="img" style="zoom: 50%;"> </center>
+**主要功能：**
+<ol>
+<li>不同等级的使用者。
+<ul>
+<li>实体账号 real user</li>
+<li>访客 guest</li>
+<li>匿名登录者 anonymous</li>
+</ul>
+</li>
+<li>命令记录与登录文件记录</li>
+<li>限制或解除使用者所在的根目录。（提高安全性）</li>
+</ol>
+<p><strong>用户分类：</strong></p>
+<ul>
+<li>实体用户 (Real user)。系统本机用户。Linux 系统一般不会针对实体用户进行限制，因此用户可以针对整个文件系统进行所有的工作。这是非常危险的，为禁止系统使用的账号登录，管理员可以在文件 /etc/ftpusrs 中设定不允许登录的账号，如 root 是不允许登录 FTP 的。</li>
+<li>访客 (Guest)。访客用户。只能进行文件传输的用户，即虚拟用户，访问服务器时仍然需要验证。</li>
+<li>匿名者 (anonymous)。对于公共性质的服务器可以提供匿名用户访问（一般服务器很少使用)，但应对其进行尽可能多的限制，包括以下一些内容。
+<ul>
+<li>允许的工作指令要减少很多。</li>
+<li>限制文件传输的数量，尽量不要允许其上传数据。</li>
+<li>设置匿名者同时登录的最大联机数量。</li>
+</ul>
+</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/Linux/20230210/">https://shierjinghuang.github.io/Linux/20230210/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Linux/">
+                                    <span class="chip bg-color">Linux</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/Linux/20230210/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Linux 知识点汇总">
+                        
+                        <span class="card-title">Linux 知识点汇总</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    学习笔记
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/IPv6%E8%BF%87%E6%B8%A1%E6%8A%80%E6%9C%AF/20221224/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="IPv6过渡技术">
+                        
+                        <span class="card-title">IPv6过渡技术</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-12-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                    网络工程相关
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/">
+                        <span class="chip bg-color">网络协议分析</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2023</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">318.8k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
