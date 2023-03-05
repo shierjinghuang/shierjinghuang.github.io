@@ -1,0 +1,1453 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="IPv6协议结构, 十二惊惶">
+    <meta name="description" content="网络协议分析    IPv6协议部分[TOC]
+网络协议分析之IPv6协议基础#	掌握IPv6协议栈的常用命令
+#	掌握lPv6单播地址的使用方法
+
+IPv6的特征：IPv6地址：IPv6地址空间：
+
+IPv6地址空间分配情况
+
+
+IPv6">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>IPv6协议结构 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">IPv6协议结构</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/">
+                                <span class="chip bg-color">网络协议分析</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                网络工程相关
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-12-16
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-12-24
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    21 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="网络协议分析-IPv6协议部分"><a href="#网络协议分析-IPv6协议部分" class="headerlink" title="网络协议分析    IPv6协议部分"></a>网络协议分析    IPv6协议部分</h2><p>[TOC]</p>
+<h3 id="网络协议分析之IPv6协议基础"><a href="#网络协议分析之IPv6协议基础" class="headerlink" title="网络协议分析之IPv6协议基础"></a>网络协议分析之IPv6协议基础</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#	掌握IPv6协议栈的常用命令</span>
+<span class="token comment">#	掌握lPv6单播地址的使用方法</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="IPv6的特征："><a href="#IPv6的特征：" class="headerlink" title="IPv6的特征："></a>IPv6的特征：</h4><h4 id="IPv6地址："><a href="#IPv6地址：" class="headerlink" title="IPv6地址："></a>IPv6地址：</h4><h5 id="IPv6地址空间："><a href="#IPv6地址空间：" class="headerlink" title="IPv6地址空间："></a>IPv6地址空间：</h5><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/12/16/IPv6协议结构/IPv6地址空间分配情况.png" style="zoom:67%;" />
+
+<center>IPv6地址空间分配情况</center>
+
+<blockquote>
+<p style="color:blue;">IPv6地址有三种表示形式：首选地址，压缩格式和内嵌IPv4的IPv6地址格式</p>
+</blockquote>
+<p><strong>首选格式</strong>：</p>
+<blockquote>
+<p>128位地址用16位边界分成8组，每个组转换成4位十六进制数用冒号分隔，称为冒号十六进制</p>
+</blockquote>
+<p><strong>压缩格式</strong>：</p>
+<blockquote>
+<p style="color:blue;">零压缩:连续为0的组可以压缩为::(双冒号)</p>
+</blockquote>
+<p>删除每组的前导0， 把连续的一段0压缩为:: ，在一个IPv6地址中::只能出现一次 </p>
+<blockquote>
+<p style="color:blue;">零压缩只能在给定地址中使用一次，不能使用零压缩来包括某个组的一部分</p>
+</blockquote>
+<p><strong>IPv4的IPv6地址格式：</strong></p>
+<blockquote>
+<p style="color:black;">在IPv4和IPv6的混合环境中，IPv6地址中的最低32位可以用于表示lPv4地址，即:X:X:X:X:X:d.d.d.d，其中X表示16进制整数，而d表示十进制整数</p>
+</blockquote>
+<h5 id="IPv6格式前缀-FP-Format-Prefix"><a href="#IPv6格式前缀-FP-Format-Prefix" class="headerlink" title="IPv6格式前缀(FP, Format Prefix)"></a>IPv6格式前缀(FP, Format Prefix)</h5><ul>
+<li>类似于IPv4中的CIDR表示法，IPv6地址被分成两个部分：子网前缀和接口标识符</li>
+<li>IPv6地址前缀格式为:IPv6地址/前缀长度<ul>
+<li>1030:0:0:0:C9B4:FF12:48AA:1A2B/60，用于路由的前缀长度为60位。</li>
+<li>前缀是地址的一部分，这部分或者有固定的值，或者是路由或子网的标识。64位前缀用来表示节点所在的单个子网，所有子网都有相应的64位前缀。任何少于64位的前缀,或者是一个路由前缀，或者是包含了部分IPv6地址空间的一个地址范围</li>
+</ul>
+</li>
+</ul>
+<h4 id="IPv6地址结构"><a href="#IPv6地址结构" class="headerlink" title="IPv6地址结构"></a>IPv6地址结构</h4><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/12/16/IPv6协议结构/IPv6地址结构.png" style="zoom:67%;" />
+
+<ul>
+<li>全球路由前缀:识别分配给一个站点的某个特殊地址或地址范围</li>
+<li>子网ID:用于识别站点中的某个链路，一个子网ID与一个链路相关联，也可以将多个子网ID分配给一个链路</li>
+<li>接口ID:用于识别和指明链路上的一个接口，并且接口ID在该链路上必须是唯一的</li>
+</ul>
+<p><strong>接口标识的生成</strong>：由IEEE EUI - 64规范自动生成，设备随机生成，或手工配置。</p>
+<p><strong>EUI - 64规范(Extended Unique ldentifier)</strong></p>
+<ul>
+<li>将48比特的MAC地址转化为64比特的接口标识，因此理论上可多达264个不同的物理接口</li>
+<li>转换方法:在MAC地址的中间插入4位16进制数FFFE，再把从最高位开始的第7位U/L位取反（置1)</li>
+</ul>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/12/16/IPv6协议结构/EUI-64规范.png" style="zoom:67%;" />
+
+<h5 id="IPv6地址的分配"><a href="#IPv6地址的分配" class="headerlink" title="IPv6地址的分配"></a>IPv6地址的分配</h5><p><strong>IPv6地址是分配给接口的，在IPv6网络中一个接口可以有一个或多个IPv6地址(单播地址、任播地址和多播地址)</strong></p>
+<blockquote>
+<p style="color:blue;">一个节点的每个接口都需要至少一个单播地址。同时，一个单播地址只能与一个网络接口相关联</p>
+</blockquote>
+<h5 id="IPv6地址类别"><a href="#IPv6地址类别" class="headerlink" title="IPv6地址类别"></a>IPv6地址类别</h5><p>**单播地址(Unicast Address)**：用来标识单一网络接口。送往一个单播地址的包将被传送至该地址标识的接口上。</p>
+<p>**组播地址(Multicast Address)**：用来标识一组网络接口(通常属于不同的节点)。送往一个组播地址的包将被传送至有该地址标识的所有接口上。<br>**任播（泛播）地址(Anycast Address)**：用来标识一组网络接口。送往泛播地址的包将被传送至该地址标识的接口之一(路由距离“最近”的接口)。它是IPv6引入的新的地址类型。</p>
+<h4 id="单播地址"><a href="#单播地址" class="headerlink" title="单播地址"></a>单播地址</h4><blockquote>
+<p style="color:orange;">单播地址包括全球单播地址、链路本地地址、站点本地地址、特殊地址、兼容地址、NSAP地址</p>
+</blockquote>
+<h5 id="可聚类全球单播地址"><a href="#可聚类全球单播地址" class="headerlink" title="可聚类全球单播地址"></a>可聚类全球单播地址</h5><p>相当于IPv4公共地址，有3个部分:</p>
+<ul>
+<li><p>ISP分配的前缀</p>
+</li>
+<li><p>站点拓扑，组织机构使用ISP分配的一个<strong>48位前缀</strong>，可以用前缀的49—64位共16位把网络划分为子网，最多可以划分65535个子网</p>
+</li>
+<li><p>接口ID:低64位用于标识接口</p>
+</li>
+</ul>
+<p><strong>全球单播地址报文格式：</strong></p>
+<ul>
+<li>FP字段:格式前缀，3位，目前值为”001”，标识这是可集聚全球单播地址</li>
+<li>TLAID字段:顶级集聚标识符，13位，包含最高级地址选路信息，即网络互连中最大的选路信息，可得到最大8192个不同的顶级路由</li>
+<li>RES字段:8位，保留。最终可能会用于扩展顶级或下一级集聚标识符字段。</li>
+<li>NLAID字段:下一级集聚标识符，24位，该标识符被一些机构用于控制顶级集聚以安排地址空间，这些机构能按照他们自己的寻址分级结构来将此24位字段切开用</li>
+<li>SLAID字段:站点级集聚标识符，16位，获得48位前缀的组织机构用来安排内部网络结构，若字段全部用作平面地址空间，则最多可有65535个不同子网</li>
+<li>接口标识符字段:64位，IEEE EUI-64接口标识符</li>
+</ul>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/12/16/IPv6协议结构/全球单播地址报文格式.png"  />
+
+<h5 id="链路本地地址-Link-local"><a href="#链路本地地址-Link-local" class="headerlink" title="链路本地地址(Link-local)"></a>链路本地地址(Link-local)</h5><blockquote>
+<p style="color:orange;">链路本地地址具有固定的地址格式，由设备自动生成，范围限制在同一本地链路的节点之间，在邻居发现等IPv6机制中或者没有路由器的网络上用到该类型的地址</p>
+</blockquote>
+<ul>
+<li><p>链路本地地址的组成包括一个特定的前缀<strong>FE80::/64</strong>和低64位的EUI-64接口ID</p>
+</li>
+<li><p>节点启动IPv6协议栈时，节点的每个接口会自动分配一个链路本地地址，这种机制的特点是连接在同一链路上的两个IPv6节点不需要做任何配置就可以通信</p>
+</li>
+<li><p>路由器在源端和目的端对具有链路本地地址的包不予处理，因为永远也不会转发这些包</p>
+</li>
+</ul>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/12/16/IPv6协议结构/链路本地地址.png"  />
+
+<p>在lPv6中，一个有可聚类全球单播地址的节点在本地链路上，使用默认IPv6路由器的链路本地地址，而不使用路由器的可聚类全球单播地址。如果必须发生网络重新编址，即单播可聚类全球前缀更改为一个新的单播可聚类全球前缀时，总能使用链路本地地址到达默认路由器。在网络重新编址过程中，节点和路由器的链路本地地址不会发生变化</p>
+<h5 id="站点本地地址-Site-local"><a href="#站点本地地址-Site-local" class="headerlink" title="站点本地地址(Site-local)"></a>站点本地地址(Site-local)</h5><blockquote>
+<p style="color:red;">站点本地地址也是应用范围受限的地址，类似于IPv4专用地址，可供没有申请到可聚类全球单播地址的组织机构使用
+</blockquote>
+<ul>
+<li>站点本地地址不是自动生成的</li>
+<li>前48位是固定的，其中前10位是固定的二进制位组合1111111011，后面是38位0(FEC0:/48)，接着是提供单位构建子网的16位的子网ID字段，最后是EUI-64接口ID</li>
+<li>站点本地地址能用在内联网中传送数据，但不允许从站点直接选路到全球Internet。站点内的路由器只能在站点内转发包，而不能把包转发到站点外去。 </li>
+</ul>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/12/16/IPv6协议结构/站点本地地址.png"  />
+
+<h5 id="特殊地址和保留地址"><a href="#特殊地址和保留地址" class="headerlink" title="特殊地址和保留地址"></a>特殊地址和保留地址</h5><ul>
+<li>IPv6地址空间中，第一个1/256的大部分空的地址空间用作特殊地址，包括:<ol>
+<li>未指定地址:全0地址，当没有有效地址时，可采用该地址。作为源地址使用，不能被路由器转发。可以表示为0:0:0:0:0:0:0:0或::</li>
+<li>回返地址:除了最低位外，全为0，即0:0:0:0:0:0:0:1或::1。</li>
+<li>嵌有IPv4地址的IPv6地址:一类允许IPv6节点访问不支持IPv6的IPv4节点（IPv4映象地址)，另一类允许IPv6路由器用隧道方式，在IPv4网络上传送IPv6包(IPv4兼容地址)</li>
+</ol>
+</li>
+<li>NSAP和IPX地址分配<ul>
+<li>lPng的目标之一是要统一整个网络世界，使IP、IPX和OSI网络间能进行互操作。为了支持这种互操作性，IPv6为OSI和IPX各保留了1/128地址空间。IPX地址格式尚未精确定义</li>
+<li>NSAP地址分配的描述见RFC1888 (OSI NSAP和IPv6)</li>
+</ul>
+</li>
+</ul>
+<h4 id="多播地址："><a href="#多播地址：" class="headerlink" title="多播地址："></a>多播地址：</h4><blockquote>
+<p style="color:red;">多播指的是源节点发送的单个数据报可以被指明的多个目的节点收到</p>
+</blockquote>
+<ul>
+<li>IPv6协议中的多播地址用最高8位是11111111(FF)来标识多播地址</li>
+<li>多播地址只能用作目的地址。</li>
+</ul>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/12/16/IPv6协议结构/多播地址.png" style="zoom:67%;" />
+
+<ul>
+<li><p>标识字段：地址格式中的第1个字节为全<code>&quot;1&quot;</code>(FF)，标识其为多播地址</p>
+</li>
+<li><p>标志字段：占4位。目前只定义了第4位，用<code>&quot;0&quot;</code>表示该地址是由Internet编号机构指定的熟知多播地址，<code>1</code>表示特定场合使用的临时多播地址</p>
+</li>
+<li><p>范围字段:占4位，用来限制多播数据流在网络中发送的范围，见下表</p>
+</li>
+</ul>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/12/16/IPv6协议结构/多播地址范围字段.png" style="zoom:67%;" />
+
+<ul>
+<li>组标识符字段:占112位，用于标识多播组，最多可以编码2112个组的ID。</li>
+</ul>
+<h5 id="IPv6具有特别含义的特殊多播地址"><a href="#IPv6具有特别含义的特殊多播地址" class="headerlink" title="IPv6具有特别含义的特殊多播地址"></a>IPv6具有特别含义的特殊多播地址</h5><ul>
+<li>FF01::1表示节点本地范围内所有节点多播地址;</li>
+<li>FF02::1表示链路本地范围内所有节点多播地址;</li>
+<li>FF01:2表示节点本地范围内所有路由器多播地址;</li>
+<li>FF02::2表示链路本地范围内所有路由器多播地址;</li>
+<li>FFO5::2表示站点本地范围内所有路由器多播地址。</li>
+<li>IPv6多播地址中有一种特殊用途的<strong>请求节点(Solicited-node)多播地址</strong>，主要用于重复地址检测(DAD)和获取邻居节点的链路层地址。请求节点多播地址由前缀FFO2::1:FFO0:0/104和单播地址的最后24位组成。</li>
+</ul>
+<p>当节点预订多播地址时，它声明要成为多播的一个成员，于是任何本地路由器将以该节点的名义预订多播地址。同一网络上的其他节点要发送信息到该多播地址时，IP多播包将被封装到链路层多播数据传输单元中，发送给每个订户。从本地网以外来的多播，用同样方法处理，只是传递给路由器，由路由器把包转发给预订节点。</p>
+<blockquote>
+<p style="color:black;">路由器不转发广播包，但对多播而言只要路由器以其它节点的名义预订多播地址，就能有选择地转发多播包
+</blockquote>
+<h4 id="任播地址"><a href="#任播地址" class="headerlink" title="任播地址"></a>任播地址</h4><p>任播地址是IPv6协议特有的地址类型</p>
+<blockquote>
+<p style="color:orange;">多个节点共享一个任播地址，但只有一个节点接收给任播地址的数据报。适合于一对一组中的一个(One to One of Many)的通信需求</p>
+</blockquote>
+<blockquote>
+<p style="color:blue;">任播地址用来标识通常属于不同节点的一组网络接口，路由器把目标地址是任播地址的数据报发送给离该路由器"最近"的一个接口</p>
+</blockquote>
+<ul>
+<li>任播地址只能用作IPv6数据报的目的地址，只能分配给IPv6路由器</li>
+<li>任播对某些类型的服务特别有用，尤其是对于C/S之间不需要有特定关系的服务，如DNS、NTP等</li>
+</ul>
+<p>任播地址是从单播地址空间中划分出来的，与单播地址有相同的格式，当一个单播地址属于多个接口时，就是任播地址。因为任播地址在形式上与单播地址无法区分开，一个任播地址的每个成员，必须显式地加以配置，以便识别任播地址</p>
+<p><strong>子网路由器任播地址格式:</strong></p>
+<blockquote>
+<p>子网前缀部分设置为路由器所在子网的前缀，地址的其余位设置为0，发送到这个地址上的数据包会被发送到该子网中的一个路由器上</p>
+</blockquote>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/12/16/IPv6协议结构/子网路由器任播地址格式.png" style="zoom: 80%;" />
+
+<p><strong>预留的任播地址(RFC 2526)</strong></p>
+<ul>
+<li>在每个子网内，接口标识符值0—127是为子网任播地址分配而保留的，0—125和127为保留，126用于移动lPv6家园代理(Mobile lPv6 Home Agents)的任播</li>
+<li>预留的任播地址不能分配给单播地址，它们的结构按是否含EUl-64分为两类</li>
+</ul>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/12/16/IPv6协议结构/预留的任播地址.png" style="zoom:100%;" />
+
+<p><strong>节点必须的IPv6地址</strong></p>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/12/16/IPv6协议结构/节点必须的IPv6地址.png" style="zoom:67%;" />
+
+<p><strong>路由器必须的IPv6地址：</strong></p>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/12/16/IPv6协议结构/路由器必须的IPv6地址.png" style="zoom: 70%;" />
+
+<h4 id="IPv6地址配置技术"><a href="#IPv6地址配置技术" class="headerlink" title="IPv6地址配置技术"></a>IPv6地址配置技术</h4><h5 id="路由器地址配置"><a href="#路由器地址配置" class="headerlink" title="路由器地址配置"></a>路由器地址配置</h5><p>与IPv4方法类似，管理员手工为接口配置一个IPv6地址，并指定前缀长度</p>
+<h5 id="主机地址配置"><a href="#主机地址配置" class="headerlink" title="主机地址配置"></a>主机地址配置</h5><ul>
+<li>考虑到主机用途的多样性，采用自动配置方法，常用的自动配置技术包括:有状态自动配置协议(DHCPv6)和无状态自动配置协议。</li>
+</ul>
+<p><strong>手工配置和检测</strong></p>
+<ol>
+<li>建议用于服务器和重要网络设备</li>
+<li>接口地址配置的内容包括:128位IPv6地址和前缀长度</li>
+<li>IPv6地址配置到接口上以后，需要检测所配置的地址在链路上是否<strong>唯一</strong><ul>
+<li>IPv6重复地址检测<strong>DAD</strong>，属于邻居发现(ND，Neighbor Discovery)协议的功能</li>
+</ul>
+</li>
+</ol>
+<p><strong>自动配置</strong></p>
+<ul>
+<li>赋予主机自己的地址参数，包括地址前缀、接口ID</li>
+<li>赋予主机其它的相关参数，包括路由器地址、跳数、MTU…</li>
+</ul>
+<p><strong>自动配置过程</strong></p>
+<ol>
+<li><p>接口初始化，然后产生“tentative”(实验性)地址</p>
+</li>
+<li><p>对“tentative”地址进行重复地址检测(DAD)</p>
+</li>
+<li><p>接口产生link-local地址，具备IP连接能力</p>
+</li>
+<li><p>决定采用何种自动配置技术</p>
+<ul>
+<li>由Router Advertisement报文及主机配置来决定</li>
+<li>无状态自动配置(stateless autoconfiguration)</li>
+<li>有状态自动配置(stateful autoconfiguration)</li>
+</ul>
+</li>
+<li><p>获得全球地址</p>
+</li>
+</ol>
+<h5 id="即插即用"><a href="#即插即用" class="headerlink" title="即插即用"></a>即插即用</h5><ul>
+<li>lPv6用两种不同机制来支持即插即用，即BOOTP和DHCP。这些协议支持“状态自动配置”，即服务器必须管理和保存每个节点的状态信息</li>
+</ul>
+<p><strong>有状态自动配置与无状态自动配置</strong></p>
+<ul>
+<li>有状态自动配置的问题在于:用户必须保持和管理特殊的自动配置服务器以管理所有“状态”</li>
+<li>对于个人或者小型机构，无状态自动配置是较容易的解决方案。这种机制允许个人节点确定自己的IP配置，而不必向服务器显式请求各节点的信息</li>
+</ul>
+<h5 id="同时使用无状态及有状态两种配置方式"><a href="#同时使用无状态及有状态两种配置方式" class="headerlink" title="同时使用无状态及有状态两种配置方式"></a>同时使用无状态及有状态两种配置方式</h5><ul>
+<li>两种类型自动配置方式的合作比单独使用其中一种更易于实现Internet网络连接的即插即用<ul>
+<li>可以使用无状态自动配置生成一个IPv6地址，然后对附加参数使用有状态的自动配置</li>
+</ul>
+</li>
+<li>无状态自动配置要简单的多，为什么还要使用状态自动配置?<ul>
+<li>无状态自动配置对得到IP地址的节点提供最低程序的监视，任一节点可以连接到链路，通过路由器通告来获知网络和子网信息，并构造有效的链路地址</li>
+<li>如果有DHCP服务器的支持，那么机构可以更紧密地控制网络可配置的节点。同时，只有由网络管理员明确授权的节点才能通过DHCP服务器来配置</li>
+</ul>
+</li>
+</ul>
+<h3 id="IPv6协议结构"><a href="#IPv6协议结构" class="headerlink" title="IPv6协议结构"></a>IPv6协议结构</h3><pre class="line-numbers language-Python" data-language="Python"><code class="language-Python">#	掌握IPv6的报头格式
+#	掌握分片报头的格式及用途
+#	理解IPv6数据包的拆分、重组过程<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="IPv6数据包结构"><a href="#IPv6数据包结构" class="headerlink" title="IPv6数据包结构"></a>IPv6数据包结构</h4><blockquote>
+<p style="color:orange;">由固定首部(base header)和有效载荷(payload)组成：首部长度变为固定的40字节，称为基本首部，所有的扩展首部和上层数据合起来叫做数据报的有效载荷或净负荷</p>
+</blockquote>
+<ul>
+<li>取消不必要的功能，首部的字段数减少到只有8个</li>
+<li>取消了首部检验和字段，加快了路由器处理数据报的速度</li>
+<li>基本首部的后面允许有零个或多个扩展首部。</li>
+</ul>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/12/16/IPv6协议结构/IPv6数据结构.png" style="zoom:67%;" />
+
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/12/16/IPv6协议结构/IPv6数据包结构示意图.png" style="zoom: 50%;" />
+
+<center>IPv6数据包结构示意图</center>
+#### 基本首部
+
+<h5 id="基本首部各字段含义："><a href="#基本首部各字段含义：" class="headerlink" title="基本首部各字段含义："></a>基本首部各字段含义：</h5><ul>
+<li>版本:4位，指明了协议的版本，对IPv6该字段总是6。</li>
+<li>区分服务:8位，以前叫做通信流类别，6表示IPv6数据包的类或优先级。类似于IPv4的服务类型字段。</li>
+<li>流标号:20位，流是互联网络上从特定源点到特定终点的一系列数据报。数据流由流标号和源节点的地址唯一标识。所有属于同一个流的数据报都具有同样的流标号、源lP地址和目的IP地址</li>
+<li>有效载荷长度:16位，指明IPv6数据报除基本首部以外的字节数（所有扩展首部都算在有效载荷之内），其最大值是64KB。如果使用逐跳选项扩展头的特大净荷选项，就能传送更大的数据包，此时有效载荷长度置0</li>
+<li>下一个首部:8位，如果IPv6数据报没有扩展首部，它相当于IPv4的协议字段;如果IPv6数据报有扩展首部，它指出第一个扩展首部的类型</li>
+<li>跳数限制:8位，与IPv4的TTL类似。源节点在数据报发出时即设定跳数限制。路由器在转发数据报时将跳数限制字段中的值减1。当跳数限制的值为零时，将此数据报丢弃</li>
+<li>源地址:128位，定义了源主机的IP地址</li>
+<li>目的地址:128位，定义了目的主机的IP地址。如果出现路由头，这个地址不是最终的接收数据包的主机的IPv6地址，而是路由报头列表中的第一个路由器地址</li>
+</ul>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/12/16/IPv6协议结构/IPv6数据结构与IPv4的对比.png" style="zoom: 50%;" />
+
+<h4 id="IPv6拓展首部："><a href="#IPv6拓展首部：" class="headerlink" title="IPv6拓展首部："></a>IPv6拓展首部：</h4><ul>
+<li>它代替了IPv4报头及其选项，增强了IPv6的功能，使其可以支持未来的需求</li>
+<li>扩展首部留给路径两端的源站和目的站主机来处理，中间路由器都不处理扩展首部（除路由选择和逐跳选项扩展首部)，大大提高了路由器的处理效率</li>
+<li>lPv6数据包中可以包含零个或多个具有不同的长度扩展报头。IPv6报头中的下一个报头字段，指向第一个扩展报头。每个扩展报头中，都包含下一个报头字段，指向下一个扩展报头。最后一个扩展报头指出上层协议数据单元的类型，上层协议可以是TCP协议、UDP协议或者ICMPv6协议等。</li>
+</ul>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/12/16/IPv6协议结构/无扩展首部.png" style="zoom:80%;" />
+
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/12/16/IPv6协议结构/有扩展首部.png" style="zoom: 67%;" />
+
+<h5 id="六种扩展首部："><a href="#六种扩展首部：" class="headerlink" title="六种扩展首部："></a>六种扩展首部：</h5><p><strong>逐跳选项扩展首部</strong>(Hop-by-Hop Options Header)，<strong>路由选择扩展首部</strong>(Routing Header)，<strong>分片扩展首部</strong>(Fragment Header)，<strong>认证扩展首部</strong>(Authentication Header)，<strong>目的站选项扩展首部</strong>(Destination Header)和封装<strong>安全有效载荷扩展首部</strong>(Encapsulated Security Payload Header)</p>
+<blockquote>
+<p style="color:blue;">注:每个扩展首部的长度应为8个字节的整数倍，是为了满足扩展首部对齐的要求</p>
+</blockquote>
+<h5 id="逐跳选项扩展首部"><a href="#逐跳选项扩展首部" class="headerlink" title="逐跳选项扩展首部"></a>逐跳选项扩展首部</h5><ul>
+<li>逐跳选项扩展首部中最实质的是逐跳选项字段的内容，该字段描述了数据分组转发的特性。从源节点到目的节点的路由上的每个节点，即每个转发包(数据报)的路由器都检查逐跳选项中的信息</li>
+<li>由于它需要每个中间路由器进行处理，所以只在绝对必要的时候才会出现</li>
+<li>必须紧跟在IPv6基本首部后，若存在逐跳选择首部，基本首部中下一个首部字段值为0</li>
+</ul>
+<p><strong>逐跳选项：</strong></p>
+<ul>
+<li>巨型净荷选项:净荷超过65535字节</li>
+<li>路由器警告选项:用于多播侦听发现和资源存储协议</li>
+</ul>
+<blockquote>
+<p>RFC2460中已经将这两个选项废弃。</p>
+</blockquote>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/12/16/IPv6协议结构/逐跳扩展首部结构.png"  />
+
+<h5 id="路由选择扩展首部"><a href="#路由选择扩展首部" class="headerlink" title="路由选择扩展首部"></a>路由选择扩展首部</h5><p>路由选择扩展首部代替了IPv4中所实现的源选路。源选路允许用户指定数据报的路径，即到达目的地沿途必须经过的路由器<br>·前一个首部中的<code>下一个首部</code>的<strong>字段值为43</strong></p>
+<blockquote>
+<p>RFC2460中定义了一种类型，即类型0，只有列表中的路由器才处理路由选择扩展首部，其它路由器不必处理</p>
+</blockquote>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/12/16/IPv6协议结构/路由选择扩展首部.png" style="zoom: 80%;" />
+
+<p><strong>路由选择扩展操作过程</strong></p>
+<ul>
+<li>源节点构造数据报必须经过的路由器列表，构造类型0选路首部（路由器列表、最终目的地址、剩余段数)</li>
+<li>IPv6基本首部的目的地址是路由器列表中的第一个路由器地址,而不是包的最终目的地址。最终目的地址是路由选择扩展首部数据字段的最后一个地址</li>
+<li>在地址列表中的节点接收到该包之后，对IPv6基本首部和路由选择扩展首部进行处理:<ul>
+<li>剩余段数为0，则此路由器节点是该包的最终目的地址</li>
+<li>若此节点不是该包的最终目的地址，将它自己的地址从IPv6首部目的地址字段取出，用路由选择列表中的下一个节点地址代替，同时将剩余段数字段值减1，并把包发送到下一个节点</li>
+<li>重复此过程，直到包到达其最终目的地址。</li>
+</ul>
+</li>
+</ul>
+<h5 id="分段扩展首部"><a href="#分段扩展首部" class="headerlink" title="分段扩展首部"></a>分段扩展首部</h5><blockquote>
+<p style="color:blue;">当源节点发送的IPv6数据报比到达目的节点所经过路径上的最小MTU(PMTU)还要大时，需要对这个数据报进行分段</p>
+</blockquote>
+<p>IPv6协议通过分段扩展首部实现数据报的分段，只允许源节点对数据报进行分段，简化了中间节点对数据报的处理<br>前一个首部中的<code>下一个首部</code>的<strong>字段值为44</strong>。<br>需要进行分段的原始数据报在源节点被分为一系列分段数据报发送出去，每个分段数据报的大小应与传输路径上的最小MTU适应</p>
+<blockquote>
+<p>RFC2460中规定最小MTU值为1280字节</p>
+</blockquote>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/12/16/IPv6协议结构/分段扩展首部.png"  />
+
+<blockquote>
+<p style="color:blue;">对于IPv6固定首部和传输过程中必须由路由器处理的扩展首部如路由选择、逐跳选项扩展首部，不允许分段</p>
+</blockquote>
+<ul>
+<li><p>可分段的部分包括:<strong>载荷、只能在到达最终目的地址时才处理的扩展首部</strong>。</p>
+</li>
+<li><p>将原始数据报中的可分段部分从左到右分成若干片，除最后一个分段外，每一片的长度是8个的整数倍。</p>
+</li>
+<li><p><strong>每个分段单独封装为一个IPv6数据报。</strong></p>
+</li>
+</ul>
+<h5 id="身份认证扩展首部"><a href="#身份认证扩展首部" class="headerlink" title="身份认证扩展首部"></a>身份认证扩展首部</h5><blockquote>
+<p style="color:orange;">为IPv6数据包和IPv6报头中那些经过IPv6网络传输后值不会改变的字段，提供了数据验证、数据完整性和反重放保护</p>
+</blockquote>
+<p>前一个首部中的<code>下一个首部</code>的<strong>字段值为51</strong></p>
+<h5 id="封装安全有效载荷扩展首部"><a href="#封装安全有效载荷扩展首部" class="headerlink" title="封装安全有效载荷扩展首部"></a>封装安全有效载荷扩展首部</h5><ul>
+<li>封装安全有效载荷（ESP）报头和尾部提供了数据机密性、数据验证性、数据完整性，以及对已封装有效载荷的重放保护服务。ESP报头并不为出现在它之前的IPv6报头或扩展报头提供安全服务</li>
+<li>前一个首部中的<code>下一个首部</code>的<strong>字段值为50</strong></li>
+</ul>
+<h5 id="目的站选项扩展首部"><a href="#目的站选项扩展首部" class="headerlink" title="目的站选项扩展首部"></a>目的站选项扩展首部</h5><ul>
+<li><strong>目的站选项扩展首部</strong>携带只需要目的站点检验的可选信息，IPv6目的地址字段所列的第一个目的主机，以及路由选择扩展首部所列的后续目的主机都要处理这个可选信息</li>
+<li>前一个首部中的<code>下一个首部</code>的<strong>字段值为60</strong></li>
+<li>以下两种方式使用目的选项头:<ul>
+<li><strong>如果存在路由报头，则目的选项报头指定了在每个中间目标都要转发或处理的选项，此时目的选项头出现在路由报头之前</strong></li>
+<li><strong>如果不存在路由报头，或者目的选项头出现在路由头之后，则目的选项报头中指定了在最终目标处要转发或处理的洗项</strong></li>
+</ul>
+</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/2022/12/16/IPv6%E5%8D%8F%E8%AE%AE%E7%BB%93%E6%9E%84/">https://shierjinghuang.github.io/2022/12/16/IPv6%E5%8D%8F%E8%AE%AE%E7%BB%93%E6%9E%84/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/">
+                                    <span class="chip bg-color">网络协议分析</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/12/16/ICMPv6/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="ICPMv6协议基础">
+                        
+                        <span class="card-title">ICPMv6协议基础</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-12-16
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                    网络工程相关
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/">
+                        <span class="chip bg-color">网络协议分析</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/12/15/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E6%B1%87%E6%80%BB/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="IPv4部分协议信息汇总">
+                        
+                        <span class="card-title">IPv4部分协议信息汇总</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-12-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                    网络工程相关
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/">
+                        <span class="chip bg-color">网络协议分析</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2023</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">310.7k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

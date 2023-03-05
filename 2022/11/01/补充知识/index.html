@@ -1,0 +1,1439 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="补充知识：《信号与系统》, 十二惊惶">
+    <meta name="description" content="引言
+
+时域分析（连续信号）
+$f(t)=f(t)*\delta(t)=\int_{-\infty}^{\infty}f(\tau)\delta(t-\tau)d\tau$
+​    基本信号求出基本响应。任意信号可以分解为基本信号的线性组">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>补充知识：《信号与系统》 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">补充知识：《信号与系统》</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/">
+                                <span class="chip bg-color">通信原理</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                学习笔记
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-11-01
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-11-01
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    10 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001142352445.png" alt="image-20221001142352445" style="zoom:80%;" />
+
+<h2 id="时域分析（连续信号）"><a href="#时域分析（连续信号）" class="headerlink" title="时域分析（连续信号）"></a>时域分析（连续信号）</h2><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001142709864.png" alt="image-20221001142709864"></p>
+<p>$f(t)=f(t)*\delta(t)=\int_{-\infty}^{\infty}f(\tau)\delta(t-\tau)d\tau$</p>
+<p>​    基本信号求出基本响应。任意信号可以分解为基本信号的线性组合（求和式）：连续-&gt;卷积积分，所以知道分解就可以求出复杂输入信号的响应。</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001145109238.png" alt="image-20221001145109238" style="zoom:50%;" />
+
+<p>时域分析的要点：以冲激函数为基本信号，任意输入信号可分解为一系列冲击函数；而<br>$$<br>y_{zs}(t)=h(t)*f(t)\qquad(卷积)<br>$$</p>
+<h2 id="频域分析"><a href="#频域分析" class="headerlink" title="频域分析"></a>频域分析</h2><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001145653880.png" alt="image-20221001145653880"></p>
+<p>系统分析的独立变量是频率，分析是在频率空间进行的，故称为频率域分析，简称<strong>频域分析（傅里叶分析）</strong>。</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220911200849193.png" alt="image-20220911200849193" style="zoom:67%;" />
+
+<p>​    频域分析法要点<strong>以正弦信号和虚指数信号为基本信号</strong>，将任意输入信号分解为一系列不同频率的正弦信号或虚指数信号之和，再利用LTI性质求出系统的响应。</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001145818018.png" alt="image-20221001145818018" style="zoom: 50%;" />
+
+<h1 id="信号分解为正交函数"><a href="#信号分解为正交函数" class="headerlink" title="信号分解为正交函数"></a>信号分解为正交函数</h1><p><strong>信号怎样分解最有效？                信号分解为正交函数</strong></p>
+<p>信号 -&gt; 矢量</p>
+<ul>
+<li>信号分解 -&gt; 矢量分解 -&gt; 矢量正交 -&gt; 信号正交</li>
+<li>信号 -&gt; 正交集/分解成正交信号的组合</li>
+</ul>
+<h2 id="矢量的正交分解"><a href="#矢量的正交分解" class="headerlink" title="矢量的正交分解"></a>矢量的正交分解</h2><ul>
+<li><p>矢量正交：2个矢量的点积/内积为0</p>
+</li>
+<li><p>正交矢量集：n对正交矢量的集合</p>
+</li>
+<li><p>非正交矢量的近似表示及误差 -&gt; 误差最小$\theta_{V_{e}}=90^{o}$</p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001150350703.png" alt="image-20221001150350703">                $\stackrel{\rightharpoonup}{V_{e}}\stackrel{\Delta}{=}\stackrel{\rightharpoonup}{V_{1}}-c_{12}\stackrel{\rightharpoonup}{V_{2}}\<br>用与V_{2}成比例的矢量c_{12}\stackrel{\rightharpoonup}{V_{2}}近似表示\stackrel{\rightharpoonup}{V_{1}}\<br>|c_{12}\stackrel{\rightharpoonup}{V_{2}}|=|\stackrel{\rightharpoonup}{V_{1}}|\cos\theta\<br>c_{12}=\frac{|\stackrel{\rightharpoonup}{V_{1}}|\cos\theta}{|\stackrel{\rightharpoonup}{V_{2}}|}={|\stackrel{\rightharpoonup}{V_{1}}||\stackrel{\rightharpoonup}{V_{2}}|\cos\theta}{|\stackrel{\rightharpoonup}{V_{2}}||\stackrel{\rightharpoonup}{V_{2}}|}=\frac{\stackrel{\rightharpoonup}{V_{1}}\cdot\stackrel{\rightharpoonup}{V_{2}}}{\stackrel{\rightharpoonup}{V_{2}}\cdot\stackrel{\rightharpoonup}{V_{2}}}\<br>推广:c_{1r}=\frac{\stackrel{\rightharpoonup}{V_{1}}\cdot\stackrel{\rightharpoonup}{V_{r}}}{\stackrel{\rightharpoonup}{V_{r}}\cdot\stackrel{\rightharpoonup}{V_{r}}}\qquad\stackrel{\rightharpoonup}{V_{r}}是分量\<br>正交时，\stackrel{\rightharpoonup}{V_{2}}无法表示\stackrel{\rightharpoonup}{V_{1}}，c_{12}=0$</p>
+</li>
+<li><p>矢量正交分解：</p>
+</li>
+</ul>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001150737398.png"></p>
+<p>-&gt; 推广到n维空间</p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001150925530.png" alt="image-20221001150925530"></p>
+<p><font color="red">思路</font>：将矢量空间正交分解的概念推广到信号空间——在信号空间找到<strong>若干个相互正交的信号作为基本信号</strong>，使得信号空间中任意信号均可表示成它们的线性组合。</p>
+<h2 id="信号的正交分解"><a href="#信号的正交分解" class="headerlink" title="信号的正交分解"></a>信号的正交分解</h2><p><strong>信号空间里怎样构建信号分解？</strong></p>
+<ul>
+<li>信号正交</li>
+</ul>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220911211511055.png" style="zoom:33%;" />
+
+<ul>
+<li>正交函数集</li>
+</ul>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220911212048453.png" alt="image-20220911212048453" style="zoom: 33%;" />
+
+<ul>
+<li>标准正交函数集：$K_{i}=1$</li>
+<li>完备正交函数集(全部找到又不多找)</li>
+</ul>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220911212204307.png" alt="image-20220911212204307" style="zoom:33%;" />
+
+<ul>
+<li><p>典型例子</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220911213350683.png" alt="image-20220911213350683" style="zoom:33%;" /></li>
+</ul>
+<h3 id="Delta-信号的正交分解"><a href="#Delta-信号的正交分解" class="headerlink" title="$\Delta$信号的正交分解"></a><strong>$\Delta$信号的正交分解</strong></h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220911215221402.png" alt="image-20220911215221402" style="zoom:50%;" />
+
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001151737883.png" alt="image-20221001151737883"></p>
+<h3 id="Delta-广义傅里叶系数"><a href="#Delta-广义傅里叶系数" class="headerlink" title="$\Delta$广义傅里叶系数"></a>$\Delta$广义傅里叶系数</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220911215403170.png" alt="image-20220911215403170" style="zoom:50%;" />
+
+<h2 id="帕斯瓦尔定理"><a href="#帕斯瓦尔定理" class="headerlink" title="帕斯瓦尔定理"></a>帕斯瓦尔定理</h2><p>例子：$f(t)$是电压，$f(t)$加载在$1\Omega$的电阻上产生的瞬时功率的$f^{2}(t)$：求积分 -&gt; 能量 = 分量和（能量守恒）</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220911215615624.png" alt="image-20220911215615624" style="zoom:50%;" />
+
+<ul>
+<li>详述：<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220911215801393.png" alt="image-20220911215801393" style="zoom: 33%;" /></li>
+</ul>
+<h1 id="周期信号傅里叶级数"><a href="#周期信号傅里叶级数" class="headerlink" title="周期信号傅里叶级数"></a>周期信号傅里叶级数</h1><p>$f(t)$信号</p>
+<p>$\varphi_{i}$完备正交函数集</p>
+<h2 id="三角形式的傅里叶级数"><a href="#三角形式的傅里叶级数" class="headerlink" title="三角形式的傅里叶级数"></a>三角形式的傅里叶级数</h2><p>$$<br>f(t)=\sum_{i=1}^{\infty}C_{i}\varphi_{i}(t)\qquad\qquad广义傅里叶展开式\<br>C_{i}=\frac{\int_{t_{2}}^{t_{1}}f(t)\varphi_{i}(t)dt}{\int_{t_{2}}^{t_{1}}\varphi_{i}(t)\varphi_{i}^{*}(t)dt}\qquad\qquad广义傅里叶系数<br>$$</p>
+<p>推广具体，令$\varphi_{i}$为三角函数集</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001154528732.png" alt="image-20221001154528732" style="zoom: 50%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001154612057.png" alt="image-20221001154612057" style="zoom: 50%;" />
+
+<h3 id="狄里赫利-Dirichlet-条件"><a href="#狄里赫利-Dirichlet-条件" class="headerlink" title="狄里赫利(Dirichlet)条件"></a>狄里赫利(Dirichlet)条件</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001155223271.png" alt="image-20221001155223271" style="zoom: 33%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001155238503.png" alt="image-20221001155238503" style="zoom:33%;" />
+
+<p>间断点为第一类间断点：一个信号在这点间断，但左右导数存在</p>
+<h3 id="余弦形式的傅里叶级数"><a href="#余弦形式的傅里叶级数" class="headerlink" title="余弦形式的傅里叶级数"></a>余弦形式的傅里叶级数</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001155710589.png" alt="image-20221001155710589" style="zoom: 50%;" />
+
+<h4 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h4><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001160013251.png" alt="image-20221001160013251"  />
+
+<p>如果$f(t)$是奇函数，$a_{n}=0$</p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001160115260.png" alt="image-20221001160115260"></p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001160319854.png" alt="image-20221001160319854"></p>
+<h4 id="吉布斯现象"><a href="#吉布斯现象" class="headerlink" title="吉布斯现象"></a>吉布斯现象</h4><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001160346217.png" alt="image-20221001160346217"></p>
+<h3 id="波形的对称性和谐波特性"><a href="#波形的对称性和谐波特性" class="headerlink" title="波形的对称性和谐波特性"></a>波形的对称性和谐波特性</h3><h4 id="对称性"><a href="#对称性" class="headerlink" title="对称性"></a>对称性</h4><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001165450041.png" alt="image-20221001165450041"></p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001165430915.png" alt="image-20221001165430915"></p>
+<h4 id="谐波性"><a href="#谐波性" class="headerlink" title="谐波性"></a>谐波性</h4><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001165520416.png" alt="image-20221001165520416"></p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001165548907.png" alt="image-20221001165548907"></p>
+<h2 id="指数形式的傅里叶级数"><a href="#指数形式的傅里叶级数" class="headerlink" title="指数形式的傅里叶级数"></a>指数形式的傅里叶级数</h2><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001173647416.png" alt="image-20221001173647416"></p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001172438805.png" alt="image-20221001172438805"></p>
+<p>$因为n=0时，为\frac{A_{0}}{2}；n为(-\infty,-1)和(1,+\infty)正好构成(-\infty,+\infty)，所以可以合在一起$  </p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001172519381.png" alt="image-20221001172519381"></p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001172858648.png" alt="image-20221001172858648" style="zoom: 50%;" />
+
+<h4 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h4><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001173239425.png" alt="image-20221001173239425"></p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001174203167.png" alt="image-20221001174203167"></p>
+<h2 id="傅里叶系数之间的关系"><a href="#傅里叶系数之间的关系" class="headerlink" title="傅里叶系数之间的关系"></a>傅里叶系数之间的关系</h2><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001180513079.png" alt="image-20221001180513079" style="zoom: 50%;" />
+$$
+2|F_{n}|=A_{n}
+$$
+
+<h1 id="周期信号的频谱"><a href="#周期信号的频谱" class="headerlink" title="周期信号的频谱"></a>周期信号的频谱</h1><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001211253730.png" alt="image-20221001211253730"></p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001211358246.png" alt="image-20221001211358246"></p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001211416406.png" alt="image-20221001211416406"></p>
+<h2 id="例题1"><a href="#例题1" class="headerlink" title="例题1"></a>例题1</h2><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001211457037.png" alt="image-20221001211457037"></p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001211609782.png" alt="image-20221001211609782"></p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221001211525552.png" alt="image-20221001211525552"></p>
+<h2 id="例题2"><a href="#例题2" class="headerlink" title="例题2"></a>例题2</h2><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002102758736.png" alt="image-20221002102758736" style="zoom: 67%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002102840282.png" alt="image-20221002102840282" style="zoom: 67%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002102943627.png" alt="image-20221002102943627" style="zoom:67%;" />
+
+<h2 id="频谱的特点"><a href="#频谱的特点" class="headerlink" title="频谱的特点"></a>频谱的特点</h2><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002110156885.png" alt="image-20221002110156885" style="zoom: 50%;" />
+$$
+\textcolor{red}{因为Sa(x)=\frac{sinx}{x}，所以F_{n}=\frac{\tau}{T}Sa(\frac{n\Omega\tau}{2})}
+$$
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002110950896.png" alt="image-20221002110950896" style="zoom:50%;" />
+
+<h3 id="频谱的特点-1"><a href="#频谱的特点-1" class="headerlink" title="频谱的特点"></a>频谱的特点</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002111050215.png" alt="image-20221002111050215"></p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002113935706.png" alt="image-20221002113935706" style="zoom:50%;" />
+
+<h3 id="tau-和-T-变化关系"><a href="#tau-和-T-变化关系" class="headerlink" title="$\tau$和$T$变化关系"></a>$\tau$和$T$变化关系</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002111338972.png" alt="image-20221002111338972" style="zoom:50%;" />
+
+<p>当$T$不变，$\tau$变小时，周期不变，脉冲宽度变窄。幅度$\frac{\tau}{T}$下降；$\Omega$不变；$\frac{2m\pi}{\tau}$零点增大导致零点间远移，$\frac{T}{\tau}$两零点间谱线数增多。</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002111402152.png" alt="image-20221002111402152" style="zoom:50%;" />
+
+<p><font color="red">傅里叶级数向傅里叶变换的节点，非周期信号周期为1，下一周期在无穷远处。</font></p>
+<h3 id="收敛性分析"><a href="#收敛性分析" class="headerlink" title="收敛性分析"></a>收敛性分析</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002113612829.png" alt="image-20221002113612829" style="zoom:50%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002113639399.png" alt="image-20221002113639399" style="zoom:50%;" />
+
+<h3 id="平均功率——Parseval等式"><a href="#平均功率——Parseval等式" class="headerlink" title="平均功率——Parseval等式"></a>平均功率——Parseval等式</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002140515705.png" alt="image-20221002140515705" style="zoom:50%;" />
+
+<p>表明：对于周期信号，在时域中求得的信号功率与在频域中求得的信号功率相等。</p>
+<h3 id="频带宽度"><a href="#频带宽度" class="headerlink" title="频带宽度"></a>频带宽度</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002114502516.png" alt="image-20221002114502516" style="zoom:50%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002114522013.png" alt="image-20221002114522013" style="zoom:50%;" />
+
+<p>例题</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002151518586.png" alt="image-20221002151518586" style="zoom:50%;" />
+
+<h1 id="非周期信号傅里叶变换"><a href="#非周期信号傅里叶变换" class="headerlink" title="非周期信号傅里叶变换"></a>非周期信号傅里叶变换</h1><h2 id="非周期信号的频谱"><a href="#非周期信号的频谱" class="headerlink" title="非周期信号的频谱"></a>非周期信号的频谱</h2><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002151600985.png" alt="image-20221002151600985" style="zoom:50%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002151632167.png" alt="image-20221002151632167" style="zoom:50%;" />
+
+<p>注意：虽然各频率分量的幅度趋近于无穷小，但无穷小量之间仍有相对大小差别，故引入频谱密度函数。</p>
+<h2 id="频谱密度函数"><a href="#频谱密度函数" class="headerlink" title="频谱密度函数"></a>频谱密度函数</h2><p>​    <img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002151801570.png" alt="image-20221002151801570" style="zoom:50%;" /><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002152154234.png" alt="image-20221002152154234" style="zoom:50%;" /></p>
+<p>​    <img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002152239108.png" alt="image-20221002152239108" style="zoom: 33%;" /><br>$$<br>\textcolor{red}{F_{n}频谱是实际频谱大小，F(j\omega)为非周期信号的频谱，将无穷小放大为无穷大倍，实际为频谱密度}<br>$$</p>
+<h2 id="傅里叶变换"><a href="#傅里叶变换" class="headerlink" title="傅里叶变换"></a>傅里叶变换</h2><h3 id="傅里叶正变换-f-t-rightarrow-F-j-omega"><a href="#傅里叶正变换-f-t-rightarrow-F-j-omega" class="headerlink" title="傅里叶正变换$f(t) \rightarrow F(j\omega)$"></a>傅里叶正变换$f(t) \rightarrow F(j\omega)$</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002163527904.png" alt="image-20221002163527904"><br>$$<br>周期函数：F_{n}/A_{n}\sim\Omega\<br>非周期函数：|F(j\omega)|/\varphi(\omega)\sim\omega<br>$$</p>
+<h3 id="傅里叶反变换-F-j-omega-rightarrow-f-t"><a href="#傅里叶反变换-F-j-omega-rightarrow-f-t" class="headerlink" title="傅里叶反变换$F(j\omega)\rightarrow f(t)$"></a>傅里叶反变换$F(j\omega)\rightarrow f(t)$</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002164054057.png" alt="image-20221002164054057"></p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002164254793.png" alt="image-20221002164254793"></p>
+<h3 id="Delta-傅里叶变换对"><a href="#Delta-傅里叶变换对" class="headerlink" title="$\Delta$傅里叶变换对"></a>$\Delta$傅里叶变换对</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002164345417.png" alt="image-20221002164345417"></p>
+<p>​    <img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002164444007.png" alt="image-20221002164444007"  /><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002164456092.png" alt="image-20221002164456092"  /></p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002164216208.png" alt="image-20221002164216208" style="zoom: 67%;" />
+
+
+
+<h2 id="常用函数的傅里叶变换"><a href="#常用函数的傅里叶变换" class="headerlink" title="常用函数的傅里叶变换"></a>常用函数的傅里叶变换</h2><h3 id="单边指数函数"><a href="#单边指数函数" class="headerlink" title="单边指数函数"></a>单边指数函数</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002164632973.png" alt="image-20221002164632973"></p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002164701474.png" alt="image-20221002164701474"></p>
+<h3 id="双边指数函数"><a href="#双边指数函数" class="headerlink" title="双边指数函数"></a>双边指数函数</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002164735610.png" alt="image-20221002164735610"></p>
+<h3 id="门函数（矩形脉冲）"><a href="#门函数（矩形脉冲）" class="headerlink" title="门函数（矩形脉冲）"></a>门函数（矩形脉冲）</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002164812021.png" alt="image-20221002164812021"></p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002164830519.png" alt="image-20221002164830519"></p>
+<h3 id="激冲函数"><a href="#激冲函数" class="headerlink" title="激冲函数"></a>激冲函数</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002164857492.png" alt="image-20221002164857492"></p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002164923662.png" alt="image-20221002164923662" style="zoom: 50%;" />
+
+<h3 id="常数1"><a href="#常数1" class="headerlink" title="常数1"></a>常数1</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003103204963.png" alt="image-20221003103204963" style="zoom:50%;" />
+
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002165004749.png" alt="image-20221002165004749"></p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002165023247.png" alt="image-20221002165023247"></p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002165042291.png" alt="image-20221002165042291"></p>
+<h3 id="符号函数"><a href="#符号函数" class="headerlink" title="符号函数"></a>符号函数</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002165130771.png" alt="image-20221002165130771"></p>
+<h3 id="阶跃函数"><a href="#阶跃函数" class="headerlink" title="阶跃函数"></a>阶跃函数</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002165151722.png" alt="image-20221002165151722"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002165212664.png" alt="image-20221002165212664"></p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221002165233481.png" alt="image-20221002165233481" style="zoom:50%;" />
+
+<h1 id="傅里叶变换的性质1"><a href="#傅里叶变换的性质1" class="headerlink" title="傅里叶变换的性质1"></a>傅里叶变换的性质1</h1><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003121128398.png" alt="image-20221003121128398"></p>
+<p><strong>意义</strong>：傅里叶变换具有唯一性。傅里叶变换的性质揭示了信号的时域特性和频域特性之间的内在联系。讨论傅里叶变换的性质，目的在于:了解时-频域特性的内在联系;利用性质方便求解$F(j\omega)$;了解在通信系统领域中的应用。</p>
+<p><strong>说明</strong>:( 1)这些性质是建立在变化对的基础上;( 2）常见变换+性质可以解决较复杂的问题。</p>
+<h2 id="线性性质"><a href="#线性性质" class="headerlink" title="线性性质"></a>线性性质</h2><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003121533897.png" alt="image-20221003121533897" style="zoom:50%;" />
+
+<h3 id="例1"><a href="#例1" class="headerlink" title="例1"></a>例1</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003121638539.png" alt="image-20221003121638539" style="zoom:50%;" />
+
+<h3 id="例2"><a href="#例2" class="headerlink" title="例2"></a>例2</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003121924720.png" alt="image-20221003121924720"></p>
+<h2 id="奇偶性"><a href="#奇偶性" class="headerlink" title="奇偶性"></a>奇偶性</h2><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003121805935.png" alt="image-20221003121805935" style="zoom:50%;" />
+
+<h3 id="f-x-为实函数"><a href="#f-x-为实函数" class="headerlink" title="$f(x)$为实函数"></a>$f(x)$为实函数</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003121957989.png" alt="image-20221003121957989"></p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003130134540.png" alt="image-20221003130134540" style="zoom: 67%;" />
+
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003122035776.png" alt="image-20221003122035776"></p>
+<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003122325375.png" alt="image-20221003122325375" style="zoom:50%;" />
+
+<h3 id="f-x-为虚函数-f-t-jg-t"><a href="#f-x-为虚函数-f-t-jg-t" class="headerlink" title="$f(x)$为虚函数$f(t)=jg(t)$"></a>$f(x)$为虚函数$f(t)=jg(t)$</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003122053855.png" alt="image-20221003122053855"></p>
+<h2 id="对称性-1"><a href="#对称性-1" class="headerlink" title="对称性"></a>对称性</h2><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003122458266.png" alt="image-20221003122458266"></p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003122547264.png" alt="image-20221003122547264"></p>
+<h3 id="例1-1"><a href="#例1-1" class="headerlink" title="例1"></a>例1</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003122712842.png" alt="image-20221003122712842"></p>
+<h3 id="例3"><a href="#例3" class="headerlink" title="例3"></a>例3</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003122739364.png" alt="image-20221003122739364"></p>
+<h2 id="尺度变换特性"><a href="#尺度变换特性" class="headerlink" title="尺度变换特性"></a>尺度变换特性</h2><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003122841087.png" alt="image-20221003122841087"></p>
+<h3 id="0-lt-a-lt-1时域扩展，频带压缩"><a href="#0-lt-a-lt-1时域扩展，频带压缩" class="headerlink" title="0&lt;a&lt;1时域扩展，频带压缩"></a>0&lt;a&lt;1时域扩展，频带压缩</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003122937891.png" alt="image-20221003122937891"></p>
+<p><strong>0&lt;a&lt;1，脉冲持续时间增加a倍，变化慢了，信号在频域的频带压缩a倍。高频分量减少，幅度上升a倍。</strong></p>
+<h3 id="a-gt-1时域压缩，频带扩展"><a href="#a-gt-1时域压缩，频带扩展" class="headerlink" title="a&gt;1时域压缩，频带扩展"></a>a&gt;1时域压缩，频带扩展</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003123226200.png" alt="image-20221003123226200"></p>
+<p><strong>a&gt;1，脉冲持续持续时间短，变化快了。信号在频域高频分量增加，频带展宽，各分量的幅度下降a倍。</strong></p>
+<h2 id="Delta-时移特性"><a href="#Delta-时移特性" class="headerlink" title="$\Delta$时移特性"></a>$\Delta$时移特性</h2><p><font color="red">原函数延迟一个量或超前一个量的变换。非常重要！<strong>线代通信理论的基础</strong>。</font></p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003123403128.png" alt="image-20221003123403128"></p>
+<h3 id="例1-2"><a href="#例1-2" class="headerlink" title="例1"></a>例1</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003123450036.png" alt="image-20221003123450036" style="zoom: 67%;" />
+
+<h3 id="例2-1"><a href="#例2-1" class="headerlink" title="例2"></a>例2</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003123546865.png" alt="image-20221003123546865"></p>
+<h3 id="例3-1"><a href="#例3-1" class="headerlink" title="例3"></a>例3</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003123605091.png" alt="image-20221003123605091"></p>
+<h2 id="Delta-频移特性"><a href="#Delta-频移特性" class="headerlink" title="$\Delta$频移特性"></a>$\Delta$频移特性</h2><p><font color="red">通信原理中，<strong>调制解调的基础</strong>。信号为什么能发出去？<strong>频谱搬移</strong></font></p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003123847459.png" alt="image-20221003123847459"></p>
+<h3 id="例2（背结果）"><a href="#例2（背结果）" class="headerlink" title="例2（背结果）"></a>例2（背结果）</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003124109687.png" alt="image-20221003124109687"></p>
+<h3 id="例4"><a href="#例4" class="headerlink" title="例4"></a>例4</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221003124848336.png" alt="image-20221003124848336" style="zoom:50%;" />
+
+<p>说的一句话信号为$f(t)$，信号直接乘$cos\omega_{0}t$就相当于把它的频谱搬到$f(t)cos(\omega_{0}t)$上，双边谱调制发出去。</p>
+<p>$cos\omega_{0}t$为载波信号，相当于汽车，将$f(t)$载着运到一个地方去，已调信号发射出去（发到收音机）。</p>
+<p>收音机收到后，要将信号解出来就需要解调。再乘$cos\omega_{0}t$得到音频信号。</p>
+<h2 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h2><p>$1.线性：若f_{1}(t)\leftrightarrow F_{2}(j\omega),f_{2}(t)\leftrightarrow F_{2}(j\omega)，则af_{1}(t)+bf_{2}(t)\leftrightarrow aF_{1}(j\omega)+bF_{2}(j\omega)$</p>
+<p>$2.奇偶性：若f(t)\leftrightarrow F(j\omega)，则f(-t)\leftrightarrow F(-j\omega)$</p>
+<p>$3.对称性：若f(t)\leftrightarrow F(j\omega)，则F(jt)\leftrightarrow 2\pi f(-\omega)$</p>
+<p>$4.尺度变换特征：若f(t)\leftrightarrow F(\omega)，则f(at)\leftrightarrow \frac{1}{|a|}F(j\frac{\omega}{a})，a为非零实数$</p>
+<p>$5.时移特性：若f(t)\leftrightarrow F(j\omega)，则f(t\pm t_{0})\leftrightarrow e^{\pm ja\omega_{0}}F(j\omega)，t_{0}为实常数。\若F(j\omega)=|F(j\omega)|e^{j\varphi(\omega)}，则f(t\pm t_{0})\leftrightarrow|F(j\omega)|·e^{j[\varphi(\omega)\pm\omega t_{0}]}$</p>
+<p>$6.频移特性：若f(t)\leftrightarrow F(j\omega)，则e^{\textcolor{red}{\mp }j\omega_{0}t}f(t)\leftrightarrow F[j(\omega\textcolor{red}{\pm }\omega_{0})]，\omega_{0}为实常数。$</p>
+<h1 id="傅里叶变换的性质2"><a href="#傅里叶变换的性质2" class="headerlink" title="傅里叶变换的性质2"></a>傅里叶变换的性质2</h1><h2 id="Delta-卷积定理"><a href="#Delta-卷积定理" class="headerlink" title="$\Delta$卷积定理"></a>$\Delta$卷积定理</h2><img src="C:/Users/zhangguozhi/AppData/Roaming/Typora/typora-user-images/image-20221004164913587.png" alt="image-20221004164913587" style="zoom:50%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004165600826.png" alt="image-20221004165600826" style="zoom:50%;" />
+
+<h3 id="例1-3"><a href="#例1-3" class="headerlink" title="例1"></a>例1</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004165748615.png" alt="image-20221004165748615" style="zoom:50%;" />
+
+<h3 id="Delta-例2"><a href="#Delta-例2" class="headerlink" title="$\Delta$例2"></a>$\Delta$例2</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004170846860.png" alt="image-20221004170846860" style="zoom:50%;" />
+
+<p><font color="red">没听懂调频……4.22卷积定理</font></p>
+<p>   调频比调幅好，失真小。调频：频率随着要传出的信息变化。同步解调</p>
+<h2 id="时域微积分特性"><a href="#时域微积分特性" class="headerlink" title="时域微积分特性"></a>时域微积分特性</h2><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004185117186.png" alt="image-20221004185117186" style="zoom:50%;" />
+
+<h3 id="例1-4"><a href="#例1-4" class="headerlink" title="例1"></a>例1</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004185209270.png" alt="image-20221004185209270" style="zoom:50%;" />
+
+<h3 id="推论1"><a href="#推论1" class="headerlink" title="推论1"></a>推论1</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004185332465.png" alt="image-20221004185332465" style="zoom:50%;" />
+
+<h3 id="推论2"><a href="#推论2" class="headerlink" title="推论2"></a>推论2</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004185416193.png" alt="image-20221004185416193" style="zoom:50%;" />
+
+<h2 id="频域微积分性质"><a href="#频域微积分性质" class="headerlink" title="频域微积分性质"></a>频域微积分性质</h2><p><strong>解决频域求得n阶导数对应时间函数和原函数关系问题</strong></p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004185512894.png" alt="image-20221004185512894" style="zoom:50%;" />
+
+<h3 id="例2-2"><a href="#例2-2" class="headerlink" title="例2"></a>例2</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004185538386.png" alt="image-20221004185538386" style="zoom:50%;" />
+
+<h2 id="相关原理"><a href="#相关原理" class="headerlink" title="相关原理"></a>相关原理</h2><p>$1.互相关函数\rightarrow f_{1}和f_{2}不相同$</p>
+<p>$时域相关运算：R_{12}(\tau)=\int_{-\infty}^{+\infty}f_{1}(\tau)f_{2}(t-\tau)dt=f_{1}(t)*f_{2}(-\tau)\qquad时域的卷积=频域的乘法运算$</p>
+<p>$若f_{1}(t)\leftrightarrow F_{1}(j\omega)，f_{2}(t)\leftrightarrow F_{2}(j\omega)$</p>
+<p>$则F[R_{12}(\tau)]\leftrightarrow F_{1}(j\omega)F_{2}^{<em>}(j\omega)，F[R_{21}(\tau)]\leftrightarrow F_{1}^{</em>}(j\omega)F_{2}(j\omega)$</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004191420810.png" alt="image-20221004191420810" style="zoom:50%;" />
+
+<p>$所以R_{12}(\tau)\leftarrow F_{1}(j\omega)F_{2}^{*}(j\omega)$</p>
+<p>$2.自相关函数\rightarrow f_{1}和f_{2}为相同的f$<br>$$<br>F[R(\tau)]=F(j\omega)F^{*}(j\omega)=|F(j\omega)|^{2}<br>$$</p>
+<h1 id="能量谱和功率谱"><a href="#能量谱和功率谱" class="headerlink" title="能量谱和功率谱"></a>能量谱和功率谱</h1><p><strong>$\Delta$ 在随机信号分析中很重要！</strong></p>
+<h2 id="能量谱"><a href="#能量谱" class="headerlink" title="能量谱"></a>能量谱</h2><h3 id="信号能量"><a href="#信号能量" class="headerlink" title="信号能量"></a>信号能量</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004193259060.png" alt="image-20221004193259060" style="zoom:50%;" />
+
+<h3 id="Delta-帕斯瓦尔能量方程"><a href="#Delta-帕斯瓦尔能量方程" class="headerlink" title="$\Delta$帕斯瓦尔能量方程"></a>$\Delta$帕斯瓦尔能量方程</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004193356821.png" alt="image-20221004193356821" style="zoom:50%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221007175622856.png" alt="image-20221007175622856" style="zoom: 67%;" />
+
+<h3 id="能量密度谱-E-omega"><a href="#能量密度谱-E-omega" class="headerlink" title="能量密度谱$E(\omega)$"></a>能量密度谱$E(\omega)$</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004193606756.png" alt="image-20221004193606756" style="zoom:50%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004195532002.png" alt="image-20221004195532002" style="zoom:50%;" />
+$$
+总结：\\
+&E=\int^{+\infty}_{-\infty}|f(t)|^{2}dt = \int^{+\infty}_{-\infty}|F(j\omega)|^{2}d\omega\qquad时域不好求可以通过频域求能量\\
+&R(\tau)\leftrightarrow|F(j\omega)|^{2}=E(\omega)
+$$
+
+<h3 id="例1-5"><a href="#例1-5" class="headerlink" title="例1"></a>例1</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004201447232.png" alt="image-20221004201447232" style="zoom:50%;" />
+
+<h2 id="功率谱"><a href="#功率谱" class="headerlink" title="功率谱"></a>功率谱</h2><h3 id="信号功率"><a href="#信号功率" class="headerlink" title="信号功率"></a>信号功率</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004201718253.png" alt="image-20221004201718253" style="zoom:50%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004201814779.png" alt="image-20221004201814779" style="zoom:50%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004201855823.png" alt="image-20221004201855823" style="zoom:50%;" />
+
+<h3 id="功率密度谱"><a href="#功率密度谱" class="headerlink" title="功率密度谱"></a>功率密度谱</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004202025610.png" style="zoom:50%;" />
+
+<h3 id="功率密度谱与自相关函数的关系"><a href="#功率密度谱与自相关函数的关系" class="headerlink" title="功率密度谱与自相关函数的关系"></a>功率密度谱与自相关函数的关系</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004202154688.png" alt="image-20221004202154688" style="zoom:50%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004202232073.png" alt="image-20221004202232073" style="zoom:50%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221007180351425.png" alt="image-20221007180351425" style="zoom:67%;" />
+
+<h4 id="例1-6"><a href="#例1-6" class="headerlink" title="例1"></a>例1</h4><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221007180613295.png" alt="image-20221007180613295" style="zoom:67%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221007180539851.png" alt="image-20221007180539851" style="zoom:67%;" />
+
+<h4 id="总结-3"><a href="#总结-3" class="headerlink" title="总结"></a>总结</h4><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004202304032.png" alt="image-20221004202304032"></p>
+<h3 id="白噪声功率谱密度"><a href="#白噪声功率谱密度" class="headerlink" title="白噪声功率谱密度"></a>白噪声功率谱密度</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004202545862.png" alt="image-20221004202545862" style="zoom:50%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004202509159.png" alt="image-20221004202509159" style="zoom:50%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004202622138.png" alt="image-20221004202622138" style="zoom:50%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004202648880.png" alt="image-20221004202648880" style="zoom:50%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221004202707832.png" alt="image-20221004202707832" style="zoom:50%;" />
+
+<h2 id="能量谱和功率谱的关系"><a href="#能量谱和功率谱的关系" class="headerlink" title="能量谱和功率谱的关系"></a>能量谱和功率谱的关系</h2><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221007180738067.png" alt="image-20221007180738067" style="zoom:67%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221007180909408.png" alt="image-20221007180909408" style="zoom: 67%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221007180948511.png" alt="image-20221007180948511" style="zoom: 67%;" />
+
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221007181111580.png" alt="image-20221007181111580"></p>
+<h1 id="周期信号的傅里叶变换"><a href="#周期信号的傅里叶变换" class="headerlink" title="周期信号的傅里叶变换"></a>周期信号的傅里叶变换</h1><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221005172634170.png" alt="image-20221005172634170" style="zoom:50%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221005173237686.png" alt="image-20221005173237686" style="zoom:50%;" />
+
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221007181341762.png" alt="image-20221007181341762"></p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221007181406192.png" alt="image-20221007181406192"></p>
+<p>结论：1.周期信号可以求出傅里叶变换，2.是$\delta函数：冲激序列$</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221005173756760.png" alt="image-20221005173756760" style="zoom:50%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221007164937335.png" alt="image-20221007164937335" style="zoom:50%;" />
+
+<h2 id="例1-7"><a href="#例1-7" class="headerlink" title="例1"></a>例1</h2><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221007172634617.png" alt="image-20221007172634617" style="zoom:50%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221007172543799.png" alt="image-20221007172543799" style="zoom:50%;" />
+
+<p><strong>结论：$\delta序列出来的还是一个\delta序列$</strong></p>
+<h2 id="例2-3"><a href="#例2-3" class="headerlink" title="例2"></a>例2</h2><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221007173027620.png" alt="image-20221007173027620" style="zoom:50%;" />
+
+<h2 id="级数和变换的关系"><a href="#级数和变换的关系" class="headerlink" title="级数和变换的关系"></a>级数和变换的关系</h2><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20221007173220040.png" alt="image-20221007173220040" style="zoom:50%;" />
+
+<h2 id="总结-4"><a href="#总结-4" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>公式1：周期信号展开成傅里叶级数从而求得系数，再通过系数由级数求出傅里叶变换</li>
+<li>公式2：把一个周期信号理解成一个基本信号，将整个周期信号理解成一个基本信号和$\delta$序列的卷积。从而，根据时域的卷积等于频域的乘法运算。</li>
+</ul>
+<h1 id="总结-5"><a href="#总结-5" class="headerlink" title="总结"></a>总结</h1>
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/2022/11/01/%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86/">https://shierjinghuang.github.io/2022/11/01/%E8%A1%A5%E5%85%85%E7%9F%A5%E8%AF%86/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/">
+                                    <span class="chip bg-color">通信原理</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/11/01/%E5%9B%BD%E8%B5%9B%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="古代玻璃制品的成分分析与鉴别">
+                        
+                        <span class="card-title">古代玻璃制品的成分分析与鉴别</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-11-01
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E4%B8%AA%E4%BA%BA/" class="post-category">
+                                    个人
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
+                        <span class="chip bg-color">数学建模</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/10/30/%E5%AD%90%E5%9F%9F%E5%90%8D%E6%B7%B1%E5%BA%A6%E6%8C%96%E6%8E%98/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="子域名深度挖掘">
+                        
+                        <span class="card-title">子域名深度挖掘</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-10-30
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                    网络安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">网络安全</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
+                        <span class="chip bg-color">信息收集</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2023</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">310.7k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

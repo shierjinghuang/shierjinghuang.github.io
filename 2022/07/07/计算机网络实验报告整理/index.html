@@ -1,0 +1,1810 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="计算机网络实验报告, 十二惊惶">
+    <meta name="description" content="[TOC]
+实验一  网络测试命令实验目的
+
+了解网络测试命令
+
+实验内容:
+
+ping 命令的使用，arp命令的使用，tracert命令的使用，ipconfig命令的使用，nslookup命令的使用，telnet命令的使用
+
+ping 命">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>计算机网络实验报告 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">计算机网络实验报告</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+                                <span class="chip bg-color">计算机网络</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                学习笔记
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-07-07
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-07-07
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    8.8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    39 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>[TOC]</p>
+<h2 id="实验一-网络测试命令"><a href="#实验一-网络测试命令" class="headerlink" title="实验一  网络测试命令"></a>实验一  网络测试命令</h2><p>实验目的</p>
+<ul>
+<li>了解网络测试命令</li>
+</ul>
+<p>实验内容:</p>
+<blockquote>
+<p>ping 命令的使用，arp命令的使用，tracert命令的使用，ipconfig命令的使用，nslookup命令的使用，telnet命令的使用</p>
+</blockquote>
+<h3 id="ping-命令的使用"><a href="#ping-命令的使用" class="headerlink" title="ping 命令的使用"></a>ping 命令的使用</h3><p><strong>ping/? ：</strong> ping命令使用帮助</p>
+<p><strong>无参数 ping ：</strong></p>
+<p>在默认情况下，一般都是只发送四个32字节数据包，通过这个命令从数据包返回的最短时间、最长时间、平均时间可以衡量网络速度、延迟，从丢失率可以衡量网络的稳定性。</p>
+<p>bytes值：数据包大小，也就是字节。</p>
+<p>time值：响应时间，这个时间越小，说明你连接这个地址速度越快。</p>
+<p>TTL值：Time To Live,表示DNS记录在DNS服务器上存在的时间，它是IP协议包的一个值，告诉路由器该数据包何时需要被丢弃。可以通过Ping返回的TTL值大小，粗略地判断目标系统类型是Windows系列还是UNIX/Linux系列。</p>
+<p><strong>ping -t的使用</strong>：不间断地Ping指定计算机，直到管理员中断。</p>
+<p><strong>ping -a的使用</strong>：ping-a解析计算机名与NetBios名。就是可以通过ping它的ip地址，可以解析出主机名。但是在实际显示中ping -a指令的效果与ping指令完全相同。</p>
+<p><strong>ping -n使用</strong>：ping -n在默认情况下，一般都只发送四个数据包，通过这个命令可以自己定义发送的个数，对衡量网络速度很有帮助</p>
+<p><strong>ping -l size的使用</strong>   :  -l size：发送size指定大小的到目标主机的数据包。</p>
+<p>在默认的情况下Windows的ping发送的数据包大小为32byt，最大能发送65500byt。当一次发送的数据包大于或等于65500byt时，将可能导致接收方计算机宕机。这个参数配合其它参数以后危害非常强大，比如攻击者可以结合-t参数实施DOS攻击**(死亡之ping)**。</p>
+<p>不过像阿里云，腾讯云等云服务器好像都限制了对ping的带宽，但是依然不要拿去试他人的服务器。</p>
+<h3 id="arp命令的使用"><a href="#arp命令的使用" class="headerlink" title="arp命令的使用"></a>arp命令的使用</h3><p><strong>arp -a [InetAddr] [-N ifaceAddr]</strong></p>
+<p>arp -a将ARP缓存表内容全部输出来</p>
+<p>Arp -a ip 将ARP缓存表中对应ip内容输出,输出的结果可能是无ARP信息,一个ARP信息,多个ARP内容。</p>
+<p>Arp -a -n 接口地址 将ARP缓存表中该接口地址的信息全部输出,可能无ARP信息,可能是多个结果值</p>
+<p>Arp -a 地址 -n 接口地址 将ARP缓存表指定接口地址下该ip地址内容输出,可能输出无ARP信息,或者输出一个ARP信息内容</p>
+<p>Arp -a -v 输出所有ARP信息,包括无用的信息</p>
+<h3 id="tracert命令的使用"><a href="#tracert命令的使用" class="headerlink" title="tracert命令的使用"></a>tracert命令的使用</h3><blockquote>
+<p>tracert 是一个简单的网络诊断工具，可以列出分组经过的路由节点，以及它在IP 网络中每一跳的延迟。</p>
+</blockquote>
+<p>这里的延迟是指：分组从信息源发送到目的地所需的时间，延迟也分为许多的种类——传播延迟、传输延迟、处理延迟、排队延迟等，是大多数网站性能的瓶颈之一</p>
+<p><strong>tracert</strong> IP   tracert命令用于确定 IP数据包访问目标所采取的路径，显示从本地到目标网站所在网络服务器的一系列网络节点的访问速度，最多支持显示30个网络节点</p>
+<p><strong>tracert的工作原理：</strong></p>
+<p>通过向目标发送不同IP生存时间（TTL）的ICMP回应数据包，tracert诊断程序确定到目标所采取的路由。要求路径上的每个路由器在转发数据包之前至少将数据包上的TTL值减</p>
+<p>数据包上的TTL减为0时，路由器应该将“ICMP已超时”的消息发回原系统。</p>
+<p>先发送TTL为1的回应数据包，并在随后的每次发送过程中将TTL加1，直到目标响应或TTL达到最大值，从而确定路由。通过检测中间路由器发回的“ICMP包已超时”的消息确定路由。</p>
+<p><img src="file:///C:\Users\888888\AppData\Local\Temp\ksohtml30884\wps1.jpg" alt="img"></p>
+<blockquote>
+<p>192.168.81.1来自本地局域网<br>219.218.31.233来自山东省日照市 教育网<br>222.174.155.17来自山东省日照市东港区 电信<br>60.235.162.137来自山东省日照市 电信<br>60.235.161.185来自山东省日照市 电信<br>60.235.160.17来自山东省日照市 电信</p>
+<p>202.97.94.57来自 电信<br>101.95.209.218来自上海市上海 电信<br>180.163.53.70来自上海市上海 电信<br>116.251.117.177来自浙江省杭州市 阿里云<br>140.205.220.96来自上海市上海 阿里云</p>
+<p>这里的截图是在课后补充的，课后复现没有像课上实验那样顺利。</p>
+</blockquote>
+<p><strong>tracert /?</strong> ：ping命令使用帮助</p>
+<h3 id="ipconfig命令的使用"><a href="#ipconfig命令的使用" class="headerlink" title="ipconfig命令的使用"></a>ipconfig命令的使用</h3><p><strong>无参数ipconfig</strong></p>
+<center><img src="file:///C:\Users\888888\AppData\Local\Temp\ksohtml30884\wps2.jpg" alt="img" style="zoom:80%;" /> </center>
+**Ipconfig /all** : 显示详细信息    这个长度比ipconfig还长这个图片就不放了...... 
+
+<p><strong>ipconfig /renew</strong>:更新所有适配器</p>
+<center><img src="file:///C:\Users\888888\AppData\Local\Temp\ksohtml30884\wps3.jpg" alt="img"  /> </center>
+**ipconfig/showclassid**：显示网络适配器的DHCP类别信息
+
+<h3 id="nslookup命令的使用"><a href="#nslookup命令的使用" class="headerlink" title="nslookup命令的使用"></a>nslookup命令的使用</h3><p>nslookup用于查询DNS的记录，查询域名解析是否正常，在网络故障时用来诊断网络问题</p>
+<p>直接查询：</p>
+<center><img src="file:///C:\Users\888888\AppData\Local\Temp\ksohtml30884\wps4.jpg" alt="img" style="zoom:100%;" /> </center>
+**查询其他记录：**nslookup -qt = type domain [dns-server]
+
+<pre class="line-numbers language-none"><code class="language-none">A --&gt;地址记录
+AAAA  --&gt;地址记录
+AFSDB Andrew   --&gt;文件系统数据库服务器记录
+ATMA --&gt;ATM地址记录
+CNAME  --&gt;别名记录
+HINHO  --&gt;硬件配置记录，包括CPU、操作系统信息 
+ISDN  --&gt;域名对应的ISDN号码
+MB  --&gt;存放指定邮箱的服务器
+MG   --&gt;邮件组记录
+MINFO  --&gt;邮件组和邮箱的信息记录
+MR  --&gt;改名的邮箱记录
+MX  --&gt;邮件服务器记录
+NS  --&gt; 名字服务器记录
+PTR   -&gt;反向记录
+RP   --&gt;负责人记录
+RT  --&gt;路由穿透记录
+SRV   --&gt;TCP服务器信息记录
+TXT  --&gt;域名对应的文本信息
+X25  --&gt;域名对应的X.25地址记录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="telnet命令的使用"><a href="#telnet命令的使用" class="headerlink" title="telnet命令的使用"></a>telnet命令的使用</h3><p>1、点击开始　→　运行　→　输入CMD，回车。</p>
+<p>2、在出来的DOS界面里，输入telnet测试端口命令： telnet IP 端口 或者 telnet 域名 端口，回车。</p>
+<p>如果端口关闭或者无法连接，则显示不能打开到主机的链接，链接失败；端口打开的情况下，链接成功，则进入telnet页面（全黑的），证明端口可用。</p>
+<p>Telnet 客户端命常用命令：</p>
+<pre class="line-numbers language-none"><code class="language-none">open : 使用 openhostname 可以建立到主机的 Telnet 连接。
+close : 使用命令 close 命令可以关闭现有的 Telnet 连接。
+display : 使用 display 命令可以查看 Telnet 客户端的当前设置。
+send : 使用 send 命令可以向 Telnet 服务器发送命令。支持以下命令：
+ao : 放弃输出命令。
+ayt : “Are you there”命令
+esc : 发送当前的转义字符。
+ip : 中断进程命令。
+synch : 执行 Telnet 同步操作。
+brk : 发送信号。
+quit ：使用 quit 命令可以退出 Telnet 客户端。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<img src="file:///C:\Users\888888\AppData\Local\Temp\ksohtml30884\wps5.jpg" alt="img" style="zoom:67%;" />
+
+<h2 id="实验二-协议分析"><a href="#实验二-协议分析" class="headerlink" title="实验二 协议分析"></a>实验二 协议分析</h2><p>实验目的:</p>
+<blockquote>
+<p>了解Wireshark使用方法，分析ping协议工作过程，分析TCP/IP/UDP任意两个协议的语法和语义</p>
+</blockquote>
+<p>实验内容:</p>
+<blockquote>
+<p>安装并使用wireshark，验证TCP/IP等协议的语法语义。</p>
+</blockquote>
+<p>实验步骤</p>
+<p>安装并了解wireshark的使用方法</p>
+<p><img src="file:///C:\Users\888888\AppData\Local\Temp\ksohtml30884\wps6.jpg" alt="img"></p>
+<p>这边我因为之前网安学习的过程中，我对wireshark的基本使用还算了解，虽然用的不是很多….</p>
+<ul>
+<li>分析ping协议工作过程</li>
+</ul>
+<p>ping命令执行的时候，源主机首先会构建一个ICMP回送请求消息的数据包。</p>
+<p>ICMP数据包内包含多个字段，最重要的是类型和序号这两个字段：</p>
+<p>类型：应为是回送请求，该字段为8；</p>
+<p>序号：用于区分连续ping的时候发出的多个数据包（序号从0开始，每发送一个新的回送请求就加1）并且为了能够计算往返时间RTT，它会在报文的数据部分插入发送时间。然后，由ICMP协议将这个数据包连同地址192.168.81.54一起交给IP层，IP层将192.168.81.54作为目的地址，本机IP地址作为源地址，协议字段设置为1表示是ICMP协议，再加上一些其他控制消息，构建一个IP数据包。</p>
+<p>接下来，需要加入MAC头。如果在本地ARP映射表中查找出IP地址192.168.81.54所对应的MAC地址，则可以直接使用；如果没有，则需要发送ARP协议查询MAC地址，获得MAC地址后，由数据链路层构建一个数据帧，目的地址是IP层传过来MAC地址，源地址则是本机的MAC地址；还要附加上一些控制信息，依据以太网的介质访问规则，将他们传送出去。<br>主机B收到这个数据帧后，先检查他的目的MAC地址，并和自己的MAC地址对比，如果符合则接收，否则就放弃。</p>
+<p>接收后检查该数据帧，将IP数据包从帧中提取 出来，交给本机IP层。同样，IP层检查后，将有用信息提取后交给ICMP协议。</p>
+<p>主机B会构建一个ICMP回送响应消息数据包，回送响应包的类型字段为0，序号为接收到请求数据包中的序号，然后再发送出去给主机A。</p>
+<p>在规定的时间内，源主机如果没有接到ICMP的应答包，则说明目标主机不可达；如果接受到了ICMP回送响应消息，则说明目标主机可达。</p>
+<p>此时，源主机会检查，用当前时刻减去该数据包最初从源主机上发出的时刻，就是ICMP数据包的时间延迟。</p>
+<ul>
+<li>分析TCP/IP/UDP任意两个协议的语法和语义</li>
+</ul>
+<p>1.TCP协议</p>
+<p><img src="file:///C:\Users\888888\AppData\Local\Temp\ksohtml30884\wps7.jpg" alt="img"></p>
+<p>先了解TCP协议的结构:</p>
+<blockquote>
+<p>来源连接端口（16位长）－识别发送连接端口<br>目的连接端口（16位长）－识别接收连接端口<br>序列号（seq，32位长）<br>如果含有同步化旗标（SYN），则此为最初的序列号；第一个数据比特的序列码为本序列号加一。<br>如果没有同步化旗标（SYN），则此为第一个数据比特的序列码。<br>确认号（ack，32位长）—期望收到的数据的开始序列号。也即已经收到的数据的字节长度加1。<br>数据偏移（4位长）—以4字节为单位计算出的数据段开始地址的偏移值。<br>保留（3比特长）—须置0<br>标志符（9比特长）<br>窗口（WIN，16位长）—表示从确认号开始，本报文的发送方可以接收的字节数，即接收窗口大小。用于流量控制。<br>校验和（Checksum，16位长）—对整个的TCP报文段，包括TCP头部和TCP数据，以16位字进行计算所得。这是一个强制性的字段。<br>紧急指针（16位长）—本报文段中的紧急数据的最后一个字节的序号。<br>选项字段—最多40字节。每个选项的开始是1字节的kind字段，说明选项的类型。<br>发送端的时间戳（Timestamp Value field，TSval，4字节）<br>时间戳回显应答（Timestamp Echo Reply field，TSecr，4字节）</p>
+</blockquote>
+<p>通过wireshark看下TCP包在wireshark中的显示，过滤一下TCP包，通过直接去看TCP包文件结构</p>
+<p><img src="file:///C:\Users\888888\AppData\Local\Temp\ksohtml30884\wps8.jpg" alt="img"></p>
+<p>Source Port:53096 源端口53096，目的端口8080，序列号4357确定序列号12417，header Length28 bytes 含固定20直接加可变8字节。</p>
+<p>2.IP协议</p>
+<img src="file:///C:\Users\888888\AppData\Local\Temp\ksohtml30884\wps9.jpg" alt="img" style="zoom:67%;" />
+
+<p>开启wireshark进行抓包，先在CMD页面中使用ping命令ping一下WWW.baidu.com,在wireshark中过滤出icmp流的内容。</p>
+<img src="file:///C:\Users\888888\AppData\Local\Temp\ksohtml30884\wps10.jpg" alt="img" style="zoom:67%;" />
+
+<p> A. 第一行，帧Frame  指的是要发送的数据块，数据在网络上是以很小的称为帧（Frame）的单位传输的，帧由几部分组成，不同的部分执行不同的功能。其中，所抓帧的序号为592，捕获字节数等于传送字节数：74字节；</p>
+<p>B. 第二行，以太网，以太网是一种计算机局域网技术，是数据链路层。源Mac地址为98:af:65:c6:f2:dc；目标Mac地址为00:00:00:00:00:01；</p>
+<p>C. 第三行，IPV4协议，IPv4是一种无连接的协议，操作在使用分组交换的链路层（如以太网）上，是网络层；源IP地址为10.202.73.146；目标IP地址为39.156.66.18；</p>
+<p><strong>Frame信息分析</strong></p>
+<p>Arrival Time：到达时间，EPoch Time：信息出现时间，[Time delta from previous captured frame: 0.001472000 seconds] ：与之前捕获的数据帧时间差秒；[Time delta from previous displayed frame: 0.001472000 seconds]：与之前显示的帧时间差：0.001472000秒；Frame Number: 1，帧编号为1；Frame Length: 571 bytes (4568 bits)，帧长度为571字节；Capture Length: 74 bytes (592 bits)，捕获到的长度为74 字节；[Frame is marked: False]，帧标记：无；[Frame is ignored: False]，帧被忽略：无；[Protocols in frame: eth:ip:tcp:data]，协议帧：eth(以太网)、IP、tcp、data，[Coloring Rule Name: TCP]，色彩规则名称：TCP；[Coloring Rule String: tcp]，色彩规则字符串：TCP；</p>
+<p><strong>EthernetⅡ信息分析</strong></p>
+<p>Destination: Huawei_00:00:01(00:00:00:00:00:01)，目标Mac地址为00:00:00:00:00:01</p>
+<p>Source: AzureWav_c6:f2:dc (98:af:65:c6:f2:dc)，源Mac地址为98:af:65:c6:f2:dc</p>
+<p>Type: IPv4 (0x0800)，类型是IP数据包</p>
+<h2 id="实验三-网络通信程序"><a href="#实验三-网络通信程序" class="headerlink" title="实验三 网络通信程序"></a>实验三 网络通信程序</h2><p>1.实验目的</p>
+<p>• 理解客户服务器（C/S）方式的工作原理；</p>
+<p>• 开发一个聊天程序：包含客户端和服务器端；</p>
+<p>• 编程语言不限；</p>
+<p>要能在两台PC上运行</p>
+<p><strong>实验内容:</strong></p>
+<ul>
+<li>理解客户服务器（C/S）方式的工作原理；</li>
+<li>开发一个聊天程序：包含客户端和服务器端；</li>
+<li>编程语言不限；</li>
+<li>要能在两台PC上运行</li>
+</ul>
+<p><strong>4.</strong> <strong>实验步骤</strong></p>
+<p>客户机/服务器系统 Client/server system 简称C/S系统。是一类按新的应用模式运行的分布式计算机系统。现在的LAN，Internet提供的多种服务都是这种模式。C是指CLIENT客户机S是指SERVER服务器。</p>
+<p>在这个应用模式中，用户只关心完整地解决自己的应用问题，而不关心这些应用问题由系统中哪台或哪几台计算机来完成。在C/S系统中，能为应用提供服务(如文件服务，打印服务，拷贝服务，图象服务，通信管理服务等)的计算机或处理器，当其被请求服务时就成为服务器。一台计算机可能提供多种服务，一个服务也可能要由多台计算机组合完成。与服务器相对，提出服务请求的计算机或处理器在当时就是客户机。从客户应用角度看，这个应用的一部分工作在客户机上完成，其他部分的工作则在(一个或多个)服务器上完成。</p>
+<h3 id="客户端程序"><a href="#客户端程序" class="headerlink" title="客户端程序"></a>客户端程序</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">DataOutputStream</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">File</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">FileInputStream</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>net<span class="token punctuation">.</span></span><span class="token class-name">Socket</span><span class="token punctuation">;</span>
+<span class="token comment">/**文件传输Client端&lt;br>*/</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FileTransferClient</span> <span class="token keyword">extends</span> <span class="token class-name">Socket</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> SERVER_IP <span class="token operator">=</span> <span class="token string">"219.218.21.89"</span><span class="token punctuation">;</span> <span class="token comment">// 服务端IP</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> SERVER_PORT <span class="token operator">=</span> <span class="token number">8899</span><span class="token punctuation">;</span> <span class="token comment">// 服务端端口</span>
+    <span class="token keyword">private</span> <span class="token class-name">Socket</span> client<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">FileInputStream</span> fis<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">DataOutputStream</span> dos<span class="token punctuation">;</span>
+    <span class="token comment">//构造函数&lt;br/> 与服务器建立连接  @throws Exception</span>
+    <span class="token keyword">public</span> <span class="token class-name">FileTransferClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>SERVER_IP<span class="token punctuation">,</span> SERVER_PORT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>client <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Cliect[port:"</span> <span class="token operator">+</span> client<span class="token punctuation">.</span><span class="token function">getLocalPort</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"] 成功连接服务端"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// 向服务端传输文件 @throws Exception</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">sendFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">File</span> file <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"E:\\test.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>file<span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                fis <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileInputStream</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                dos <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DataOutputStream</span><span class="token punctuation">(</span>client<span class="token punctuation">.</span><span class="token function">getOutputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment">// 文件名和长度</span>
+                dos<span class="token punctuation">.</span><span class="token function">writeUTF</span><span class="token punctuation">(</span>file<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                dos<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                dos<span class="token punctuation">.</span><span class="token function">writeLong</span><span class="token punctuation">(</span>file<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                dos<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment">// 开始传输文件</span>
+                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"======== 开始传输文件 ========"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> bytes <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <span class="token keyword">int</span> length <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+                <span class="token keyword">long</span> progress <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+                <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>length <span class="token operator">=</span> fis<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>bytes<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> bytes<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    dos<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>bytes<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    dos<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    progress <span class="token operator">+=</span> length<span class="token punctuation">;</span>
+                    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"| "</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token number">100</span><span class="token operator">*</span>progress<span class="token operator">/</span>file<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"% |"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"======== 文件传输成功 ========"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">finally</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>fis <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+                fis<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span><span class="token punctuation">(</span>dos <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span>
+                dos<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            client<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">/**入口 @param args */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">FileTransferClient</span> client <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileTransferClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 启动客户端连接</span>
+            client<span class="token punctuation">.</span><span class="token function">sendFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 传输文件</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="服务器程序："><a href="#服务器程序：" class="headerlink" title="服务器程序："></a>服务器程序：</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">DataInputStream</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">File</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>io<span class="token punctuation">.</span></span><span class="token class-name">FileOutputStream</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>math<span class="token punctuation">.</span></span><span class="token class-name">RoundingMode</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>net<span class="token punctuation">.</span></span><span class="token class-name">ServerSocket</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>net<span class="token punctuation">.</span></span><span class="token class-name">Socket</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>text<span class="token punctuation">.</span></span><span class="token class-name">DecimalFormat</span><span class="token punctuation">;</span>
+<span class="token comment">//文件传输Server端</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FileTransferServer</span> <span class="token keyword">extends</span> <span class="token class-name">ServerSocket</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> SERVER_PORT <span class="token operator">=</span> <span class="token number">8899</span><span class="token punctuation">;</span> <span class="token comment">// 服务端端口</span>
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token class-name">DecimalFormat</span> df <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token punctuation">&#123;</span>
+        df <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DecimalFormat</span><span class="token punctuation">(</span><span class="token string">"#0.0"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 设置数字格式，保留一位有效小数</span>
+        df<span class="token punctuation">.</span><span class="token function">setRoundingMode</span><span class="token punctuation">(</span><span class="token class-name">RoundingMode</span><span class="token punctuation">.</span>HALF_UP<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        df<span class="token punctuation">.</span><span class="token function">setMinimumFractionDigits</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        df<span class="token punctuation">.</span><span class="token function">setMaximumFractionDigits</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">public</span> <span class="token class-name">FileTransferServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>SERVER_PORT<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">//使用线程处理每个客户端传输的文件</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">load</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">// server尝试接收其他Socket的连接请求，server的accept方法是阻塞式的</span>
+            <span class="token class-name">Socket</span> socket <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">accept</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">// 每接收到一个Socket就建立一个新的线程来处理它</span>
+            <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Task</span><span class="token punctuation">(</span>socket<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">// 处理客户端传输过来的文件线程类</span>
+    <span class="token keyword">class</span> <span class="token class-name">Task</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">private</span> <span class="token class-name">Socket</span> socket<span class="token punctuation">;</span>
+        <span class="token keyword">private</span> <span class="token class-name">DataInputStream</span> dis<span class="token punctuation">;</span>
+        <span class="token keyword">private</span> <span class="token class-name">FileOutputStream</span> fos<span class="token punctuation">;</span>
+        <span class="token keyword">public</span> <span class="token class-name">Task</span><span class="token punctuation">(</span><span class="token class-name">Socket</span> socket<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>socket <span class="token operator">=</span> socket<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+                dis <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DataInputStream</span><span class="token punctuation">(</span>socket<span class="token punctuation">.</span><span class="token function">getInputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">String</span> fileName <span class="token operator">=</span> dis<span class="token punctuation">.</span><span class="token function">readUTF</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 文件名和长度</span>
+                <span class="token keyword">long</span> fileLength <span class="token operator">=</span> dis<span class="token punctuation">.</span><span class="token function">readLong</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// 文件名和长度</span>
+                <span class="token class-name">File</span> directory <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token string">"E:\\testserver"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>directory<span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    directory<span class="token punctuation">.</span><span class="token function">mkdir</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token class-name">File</span> file <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span>directory<span class="token punctuation">.</span><span class="token function">getAbsolutePath</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token class-name">File</span><span class="token punctuation">.</span>separatorChar <span class="token operator">+</span> fileName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                fos <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileOutputStream</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token comment">// 开始接收文件</span>
+                <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> bytes <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token number">1024</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                <span class="token keyword">int</span> length <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+                <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token punctuation">(</span>length <span class="token operator">=</span> dis<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span>bytes<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> bytes<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                    fos<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>bytes<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    fos<span class="token punctuation">.</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"======== 文件接收成功 [File Name："</span> <span class="token operator">+</span> fileName <span class="token operator">+</span> <span class="token string">"] [Size："</span> <span class="token operator">+</span> <span class="token function">getFormatFileSize</span><span class="token punctuation">(</span>fileLength<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"] ========"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">finally</span> <span class="token punctuation">&#123;</span>
+                <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+                    <span class="token keyword">if</span><span class="token punctuation">(</span>fos <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span>fos<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">if</span><span class="token punctuation">(</span>dis <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span>dis<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    socket<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">/**
+     * 格式化文件大小
+     * @param length
+     * @return
+     */</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> <span class="token function">getFormatFileSize</span><span class="token punctuation">(</span><span class="token keyword">long</span> length<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">double</span> size <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span> length<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>size <span class="token operator">>=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> df<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"GB"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        size <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span> length<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>size <span class="token operator">>=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> df<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"MB"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        size <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span> length<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>size <span class="token operator">>=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> df<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"KB"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">return</span> length <span class="token operator">+</span> <span class="token string">"B"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment">/**
+     * 入口
+     * @param args
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">FileTransferServer</span> server <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileTransferServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 启动服务端</span>
+            server<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>一个完整的交互过程分为四步</p>
+<p>客户机发消息；把信息装配成请求消息，发往服务器，然后进入等待状态；服务器收消息，服务器接收进程平时就一直处于等待状态，将收到消息用相应软件进行处理；服务器回消息，再把处理结果装配成响应消息发送出去</p>
+<p>客户机收消息，接收响应</p>
+<p>在实验中，客户端或服务器在一次一次基础上，如果服务端连续发送多个数据之后，并不会直接在客户端上线上而需要，等待客户端发送信息后再显示</p>
+<h2 id="实验四-文件传送器"><a href="#实验四-文件传送器" class="headerlink" title="实验四  文件传送器"></a>实验四  文件传送器</h2><p>实验目的</p>
+<blockquote>
+<p>理解客户/服务器模式的工作原理；掌握网络连接的建立方式；掌握文件传输的基本方法。</p>
+</blockquote>
+<p>实验内容:</p>
+<ul>
+<li>在Windows环境下建立一个文件服务器；</li>
+<li>采用可靠传输的形式传输任意格式文件</li>
+<li>编写可用于实际网络环境的文件传送器；</li>
+<li> 可指定传输的本地文件；</li>
+<li>文件传送器的两个传送端可工作于不同的主机上或同一主机的不同程序；</li>
+<li>编程语言不限。</li>
+</ul>
+<p>实验环境：Windows操作系统、JAVA或C++编程环境</p>
+<h3 id="客户端代码："><a href="#客户端代码：" class="headerlink" title="客户端代码："></a>客户端代码：</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> socket
+<span class="token keyword">import</span> struct
+<span class="token keyword">import</span> json
+download_dir <span class="token operator">=</span> <span class="token string">'C:\\Users\888888\Desktop'</span>  <span class="token comment"># 这里是客户端存放资源的地址</span>
+phone <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span>
+phone<span class="token punctuation">.</span>connect<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span> <span class="token number">8848</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"------开始咨询客服---------"</span><span class="token punctuation">)</span>
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+  <span class="token comment"># 发命令</span>
+  cmd <span class="token operator">=</span> <span class="token builtin">input</span><span class="token punctuation">(</span><span class="token string">'>>:'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>strip<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># get a.txt</span>
+  <span class="token keyword">if</span> <span class="token keyword">not</span> cmd<span class="token punctuation">:</span>
+     <span class="token keyword">continue</span>
+  phone<span class="token punctuation">.</span>send<span class="token punctuation">(</span>cmd<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">"gbk"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token comment"># 已写的方式打开一个新文件，接收服务器发来的文件的内容写入客户端的新文件</span>
+  <span class="token comment"># 第一步：先收取报头的长度</span>
+  obj <span class="token operator">=</span> phone<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>
+  header_size <span class="token operator">=</span> struct<span class="token punctuation">.</span>unpack<span class="token punctuation">(</span><span class="token string">'i'</span><span class="token punctuation">,</span> obj<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+  <span class="token comment"># 第二步：再收报头</span>
+  header_bytes <span class="token operator">=</span> phone<span class="token punctuation">.</span>recv<span class="token punctuation">(</span>header_size<span class="token punctuation">)</span>
+  <span class="token comment"># 第三步：从报头中间解析出对真是数据的描述信息</span>
+  header_json <span class="token operator">=</span> header_bytes<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'gbk'</span><span class="token punctuation">)</span>
+  header_dic <span class="token operator">=</span> json<span class="token punctuation">.</span>loads<span class="token punctuation">(</span>header_json<span class="token punctuation">)</span>
+  <span class="token keyword">print</span><span class="token punctuation">(</span>header_dic<span class="token punctuation">)</span>
+  total_size <span class="token operator">=</span> header_dic<span class="token punctuation">[</span><span class="token string">'file_size'</span><span class="token punctuation">]</span>
+  filename <span class="token operator">=</span> header_dic<span class="token punctuation">[</span><span class="token string">'filename'</span><span class="token punctuation">]</span>
+  <span class="token comment"># 第三步：接受真实的数据</span>
+  <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'%s/%s'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>download_dir<span class="token punctuation">,</span> filename<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'wb'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span> <span class="token comment"># 在自己的电脑中找一个地址打开一个同类型的文件准备接收数据</span>
+     recv_size <span class="token operator">=</span> <span class="token number">0</span>
+     <span class="token keyword">while</span> recv_size <span class="token operator">&lt;</span> total_size<span class="token punctuation">:</span>
+       line <span class="token operator">=</span> phone<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span>
+       f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>line<span class="token punctuation">)</span>
+       recv_size <span class="token operator">+=</span> <span class="token builtin">len</span><span class="token punctuation">(</span>line<span class="token punctuation">)</span>
+       <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'总大小：%s  已下载大小：%s'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>total_size<span class="token punctuation">,</span> recv_size<span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 显示下载进度</span>
+phone<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="服务器代码："><a href="#服务器代码：" class="headerlink" title="服务器代码："></a>服务器代码：</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> socket
+<span class="token keyword">import</span> struct  <span class="token comment"># 制作报头的模块</span>
+<span class="token keyword">import</span> json  <span class="token comment"># 转换数据格式(序列化)</span>
+<span class="token keyword">import</span> os
+share_dir <span class="token operator">=</span><span class="token string">'C:\\Users\\888888\\Desktop\\new'</span><span class="token comment"># 这里是服务器储存资源的地址</span>
+phone <span class="token operator">=</span> socket<span class="token punctuation">.</span>socket<span class="token punctuation">(</span>socket<span class="token punctuation">.</span>AF_INET<span class="token punctuation">,</span> socket<span class="token punctuation">.</span>SOCK_STREAM<span class="token punctuation">)</span>
+phone<span class="token punctuation">.</span>bind<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'127.0.0.1'</span><span class="token punctuation">,</span><span class="token number">8848</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+phone<span class="token punctuation">.</span>listen<span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>
+<span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+  conn<span class="token punctuation">,</span> client <span class="token operator">=</span> phone<span class="token punctuation">.</span>accept<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+     <span class="token keyword">try</span><span class="token punctuation">:</span>
+       <span class="token comment"># 收命令</span>
+       res <span class="token operator">=</span> conn<span class="token punctuation">.</span>recv<span class="token punctuation">(</span><span class="token number">8096</span><span class="token punctuation">)</span>  <span class="token comment"># b'get a.txt'</span>
+       <span class="token comment"># 解析命令、提取相应的命令参数</span>
+       cmds <span class="token operator">=</span> res<span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'gbk'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment"># ['get','a.txt']  split变列表格式</span>
+       filename <span class="token operator">=</span> cmds<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>
+       <span class="token comment"># 已读的方式打开文件，读取文件内容发送给客户端</span>
+       <span class="token comment"># 第一步：制作固定长度的报头</span>
+       header_dic <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+         <span class="token string">'filename'</span><span class="token punctuation">:</span> filename<span class="token punctuation">,</span>
+         <span class="token string">'file_size'</span><span class="token punctuation">:</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>getsize<span class="token punctuation">(</span><span class="token string">r'%s/%s'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>share_dir<span class="token punctuation">,</span> filename<span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment"># 这里把文件的名字和地址结合在一起得到文件长度</span>
+       <span class="token punctuation">&#125;</span>    <span class="token comment"># 字典方便储存数据</span>
+       header_json <span class="token operator">=</span> json<span class="token punctuation">.</span>dumps<span class="token punctuation">(</span>header_dic<span class="token punctuation">)</span>  <span class="token comment"># 把字典转换成js格式(字符串类型)</span>
+       header_bytes <span class="token operator">=</span> header_json<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'gbk'</span><span class="token punctuation">)</span>
+       <span class="token comment"># 第二步：先发送报头的长度</span>
+       conn<span class="token punctuation">.</span>send<span class="token punctuation">(</span>struct<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token string">'i'</span><span class="token punctuation">,</span> <span class="token builtin">len</span><span class="token punctuation">(</span>header_bytes<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+       <span class="token comment"># 第三步：再发报头</span>
+       conn<span class="token punctuation">.</span>send<span class="token punctuation">(</span>header_bytes<span class="token punctuation">)</span>
+       <span class="token comment"># 第四步：发送真实数据</span>
+       <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">'%s/%s'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>share_dir<span class="token punctuation">,</span> filename<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'rb'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+         <span class="token keyword">for</span> line <span class="token keyword">in</span> f<span class="token punctuation">:</span>  <span class="token comment"># 这样一行一行发比直接发送f.read节省内存空间</span>
+           conn<span class="token punctuation">.</span>send<span class="token punctuation">(</span>line<span class="token punctuation">)</span>
+     <span class="token keyword">except</span> ConnectionResetError <span class="token keyword">as</span> err<span class="token punctuation">:</span>
+       <span class="token keyword">break</span>
+  conn<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+phone<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>实验总结</p>
+<p><img src="file:///C:\Users\888888\AppData\Local\Temp\ksohtml30884\wps11.jpg" alt="img"></p>
+<p>  可以看到在自己电脑上实现了客户端与服务器之间的文件传输，文件有服务器设置的文件夹转写到客户端文件夹即桌面上。</p>
+<h2 id="实验五-交换机自学习与转发"><a href="#实验五-交换机自学习与转发" class="headerlink" title="实验五 交换机自学习与转发"></a>实验五 交换机自学习与转发</h2><p>实验目的</p>
+<blockquote>
+<p>了解仿真器的一般用法；理解交换机的交换方法；掌握交换机的自学习转发算法；验证交换原理。</p>
+</blockquote>
+<p>实验内容:</p>
+<ul>
+<li>安装PT仿真器</li>
+<li>完成仿真实验</li>
+</ul>
+<p> 实验步骤</p>
+<blockquote>
+<p>安装PT仿真器，部署网络，配置PC</p>
+</blockquote>
+<p>配置PC的IP地址时应该注意保持将所有的链接在同一交换机下的所有主机的IP地址都至于同一网络下。</p>
+<p>查看MAC地址表</p>
+<p>现在交换机中使用en指令获得管理员权限，后可以使用如Show mac-address-table显示整张表，如果初始状态存有整个物理地址表的话应该用clear mac-address-table指令清空里面存储的目的地址表</p>
+<p>测试网络连通性</p>
+<p>随机选取一个PC去ping一个已经配置好的IP地址，在得到返回后，进入去下一步检查交换机的物理地址表。</p>
+<p><img src="file:///C:\Users\888888\AppData\Local\Temp\ksohtml30884\wps12.jpg" alt="img"></p>
+<p>查看MAC地址表</p>
+<p>再次在交换机中使用Show mac-address-table命令，可以看到之物理地址表中已经存在一对物理地址。</p>
+<p>这是由于Ping命令的性质所出现的，在接收方接受到发送放发出的ping命令后，会将返回一份ping命令发送到发送放。</p>
+<blockquote>
+<p>Vlan  Mac Address       Type            Ports<br> 1      0050.0f11.9b10   DYNAMIC   Fa0/4<br> 1      00d0.ba73.73a9  DYNAMIC   Fa0/2</p>
+</blockquote>
+<p>随后选取一个没有进行过ping命令的主机去ping 交换机中已经保存的物理地址表中的主机IP号，结果发送放的物理地址被存入MAC地址表，可以证明在交换机的自学习算法在为源地址学习，目的地址转发</p>
+<p>实验总结</p>
+<p>实验基本一切顺利，但是在一开始我本打算从网络上下载一个高版本的CISCO packet tracer student，但是发现下载高版本的需要注册账号，后续在注册之后还存在其他问题，就重新选择下载了6.1版本的。</p>
+<p>交换机自学习与转发在之前的理论课学习中已经学习过，这次去验证也让理解更加的透彻。</p>
+<h2 id="实验六-子网划分器"><a href="#实验六-子网划分器" class="headerlink" title="实验六 子网划分器"></a>实验六 子网划分器</h2><p>实验目的</p>
+<blockquote>
+<p>掌握子网划分的一般方法，实现按需求划分子网。</p>
+</blockquote>
+<p>实验内容:</p>
+<blockquote>
+<p>子网划分基础：2n-2&gt;=a，编写并实现ABC三类IP地址的按需划分</p>
+</blockquote>
+<p>实验步骤</p>
+<p>（1）计算子网号,IP地址范围,子网掩码和广播地址</p>
+<p> 子网划分器实现代码:</p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;string.h&gt;
+#include&lt;math.h&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+int main()
+&#123;
+  int max;
+  int n ;&#x2F;&#x2F;用于接收以要划分的子网数
+  int b;&#x2F;&#x2F;输入子网数对应的二进制位数
+  int X[5];
+  cout&lt;&lt;&quot;---------------划分子网---------------&quot;&lt;&lt;endl;
+  cout&lt;&lt;&quot;请输入你要划分的网络：&quot;&lt;&lt;endl;
+  for(int i&#x3D;1; i&lt;5; i++)&#123;
+      scanf(&quot;%d.&quot;,&amp;X[i]);
+  &#125;
+  if(X[1]&gt;0&amp;&amp;X[1]&lt;&#x3D;126)&#123;
+      max&#x3D;pow(2,24-2)-2;&#x2F;&#x2F;在子网划分中,最小应该为两位，即除却网络号和广播之外还有两个可用网络
+      cout&lt;&lt;&quot;本IP地址能划分划分的最大子网数为: &quot;&lt;&lt;max&lt;&lt;endl;
+  &#125;
+  else if(X[1]&gt;&#x3D;128&amp;&amp;X[1]&lt;&#x3D;191)&#123;
+      max&#x3D;pow(2,16-2)-2;
+      cout&lt;&lt;&quot;本IP地址能划分划分的最大子网数为: &quot;&lt;&lt;max&lt;&lt;endl;
+  &#125;
+  else if(X[1]&gt;&#x3D;192&amp;&amp;X[1]&lt;&#x3D;223)&#123;
+      max&#x3D;pow(2,8-2)-2;
+      cout&lt;&lt;&quot;本IP地址能划分划分的最大子网数为: &quot;&lt;&lt;max&lt;&lt;endl;
+  &#125;
+  else&#123;
+      printf(&quot; 地址不合格！！！&quot;);
+  &#125;
+  cout&lt;&lt;&quot;请输需要划分的子网数&quot;&lt;&lt;endl;
+  cin&gt;&gt;n;
+  for(b&#x3D;1; pow(2,b)&lt;n; b++);
+  cout&lt;&lt;&quot;--------------------------------------&quot;&lt;&lt;endl;
+  int sum &#x3D; 0;
+  for(int i&#x3D;0; i&lt;b; i++)&#123;
+      sum &#x3D; sum +pow(2,(7-i));
+  &#125;
+  cout&lt;&lt;&quot;子网掩码为：&quot;&lt;&lt;endl;
+  if(X[1]&gt;0&amp;&amp;X[1]&lt;&#x3D;126)&#123;
+      if(b&lt;&#x3D;8)&#123;
+          cout&lt;&lt;&quot;255.&quot;&lt;&lt;sum&lt;&lt;&quot;.0.0&quot;&lt;&lt;endl;
+      &#125;else if(b&gt;8&amp;&amp;b&lt;&#x3D;16)&#123;
+          b&#x3D; b-8;
+          sum &#x3D; 0;
+          for(int i&#x3D;0; i&lt;b; i++)&#123;
+              sum &#x3D; sum + pow(2,(7-i));
+          &#125;
+          cout&lt;&lt;&quot;255.255.&quot;&lt;&lt;sum&lt;&lt;&quot;.0&quot;&lt;&lt;endl;
+      &#125;
+      else&#123;
+          b &#x3D; b-16;
+          sum &#x3D; 0;
+          for(int i&#x3D;0; i&lt;b; i++)&#123;
+              sum &#x3D; sum +pow(2,(7-i));
+          &#125;
+          cout&lt;&lt;&quot;255.255.255.&quot;&lt;&lt;sum&lt;&lt;endl;
+      &#125;
+  &#125;
+  &#x2F;&#x2F;B类
+  if(X[1]&gt;&#x3D;128&amp;&amp;X[1]&lt;&#x3D;191)&#123;
+      if(b&lt;&#x3D;8)&#123;
+          cout&lt;&lt;&quot;255.255.&quot;&lt;&lt;sum&lt;&lt;&quot;.0&quot;&lt;&lt;endl;
+      &#125;
+      else&#123;
+          b &#x3D; b-8;
+          sum &#x3D; 0;
+          for(int i&#x3D;0; i&lt;b; i++)&#123;
+              sum &#x3D; sum +pow(2,(7-i));
+          &#125;
+          cout&lt;&lt;&quot;255.255.255.&quot;&lt;&lt;sum&lt;&lt;endl;
+      &#125;
+  &#125;
+  &#x2F;&#x2F;C类
+  if(X[1]&gt;&#x3D;192&amp;&amp;X[1]&lt;&#x3D;223)&#123;
+      cout&lt;&lt;&quot;255.255.255.&quot;&lt;&lt;sum&lt;&lt;endl;
+  &#125;
+  cout&lt;&lt;&quot;每网段主机数：&quot;;&#x2F;&#x2F;求每网段主机数
+  &#x2F;&#x2F;A类
+  if(X[1]&gt;0&amp;&amp;X[1]&lt;&#x3D;126)&#123;
+      cout&lt;&lt;(pow(2,(24-b))-2)&lt;&lt;endl;
+  &#125;
+  &#x2F;&#x2F;B类
+  if(X[1]&gt;&#x3D;128&amp;&amp;X[1]&lt;&#x3D;191)&#123;
+      cout&lt;&lt;(pow(2,(16-b))-2)&lt;&lt;endl;
+  &#125;
+  &#x2F;&#x2F;C类
+  if(X[1]&gt;&#x3D;192&amp;&amp;X[1]&lt;&#x3D;223)&#123;
+      cout&lt;&lt;(pow(2,(8-b))-2)&lt;&lt;endl;
+  &#125;
+  &#x2F;&#x2F;输出各子网IP范围
+  cout&lt;&lt;&quot;各子网IP范围如下：&quot;&lt;&lt;endl;
+  &#x2F;&#x2F;A类
+  if(X[1]&gt;0 &amp;&amp; X[1]&lt;&#x3D;126)&#123;
+      for(b&#x3D;1; pow(2,b)&lt;n; b++);
+      if(b&lt;&#x3D;8)&#123;
+          for (int i&#x3D;0,sub_id&#x3D;0; i&lt;n; i++ )&#123;
+              sub_id&#x3D; pow(2,(8-b))*i;
+              cout&lt;&lt;&quot;&lt;&quot;&lt;&lt;i+1&lt;&lt;&quot;&gt; &quot;&lt;&lt;endl;
+              cout&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;sub_id&lt;&lt;&quot;.0.&quot;&lt;&lt;1&lt;&lt;&quot;---&quot;&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;(sub_id+pow(2,(8-b))-1)&lt;&lt;&quot;.255.254&quot;&lt;&lt;endl;
+          &#125;
+      &#125;
+      if(b&gt;8 &amp;&amp; b&lt;16)&#123;
+          int subnet_id &#x3D;1;&#x2F;&#x2F;定义子网号
+          for (int i&#x3D;0; i&lt;pow(2,8); i++ )&#123;
+              if(i&#x3D;&#x3D;0)&#123;
+                  for (int k&#x3D;1,sub_id&#x3D;0; k&lt;&#x3D;pow(2,b-8); k++)&#123;
+                      sub_id &#x3D; pow(2,(16-b))*k;
+                      cout&lt;&lt;&quot;&lt;&quot;&lt;&lt;(++subnet_id)&lt;&lt;&quot;&gt; &quot;&lt;&lt;endl;
+                      cout&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;i&lt;&lt;&quot;.&quot;&lt;&lt;sub_id&lt;&lt;&quot;.1------&quot;&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;i&lt;&lt;&quot;.&quot;&lt;&lt;(sub_id+pow(2,(16-b))-1)&lt;&lt;&quot;.254&quot;&lt;&lt;endl;
+                  &#125;
+              &#125;
+              else&#123;
+                  for (int k&#x3D;0,sub_id&#x3D;0; k&lt;&#x3D;pow(2,b-8)-1; k++)&#123;
+                      if((i&#x3D;&#x3D;255)&amp;&amp;k&#x3D;&#x3D;(pow(2,b-8)-1))&#123;
+                          break;
+                      &#125;
+                      sub_id &#x3D; pow(2,(16-b))*k;
+                      cout&lt;&lt;&quot;&lt;&quot;&lt;&lt;(++subnet_id)&lt;&lt;&quot;&gt; &quot;&lt;&lt;endl;
+                      cout&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;i&lt;&lt;&quot;.&quot;&lt;&lt;(sub_id)&lt;&lt;&quot;.1------&quot;&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;i&lt;&lt;&quot;.&quot;&lt;&lt;(sub_id+pow(2,(16-b))-1)&lt;&lt;&quot;.254&quot;&lt;&lt;endl;
+                  &#125;
+              &#125;
+          &#125;
+      &#125;
+      if(b&gt;&#x3D;16&amp;&amp;b&lt;24)&#123;
+          int subnet_id &#x3D;0;&#x2F;&#x2F;定义子网号
+          for(int m&#x3D;0; m&lt;pow(2,8); m++)&#123;
+              if(m&#x3D;&#x3D;0)&#123;
+                  for (int i&#x3D;0; i&lt;pow(2,8); i++ )&#123;
+                      if(i&#x3D;&#x3D;0)&#123;
+                          for (int k&#x3D;1,sub_id&#x3D;0; k&lt;&#x3D;pow(2,b-16)-1; k++)&#123;
+                              sub_id &#x3D; pow(2,(24-b))*k;
+                              cout&lt;&lt;&quot;&lt;&quot;&lt;&lt;(++subnet_id)&lt;&lt;&quot;&gt; &quot;&lt;&lt;endl;
+                              cout&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;m&lt;&lt;&quot;.&quot;&lt;&lt;i&lt;&lt;&quot;.&quot;&lt;&lt;(sub_id+1)&lt;&lt;&quot;------&quot;&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;m&lt;&lt;&quot;.&quot;&lt;&lt;i&lt;&lt;&quot;.&quot;&lt;&lt;(sub_id+pow(2,(24-b))-2)&lt;&lt;endl;
+                          &#125;
+                      &#125;
+                      else&#123;
+                          for (int k&#x3D;0,sub_id&#x3D;0; k&lt;&#x3D;pow(2,b-16)-1; k++)&#123;
+                              sub_id &#x3D; pow(2,(24-b))*k;
+                              cout&lt;&lt;&quot;&lt;&quot;&lt;&lt;(++subnet_id)&lt;&lt;&quot;&gt; &quot;&lt;&lt;endl;
+                              cout&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;m&lt;&lt;&quot;.&quot;&lt;&lt;i&lt;&lt;&quot;.&quot;&lt;&lt;(sub_id+1)&lt;&lt;&quot;------&quot;&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;m&lt;&lt;&quot;.&quot;&lt;&lt;i&lt;&lt;&quot;.&quot;&lt;&lt;(sub_id+pow(2,(24-b))-2)&lt;&lt;endl;
+                          &#125;
+                      &#125;
+                  &#125;
+              &#125;
+              else&#123;
+                  for (int i&#x3D;0; i&lt;n; i++ )&#123;
+                      for (int k&#x3D;0,sub_id&#x3D;0; k&lt;&#x3D;pow(2,b-16)-1; k++)&#123;
+                          if(m&#x3D;&#x3D;255&amp;&amp;(i&#x3D;&#x3D;255)&amp;&amp;k&#x3D;&#x3D;(pow(2,b-16)-1))&#123;
+                              break;
+                          &#125;
+                          sub_id &#x3D; pow(2,(24-b))*k;
+                          cout&lt;&lt;&quot;&lt;&quot;&lt;&lt;(++subnet_id)&lt;&lt;&quot;&gt; &quot;&lt;&lt;endl;
+                          cout&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;m&lt;&lt;&quot;.&quot;&lt;&lt;i&lt;&lt;&quot;.&quot;&lt;&lt;(sub_id+1)&lt;&lt;&quot;------&quot;&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;m&lt;&lt;&quot;.&quot;&lt;&lt;i&lt;&lt;&quot;.&quot;&lt;&lt;(sub_id+pow(2,(24-b))-2)&lt;&lt;endl;&#125;&#125;&#125;&#125;&#125;&#125;
+  &#x2F;&#x2F;B类
+  if(X[1]&gt;&#x3D;128&amp;&amp;X[1]&lt;&#x3D;191)&#123;
+      if(b&lt;&#x3D;8)&#123;
+          for (int i&#x3D;0,sub_id&#x3D;0; i&lt;n; i++ &#123;
+              sub_id&#x3D; pow(2,(8-b))*i;
+              cout&lt;&lt;&quot;&lt;&quot;&lt;&lt;i+1&lt;&lt;&quot;&gt; &quot;&lt;&lt;endl;
+              cout&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;X[2]&lt;&lt;&quot;.&quot;&lt;&lt;sub_id&lt;&lt;&quot;.1---&quot;&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;X[2]&lt;&lt;&quot;.&quot;&lt;&lt;(sub_id+pow(2,(8-b))-1)&lt;&lt;&quot;.254&quot;&lt;&lt;endl;
+          &#125;
+       &#125;
+      if(b&gt;8&amp;&amp;b&lt;16)&#123;
+          int subnet_id &#x3D;0;&#x2F;&#x2F;定义子网号
+          for (int i&#x3D;0; i&lt;pow(2,8); i++ )&#123;
+              if(i&#x3D;&#x3D;0)&#123;
+                  for (int k&#x3D;1,sub_id&#x3D;0; k&lt;&#x3D;pow(2,b-8)-1; k++)&#123;
+                      sub_id &#x3D; pow(2,(16-b))*k;
+                      cout&lt;&lt;&quot;&lt;&quot;&lt;&lt;(++subnet_id)&lt;&lt;&quot;&gt; &quot;&lt;&lt;endl;
+                      cout&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;X[2]&lt;&lt;&quot;.&quot;&lt;&lt;i&lt;&lt;&quot;.&quot;&lt;&lt;(sub_id+1)&lt;&lt;&quot;------&quot;&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;X[2]&lt;&lt;&quot;.&quot;&lt;&lt;i&lt;&lt;&quot;.&quot;&lt;&lt;(sub_id+pow(2,(16-b))-2)&lt;&lt;endl;
+                  &#125;
+              &#125;
+              else&#123;
+                  for (int k&#x3D;0,sub_id&#x3D;0; k&lt;&#x3D;pow(2,b-8)-1; k++)&#123;
+                      if((i&#x3D;&#x3D;255)&amp;&amp;k&#x3D;&#x3D;(pow(2,b-8)-1))&#123;
+                          break;
+                      &#125;
+                      sub_id &#x3D; pow(2,(16-b))*k;
+                      cout&lt;&lt;&quot;&lt;&quot;&lt;&lt;(++subnet_id)&lt;&lt;&quot;&gt; &quot;&lt;&lt;endl;
+                      cout&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;X[2]&lt;&lt;&quot;.&quot;&lt;&lt;i&lt;&lt;&quot;.&quot;&lt;&lt;(sub_id+1)&lt;&lt;&quot;------&quot;&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;X[2]&lt;&lt;&quot;.&quot;&lt;&lt;i&lt;&lt;&quot;.&quot;&lt;&lt;(sub_id+pow(2,(16-n))-2)&lt;&lt;endl;
+                  &#125;
+              &#125;
+          &#125;
+      &#125;
+  &#125;
+  &#x2F;&#x2F;C类
+  if(X[1]&gt;&#x3D;192&amp;&amp;X[1]&lt;&#x3D;223)&#123;
+      for (int i&#x3D;0,sub_id&#x3D;0; i&lt;n; i++ )&#123;
+          sub_id&#x3D; pow(2,(8-b))*i;
+          cout&lt;&lt;&quot;&lt;&quot;&lt;&lt;i+1&lt;&lt;&quot;&gt; &quot;&lt;&lt;endl;
+          cout&lt;&lt;&quot;广播号:&quot;&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;X[2]&lt;&lt;&quot;.&quot;&lt;&lt;X[3]&lt;&lt;&quot;.&quot;&lt;&lt;(sub_id)&lt;&lt;endl;
+          cout&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;X[2]&lt;&lt;&quot;.&quot;&lt;&lt;X[3]&lt;&lt;&quot;.&quot;&lt;&lt;(sub_id+1)&lt;&lt;&quot;---&quot;&lt;&lt;X[1]&lt;&lt;&quot;.&quot;&lt;&lt;X[2]&lt;&lt;&quot;.&quot;&lt;&lt;X[3]&lt;&lt;&quot;.&quot;&lt;&lt;(sub_id+pow(2,(8-b))-2)&lt;&lt;endl;
+      &#125;
+  &#125;
+  cout&lt;&lt;&quot;子网划分完毕&quot;&lt;&lt;endl;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="file:///C:\Users\888888\AppData\Local\Temp\ksohtml30884\wps13.jpg" alt="img"></p>
+<h2 id="实验七-：-RIP仿真器"><a href="#实验七-：-RIP仿真器" class="headerlink" title="实验七 ： RIP仿真器"></a>实验七 ： RIP仿真器</h2><p>实验目的</p>
+<blockquote>
+<p>理解RIP的工作原理，掌握距离向量算法</p>
+</blockquote>
+<p>实验原理:</p>
+<p>收到相邻路由器（其地址为 X）的一个 RIP 报文：</p>
+<ul>
+<li><p>先修改此 RIP 报文中的所有项目：把“下一跳”字段中的地址都改为 X，并把所有的“距离”字段的值加 1。</p>
+</li>
+<li><p>对修改后的 RIP 报文中的每一个项目，重复以下步骤：若项目中的目的网络不在路由表中，则把该项目加到路由表中。否则进入比较，若下一跳字段给出的路由器地址是同样的，则把收到的项目替换原路由表中的项目。否则判断到达项目的距离是否小于路由表中的距离，若收到项目中的距离小于路由表中的距离，则进行更新，否则，什么也不做。</p>
+</li>
+<li><p>若 3 分钟还没有收到相邻路由器的更新路由表，则把此相邻路由器记为不可达路由器，即将距离置为16（距离为16表示不可达）。</p>
+</li>
+<li><p>返回。</p>
+</li>
+</ul>
+<p>实验步骤：</p>
+<ul>
+<li>RIP距离向量算法在实现过程中能够向路由器发送数据的一定是相邻路由器，对相邻路由器添加函数进行修改，增加判断，使之能够加入新添加的相邻路由</li>
+</ul>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">void AddNearRouter()&#x2F;&#x2F;相邻路由器添加函数
+&#123;
+  int flag&#x3D;0;
+  printf(&quot;\n请输入相邻路由器名称：\n&quot;);
+  scanf(&quot;%s&quot;,nearR1);
+  for(i&#x3D;0; i&lt;l1; ++i)&#123;
+      if(RT1[i].dstNet&#x3D;&#x3D;nearR1)&#123;
+          flag&#x3D;1;
+      &#125;
+  &#125;
+  if(flag&#x3D;&#x3D;0)&#123;
+      strcpy( RT1[l1].dstNet,nearR1 );
+      RT1[l1].distance&#x3D;1;
+      strcpy( RT1[l1].nextSkip,nearR1 );
+      ++l1;
+  &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>（2）根据要求完成参考代码。</p>
+<p><img src="file:///C:\Users\888888\AppData\Local\Temp\ksohtml30996\wps1.jpg" alt="img"> </p>
+<p>\5. 实验总结</p>
+<p>理解RIP了的工作原理,了解并掌握了距离向量算法的相关内容，</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/2022/07/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/">https://shierjinghuang.github.io/2022/07/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A%E6%95%B4%E7%90%86/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+                                    <span class="chip bg-color">计算机网络</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/07/08/PyMySQL%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="Python3 MySQL 数据库连接 - PyMySQL 驱动">
+                        
+                        <span class="card-title">Python3 MySQL 数据库连接 - PyMySQL 驱动</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-08
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    学习笔记
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Python/">
+                        <span class="chip bg-color">Python</span>
+                    </a>
+                    
+                    <a href="/tags/MySQL/">
+                        <span class="chip bg-color">MySQL</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/07/06/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="数据库实验报告">
+                        
+                        <span class="card-title">数据库实验报告</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-07-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    学习笔记
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="chip bg-color">数据库</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2023</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">310.7k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,1829 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="操作系统实验报告, 十二惊惶">
+    <meta name="description" content="[TOC]
+实验一  OS启动过程、进程的概念及cmd.exe中的命令等1、 实验目的
+
+了解计算机启动过程的原理。
+CPU 加电后运行 BIOS 程序
+BIOS 进行自检和初始化
+BIOS 将磁盘引导扇区（MBR）加载到内存中
+跳转执行引">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>操作系统实验报告 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">操作系统实验报告</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+                                <span class="chip bg-color">学习记录</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                学习笔记
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-03-23
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2022-03-23
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5.8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    26 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>[TOC]</p>
+<h2 id="实验一-OS启动过程、进程的概念及cmd-exe中的命令等"><a href="#实验一-OS启动过程、进程的概念及cmd-exe中的命令等" class="headerlink" title="实验一  OS启动过程、进程的概念及cmd.exe中的命令等"></a>实验一  OS启动过程、进程的概念及cmd.exe中的命令等</h2><p>1、 实验目的</p>
+<ol>
+<li>了解计算机启动过程的原理。<ul>
+<li>CPU 加电后运行 BIOS 程序</li>
+<li>BIOS 进行自检和初始化</li>
+<li>BIOS 将磁盘引导扇区（MBR）加载到内存中</li>
+<li>跳转执行引导程序BOOT，boot.bin</li>
+<li>引导程序将Loader.bin加载到内存中</li>
+<li>跳转执行加载程序</li>
+<li>加载程序将Kernel.dll加载到内存中，并进入保护模式、启动分页机制（扩展内存可用），创建初始进程。</li>
+<li>调用内核入口点，开始执行内核，进入桌面</li>
+<li>explorer.exe</li>
+</ul>
+</li>
+<li>计算机程序运行的机制</li>
+<li>程序以进程的形式进入内存。</li>
+<li>一般指令运行的过程：</li>
+<li>取指周期：PC中存放现行指令的地址，该地址送到MAR并送至地址总线，由控制部件CU向存储器发出读命令，使对应MAR所指单元的内容（指令）经数据总线送至MDR，再送至IR，并由CU控制PC内容加1，形成下一条指令的地址。</li>
+<li>中断周期：CU把保存程序断点的内存地址送到MAR，并送到地址总线上，由CU向存储器发出写命令，并PC的内容（程序断点）送到MDR，经数据总线存入存储器。CU还将中断服务程序的入口地址送到PC，为下一个指令周期的取指做准备。</li>
+<li>创建进程、撤销进程原语程序fork()、exec()和exit()CreateProcess()和ExitProcess()</li>
+</ol>
+<p>2、实验时间：2学时，分两次</p>
+<p>3、实验任务：</p>
+<ul>
+<li>百度fork()、exec()和exit()源程序，写出它们的功能。</li>
+<li>验证：通过启动任务管理器（WIN+R-taskmgr,ctrl+shift+esc和ctrl+alt+delete）运行和撤销资源管理器：explorer.exe</li>
+<li>了解cmd.exe所拥有的内部和外部命令。通过WIN+R运行了解功能，简写几个命令！</li>
+<li>了解任务管理器中显示的当前运行的各个进程。了解它们的功能，简写几个进程！</li>
+<li>验证命令解释程序的运行。</li>
+<li>练习如何把U盘或移动硬盘的MBR分区转换成GPT分区。写出命令行。</li>
+</ul>
+<p>4、实验过程：</p>
+<h3 id="实验一：百度fork-、exec-和exit-源程序，写出它们的功能"><a href="#实验一：百度fork-、exec-和exit-源程序，写出它们的功能" class="headerlink" title="实验一：百度fork()、exec()和exit()源程序，写出它们的功能"></a>实验一：百度fork()、exec()和exit()源程序，写出它们的功能</h3><blockquote>
+<p>Fork()：一个进程,包括代码、数据和分配给进程的资源。fork()函数通过系统调用创建一个与原来进程几乎完全相同的进程,也就是两个进程可以做完全相同的事,但如果初始参数或者传入的变量不同,两个进程也可以做不同的事。 一个进程调用fork()函数后,系统先给新的进程分配资源,例如存储数据和代码的空间。然后把原来的进程的所有值都复制到新的新进程中,只有少数值与原来的进程的值不同。相当于克隆了一个自己。</p>
+</blockquote>
+<p>Exec()：exec有两个功能：</p>
+<ol>
+<li><p>取代当前的shell,通过给出的命令程序。即命令执行完成后，会退出本shell。</p>
+<p>比如：exec ls</p>
+<p>在shell中执行ls，ls结束后不返回原来的shell中。</p>
+</li>
+<li><p>文件重定向，可以将文件的重定向看作是是shell程序的文件重定向 比如：比如 exec 5&lt;/dev/null;exec 5&lt;&amp;-</p>
+<p>exec 3&gt;file 将写入fd3中的内容写入到file中</p>
+<p>exec 5&lt;file    将file读入到fd5中</p>
+<p>exec 5&lt;&amp;-     关闭fd5</p>
+</li>
+</ol>
+<p>最后发现当前脚本中exec的功能是执行完spark的启动脚本后，就退出shell,所以导致脚本后面的的两个命令都没有执行,结尾用echo输出也没有任何内容打印。</p>
+<p>最后的解决方法是删除exec，文件就可以正常打印了。</p>
+<p>Exit()：0表示正常退出其他表示非正常一般用-1表示</p>
+<p>使用 exit函数，要包含头文件” stdlib.h”。。使用exit（）时，可以不论main（）的返回类型。</p>
+<h3 id="实验二：通过启动任务管理器运行和撤销资源管理器"><a href="#实验二：通过启动任务管理器运行和撤销资源管理器" class="headerlink" title="实验二：通过启动任务管理器运行和撤销资源管理器"></a>实验二：通过启动任务管理器运行和撤销资源管理器</h3><center><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/03/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/1.jpg" style="zoom: 80%;" /></center> 
+
+<h3 id="实验三：了解cmd-exe所拥有的内部和外部命令"><a href="#实验三：了解cmd-exe所拥有的内部和外部命令" class="headerlink" title="实验三：了解cmd.exe所拥有的内部和外部命令"></a>实验三：了解cmd.exe所拥有的内部和外部命令</h3><p>内部命令：我们可以直接在cmd下就可以执行的命令，例如：telnet、ftp、cd、等等，你可以在CMD下输入help进行查看</p>
+<p>外部命令：就是cmd下不能直接运行的命令，（例如大家常用的nc）他需要在CMD下切换到他（NC）所在的目录你才能运行NC及NC的命令</p>
+<center><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/03/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/2.jpg" alt="img"  /> </center>
+<center> 
+<center><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/03/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/3.jpg"  /></center>
+
+<center>windows资源管理器：</center>
+
+<p><strong>屏幕上显示的东西除了文件数据之外的全都算是资源管理器，资源管理器分为2个概念，一个是可见的，如“我的电脑”打开之后看到的是文件目录，一种是后台管理，如“任务管理器”是用来管理系统内核拖管的程序进程，而这些都被称为是系统资源，管理它们的就是资源管理器了。</strong></p>
+<h3 id="实验四：-了解任务管理器中显示的当前运行的各个进程"><a href="#实验四：-了解任务管理器中显示的当前运行的各个进程" class="headerlink" title="实验四： 了解任务管理器中显示的当前运行的各个进程"></a>实验四： 了解任务管理器中显示的当前运行的各个进程</h3><p>火绒安全软件弹窗拦截程序：</p>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/03/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/4.jpg"  /> 
+
+<p>应用程序 拦截广告的</p>
+<p>Csrss: windows 的核心进程之一。</p>
+<p>Idle：任务管理器看到显示99%占用率 表示目前还有99%的性能等待你使用。</p>
+<p>转换分区的方法练习：</p>
+<p>方法一：convert（文件系统修改命令）</p>
+<p>语法：convert [Volume] /fs:ntfs </p>
+<p>Convert将文件分配表 (FAT) 和 FAT32 卷转换为 NTFS 文件系统，而现有的文件和文件夹完好无损。被转换为 NTFS 文件系统的卷无法再转换回 FAT 或 FAT32。</p>
+<p>方法二：</p>
+<pre class="line-numbers language-none"><code class="language-none">1. cmd
+2. diskpart
+3. listdisk
+4. select disk&#x3D;*
+5. clean
+6. convert GPT<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>会出现异常情况：除C，其他分区都显示不出来了。</p>
+<p>解决方法 ：重启</p>
+<p>​     运行：diskmgmt.msc</p>
+<h3 id="实验五-验证命令解释程序的运行"><a href="#实验五-验证命令解释程序的运行" class="headerlink" title="实验五 : 验证命令解释程序的运行"></a>实验五 : 验证命令解释程序的运行</h3><p>附一个命令解释程序的源程序：</p>
+<p><strong>一个命令解释程序：</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;stdio.h&gt;
+#include&lt;string.h&gt;
+void main()
+&#123;
+    char mingling[15][15]&#x3D; &#123;&quot;dir&quot;,&quot;cd&quot;,&quot;md&quot;,&quot;rd&quot;,&quot;cls&quot;,&quot;date&quot;,&quot;time&quot;,&quot;ren&quot;,&quot;cope&quot;,&quot;help&quot;,&quot;quit&quot;&#125;;
+    char ch[15];
+    printf(&quot;Microsoft Windows XP [版本 5.1.2600]\n&quot;);
+    printf(&quot;&lt;c&gt; 版权所有 1985-2001 Microsoft Corp.\n&quot;);
+    printf(&quot;\nc:\\Users\\Administrator&gt;&quot;);
+    while(1)
+    &#123;
+        gets(ch);&#x2F;&#x2F;读入字符串
+        if(strcmp(ch,mingling[0])&#x3D;&#x3D;0)
+        &#123;
+            printf(&quot;dir  内部命令 显示一个目录中的文件和子目录\n&quot;);
+        &#125;
+        else if(strcmp(ch,mingling[1])&#x3D;&#x3D;0)
+        &#123;
+            printf(&quot;cd 内部命令 显示当前目录的名称或将其更改。\n&quot;);
+        &#125;
+        else if(strcmp(ch,mingling[2])&#x3D;&#x3D;0)
+        &#123;
+            printf(&quot;md 内部命令 创建一个目录。\n&quot;);
+        &#125;
+        else if(strcmp(ch,mingling[3])&#x3D;&#x3D;0)
+        &#123;
+            printf(&quot;rd 内部命令 删除目录。\n&quot;);
+        &#125;
+        else if(strcmp(ch,mingling[4])&#x3D;&#x3D;0)
+        &#123;
+            printf(&quot;cls 内部命令 清除屏幕\n&quot;);
+        &#125;
+        else if(strcmp(ch,mingling[5])&#x3D;&#x3D;0)
+        &#123;
+            printf(&quot;date 内部命令 显示或设置日期\n&quot;);
+        &#125;
+        else if(strcmp(ch,mingling[6])&#x3D;&#x3D;0)
+        &#123;
+            printf(&quot;time 内部命令 内部命令显示或设置系统时间\n&quot;);
+        &#125;
+        else if(strcmp(ch,mingling[7])&#x3D;&#x3D;0)
+        &#123;
+            printf(&quot;ren 内部命令 重新命名文件\n&quot;);
+        &#125;
+        else if(strcmp(ch,mingling[8])&#x3D;&#x3D;0)
+        &#123;
+            printf(&quot;cope 内部命令 将至少一个文件复制到另一个位置\n&quot;);
+        &#125;
+        else if(strcmp(ch,mingling[9])&#x3D;&#x3D;0)
+        &#123;
+            printf(&quot;dir 内部命令 显示一个目录中的文件和子目录\n&quot;);
+            printf(&quot;cd 内部命令 显示当前目录的名称或将其更改。\n&quot;);
+            printf(&quot;md 内部命令 创建一个目录。\n&quot;);
+            printf(&quot;rd 内部命令 删除目录。\n&quot;);
+            printf(&quot;cls 内部命令 清除屏幕\n&quot;);
+            printf(&quot;date 内部命令 显示或设置日期\n&quot;);
+            printf(&quot;time 内部命令 内部命令显示或设置系统时间\n&quot;);
+            printf(&quot;ren 内部命令 重新命名文件\n&quot;);
+            printf(&quot;cope 内部命令 将至少一个文件复制到另一个位置\n&quot;);
+            printf(&quot;help 外部命令 提供Windows命令的帮助信息\n&quot;);
+            printf(&quot;quit 外部命令 退出命令解释程序\n&quot;);
+        &#125;
+        else if(strcmp(ch,mingling[10])&#x3D;&#x3D;0)
+            return;
+        else
+        &#123;
+            printf(&quot;你输入错误的信息，请重新输入：\n&quot;);
+        &#125;
+    &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="实验六：练习如何把U盘或移动硬盘的MBR分区转换成GPT分区"><a href="#实验六：练习如何把U盘或移动硬盘的MBR分区转换成GPT分区" class="headerlink" title="实验六：练习如何把U盘或移动硬盘的MBR分区转换成GPT分区"></a>实验六：练习如何把U盘或移动硬盘的MBR分区转换成GPT分区</h3><ol>
+<li>diskpart（启动Diskpart程序)</li>
+<li>list disk （查看电脑中有哪些磁盘）</li>
+<li>select disk 0（选中编号为0的磁盘）</li>
+<li>clean（清除磁盘所有分区）</li>
+<li>convert gpt（将磁盘转换成GPT格式）</li>
+<li>list partition（查看当前磁盘分区情况）</li>
+<li>create partition efi size=100（默认大小为M）</li>
+<li>create partition msr size =128</li>
+<li>create partition primary size =102400(此处为你想设置C盘的大小)</li>
+<li>两次输入exit </li>
+</ol>
+<h2 id="实验二-P、V算法"><a href="#实验二-P、V算法" class="headerlink" title="实验二  P、V算法"></a>实验二  P、V算法</h2><p>1、 实验目的</p>
+<p>一、 Dekker算法</p>
+<p>设有进程P0和P1，两者谁要访问临界区，就让对应的flag=true（例如P0要访问临界区，就让flag[0]=true），相当于“举手示意我要访问”。初始值为0表示一开始没人要访问</p>
+<p>turn用于标识当前允许谁进入，turn=0则P0可进入，turn=1则P1可进入。</p>
+<p>二、 Peterson算法：</p>
+<p>Peterson算法是一个实现<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BA%92%E6%96%A5%E9%94%81/841823">互斥锁</a>的并发程序设计算法，可以控制两个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BA%BF%E7%A8%8B/103101">线程</a>访问一个共享的单用户资源而不发生访问冲突。Gary L. Peterson于1981年提出此算法</p>
+<p>三、生产者和消费者问题。</p>
+<p>（1）加深对进程概念的理解，明确进程和程序的区别。</p>
+<p>（2）进一步理解同步关系的含义。</p>
+<p>（3）验证用信号量机制实现进程互斥的方法。</p>
+<p>（4） 验证用信号机制实现进程同步的方法。</p>
+<p>四、 读者和写者算法</p>
+<p>（1） 写者优先</p>
+<p>（2） 读者优先</p>
+<p>  五、哲学家就餐算法</p>
+<p>六、验证参考程序</p>
+<p>七、 编写自己的程序</p>
+<p>2、实验时间：4学时（2次）</p>
+<p>3、实验任务：</p>
+<p>（1）验证参考程序Java，观察程序运行的结果，理解信号量的作用，从运行结果中体现出三种同步情况。</p>
+<p>（2）实现方法：多进程实现和多线程实现</p>
+<p>（3）编写自己的程序（可用其他语言编写）</p>
+<p>4、实验过程：</p>
+<h3 id="一、Dekker算法"><a href="#一、Dekker算法" class="headerlink" title="一、Dekker算法"></a>一、Dekker算法</h3><h4 id="P0的逻辑"><a href="#P0的逻辑" class="headerlink" title="P0的逻辑"></a>P0的逻辑</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">do&#123;
+  flag[0] &#x3D; true;&#x2F;&#x2F; 首先P0举手示意我要访问
+  while(flag[1])  &#x2F;&#x2F; 看看P1是否也举手了
+  &#123;
+    if(turn&#x3D;&#x3D;1) &#x2F;&#x2F; 如果P1也举手了，那么就看看到底轮到谁
+    &#123;
+      flag[0]&#x3D;false;&#x2F;&#x2F; 如果确实轮到P1，那么P0先把手放下（让P1先）
+      while(turn&#x3D;&#x3D;1);&#x2F;&#x2F; 只要还是P1的时间，P0就不举手，一直等
+      flag[0]&#x3D;true;&#x2F;&#x2F; 等到P1用完了（轮到P0了），P0再举手
+    &#125;
+    flag[1] &#x3D; false; &#x2F;&#x2F; 只要可以跳出循环，说明P1用完了，应该跳出最外圈的while
+  &#125;
+  visit();&#x2F;&#x2F; 访问临界区
+  turn &#x3D; 1;&#x2F;&#x2F; P0访问完了，把轮次交给P1，让P1可以访问
+  flag[0]&#x3D;false;&#x2F;&#x2F; P0放下手
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="P1的逻辑"><a href="#P1的逻辑" class="headerlink" title="P1的逻辑"></a>P1的逻辑</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">do&#123;
+  flag[1] &#x3D; true;&#x2F;&#x2F; 先P1举手示意我要访问
+  while(flag[0])  &#x2F;&#x2F; 如果P0是否也举手了
+  &#123;
+    if(turn&#x3D;&#x3D;0) &#x2F;&#x2F; 如果P0也举手了，那么久看看到底轮到谁
+    &#123;
+      flag[1]&#x3D;false;&#x2F;&#x2F; 如果确实轮到P0，那么P1先把手放下（让P0先）
+      while(turn&#x3D;&#x3D;0);&#x2F;&#x2F; 只要还是P0的时间，P1就不举手，一直等
+      flag[0]&#x3D;true;&#x2F;&#x2F; 等到P0用完了（轮到P1了），P1再举手
+    &#125;
+  &#125;
+  visit();&#x2F;&#x2F; 访问临界区
+  turn &#x3D; 0;&#x2F;&#x2F; P1访问完了，把轮次交给P0，让P0可以访问
+  flag[1]&#x3D;false;&#x2F;&#x2F; P1放下手
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="实现方法："><a href="#实现方法：" class="headerlink" title="实现方法："></a>实现方法：</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include&lt;iostream&gt;
+using namespace std;
+bool flag[2];
+int turn;
+void procedure0()
+&#123;
+    while(true)
+    &#123;
+        flag[0]&#x3D;true;
+        while(flag[1]&#x3D;&#x3D;true)
+        &#123;
+            if(turn&#x3D;&#x3D;1)
+            &#123;
+                flag[0]&#x3D;false;
+                while(turn&#x3D;&#x3D;1)
+                &#123;
+                    &#x2F;*do nothing*&#x2F;
+                &#125;
+                flag[0]&#x3D;true;
+            &#125;
+        &#125;
+        &#x2F;*critical section*&#x2F; ;
+        turn&#x3D;1;
+        flag[0]&#x3D;false;
+        &#x2F;*remainder section*&#x2F;
+    &#125;
+&#125;
+void procedure1()
+&#123;
+    while(true)
+    &#123;
+        flag[1]&#x3D;true;
+        while(flag[0]&#x3D;&#x3D;true)
+        &#123;
+            if(turn&#x3D;&#x3D;0)
+            &#123;
+                flag[1]&#x3D;false;
+                while(turn&#x3D;&#x3D;0)
+                &#123;
+                    &#x2F;*do nothing*&#x2F;
+                &#125;
+                flag[1]&#x3D;true;
+            &#125;
+        &#125;
+        &#x2F;*critical section*&#x2F; ;
+        turn&#x3D;0
+             flag[1]&#x3D;false;
+        &#x2F;*remainder section*&#x2F;
+    &#125;
+&#125;
+int main()
+&#123;
+    flag[0]&#x3D;flag[1]&#x3D;0;
+    turn&#x3D;1;
+    &#x2F;&#x2F;先让P1运行
+    &#x2F;*start procedure0 and procedure1*&#x2F; ;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="二、Peterson算法"><a href="#二、Peterson算法" class="headerlink" title="二、Peterson算法"></a>二、Peterson算法</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">boolean flag[2];
+int turn;
+void procedure0()
+&#123;
+    while(true)
+    &#123;
+        flag[0]&#x3D;true;
+        turn&#x3D;1;
+        while(flag[1]&amp;&amp;turn&#x3D;&#x3D;1) &#x2F;*若flag[1]为false，P0就进入临界区；若flag[1]为tureP0循环等待，只要P1退出临界区，P0即可进入*&#x2F;
+        &#123;
+            &#x2F;* donothing*&#x2F;
+        &#125;
+        visit();&#x2F;*访问临界区*&#x2F;
+        flag[0]&#x3D;false;&#x2F;*访问临界区完成，procedure0释放出临界区*&#x2F;
+        &#x2F;*remainder section*&#x2F;
+    &#125;
+&#125;
+void procedure1()
+&#123;
+    while(true)
+    &#123;
+        flag[1]&#x3D;true;
+        turn&#x3D;0;
+        while(flag[0]&amp;&amp;turn&#x3D;&#x3D;0)
+        &#123;
+            &#x2F;* donothing*&#x2F; ;
+        &#125;
+        visit();&#x2F;*访问临界区*&#x2F;
+        flag[1]&#x3D;false;&#x2F;*访问临界区完成，procedure1释放出临界区*&#x2F;
+        &#x2F;*remainder section*&#x2F;
+    &#125;
+&#125;
+void main()
+&#123;
+    flag[0]&#x3D;flag[1]&#x3D;false;
+    &#x2F;*start procedure0 and procedure1*&#x2F; ;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>进程P0，一旦它设置flag[0]=true，则P1不能进入<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%B8%B4%E7%95%8C%E5%8C%BA/8942134">临界区</a>。如果P1已经进入临界区，那么flag[1]=true，P0被阻塞不能进入临界区。</p>
+<p>另一方面，互相阻塞也避免了。假设P0在<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/while/755564">while</a>里被阻塞了，表示flag[1]为true且turn=1，则此时P1可以执行。</p>
+<h3 id="三、生产者和消费者问题"><a href="#三、生产者和消费者问题" class="headerlink" title="三、生产者和消费者问题"></a>三、生产者和消费者问题</h3><p>考虑有一些生产者和消费者进程，生产者进程生产信息并把它们放入缓冲池中，消费者从缓冲池中取走信息。生产者—消费者问题是相互合作的进程关系的一种抽象，如在输入时，输入进程是生产者，计算进程是消费者；而在输出时，则计算进程是生产者，打印进程是消费者。请使用信号量机制来解决生产者—消费者问题。</p>
+<p>归结生产者和消费者之间的关系：</p>
+<p>（1） 诸进程之间互斥访问缓冲池</p>
+<p>（2） 缓冲池满时，生产者等待</p>
+<p>（3） 缓冲池空时，消费者等待</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">com<span class="token punctuation">.</span>loan<span class="token punctuation">.</span>entity</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Store</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">int</span> MAX_SIZE<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span><span class="token comment">//仓库总共可存放货物</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span> count<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span><span class="token comment">//当前仓库货物</span>
+    <span class="token keyword">public</span> <span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">InterruptedException</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>count<span class="token operator">>=</span>MAX_SIZE<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"仓库已满"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"等待中。。。。"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        count<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"存入仓库，当前货物数："</span><span class="token operator">+</span>count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">public</span> <span class="token keyword">synchronized</span> <span class="token keyword">void</span> <span class="token function">remove</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">InterruptedException</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>count<span class="token operator">&lt;=</span><span class="token number">0</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"仓库空了"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"等待中。。。。"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        count<span class="token operator">--</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token string">"取出货物，当前货物数："</span><span class="token operator">+</span>count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">notify</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token class-name">Store</span> s<span class="token operator">=</span><span class="token keyword">new</span> <span class="token class-name">Store</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Thread</span> producer1<span class="token operator">=</span>s<span class="token punctuation">.</span><span class="token keyword">new</span> <span class="token class-name">Producer</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//成员内部类需通过对象访问</span>
+        <span class="token class-name">Thread</span> producer2<span class="token operator">=</span>s<span class="token punctuation">.</span><span class="token keyword">new</span> <span class="token class-name">Producer</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Thread</span> consumer1<span class="token operator">=</span>s<span class="token punctuation">.</span><span class="token keyword">new</span> <span class="token class-name">Consumer</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Thread</span> consumer2<span class="token operator">=</span>s<span class="token punctuation">.</span><span class="token keyword">new</span> <span class="token class-name">Consumer</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        producer1<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"producer1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//利用Thread中的方法</span>
+        producer2<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"producer2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        consumer1<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"consumer1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        consumer2<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"consumer2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        producer1<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        producer2<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        consumer1<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        consumer2<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">class</span> <span class="token class-name">Producer</span> <span class="token keyword">extends</span> <span class="token class-name">Thread</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">private</span> <span class="token class-name">Store</span> store<span class="token punctuation">;</span>
+        <span class="token class-name">Producer</span><span class="token punctuation">(</span><span class="token class-name">Store</span> s<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            store<span class="token operator">=</span>s<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+            <span class="token punctuation">&#123;</span>
+                <span class="token keyword">try</span>
+                <span class="token punctuation">&#123;</span>
+                    store<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span>
+                <span class="token punctuation">&#123;</span>
+                    <span class="token comment">// TODO Auto-generated catch block</span>
+                    e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">class</span> <span class="token class-name">Consumer</span> <span class="token keyword">extends</span> <span class="token class-name">Thread</span>
+    <span class="token punctuation">&#123;</span>
+        <span class="token keyword">private</span> <span class="token class-name">Store</span> store<span class="token punctuation">;</span>
+        <span class="token class-name">Consumer</span><span class="token punctuation">(</span><span class="token class-name">Store</span> s<span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            store<span class="token operator">=</span>s<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">&#123;</span>
+            <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+            <span class="token punctuation">&#123;</span>
+                <span class="token keyword">try</span>
+                <span class="token punctuation">&#123;</span>
+                    store<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">15000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+                <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span>
+                <span class="token punctuation">&#123;</span>
+                    <span class="token comment">// TODO Auto-generated catch block</span>
+                    e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">&#125;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="四、读者和写者算法"><a href="#四、读者和写者算法" class="headerlink" title="四、读者和写者算法"></a>四、读者和写者算法</h3><p>C程序：</p>
+<p>代码中信号量解析：</p>
+<p>设置五个信号量，分别是RWMutex, mutex1, mutex2, mutex3, wrt，两个全局整型变量writeCount, readCount</p>
+<p>信号量mutex1在写者的进入区和退出区中使用，使得每次只有一个写者对其相应进入区或推出区进行操作，主要原因是进入区和退出区存在对变量writeCount的修改，每个写者其进入区中writeCount加1，退出区中writeCount减1。信号量RWMutex则是读者和写者两个之间的互斥信号量，保证每次只读或者只写。写者优先中，写者的操作应该优先于读者，则信号量一直被占用着，直到没有写者的时候才会释放，即当writeCount等于1的时候，申请信号量RWMutex，其余的写者无需再次申请，但是写者是不能同时进行写操作的，则需要设置一个信号量wrt来保证每次只有一个写者进行写操作，当写者的数量writeCount等于0的时候，则证明此时没有没有读者了，释放信号量RWMutex。信号量mutex2防止一次多个读者修改readCount。当readCount为1的时候，为阻止写者进行写操作，申请信号量wrt，则写者就无法进行写操作了。信号量mutex3的主要用处就是避免写者同时与多个读者进行竞争，读者中信号量RWMutex比mutex3先释放，则一旦有写者，写者可马上获得资源。</p>
+<h4 id="4-1-写者优先"><a href="#4-1-写者优先" class="headerlink" title="4.1 写者优先"></a>4.1 写者优先</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++"># include &lt;stdio.h&gt;
+# include &lt;stdlib.h&gt;
+# include &lt;time.h&gt;
+# include &lt;sys&#x2F;types.h&gt;
+# include &lt;pthread.h&gt;
+# include &lt;semaphore.h&gt;
+# include &lt;string.h&gt;
+# include &lt;unistd.h&gt;
+&#x2F;&#x2F;semaphores
+sem_t RWMutex, mutex1, mutex2, mutex3, wrt;
+int writeCount, readCount;
+struct data
+&#123;
+    int id;
+    int opTime;
+    int lastTime;
+&#125;;
+
+&#x2F;&#x2F;读者
+void* Reader(void* param)
+&#123;
+    int id &#x3D; ((struct data*)param)-&gt;id;
+    int lastTime &#x3D; ((struct data*)param)-&gt;lastTime;
+    int opTime &#x3D; ((struct data*)param)-&gt;opTime;
+    sleep(opTime);
+    printf(&quot;Thread %d: waiting to read\n&quot;, id);
+    sem_wait(&amp;mutex3);
+    sem_wait(&amp;RWMutex);
+    sem_wait(&amp;mutex2);
+    readCount++;
+    if(readCount &#x3D;&#x3D; 1)
+        sem_wait(&amp;wrt);
+    sem_post(&amp;mutex2);
+    sem_post(&amp;RWMutex);
+    sem_post(&amp;mutex3);
+    printf(&quot;Thread %d: start reading\n&quot;, id);
+    &#x2F;* reading is performed *&#x2F;
+    sleep(lastTime);
+    printf(&quot;Thread %d: end reading\n&quot;, id);
+    sem_wait(&amp;mutex2);
+    readCount--;
+    if(readCount &#x3D;&#x3D; 0)
+        sem_post(&amp;wrt);
+    sem_post(&amp;mutex2);
+    pthread_exit(0);
+&#125;
+&#x2F;&#x2F;写者
+void* Writer(void* param)
+&#123;
+    int id &#x3D; ((struct data*)param)-&gt;id;
+    int lastTime &#x3D; ((struct data*)param)-&gt;lastTime;
+    int opTime &#x3D; ((struct data*)param)-&gt;opTime;
+    sleep(opTime);
+    printf(&quot;Thread %d: waiting to write\n&quot;, id);
+    sem_wait(&amp;mutex1);
+    writeCount++;
+    if(writeCount &#x3D;&#x3D; 1)
+    &#123;
+        sem_wait(&amp;RWMutex);
+    &#125;
+    sem_post(&amp;mutex1);
+    sem_wait(&amp;wrt);
+    printf(&quot;Thread %d: start writing\n&quot;, id);
+    &#x2F;* writing is performed *&#x2F;
+    sleep(lastTime);
+    printf(&quot;Thread %d: end writing\n&quot;, id);
+    sem_post(&amp;wrt);
+    sem_wait(&amp;mutex1);
+    writeCount--;
+    if(writeCount &#x3D;&#x3D; 0)
+    &#123;
+        sem_post(&amp;RWMutex);
+    &#125;
+    sem_post(&amp;mutex1);
+    pthread_exit(0);
+&#125;
+int main()
+&#123;
+    &#x2F;&#x2F;pthread
+    pthread_t tid; &#x2F;&#x2F; the thread identifier
+    pthread_attr_t attr; &#x2F;&#x2F;set of thread attributes
+    &#x2F;* get the default attributes *&#x2F;
+    pthread_attr_init(&amp;attr);
+    &#x2F;&#x2F;initial the semaphores
+    sem_init(&amp;mutex1, 0, 1);
+    sem_init(&amp;mutex2, 0, 1);
+    sem_init(&amp;mutex3, 0, 1);
+    sem_init(&amp;wrt, 0, 1);
+    sem_init(&amp;RWMutex, 0, 1);
+    readCount &#x3D; writeCount &#x3D; 0;
+    int id &#x3D; 0;
+    while(scanf(&quot;%d&quot;, &amp;id) !&#x3D; EOF)
+    &#123;
+        char role;		&#x2F;&#x2F;producer or consumer
+        int opTime;		&#x2F;&#x2F;operating time
+        int lastTime;	&#x2F;&#x2F;run time
+        stanf(&quot;%c%d%d&quot;, &amp;role, &amp;opTime, &amp;lastTime);
+        struct data* d &#x3D; (struct data*)malloc(sizeof(struct data));
+        d-&gt;id &#x3D; id;
+        d-&gt;opTime &#x3D; opTime;
+        d-&gt;lastTime &#x3D; lastTime;
+        if(role &#x3D;&#x3D; &#39;R&#39;)
+        &#123;
+            printf(&quot;Create the %d thread: Reader\n&quot;, id);
+            pthread_create(&amp;tid, &amp;attr, Reader, d);
+        &#125;
+        else if(role &#x3D;&#x3D; &#39;W&#39;)
+        &#123;
+            printf(&quot;Create the %d thread: Writer\n&quot;, id);
+            pthread_create(&amp;tid, &amp;attr, Writer, d);
+        &#125;
+    &#125;
+    sem_destroy(&amp;mutex1);
+    sem_destroy(&amp;mutex2);
+    sem_destroy(&amp;mutex3);
+    sem_destroy(&amp;RWMutex);
+    sem_destroy(&amp;wrt);
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="4-2-读者优先"><a href="#4-2-读者优先" class="headerlink" title="4.2 读者优先"></a>4.2 读者优先</h4><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;windows.h&gt;
+#include &lt;iostream&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;accctrl.h&gt;
+#include &lt;time.h&gt;
+unsigned int readcount &#x3D; 0;
+bool p_ccontinue &#x3D; true; &#x2F;&#x2F;控制程序结束
+HANDLE RSemaphore; &#x2F;&#x2F;改变readcount值时互斥
+HANDLE WSemaphore; &#x2F;&#x2F;写互斥
+DWORD WINAPI Writer(LPVOID); &#x2F;&#x2F;写者线程
+DWORD WINAPI Reader(LPVOID); &#x2F;&#x2F;读者线程
+int main()
+&#123;
+    RSemaphore &#x3D; CreateSemaphore(NULL,1,1,NULL);
+    WSemaphore &#x3D; CreateSemaphore(NULL,1,1,NULL);
+    const unsigned short Writer_COUNT &#x3D; 3;&#x2F;&#x2F;写者数量
+    const unsigned short Reader_COUNT &#x3D; 8;&#x2F;&#x2F;读者数量
+    const unsigned short THREADS_COUNT &#x3D; Writer_COUNT+Reader_COUNT;
+    HANDLE hThreads[THREADS_COUNT]; &#x2F;&#x2F;各线程的 handle
+    DWORD writerID[Writer_COUNT]; &#x2F;&#x2F;写者线程的标识符
+    DWORD readerID[Reader_COUNT]; &#x2F;&#x2F;读者线程的标识符
+    srand(time(0));
+    int writer_count &#x3D; 0;
+    int reader_count &#x3D; 0;
+    for(int i &#x3D; 0; i &lt; Writer_COUNT + Reader_COUNT; i++)
+    &#123;
+        int ran &#x3D; rand()%10;
+        if((ran &lt; 5) &amp;&amp; (writer_count &lt; Writer_COUNT))&#x2F;&#x2F;Writer
+        &#123;
+            hThreads[i]&#x3D;CreateThread(NULL,0,Writer,NULL,0,&amp;writerID[writer_count]);
+            if (hThreads[i]&#x3D;&#x3D;NULL) return -1;
+            writer_count++;
+        &#125;
+        else if((ran &gt;&#x3D; 5) &amp;&amp; (reader_count &lt; Reader_COUNT))&#x2F;&#x2F;Reader
+        &#123;
+            hThreads[i]&#x3D;CreateThread(NULL,0,Reader,NULL,0,&amp;readerID[reader_count]);
+            if (hThreads[i]&#x3D;&#x3D;NULL) return -1;
+            reader_count++;
+        &#125;
+        Sleep(500);&#x2F;&#x2F;等待500ms
+    &#125;
+    while(p_ccontinue)
+    &#123;
+        if(getchar())  &#x2F;&#x2F;按回车后终止程序运行
+        &#123;
+            p_ccontinue &#x3D; false;
+        &#125;
+    &#125;
+    return 0;
+&#125;
+&#x2F;&#x2F;写者
+DWORD WINAPI Writer(LPVOID lpPara)
+&#123;
+    while(p_ccontinue)
+    &#123;
+        printf(&quot;\n%d is waiting to write...\n&quot;,GetCurrentThreadId());
+        WaitForSingleObject(WSemaphore,INFINITE);&#x2F;&#x2F;P(w)在读或在写时，写者阻塞
+        printf(&quot;\n**  writer %d got the control\n&quot;,GetCurrentThreadId());
+        &#x2F;&#x2F;write...
+        printf(&quot;\n%d is writing...\n&quot;,GetCurrentThreadId());
+        Sleep(1500);
+        printf(&quot;\n--- %d have finished the writing\n&quot;,GetCurrentThreadId());
+        ReleaseSemaphore(WSemaphore,1,NULL);&#x2F;&#x2F;V(w)写完，唤醒阻塞的读者或写者
+        return 0;&#x2F;&#x2F;结束此线程
+    &#125;
+    return 0;
+&#125;
+&#x2F;&#x2F;读者
+DWORD WINAPI Reader(LPVOID lpPara)
+&#123;
+    while(p_ccontinue)
+    &#123;
+        printf(&quot;\n%d is waiting to read...\n&quot;,GetCurrentThreadId());
+        WaitForSingleObject(RSemaphore,INFINITE);&#x2F;&#x2F;P(x)临界区互斥，所有读者修改readcount
+        readcount++;
+        if(readcount &#x3D;&#x3D; 1)&#x2F;&#x2F;第一个读，要等已经在写的写者写完才可以开始读
+            WaitForSingleObject(WSemaphore,INFINITE);&#x2F;&#x2F;P(w)有写时，读者阻塞
+        &#x2F;&#x2F;同时读，故要在Read()之前V(x)
+        ReleaseSemaphore(RSemaphore,1,NULL);&#x2F;&#x2F;V(x)
+        &#x2F;&#x2F;read...
+        printf(&quot;\n%d is reading...\n&quot;,GetCurrentThreadId());
+        Sleep(1500);
+        printf(&quot;\n--- %d have finished the reading\n&quot;,GetCurrentThreadId());
+        WaitForSingleObject(RSemaphore,INFINITE);&#x2F;&#x2F;P(x)
+        readcount--;
+        if(readcount&#x3D;&#x3D; 0)
+        &#123;
+            printf(&quot;\n----- All Readers done\n&quot;);
+            ReleaseSemaphore(WSemaphore,1,NULL);&#x2F;&#x2F;V(w)都不读，唤醒阻塞的写者
+        &#125;
+        ReleaseSemaphore(RSemaphore,1,NULL);&#x2F;&#x2F;V(x)
+        return 0;&#x2F;&#x2F;结束此线程
+    &#125;
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="五、哲学家就餐算法"><a href="#五、哲学家就餐算法" class="headerlink" title="五、哲学家就餐算法"></a>五、哲学家就餐算法</h3><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;memory.h&gt;
+#include &lt;pthread.h&gt;
+#include &lt;errno.h&gt;
+#include &lt;math.h&gt;
+&#x2F;&#x2F;筷子作为mutex
+pthread_mutex_t chopstick[6] ;
+void *eat_think(void *arg)
+&#123;
+    char phi &#x3D; *(char *)arg;
+    int left,right; &#x2F;&#x2F;左右筷子的编号
+    switch (phi)
+    &#123;
+    case &#39;A&#39;:
+        left &#x3D; 5;
+        right &#x3D; 1;
+        break;
+    case &#39;B&#39;:
+        left &#x3D; 1;
+        right &#x3D; 2;
+        break;
+    case &#39;C&#39;:
+        left &#x3D; 2;
+        right &#x3D; 3;
+        break;
+    case &#39;D&#39;:
+        left &#x3D; 3;
+        right &#x3D; 4;
+        break;
+    case &#39;E&#39;:
+        left &#x3D; 4;
+        right &#x3D; 5;
+        break;
+    &#125;
+
+    int i;
+    for(;;)
+    &#123;
+        usleep(3); &#x2F;&#x2F;思考
+        pthread_mutex_lock(&amp;chopstick[left]); &#x2F;&#x2F;拿起左手的筷子
+        printf(&quot;Philosopher %c fetches chopstick %d\n&quot;, phi, left);
+        if (pthread_mutex_trylock(&amp;chopstick[right]) &#x3D;&#x3D; EBUSY)  &#x2F;&#x2F;拿起右手的筷子
+        &#123;
+            pthread_mutex_unlock(&amp;chopstick[left]); &#x2F;&#x2F;如果右边筷子被拿走放下左手的筷子
+            continue;
+        &#125;
+        &#x2F;&#x2F;	pthread_mutex_lock(&amp;chopstick[right]); &#x2F;&#x2F;拿起右手的筷子，如果想观察死锁，把上一句if注释掉，再把这一句的注释去掉
+        printf(&quot;Philosopher %c fetches chopstick %d\n&quot;, phi, right);
+        printf(&quot;Philosopher %c is eating.\n&quot;,phi);
+        usleep(3); &#x2F;&#x2F;吃饭
+        pthread_mutex_unlock(&amp;chopstick[left]); &#x2F;&#x2F;放下左手的筷子
+        printf(&quot;Philosopher %c release chopstick %d\n&quot;, phi, left);
+        pthread_mutex_unlock(&amp;chopstick[right]); &#x2F;&#x2F;放下左手的筷子
+        printf(&quot;Philosopher %c release chopstick %d\n&quot;, phi, right);
+
+    &#125;
+&#125;
+int main()
+&#123;
+    pthread_t A,B,C,D,E; &#x2F;&#x2F;5个哲学家
+
+    int i;
+    for (i &#x3D; 0; i &lt; 5; i++)
+        pthread_mutex_init(&amp;chopstick[i],NULL);
+    pthread_create(&amp;A,NULL, eat_think, &quot;A&quot;);
+    pthread_create(&amp;B,NULL, eat_think, &quot;B&quot;);
+    pthread_create(&amp;C,NULL, eat_think, &quot;C&quot;);
+    pthread_create(&amp;D,NULL, eat_think, &quot;D&quot;);
+    pthread_create(&amp;E,NULL, eat_think, &quot;E&quot;);
+    pthread_join(A,NULL);
+    pthread_join(B,NULL);
+    pthread_join(C,NULL);
+    pthread_join(D,NULL);
+    pthread_join(E,NULL);
+    return 0;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/2022/03/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">https://shierjinghuang.github.io/2022/03/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+                                    <span class="chip bg-color">学习记录</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/03/30/2021%E6%98%A5%E5%AD%A3%E8%B5%9BWP/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="2022年QFNU春季赛WP">
+                        
+                        <span class="card-title">2022年QFNU春季赛WP</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-30
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CTF/" class="post-category">
+                                    CTF
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95/">
+                        <span class="chip bg-color">解题记录</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/03/22/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="密码学实验报告">
+                        
+                        <span class="card-title">密码学实验报告</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                    网络安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/">
+                        <span class="chip bg-color">密码学</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+                        <span class="chip bg-color">学习记录</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2023</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">310.7k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
