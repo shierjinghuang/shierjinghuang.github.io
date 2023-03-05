@@ -4,10 +4,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="CTFshow专题一, 十二惊惶">
-    <meta name="description" content="专题一：信息收集Web1直接查看源代码得到flag
-Web2这道题应该是通过JS代码组织了右键及F12打开源代码的方式。在前面添加 view-source: 就可以查看源代码，也可以通过浏览器打开开发者工具打开源代码查看。
-Web3题目的官">
+    <meta name="keywords" content="网络工程——CISCO设备基本语法, 十二惊惶">
+    <meta name="description" content="网络工程——CISCO设备基本语法[TOC]
+交换机配置：Switch&amp;gt;enable
+进入特权模式
+Switch#configure terminal
+进入全局配置模式
+Switch(config)#hostname S1
+更改用户名">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -19,7 +23,7 @@ Web3题目的官">
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>CTFshow专题一 | 十二惊惶</title>
+    <title>网络工程——CISCO设备基本语法 | 十二惊惶</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -335,12 +339,12 @@ Web3题目的官">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">CTFshow专题一</h1>
+                    <h1 class="description center-align post-title">网络工程——CISCO设备基本语法</h1>
                 </div>
             </div>
         </div>
@@ -364,12 +368,8 @@ Web3题目的官">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Web/">
-                                <span class="chip bg-color">Web</span>
-                            </a>
-                        
-                            <a href="/tags/ctfshow/">
-                                <span class="chip bg-color">ctfshow</span>
+                            <a href="/tags/Cisco/">
+                                <span class="chip bg-color">Cisco</span>
                             </a>
                         
                     </div>
@@ -380,8 +380,8 @@ Web3题目的官">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/CTF/" class="post-category">
-                                CTF
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                网络工程相关
                             </a>
                         
                     </div>
@@ -393,28 +393,28 @@ Web3题目的官">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-03-09
+                    2023-02-20
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-10-28
+                    2023-03-05
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    3.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    15 分
                 </div>
                 
 
@@ -437,66 +437,381 @@ Web3题目的官">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="专题一：信息收集"><a href="#专题一：信息收集" class="headerlink" title="专题一：信息收集"></a>专题一：信息收集</h2><h3 id="Web1"><a href="#Web1" class="headerlink" title="Web1"></a>Web1</h3><p>直接查看源代码得到flag</p>
-<h3 id="Web2"><a href="#Web2" class="headerlink" title="Web2"></a>Web2</h3><p>这道题应该是通过JS代码组织了右键及F12打开源代码的方式。在前面添加 view-source: 就可以查看源代码，也可以通过浏览器打开开发者工具打开源代码查看。</p>
-<h3 id="Web3"><a href="#Web3" class="headerlink" title="Web3"></a>Web3</h3><p>题目的官方解法是通过burpsuite抓包 flag在返回的响应头里面。但是抓包什么的确实是麻烦，F12就能直接看到…</p>
-<h3 id="Web4"><a href="#Web4" class="headerlink" title="Web4"></a>Web4</h3><p>考点是robots.txt文件，直接访问url/robots.txt获得flag </p>
-<p>关于robot协议</p>
-<blockquote>
-<p>Robots协议（也称为爬虫协议、机器人协议等）的全称是“网络爬虫排除标准”RobotsExclusionProtocol，网站通过Robots协议告诉搜索引擎哪些页面不能抓取。</p>
-<p>怎么说呢？Robots协议是一种君子协议， 并不是一个规范，而只是约定俗成的，所以并不能保证网站的隐私 </p>
-</blockquote>
-<h3 id="Web5"><a href="#Web5" class="headerlink" title="Web5"></a>Web5</h3><p>考点phps文件泄露，直接访问index.phps。获得flag </p>
-<h3 id="Web6"><a href="#Web6" class="headerlink" title="Web6"></a>Web6</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#解压源码到当前目录，测试正常，收工</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <h2 id="网络工程——CISCO设备基本语法"><a href="#网络工程——CISCO设备基本语法" class="headerlink" title="网络工程——CISCO设备基本语法"></a>网络工程——CISCO设备基本语法</h2><p>[TOC]</p>
+<h3 id="交换机配置："><a href="#交换机配置：" class="headerlink" title="交换机配置："></a>交换机配置：</h3><pre class="line-numbers language-none"><code class="language-none">Switch&gt;enable
+进入特权模式
+Switch#configure terminal
+进入全局配置模式
+Switch(config)#hostname S1
+更改用户名
+S1(config)#enable password cisco
+S1(config)#line con 0
+S1(config-line)#password cisco
+S1(config-line)#login
+S1(config-line)#line vty 0 15
+S1(config-line)#password cisco
+S1(config-line)#login
+S1(config-line)#exit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>考察代码泄露。众所周知源码文件夹一般是叫做<a target="_blank" rel="noopener" href="http://www.zip,按照提示,可以知道www.zip文件应该是直接落在根目录里了,直接访问url/www.zip,%E8%8E%B7%E5%BE%97flag">www.zip,按照提示，可以知道www.zip文件应该是直接落在根目录里了，直接访问url/www.zip,获得flag</a> </p>
-<p>Web7  </p>
-<p>考察git代码泄露，直接访问url/.git/index.php </p>
-<p>Web8  </p>
-<p>考察信息svn泄露,直接访问url/.svn/ </p>
-<p>Web9 </p>
-<p> 考察vim缓存信息泄露，直接访问url/index.php.swp </p>
-<blockquote>
-<p> 临时文件是在vim编辑文本时就会创建的文件，如果程序正常退出，临时文件自动删除，如果意外退出就会保留，当vim异常退出后，因为未处理缓存文件，导致可以通过缓存文件恢复原始文件内容 </p>
-</blockquote>
-<p>Web10 </p>
-<blockquote>
-<p>cookie 只是一块饼干，不能存放任何隐私数据 </p>
-</blockquote>
-<p> 直接F12，在请求数据包,在cookie里面就有flag。</p>
-<p>Web11</p>
-<blockquote>
-<p> 域名其实也可以隐藏信息，比如<strong>ctfshow</strong>.com 就隐藏了一条信息 </p>
-</blockquote>
-<p>这个我确实是第一次知道， 通过dns检查查询flag <a target="_blank" rel="noopener" href="https://zijian.aliyun.com/">https://zijian.aliyun.com/</a> TXT 记录，一般指为某个主机名或域名设置的说明。 </p>
-<p>Web12</p>
-<pre class="line-numbers language-php" data-language="php"><code class="language-php">有时候网站上的公开信息，就是管理员常用密码<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="管理配置地址："><a href="#管理配置地址：" class="headerlink" title="管理配置地址："></a>管理配置地址：</h4><pre class="line-numbers language-none"><code class="language-none">S1(config)# interface Vlan 1
+进入vlan 1的接口配置模式
+S1(if-config)# ip address 192.168.1.2 255.255.255.0
+设置接口IP地址与子网掩码
+S1(if-config)# no shutdown
+开启端口
+S1(if-config)# exit
+S1(config)# ip default-gateway 192.168.1.1
+配置默认网关IP地址
+S1(config)# end  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>这个算是有些社会工程学的内容了，账号admin加弱密码，虽然对专业用户来讲不怎么现实，但是真的不是每个人都是专业用户，在一些高校，特别是高校下属的二级学院，学院官网的管理员账号就是admin+办公室电话号,这种其实是十分不安全的。</p>
-<p>Web13</p>
- <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token comment">#技术文档里面不要出现敏感信息，部署到生产环境后及时修改默认密码</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>其他交换机操作：</strong></p>
+<blockquote>
+<p>S1# show running-config     查看当前设备配置 </p>
+</blockquote>
+<blockquote>
+<p>S1# show flash     显示<em>flash</em>存储器信息以及存储器中的IOS映象文件 </p>
+</blockquote>
+<blockquote>
+<p>S1# show version     显示系统硬件的配置 </p>
+</blockquote>
+<p><strong>交换机Vlan划分及信息备份</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">Switch_A#vlan database
+进入vlan数据库模式
+Switch_A(vlan)#vlan 20 name VLAN20 
+Switch_A#configure terminal
+Switch_A(config)#interface f0&#x2F;20
+Switch_A(config-if)#switchport mode access
+将端口的工作模式改为access
+Switch_A(config-if)#switchport access vlan 20
+指定接口所属vlan<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p> 在页面下面发现 document.png下载发现里面存在后台地址和用户名密码登录成功获 得flag </p>
-<p>Web14</p>
-<p>泄露重要(editor)的信息 直接在url后面添加/editor 然后查看flag路径并且访问 </p>
-<p>Web15</p>
-<p>访问/admin页面 发现有一个忘记密码操作，需要输入地址,在主页面下面看到QQ邮箱，通过QQ号查询邮箱，是西安的 修改密码成功，用户名 admin 登录成功获得flag。</p>
-<p>这个还是算是一种社会工程吧，这个拓展的说一下，像QQ的密保一样，那个密保的部分问题甚至在QQ号的公开信息上能够找到。</p>
-<p>Web16</p>
-<p> 对于测试用的探针，使用完毕后要及时删除，可能会造成信息泄露 </p>
-<p>考察PHP探针php探针是用来探测空间、服务器运行状况和PHP信息用的，探针可以实时查看服务器硬盘资源、内存占用、网卡 流量、系统负载、服务器时间等信息。 url后缀名添加/tz.php 版本是雅黑PHP探针，然后查看phpinfo搜索flag </p>
-<p>Web17</p>
-<pre class="line-numbers language-none"><code class="language-none">备份的sql文件会泄露敏感信息<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>保存配置及IOS到TFTP</strong></p>
+<blockquote>
+<p>Copy starup-config(or running-config)  tftp<br>copy flash tftp</p>
+</blockquote>
+<h4 id="STP与RSTP"><a href="#STP与RSTP" class="headerlink" title="STP与RSTP"></a>STP与RSTP</h4><p><strong>查看生成树</strong></p>
+<blockquote>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">Show spanning<span class="token operator">-</span>tree   <span class="token comment">#	识别根桥、阻塞端口和转发端口</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<p><strong>配置快速生成树：</strong></p>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">Switch (config)# spanning-tree mode rapid-pvst  <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<p><strong>可以通过什么方法查看交换机的生成树阻塞了那个端口？</strong></p>
+<blockquote>
+<p>可以通过Show spanning-tree指令查看</p>
+</blockquote>
+<ol>
+<li>Disabled（禁用状态）：不转发数据帧，不学习MAC地址表，不参与生成树计算</li>
+<li>Blocking（阻塞状态）；不转发数据帧，不学习MAC地址表，接收并处理BPDU，不发生BPDU</li>
+<li>Listening（监听状态）：不转发数据帧，不学习MAC地址表，参与生成树计算，接收并发送BPDU</li>
+<li>Learning（学习状态）：不转发数据帧，学习MAC地址表，参与生成树计算，接收并发送BPDU</li>
+<li>Forwarling（转发状态）：转发数据帧，学习MAC地址表，参与生成树计算，接收并发送BPDU </li>
+</ol>
+<p><strong>总结生成树中根桥的选举规则</strong></p>
+<ul>
+<li>选择根桥的依据是网桥ID，网桥ID是唯一的，网桥ID由网桥优先级 和 网桥的MAC地址组成,网桥ID中的MAC地址是自身交换机的MAC地址</li>
+<li>在选择根桥的时候，是依据看哪台交换机的ID值最小，优先级小的被选择为根网桥，在优先级相同的情况下，MAC地址小的为根网桥</li>
+</ul>
+<p><strong>更改根桥优先级</strong></p>
+<p>所有交换机的优先级都是默认的32768，要实现变更根桥，只要将交换机的优先级更改为小于32768，同时优先级的修改以4096为增量</p>
+<blockquote>
+<p>在全局配置模式下执行如下命令∶spanning-tree vlan 1 priority 4096</p>
+</blockquote>
+<p>这样，Switch3的优先级值就变成4097，成为了网络中最小的ID，从而成为了根桥。</p>
+<h4 id="三层交换实现VLAN间通信"><a href="#三层交换实现VLAN间通信" class="headerlink" title="三层交换实现VLAN间通信"></a>三层交换实现VLAN间通信</h4><p><strong>将端口分配给VLAN</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">config terminal
+interface f0&#x2F;1
+switchport mode access
+switchport access vlan 10&#x2F;&#x2F;端口1分配给VLAN10
+exit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>直接查看backup.spl就行。</p>
-<p>Web18</p>
-<p> 玩到101分给你flag……..查看js文件，查看flag的条件，去通过uncode中文解码。 访问110.php </p>
-<h3 id="Web19"><a href="#Web19" class="headerlink" title="Web19"></a>Web19</h3><p> 前端查看源代码，post提交用户名密码 …..</p>
-<h3 id="Web20"><a href="#Web20" class="headerlink" title="Web20"></a>Web20</h3><p>mdb文件是早期asp+access构架的数据库文件 直接查看url路径添加/db/db.mdb 下载文件通过txt打开或者通过EasyAccess.exe打开搜索flag </p>
-<p><del>flag{ctfshow_old_database}</del></p>
-<h2 id="专题二：爆破"><a href="#专题二：爆破" class="headerlink" title="专题二：爆破"></a>专题二：爆破</h2><p>关于这个专题，至少我做的很难受….CTFshow因为之前受到了攻击,现在限制了访问频率…..这导致爆破这个专题的几道题目做着极其困难，每分钟10次就21题那个库还有4000+的密码量，爆破需要六个以上小时……</p>
-<hr>
-<h3 id="Web21"><a href="#Web21" class="headerlink" title="Web21"></a>Web21</h3><p> Payload set —-&gt;custom iterator(自定义迭代器) </p>
+<p><strong>在交换机上给VLAN分配IP地址</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">Switch#config terminal
+Interface vlan 10
+Ip address 192.168.10.1 255.255.255.0&#x2F;&#x2F;VLAN10分配IP地址
+No shutdown
+Exit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol>
+<li>三次交换机上为VLAN配置IP地址作用是什么？<ul>
+<li><del><strong>vlan 上配IP就是真实的网关地址， 主要用于两台或者多台三层交换机之间进行通信</strong></del>（网络说法不一定可信）</li>
+</ul>
+</li>
+<li>如何采用此种方法实现多个（超过两个）VLAN间路由？<ul>
+<li>将二层交换机与三层交换机之间的接口设置为trunk模式，使得不同vlan可以经三层交换机实现路由</li>
+</ul>
+</li>
+</ol>
+<h3 id="路由器配置："><a href="#路由器配置：" class="headerlink" title="路由器配置："></a>路由器配置：</h3><h4 id="路由器常用命令"><a href="#路由器常用命令" class="headerlink" title="路由器常用命令"></a>路由器常用命令</h4><ul>
+<li>Hostname    #设置交换机的主机名</li>
+<li>Show startup-config    显示交换机初始化配置 </li>
+<li>Show running-config    查看当前设备配置 </li>
+<li>Show flash    显示<em>flash</em>存储器信息以及存储器中的IOS映象文件 </li>
+<li>Show version    显示系统硬件的配置</li>
+<li>Show interface **    命令来查察接口的信息</li>
+<li>Show controllers **    查看接口的硬件信息 </li>
+</ul>
+<ol>
+<li><p><strong>通过实验，说明如何保存路由器的启动配置 startup-config？</strong></p>
+<blockquote>
+<p style="color:blue;">Router# copy running-config startup-config</p></blockquote>
+</li>
+<li><p><strong>若将两台路由器互联，配置完各个接口的IP地址以后，两台PC是否可以ping通，为什么？在路由器上Ping另外一台路由器的互联接口是否可ping通，为什么？</strong> </p>
+<blockquote>
+<p style="color:blue;">不可以ping通，两台路由器之间缺少相应的路由，可以ping通，两个路由器端口直接相连。</p></blockquote>
+</li>
+</ol>
+<p><strong>路由器的基本管理</strong></p>
+<blockquote>
+<p style="color:blue;">Router# copy running-config tftp    配置文件保存</p>
+</blockquote>
+<blockquote>
+<p style="color:blue;">Router# Copy tftp running-config    配置文件恢复</p>
+</blockquote>
+<blockquote>
+<p style="color:blue;">Router#copy flash tftp    保存操作系统</p>
+</blockquote>
+<p><strong>配置静态路由</strong></p>
+<blockquote>
+<p>ip route [目的网络号] [子网掩码] [下一跳IP地址]</p>
+</blockquote>
+<p><strong>配置默认路由：</strong></p>
+<blockquote>
+<p> ip route 0.0.0.0 0.0.0.0  [下一跳IP地址]</p>
+</blockquote>
+<ol>
+<li><p><strong>静态路由的下一跳可以采用接口号表示，那么可以将本实验中的静态路由或默认路由写成什么表达形式？</strong></p>
+<ul>
+<li>可以将下一跳IP地址更换成出接口</li>
+<li>静态路由：ip route [目的网络号] [子网掩码] [出接口]</li>
+<li>默认路由：ip route 0.0.0.0 0.0.0.0  [出接口]</li>
+</ul>
+</li>
+<li><p><strong>根据实验和路由知识，若静态路由和默认路由同时存在的话，分组路由的过程中优先选择静态路由还是默认路由？为什么？</strong></p>
+<ul>
+<li>静态路由。在路由表中默认路由排在最后，同时存在静态路由与默认路由时，将优先使用静态路由</li>
+</ul>
+</li>
+</ol>
+<p><strong>配置DHCP：</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">ip dhcp pool <span class="token punctuation">[</span>poolname<span class="token punctuation">]</span>			 <span class="token operator">//</span>创建地址池，名字为poolname
+network <span class="token number">1.0</span><span class="token number">.0</span><span class="token number">.0</span> <span class="token number">255.0</span><span class="token number">.0</span><span class="token number">.0</span>		 <span class="token operator">//</span>配置分配的网段 
+default<span class="token operator">-</span>router <span class="token number">1.1</span><span class="token number">.1</span><span class="token number">.1</span>		  	 <span class="token operator">//</span>配置网关
+dns<span class="token operator">-</span>server <span class="token number">219.218</span><span class="token number">.18</span><span class="token number">.18</span>		 <span class="token operator">//</span> 配置DNS服务器的IP地址。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol>
+<li><p>PC端如何使用命令行方式释放或获取新的IP地址？（ipconfig 参数）</p>
+<blockquote>
+<p>ipconfig /release释放本机IP地址</p>
+<p>ipconfig /renew，获得一个新的IP地址</p>
+</blockquote>
+</li>
+<li><p>若DHCP的配置中，使用的是Network 192.168.1.0 255.255.255.0，那么R1所连接本地网络中主机获取的IP地址范围是什么？</p>
+<ul>
+<li>192.168.1.1到192.168.1.254 <del>（应该）</del></li>
+</ul>
+</li>
+<li><p>根据实验说明：主机获取的IP地址、子网掩码、网关和DNS分别与DHCP配置中那条命令对应？</p>
+<ul>
+<li>network命令配置主机获取的IP地址，子网掩码，default-router配置网关，dns-server配置DNS域名解析服务器。</li>
+</ul>
+</li>
+</ol>
+<p><strong>查看DHCP状态:</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">R1#show ip dhcp binding			  &#x2F;&#x2F; 查看IP分配绑定状态
+R1#show ip dhcp pool [poolname]   &#x2F;&#x2F; 查看dhcp地址池
+R1#show ip dhcp server statistics &#x2F;&#x2F; 查看dhcp服务状态<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="二层交换机与路由器实现VLAN间路由"><a href="#二层交换机与路由器实现VLAN间路由" class="headerlink" title="二层交换机与路由器实现VLAN间路由"></a>二层交换机与路由器实现VLAN间路由</h4><p><strong>在交换机上创建Trunk端口</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">interface f0&#x2F;1                       &#x2F;&#x2F;与路由器级联接口为f0&#x2F;1
+switchport mode trunk  			     &#x2F;&#x2F;封装为Trunk口
+end<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>配置路由器子接口</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">Router#configure terminal
+Interface f0&#x2F;0
+No shut
+exit
+Interface f0&#x2F;0.10
+Encapsulation dot1q 10
+    &#x2F;&#x2F;子接口1对应VLAN 10
+Ip address 192.168.10.1 255.255.255.0
+Interface f0&#x2F;0.20
+Encapsulation dot1q 20
+Ip address 192.168.20.1 255.255.255.0
+    &#x2F;&#x2F;子接口2 对应VLAN 20<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>激活路由选择协议</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">Switch(config)#Ip routing<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol>
+<li><p>使用这种方式配置VLAN间路由的原理是什么？</p>
+<p> 路由器的一个接口上通过配置逻辑接口或子接口的方式，<code>实现原来相互隔离的不同VLAN（虚拟局域网）之间的互联互通</code> </p>
+</li>
+<li><p>如果不使用子接口，而是利用路由器的两个以太网口分别连接到交换机两个不同VLAN中的接口上（PC、交换机与路由器级联接口也划分入相应的VLAN），是否能够连通？在这种情况下，路由器与交换机之间的级联接口不配置Trunk是否可以连通？</p>
+<ul>
+<li>可以连通， 在路由器上为每一个VLAN都配置一个物理连接后，数据流将分不同VLAN流到路由器上不同的端口中，再通过路由器进行路由的转发，以实现VLAN之间的通信。 </li>
+</ul>
+</li>
+</ol>
+<h4 id="网络地址转换NAT"><a href="#网络地址转换NAT" class="headerlink" title="网络地址转换NAT"></a>网络地址转换NAT</h4><p><strong>静态NAT：</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">interface  f0&#x2F;0
+ip  adddress  172.16.1.1 255.255.255.0
+ip  nat  inside
+# 定义内部接口
+no shutdown
+(config)#interface   f0&#x2F;1
+ip  address  202.96.134.1 255.255.255.0
+ip  nat  outside
+# 定义外部接口
+no shutdown
+(config)#ip  nat  inside  source  static 172.16.1.100   202.96.134.100<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p style="color:blue;">ip nat inside source static    [本地IP地址]     [目标ip地址] # 初始于 inside 向 outside 发送，在outside接口执行源地址翻译 
+</blockquote>
+<blockquote>
+<p style="color:blue;">ip nat outside source static [global-address] [local-address]， 初始于 outside 向 inside 发送，在inside接口执行源地址翻译 
+</blockquote>
+<p><strong>动态NAT配置：</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">access<span class="token operator">-</span><span class="token builtin">list</span> <span class="token number">10</span> permit <span class="token number">172.16</span><span class="token number">.1</span><span class="token number">.0</span> <span class="token number">0.0</span><span class="token number">.0</span><span class="token number">.255</span>
+<span class="token comment"># 创造一个访问控制列表（ACL）,表号为10，内容是允许172.16.1.0 </span>
+<span class="token comment"># access-list [表号] [permit/deny] [网络号] [反掩码]</span>
+ip nat pool MYNAT <span class="token number">202.96</span><span class="token number">.134</span><span class="token number">.100</span> <span class="token number">202.96</span><span class="token number">.134</span><span class="token number">.110</span> netmask <span class="token number">255.255</span><span class="token number">.255</span><span class="token number">.0</span>
+<span class="token comment"># 配置NAT地址池的名字以及 IP地址范围、子网掩码</span>
+ip nat inside source <span class="token builtin">list</span> <span class="token number">10</span> pool MYNAT
+<span class="token comment"># 将ACL 10 匹配得内部源IP地址，转换为地址池MYNAT 中的IP</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol>
+<li><p><strong>将静态路由换成默认路由改如何配置？如果从外网向内网私有IP发起通信，是否可以ping通？</strong></p>
+<ul>
+<li>不能ping通，静态NAT技术实现的就是对内部主机的隐藏</li>
+</ul>
+</li>
+<li><p><strong>对第5步中：ip nat inside source list 10 pool MYNAT 命令中，如果使用参数overload，实验结果与本实验有什么区别？</strong></p>
+<ul>
+<li><p>使用参数overload，意味使用PAT（网络地址端口转换）技术，可将多个内部地址映射为一个合法公网地址,但以不同的协议端口号与不同的内部地址相对应 </p>
+</li>
+<li><p> 内部网络的所有主机均可共享一个合法外部IP地址实现对Internet的访问 </p>
+</li>
+<li><p> ip nat inside source list 10  pool MYNAT overload </p>
+</li>
+</ul>
+<p>  <strong><del>此外内容需要在仿真上做一遍，我还没弄</del></strong></p>
+</li>
+</ol>
+<h4 id="路由协议"><a href="#路由协议" class="headerlink" title="路由协议"></a>路由协议</h4><p><strong>RIP路由协议</strong></p>
+<pre class="line-numbers language-Python" data-language="Python"><code class="language-Python">Router rip
+# 启动RIP
+network 1.0.0.0
+network 12.0.0.0 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>OSPF路由协议</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">Router ospf <span class="token number">1</span>
+<span class="token comment"># 启动ospf协议</span>
+Network <span class="token number">1.0</span><span class="token number">.0</span><span class="token number">.0</span> <span class="token number">0.255</span><span class="token number">.255</span><span class="token number">.255</span> area <span class="token number">0</span>
+Network <span class="token punctuation">[</span>网络号<span class="token punctuation">]</span> <span class="token punctuation">[</span>反掩码<span class="token punctuation">]</span> <span class="token punctuation">[</span>路由区域<span class="token punctuation">]</span>
+Network <span class="token number">12.0</span><span class="token number">.0</span><span class="token number">.0</span> <span class="token number">0.255</span><span class="token number">.255</span><span class="token number">.255</span> area <span class="token number">0</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>检查OSPF路由协议的命令</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">Show ip ospf neighbor
+    &#x2F;&#x2F; 显示现在的Ospf邻居，其中包括邻居ID（Route-id)、优先级、状态、存活时间、IP地址、接口
+Show ip osfp interface
+    &#x2F;&#x2F;查看接口是否被加入到正确的区域中，该命令还可以显示各种定时器hello间隔等和邻居关系。
+Show ip route ospf
+    &#x2F;&#x2F;显示路由器知道的OSPF路由
+Show ip ospf database
+    &#x2F;&#x2F;查看OSPF数据库，包括各种LSA的数据状态
+Clear ip ospf <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol>
+<li><p>动态路由协议的配置主要包含哪两个步骤？</p>
+<blockquote>
+<p><del>配置各路由器、PC的相关配置和配置路由协议（我猜的，没找到确切答案）</del></p>
+</blockquote>
+</li>
+<li><p>通过RIP协议的调试步骤，可以得出RIP路由表的默认更新时间约是多少？</p>
+<ul>
+<li>RIP路由协议默认更新周期是30秒</li>
+</ul>
+</li>
+<li><p>OSPF协议通过那条命令可以获得路由器的ID？</p>
+</li>
+</ol>
+<ul>
+<li>show ip protocols</li>
+</ul>
+<ol start="4">
+<li><p>如果两台路由器一台运行RIP第1版，一台运行第2版，两台主机是否可以ping通？通过使用show ip route 查看两台路由器的路由表，确定版本1与版本2之间究竟谁可以接受谁的路由更新？（单边邻居关系）</p>
+<blockquote>
+<p style="color:blue;">两台主机不能ping通，RIP版本1可以接受版本2，因为RIPv2需要包含子网掩码，而版本1并不含有子网掩码，版本1的协议发往版本2后，版本2会将该报文丢弃，而当版本1接受到版本2的报文时，版本1会收下版本2的报文</p></blockquote>
+</li>
+</ol>
+<h4 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h4><pre class="line-numbers language-、" data-language="、"><code class="language-、">access-list[list number][permit&#x2F;deny][source address][address][wildcard mask][log]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>标准ACL</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">Access<span class="token operator">-</span><span class="token builtin">list</span> <span class="token number">1</span> deny host <span class="token number">1.1</span><span class="token number">.1</span><span class="token number">.2</span>
+<span class="token comment"># 拒绝来自1.1.1.2的主机通过</span>
+<span class="token comment"># 可以利用关键字"host"来代表通配符掩码0.0.0.0,表示一台主机</span>
+Access<span class="token operator">-</span><span class="token builtin">list</span> <span class="token number">1</span> permit <span class="token builtin">any</span>
+Interface f0<span class="token operator">/</span><span class="token number">0</span>
+Ip access<span class="token operator">-</span>group <span class="token number">1</span> out
+<span class="token comment"># 访问列表的出</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>拓展ACL</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">Access<span class="token operator">-</span><span class="token builtin">list</span> <span class="token number">101</span> deny tcp <span class="token number">1.0</span><span class="token number">.0</span><span class="token number">.0</span> <span class="token number">0.255</span><span class="token number">.255</span><span class="token number">.255</span> <span class="token number">2.0</span><span class="token number">.0</span><span class="token number">.0</span> <span class="token number">0.255</span><span class="token number">.255</span><span class="token number">.255</span> eq telnet
+<span class="token comment"># telnet使用的是TCP的23号端口、eq其实是等于....</span>
+Access<span class="token operator">-</span><span class="token builtin">list</span> <span class="token number">101</span> permit tcp <span class="token builtin">any</span> <span class="token builtin">any</span>
+<span class="token comment"># 这两条语句的顺序;访问表语句的处理顺序是由上到下的。如果我们将两个语句顺序颠倒，将permit语句放在deny语句的前面，则我们将不能过滤来自主机地址的报文</span>
+Interface f0<span class="token operator">/</span><span class="token number">0</span>
+Ip access<span class="token operator">-</span>group <span class="token number">101</span> <span class="token keyword">in</span>
+<span class="token comment">#访问控制列表 出</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol>
+<li><p>根据本次实验，你认为ACL一般有哪些配置步骤？</p>
+<p><strong><del>跟上面那个动态路由一样，我没弄出来</del></strong></p>
+</li>
+<li><p>在步骤4中，如果要使得1.0.0.0整个网络无法访问2.0.0.0该如何配置？</p>
+<ul>
+<li>可以使用Access-list 1 deny 指令阻止整个网段的访问</li>
+</ul>
+</li>
+<li><p>在步骤5中，虽然禁止的是telnet，但此时PC1是否可以ping通PC2?为达到ping通的目的，应该如何处理？</p>
+<ul>
+<li>ping 命令通过ICMP协议进行报文传输，在访问控制类别中没有运行ICMP或者IP报文的访问，所以ping指令也无法通信。</li>
+</ul>
+</li>
+<li><p>禁止FTP应该如何配置访问控制列表？</p>
+<ul>
+<li>通过access-list 1 deny命令禁止代表FTP协议的21号端口即可禁止FTP</li>
+</ul>
+</li>
+</ol>
+<h4 id="VTP"><a href="#VTP" class="headerlink" title="VTP"></a>VTP</h4><p><strong>配置级联接口的Trunk封装</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">switchport trunk encapsulation dot1q
+<span class="token comment">#	接口的trunk封装802.1Q协议，用于启用trunk</span>
+switchport mode trunk
+<span class="token comment">#	设置接口模式为trunk模式</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>配置交换机的工作模式</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">vtp mode <span class="token punctuation">[</span>server<span class="token operator">/</span>client<span class="token operator">/</span>transparent<span class="token punctuation">]</span> <span class="token comment">#分别是服务器，客户端和透明模式</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li>VTP服务器控制着它们所在域中VALN的生成和修改</li>
+<li>VTP客户机不允许管理员创建、修改或删除VLAN。它们监听本域中其他交换机的VTP通告，并相应修改它们的VTP配置情况</li>
+<li>VTP透明模式中的交换机不参与VTP，交换机处于透明模式时，不通告其VLAN配置信息。它的VLAN数据库更新与收到的通告也不保持同步。可以创建和删除本地的VLAN。这些VLAN的变更不会传播到其他任何交换机上</li>
+</ul>
+<p><strong>更改交换机的域名</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">Switch (config)# vtp domain qrnu<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol>
+<li>如果将S2的工作模式更改为透明模式，S2是否会学习S1的VLAN划分？<ul>
+<li>不会，透明模式不会学习服务器的配置</li>
+</ul>
+</li>
+</ol>
+<h3 id="押题："><a href="#押题：" class="headerlink" title="押题："></a>押题：</h3><h4 id="三层交换实现VLAN间通信-https-blog-csdn-net-weixin-47678542-article-details-121749703"><a href="#三层交换实现VLAN间通信-https-blog-csdn-net-weixin-47678542-article-details-121749703" class="headerlink" title="[三层交换实现VLAN间通信][https://blog.csdn.net/weixin_47678542/article/details/121749703]"></a>[三层交换实现VLAN间通信][<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_47678542/article/details/121749703]">https://blog.csdn.net/weixin_47678542/article/details/121749703]</a></h4><p>[路由器实现Vlan间通信][<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_47678542/article/details/121844112]">https://blog.csdn.net/weixin_47678542/article/details/121844112]</a></p>
 
                 
             </div>
@@ -523,7 +838,7 @@ Web3题目的官">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://shierjinghuang.github.io/2022/03/09/CTFshow%E4%B8%93%E9%A2%98%E4%B8%80/">https://shierjinghuang.github.io/2022/03/09/CTFshow%E4%B8%93%E9%A2%98%E4%B8%80/</a>
+                    <a href="https://shierjinghuang.github.io/2023/02/20/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/">https://shierjinghuang.github.io/2023/02/20/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -561,12 +876,8 @@ Web3题目的官">
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Web/">
-                                    <span class="chip bg-color">Web</span>
-                                </a>
-                            
-                                <a href="/tags/ctfshow/">
-                                    <span class="chip bg-color">ctfshow</span>
+                                <a href="/tags/Cisco/">
+                                    <span class="chip bg-color">Cisco</span>
                                 </a>
                             
                         </div>
@@ -616,13 +927,13 @@ Web3题目的官">
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/03/12/%E6%95%B0%E6%A8%A1%E5%8F%8D%E6%80%9D/">
+                <a href="/2023/03/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%80%9D%E8%80%83%E9%A2%98/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="数学建模反思">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="计算机网络安全思考题">
                         
-                        <span class="card-title">数学建模反思</span>
+                        <span class="card-title">计算机网络安全思考题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -633,14 +944,14 @@ Web3题目的官">
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-12
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-03
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E4%B8%AA%E4%BA%BA/" class="post-category">
-                                    个人
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                    网络安全
                                 </a>
                             
                             
@@ -650,8 +961,8 @@ Web3题目的官">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%9D%82%E8%B0%88/">
-                        <span class="chip bg-color">杂谈</span>
+                    <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">网络安全</span>
                     </a>
                     
                 </div>
@@ -665,13 +976,13 @@ Web3题目的官">
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/03/05/CTFshow%E4%B9%8Bweb%E5%85%A5%E9%97%A8-%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">
+                <a href="/2023/02/10/Linux/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="CTFshow之web入门---命令执行">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Linux 知识点汇总">
                         
-                        <span class="card-title">CTFshow之web入门---命令执行</span>
+                        <span class="card-title">Linux 知识点汇总</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -682,14 +993,14 @@ Web3题目的官">
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-05
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-02-10
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/CTF/" class="post-category">
-                                    CTF
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    学习笔记
                                 </a>
                             
                             
@@ -699,12 +1010,8 @@ Web3题目的官">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Web/">
-                        <span class="chip bg-color">Web</span>
-                    </a>
-                    
-                    <a href="/tags/ctfshow/">
-                        <span class="chip bg-color">ctfshow</span>
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
                     </a>
                     
                 </div>
