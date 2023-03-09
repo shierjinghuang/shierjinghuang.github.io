@@ -360,12 +360,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/">
+                                <span class="chip bg-color">网络工程</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                网络工程相关
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -381,21 +394,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-03-06
+                    2023-03-09
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    5.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    19 分
                 </div>
                 
 
@@ -418,7 +431,8 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="生成树的改进-RSTP与MSTP"><a href="#生成树的改进-RSTP与MSTP" class="headerlink" title="生成树的改进 RSTP与MSTP"></a>生成树的改进 RSTP与MSTP</h1><h2 id="快速生成树协议RSTP"><a href="#快速生成树协议RSTP" class="headerlink" title="快速生成树协议RSTP"></a>快速生成树协议RSTP</h2><blockquote>
+                <h1 id="生成树的改进-RSTP与MSTP"><a href="#生成树的改进-RSTP与MSTP" class="headerlink" title="生成树的改进 RSTP与MSTP"></a>生成树的改进 RSTP与MSTP</h1><p>[TOC]</p>
+<h2 id="快速生成树协议RSTP"><a href="#快速生成树协议RSTP" class="headerlink" title="快速生成树协议RSTP"></a>快速生成树协议RSTP</h2><blockquote>
 <p>IEEE 802.1W中定义的RSTP可以视为STP的改进版本，RSTP在许多方面对STP进行了优化，它的收敛速度更快，而且能够兼容STP</p>
 </blockquote>
 <h3 id="RSTP对STP的改进："><a href="#RSTP对STP的改进：" class="headerlink" title="RSTP对STP的改进："></a>RSTP对STP的改进：</h3><ul>
@@ -434,8 +448,8 @@
 </ul>
 <h4 id="改进点1：端口角色的改进："><a href="#改进点1：端口角色的改进：" class="headerlink" title="改进点1：端口角色的改进："></a>改进点1：端口角色的改进：</h4><p>RSTP的端口角色共有4种：根端口、指定端口、Alternate端口和Backup端口。</p>
 <p> <center><img src="D:\blog\shierjinghuang\source\_posts\生成树协议\Alternate端口.png" alt="Alternate端口" style="zoom: 67%;" /><img src="D:\blog\shierjinghuang\source\_posts\生成树协议\备份端口.png" alt="备份端口"style="zoom: 67%;" /> </center></p>
+根端口和指定端口的作用同STP中定义，Alternate端口和Backup端口的描述如下：
 
-<p>根端口和指定端口的作用同STP中定义，Alternate端口和Backup端口的描述如下：</p>
 <ul>
 <li>从配置BPDU报文发送角度来看：<ul>
 <li>Alternate端口就是由于学习到其它网桥发送的配置BPDU报文而阻塞的端口</li>
@@ -535,15 +549,21 @@
 </li>
 </ul>
 <center><img src="D:\blog\shierjinghuang\source\_posts\生成树协议\根端口快速切换.png" alt="根端口快速切换" style="zoom:67%;" /><img src="D:\blog\shierjinghuang\source\_posts\生成树协议\指定端口快速切换.png" alt="指定端口快速切换" style="zoom:67%;" /></center>
+##### 边缘端口 (Edge Port)机制：
 
-<h5 id="边缘端口-Edge-Port-机制："><a href="#边缘端口-Edge-Port-机制：" class="headerlink" title="边缘端口 (Edge Port)机制："></a>边缘端口 (Edge Port)机制：</h5><blockquote>
-<p>在RSTP里面，如果某一个端口位于整个网络的边缘，即不再与其他交换设备连接，而是直接与终端设备直连，这种端口可以设置为边缘端口。</p>
+<blockquote>
+<p>在RSTP里面，如果某一个端口位于整个网络的边缘，即不再与其他交换设备连接，而是直接与终端设备直连，这种端口可以设置为边缘端口</p>
 </blockquote>
-<p>边缘端口不参与RSTP计算，可以由Discarding直接进入Forwarding状态。<br>但是一旦边缘端口收到配置BPDU，就丧失了边缘端口属性，成为普通STP端口，并重新进行生成树计算，从而引起网络震荡</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 边缘端口的UP和Down，不会引起网络拓扑的变动。</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>边缘端口不参与RSTP计算，可以由Discarding直接进入Forwarding状态，同时边缘端口的UP和Down，不会引起网络拓扑的变动</p>
+<img src="D:\blog\shierjinghuang\source\_posts\生成树协议\RSTP边缘端口.png" alt="RSTP边缘端口" style="zoom: 50%;" />
 
+<p>但是一旦边缘端口收到配置BPDU，就丧失了边缘端口属性，成为普通STP端口，并重新进行生成树计算，从而引起网络震荡</p>
+<h5 id="Proposal-Agreement机制："><a href="#Proposal-Agreement机制：" class="headerlink" title="Proposal/Agreement机制："></a>Proposal/Agreement机制：</h5><p>简称P/A机制，RSTP通过P/A机制加快了上游端口进入Forwarding状态的速度。<br>当一个端口被选举成为指定端口之后,会先进入Discarding状态，再通过P/A机制快速进入Forwarding状态</p>
+<img src="D:\blog\shierjinghuang\source\_posts\生成树协议\Proposal_Agreement机制：.png" alt="P/A机制" style="zoom:67%;" />
 
-
+<p>事实上对于STP，指定端口的选择可以很快完成，主要的速度瓶颈在于：为了避免环路，必须等待足够长的时间，使全网的端口状态全部确定，也就是说必须要等待至少一个Forward Delay所有端口才能进行转发。<br>而RSTP的主要目的就是消除这个瓶颈，通过阻塞自己的非根端口来保证不会出现环路。而使用P/A机制加快了上游端口进入Forwarding状态的速度。</p>
+<h4 id="改进点6：拓扑变更机制"><a href="#改进点6：拓扑变更机制" class="headerlink" title="改进点6：拓扑变更机制"></a>改进点6：拓扑变更机制</h4><p>在RSTP中检测拓扑是否发生变化只有一个标准：一个非边缘端口迁移到Forwarding状态。</p>
+<p>一旦检测到拓扑发生变化，将进行如下处理：<br>为本交换设备的所有非边缘指定端口和根端口启动一个TC While Timer，该计时器值是Hello Time的两倍。在这个时间内，清空状态发生变化的端口上学习到的MAC地址。<br>同时，由非边缘指定端口和根端口向外发送RST BPDU，其中TC置位。一旦TC While Timer超时，则停止发送RST BPDU。<br>其他交换设备接收到RST BPDU后，清空所有端口（除了收到RST BPDU的端口和边缘端口）学习到MAC地址，然后也为自己所有的非边缘指定端口和根端口启动TC While Timer，重复上述过程。<br>如此，网络中就会产生RST BPDU的泛洪。</p>
 <h3 id="RSTP与STP的兼容"><a href="#RSTP与STP的兼容" class="headerlink" title="RSTP与STP的兼容"></a>RSTP与STP的兼容</h3><blockquote>
 <p>RSTP可以兼容STP：RSTP可以和STP互操作，但是此时会丧失快速收敛等RSTP优势。</p>
 </blockquote>
@@ -573,6 +593,120 @@
 <pre class="line-numbers language-none"><code class="language-none">[Huawei] stp tc-protection interval interval-value<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>配置设备处理阈值指定数量的拓扑变化报文所需的时间。缺省情况下，设备处理最大数量的拓扑变化报文所需的时间是Hello Time</p>
+<h4 id="RSTP与STP的不足"><a href="#RSTP与STP的不足" class="headerlink" title="RSTP与STP的不足"></a>RSTP与STP的不足</h4><blockquote>
+<p>流量无法负载分担 和 二层次优路径</p>
+</blockquote>
+<h2 id="多生成树协议（MSTP）"><a href="#多生成树协议（MSTP）" class="headerlink" title="多生成树协议（MSTP）"></a>多生成树协议（MSTP）</h2><blockquote>
+<p>MSTP是IEEE 802.1S中定义的生成树协议，MSTP兼容STP和RSTP，既可以快速收敛，又提供了数据转发的多个冗余路径，在数据转发过程中实现VLAN数据的负载均衡</p>
+</blockquote>
+<p>MSTP可以将一个或多个VLAN映射到一个Instance（实例），再基于Instance计算生成树，映射到同一个Instance的VLAN共享同一棵生成树</p>
+<h3 id="MSTP概念"><a href="#MSTP概念" class="headerlink" title="MSTP概念"></a>MSTP概念</h3><ul>
+<li>MSTP网络层次：<ul>
+<li>MSTP把一个交换网络划分成多个域，每个域内形成多棵生成树，生成树之间彼此独立。</li>
+</ul>
+</li>
+<li>MST Region（Multiple Spanning Tree Region，多生成树域），也可简称MST域<ul>
+<li>由交换网络中的多台交换设备以及它们之间的网段所构成</li>
+<li>一个局域网可以存在多个MST域，各MST域之间在物理上直接或间接相连。用户可以通过MSTP配置命令把多台交换设备划分在同一个MST域内</li>
+<li>MSTP网络中包含1个或多个MST域，每个MST域中包含一个或多个多生成树实例。</li>
+</ul>
+</li>
+</ul>
+<p>同一个MST域的设备具有下列特点：<br>都启动了MSTP。<br>具有相同的域名。<br>具有相同的VLAN到生成树实例映射配置。<br>具有相同的MSTP修订级别配置。</p>
+<p>MSTI </p>
+<p>MSTI（Multiple Spanning Tree Instance，多生成树实例）：<br>一个MST域内可以生成多棵生成树，每棵生成树都称为一个MSTI。<br>MSTI使用Instance ID标识，华为设备取值为0~4094。<br>VLAN映射表<br>MST域的属性，描述了VLAN和MSTI之间的映射关系。<br>如图所示的MST Region 4的VLAN映射有：<br>VLAN1映射到MSTI 1<br>VLAN2映射到MSTI 2<br>其余VLAN映射到MSTI 3</p>
+<p>Instance0是缺省存在的，而且缺省时，华为交换机上所有的VLAN都映射到了Instance0。</p>
+<p>通过设置VLAN映射表（即VLAN和MSTI的对应关系表），把VLAN和MSTI联系起来。<br>每个VLAN只能对应一个MSTI，即同一VLAN的数据只能在一个MSTI中传输，而一个MSTI可能对应多个VLAN。</p>
+<p>CST（Common Spanning Tree，公共生成树）<br>是连接交换网络内所有MST域的一棵生成树。<br>如果把每个MST域看作是一个节点，CST就是这些节点通过生成树协议计算生成的一棵生成树。<br>如图深蓝色粗线条连接各个域构成CST。</p>
+<p>IST（Internal Spanning Tree，内部生成树）<br>是各MST域内的一棵生成树。<br>IST是一个特殊的MSTI，MSTI的Instance ID为0。<br>如图所示的MST Region 4，黑色细线条在域中连接该域的所有交换设备构成IST。</p>
+<p>CIST（Common and Internal Spanning Tree，公共和内部生成树）<br>通过生成树协议计算生成的，连接一个交换网络内所有交换设备的单生成树。<br>如图所示，所有MST域的IST加上CST就构成一棵完整的生成树，即CIST。</p>
+<h3 id="MSTP的端口"><a href="#MSTP的端口" class="headerlink" title="MSTP的端口"></a>MSTP的端口</h3><h4 id="MSTP端口角色"><a href="#MSTP端口角色" class="headerlink" title="MSTP端口角色"></a>MSTP端口角色</h4><blockquote>
+<p>MSTP中定义的所有端口角色包括：根端口、指定端口、Alternate端口、Backup端口、Master端口、域边缘端口和边缘端口</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>端口角色</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>根端口</td>
+<td align="left">在非根桥上，离根桥最近的端口是本交换设备的根端口。根端口负责向树根方向转发数据</td>
+</tr>
+<tr>
+<td>指定端口</td>
+<td align="left">对一台交换设备而言，它的指定端口是向下游交换设备转发BPDU报文的端口。</td>
+</tr>
+<tr>
+<td>Alternate端口</td>
+<td align="left">从配置BPDU报文发送角度来看，Alternate端口就是由于学习到其它网桥发送的配置BPDU报文而阻塞的端口。从用户流量角度来看，Alternate端口提供了从指定桥到根的另一条可切换路径，作为根端口的备份端口。</td>
+</tr>
+<tr>
+<td>Backup端口</td>
+<td align="left">从配置BPDU报文发送角度来看，Backup端口就是由于学习到自己发送的配置BPDU报文而阻塞的端口。从用户流量角度来看，Backup端口作为指定端口的备份，提供了另外一条从根节点到叶节点的备份通路</td>
+</tr>
+</tbody></table>
+<img src="D:\blog\shierjinghuang\source\_posts\生成树协议\MSTP端口角色.png" alt="MSTP端口角色" style="zoom:80%;" />
+
+<table>
+<thead>
+<tr>
+<th><strong>端口角色</strong></th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Master端口</td>
+<td align="left">Master端口是MST域和总根相连的所有路径中最短路径上的端口，它是交换设备上连接MST域到总根的端口。Master端口是域中的报文去往总根的必经之路。Master端口是特殊域边缘端口，Master端口在CIST上的角色是Root Port，在其它各实例上的角色都是Master端口</td>
+</tr>
+<tr>
+<td>域边缘端口</td>
+<td align="left">域边缘端口是指位于MST域的边缘并连接其它MST域或SST的端口。</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>端口角色</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>边缘端口</td>
+<td>如果指定端口位于整个域的边缘，不再与任何交换设备连接，这种端口叫做边缘端口。边缘端口一般与用户终端设备直接连接</td>
+</tr>
+</tbody></table>
+<h4 id="MSTP的端口状态"><a href="#MSTP的端口状态" class="headerlink" title="MSTP的端口状态"></a>MSTP的端口状态</h4><p>MSTP定义的端口状态与RSTP协议中定义相同:<br>Forwarding状态：端口既转发用户流量，学习MAC地址，又接收/发送BPDU报文。<br>Learning状态：过渡状态，端口接收/发送BPDU报文，不转发用户流量但是学习MAC地址。<br>Discarding状态：端口只接收BPDU报文，不转发用户流量也不学习MAC地址。</p>
+<table>
+<thead>
+<tr>
+<th><strong>M<strong><strong>STP</strong></strong>端口状态</strong></th>
+<th><strong>端口在****拓扑中的角色</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Forwarding</strong></td>
+<td><strong>包括<strong><strong>根端口、指定端口、</strong></strong>Master****端口、域边缘端口</strong></td>
+</tr>
+<tr>
+<td><strong>Learning</strong></td>
+<td><strong>包括根端口、指定端口、<strong><strong>Master</strong></strong>端口、域边缘端口</strong></td>
+</tr>
+<tr>
+<td><strong>Discarding</strong></td>
+<td><strong>包括根端口、指定端口、<strong><strong>Master</strong></strong>端口、域边缘端口、<strong><strong>Alternate</strong></strong>端口、<strong><strong>Backup</strong></strong>端口</strong></td>
+</tr>
+</tbody></table>
+<p>MSTP报文</p>
+<p>MSTP使用MST BPDU（Multiple Spanning Tree Bridge Protocol Data Unit，多生成树桥协议数据单元）作为生成树计算的依据。<br>MST BPDU报文用来计算生成树的拓扑、维护网络拓扑以及传达拓扑变化记录。</p>
+<p><img src="C:\Users\888888\AppData\Roaming\Typora\typora-user-images\1678337096467.png"></p>
+<p>无论是域内的MST BPDU还是域间的，前36个字节和RST BPDU相同。从第37个字节开始是MSTP专有字段。最后的MSTI配置信息字段由若干MSTI配置信息组连缀而成。<br>MST BPDU中主要信息说明：<br>Protocol Identifier：2 Byte，协议标识符。<br>Protocol Version Identifier：1 Byte，协议版本标识符，STP为0，RSTP为2，MSTP为3。<br>BPDU Type：1 Byte，BPDU类型：<br>0x00：STP的Configuration BPDU<br>0x80：STP的TCN BPDU（Topology Change Notification BPDU）<br>0x02：RST BPDU（Rapid Spanning-Tree BPDU）或者MST BPDU（Multiple Spanning-Tree BPDU）<br>CIST Flags：1 Byte，CIST标志字段。<br>CIST Root Identifier：8 Byte，CIST的总根交换设备ID。<br>CIST External Path Cost：4 Byte，CIST外部路径开销指从本交换设备所属的MST域到CIST根交换设备所属的MST域的累计路径开销。CIST外部路径开销根据链路带宽计算。</p>
+<p>CIST Regional Root Identifier：8 Byte，CIST的域根交换设备ID，即IST Master的ID。如果总根在这个域内，那么域根交换设备ID就是总根交换设备ID。<br>CIST Port Identifier：2 Byte，本端口在IST中的指定端口ID。<br>Message Age：2 Byte，BPDU报文的生存期。<br>Max Age：2 Byte，BPDU报文的最大生存期，超时则认为到根交换设备的链路故障。<br>Hello Time：2 Byte，Hello定时器，缺省为2秒。<br>Forward Delay：2 Byte，Forward Delay定时器，缺省为15秒。<br>Version 1 Length：1 Byte，Version1 BPDU的长度，值固定为0。<br>Version 3 Length：2 Byte，Version3 BPDU的长度。<br>MST Configuration Identifier：51 Byte，MST配置标识，表示MST域的标签信息，包含4个字段。<br>CIST Internal Root Path Cost：4 Byte，CIST内部路径开销指从本端口到IST Master交换设备的累计路径开销。CIST内部路径开销根据链路带宽计算。<br>CIST Bridge Identifier：8 Byte，CIST的指定交换设备ID。<br>CIST Remaining Hops：1 Byte，BPDU报文在CIST中的剩余跳数。<br>MSTI Configuration Messages：16 Byte，MSTI配置信息。每个MSTI的配置信息占16 Byte，如果有n个MSTI就占用n×16 Byte。</p>
+<p>MSTP的工作原理</p>
+<p>MSTP拓扑计算：<br>MSTP可以将整个二层网络划分为多个MST域，各个域之间通过计算生成CST，域内生成IST，CST和IST构成了整个交换设备网络的CIST。<br>域内还可以基于实例计算生成多棵生成树，每棵生成树都被称为是一个MSTI。<br>CIST和MSTI都是根据优先级向量来计算的，这些优先级向量信息都包含在MST BPDU中。各交换设备互相交换MST BPDU来生成CIST和MSTI 。<br>参与CIST计算的优先级向量为：<br>{ 根交换设备ID，外部路径开销，域根ID，内部路径开销，指定交换设备ID，指定端口ID，接收端口ID }<br>参与MSTI计算的优先级向量为：<br>{ 域根ID，内部路径开销，指定交换设备ID，指定端口ID，接收端口ID }</p>
+<p>优先级向量说明：<br>根交换设备ID：根交换设备ID用于选择CIST中的根交换设备。<br>根交换设备ID = Priority(16 bit) + MAC(48 bit)。<br>其中Priority为MSTI0的优先级。<br>外部路径开销（External Root Path Cost，ERPC）：从CIST的域根到达总根的路径开销。<br>MST域内所有交换设备上保存的外部路径开销相同。<br>若CIST根交换设备在域中，则域内所有交换设备上保存的外部路径开销为0。<br>域根ID：域根ID用于选择MSTI中的域根。<br>域根ID = Priority(16 bit) + MAC(48 bit)。<br>其中Priority为MSTI0的优先级。<br>内部路径开销（Internal Root Path Cost，IRPC）：本桥到达域根的路径开销。<br>域边缘端口保存的内部路径开销大于非域边缘端口保存的内部路径开销。<br>指定交换设备ID：CIST或MSTI实例的指定交换设备是本桥通往域根的最邻近的上游桥。<br>如果本桥就是总根或域根，则指定交换设备为自己。<br>指定端口ID：指定交换设备上同本设备上根端口相连的端口。<br>Port ID = Priority(4 bit) + 端口号（12 bit）。<br>端口优先级必须是16的整数倍。<br>接收端口ID：接收到BPDU报文的端口。<br>Port ID = Priority(4 bit) + 端口号（12 bit）。<br>端口优先级必须是16的整数倍。</p>
+<p>优先级向量比较原则：<br>同一向量比较，值最小的向量具有最高优先级。<br>优先级向量比较原则如下<br>首先，比较根交换设备ID。<br>如果根交换设备ID相同，再比较外部路径开销。<br>如果外部路径开销相同，再比较域根ID。<br>如果域根ID仍然相同，再比较内部路径开销。<br>如果内部路径仍然相同，再比较指定交换设备ID。<br>如果指定交换设备ID仍然相同，再比较指定端口ID。<br>如果指定端口ID还相同，再比较接收端口ID。<br>如果端口接收到的BPDU内包含的配置消息优于端口上保存的配置消息，则端口上原来保存的配置消息被新收到的配置消息替代。端口同时更新交换设备保存的全局配置消息。反之，新收到的BPDU被丢弃。</p>
 
                 
             </div>
@@ -636,7 +770,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/">
+                                    <span class="chip bg-color">网络工程</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -965,7 +1103,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">324.1k</span>
+                        class="white-color">332.3k</span>
             
             
             
