@@ -394,7 +394,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-03-09
+                    2023-03-12
                 </div>
                 
 
@@ -600,24 +600,46 @@
 <p>MSTP是IEEE 802.1S中定义的生成树协议，MSTP兼容STP和RSTP，既可以快速收敛，又提供了数据转发的多个冗余路径，在数据转发过程中实现VLAN数据的负载均衡</p>
 </blockquote>
 <p>MSTP可以将一个或多个VLAN映射到一个Instance（实例），再基于Instance计算生成树，映射到同一个Instance的VLAN共享同一棵生成树</p>
-<h3 id="MSTP概念"><a href="#MSTP概念" class="headerlink" title="MSTP概念"></a>MSTP概念</h3><ul>
-<li>MSTP网络层次：<ul>
+<h3 id="MSTP的基本概念"><a href="#MSTP的基本概念" class="headerlink" title="MSTP的基本概念"></a>MSTP的基本概念</h3><h4 id="MST-Region"><a href="#MST-Region" class="headerlink" title="MST Region"></a>MST Region</h4><ul>
+<li><p>MSTP网络层次：</p>
+<ul>
 <li>MSTP把一个交换网络划分成多个域，每个域内形成多棵生成树，生成树之间彼此独立。</li>
 </ul>
 </li>
-<li>MST Region（Multiple Spanning Tree Region，多生成树域），也可简称MST域<ul>
+<li><p>MST Region（Multiple Spanning Tree Region，多生成树域），也可简称MST域</p>
+<ul>
 <li>由交换网络中的多台交换设备以及它们之间的网段所构成</li>
 <li>一个局域网可以存在多个MST域，各MST域之间在物理上直接或间接相连。用户可以通过MSTP配置命令把多台交换设备划分在同一个MST域内</li>
 <li>MSTP网络中包含1个或多个MST域，每个MST域中包含一个或多个多生成树实例。</li>
 </ul>
 </li>
+<li><p>同一个MST域的设备具有下列特点：</p>
+<ul>
+<li>都启动了MSTP，具有相同的域名，具有相同的VLAN到生成树实例映射配置，具有相同的MSTP修订级别配置</li>
 </ul>
-<p>同一个MST域的设备具有下列特点：<br>都启动了MSTP。<br>具有相同的域名。<br>具有相同的VLAN到生成树实例映射配置。<br>具有相同的MSTP修订级别配置。</p>
-<p>MSTI </p>
-<p>MSTI（Multiple Spanning Tree Instance，多生成树实例）：<br>一个MST域内可以生成多棵生成树，每棵生成树都称为一个MSTI。<br>MSTI使用Instance ID标识，华为设备取值为0~4094。<br>VLAN映射表<br>MST域的属性，描述了VLAN和MSTI之间的映射关系。<br>如图所示的MST Region 4的VLAN映射有：<br>VLAN1映射到MSTI 1<br>VLAN2映射到MSTI 2<br>其余VLAN映射到MSTI 3</p>
-<p>Instance0是缺省存在的，而且缺省时，华为交换机上所有的VLAN都映射到了Instance0。</p>
-<p>通过设置VLAN映射表（即VLAN和MSTI的对应关系表），把VLAN和MSTI联系起来。<br>每个VLAN只能对应一个MSTI，即同一VLAN的数据只能在一个MSTI中传输，而一个MSTI可能对应多个VLAN。</p>
-<p>CST（Common Spanning Tree，公共生成树）<br>是连接交换网络内所有MST域的一棵生成树。<br>如果把每个MST域看作是一个节点，CST就是这些节点通过生成树协议计算生成的一棵生成树。<br>如图深蓝色粗线条连接各个域构成CST。</p>
+</li>
+</ul>
+<h4 id="MSTI"><a href="#MSTI" class="headerlink" title="MSTI"></a>MSTI</h4><p>Multiple Spanning Tree Instance，多生成树实例：一个MST域内可以生成多棵生成树，每棵生成树都称为一个MSTI，MSTI使用Instance ID标识，华为设备取值为0~4094。</p>
+<ul>
+<li><p><strong>VLAN映射表</strong><br>MST域的属性，描述了VLAN和MSTI之间的映射关系。<br>如图所示的MST Region 4的VLAN映射有：</p>
+<center><img src="D:\blog\shierjinghuang\source\_posts\生成树协议\MST域与.png" style="zoom:67%;" />    ----->>>        <img src="D:\blog\shierjinghuang\source\_posts\生成树协议\多生成树实例.png" alt="多生成树实例" style="zoom: 67%;" /></center>
+
+<ul>
+<li>VLAN1映射到MSTI 1，VLAN2映射到MSTI 2，其余VLAN映射到MSTI 3</li>
+</ul>
+</li>
+<li><p>Instance0是缺省存在的，而且缺省时，华为交换机上所有的VLAN都映射到了Instance0。</p>
+</li>
+<li><p>通过设置VLAN映射表，把VLAN和MSTI联系起来</p>
+<p>每个VLAN只能对应一个MSTI，即同一VLAN的数据只能在一个MSTI中传输，而一个MSTI可能对应多个VLAN</p>
+</li>
+</ul>
+<h4 id="CST（Common-Spanning-Tree，公共生成树）"><a href="#CST（Common-Spanning-Tree，公共生成树）" class="headerlink" title="CST（Common Spanning Tree，公共生成树）"></a>CST（Common Spanning Tree，公共生成树）</h4><p>是连接交换网络内所有MST域的一棵生成树。<br>如果把每个MST域看作是一个节点，CST就是这些节点通过生成树协议计算生成的一棵生成树。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\生成树协议\交换网络实例.png" alt="交换网络实例" style="zoom: 50%;" />
+
+
+
+<p>如图深蓝色粗线条连接各个域构成CST。</p>
 <p>IST（Internal Spanning Tree，内部生成树）<br>是各MST域内的一棵生成树。<br>IST是一个特殊的MSTI，MSTI的Instance ID为0。<br>如图所示的MST Region 4，黑色细线条在域中连接该域的所有交换设备构成IST。</p>
 <p>CIST（Common and Internal Spanning Tree，公共和内部生成树）<br>通过生成树协议计算生成的，连接一个交换网络内所有交换设备的单生成树。<br>如图所示，所有MST域的IST加上CST就构成一棵完整的生成树，即CIST。</p>
 <h3 id="MSTP的端口"><a href="#MSTP的端口" class="headerlink" title="MSTP的端口"></a>MSTP的端口</h3><h4 id="MSTP端口角色"><a href="#MSTP端口角色" class="headerlink" title="MSTP端口角色"></a>MSTP端口角色</h4><blockquote>
@@ -681,21 +703,21 @@
 <table>
 <thead>
 <tr>
-<th><strong>M<strong><strong>STP</strong></strong>端口状态</strong></th>
-<th><strong>端口在****拓扑中的角色</strong></th>
+<th>MSTP端口状态</th>
+<th>端口在拓扑中的角色</th>
 </tr>
 </thead>
 <tbody><tr>
 <td><strong>Forwarding</strong></td>
-<td><strong>包括<strong><strong>根端口、指定端口、</strong></strong>Master****端口、域边缘端口</strong></td>
+<td>包括根端口、指定端口、Master端口、域边缘端口</td>
 </tr>
 <tr>
 <td><strong>Learning</strong></td>
-<td><strong>包括根端口、指定端口、<strong><strong>Master</strong></strong>端口、域边缘端口</strong></td>
+<td>包括根端口、指定端口、Master端口、域边缘端口</td>
 </tr>
 <tr>
 <td><strong>Discarding</strong></td>
-<td><strong>包括根端口、指定端口、<strong><strong>Master</strong></strong>端口、域边缘端口、<strong><strong>Alternate</strong></strong>端口、<strong><strong>Backup</strong></strong>端口</strong></td>
+<td>包括根端口、指定端口、Master端口、域边缘端口、Alternate端口、Backup端口</td>
 </tr>
 </tbody></table>
 <p>MSTP报文</p>
@@ -1103,7 +1125,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">332.3k</span>
+                        class="white-color">337k</span>
             
             
             

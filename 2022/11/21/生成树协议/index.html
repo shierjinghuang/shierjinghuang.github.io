@@ -395,7 +395,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-03-04
+                    2023-03-12
                 </div>
                 
 
@@ -438,7 +438,7 @@
 <blockquote>
 <p style="color:orange;">RSTP(Rapid Spanning Tree Protocol)协议：快速生成树协议，基于STP协议，实现了网络拓扑快速收敛</p>
 </blockquote>
-<h4 id="二层交换机网络的冗余性与环路"><a href="#二层交换机网络的冗余性与环路" class="headerlink" title="二层交换机网络的冗余性与环路:"></a>二层交换机网络的冗余性与环路:</h4><img src="D:\gitee-blog\source\_posts\生成树协议\二层交换机环路.png" style="zoom:67%;" />
+<h4 id="二层交换机网络的冗余性与环路"><a href="#二层交换机网络的冗余性与环路" class="headerlink" title="二层交换机网络的冗余性与环路:"></a>二层交换机网络的冗余性与环路:</h4><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/11/21/生成树协议/二层交换机环路.png" style="zoom:67%;" />
 
 <p>交换机在互连时一般都会使用冗余链路来实现备份。冗余链路虽然增强了网络的可靠性，但是也会产生环路，而环路会带来一系列的问题，继而导致通信质量下降和通信业务中断等问题。</p>
 <blockquote>
@@ -451,11 +451,11 @@
 <p>如果交换网络中有环路，则这个帧会被无限转发，此时便会形成广播风暴，网络中也会充斥着重复的数据帧</p>
 </blockquote>
 <h5 id="问题二：MAC地址表漂移"><a href="#问题二：MAC地址表漂移" class="headerlink" title="问题二：MAC地址表漂移"></a>问题二：MAC地址表漂移</h5><p>交换机是根据所接收到的数据帧的源地址和接收接口生成MAC地址表项的。</p>
-<img src="D:\gitee-blog\source\_posts\生成树协议\MAC地址表漂移.png" style="zoom:67%;" />
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/11/21/生成树协议/MAC地址表漂移.png" style="zoom:67%;" />
 
 <p>如图，SW3收到一个广播帧泛洪，SW1从GE0/0/1接口接收到广播帧后学习且泛洪，形成MAC地址5489-98EE-788A与GE0/0/1的映射；SW2收到广播帧后学习且泛洪，SW1再次从GE0/0/2收到源MAC地址为5489-98EE-788A的广播帧并进行学习，5489-98EE-788A会不断地在GE0/0/1与GE0/0/2接口之间来回切换，这被称为MAC地址漂移现象。</p>
 <p>在网络中部署生成树后，交换机之间会进行生成树协议报文的交互并进行无环拓扑计算，最终将网络中的某个（或某些）接口进行阻塞（Block），从而打破环路</p>
-<img src="D:\gitee-blog\source\_posts\生成树协议\生成树协议.png" style="zoom:67%;" />
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/11/21/生成树协议/生成树协议.png" style="zoom:67%;" />
 
 <p>交换机上运行的生成树协议会持续监控网络的拓扑结构，当网络拓扑结构发生变化时，生成树能感知到这些变化，并且自动做出调整<br>因此，生成树既能解决二层环路问题，也能为网络的冗余性提供一种方案</p>
 <h5 id="环路类别："><a href="#环路类别：" class="headerlink" title="环路类别："></a>环路类别：</h5><p>常见环路主要分为<strong>二层环路</strong>和<strong>三层环路</strong>。</p>
@@ -502,7 +502,7 @@
 <p style="color:skyblue;">每一个激活了STP的接口都维护着一个Cost值，接口的Cost主要用于计算根路径开销，也就是到达根的开销</p>
 </blockquote>
 <p>接口的缺省Cost除了与其速率、工作模式有关，还与交换机使用的STP Cost计算方法有关。<br>接口带宽越大，则Cost值越小。<br>用户也可以根据需要通过命令调整接口的Cost</p>
-<img src="D:\gitee-blog\source\_posts\生成树协议\生成树开销.png" style="zoom: 50%;" />
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/11/21/生成树协议/生成树开销.png" style="zoom: 50%;" />
 
 <h5 id="根路径开销（Root-Path-Cost）"><a href="#根路径开销（Root-Path-Cost）" class="headerlink" title="根路径开销（Root Path Cost）"></a>根路径开销（Root Path Cost）</h5><blockquote>
 <p>一台设备从某个接口到达根桥的RPC等于从根桥到该设备沿途所有入方向接口的Cost累加</p>
@@ -596,7 +596,7 @@
 <li>Message Age:如果配置BPDU是根桥发出的，则Message Age为0。否则，Message Age是从根桥发送到当前桥接收到BPDU的总时间，包括传输延时等。实际实现中，配置BPDU报文每经过一个交换机，Message Age增加1</li>
 <li>Max Age是指BPDU报文的老化时间,可在根桥上通过命令人为改动这个值。Max Age通过配置BPDU报文的传递，可以保证Max Age在整网中一致。非根桥设备收到配置BPDU报文后，会将报文中的Message Age和Max Age进行比较：如果Message Age小于等于Max Age，则该非根桥设备会继续转发配置BPDU报文。如果Message Age大于Max Age，则该配置BPDU报文将被老化掉。该非根桥设备将直接丢弃该配置BPDU，并认为是网络直径过大，导致了根桥连接失败。</li>
 </ol>
-<img src="D:\gitee-blog\source\_posts\生成树协议\BPDU计时器.png" style="zoom:67%;" />
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/11/21/生成树协议/BPDU计时器.png" style="zoom:67%;" />
 
 <p>配置BPDU报文每经过一个交换机，Message Age都加1。<br>如果Message Age大于Max Age，非根桥会丢弃该配置BPDU。</p>
 <h3 id="STP的基础配置"><a href="#STP的基础配置" class="headerlink" title="STP的基础配置"></a>STP的基础配置</h3><h5 id="配置生成树工作模式："><a href="#配置生成树工作模式：" class="headerlink" title="配置生成树工作模式："></a>配置生成树工作模式：</h5><pre class="line-numbers language-none"><code class="language-none">[Huawei] stp mode &#123; stp | rstp | mstp &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -668,7 +668,7 @@
 <p>如果指定接口位于整个域的边缘，不再与任何交换设备连接，这种接口叫做边缘接口。</p>
 </blockquote>
 <p>边缘接口一般与用户终端设备直接连接，不与任何交换设备连接。边缘接口正常情况下接收不到配置BPDU报文，不参与RSTP运算，可以由Disabled状态直接转到Forwarding状态，且不经历时延，就像在接口上将STP禁用了一样。但是，一旦边缘接口收到配置BPDU报文，就丧失了边缘接口属性，成为普通STP接口，并重新进行生成树计算，从而引起网络震荡</p>
-<img src="D:\gitee-blog\source\_posts\生成树协议\边缘接口.png" style="zoom:67%;" />
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/11/21/生成树协议/边缘接口.png" style="zoom:67%;" />
 
 <h4 id="接口状态不同"><a href="#接口状态不同" class="headerlink" title="接口状态不同"></a>接口状态不同</h4><ul>
 <li><p>RSTP的状态规范把原来的5种状态缩减为3种</p>
@@ -730,7 +730,7 @@
 <blockquote>
 <p style="color:blue;">但是如果网络中VLAN的数量较多，为每个VLAN执行独立的生成树计算将耗费交换机大量的资源</p>
 </blockquote>
-<h4 id="MSTP：多生成树"><a href="#MSTP：多生成树" class="headerlink" title="MSTP：多生成树"></a>MSTP：多生成树</h4><img src="D:\gitee-blog\source\_posts\生成树协议\MSTP多生成树.png" style="zoom:50%;" />
+<h4 id="MSTP：多生成树"><a href="#MSTP：多生成树" class="headerlink" title="MSTP：多生成树"></a>MSTP：多生成树</h4><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/11/21/生成树协议/MSTP多生成树.png" style="zoom:50%;" />
 
 <p>为了弥补STP和RSTP的缺陷，IEEE于2002年发布的802.1s标准定义了MSTP。</p>
 <blockquote>
@@ -744,13 +744,13 @@
 <li>MSTP各个实例拓扑的计算相互独立，在这些实例上可以实现负载均衡。</li>
 <li>可以把多个相同拓扑结构的VLAN映射到一个实例里，这些VLAN在接口上的转发状态取决于接口在对应实例的状态</li>
 </ul>
-<img src="D:\gitee-blog\source\_posts\生成树协议\MSTP多生成树.png" style="zoom:50%;" />
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/11/21/生成树协议/MSTP多生成树.png" style="zoom:50%;" />
 
 <h4 id="堆叠技术："><a href="#堆叠技术：" class="headerlink" title="堆叠技术："></a>堆叠技术：</h4><blockquote>
 <p style="color:orange;">堆叠iStack（Intelligent Stack），是指将多台支持堆叠特性的交换机设备组合在一起，从逻辑上组合成一台整体交换设备</p>
 </blockquote>
 <p>堆叠系统建立之前，每台交换机都是单独的实体，有自己独立的IP地址和MAC地址，对外体现为多台交换机，用户需要独立的管理所有的交换机；堆叠建立后堆叠成员对外体现为一个统一的逻辑实体，用户使用一个IP地址对堆叠中的所有交换机进行管理和维护</p>
-<img src="D:\gitee-blog\source\_posts\生成树协议\堆叠技术.png" style="zoom:67%;" />
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/11/21/生成树协议/堆叠技术.png" style="zoom:67%;" />
                 
             </div>
             <hr/>
@@ -1146,7 +1146,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">332.3k</span>
+                        class="white-color">337k</span>
             
             
             
