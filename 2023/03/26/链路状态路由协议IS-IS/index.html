@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <meta name="keywords" content="链路状态路由协议IS-IS, 十二惊惶">
     <meta name="description" content="中间系统到中间系统 IS-IS
-
 [TOC]
+
 
 IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计的一种动态路由协议
 
@@ -387,21 +387,21 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-03-26
+                    2023-03-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.9k
+                    6.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    19 分
+                    23 分
                 </div>
                 
 
@@ -425,8 +425,8 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <center><h1>中间系统到中间系统 IS-IS</h1></center>
+[TOC]
 
-<p>[TOC]</p>
 <blockquote>
 <p><font color="blue">IS-IS是ISO为CLNP[<font color="black">ConnectionLessNetwork Protocol，无连接网络协议]</font>设计的一种动态路由协议</font></p>
 </blockquote>
@@ -457,11 +457,9 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
 <img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\IS-IS地址结构.png" style="zoom:80%;" />
 
 <center>IS-IS地址结构</center>
+- IDP，由AFI(Authority and Format Identifier)与IDI(Initial Domain Identifier)两部分组成，AFI表示地址分配机构和地址格式，IDI用来标识域
+- DSP相当于IP地址中的子网号和主机地址。由High Order DSP、System ID和SEL三个部分组成，High Order DSP用来分割区域，System ID用来区分主机，SEL（NSAP Selector）用来指示服务类型
 
-<ul>
-<li>IDP，由AFI(Authority and Format Identifier)与IDI(Initial Domain Identifier)两部分组成，AFI表示地址分配机构和地址格式，IDI用来标识域</li>
-<li>DSP相当于IP地址中的子网号和主机地址。由High Order DSP、System ID和SEL三个部分组成，High Order DSP用来分割区域，System ID用来区分主机，SEL（NSAP Selector）用来指示服务类型</li>
-</ul>
 <h5 id="NET："><a href="#NET：" class="headerlink" title="NET："></a>NET：</h5><blockquote>
 <p><font color="blue">NET 网络实体名称：是OSI协议栈中设备的网络层信息，主要用于路由计算</font>，由区域地址Area ID和System ID组成，可以看作是特殊的NSAP</p>
 </blockquote>
@@ -717,16 +715,106 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
 <img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\IS-IS DIS与伪结点.png" style="zoom: 67%;" />
 
 <h4 id="点到点网络中的邻接关系建立过程"><a href="#点到点网络中的邻接关系建立过程" class="headerlink" title="点到点网络中的邻接关系建立过程"></a>点到点网络中的邻接关系建立过程</h4><p>点到点网络中，邻接关系的建立使用两次握手方式：只要路由器收到对端发来的Hello报文，就单方面宣布邻接为Up状态，建立邻接关系<br>两次握手机制存在明显的缺陷，华为设备在点到点网络中使用IS-IS时，默认使用三次握手建立邻接关系。此方式通过三次发送P2P IIH最终建立起邻接关系</p>
-<h3 id="链路状态数据库同步"><a href="#链路状态数据库同步" class="headerlink" title="链路状态数据库同步"></a>链路状态数据库同步</h3><p>Level-1路由器的路由计算</p>
-<p>R1是Level-1路由器，只维护Level-1 LSDB，该LSDB中包含同属一个区域的R2及R3以及R1自己产生的Level-1 LSP。<br>R1根据LSDB中的Level-1 LSP计算出Area 49.0001内的拓扑，以及到达区域内各个网段的路由信息。<br>R2及R3作为Area 49.0001内的Level-1-2路由器，会在它们向该区域下发的Level-1 LSP中设置ATT标志位，用于向区域内的Level-1路由器宣布可以通过自己到达其他区域。 R1作为Level-1路由器，会根据该ATT标志位，计算出指向R2或R3的默认路由。</p>
-<p>Level-1路由器的次优路径的问题</p>
-<p>缺省时， R1只能通过指向R2或R3的默认路由到达区域外部，但是R1距离R2和R3路由器的Cost值相等，那么当R1发送数据包到192.168.20.0/24时，就有可能选择路径2，导致出现次优路径。</p>
-<p>路由渗透</p>
-<p>缺省情况下，Level-1-2路由器不会将到达其他区域的路由通告本Level-1区域中。<br>通过路由渗透，可以将区域间路由通过Leve-1-2路由器传递到Level-1区域，此时Leve-1路由器可以学习到其他区域的详细路由，从而计算出最优路径。</p>
-<p>Level-1-2路由器的路由计算</p>
-<p>R2及R3都维护Level-1 LSDB，它们能够通过这些LSDB中的LSP计算出Area 49.0001的路由。<br>R2及R3都维护Level-2 LSDB，它们能够通过这些LSDB中的LSP计算出Area 49.0002的路由。<br>R2及R3将到达Area 49.0001的路由以Level-2 LSP的形式发送到Area 49.0002。</p>
-<p>Level-2路由器的路由计算</p>
-<p>R4及R5作为Level-2路由器，只会维护Level-2 LSDB，它们能够根据该LSDB计算出到达全网各个网段的路由。</p>
+<h3 id="链路状态数据库同步"><a href="#链路状态数据库同步" class="headerlink" title="链路状态数据库同步"></a>链路状态数据库同步</h3><h4 id="LSP"><a href="#LSP" class="headerlink" title="LSP"></a>LSP</h4><p>IS-IS链路状态报文LSP用于交换链路状态信息。LSP分为两种：Level–1 LSP和Level–2 LSP。Level–1 LSP由Level-1路由器传送，Level–2 LSP由Level-2路由器传送，Level-1-2路由器则可传送以上两种LSP</p>
+<p>两类LSP有相同的报文格式</p>
+<img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\LSP报文格式.png" style="zoom:80%;" />
+
+<ul>
+<li><strong>Remaining Lifetime</strong> : LSP的生存时间，以秒为单位</li>
+<li><strong>LSP ID</strong>:由三部分组成，System ID、伪节点ID和LSP分片后的编号</li>
+<li><strong>Sequence Number</strong>: LSP的序列号。在路由器启动时所发送的第一个LSP报文中的序列号为1，以后当需要生成新的LSP时，新LSP的序列号在前一个LSP序列号的基础上加1。更高的序列号意味着更新的LSP</li>
+<li>Checksum ： LSP的校验和</li>
+<li><strong>ATT</strong>（Attachment）：由Level-1-2路由器产生，用来指明始发路由器是否与其它区域相连。虽然此标志位也存在于Level-1和Level-2的LSP中，但实际上此字段只和Level-1-2路由器始发的L1 LSP有关</li>
+<li>OL（LSDB Overload，1bit）：过载标志位。设置了过载标志位的LSP虽然还会在网络中扩散，但是在计算通过超载路由器的路由时不会被采用。即对路由器设置过载位后，其它路由器在进行SPF计算时不会考虑这台路由器。当路由器内存不足时，系统自动在发送的LSP报文中设置过载标志位</li>
+<li>IS Type(2bit)：生成LSP的路由器的类型。用来指明是Level-1还是Level-2路由器（01表示Level-1，11表示Level-2）</li>
+</ul>
+<h5 id="CSNP："><a href="#CSNP：" class="headerlink" title="CSNP："></a>CSNP：</h5><p>CSNP包含该设备LSDB中所有的LSP摘要，路由器通过交互 CSNP来判断是否需要同步LSDB</p>
+<ul>
+<li>在广播网络上，CSNP由DIS定期发送    缺省的发送周期为10秒</li>
+<li>在点到点网络上，CSNP只在第一次建立邻接关系时发送</li>
+</ul>
+<p><strong>CSNP报文格式：</strong></p>
+<img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\CNSP报文格式.png" style="zoom:67%;" />
+
+<ul>
+<li>Source ID：发出CSNP报文的路由器的System ID</li>
+<li>Start LSP：CSNP报文中第一个LSP的ID值</li>
+<li>End LSP ID：CSNP报文中最后一个LSP的ID值</li>
+</ul>
+<h5 id="PSNP："><a href="#PSNP：" class="headerlink" title="PSNP："></a>PSNP：</h5><p>PSNP只包含部分LSP的摘要信息 ：</p>
+<ul>
+<li>当发现LSDB不同步时，PSNP来请求邻居发送新的LSP</li>
+<li>在点到的网络中，当收到LSP时，使用PSNP对收到的LSP进行确认</li>
+</ul>
+<img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\PSNP报文格式.png"  />
+
+<ul>
+<li>Source ID：发出PSNP报文的路由器的System ID。 </li>
+</ul>
+<h4 id="LSP的同步过程"><a href="#LSP的同步过程" class="headerlink" title="LSP的同步过程"></a>LSP的同步过程</h4><h5 id="广播网络中LSP的同步过程"><a href="#广播网络中LSP的同步过程" class="headerlink" title="广播网络中LSP的同步过程:"></a>广播网络中LSP的同步过程:</h5><ul>
+<li><p>广播网络中新加入路由器与DIS同步LSDB数据库的过程：</p>
+<ol>
+<li><p>新加入的路由器R3首先发送IIH报文，与该广播域中的路由器建立邻接关系。建立邻接关系之后，R3等待LSP刷新定时器超时，然后将自己的LSP发往组播地址（Level-1：01-80-C2-00-00-14；Level-2：01-80-C2-00-00-15）。这样网络上所有的邻接都将收到该LSP</p>
+</li>
+<li><p>该网段中的DIS会把收到R3的LSP加入到LSDB中，并等待CSNP报文定时器超时并发送CSNP报文</p>
+</li>
+<li><p>R3收到DIS发来的CSNP报文，对比自己的LSDB数据库，然后向DIS发送PSNP报文请求自己没有的LSP</p>
+</li>
+<li><p>DIS收到该PSNP报文请求后向R3发送对应的LSP进行LSDB的同步</p>
+<img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\广播网络中LSP的同步过程.png" alt="广播网络中LSP的同步过程" style="zoom:80%;" /></li>
+</ol>
+</li>
+</ul>
+<h5 id="点到点网络中LSP的同步过程"><a href="#点到点网络中LSP的同步过程" class="headerlink" title="点到点网络中LSP的同步过程"></a>点到点网络中LSP的同步过程</h5><ul>
+<li><p>点到点网络上LSDB数据库的同步过程：</p>
+<ul>
+<li><p>R1先与R2建立邻接关系。</p>
+</li>
+<li><p>建立邻接关系之后，R1与R2会先发送CSNP给对端设备。如果对端的LSDB与CSNP没有同步，则发送PSNP请求索取相应的LSP</p>
+</li>
+<li><p>假设R2向R1索取相应的LSP</p>
+<ol>
+<li><p>R1发送R2请求的LSP的同时启动LSP重传定时器，并等待R2发送的PSNP作为收到LSP的确认</p>
+</li>
+<li><p>如果在接口LSP重传定时器超时后，R1没有收到R2发送的PSNP报文作为应答</p>
+</li>
+<li><p>则R1重新发送该LSP</p>
+</li>
+<li><p>R2收到LSP后，发送PSNP进行确认</p>
+<img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\点到点网络中LSP同步过程.png" style="zoom:67%;" /></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>LSP产生的原因，IS-IS路由域内的所有路由器都会产生LSP，以下事件会触发一个新的LSP：</strong></p>
+<blockquote>
+<ul>
+<li>邻接Up或Down，IS-IS相关接口Up或Down，引入的IP路由发生变化，区域间的IP路由发生变化，接口被赋了新的metric值，周期性更新（刷新间隔15min）</li>
+</ul>
+</blockquote>
+<h4 id="LSP的处理机制"><a href="#LSP的处理机制" class="headerlink" title="LSP的处理机制"></a>LSP的处理机制</h4><img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\LSP的处理机制.png" style="zoom: 80%;" />
+
+<p>IS-IS通过交互LSP实现链路状态数据库同步，路由器收到LSP后，按照以下原则处理：</p>
+<ul>
+<li>若收到的LSP比本地LSP的更优，或者本地没有收到的LSP：<ul>
+<li>在广播网络中：将其加入数据库，并组播发送新的LSP</li>
+<li>在点到点网络中：将其加入数据库，并发送PSNP报文来确认收到此LSP，之后将这新的LSP发送给除了发送该LSP的邻居以外的邻居</li>
+</ul>
+</li>
+<li>若收到的LSP和本地LSP无法比较出优劣，则不处理该LSP</li>
+</ul>
+<h3 id="路由计算"><a href="#路由计算" class="headerlink" title="路由计算"></a>路由计算</h3><h4 id="Level-1路由器的路由计算"><a href="#Level-1路由器的路由计算" class="headerlink" title="Level-1路由器的路由计算"></a>Level-1路由器的路由计算</h4><ul>
+<li>R1是Level-1路由器，只维护Level-1 LSDB，该LSDB中包含同属一个区域的R2及R3以及R1自己产生的Level-1 LSP</li>
+<li>R1根据LSDB中的Level-1 LSP计算出Area 49.0001内的拓扑，以及到达区域内各个网段的路由信息</li>
+<li>R2及R3作为Area 49.0001内的Level-1-2路由器，会在它们向该区域下发的Level-1 LSP中设置ATT标志位，用于向区域内的Level-1路由器宣布可以通过自己到达其他区域。 R1作为Level-1路由器，会根据该ATT标志位，计算出指向R2或R3的默认路由</li>
+</ul>
+<img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\Level-1路由器的路由计算.png" alt="Level-1路由器的路由计算" style="zoom:80%;" />
+
+<h5 id="Level-1路由器的次优路径的问题"><a href="#Level-1路由器的次优路径的问题" class="headerlink" title="Level-1路由器的次优路径的问题"></a>Level-1路由器的次优路径的问题</h5><p>缺省时， R1只能通过指向R2或R3的默认路由到达区域外部，但是R1距离R2和R3路由器的Cost值相等，那么当R1发送数据包到192.168.20.0/24时，就有可能选择路径2，导致出现次优路径。</p>
+<h5 id="路由渗透"><a href="#路由渗透" class="headerlink" title="路由渗透"></a>路由渗透</h5><p>缺省情况下，Level-1-2路由器不会将到达其他区域的路由通告本Level-1区域中。<br>通过路由渗透，可以将区域间路由通过Leve-1-2路由器传递到Level-1区域，此时Leve-1路由器可以学习到其他区域的详细路由，从而计算出最优路径。</p>
+<h4 id="Level-1-2路由器的路由计算"><a href="#Level-1-2路由器的路由计算" class="headerlink" title="Level-1-2路由器的路由计算"></a>Level-1-2路由器的路由计算</h4><p>R2及R3都维护Level-1 LSDB，它们能够通过这些LSDB中的LSP计算出Area 49.0001的路由。<br>R2及R3都维护Level-2 LSDB，它们能够通过这些LSDB中的LSP计算出Area 49.0002的路由。<br>R2及R3将到达Area 49.0001的路由以Level-2 LSP的形式发送到Area 49.0002。</p>
+<h4 id="Level-2路由器的路由计算"><a href="#Level-2路由器的路由计算" class="headerlink" title="Level-2路由器的路由计算"></a>Level-2路由器的路由计算</h4><p>R4及R5作为Level-2路由器，只会维护Level-2 LSDB，它们能够根据该LSDB计算出到达全网各个网段的路由。</p>
 <h2 id="IS-IS的基本配置"><a href="#IS-IS的基本配置" class="headerlink" title="IS-IS的基本配置"></a>IS-IS的基本配置</h2><h3 id="IS-IS协议的基本配置"><a href="#IS-IS协议的基本配置" class="headerlink" title="IS-IS协议的基本配置"></a>IS-IS协议的基本配置</h3><p>1 . 创建IS-IS进程，进入IS-IS进程</p>
 <pre class="line-numbers language-none"><code class="language-none">isis [process-id] <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -1175,7 +1263,7 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">342k</span>
+                        class="white-color">343.1k</span>
             
             
             
