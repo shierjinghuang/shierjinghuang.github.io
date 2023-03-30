@@ -5,13 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="链路状态路由协议IS-IS, 十二惊惶">
-    <meta name="description" content="中间系统到中间系统 IS-IS
-[TOC]
-
-
-IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计的一种动态路由协议
-
-随着TCP/IP协议的流行，为了提供对IP路由的支持，IE">
+    <meta name="description" content="S-IS是一种链路状态路由协议，是ISO定义的OSI协议栈中的CLNS无连接网络服务的一部分，是一种动态路由协议">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -366,12 +360,25 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/HCIP/">
+                                <span class="chip bg-color">HCIP</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                网络工程相关
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -387,7 +394,7 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-03-27
+                    2023-03-30
                 </div>
                 
 
@@ -454,7 +461,7 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
 <ul>
 <li>NSAP包括IDP（Initial Domian Part）及DSP（Domian Specific Part）如下图所示：</li>
 </ul>
-<img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\IS-IS地址结构.png" style="zoom:80%;" />
+<img src="https://shierjinghuang.github.io/2023/03/26/链路状态路由协议IS-IS/IS-IS地址结构.png" style="zoom:80%;" />
 
 <center>IS-IS地址结构</center>
 - IDP，由AFI(Authority and Format Identifier)与IDI(Initial Domain Identifier)两部分组成，AFI表示地址分配机构和地址格式，IDI用来标识域
@@ -493,7 +500,7 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
 <li>在IS-IS中，单个区域没有骨干与非骨干区域的概念；而在OSPF中，Area0被定义为骨干区域</li>
 <li>在IS-IS中，Level-1和Level-2级别的路由都采用SPF算法，分别生成最短路径树SPT；而在OSPF中，只有在同一个区域内才使用SPF算法，区域之间的路由需要通过骨干区域来转发</li>
 </ul>
-<h4 id="IS-IS路由器的分类"><a href="#IS-IS路由器的分类" class="headerlink" title="IS-IS路由器的分类"></a>IS-IS路由器的分类</h4><img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\IS-IS路由器分类示意图.png" style="zoom:80%;" />
+<h4 id="IS-IS路由器的分类"><a href="#IS-IS路由器的分类" class="headerlink" title="IS-IS路由器的分类"></a>IS-IS路由器的分类</h4><img src="https://shierjinghuang.github.io/2023/03/26/链路状态路由协议IS-IS/IS-IS路由器分类示意图.png" style="zoom:80%;" />
 
 <h5 id="Level-1路由器"><a href="#Level-1路由器" class="headerlink" title="Level-1路由器"></a>Level-1路由器</h5><p>Level-1路由器是一种<font color="red">IS-IS区域内部路由器</font>，它<font color="blue">只与属于同一区域的Level-1和Level-1-2路由器形成邻接关系，这种邻接关系称为Level-1邻接关系</font></p>
 <ul>
@@ -559,10 +566,10 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
 </ul>
 </li>
 </ul>
-<img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\IS-IS报文类型.png" style="zoom:67%;" />
+<img src="https://shierjinghuang.github.io/2023/03/26/链路状态路由协议IS-IS/IS-IS报文类型.png" style="zoom:67%;" />
 
 <h4 id="IS-IS通用字段详解："><a href="#IS-IS通用字段详解：" class="headerlink" title="IS-IS通用字段详解："></a>IS-IS通用字段详解：</h4><p><strong>重要字段解释：</strong></p>
-<img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\IS-IS通用首部.png" style="zoom: 80%;" />
+<img src="https://shierjinghuang.github.io/2023/03/26/链路状态路由协议IS-IS/IS-IS通用首部.png" style="zoom: 80%;" />
 
 <ul>
 <li>Intradomain Routing Protocol Discriminator：域内路由选择协议鉴别符，固定为0x83</li>
@@ -712,12 +719,12 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
 <li>DIS用来创建和更新伪节点（Pseudonodes），并负责生成伪节点的LSP，用来描述网络上有哪些网络设备</li>
 <li>伪节点是用来模拟广播网络的一个虚拟节点，并非真实的路由器。在IS-IS中，伪节点用DIS的System ID和Circuit ID（非0值）标识</li>
 </ul>
-<img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\IS-IS DIS与伪结点.png" style="zoom: 67%;" />
+<img src="https://shierjinghuang.github.io/2023/03/26/链路状态路由协议IS-IS/IS-IS DIS与伪结点.png" style="zoom: 67%;" />
 
 <h4 id="点到点网络中的邻接关系建立过程"><a href="#点到点网络中的邻接关系建立过程" class="headerlink" title="点到点网络中的邻接关系建立过程"></a>点到点网络中的邻接关系建立过程</h4><p>点到点网络中，邻接关系的建立使用两次握手方式：只要路由器收到对端发来的Hello报文，就单方面宣布邻接为Up状态，建立邻接关系<br>两次握手机制存在明显的缺陷，华为设备在点到点网络中使用IS-IS时，默认使用三次握手建立邻接关系。此方式通过三次发送P2P IIH最终建立起邻接关系</p>
 <h3 id="链路状态数据库同步"><a href="#链路状态数据库同步" class="headerlink" title="链路状态数据库同步"></a>链路状态数据库同步</h3><h4 id="LSP"><a href="#LSP" class="headerlink" title="LSP"></a>LSP</h4><p>IS-IS链路状态报文LSP用于交换链路状态信息。LSP分为两种：Level–1 LSP和Level–2 LSP。Level–1 LSP由Level-1路由器传送，Level–2 LSP由Level-2路由器传送，Level-1-2路由器则可传送以上两种LSP</p>
 <p>两类LSP有相同的报文格式</p>
-<img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\LSP报文格式.png" style="zoom:80%;" />
+<img src="https://shierjinghuang.github.io/2023/03/26/链路状态路由协议IS-IS/LSP报文格式.png" style="zoom:80%;" />
 
 <ul>
 <li><strong>Remaining Lifetime</strong> : LSP的生存时间，以秒为单位</li>
@@ -734,7 +741,7 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
 <li>在点到点网络上，CSNP只在第一次建立邻接关系时发送</li>
 </ul>
 <p><strong>CSNP报文格式：</strong></p>
-<img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\CNSP报文格式.png" style="zoom:67%;" />
+<img src="https://shierjinghuang.github.io/2023/03/26/链路状态路由协议IS-IS/CNSP报文格式.png" style="zoom:67%;" />
 
 <ul>
 <li>Source ID：发出CSNP报文的路由器的System ID</li>
@@ -746,7 +753,7 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
 <li>当发现LSDB不同步时，PSNP来请求邻居发送新的LSP</li>
 <li>在点到的网络中，当收到LSP时，使用PSNP对收到的LSP进行确认</li>
 </ul>
-<img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\PSNP报文格式.png"  />
+<img src="https://shierjinghuang.github.io/2023/03/26/链路状态路由协议IS-IS/PSNP报文格式.png"  />
 
 <ul>
 <li>Source ID：发出PSNP报文的路由器的System ID。 </li>
@@ -761,7 +768,7 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
 <li><p>R3收到DIS发来的CSNP报文，对比自己的LSDB数据库，然后向DIS发送PSNP报文请求自己没有的LSP</p>
 </li>
 <li><p>DIS收到该PSNP报文请求后向R3发送对应的LSP进行LSDB的同步</p>
-<img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\广播网络中LSP的同步过程.png" alt="广播网络中LSP的同步过程" style="zoom:80%;" /></li>
+<img src="https://shierjinghuang.github.io/2023/03/26/链路状态路由协议IS-IS/广播网络中LSP的同步过程.png" alt="广播网络中LSP的同步过程" style="zoom:80%;" /></li>
 </ol>
 </li>
 </ul>
@@ -781,7 +788,7 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
 <li><p>则R1重新发送该LSP</p>
 </li>
 <li><p>R2收到LSP后，发送PSNP进行确认</p>
-<img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\点到点网络中LSP同步过程.png" style="zoom:67%;" /></li>
+<img src="https://shierjinghuang.github.io/2023/03/26/链路状态路由协议IS-IS/点到点网络中LSP同步过程.png" style="zoom:67%;" /></li>
 </ol>
 </li>
 </ul>
@@ -793,7 +800,7 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
 <li>邻接Up或Down，IS-IS相关接口Up或Down，引入的IP路由发生变化，区域间的IP路由发生变化，接口被赋了新的metric值，周期性更新（刷新间隔15min）</li>
 </ul>
 </blockquote>
-<h4 id="LSP的处理机制"><a href="#LSP的处理机制" class="headerlink" title="LSP的处理机制"></a>LSP的处理机制</h4><img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\LSP的处理机制.png" style="zoom: 80%;" />
+<h4 id="LSP的处理机制"><a href="#LSP的处理机制" class="headerlink" title="LSP的处理机制"></a>LSP的处理机制</h4><img src="https://shierjinghuang.github.io/2023/03/26/链路状态路由协议IS-IS/LSP的处理机制.png" style="zoom: 80%;" />
 
 <p>IS-IS通过交互LSP实现链路状态数据库同步，路由器收到LSP后，按照以下原则处理：</p>
 <ul>
@@ -809,7 +816,7 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
 <li>R1根据LSDB中的Level-1 LSP计算出Area 49.0001内的拓扑，以及到达区域内各个网段的路由信息</li>
 <li>R2及R3作为Area 49.0001内的Level-1-2路由器，会在它们向该区域下发的Level-1 LSP中设置ATT标志位，用于向区域内的Level-1路由器宣布可以通过自己到达其他区域。 R1作为Level-1路由器，会根据该ATT标志位，计算出指向R2或R3的默认路由</li>
 </ul>
-<img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\Level-1路由器的路由计算.png" alt="Level-1路由器的路由计算" style="zoom:80%;" />
+<img src="https://shierjinghuang.github.io/2023/03/26/链路状态路由协议IS-IS/Level-1路由器的路由计算.png" alt="Level-1路由器的路由计算" style="zoom:80%;" />
 
 <h5 id="Level-1路由器的次优路径的问题"><a href="#Level-1路由器的次优路径的问题" class="headerlink" title="Level-1路由器的次优路径的问题"></a>Level-1路由器的次优路径的问题</h5><p>缺省时， R1只能通过指向R2或R3的默认路由到达区域外部，但是R1距离R2和R3路由器的Cost值相等，那么当R1发送数据包到192.168.20.0/24时，就有可能选择路径2，导致出现次优路径。</p>
 <h5 id="路由渗透"><a href="#路由渗透" class="headerlink" title="路由渗透"></a>路由渗透</h5><p>缺省情况下，Level-1-2路由器不会将到达其他区域的路由通告本Level-1区域中。<br>通过路由渗透，可以将区域间路由通过Leve-1-2路由器传递到Level-1区域，此时Leve-1路由器可以学习到其他区域的详细路由，从而计算出最优路径。</p>
@@ -842,7 +849,7 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
 <pre class="line-numbers language-none"><code class="language-none">isis dis-priority priority [level-1 | level-2]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>缺省情况下，IS-IS接口DIS优先级为64，该命令用来指定挑选对应层次DIS（Designated Intermediate System）时接口的优先级</p>
-<h3 id="IS-IS配置实验："><a href="#IS-IS配置实验：" class="headerlink" title="IS-IS配置实验："></a>IS-IS配置实验：</h3><img src="D:\blog\shierjinghuang\source\_posts\链路状态路由协议IS-IS\IS-IS配置实验拓扑.png" />
+<h3 id="IS-IS配置实验："><a href="#IS-IS配置实验：" class="headerlink" title="IS-IS配置实验："></a>IS-IS配置实验：</h3><img src="https://shierjinghuang.github.io/2023/03/26/链路状态路由协议IS-IS/IS-IS配置实验拓扑.png" />
 
 <h4 id="配置接口IP"><a href="#配置接口IP" class="headerlink" title="配置接口IP"></a>配置接口IP</h4><h4 id="配置IS-IS基本功能"><a href="#配置IS-IS基本功能" class="headerlink" title="配置IS-IS基本功能"></a>配置IS-IS基本功能</h4><h5 id="配置R1"><a href="#配置R1" class="headerlink" title="# 配置R1"></a># 配置R1</h5><pre class="line-numbers language-华为" data-language="华为"><code class="language-华为">[R1] isis 1
 [R1-isis-1] is-level level-1
@@ -944,7 +951,11 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/HCIP/">
+                                    <span class="chip bg-color">HCIP</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -1005,7 +1016,7 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            S-IS是一种链路状态路由协议，是ISO定义的OSI协议栈中的CLNS无连接网络服务的一部分，是一种动态路由协议
                         
                     </div>
                     <div class="publish-info">
@@ -1014,13 +1025,25 @@ IS-IS是ISO为CLNP[ConnectionLessNetwork Protocol，无连接网络协议]设计
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            十二惊惶
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                    网络工程相关
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/HCIP/">
+                        <span class="chip bg-color">HCIP</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
