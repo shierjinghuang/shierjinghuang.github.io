@@ -398,7 +398,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-03-31
+                    2023-04-02
                 </div>
                 
 
@@ -447,7 +447,7 @@
 <blockquote>
 <p><font color="orange">整个网络规模扩大，路由数量进一步增加，路由表规模变大，路由收敛变慢，设备性能消耗加大 </font></p>
 </blockquote>
-<img src="D:\blog\shierjinghuang\source\_posts\外部网关路由协议 BGP\使用IGP传递路由.png" alt="使用IGP传递路由" style="zoom:80%;" />
+<img src="https://shierjinghuang.github.io/2023/03/31/外部网关路由协议 BGP/使用IGP传递路由.png" alt="使用IGP传递路由" style="zoom:80%;" />
 
 <h3 id="使用BGP传递路由"><a href="#使用BGP传递路由" class="headerlink" title="使用BGP传递路由:"></a>使用BGP传递路由:</h3><p>AS之间专门使用BGP（Border Gateway Protocol，边界网关协议）协议进行路由传递，相较于传统的IGP协议有以下优点 ：</p>
 <ul>
@@ -455,9 +455,9 @@
 <li>只传递路由信息，不会暴露AS内的拓扑信息</li>
 <li>触发式更新，而不是进行周期性更新</li>
 </ul>
-<img src="D:\blog\shierjinghuang\source\_posts\外部网关路由协议 BGP\使用BGP传递路由.png" alt="使用BGP传递路由" style="zoom:80%;" />
+<img src="https://shierjinghuang.github.io/2023/03/31/外部网关路由协议 BGP/使用BGP传递路由.png" alt="使用BGP传递路由" style="zoom:80%;" />
 
-<h3 id="BGP在企业中的应用"><a href="#BGP在企业中的应用" class="headerlink" title="BGP在企业中的应用"></a>BGP在企业中的应用</h3><img src="D:\blog\shierjinghuang\source\_posts\外部网关路由协议 BGP\BGP在企业网的应用.png" style="zoom: 67%;" />
+<h3 id="BGP在企业中的应用"><a href="#BGP在企业中的应用" class="headerlink" title="BGP在企业中的应用"></a>BGP在企业中的应用</h3><img src="https://shierjinghuang.github.io/2023/03/31/外部网关路由协议 BGP/BGP在企业网的应用.png" style="zoom: 67%;" />
 
 <h2 id="BGP的基本概念"><a href="#BGP的基本概念" class="headerlink" title="BGP的基本概念"></a>BGP的基本概念</h2><p><font color="FF3300">BGP是一种实现自治系统AS之间的路由可达，并选择最佳路由的矢量性协议</font></p>
 <ul>
@@ -470,7 +470,7 @@
 <li>BGP能够支撑MPLS/VPN的应用，传递客户VPN路由</li>
 <li>BGP提供了路由聚合和路由衰减功能用于防止路由振荡，通过这两项功能有效地提高了网络稳定性</li>
 </ul>
-<h3 id="BGP特征："><a href="#BGP特征：" class="headerlink" title="BGP特征："></a>BGP特征：</h3><img src="D:\blog\shierjinghuang\source\_posts\外部网关路由协议 BGP\BGP特征示意图.png" alt="BGP特征示意图" style="zoom:80%;" />
+<h3 id="BGP特征："><a href="#BGP特征：" class="headerlink" title="BGP特征："></a>BGP特征：</h3><img src="https://shierjinghuang.github.io/2023/03/31/外部网关路由协议 BGP/BGP特征示意图.png" alt="BGP特征示意图" style="zoom:80%;" />
 
 <ul>
 <li>BGP使用TCP为传输层协议，TCP端口号179。路由器之间的BGP会话基于TCP连接而建立</li>
@@ -484,7 +484,7 @@
 <h3 id="BGP对等体关系"><a href="#BGP对等体关系" class="headerlink" title="BGP对等体关系"></a>BGP对等体关系</h3><blockquote>
 <p><font color="BLUE">两个建立BGP会话的路由器互为对等体（Peer），BGP对等体之间交换BGP路由表</font></p>
 </blockquote>
-<img src="D:\blog\shierjinghuang\source\_posts\外部网关路由协议 BGP\BGP对等体.png" alt="BGP对等体" style="zoom:80%;" />
+<img src="https://shierjinghuang.github.io/2023/03/31/外部网关路由协议 BGP/BGP对等体.png" alt="BGP对等体" style="zoom:80%;" />
 
 <ul>
 <li><p>与OSPF、IS-IS等协议不同，<strong>BGP的会话是基于TCP建立的</strong></p>
@@ -506,7 +506,7 @@
 </blockquote>
 </li>
 </ul>
-<h4 id="BGP对等体关系建立"><a href="#BGP对等体关系建立" class="headerlink" title="BGP对等体关系建立"></a>BGP对等体关系建立</h4><img src="D:\blog\shierjinghuang\source\_posts\外部网关路由协议 BGP\BGP对等体示意图.png" alt="BGP对等体示意图" style="zoom:67%;" />
+<h4 id="BGP对等体关系建立"><a href="#BGP对等体关系建立" class="headerlink" title="BGP对等体关系建立"></a>BGP对等体关系建立</h4><img src="https://shierjinghuang.github.io/2023/03/31/外部网关路由协议 BGP/BGP对等体示意图.png" alt="BGP对等体示意图" style="zoom:67%;" />
 
 <ul>
 <li><p>先启动BGP的一端先发起TCP连接，如图所示，R1先启动BGP，R1使用随机端口号向R2的179端口发起TCP连接，完成TCP连接的建立</p>
@@ -531,12 +531,12 @@
 <li>Loopback接口非常稳定，而且可以借助AS内的IGP和冗余拓扑来保证可靠性</li>
 <li>在部署EBGP对等体关系时，通常使用直连接口的IP地址作为源地址，如若使用Loopback接口建立EBGP对等体关系，则应注意EBGP多跳问题</li>
 </ul>
-<img src="D:\blog\shierjinghuang\source\_posts\外部网关路由协议 BGP\冗余链路示意图.png" alt="冗余链路示意图" style="zoom:67%;" />
+<img src="https://shierjinghuang.github.io/2023/03/31/外部网关路由协议 BGP/冗余链路示意图.png" alt="冗余链路示意图" style="zoom:67%;" />
 
 <blockquote>
 <p>一般而言在AS内部，网络具备一定的冗余性。在R1与R3之间，如果采用直连接口建IBGP邻居关系，那么一旦接口或者直连链路发生故障，BGP会话也就断了，但是事实上，由于冗余链路的存在，R1与R3之间的IP连通性其实并没有DOWN</p>
 </blockquote>
-<h3 id="BGP报文及状态机"><a href="#BGP报文及状态机" class="headerlink" title="BGP报文及状态机"></a>BGP报文及状态机</h3><img src="D:\blog\shierjinghuang\source\_posts\外部网关路由协议 BGP\BGP报文格式.png" alt="BGP报文格式" style="zoom:67%;" />
+<h3 id="BGP报文及状态机"><a href="#BGP报文及状态机" class="headerlink" title="BGP报文及状态机"></a>BGP报文及状态机</h3><img src="https://shierjinghuang.github.io/2023/03/31/外部网关路由协议 BGP/BGP报文格式.png" alt="BGP报文格式" style="zoom:67%;" />
 
 <h4 id="BGP报文类型"><a href="#BGP报文类型" class="headerlink" title="BGP报文类型:"></a>BGP报文类型:</h4><p><font color="FF0000">BGP存在5种类型的报文，不同类型的报文拥有相同的头部（header）</font></p>
 <p>不同于常见的IGP协议，<font color="FF6600"><strong>BGP使用TCP作为传输层协议，端口号179</strong></font>，这使得BGP支持在非直连的路由器之间建立对等体关系</p>
@@ -574,7 +574,7 @@
 <td>当路由策略发生变化时，触发请求对等体重新通告路由</td>
 </tr>
 </tbody></table>
-<h4 id="BGP报文格式"><a href="#BGP报文格式" class="headerlink" title="BGP报文格式:"></a>BGP报文格式:</h4><h5 id="BGP报文格式-报文头格式"><a href="#BGP报文格式-报文头格式" class="headerlink" title="BGP报文格式 - 报文头格式"></a>BGP报文格式 - 报文头格式</h5><img src="D:\blog\shierjinghuang\source\_posts\外部网关路由协议 BGP\BGP报文头格式.png" style="zoom:80%;" />
+<h4 id="BGP报文格式"><a href="#BGP报文格式" class="headerlink" title="BGP报文格式:"></a>BGP报文格式:</h4><h5 id="BGP报文格式-报文头格式"><a href="#BGP报文格式-报文头格式" class="headerlink" title="BGP报文格式 - 报文头格式"></a>BGP报文格式 - 报文头格式</h5><img src="https://shierjinghuang.github.io/2023/03/31/外部网关路由协议 BGP/BGP报文头格式.png" style="zoom:80%;" />
 
 <ul>
 <li>BGP五种报文都拥有相同的报文头，格式如左侧所示，主要字段解释如下：<ul>
@@ -584,7 +584,7 @@
 </ul>
 </li>
 </ul>
-<h5 id="BGP报文格式-Open"><a href="#BGP报文格式-Open" class="headerlink" title="BGP报文格式 - Open"></a>BGP报文格式 - Open</h5><img src="D:\blog\shierjinghuang\source\_posts\外部网关路由协议 BGP\BGP_OPen报文格式.png" alt="BGP_OPen报文格式" style="zoom:80%;" />
+<h5 id="BGP报文格式-Open"><a href="#BGP报文格式-Open" class="headerlink" title="BGP报文格式 - Open"></a>BGP报文格式 - Open</h5><img src="https://shierjinghuang.github.io/2023/03/31/外部网关路由协议 BGP/BGP_OPen报文格式.png" alt="BGP_OPen报文格式" style="zoom:80%;" />
 
 <ul>
 <li><font color="FF6600"><strong>Open报文是TCP连接建立之后发送的第一个报文，用于建立BG对等体之间的连接关系</strong></font>，报文格式如左侧所示，主要字段解释如下：<ul>
@@ -598,7 +598,7 @@
 </ul>
 </li>
 </ul>
-<h5 id="BGP报文格式-Update"><a href="#BGP报文格式-Update" class="headerlink" title="BGP报文格式 - Update"></a>BGP报文格式 - Update</h5><img src="D:\blog\shierjinghuang\source\_posts\外部网关路由协议 BGP\BGP_Update报文.png" alt="BGP_Update报文" style="zoom: 80%;" />
+<h5 id="BGP报文格式-Update"><a href="#BGP报文格式-Update" class="headerlink" title="BGP报文格式 - Update"></a>BGP报文格式 - Update</h5><img src="https://shierjinghuang.github.io/2023/03/31/外部网关路由协议 BGP/BGP_Update报文.png" alt="BGP_Update报文" style="zoom: 80%;" />
 
 <ul>
 <li><font color="FF6600"><strong>Update报文用于在对等体之间传递路由信息，可以用于发布、撤销路由</strong></font></li>
@@ -613,7 +613,7 @@
 </ul>
 </li>
 </ul>
-<h5 id="BGP报文格式-Notification"><a href="#BGP报文格式-Notification" class="headerlink" title="BGP报文格式 - Notification"></a>BGP报文格式 - Notification</h5><img src="D:\blog\shierjinghuang\source\_posts\外部网关路由协议 BGP\BGP_Notification报文.png" alt="BGP_Notification报文" style="zoom:80%;" />
+<h5 id="BGP报文格式-Notification"><a href="#BGP报文格式-Notification" class="headerlink" title="BGP报文格式 - Notification"></a>BGP报文格式 - Notification</h5><img src="https://shierjinghuang.github.io/2023/03/31/外部网关路由协议 BGP/BGP_Notification报文.png" alt="BGP_Notification报文" style="zoom:80%;" />
 
 <ul>
 <li>当BGP检测到错误状态时（对等体关系建立时、建立之后都可能发生），就会向对等体发送Notification，告知对端错误原因。之后BGP连接将会立即中断<ul>
@@ -622,13 +622,13 @@
 </ul>
 </li>
 </ul>
-<h5 id="BGP报文格式-Keepalive"><a href="#BGP报文格式-Keepalive" class="headerlink" title="BGP报文格式 - Keepalive"></a>BGP报文格式 - Keepalive</h5><img src="D:\blog\shierjinghuang\source\_posts\外部网关路由协议 BGP\BGP_Keepalive报文.png" alt="BGP_Keepalive" style="zoom:80%;" />
+<h5 id="BGP报文格式-Keepalive"><a href="#BGP报文格式-Keepalive" class="headerlink" title="BGP报文格式 - Keepalive"></a>BGP报文格式 - Keepalive</h5><img src="https://shierjinghuang.github.io/2023/03/31/外部网关路由协议 BGP/BGP_Keepalive报文.png" alt="BGP_Keepalive" style="zoom:80%;" />
 
 <ul>
 <li><font color="FF6600"><strong>BGP路由器收到对端发送的Keepalive报文，将对等体状态置为已建立，同时后续定期发送keepalive报文用于保持连接</strong></font></li>
 <li>Keepalive报文格式中只包含报文头，没有附加其他任何字段</li>
 </ul>
-<h5 id="BGP报文格式-Route-refresh"><a href="#BGP报文格式-Route-refresh" class="headerlink" title="BGP报文格式 - Route-refresh"></a>BGP报文格式 - Route-refresh</h5><img src="D:\blog\shierjinghuang\source\_posts\外部网关路由协议 BGP\BGP_Route-refresh报文.png" alt="BGP_Route-refresh报文"  />
+<h5 id="BGP报文格式-Route-refresh"><a href="#BGP报文格式-Route-refresh" class="headerlink" title="BGP报文格式 - Route-refresh"></a>BGP报文格式 - Route-refresh</h5><img src="https://shierjinghuang.github.io/2023/03/31/外部网关路由协议 BGP/BGP_Route-refresh报文.png" alt="BGP_Route-refresh报文"  />
 
 <ul>
 <li><font color="FF6600"><strong>Route-refresh报文用来要求对等体重新发送指定地址族的路由信息</strong></font>，一般为本端修改了相关路由策略之后让对方重新发送Update报文，本端执行新的路由策略重新计算BGP路由。</li>
@@ -677,7 +677,7 @@
 <td>已经收到对方的Keepalive包，双方能力特性经协商发现一致，开始使用Update通告路由信息</td>
 </tr>
 </tbody></table>
-<img src="D:\blog\shierjinghuang\source\_posts\外部网关路由协议 BGP\BGP状态机示意图.png" alt="BGP状态机示意图" style="zoom:80%;" />
+<img src="https://shierjinghuang.github.io/2023/03/31/外部网关路由协议 BGP/BGP状态机示意图.png" alt="BGP状态机示意图" style="zoom:80%;" />
 
 <ul>
 <li><p>Idle状态是BGP初始状态。在Idle状态下，BGP拒绝对等体发送的连接请求。只有在收到本设备的Start事件后，BGP才开始尝试和其它BGP对等体进行TCP连接，并转至Connect状态</p>
@@ -716,11 +716,11 @@
 </ul>
 </li>
 </ul>
-<h4 id="BGP状态机详情："><a href="#BGP状态机详情：" class="headerlink" title="BGP状态机详情："></a>BGP状态机详情：</h4><img src="D:\blog\shierjinghuang\source\_posts\外部网关路由协议 BGP\idle状态.png" alt="idle状态" style="zoom: 67%;" />
+<h4 id="BGP状态机详情："><a href="#BGP状态机详情：" class="headerlink" title="BGP状态机详情："></a>BGP状态机详情：</h4><img src="https://shierjinghuang.github.io/2023/03/31/外部网关路由协议 BGP/idle状态.png" alt="idle状态" style="zoom: 67%;" />
 
-<img src="D:\blog\shierjinghuang\source\_posts\外部网关路由协议 BGP\Connect.png" style="zoom:67%;" />
+<img src="https://shierjinghuang.github.io/2023/03/31/外部网关路由协议 BGP/Connect.png" style="zoom:67%;" />
 
-<img src="D:\blog\shierjinghuang\source\_posts\外部网关路由协议 BGP\BGP状态机2.png" style="zoom:67%;" />
+<img src="https://shierjinghuang.github.io/2023/03/31/外部网关路由协议 BGP/BGP状态机2.png" style="zoom:67%;" />
 
 <h3 id="BGP协议表项"><a href="#BGP协议表项" class="headerlink" title="BGP协议表项"></a>BGP协议表项</h3><h3 id="BGP路由生成"><a href="#BGP路由生成" class="headerlink" title="BGP路由生成"></a>BGP路由生成</h3><p><font color="BLUE">不同于IGP路由协议，BGP自身并不会发现并计算产生路由，BGP将IGP路由表中的路由注入到BGP路由表中，并通过Update报文传递给BGP对等体</font></p>
 <ul>
@@ -731,7 +731,7 @@
 </li>
 </ul>
 <p>与IGP协议相同，BGP支持根据已有的路由条目进行聚合，生成聚合路由</p>
-<h4 id="Network注入路由"><a href="#Network注入路由" class="headerlink" title="Network注入路由"></a>Network注入路由</h4><img src="D:\blog\shierjinghuang\source\_posts\外部网关路由协议 BGP\Network注入路由示意图.png" style="zoom:80%;" />
+<h4 id="Network注入路由"><a href="#Network注入路由" class="headerlink" title="Network注入路由"></a>Network注入路由</h4><img src="https://shierjinghuang.github.io/2023/03/31/外部网关路由协议 BGP/Network注入路由示意图.png" style="zoom:80%;" />
 
 <blockquote>
 <p><font color="blue">Network方式注入的路由必须是已经存在于IP路由表中的路由条目，否则不会被成功注入到BGP路由表中</font></p>
@@ -768,7 +768,7 @@
 [R1-bgp] peer ipv4-address ebgp-max-hop [ hop-count ]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>指定发送BGP报文的源接口，并可指定发起连接时使用的源地址<br>指定建立EBGP连接允许的最大跳数。缺省情况下，EBGP连接允许的最大跳数为1，即只能在物理直连链路上建立EBGP连接</p>
-<h4 id="基本BGP配置实验："><a href="#基本BGP配置实验：" class="headerlink" title="基本BGP配置实验："></a>基本BGP配置实验：</h4><img src="D:\blog\shierjinghuang\source\_posts\外部网关路由协议 BGP\基本BGP实验拓扑.png" alt="基本BGP实验拓扑" style="zoom: 67%;" />
+<h4 id="基本BGP配置实验："><a href="#基本BGP配置实验：" class="headerlink" title="基本BGP配置实验："></a>基本BGP配置实验：</h4><img src="https://shierjinghuang.github.io/2023/03/31/外部网关路由协议 BGP/基本BGP实验拓扑.png" alt="基本BGP实验拓扑" style="zoom: 67%;" />
 
 <h5 id="配置接口：如上图所示配置接口地址和环回地址"><a href="#配置接口：如上图所示配置接口地址和环回地址" class="headerlink" title="配置接口：如上图所示配置接口地址和环回地址"></a>配置接口：如上图所示配置接口地址和环回地址</h5><h5 id="R1与R2之间的两条链路分别配置物理接口的peer（EBGP）："><a href="#R1与R2之间的两条链路分别配置物理接口的peer（EBGP）：" class="headerlink" title="R1与R2之间的两条链路分别配置物理接口的peer（EBGP）："></a>R1与R2之间的两条链路分别配置物理接口的peer（EBGP）：</h5><p><strong>R1:</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">bgp 100
