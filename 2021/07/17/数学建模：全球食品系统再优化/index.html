@@ -478,16 +478,16 @@
 <p>按照农业进口出口比例计算，2018年中国粮食进口24948734吨，出口34577854，总产量614697756吨，自给率达96.41%，并主要集中于大豆等经济作物。国家的食品供应能力在全球位居前列。中国耕地面积为1432960平方公里，中国政府用占据世界上%7的耕地面积，养活了占世界人口总数20%的中国人民。</p>
 <p>由于上世纪末至本世纪初的十年间，中国耕地面积下降。中国政府在2009年化设耕地红线即15.60亿亩的基本农田数。中国谷物耕地面积至2002年的低点逐年上升</p>
 <p>表1为中国谷物耕地面积，表2为中国农业GDP，表3为化肥消费数,表4为中国农业机械数量列表。</p>
-<img src="D:\blog\shierjinghuang\source\_posts\数学建模：全球食品系统再优化.assets\wps3.jpg" style="zoom: 67%;" />
+<img src="https://shierjinghuang.github.io/2021/07/17/数学建模：全球食品系统再优化/中国谷物耕地面积.jpg" style="zoom: 67%;" />
 
 <center>表1 中国谷物耕地面积（公顷）</center>
-<img src="D:\blog\shierjinghuang\source\_posts\数学建模：全球食品系统再优化.assets\wps4.jpg" alt="表2 中国农业GDP（美元）" style="zoom: 67%;" />
+<img src="https://shierjinghuang.github.io/2021/07/17/数学建模：全球食品系统再优化/中国农业GDP.jpg" alt="表2 中国农业GDP（美元）" style="zoom: 67%;" />
 
 <center>表2 中国农业GDP（美元）</center>
-<img src="D:\blog\shierjinghuang\source\_posts\数学建模：全球食品系统再优化.assets\wps5.jpg" alt="表3 化肥消费数（千克）/公顷" style="zoom:67%;" />
+<img src="https://shierjinghuang.github.io/2021/07/17/数学建模：全球食品系统再优化/化肥消费数.jpg" alt="表3 化肥消费数（千克）/公顷" style="zoom:67%;" />
 
 <center>表3 化肥消费数（千克）/公顷</center>
-<img src="D:\blog\shierjinghuang\source\_posts\数学建模：全球食品系统再优化.assets\wps6.jpg" alt="表4 中国农业机械数量" style="zoom:67%;" />
+<img src="https://shierjinghuang.github.io/2021/07/17/数学建模：全球食品系统再优化/中国农业机械数量.jpg" alt="表4 中国农业机械数量" style="zoom:67%;" />
 
 <center>表4 中国农业机械数量<center>
 
@@ -499,18 +499,21 @@
 </ul>
 <h4 id="5-1模型的思路设计"><a href="#5-1模型的思路设计" class="headerlink" title="5.1模型的思路设计"></a>5.1模型的思路设计</h4><p>按照统计学的观点，以化肥消耗，谷物耕地面积，农村人口，农机具保有量占比作为参数建立一个四维随机变量，记作x=(x1,x2,x3,x4)^T^,用一组单位向量(a,b,c,d)假设为相应参数。</p>
 <p><strong>列出对应的矩阵：</strong></p>
-<p><img src="D:\blog\shierjinghuang\source_posts\数学建模：全球食品系统再优化.assets\wps2.png" alt="模型矩阵"></p>
+<img src="https://shierjinghuang.github.io/2021/07/17/数学建模：全球食品系统再优化/模型矩阵.png" alt="模型矩阵"  />
+
 <p><strong>简记作:</strong></p>
 <ul>
 <li>Y=A<del>x</del>，A=(a,b,c,d)^T^</li>
 </ul>
 <p>a,b,c,d称为主成分系数。一般要求y1，y2，y3，y4，之间互不相关，保证协方差矩阵Coy（y）为对角阵</p>
 <p>按照y的协方差矩阵应为对角阵的要求，有：</p>
-<p><img src="D:\blog\shierjinghuang\source_posts\数学建模：全球食品系统再优化.assets\wps7.png"></p>
+<img src="https://shierjinghuang.github.io/2021/07/17/数学建模：全球食品系统再优化/协方差矩阵.png" alt="协方差矩阵"  />
+
 <p>我们分析了2003至2019年的相关数据对矩阵进行求解。从中挑选不关联年份(2003,2008,2013,2018)建立矩阵，求解向量A(a,b,c,d)^T^</p>
-<p><img src="D:\blog\shierjinghuang\source_posts\数学建模：全球食品系统再优化.assets\wps8.png"></p>
+<img src="https://shierjinghuang.github.io/2021/07/17/数学建模：全球食品系统再优化/协和矩阵.png"  />
+
 <p>用协和矩阵或相关系数矩阵使用Matlab的pcacov函数进行主成分分析求得，(a,b,c,d)^T^，使用Matlab进行求解，得到(a,b,c,d)^T^ ，此时，我们令(a,b,c,d)^T^  = A,</p>
-<p>可以得到:Y=Ax并且<img src="D:\blog\shierjinghuang\source_posts\数学建模：全球食品系统再优化.assets\wps9.png">，即A = (a,b,c,d)^T^ ；从而建立一个具体的模型，使问题不再抽象，a1 ,a2 ,…,ap称为主成分系数。这些主成分系数可以通过SPSS进行计算</p>
+<p>可以得到:Y=Ax并且<img src="https://shierjinghuang.github.io/2021/07/17/数学建模：全球食品系统再优化/wps9.png" style="zoom:67%;" />，即A = (a,b,c,d)^T^ ；从而建立一个具体的模型，使问题不再抽象，a<del>1</del> ,a<del>2</del> ,…,a<del>p</del>称为主成分系数。这些主成分系数可以通过SPSS进行计算</p>
 <h4 id="5-2-模型在软件中的实现"><a href="#5-2-模型在软件中的实现" class="headerlink" title="5.2 模型在软件中的实现"></a>5.2 模型在软件中的实现</h4><p>将数据放入SPSS中并进行主成分分析，就可获得我们想要的数据</p>
 <h5 id="5-2-1-检验各元素之间的关联程度"><a href="#5-2-1-检验各元素之间的关联程度" class="headerlink" title="5.2.1 检验各元素之间的关联程度"></a>5.2.1 检验各元素之间的关联程度</h5><ul>
 <li>KMO和巴特利特检验  </li>
@@ -540,41 +543,40 @@
 </tr>
 </tbody></table>
 <p>一般情况下，KMO值应大于等于0.6，Sig值应小于等于0.05，元素之间关联程度。由数据可见，各元素之间关联性较大，可以用其它的表格去求取主成分系数。</p>
-<h5 id="5-2-2-根据SPSS所给的特征值和成分矩阵算出主成分系数"><a href="#5-2-2-根据SPSS所给的特征值和成分矩阵算出主成分系数" class="headerlink" title="5.2.2 根据SPSS所给的特征值和成分矩阵算出主成分系数"></a>5.2.2 根据SPSS所给的特征值和成分矩阵算出主成分系数</h5><img src="D:\blog\shierjinghuang\source\_posts\数学建模：全球食品系统再优化.assets\总方差解释.png" style="zoom:67%;" />
+<h5 id="5-2-2-根据SPSS所给的特征值和成分矩阵算出主成分系数"><a href="#5-2-2-根据SPSS所给的特征值和成分矩阵算出主成分系数" class="headerlink" title="5.2.2 根据SPSS所给的特征值和成分矩阵算出主成分系数"></a>5.2.2 根据SPSS所给的特征值和成分矩阵算出主成分系数</h5><img src="https://shierjinghuang.github.io/2021/07/17/数学建模：全球食品系统再优化/总方差解释.png" style="zoom:67%;" />
 
 <center>总方差解释</center>
-
-<img src="D:\blog\shierjinghuang\source\_posts\数学建模：全球食品系统再优化.assets\碎石图.jpg" alt="碎石图" style="zoom: 67%;" />
+<img src="https://shierjinghuang.github.io/2021/07/17/数学建模：全球食品系统再优化/碎石图.jpg" alt="碎石图" style="zoom: 67%;" />
 
 <center>碎石图</center>
-
-<img src="D:\blog\shierjinghuang\source\_posts\数学建模：全球食品系统再优化.assets\成分矩阵.png" style="zoom:67%;" />
+<img src="https://shierjinghuang.github.io/2021/07/17/数学建模：全球食品系统再优化/成分矩阵.png" style="zoom:67%;" />
 
 <p>设成分i中对应的第j个变量的主成分为pij,第i个特征值为ri, aij表示yi中xi前的系数, ki表示特征值的累计（占比），x`i为标准化后的变量，yi为主成分得分，所以由结论可得：</p>
-<img src="D:\blog\shierjinghuang\source\_posts\数学建模：全球食品系统再优化.assets\wps11.jpg"  />
+<img src="https://shierjinghuang.github.io/2021/07/17/数学建模：全球食品系统再优化/分析结论.jpg"  />
 
 <pre class="line-numbers language-none"><code class="language-none">y1&#x3D;a11x&#96;1+a12x&#96;2…+a1px&#96;p
 
 y2&#x3D;a21x&#96;1+a22x&#96;2+…+a2px&#96;p
-​~~~~~
+
 yn&#x3D;an1x&#96;1+an2x&#96;2+…+anpx&#96;p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>综合得分：y=k1<em>y1+k2</em>y2+…+kn*yn</p>
 <p>在本数据中，主成分分别为p1,p2,p3,p4,特征值为r1,r2,r3,r4,根据碎石图可知，占比最高的特征值只有一个，所以只要求取y=a1x<code>1+a2x</code>2+a3x<code>3+a4x</code>4中的主成分系数即可。</p>
 <h5 id="5-2-3-算出最终的综合得分"><a href="#5-2-3-算出最终的综合得分" class="headerlink" title="5.2.3 算出最终的综合得分"></a>5.2.3 算出最终的综合得分</h5><p>经过计算得出：<strong>y=0.487x <del>1</del>+0.516x<del>2</del>+0.480<del>x3</del>-0.516<del>x4</del></strong></p>
 <p>再在SPSS的数据编辑器中算出x<del>1</del>,x<del>2</del>,x<del>3</del>,x<del>4</del> </p>
-<img src="D:\blog\shierjinghuang\source\_posts\数学建模：全球食品系统再优化.assets\wps12.jpg" alt="x~1~,x~2~,x~3~,x~4~" style="zoom:67%;" />
+<img src="https://shierjinghuang.github.io/2021/07/17/数学建模：全球食品系统再优化/SPSS计算结果.jpg" alt="x~1~,x~2~,x~3~,x~4~" style="zoom:67%;" />
 
 <p>再列出表达式算出综合得分</p>
-<img src="D:\blog\shierjinghuang\source\_posts\数学建模：全球食品系统再优化.assets\wps13.jpg" style="zoom:67%;" />
+<img src="https://shierjinghuang.github.io/2021/07/17/数学建模：全球食品系统再优化/wps13.jpg" style="zoom:67%;" />
 
 <h5 id="5-2-4-综合得分与实际的比较"><a href="#5-2-4-综合得分与实际的比较" class="headerlink" title="5.2.4 综合得分与实际的比较"></a>5.2.4 综合得分与实际的比较</h5><p>将粮食总产量标准化后的数据与主成分得分进行比较，变化趋势基本一致，所以用SPSS进行对粮食总产量的评定具有可操作性</p>
-<img src="D:\blog\shierjinghuang\source\_posts\数学建模：全球食品系统再优化.assets\wps14.jpg" style="zoom:67%;" />
+<img src="https://shierjinghuang.github.io/2021/07/17/数学建模：全球食品系统再优化/wps14.jpg" style="zoom:67%;" />
 
 <h4 id="5-3-分析主成分系数"><a href="#5-3-分析主成分系数" class="headerlink" title="5.3 分析主成分系数"></a>5.3 分析主成分系数</h4><p>首先，由上面的计算可知，谷物耕地面积，农业机械总量，化肥消费量，农村人口所对应的系数分别为0.487，0.516，0.480，-0.516。所以，谷物耕地面积，农业机械总量，化肥消费量对粮食总量有促进作用，三者相差不大，而农业机械总量所对应的系数偏大一点，这表示随着现代化，高新技术的农业机械运用到农业中，农业也大幅度增产，与此同时，农村逐步实现现代化，需要的劳动力也逐渐减少，也有部分农村发展成城市，农村人口同时也减少，所以农村人口所对应的系数为负值。</p>
 <h4 id="5-4-得出结论"><a href="#5-4-得出结论" class="headerlink" title="5.4 得出结论"></a>5.4 得出结论</h4><p>我们要继续促进农村的现代化，实现农业机械的现代化，谷物耕地面积，化肥消费量也不可以减少，与此同时，也要加强新农村的建设，在不影响农业所需要的劳动力同时，适当地将农村人向城市人过渡。这些因素可以一定程度上，促进粮食总产量</p>
 <h3 id="6-灵敏度分析："><a href="#6-灵敏度分析：" class="headerlink" title="6. 灵敏度分析："></a>6. 灵敏度分析：</h3><p>我们将目标函数写成偏导的形式</p>
-<p><img src="D:\blog\shierjinghuang\source_posts\数学建模：全球食品系统再优化.assets\wps15.png"></p>
+<img src="https://shierjinghuang.github.io/2021/07/17/数学建模：全球食品系统再优化/灵敏度分析.png"  />
+
 <p>对于每一个数据的偏导数实际上即向量A的各项系数。A=0.487,b=0.516,c=0.48,d=-0.516;</p>
 <p>我们通过改变每个指标的权重来优化当前的食品系统。为了证明我们开发的模型的鲁棒性，我们选定了发达国家：美国、以及发展中国家：中国，并对他们的年度FSI指数进行分析研究，我们得到以下结论：</p>
 <p>美国与中国的FSI指数走向都稳定趋势。但针对于其他发展中国家如尼泊尔，可以发现其FSI指数有着明显的剧烈波动。此外，对于不同国家，FSI指数曲线在短时间内相对于当前系统没有显著变化。当前各国的拟合曲线与各个国家发展状况大体保持一致。这表明，我们的模型可以很好地适合当前的系统。这也可以证明我们的模型的稳定性，因此我们可以使用该模型对这个这个国家的粮食系统做一些简单的评估与研究。</p>
