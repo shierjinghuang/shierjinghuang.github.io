@@ -1,0 +1,1616 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="华为防火墙安全技术概要, 十二惊惶">
+    <meta name="description" content="华为防火墙技术概述[TOC]
+防火墙概述
+防火墙是一种安全设备。用于保护一个网络区域免受来自另一个网络区域的攻击和入侵，通常被应用于网络边界
+
+
+防火墙根据设备形态分为，框式防火墙、盒式防火墙和软件防火墙
+
+防火墙作用是流量控制和安全防护，">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>华为防火墙安全技术概要 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">华为防火墙安全技术概要</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/HCIP/">
+                                <span class="chip bg-color">HCIP</span>
+                            </a>
+                        
+                            <a href="/tags/%E9%98%B2%E7%81%AB%E5%A2%99%E6%8A%80%E6%9C%AF/">
+                                <span class="chip bg-color">防火墙技术</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                网络安全
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-04-16
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2023-04-16
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    6.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    26 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="华为防火墙技术概述"><a href="#华为防火墙技术概述" class="headerlink" title="华为防火墙技术概述"></a>华为防火墙技术概述</h2><p>[TOC]</p>
+<h3 id="防火墙概述"><a href="#防火墙概述" class="headerlink" title="防火墙概述"></a>防火墙概述</h3><blockquote>
+<p><font color="blue">防火墙是一种安全设备。用于保护一个网络区域免受来自另一个网络区域的攻击和入侵，通常被应用于网络边界</font></p>
+</blockquote>
+<ul>
+<li><p>防火墙根据设备形态分为，<strong>框式防火墙</strong>、<strong>盒式防火墙</strong>和<strong>软件防火墙</strong></p>
+</li>
+<li><p><font color="FF6300">防火墙作用是<strong>流量控制</strong>和<strong>安全防护</strong>，<strong>区分和隔离不同安全区域</strong></font></p>
+</li>
+</ul>
+<p>防火墙的转发流程比路由器复杂。以框式设备为例，硬件上除了接口、LPU  <code>Line Processing Unit</code>、交换网板等外，防火墙还特有SPU Service Processing Unit，用于实现防火墙的安全功能</p>
+<img src="D:\blog\shierjinghuang\source\_posts\华为防火墙技术\防火墙转发流程.png" style="zoom: 50%;" />
+
+<center>防火墙转发流程</center>
+#### 防火墙的典型应用场景
+
+<img src="D:\blog\shierjinghuang\source\_posts\华为防火墙技术\应用场景.png" style="zoom: 33%;" />
+
+<center>四种不同场景下的防火墙应用</center>
+>DMZ非军事区 Demilitarized Zone,是介于严格的军事管制区和松散的公共区域之间的一种有着部分管制的区域。防火墙设备借用了这一术语，指代一个逻辑上和物理上都与内部网络和外部网络分离的安全区域，在企业中一般用于服务器的放置。
+
+<blockquote>
+<p>数据中心网络一般采用Spine-Leaf架构。Spine为骨干节点负责流量高速转发，Leaf为叶子节点负责服务器、防火墙或其他设备接入。Spine-Leaf之间全三层互联</p>
+</blockquote>
+<h4 id="防火墙介绍："><a href="#防火墙介绍：" class="headerlink" title="防火墙介绍："></a>防火墙介绍：</h4><ul>
+<li>防火墙从包过滤防火墙发展起经历了状态检测、统一威胁管理、NGFW等到AI防火墙，有以下特点：<ul>
+<li>访问控制越来越精细</li>
+<li>防护能力越来越强</li>
+<li>性能越来越高</li>
+</ul>
+</li>
+</ul>
+<img src="D:\blog\shierjinghuang\source\_posts\华为防火墙技术\防火墙发展历程.png" style="zoom: 33%;" />
+
+<h5 id="包过滤防火墙"><a href="#包过滤防火墙" class="headerlink" title="包过滤防火墙"></a>包过滤防火墙</h5><p><font color="FF3300">包过滤是指基于<strong>五元组</strong>对每个数据包进行检测，根据配置的安全策略转发或丢弃数据包</font></p>
+<p>包过滤防火墙的基本原理是：通过配置<strong>访问控制列表</strong>（Access Control List，ACL）实施数据包的过滤</p>
+<ul>
+<li><p>包过滤防火墙主要基于数据包中的源/目的IP地址、源/目的端口号、IP 标识和报文传递的方向等信息</p>
+</li>
+<li><p>包过滤防火墙的设计简单，非常易于实现，而且价格便宜</p>
+</li>
+<li><p>包过滤防火墙的缺点主要表现以下几点：</p>
+<ul>
+<li>随着ACL复杂度和长度的增加，其过滤性能呈指数下降</li>
+<li>静态的ACL规则难以适应动态的安全要求</li>
+<li>包过滤不检查会话状态也不分析数据，这很容易让黑客蒙混过关。例如，攻击者可以使用假冒地址进行欺骗，通过把自己主机IP地址设成一个合法主机IP地址，就能很轻易地通过报文过滤器。</li>
+</ul>
+</li>
+</ul>
+<h5 id="状态检测防火墙"><a href="#状态检测防火墙" class="headerlink" title="状态检测防火墙"></a>状态检测防火墙</h5><ul>
+<li><font color="FF3300">状态检测考虑报文前后的关联性，检测的是连接状态而非单个报文，状态检测防火墙就是支持状态检测功能的防火墙</font></li>
+</ul>
+<img src="D:\blog\shierjinghuang\source\_posts\华为防火墙技术\状态检查防火墙.png" style="zoom:67%;" />
+
+<p><del>NGFW也是状态检测防火墙的一种。NGFW在内容安全和处理性能有极大的提升</del>，此处存疑，下一代防火墙的定义随时代发展定义也在变化，望读者读到自行判断</p>
+<h5 id="AI防火墙"><a href="#AI防火墙" class="headerlink" title="AI防火墙"></a>AI防火墙</h5><p>AI防火墙是结合AI技术的<del>新一代防火墙</del>它通过结合AI算法或AI芯片等多种方式，进一步提高了防火墙的安全防护能力和性能</p>
+<blockquote>
+<p>此处也是存有一些需要自行考证，NGFW这个定义在我本科阶段大创中以经开始尝试实现结合人工智能和状态检查技术和大数据的网<strong>络态势感知系统</strong>，AI 防火墙或许以及无法担起NGFW（下一代防火墙）的称呼，以经从学科前沿，转为可以方便接触的内容</p>
+</blockquote>
+<p><del>华为AI防火墙，内置的恶意文件检测引擎CDE、诱捕Sensor、APT检测引擎和探针，支持与沙箱和华为大数据分析平台CIS联动检测，打造智能防御体系</del></p>
+<p><img src="D:\blog\shierjinghuang\source_posts\华为防火墙技术\1681542055075.png"></p>
+<h3 id="防火墙的基本概念"><a href="#防火墙的基本概念" class="headerlink" title="防火墙的基本概念"></a>防火墙的基本概念</h3><blockquote>
+<p>安全区域 Security Zone，简称为区域 Zone，是防火墙的重要概念。防火墙大部分安全策略都基于安全区域实施</p>
+</blockquote>
+<p>一个安全区域是防火墙若干接口所连网络的集合，一个区域内的用户具有相同的安全属性</p>
+<h4 id="默认安全区域"><a href="#默认安全区域" class="headerlink" title="默认安全区域"></a>默认安全区域</h4><blockquote>
+<p>华为防火墙确认已创建四个区域，untrust、dmz、trust和local区域</p>
+</blockquote>
+<p>安全区域有以下特性：</p>
+<ul>
+<li>默认的安全区域不能删除，也不允许修改安全优先级</li>
+<li>每个Zone都必须设置一个安全优先级Priority，值越大，则Zone的安全优先级越高</li>
+<li>用户可根据自己的需求创建自定义的Zone</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>区域名称</strong></th>
+<th><strong>默认安全优先级</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>非受信区域</td>
+<td>低安全级别区域，优先级为5</td>
+</tr>
+<tr>
+<td>非军事化区</td>
+<td>中等安全级别区域，优先级为50</td>
+</tr>
+<tr>
+<td>受信区域</td>
+<td>较高安全级别区域，优先级为85</td>
+</tr>
+<tr>
+<td>本地区域</td>
+<td>Local区域定义的是设备本身,Local区域是最高安全级别区域，优先级为100</td>
+</tr>
+</tbody></table>
+<p>防火墙默认安全区域均为小写字母，且大小写敏感，包括：</p>
+<ul>
+<li>非受信区域（untrust）：通常用于定义Internet等不安全的网络</li>
+<li>非军事化区域（dmz）：通常用于定义内网服务器所在区域。因为这种设备虽然部署在内网，但是经常需要被外网访问，存在较大安全隐患，同时一般又不允许其主动访问外网，所以将其部署一个优先级比trust低，但是比untrust高的安全区域中<ul>
+<li>DMZ（Demilitarized Zone）起源于军方，是介于严格的军事管制区和松散的公共区域之间的一种有着部分管制的区域。防火墙设备引用了这一术语，指代一个逻辑上和物理上都与内部网络和外部网络分离的安全区域</li>
+<li>DMZ安全区域很好地解决了服务器的放置问题。该安全区域可以放置需要对外提供网络服务的设备，如WWW服务器、FTP服务器等。上述服务器如果放置于内部网络，外部恶意用户则有可能利用某些服务的安全漏洞攻击内部网络；如果放置于外部网络，则无法保障它们的安全</li>
+</ul>
+</li>
+<li>受信区域（trust）：通常用于定义内网终端用户所在区域</li>
+<li>本地区域（local）：local区域定义的是设备本身，包括设备的各接口本身。凡是由设备构造并主动发出的报文均可认为是从Local区域中发出，凡是需要设备响应并处理（而不仅是检测或直接转发）的报文均可认为是由local区域接收。用户不能改变local区域本身的任何配置，包括向其中添加接口<br>由于local区域的特殊性，在很多需要设备本身进行报文收发的应用中，需要开放对端所在安全区域与local区域之间的安全策略</li>
+</ul>
+<h4 id="防火墙基本概念：安全策略"><a href="#防火墙基本概念：安全策略" class="headerlink" title="防火墙基本概念：安全策略"></a>防火墙基本概念：安全策略</h4><blockquote>
+<p><font color="RED"><strong>安全策略是控制防火墙对流量转发以及对流量进行内容安全一体化检测的策略</strong></font></p>
+</blockquote>
+<p>当防火墙收到流量后，对流量的属性（五元组、用户、时间段等）进行识别，然后与安全策略的条件进行匹配。如果条件匹配，则此流量被执行对应的动作</p>
+<blockquote>
+<p>五元组 即IP协议五元组 分别是 源端口 目的端口 源IP 目的IP 及协议字段组成，用于标识一个会话</p>
+</blockquote>
+<img src="D:\blog\shierjinghuang\source\_posts\华为防火墙技术\安全策略.png" style="zoom:50%;" />
+
+<h5 id="安全策略执行过程："><a href="#安全策略执行过程：" class="headerlink" title="安全策略执行过程："></a>安全策略执行过程：</h5><ul>
+<li>安全策略的组成有匹配条件、动作和安全配置文件，安全配置文件实现内容安全</li>
+<li>安全策略动作如果为“允许”则可配置安全配置文件，如果为“禁止”则可配置反馈报文</li>
+</ul>
+<img src="D:\blog\shierjinghuang\source\_posts\华为防火墙技术\安全策略执行过程.png" style="zoom:33%;" />
+
+<p><strong>动作说明：</strong></p>
+<ul>
+<li><p>允许：如果动作为允许，则对流量进行如下处理：</p>
+<ul>
+<li>如果没有配置内容安全检测，则允许流量通过</li>
+<li>如果配置内容安全检测，最终根据内容安全检测的结论来判断是否对流量进行放行。内容安全检测包括反病毒、入侵防御等，它是通过在安全策略中引用安全配置文件实现的<ul>
+<li>如果其中一个安全配置文件阻断该流量，则防火墙阻断该流量</li>
+<li>如果所有的安全配置文件都允许该流量转发，则防火墙允许该流量转发</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>禁止：表示拒绝符合条件的流量通过</p>
+<ul>
+<li>如果动作为“禁止”，防火墙可以将报文丢弃，还可以针对不同的报文类型选择发送对应的反馈报文。发起连接请求的客户端/服务器收到防火墙发送的阻断报文后，可以快速结束会话并让用户感知到请求被阻断<ul>
+<li>Reset客户端：防火墙向TCP客户端发送TCP reset报文</li>
+<li>Reset服务器：防火墙向TCP服务器发送TCP reset报文</li>
+<li>ICMP不可达：FW向报文客户端发送ICMP不可达报文</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>当配置多条安全策略规则时，安全策略的匹配按照策略列表的顺序执行，即从策略列表顶端开始逐条向下匹配。如果流量匹配了某个安全策略，将不再进行下一个策略的匹配</p>
+</li>
+<li><p>安全策略的配置顺序很重要，需要先配置条件精确的策略，再配置宽泛的策略</p>
+</li>
+</ul>
+<h4 id="防火墙基本概念：会话表"><a href="#防火墙基本概念：会话表" class="headerlink" title="防火墙基本概念：会话表"></a>防火墙基本概念：会话表</h4><blockquote>
+<ul>
+<li><font color="skyblue"><strong>会话表是用来记录TCP、UDP、ICMP等协议连接状态的表项，是防火墙转发报文的重要依据</strong></font></li>
+</ul>
+</blockquote>
+<p>防火墙采用了<font color="FF6600"><strong>基于状态的报文控制机制</strong></font>：<font color="FF6600">只对首包或者少量报文进行检测就确定一条连接的状态，大量报文直接根据所属连接的状态进行控制</font></p>
+<p>这种状态检测机制迅速提高了防火墙的检测和转发效率。会话表就是为了记录连接的状态而存在的。设备在转发TCP、UDP和ICMP报文时都需要查询会话表，来判断该报文所属的连接并采取相应的处理措施</p>
+<h5 id="会话表的创建和包处理过程"><a href="#会话表的创建和包处理过程" class="headerlink" title="会话表的创建和包处理过程"></a>会话表的创建和包处理过程</h5><ul>
+<li>防火墙状态检测开启情况下，流量的首包会创建会话表项，后续包即可直接匹配会话表项。</li>
+</ul>
+<img src="D:\blog\shierjinghuang\source\_posts\华为防火墙技术\会话表的创建和包处理过程.png" style="zoom: 50%;" />
+
+<h5 id="会话表的老化时间与长连接"><a href="#会话表的老化时间与长连接" class="headerlink" title="会话表的老化时间与长连接"></a>会话表的老化时间与长连接</h5><ul>
+<li><p>防火墙为各种协议设定了会话老化机制。当一条会话在老化时间内没有被任何报文匹配，则会被从会话表中删除。这种机制可以避免防火墙的设备资源被大量无用、陈旧的会话表项消耗。</p>
+</li>
+<li><p>对于某些特殊业务中，一条会话的两个连续报文可能间隔时间很长 </p>
+<ul>
+<li>用户通过FTP下载大文件，需要间隔很长时间才会在控制通道继续发送控制报文</li>
+<li>用户需要查询数据库服务器上的数据，这些查询操作的时间间隔远大于TCP的会话老化时间</li>
+</ul>
+</li>
+<li><p>如果会话表项被删除，则上述业务会中断，长连接 Long Link机制可以给部分连接设定超长的老化时间，解决解决因会话不爱老化导致的链接中断问题。</p>
+</li>
+</ul>
+<h4 id="多通道协议在防火墙上的问题"><a href="#多通道协议在防火墙上的问题" class="headerlink" title="多通道协议在防火墙上的问题"></a>多通道协议在防火墙上的问题</h4><p>如果在防火墙上配置严格的单向安全策略，那么防火墙将只允许业务单方向发起访问。这会导致一些特殊的协议无法工作</p>
+<blockquote>
+<p><font color="FF6300">通信过程中<strong>需占用两个或两个以上端口的协议被称为多通道协议</strong>，多通道协议需要考虑双向安全策略问题</font></p>
+</blockquote>
+<ul>
+<li><strong>单通道协议</strong>：通信过程中只需占用一个端口的协议</li>
+<li><strong>多通道协议</strong>：通信过程中需占用两个或两个以上端口的协议<ul>
+<li>多通道协议存在时，防火墙配置较为宽泛的安全策略也可以解决协议不可用问题，但是存在安全隐患</li>
+</ul>
+</li>
+</ul>
+<h5 id="ASPF与Server-map"><a href="#ASPF与Server-map" class="headerlink" title="ASPF与Server-map"></a>ASPF与Server-map</h5><p>为了解决多通道协议的问题，防火墙需要识别协议在应用层协商的地址和端口，需要开启ASPF（针对应用层的包过滤）功能</p>
+<blockquote>
+<p><font color="blue">ASPF也称作<strong>基于状态的报文过滤</strong>，ASPF功能可以自动检测某些报文的应用层信息并根据应用层信息放开相应的访问规则，即生成Server-map表</font></p>
+</blockquote>
+<p>Server-map表也记录了类似会话表中连接的状态。Server-map表中的信息相对简单，是简化的会话表，在真实流量到达前生成。在流量真实到达防火墙时，防火墙会基于Server-map表生成会话表，然后执行转发。<br>开启ASPF解决多通道协议问题，是生成Server-map表的一种方式</p>
+<ul>
+<li>Server-map表与会话表的关系如下：<ul>
+<li>Server-map表记录了应用层数据中的关键信息，报文命中该表后，不再受安全策略的控制；</li>
+<li>会话表是通信双方连接状态的具体体现；</li>
+<li>Server-map表不是当前的连接信息，而是防火墙对当前连接分析后得到的即将到来报文的预测；</li>
+<li>防火墙收到报文先检查是否命中会话表；</li>
+<li>如果没有命中则检查是否命中Server-map表；</li>
+<li>命中Server-map表的报文不受安全策略控制；</li>
+<li>防火墙最后为命中Server-map表的数据创建会话表。</li>
+</ul>
+</li>
+</ul>
+<h5 id="Server-map表与简化的包转发过程："><a href="#Server-map表与简化的包转发过程：" class="headerlink" title="Server-map表与简化的包转发过程："></a>Server-map表与简化的包转发过程：</h5><p>当防火墙接收到一个报文且没有命中会话表时，防火墙进入首包处理流程，查询是否有命中的Server-map表。如果有，则会生成会话表转发报文；如果没有，则执行其他包处理过程</p>
+<img src="D:\blog\shierjinghuang\source\_posts\华为防火墙技术\防火墙Server-map下的包转发流程.png" alt="防火墙Server-map下的包转发流程" style="zoom:50%;" />
+
+<h3 id="防火墙的基础配置"><a href="#防火墙的基础配置" class="headerlink" title="防火墙的基础配置"></a>防火墙的基础配置</h3><h4 id="防火墙基础配置命令"><a href="#防火墙基础配置命令" class="headerlink" title="防火墙基础配置命令"></a>防火墙基础配置命令</h4><h5 id="防火墙基础配置-接口"><a href="#防火墙基础配置-接口" class="headerlink" title="防火墙基础配置 - 接口"></a>防火墙基础配置 - 接口</h5><p>1 创建接口/进入接口视图</p>
+<pre class="line-numbers language-none"><code class="language-none">[R1] interface interface-type interface-number<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>和交换机、路由器相同，interface命令用来创建接口或进入指定的接口视图</p>
+<p>2 配置接口允许通过的协议</p>
+<pre class="line-numbers language-none"><code class="language-none">[R1-G0&#x2F;0&#x2F;1] service-manage &#123;http|https|ping|ssh|snmp|netconf|telnet|all &#125; &#123;permit|deny&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>service-manage命令用来允许或拒绝管理员通过HTTPS、Ping、SSH、SNMP、NETCONF以及Telnet访问设备<br>缺省情况下，接口开启了访问控制管理功能。仅有管理接口下 HTTP、HTTPS、Ping权限放开。非管理口所有权限都关闭。此时，即使配置了接口所在安全域允许访问local区域的安全策略，也不能通过该接口访问本地防火墙</p>
+<h5 id="防火墙基础配置-安全区域"><a href="#防火墙基础配置-安全区域" class="headerlink" title="防火墙基础配置 - 安全区域"></a>防火墙基础配置 - 安全区域</h5><p>1 创建安全区域</p>
+<pre class="line-numbers language-none"><code class="language-none">[R1] firewall zone name zone-name [ id id ]  <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li><p>firewall zone name命令创建安全区域，并进入安全区域视图。id表示安全区域ID，取值4～99，默认递增</p>
+</li>
+<li><p>firewall zone命令用来并进入安全区域视图。防火墙默认的四个区域无需创建也不能删除</p>
+</li>
+</ul>
+<p>2 设置安全区域优先级</p>
+<pre class="line-numbers language-none"><code class="language-none">[R1-zone-name] set priority security-priority<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>优先级取值范围为1～100，全局唯一，值越大优先级越高。系统默认的安全区域不能被删除，优先级也无法被重新配置或者删除</p>
+<p>3 添加接口到安全区域</p>
+<pre class="line-numbers language-none"><code class="language-none">[R1-zone-name] add interface interface-type &#123;interface-number|interface-number.subinterface-number&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>安全区域在使用时需要与防火墙的特定接口相关联，即需要将接口加入到安全区域。该接口既可以是物理接口，也可以是逻辑接口</p>
+<h5 id="防火墙基础配置-安全策略"><a href="#防火墙基础配置-安全策略" class="headerlink" title="防火墙基础配置 - 安全策略"></a>防火墙基础配置 - 安全策略</h5><p>1 进入安全策略视图</p>
+<pre class="line-numbers language-none"><code class="language-none">[R1] security-policy<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li>安全策略规则的创建、复制、移动和重命名都在此视图下完成。</li>
+</ul>
+<p>2 创建规则</p>
+<pre class="line-numbers language-none"><code class="language-none">[R1-policy-security] rule name rule-name<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li>rule name命令用来创建安全策略规则，并进入安全策略规则视图。</li>
+</ul>
+<p>3 配置安全策略规则的源安全区域</p>
+<pre class="line-numbers language-none"><code class="language-none">[R1-policy-security-rule-name] source-zone &#123; zone-name &amp;&lt;1-6&gt; | any &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li>命令中zone-name必须为系统已经存在的安全区域名称。安全策略规则一次最多添加或删除6个安全区域</li>
+</ul>
+<p>4 配置安全策略规则的目的安全区域</p>
+<pre class="line-numbers language-none"><code class="language-none">[R1-policy-security-rule-name] destination-zone &#123; zone-name &amp;&lt;1-6&gt; | any &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>5 配置安全策略规则的源IP地址</p>
+<pre class="line-numbers language-none"><code class="language-none">[R1-policy-security-rule-name] source-address ipv4-address &#123;ipv4-mask-length|mask mask-address&#125; <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li>命令中mask-address使用反掩码</li>
+</ul>
+<p>6  配置安全策略规则的目的IP地址</p>
+<pre class="line-numbers language-none"><code class="language-none">[R1-policy-security-rule-name] destination-address ipv4-address &#123;ipv4-mask-length|mask mask-address&#125; <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li>命令中mask-address使用反掩码</li>
+</ul>
+<p>7 配置服务</p>
+<pre class="line-numbers language-none"><code class="language-none">[Huawei] service &#123; service-name &amp;&lt;1-6&gt; | any &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li>service命令用来配置服务，如service protocol用来在安全策略中直接引用TCP/UDP/SCTP端口或IP层协议</li>
+</ul>
+<p>8 配置安全策略规则的动作</p>
+<pre class="line-numbers language-none"><code class="language-none">[Huawei] action &#123; permit | deny &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li>防火墙默认的动作为deny</li>
+</ul>
+<h3 id="防火墙安全策略配置实验"><a href="#防火墙安全策略配置实验" class="headerlink" title="防火墙安全策略配置实验"></a>防火墙安全策略配置实验</h3><img src="D:\blog\shierjinghuang\source\_posts\华为防火墙技术\防火墙安全策略配置实验拓扑.jpg" style="zoom:67%;" />
+
+<center>防火墙安全策略拓扑</center>
+设备互联方式、IP地址规划如图所示，R1、R2通过交换机S1与防火墙进行三层通信，S1上将连接R1、R2的接口分别划分到VLAN10、20，将连接防火墙的接口GE0/0/14、GE0/0/15分别划分到VLAN10、20。
+
+<p>R1属于DMZ（Demilitarized Zone，非军事化）区域、R2属于Untrust区域，在FW1上配置源NAT使得R1以FW1的GE0/0/2接口地址访问Untrust区域，同时配置NAT Server，使得R2可以通过FW1的GE0/0/2接口地址访问R1上开启的FTP服务。</p>
+<p>在FW1上配置安全策略，限制R1、R2之间的访问：DMZ区域的R1对Untrust区域的访问不受任何限制，但是Untrust区域只能主动访问DMZ区域中R1上的FTP服务。</p>
+<h4 id="实验背景"><a href="#实验背景" class="headerlink" title="实验背景"></a>实验背景</h4><p>为了保护企业网络安全，需要在企业网络边界部署一台防火墙，限制外部网络对企业内部网络的主动访问，同时作为出口设备，需要在防火墙上部署源NAT[用于内部用户访问Internet]、NAT Server[将内网服务器映射到公网]</p>
+<p>企业内部对外提供访问的服务为FTP服务，FTP协议为多通道协议，对于多通道协议，除了部署安全策略之外，还需要借助NAT ALG才能实现经过防火墙NAT之后依旧能够正常通信。</p>
+<h4 id="任务步骤"><a href="#任务步骤" class="headerlink" title="任务步骤"></a>任务步骤</h4><h5 id="步骤-1-基础连通性配置"><a href="#步骤-1-基础连通性配置" class="headerlink" title="步骤 1 基础连通性配置"></a>步骤 1 基础连通性配置</h5><ul>
+<li>完成互联接口IP地址配置、交换机VLAN划分配置，在R1、FW1上配置默认路由。</li>
+</ul>
+<p><strong>交换机基础配置</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">[S1]vlan 10
+[S1-vlan10] description DMZ
+[S1-vlan10] quit
+[S1]interface GigabitEthernet0&#x2F;0&#x2F;1
+[S1-GigabitEthernet0&#x2F;0&#x2F;1] port link-type access
+[S1-GigabitEthernet0&#x2F;0&#x2F;1] port default vlan 10
+[S1-GigabitEthernet0&#x2F;0&#x2F;1] quit
+[S1]interface GigabitEthernet0&#x2F;0&#x2F;14
+[S1-GigabitEthernet0&#x2F;0&#x2F;14] port link-type access
+[S1-GigabitEthernet0&#x2F;0&#x2F;14] port default vlan 10
+[S1-GigabitEthernet0&#x2F;0&#x2F;14] quit
+[S1]vlan 20
+[S1-vlan20] description Untrust
+[S1-vlan20] quit
+[S1]interface GigabitEthernet0&#x2F;0&#x2F;2
+[S1-GigabitEthernet0&#x2F;0&#x2F;2] port link-type access
+[S1-GigabitEthernet0&#x2F;0&#x2F;2] port default vlan 20
+[S1-GigabitEthernet0&#x2F;0&#x2F;2] quit
+[S1]interface GigabitEthernet0&#x2F;0&#x2F;15
+[S1-GigabitEthernet0&#x2F;0&#x2F;15] port link-type access
+[S1-GigabitEthernet0&#x2F;0&#x2F;15] port default vlan 20
+[S1-GigabitEthernet0&#x2F;0&#x2F;15] quit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>R1 配置</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">[R1]interface GigabitEthernet0&#x2F;0&#x2F;3
+[R1-GigabitEthernet0&#x2F;0&#x2F;3] ip address 10.0.11.11 24
+[R1-GigabitEthernet0&#x2F;0&#x2F;3] quit
+[R1]ip route-static 0.0.0.0 0.0.0.0 10.0.11.1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>配置用于访问Internet的默认路由。</li>
+</ul>
+<p><strong>R2 配置</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">[R2]interface GigabitEthernet0&#x2F;0&#x2F;4
+[R2-GigabitEthernet0&#x2F;0&#x2F;3] ip address 10.0.12.2 255.255.255.0
+[R2-GigabitEthernet0&#x2F;0&#x2F;3] quit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>FW1登录配置</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">Login authentication
+Username:admin
+Password:
+The password needs to be changed. Change now? [Y&#x2F;N]: Y
+Please enter old password: 
+Please enter new password: 
+Please confirm new password:
+防火墙的Console接口默认存在认证配置，默认账号密码为：admin&#x2F;Admin@123登录之后需要修改密码才可以正常登录<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>配置FW1接口IP、默认路由</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">[FW1]interface GigabitEthernet0&#x2F;0&#x2F;1
+[FW1-GigabitEthernet0&#x2F;0&#x2F;1] ip address 10.0.11.1 255.255.255.0
+[FW1-GigabitEthernet0&#x2F;0&#x2F;1] quit
+[FW1]interface GigabitEthernet0&#x2F;0&#x2F;2
+[FW1-GigabitEthernet0&#x2F;0&#x2F;2] ip address 10.0.12.1 255.255.255.0
+[FW1-GigabitEthernet0&#x2F;0&#x2F;2] quit
+[FW1]ip route-static 0.0.0.0 0.0.0.0 10.0.12.2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>配置FW1接口允许通过ping报文</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">[FW1]interface GigabitEthernet0&#x2F;0&#x2F;1
+[FW1-GigabitEthernet0&#x2F;0&#x2F;1] service-manage ping permit
+[FW1-GigabitEthernet0&#x2F;0&#x2F;1] quit
+[FW1]interface GigabitEthernet0&#x2F;0&#x2F;2
+[FW1-GigabitEthernet0&#x2F;0&#x2F;2] service-manage ping permit
+[FW1-GigabitEthernet0&#x2F;0&#x2F;2] quit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>防火墙的接口缺省开启service-manage，service-manage在接口层面进行安全把控，它决定用户是否能通过该接口管理/访问防火墙（例如通过ping、ssh、telnet、snmp等方式）。GE0/0/0接口是设备的网管接口，该接口缺省便配置了service-manage ping permit、service-manage ssh permit等命令，因此用户能够通过该接口管理防火墙。但是对于其他接口，缺省时防火墙禁止用户从该接口管理/访问自己，除非显式地配置service-manage命令。例如，如果希望允许用户Ping GE1/0/1接口，则需在GE1/0/1接口上配置service-manage ping permit命令，同理如果希望允许用户SSH GE1/0/1接口，则需配置service-manage ssh permit</p>
+<h5 id="步骤-2-配置Local域到其他区域的安全策略规则"><a href="#步骤-2-配置Local域到其他区域的安全策略规则" class="headerlink" title="步骤 2 配置Local域到其他区域的安全策略规则"></a>步骤 2 配置Local域到其他区域的安全策略规则</h5><p>将接口加入到安全域，同时创建一个安全策略规则local_to：</p>
+<ol>
+<li><p>源、目IP不做任何限制</p>
+</li>
+<li><p>目的安全域不限制</p>
+</li>
+<li><p>服务不做任何限制</p>
+</li>
+<li><p>源安全域为Local</p>
+</li>
+<li><p>动作为允许</p>
+</li>
+</ol>
+<p><strong>将接口加入到安全域中</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">[FW1]firewall zone dmz
+[FW1-zone-dmz] description DMZ
+[FW1-zone-dmz] add interface GigabitEthernet0&#x2F;0&#x2F;1
+[FW1-zone-dmz] quit
+[FW1]firewall zone untrust
+[FW1-zone-untrust] description Untrust
+[FW1-zone-untrust] add interface GigabitEthernet0&#x2F;0&#x2F;2
+[FW1-zone-untrust] quit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>创建安全策略规则local_to</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">[FW1]security-policy
+[FW1-policy-security] rule name local_to
+[FW1-policy-security-rule-local_to] source-zone local
+[FW1-policy-security-rule-local_to] action perit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>未配置源、目IP，目的安全域，服务，默认情况下这些参数为any。</li>
+</ul>
+<p><strong>测试FW1与R1、R2接口IP地址的连通性</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;FW1&gt;ping -c 1 10.0.11.11<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h5 id="步骤-3-配置源NAT、NAT-Server"><a href="#步骤-3-配置源NAT、NAT-Server" class="headerlink" title="步骤 3 配置源NAT、NAT Server"></a>步骤 3 配置源NAT、NAT Server</h5><ul>
+<li>配置NAPT用于私网用户（R1）访问Internet，配置NAT Server将R1的FTP服务映射到公网。</li>
+</ul>
+<p><strong>配置NAT地址池，配置时开启允许端口地址转换，实现公网地址复用</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">[FW1]nat address-group 1
+[FW1-address-group-1] mode pat 
+[FW1-address-group-1] section 0 10.0.12.1 10.0.12.1
+[FW1-address-group-1] quit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>配置源NAT策略，实现私网指定网段访问Internet时自动进行源地址转换</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">[FW1]nat-policy 
+[FW1-policy-nat] rule name 1
+[FW1-policy-nat-rule-1] source-zone dmz
+[FW1-policy-nat-rule-1] destination-zone untrust
+[FW1-policy-nat-rule-1] source-address 10.0.11.0 24
+[FW1-policy-nat-rule-1] action source-nat address-group 1
+[FW1-policy-nat-rule-1] quit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>配置NAT Server功能，创建静态映射，映射R1的FTP服务</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">[FW1]nat server policy_ftp protocol tcp global 10.0.12.1 ftp inside 10.0.11.11 ftp<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>开启FTP协议的NAT ALG功能</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">[FW1]firewall zone dmz 
+[FW1-zone-dmz] detect ftp 
+[FW1-zone-dmz] quit
+[FW1]firewall interzone dmz untrust 
+[FW1-interzone-dmz-untrust] detect ftp 
+[FW1-interzone-dmz-untrust] quit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="步骤-4-配置DMZ、Untrust区域之间的安全策略规则"><a href="#步骤-4-配置DMZ、Untrust区域之间的安全策略规则" class="headerlink" title="步骤 4 配置DMZ、Untrust区域之间的安全策略规则"></a>步骤 4 配置DMZ、Untrust区域之间的安全策略规则</h5><p>配置安全策略DMZtoUntrust，源地址限制为10.0.11.0/24，动作为允许；配置安全策略Untrust_DMZ，只允许R2访问R1提供的FTP服务。</p>
+<blockquote>
+<ul>
+<li>防火墙安全策略实验 需要使用USG6000V防火墙 USG5500没有security-policy及之后的一些指令 </li>
+<li>同时ENSP软件，并不自带USG6000V防火墙的.vdi文件需要自行下载安装</li>
+<li> 防火墙的Console接口默认存在认证配置，默认账号密码为：admin/Admin@123，登录之后需要修改密码才可以正常登录</li>
+</ul>
+</blockquote>
+<p><strong>创建安全策略规则DMZtoUntrust</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">[FW1]security-policy
+[FW1-policy-security] rule name DMZtoUntrust
+[FW1-policy-security-rule-DMZtoUntrust] source-zone dmz
+[FW1-policy-security-rule-DMZtoUntrust] destination-zone untrust
+[FW1-policy-security-rule-DMZtoUntrust] source-address 10.0.11.0 24
+[FW1-policy-security-rule-DMZtoUntrust] action permit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>创建安全策略规则Untrust_DMZ</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">[FW1]security-policy
+[FW1-policy-security-rule] rule name Untrust_DMZ
+[FW1-policy-security-rule-Untrust_DMZ] source-zone untrust
+[FW1-policy-security-rule-Untrust_DMZ] destination-zone dmz
+[FW1-policy-security-rule-Untrust_DMZ] destination-address 10.0.11.11 24
+[FW1-policy-security-rule-Untrust_DMZ] service ftp
+[FW1-policy-security-rule-Untrust_DMZ] action permit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注意目的IP地址为映射的内部地址，安全策略对报文的处理在NAT Server修改报文的目的IP地址之后。</p>
+<h5 id="步骤-5-查看FW1会话"><a href="#步骤-5-查看FW1会话" class="headerlink" title="步骤 5 查看FW1会话"></a>步骤 5 查看FW1会话</h5><p>在R1上ping     R2，查看FW1会话的详细信息。</p>
+<p><strong>测试R1访问R2</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;R1&gt;ping -c 100 10.0.12.2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>R1能够经过FW1正常访问R2，此时在FW1上查看相关会话的详细信息。</p>
+<p><strong>查看FW1会话</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;FW1&gt;display firewall session table verbose destination global 10.0.12.2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>查看目的global IP为10.0.12.2的会话详细信息，在输出信息中可以看到该会话的安全域方向：从dmz到untrust，该会话的老化时间（TTL）为20s，接收到报文的接口为GigabitEthernet0/0/1，发送报文的接口为GigabitEthernet0/0/2，一共存在100个匹配中该会话的报文，一共8400Byte。可以看到该会话匹配的安全策略规则名称为：DMZtoUntrust。</p>
+<p>同时从会话中我们可以看到该报文进行了源地址转换，源IP10.0.11.11转换为了10.0.12.1 FW1的GE0/0/2接口地址</p>
+<h5 id="步骤-6-观察NAT-ALG工作过程"><a href="#步骤-6-观察NAT-ALG工作过程" class="headerlink" title="步骤 6 观察NAT ALG工作过程"></a>步骤 6 观察NAT ALG工作过程</h5><p>在R1上开启FTP服务，R2作为FTP客户端通过FW1映射出的地址登录R1的FTP服务，并执行命令<strong>dir</strong>查看文件列表，观察FW1的ASPF如何处理多通道协议。</p>
+<p> <strong>R1上开启FTP服务</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">[R1]aaa
+[R1-aaa] local-user ftp service-type ftp
+[R1-aaa] local-user ftp password cipher ftp@123
+[R1-aaa] local-user ftp privilege level 15
+[R1-aaa] local-user ftp ftp-directory flash:
+[R1-aaa] quit<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>R2访问R1开启的FTP服务，注意是通过FW1上映射的地址进行访问</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;R2&gt;ftp 10.0.12.1 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>若实验成功实现，则R2可以成功通过FW1的NAT Server映射访问R1开启的FTP服务</p>
+<p><strong>查看FW1的会话表</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;FW1&gt;display firewall session table verbose protocol tcp destination-port global<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li>当实验完成，执行上述命令可以看到FTP的控制通道已经建立 </li>
+</ul>
+<p><strong>在R2上执行命令dir</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">[ftp]dir<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li>能够看到R1的文件列表，此时已经使用了FTP的传输通道。</li>
+</ul>
+<p><strong>再次查看FW1的会话表</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;FW1&gt;display firewall session table <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li>依旧只存在FTP控制通道会话，并无传输通道会话。</li>
+</ul>
+<p><strong>查看NAT ALG生成的Server-map表项</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;FW1&gt;display firewall server-map <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li>FW1上已经生成了FTP数据通道的Server-map表项</li>
+<li>注意在查看之前需要在R2上执行<strong>dir</strong>触发传输通道的流量。 </li>
+</ul>
+<h4 id="思考题"><a href="#思考题" class="headerlink" title="思考题"></a>思考题</h4><p>在防火墙上放通local安全域到其他区域的目的是什么？</p>
+<blockquote>
+<p><del><strong>在防火墙上放通local安全域到其他区域，主要的目的是为了允许该安全域内的计算机或设备与其他区域的计算机或设备进行通信和交互</strong></del>  某ChatGPT给出的答案不一定准确</p>
+</blockquote>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/2023/04/16/%E5%8D%8E%E4%B8%BA%E9%98%B2%E7%81%AB%E5%A2%99%E6%8A%80%E6%9C%AF/">https://shierjinghuang.github.io/2023/04/16/%E5%8D%8E%E4%B8%BA%E9%98%B2%E7%81%AB%E5%A2%99%E6%8A%80%E6%9C%AF/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/HCIP/">
+                                    <span class="chip bg-color">HCIP</span>
+                                </a>
+                            
+                                <a href="/tags/%E9%98%B2%E7%81%AB%E5%A2%99%E6%8A%80%E6%9C%AF/">
+                                    <span class="chip bg-color">防火墙技术</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2023/04/16/%E5%8D%8E%E4%B8%BA%E9%98%B2%E7%81%AB%E5%A2%99%E6%8A%80%E6%9C%AF/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="华为防火墙安全技术概要">
+                        
+                        <span class="card-title">华为防火墙安全技术概要</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                    网络安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/HCIP/">
+                        <span class="chip bg-color">HCIP</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%98%B2%E7%81%AB%E5%A2%99%E6%8A%80%E6%9C%AF/">
+                        <span class="chip bg-color">防火墙技术</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/04/02/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%88%97%E8%A1%A8%20ACL/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="ACL 访问控制列表">
+                        
+                        <span class="card-title">ACL 访问控制列表</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            随着网络的飞速发展，网络安全和网络服务质量QoS (Quality of Service)问题日益突出，访问控制列表 (ACL, Access Control List)是与其紧密相关的一个技术
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/HCIP/" class="post-category">
+                                    HCIP
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/HCIP/">
+                        <span class="chip bg-color">HCIP</span>
+                    </a>
+                    
+                    <a href="/tags/ACL/">
+                        <span class="chip bg-color">ACL</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2023</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">367.9k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
