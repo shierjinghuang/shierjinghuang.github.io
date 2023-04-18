@@ -405,7 +405,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-04-16
+                    2023-04-18
                 </div>
                 
 
@@ -453,12 +453,12 @@
 </li>
 </ul>
 <p>防火墙的转发流程比路由器复杂。以框式设备为例，硬件上除了接口、LPU  <code>Line Processing Unit</code>、交换网板等外，防火墙还特有SPU Service Processing Unit，用于实现防火墙的安全功能</p>
-<img src="D:\blog\shierjinghuang\source\_posts\华为防火墙技术\防火墙转发流程.png" style="zoom: 50%;" />
+<img src="https://shierjinghuang.github.io/2023/04/16/华为防火墙技术/防火墙转发流程.png" style="zoom: 50%;" />
 
 <center>防火墙转发流程</center>
 #### 防火墙的典型应用场景
 
-<img src="D:\blog\shierjinghuang\source\_posts\华为防火墙技术\应用场景.png" style="zoom: 33%;" />
+<img src="https://shierjinghuang.github.io/2023/04/16/华为防火墙技术/应用场景.png" style="zoom: 33%;" />
 
 <center>四种不同场景下的防火墙应用</center>
 >DMZ非军事区 Demilitarized Zone,是介于严格的军事管制区和松散的公共区域之间的一种有着部分管制的区域。防火墙设备借用了这一术语，指代一个逻辑上和物理上都与内部网络和外部网络分离的安全区域，在企业中一般用于服务器的放置。
@@ -474,7 +474,7 @@
 </ul>
 </li>
 </ul>
-<img src="D:\blog\shierjinghuang\source\_posts\华为防火墙技术\防火墙发展历程.png" style="zoom: 33%;" />
+<img src="https://shierjinghuang.github.io/2023/04/16/华为防火墙技术/防火墙发展历程.png" style="zoom: 33%;" />
 
 <h5 id="包过滤防火墙"><a href="#包过滤防火墙" class="headerlink" title="包过滤防火墙"></a>包过滤防火墙</h5><p><font color="FF3300">包过滤是指基于<strong>五元组</strong>对每个数据包进行检测，根据配置的安全策略转发或丢弃数据包</font></p>
 <p>包过滤防火墙的基本原理是：通过配置<strong>访问控制列表</strong>（Access Control List，ACL）实施数据包的过滤</p>
@@ -494,7 +494,7 @@
 <h5 id="状态检测防火墙"><a href="#状态检测防火墙" class="headerlink" title="状态检测防火墙"></a>状态检测防火墙</h5><ul>
 <li><font color="FF3300">状态检测考虑报文前后的关联性，检测的是连接状态而非单个报文，状态检测防火墙就是支持状态检测功能的防火墙</font></li>
 </ul>
-<img src="D:\blog\shierjinghuang\source\_posts\华为防火墙技术\状态检查防火墙.png" style="zoom:67%;" />
+<img src="https://shierjinghuang.github.io/2023/04/16/华为防火墙技术/状态检查防火墙.png" style="zoom:67%;" />
 
 <p><del>NGFW也是状态检测防火墙的一种。NGFW在内容安全和处理性能有极大的提升</del>，此处存疑，下一代防火墙的定义随时代发展定义也在变化，望读者读到自行判断</p>
 <h5 id="AI防火墙"><a href="#AI防火墙" class="headerlink" title="AI防火墙"></a>AI防火墙</h5><p>AI防火墙是结合AI技术的<del>新一代防火墙</del>它通过结合AI算法或AI芯片等多种方式，进一步提高了防火墙的安全防护能力和性能</p>
@@ -502,7 +502,7 @@
 <p>此处也是存有一些需要自行考证，NGFW这个定义在我本科阶段大创中以经开始尝试实现结合人工智能和状态检查技术和大数据的网<strong>络态势感知系统</strong>，AI 防火墙或许以及无法担起NGFW（下一代防火墙）的称呼，以经从学科前沿，转为可以方便接触的内容</p>
 </blockquote>
 <p><del>华为AI防火墙，内置的恶意文件检测引擎CDE、诱捕Sensor、APT检测引擎和探针，支持与沙箱和华为大数据分析平台CIS联动检测，打造智能防御体系</del></p>
-<img src="D:\blog\shierjinghuang\source\_posts\华为防火墙技术\AI防火墙.png" style="zoom:50%;" />
+<img src="https://shierjinghuang.github.io/2023/04/16/华为防火墙技术/AI防火墙.png" style="zoom:50%;" />
 
 <h3 id="防火墙的基本概念"><a href="#防火墙的基本概念" class="headerlink" title="防火墙的基本概念"></a>防火墙的基本概念</h3><blockquote>
 <p>安全区域 Security Zone，简称为区域 Zone，是防火墙的重要概念。防火墙大部分安全策略都基于安全区域实施</p>
@@ -559,13 +559,13 @@
 <blockquote>
 <p>五元组 即IP协议五元组 分别是 源端口 目的端口 源IP 目的IP 及协议字段组成，用于标识一个会话</p>
 </blockquote>
-<img src="D:\blog\shierjinghuang\source\_posts\华为防火墙技术\安全策略.png" style="zoom:50%;" />
+<img src="https://shierjinghuang.github.io/2023/04/16/华为防火墙技术/安全策略.png" style="zoom:50%;" />
 
 <h5 id="安全策略执行过程："><a href="#安全策略执行过程：" class="headerlink" title="安全策略执行过程："></a>安全策略执行过程：</h5><ul>
 <li>安全策略的组成有匹配条件、动作和安全配置文件，安全配置文件实现内容安全</li>
 <li>安全策略动作如果为“允许”则可配置安全配置文件，如果为“禁止”则可配置反馈报文</li>
 </ul>
-<img src="D:\blog\shierjinghuang\source\_posts\华为防火墙技术\安全策略执行过程.png" style="zoom:33%;" />
+<img src="https://shierjinghuang.github.io/2023/04/16/华为防火墙技术/安全策略执行过程.png" style="zoom:33%;" />
 
 <p><strong>动作说明：</strong></p>
 <ul>
@@ -604,7 +604,7 @@
 <h5 id="会话表的创建和包处理过程"><a href="#会话表的创建和包处理过程" class="headerlink" title="会话表的创建和包处理过程"></a>会话表的创建和包处理过程</h5><ul>
 <li>防火墙状态检测开启情况下，流量的首包会创建会话表项，后续包即可直接匹配会话表项。</li>
 </ul>
-<img src="D:\blog\shierjinghuang\source\_posts\华为防火墙技术\会话表的创建和包处理过程.png" style="zoom: 50%;" />
+<img src="https://shierjinghuang.github.io/2023/04/16/华为防火墙技术/会话表的创建和包处理过程.png" style="zoom: 50%;" />
 
 <h5 id="会话表的老化时间与长连接"><a href="#会话表的老化时间与长连接" class="headerlink" title="会话表的老化时间与长连接"></a>会话表的老化时间与长连接</h5><ul>
 <li><p>防火墙为各种协议设定了会话老化机制。当一条会话在老化时间内没有被任何报文匹配，则会被从会话表中删除。这种机制可以避免防火墙的设备资源被大量无用、陈旧的会话表项消耗。</p>
@@ -647,7 +647,7 @@
 </li>
 </ul>
 <h5 id="Server-map表与简化的包转发过程："><a href="#Server-map表与简化的包转发过程：" class="headerlink" title="Server-map表与简化的包转发过程："></a>Server-map表与简化的包转发过程：</h5><p>当防火墙接收到一个报文且没有命中会话表时，防火墙进入首包处理流程，查询是否有命中的Server-map表。如果有，则会生成会话表转发报文；如果没有，则执行其他包处理过程</p>
-<img src="D:\blog\shierjinghuang\source\_posts\华为防火墙技术\防火墙Server-map下的包转发流程.png" alt="防火墙Server-map下的包转发流程" style="zoom:50%;" />
+<img src="https://shierjinghuang.github.io/2023/04/16/华为防火墙技术/防火墙Server-map下的包转发流程.png" alt="防火墙Server-map下的包转发流程" style="zoom:50%;" />
 
 <h3 id="防火墙的基础配置"><a href="#防火墙的基础配置" class="headerlink" title="防火墙的基础配置"></a>防火墙的基础配置</h3><h4 id="防火墙基础配置命令"><a href="#防火墙基础配置命令" class="headerlink" title="防火墙基础配置命令"></a>防火墙基础配置命令</h4><h5 id="防火墙基础配置-接口"><a href="#防火墙基础配置-接口" class="headerlink" title="防火墙基础配置 - 接口"></a>防火墙基础配置 - 接口</h5><p>1 创建接口/进入接口视图</p>
 <pre class="line-numbers language-none"><code class="language-none">[R1] interface interface-type interface-number<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -719,7 +719,7 @@
 <ul>
 <li>防火墙默认的动作为deny</li>
 </ul>
-<h3 id="防火墙安全策略配置实验"><a href="#防火墙安全策略配置实验" class="headerlink" title="防火墙安全策略配置实验"></a>防火墙安全策略配置实验</h3><img src="D:\blog\shierjinghuang\source\_posts\华为防火墙技术\防火墙安全策略配置实验拓扑.jpg" style="zoom:67%;" />
+<h3 id="防火墙安全策略配置实验"><a href="#防火墙安全策略配置实验" class="headerlink" title="防火墙安全策略配置实验"></a>防火墙安全策略配置实验</h3><img src="https://shierjinghuang.github.io/2023/04/16/华为防火墙技术/防火墙安全策略配置实验拓扑.jpg" style="zoom:67%;" />
 
 <center>防火墙安全策略拓扑</center>
 设备互联方式、IP地址规划如图所示，R1、R2通过交换机S1与防火墙进行三层通信，S1上将连接R1、R2的接口分别划分到VLAN10、20，将连接防火墙的接口GE0/0/14、GE0/0/15分别划分到VLAN10、20。
