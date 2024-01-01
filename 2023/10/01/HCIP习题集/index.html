@@ -330,6 +330,19 @@
 </header>
 
     
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
 
 
 
@@ -398,7 +411,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2023-10-06
+                    2024-01-01
                 </div>
                 
 
@@ -436,8 +449,8 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h3><center>HCIP习题集</center></h3>
+**1 .关于IBGP邻居和EBGP邻居描述错误的是 (A)**
 
-<p><strong>1 .关于IBGP邻居和EBGP邻居描述错误的是 (A)</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">A.BGP邻居关系建立在TCP会话基础之上的,采用的端口号是179	B.ISIS运行在IP协议基础之上,采用的协议号89
 C.BGP运行在UDP会话基础之上,采用的端口号是179		   D.OSPF运行在IP协议基础之上,采用的协议号是90<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
@@ -1060,7 +1073,7 @@ D.并非所有的邻居关系都可以成为邻接关系<span aria-hidden="true"
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2023</span>
+                <span id="year">2019-2024</span>
             
             <a href="/about" target="_blank">十二惊惶</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
