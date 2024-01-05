@@ -407,14 +407,14 @@ OSPF快速收敛OSPF快速收">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    174
+                    914
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -443,7 +443,58 @@ OSPF快速收敛OSPF快速收">
 <ul>
 <li>OSPF和IS-IS都是基于链路状态的内部网关路由协议，运行这两种协议的路由器通过同步LSDB，采用SPF算法计算最优路由</li>
 </ul>
-<h4 id="OSPF快速收敛"><a href="#OSPF快速收敛" class="headerlink" title="OSPF快速收敛"></a>OSPF快速收敛</h4><p>OSPF快速收敛是为了提高路由的收敛速度而做的扩展特性，包括：PRC [Partial Route Calculation]，部分路由计算）和智能定时器。<br>同时，OSPF支持故障恢复快速收敛，例如通过OSPF IP FRR（Fast reroute，快速重路由）实现备份链路的快速切换，也可以与BFD联动实现对故障的快速感知</p>
+<h4 id="OSPF快速收敛"><a href="#OSPF快速收敛" class="headerlink" title="OSPF快速收敛"></a>OSPF快速收敛</h4><p>OSPF快速收敛是为了提高路由的收敛速度而做的扩展特性，包括：PRC [Partial Route Calculation]——部分路由计算和智能定时器。<br>同时，OSPF支持故障恢复快速收敛，例如通过OSPF IP FRR[Fast reroute，快速重路由]实现备份链路的快速切换，也可以与BFD联动实现对故障的快速感知</p>
+<h5 id="PRC-部分路由计算："><a href="#PRC-部分路由计算：" class="headerlink" title="PRC 部分路由计算："></a>PRC 部分路由计算：</h5><blockquote>
+<p>PRC的工作原理：当网络上路由发生变化的时候，只对发生变化的路由进行重新计算</p>
+</blockquote>
+<ul>
+<li>在主流的华为和思科设备上，OSPF的PRC功能是默认开启的</li>
+</ul>
+<p><img src="D:\blog\shierjinghuang\source_posts\IGP高级特性\PRC新增直连路由.png"></p>
+<h5 id="智能定时器"><a href="#智能定时器" class="headerlink" title="智能定时器:"></a>智能定时器:</h5><img src="D:\blog\shierjinghuang\source\_posts\IGP高级特性\智能定时器.png"  />
+
+<p><strong>发送端配置：</strong></p>
+<pre class="line-numbers language-huawei" data-language="huawei"><code class="language-huawei">格式：[Huawei-ospf] lsa-originate-interval &#123; 0 | &#123; intelligent-timer max-interval start-interval hold-interval | other-type interval &#125; &#125;
+
+0：指定LSA更新的时间间隔为0，即取消LSA的5秒的更新时间间隔。
+intelligent-timer：指定通过智能定时器设置OSPF Router LSA和Network LSA的更新间隔时间
+
+max-interval：指定更新OSPF LSA的最长间隔时间。整数形式，取值范围是1～120000，单位是毫秒。缺省值是5000
+
+start-interval：指定更新OSPF LSA的初始间隔时间。整数形式，取值范围是0～60000，单位是毫秒。缺省值是500
+
+hold-interval：指定更新OSPF LSA的基数间隔时间。整数形式，取值范围是1～60000，单位是毫秒。缺省值是1000
+
+other-type：指定设置除OSPF Router LSA和Network LSA外LSA的更新间隔时间
+
+interval：指定LSA更新的时间间隔。整数形式，取值范围是0～10，单位是秒。缺省值是5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>缺省情况下，使能智能定时器intelligent-timer，更新LSA的最长间隔时间max-interval为5000毫秒、初始间隔时间start-interval为500毫秒、基数间隔时间hold-interval为1000<strong>毫秒</strong></p>
+</blockquote>
+<ol>
+<li>初次更新LSA的间隔时间由<code>start-interval</code>参数指定</li>
+<li>第n次更新LSA的间隔时间为<code>hold-interval×2[n-2]</code></li>
+<li>当<code>hold-interval×2[n-2]</code>达到指定的最长间隔时间<code>max-interval</code>时，OSPF连续三次更新LSA的时间间隔都是最长间隔时间，之后，再次返回步骤1，按照初始间隔时间<code>start-interval</code>更新LSA</li>
+</ol>
+<blockquote>
+<ul>
+<li>触发路由计算的时间间隔较长，同样会影响网络的收敛速度</li>
+<li>智能定时器首次超时时间是一个固定的时间。如果在定时器超时前，又有触发定时器的事件发生，则该定时器下一次的超时时间会增加</li>
+</ul>
+</blockquote>
+<p><strong>接收端配置：</strong></p>
+<p>命令：[Huawei-ospf-1] lsa-arrival-interval { interval | intelligent-timer max-interval start-interval hold-interval }</p>
+<ul>
+<li>interval：指定LSA接收的时间间隔。取值范围是0～10000，单位是毫秒</li>
+<li>intelligent-timer：指定通过智能定时器设置LSA接收的间隔时间</li>
+<li>max-interval：指定接收OSPF LSA的最长间隔时间，取值范围是1～120000，单位是毫秒。缺省值是1000</li>
+<li>start-interval：指定接收OSPF LSA的初始间隔时间，取值范围是0～60000，单位是毫秒。缺省值是500</li>
+<li>hold-interval：指定接收OSPF LSA的基数间隔时间，取值范围是1～60000，单位是毫秒。缺省值是500</li>
+</ul>
+<blockquote>
+<p>缺省情况下，使能智能定时器<code>intelligent-timer</code>，SPF计算的最长间隔时间<code>max-interval</code>为10000毫秒、初始间隔时间<code>start-interval</code>为500毫秒、基数间隔时间<code>hold-interval</code>为1000毫秒</p>
+</blockquote>
 
                 
             </div>
@@ -840,7 +891,7 @@ OSPF快速收敛OSPF快速收">
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">394.7k</span>
+                        class="white-color">395.7k</span>
             
             
             
