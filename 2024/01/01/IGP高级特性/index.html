@@ -373,9 +373,17 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/">
+                                <span class="chip bg-color">网络工程</span>
+                            </a>
+                        
+                            <a href="/tags/IGP/">
+                                <span class="chip bg-color">IGP</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -410,14 +418,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    990
+                    1.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    5 分
                 </div>
                 
 
@@ -441,14 +449,14 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>[TOC]</p>
-<h3 id="IGP高级特性"><a href="#IGP高级特性" class="headerlink" title="IGP高级特性"></a>IGP高级特性</h3><blockquote>
+<h2 id="IGP高级特性"><a href="#IGP高级特性" class="headerlink" title="IGP高级特性"></a>IGP高级特性</h2><blockquote>
 <p><strong><font color="FF6600">OSPF和IS-IS的高级特性，包括：快速收敛机制、路由控制</font></strong></p>
 </blockquote>
 <ul>
 <li>OSPF和IS-IS都是基于链路状态的内部网关路由协议，运行这两种协议的路由器通过同步LSDB，采用SPF算法计算最优路由</li>
 </ul>
-<h4 id="OSPF快速收敛"><a href="#OSPF快速收敛" class="headerlink" title="OSPF快速收敛"></a>OSPF快速收敛</h4><p>OSPF快速收敛是为了提高路由的收敛速度而做的扩展特性，包括：**PRC [Partial Route Calculation]**——部分路由计算和智能定时器。<br>同时，OSPF支持故障恢复快速收敛，例如通过OSPF IP FRR[Fast reroute，快速重路由]实现备份链路的快速切换，也可以与BFD联动实现对故障的快速感知</p>
-<h5 id="PRC-部分路由计算："><a href="#PRC-部分路由计算：" class="headerlink" title="PRC 部分路由计算："></a>PRC 部分路由计算：</h5><blockquote>
+<h3 id="OSPF快速收敛"><a href="#OSPF快速收敛" class="headerlink" title="OSPF快速收敛"></a>OSPF快速收敛</h3><p>OSPF快速收敛是为了提高路由的收敛速度而做的扩展特性，包括：**PRC:[Partial Route Calculation]**——部分路由计算和智能定时器。<br>同时，OSPF支持故障恢复快速收敛，例如通过OSPF IP FRR[Fast reroute，快速重路由]实现备份链路的快速切换，也可以与BFD联动实现对故障的快速感知</p>
+<h4 id="PRC-部分路由计算："><a href="#PRC-部分路由计算：" class="headerlink" title="PRC 部分路由计算："></a>PRC 部分路由计算：</h4><blockquote>
 <p>PRC的工作原理：当网络上路由发生变化的时候，只对发生变化的路由进行重新计算</p>
 </blockquote>
 <ul>
@@ -456,7 +464,7 @@
 </ul>
 <img src="https://shierjinghuang.github.io/2024/01/01/IGP高级特性/PRC新增直连路由.png" style="zoom:67%;" />
 
-<h5 id="智能定时器"><a href="#智能定时器" class="headerlink" title="智能定时器:"></a>智能定时器:</h5><img src="https://shierjinghuang.github.io/2024/01/01/IGP高级特性/智能定时器.png"  />
+<h4 id="智能定时器"><a href="#智能定时器" class="headerlink" title="智能定时器:"></a>智能定时器:</h4><img src="https://shierjinghuang.github.io/2024/01/01/IGP高级特性/智能定时器.png"  />
 
 <p><strong>发送端配置：</strong></p>
 <blockquote>
@@ -503,6 +511,32 @@
 <p><strong><font color="blue">命令：[Huawei-ospf-1] spf-schedule-interval { interval1 | intelligent-timer max-interval start-interval hold-interval | millisecond interval2 }</font></strong></p>
 </blockquote>
 <p>缺省情况下，使能智能定时器<strong>intelligent-timer</strong>，SPF计算的最长间隔时间max-interval为10000毫秒、初始间隔时间start-interval为500毫秒、基数间隔时间hold-interval为1000毫秒</p>
+<blockquote>
+<p>使用智能定时器后，SPF计算的时间间隔如下：</p>
+</blockquote>
+<ul>
+<li>初次计算SPF的间隔时间由<strong>start-interval参数指定</strong></li>
+<li>第n（n≥2）次计算SPF的间隔时间为hold-interval×2^(n-2)</li>
+<li>当hold-interval×2^(n-2)达到指定的最长间隔时间max-interval时，OSPF连续三次计算SPF的时间间隔都是最长间隔时间，之后，再次返回步骤1，<strong>按照初始间隔时间start-interval计算SPF</strong></li>
+</ul>
+<pre class="line-numbers language-huawei" data-language="huawei"><code class="language-huawei">#	interval1：指定OSPF SPF计算间隔时间。整数形式，取值范围是1～10，单位是秒
+#	intelligent-timer：指定通过智能定时器设置OSPF SPF计算的间隔时间
+#	max-interval：指定OSPF SPF计算的最长间隔时间，取值范围是1～120000毫秒。缺省值是10000
+#	start-interval：指定OSPF SPF计算的初始间隔时间，取值范围是1～60000毫秒。缺省值是500
+#	hold-interval：指定OSPF SPF计算的基数间隔时间，取值范围是1～60000毫秒。缺省值是1000
+#	millisecond interval2：指定OSPF SPF计算间隔时间，取值范围是1～10000毫秒<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="OSPF-IP-FRR："><a href="#OSPF-IP-FRR：" class="headerlink" title="OSPF IP FRR："></a>OSPF IP FRR：</h4><blockquote>
+<p><strong><font color="FF6600">OSPF IP FRR（Fast reroute，快速重路由）是动态IP FRR，利用LFA（Loop-Free Alternates）算法预先计算出备份路径，保存在转发表中，以备在故障时将流量快速切换到备份链路上，保证流量不中断，从而达到流量保护的目的，该功能可将故障恢复时间降低到50ms以内</font></strong></p>
+</blockquote>
+<p><strong>LFA计算备份链路的基本思路</strong>是：</p>
+<ul>
+<li>以可提供备份链路的邻居为根节点，利用SPF算法计算出到目的节点的最短距离。然后，按照不等式计算出开销最小且无环的备份链路</li>
+</ul>
+<blockquote>
+<p><font color="blue">OSPF IP FRR的流量保护分为链路保护和节点链路双保护</font></p>
+</blockquote>
+<p><img src="D:\blog\shierjinghuang\source_posts\IGP高级特性\1704422032778.png"></p>
 
                 
             </div>
@@ -566,7 +600,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/">
+                                    <span class="chip bg-color">网络工程</span>
+                                </a>
+                            
+                                <a href="/tags/IGP/">
+                                    <span class="chip bg-color">IGP</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -895,7 +937,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">395.9k</span>
+                        class="white-color">396.3k</span>
             
             
             
