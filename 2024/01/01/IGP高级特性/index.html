@@ -410,7 +410,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    921
+                    990
                 </div>
                 
 
@@ -475,7 +475,7 @@
 </blockquote>
 <ol>
 <li>初次更新LSA的间隔时间由<code>start-interval</code>参数指定</li>
-<li>第n次更新LSA的间隔时间为<code>hold-interval×2[n-2]</code></li>
+<li>第n次更新LSA的间隔时间为<code>hold-interval×2^[n-2]</code></li>
 <li>当<code>hold-interval×2[n-2]</code>达到指定的最长间隔时间<code>max-interval</code>时，OSPF连续三次更新LSA的时间间隔都是最长间隔时间，之后，再次返回步骤1，按照初始间隔时间<code>start-interval</code>更新LSA</li>
 </ol>
 <blockquote>
@@ -499,6 +499,10 @@
 <p>缺省情况下，使能智能定时器<code>intelligent-timer</code>，SPF计算的最长间隔时间<code>max-interval</code>为10000毫秒、初始间隔时间<code>start-interval</code>为500毫秒、基数间隔时间<code>hold-interval</code>为1000毫秒</p>
 </blockquote>
 <p><strong>设置OSPF路由计算时间间隔:</strong></p>
+<blockquote>
+<p><strong><font color="blue">命令：[Huawei-ospf-1] spf-schedule-interval { interval1 | intelligent-timer max-interval start-interval hold-interval | millisecond interval2 }</font></strong></p>
+</blockquote>
+<p>缺省情况下，使能智能定时器<strong>intelligent-timer</strong>，SPF计算的最长间隔时间max-interval为10000毫秒、初始间隔时间start-interval为500毫秒、基数间隔时间hold-interval为1000毫秒</p>
 
                 
             </div>
@@ -891,7 +895,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">395.8k</span>
+                        class="white-color">395.9k</span>
             
             
             
