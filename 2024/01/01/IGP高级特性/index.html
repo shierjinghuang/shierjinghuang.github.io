@@ -411,21 +411,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2024-01-05
+                    2024-01-06
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.5k
+                    10.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    20 分
+                    38 分
                 </div>
                 
 
@@ -449,7 +449,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>[TOC]</p>
-<h2 id="IGP高级特性"><a href="#IGP高级特性" class="headerlink" title="IGP高级特性"></a>IGP高级特性</h2><blockquote>
+<h1 id="IGP高级特性"><a href="#IGP高级特性" class="headerlink" title="IGP高级特性"></a>IGP高级特性</h1><h2 id="OSPF高级特性"><a href="#OSPF高级特性" class="headerlink" title="OSPF高级特性"></a>OSPF高级特性</h2><blockquote>
 <p><strong><font color="FF6600">OSPF和IS-IS的高级特性，包括：快速收敛机制、路由控制</font></strong></p>
 </blockquote>
 <ul>
@@ -731,7 +731,9 @@ match-any参数：
 <blockquote>
 <p><strong><font color="black">路由器的一个接口只能属于某一个OSPF进程</font></strong></p>
 </blockquote>
-<h4 id="OSPF与BGP联动"><a href="#OSPF与BGP联动" class="headerlink" title="OSPF与BGP联动:"></a>OSPF与BGP联动:</h4><p>当有新的设备加入到网络中，或者设备重启时，可能会出现在BGP收敛期间内网络流量丢失的现象。这是由于IGP收敛速度比BGP快而造成的</p>
+<h4 id="OSPF与BGP联动"><a href="#OSPF与BGP联动" class="headerlink" title="OSPF与BGP联动:"></a>OSPF与BGP联动:</h4><blockquote>
+<p><strong><font color="redorange">当有新的设备加入到网络中，或者设备重启时，可能会出现在BGP收敛期间内网络流量丢失的现象。这是由于IGP收敛速度比BGP快而造成的</font></strong></p>
+</blockquote>
 <ul>
 <li>通过使能OSPF与BGP联动特性，可以解决流量丢失问题</li>
 <li>使能了OSPF与BGP联动特性的设备会在设定的<font color="blue">联动时间内保持为Stub路由器</font>，也就是说，该设备发布的LSA中的链路度量值为最大值[65535]，从而告知其它OSPF设备不要使用这个路由器来转发数据</li>
@@ -755,7 +757,213 @@ match-any参数：
 </li>
 </ul>
 </blockquote>
-<h4 id="OSPF转发地址"><a href="#OSPF转发地址" class="headerlink" title="OSPF转发地址:"></a>OSPF转发地址:</h4>
+<h4 id="OSPF转发地址"><a href="#OSPF转发地址" class="headerlink" title="OSPF转发地址:"></a>OSPF转发地址:</h4><blockquote>
+<p><strong><font color="FF6600">FA[Forwarding Address，转发地址]：到达所通告的目的地的数据包应该被转发到的地址，如果转发地址为0.0.0.0，那么数据包将被转发到始发ASBR上</font></strong></p>
+</blockquote>
+<img src="D:\blog\shierjinghuang\source\_posts\IGP高级特性\FA转发地址.png" style="zoom:50%;" />
+
+<h5 id="FA的取值"><a href="#FA的取值" class="headerlink" title="FA的取值:"></a>FA的取值:</h5><ul>
+<li><ul>
+<li><p><font color="blue">当ASBR引入外部路由时，若Type5 LSA中的FA字段为0，表示路由器认为到达目的网段的数据包应该发往该ASBR</font></p>
+</li>
+<li><p><font color="blue">若Type5 LSA中的FA字段不为0，表示路由器认为到达目的网段的数据包应该发往这个FA所标识的设备</font></p>
+</li>
+</ul>
+</li>
+<li><p><font color="black">当以下条件全部满足时，FA字段才可以被设置为非0</font></p>
+<ul>
+<li>ASBR在其连接外部网络的接口（外部路由的出接口）上激活了OSPF</li>
+<li>该接口没有被配置为Silent-Interface</li>
+<li>该接口的OSPF网络类型为Broadcast或NBMA</li>
+<li>该接口的IP地址在OSPF配置的network命令指定的网段范围内</li>
+</ul>
+</li>
+<li><p><font color="blue">到达FA地址的路由必须是OSPF区域内部路由或区域间路由，这样接收到该外部LSA的路由器才能够加载该LSA进入路由表。加载的外部LSA生成的路由条目下一跳与到达FA地址的下一跳相</font></p>
+</li>
+</ul>
+<p><strong>NSSA区域Type7 LSA转化为Type5 LSA：</strong></p>
+<ul>
+<li><font color="orange">为了将NSSA区域引入的外部路由发布到其它区域，要把Type7 LSA转化为Type5 LSA以便在整个OSPF网络中通告。缺省情况下，转换路由器是NSSA区域中Router ID最大的区域边界路由器[ABR]</font></li>
+<li><font color="orange">LSA头部Options字段中的P-bit[Propagate bit]用于告知转化路由器该条Type7 LSA是否需要转化为Type5 LSA只有P-bit置位并且FA不为0的Type7 LSA才能转化为Type5 LSA</font></li>
+</ul>
+<p><strong>区域边界路由器产生的Type7 LSA缺省路由不会置位P-bit</strong></p>
+<h2 id="IS-IS高级特性"><a href="#IS-IS高级特性" class="headerlink" title="IS-IS高级特性"></a>IS-IS高级特性</h2><h3 id="IS-IS快速收敛"><a href="#IS-IS快速收敛" class="headerlink" title="IS-IS快速收敛"></a>IS-IS快速收敛</h3><blockquote>
+<p><strong><font color="FF6600">IS-IS快速收敛是为了提高路由的收敛速度而做的扩展特性，包括：I-SPF [ Incremental SPF，增量最短路径优先算法 ]、PRC、智能定时器、LSP快速扩散</font></strong></p>
+</blockquote>
+<ul>
+<li><font color="blue">IS-IS支持故障恢复快速收敛，例如通过IS-IS Auto FRR实现备份链路的快速切换，也可以与BFD联动实现对故障的快速感知</font></li>
+</ul>
+<h4 id="I-SPF"><a href="#I-SPF" class="headerlink" title="I-SPF"></a>I-SPF</h4><blockquote>
+<p><strong><font color="black">I-SPF的工作原理：当网络拓扑改变的时候，只对受影响的节点进行路由计算，而不是对全部节点重新进行路由计算，从而加快了路由的计算</font></strong></p>
+</blockquote>
+<p><img src="D:\blog\shierjinghuang\source_posts\IGP高级特性\I-SPF示例.png"></p>
+<ul>
+<li><strong><font color="orange">使用SPF算法进行路由计算：当网络拓扑中有一个节点发生变化时，SPF算法需要重新计算网络中的所有节点，计算时间长，占用过多的CPU资源，影响整个网络的收敛速度</font></strong></li>
+<li><strong><font color="orange">I-SPF改进了SPF算法，除了第一次SPF计算时需要计算全部节点外，之后每次都通过I-SPF计算受到影响的节点，而最后生成的最短路径树与原来的算法所计算的结果相同，大大降低了CPU的占用率，提高了网络收敛速度</font></strong></li>
+<li>在IS-IS网络中，I-SPF和PRC结合使用。<ul>
+<li>如果I-SPF计算后的最短路径树改变，PRC会只处理那个变化的节点上的所有路由</li>
+<li>如果经过I-SPF计算后的最短路径树并没有变化，则PRC只处理变化的叶子信息。比如一个节点使能一个IS-IS接口，则整个网络拓扑的最短路径树是不变的，这时PRC只更新这个节点的接口路由，从而节省CPU占用率</li>
+</ul>
+</li>
+</ul>
+<h4 id="LSP快速扩散"><a href="#LSP快速扩散" class="headerlink" title="LSP快速扩散:"></a>LSP快速扩散:</h4><ul>
+<li>LSP快速扩散：此特性可以加快LSP的扩散速度。<ul>
+<li>正常情况下，当IS-IS路由器收到其它路由器发来的LSP时，如果此LSP比本地LSDB中相应的LSP要新，则更新LSDB中的LSP，并用一个定时器定期将LSDB内已更新的LSP扩散出去</li>
+<li>LSP快速扩散特性改进了这种方式，使能了此特性的设备收到一个或多个较新的LSP时，在路由计算之前，先将小于指定数目的LSP扩散出去，加快LSDB的同步过程。这种方式在很大程度上可以提高整个网络的收敛速度</li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#	     配置LSP快速扩散
+[Huawei-isis-1] flash-flood [ lsp-count | max-timer-interval interval | [ level-1 | level-2 ] ]
+#	lsp-count：指定每个接口一次扩散LSP的最大数量。整数形式，取值范围是1～15。缺省值是5。
+#	max-timer-interval interval：指定LSP扩散的最大间隔时间。取值范围是10～50000毫秒。缺省值是10毫秒
+#	level-1：表示在Level-1中使能此特性。如果命令中没有指定级别，则缺省同时在Level-1和Level-2中使能此功能
+#	level-2：表示在Level-2中使能此特性。同上<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="IS-IS路由控制"><a href="#IS-IS路由控制" class="headerlink" title="IS-IS路由控制"></a>IS-IS路由控制</h3><h4 id="等价路由-1"><a href="#等价路由-1" class="headerlink" title="等价路由"></a>等价路由</h4><p>当IS-IS网络中有多条冗余链路时，可能会出现多条等价路由，此时可以采取两种方式：<br>配置负载分担。流量会被均匀的分配到每条链路上<br>该方式可以提高网络中链路的利用率及减少某些链路负担过重造成阻塞发生的情况。但是由于对流量转发具有一定的随机性，因此可能不利于对业务流量的管理<br>配置等价路由优先级。针对等价路由中的每一条路由，明确指定其优先级，优先级高的路由将被优选，优先级低的路由可以作为备用链路<br>当IS-IS网络中有多条冗余链路时，可能会出现多条等价路由，即达到某一目的网段有多条等开销路径。配置等价路由优先级可以在不修改原有配置的基础上，指定某条路由被优选，便于业务的管理，同时提高网络的可靠性<br>注意：配置等价路由优先级后，IS-IS设备在转发到达目的网段的流量时，将不采用负载分担方式，而是将流量转发到优先级最高的下一跳</p>
+<h5 id="配置IS-IS对等价路由的处理方式"><a href="#配置IS-IS对等价路由的处理方式" class="headerlink" title="配置IS-IS对等价路由的处理方式"></a>配置IS-IS对等价路由的处理方式</h5><p><strong>1、配置IS-IS路由负载分担</strong></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-isis-1] maximum load-balancing number
+#	配置在负载分担方式下的等价路由的最大数量。
+#	number：指定在负载分担方式下等价路由的最大数量。不同设备型号取值不同<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>2、配置IS-IS等价路由的优先级</strong></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-isis-1] nexthop ip-address weight value
+#	缺省情况下，不设置IS-IS等价路由的优先级。value值越小，表示优先级越高。
+#	ip-address：指定下一跳的IP地址
+#	weight value：指定下一跳权重。value越小则优先级越高。value是整数形式，取值范围是1～254<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>当组网中存在的等价路由数量大于<strong>maximum load-balancing</strong>命令配置的等价路由数量时，按照下面原则选取有效路由进行负载分担：</p>
+<ol>
+<li><strong>路由优先级</strong>：选取优先级小[优先级高]的路由进行负载分担</li>
+<li><strong>下一跳设备的System ID</strong>：如果路由的优先级相同，则比较下一跳设备的System ID，选取System ID小的路由进行负载分担</li>
+<li><strong>本地设备出接口索引</strong>：如果路由优先级和下一跳设备的System ID都相同，则比较出接口的接口索引，选取接口索引较小的路由进行负载分担</li>
+</ol>
+<h4 id="缺省路由-1"><a href="#缺省路由-1" class="headerlink" title="缺省路由"></a>缺省路由</h4><p>在IS-IS中，主要通过以下3种方式控制缺省路由的生成和发布。</p>
+<ul>
+<li>在Level-1-2设备上，控制其产生的Level-1 LSP中ATT位的置位情况</li>
+<li>在Level-1设备上，通过配置使其即使收到ATT位置位的Level-1 LSP也不会自动产生缺省路由</li>
+<li>在IS-IS中发布缺省路由</li>
+</ul>
+<h5 id="LSP的报文格式："><a href="#LSP的报文格式：" class="headerlink" title="LSP的报文格式："></a>LSP的报文格式：</h5><p>**ATT [Attachment]**：<font color="blue">由Level-1-2路由器产生，用来指明始发路由器是否与其它区域相连。此字段有4bit，华为数通产品只使用了其中1bit</font></p>
+<img src="D:\blog\shierjinghuang\source\_posts\IGP高级特性\LSP的报文格式.png" style="zoom: 60%;" />
+
+<h5 id="通过设置ATT位控制缺省路由生成"><a href="#通过设置ATT位控制缺省路由生成" class="headerlink" title="通过设置ATT位控制缺省路由生成:"></a>通过设置ATT位控制缺省路由生成:</h5><ul>
+<li><p><font color="FF1234">IS-IS规定，如果<strong>IS-IS Level-1-2</strong>设备根据LSDB判断通过Level-2区域比Level-1区域能够到达更多的区域，该设备会在所发布的Level-1 LSP内将ATT位置位</font></p>
+</li>
+<li><p><font color="FF1234">对于<strong>收到ATT位置位的LSP报文的Level-1设备</strong>，会生成一条目的地为发送该LSP的Level-1-2设备地址的缺省路由</font></p>
+</li>
+</ul>
+<blockquote>
+<p><strong><font color="orange">在实际应用中，可以根据需要对ATT比特位进行手动配置以更好地为网络服务:</font></strong></p>
+</blockquote>
+<p><strong>1、[Level-1-2设备]    设置IS-IS LSP报文的ATT比特位置位规则</strong></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-isis-1] attached-bit advertise &#123; always | never &#125;
+#	缺省情况下，Level-1-2设备发布的LSP的ATT位根据缺省置位规则来决定置位情况。
+	-always:指定ATT位永远置位，收到该LSP的Level-1设备会生成缺省路由
+	-never:指定ATT位永不置位，可以避免Level-1设备生成缺省路由，减小路由表的规模
+#	虽然ATT位同时在Level-1 LSP和Level-2 LSP中进行了定义，但是它只会在Level-1 LSP中被置位，并且只有Level-1-2设备会设置这个字段，因此，该命令仅对Level-1-2设备生效<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>2、[Level-1设备]    控制Level-1设备不因为ATT位下发缺省路由到路由表</strong></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-isis-1] attached-bit avoid-learning
+#	缺省情况下，IS-IS按ATT位缺省使用规则生成缺省路由
+#	配置Level-1设备不将缺省路由下发到路由表，有以下两种方式可以实现:
+	-在Level-1-2设备上配置attached-bit advertise never命令，使得其不会发布ATT位置位的LSP
+	-在与Level-1-2设备相连的Level-1设备上配置attached-bit avoid-learning命令
+#	attached-bit avoid-learning命令适用于需要针对指定设备配置的情况<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="IS-IS发布缺省路由"><a href="#IS-IS发布缺省路由" class="headerlink" title="IS-IS发布缺省路由"></a>IS-IS发布缺省路由</h5><p><font color="FF6600"><strong>具有外部路由的边界设备上配置IS-IS发布缺省路由可以使该设备在IS-IS路由域内发布一条0.0.0.0/0的缺省路由</strong></font></p>
+<p>在执行此配置后，IS-IS域内的其他设备在转发流量时，将所有去往外部路由域的流量首先转发到该设备，然后通过该设备去往外部路由域</p>
+<ul>
+<li>网络中部署了IS-IS和其他路由协议时，<strong>为了实现IS-IS域内的流量可以到达IS-IS域外</strong>，通常有如下两种方式：<ul>
+<li>在边界设备上配置IS-IS设备向IS-IS域发布缺省路由，该方式不需要学习外部路由</li>
+<li>在边界设备上将其他路由域的路由引入到IS-IS中</li>
+</ul>
+</li>
+</ul>
+<p><strong>配置运行IS-IS的设备生成缺省路由：</strong></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-isis-1] default-route-advertise [ always | match default | route-policy route-policy-name ] [ cost cost | tag tag | [ level-1 | level-1-2 | level-2 ] ] [ avoid-learning ]
+#	缺省情况下，运行IS-IS协议的设备不生成缺省路由
+	-always：指定设备无条件的发布缺省路由，且发布的缺省路由中将自己作为下一跳
+	-match default:如果路由表中存在其他路由协议或其它IS-IS进程生成的缺省路由，则在LSP中发布该缺省路由
+	-route-policy route-policy-name:指定路由策略名称。当该边界设备的路由表中存在满足路由策略的外部路由时，才向IS-IS域发布缺省路由，避免由于链路故障等原因造成该设备已经不存在某些重要的外部路由时，仍然发布缺省路由从而造成路由黑洞。此处的路由策略不影响IS-IS引入外部路由
+	-cost cost：指定缺省路由的开销值。整数形式。取值范围根据cost-style而定：当cost-style为narrow、narrow-compatible或compatible时，取值范围是0～63；当cost-style为wide或wide-compatible时，取值范围是0～4261412864
+	-tag tag：指定发布的缺省路由的标记值。只有当IS-IS的开销类型为wide、wide-compatible或compatible时，发布的LSP中才会携带tag值。取值范围为1～4294967295
+	-level-1：指定发布的缺省路由级别为Level-1。如果不指定级别，则默认为生成Level-2级别的缺省路由
+	-level-2：指定发布的缺省路由级别为Level-2。如果不指定级别，则默认为生成Level-2级别的缺省路由
+	-level-1-2：指定发布的缺省路由级别为Level-1-2。如果不指定级别，则默认为生成Level-2级别的缺省路由
+	-avoid-learning：避免IS-IS进程学到其他路由协议或其它IS-IS进程生成的缺省路由并添加到路由表。如果路由表中已存在学到的缺省路由为活跃状态，则将此路由置为不活跃状态<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>配置该命令后，IS-IS域内所有去往外部的流量将首先会被转发到该设备来进行转发。相比于在每台设备上配置静态缺省路由，使用该命令可以简化操作，即只需在边界设备配置即可。此外，该命令是动态发布缺省路由，使用更加灵活，有多种发布缺省路由的方式可供选择</li>
+<li>如果在Level-1设备上配置了该命令，那么该设备只会向Level-1区域发布缺省路由，不会将缺省路由发布到Level-2区域</li>
+</ul>
+<h4 id="IS-IS多实例和多进程"><a href="#IS-IS多实例和多进程" class="headerlink" title="IS-IS多实例和多进程"></a>IS-IS多实例和多进程</h4><blockquote>
+<p><font color=" FF0033 ">IS-IS多实例是指在同一台路由器上，可以配置多个VPN实例与多个IS-IS进程相关联</font></p>
+</blockquote>
+<blockquote>
+<p><font color=" FF0033 ">IS-IS多进程指在同一个VPN下  [或者同在公网下]，可以创建多个IS-IS进程，每个进程之间互不影响，彼此独立。不同进程之间的路由交互相当于不同路由协议之间的路由交互</font></p>
+</blockquote>
+<p>网络中可能需要同时承载不同的业务，为保证各业务的安全性，需要将业务进行隔离，此时，可以配置与VPN实例绑定</p>
+<ul>
+<li>IS-IS多实例和多进程的特点如下：<ul>
+<li>IS-IS多进程共用同一个全局路由表。而IS-IS多实例使用VPN中的路由表，并且每个VPN都有自己单独的路由表</li>
+<li>IS-IS多进程允许为一个指定的IS-IS进程关联一组接口，从而保证该进程进行的所有协议操作都仅限于这一组接口。这样，就可以实现一台路由器有多个IS-IS协议进程，每个进程负责唯一的一组接口</li>
+<li>IS-IS进程在创建时可以选择绑定一个VPN实例，于是这个IS-IS进程就与此VPN实例相关联，并且只接收和处理此VPN实例内的事件。当VPN实例删除时，IS-IS进程也会跟着被删除</li>
+</ul>
+</li>
+</ul>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei] isis [ process-id ] [ vpn-instance vpn-instance-name ]
+	-process-id:指定IS-IS进程号。如果不指定进程，则启动进程号为1的IS-IS进程，取值范围是1～65535。缺省值是1
+	-vpn-instance vpn-instance-name：指定VPN实例名。如果不指定此参数，则就不会配置VPN实例与相应的IS-IS进程相关联<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h5 id="LSP分片"><a href="#LSP分片" class="headerlink" title="LSP分片"></a>LSP分片</h5><blockquote>
+<p><strong><font color="FF6600">当IS-IS要发布的PDU中信息量太大时，IS-IS路由器将会生成多个LSP分片，用来携带更多的IS-IS信息</font></strong></p>
+</blockquote>
+<img src="D:\blog\shierjinghuang\source\_posts\IGP高级特性\IS-IS_LSP的格式.png" style="zoom: 50%;" />
+
+<p>IS-IS LSP分片由LSP ID中的分片号    [LSP Number]字段进行标识，这个字段的长度是1Byte。因此，一个IS-IS进程最多可产生256个LSP分片，携带的信息量有限</p>
+<h5 id="LSP分片扩展工作原理"><a href="#LSP分片扩展工作原理" class="headerlink" title="LSP分片扩展工作原理:"></a>LSP分片扩展工作原理:</h5><blockquote>
+<p>在IS-IS中，每个系统ID都标识一个系统，每个系统都最多可生成256个LSP分片。通过增加附加系统ID，可以最多配置50个虚拟系统，从而使得IS-IS进程最多可生成13056个LSP分片</p>
+</blockquote>
+<p>IS-IS路由器可以在两种模式下运行LSP分片扩展特性：</p>
+<img src="D:\blog\shierjinghuang\source\_posts\IGP高级特性\两种模式下运行LSP分片扩展特性.png" style="zoom:80%;" />
+
+<ul>
+<li>Mode-1工作原理：<ul>
+<li>虚拟系统参与路由SPF计算，初始系统发布的LSP中携带了到每个虚拟系统的链路信息。虚拟系统发布的LSP也包含到初始系统的链路信息。网络中虚拟系统看起来与初始系统相连的真实路由器是一样的</li>
+<li>这种方式是为了兼容不支持分片扩展的老版本所做的一个过渡模式。老版本IS-IS无法识别24号TLV，所以虚拟系统的LSP必须表现的像一个普通IS-IS发出的报文</li>
+<li>注意事项：<ul>
+<li>虚拟系统的LSP中包含和原LSP中相同的区域地址和过载标志位，其它特性的TLV，也必须保持一致</li>
+<li>虚拟系统的邻居信息指向初始系统，metric为最大值减1；初始系统的邻居信息指向虚拟系统，metric必须为0。这样就保证了其它路由器在进行路由计算的时候，虚拟系统一定会成为初始系统的下游节点</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Mode-2工作原理：<ul>
+<li>虚拟系统不参与路由SPF计算，网络中所有路由器都知道虚拟系统生成的LSP实际属于初始系统</li>
+<li>在该模式下工作的IS-IS，可以识别24号TLV的内容，并作为计算树和路由的依据</li>
+</ul>
+</li>
+</ul>
+<h5 id="LSP分片扩展的基本配置命令："><a href="#LSP分片扩展的基本配置命令：" class="headerlink" title="LSP分片扩展的基本配置命令："></a>LSP分片扩展的基本配置命令：</h5><p><strong>1、使能IS-IS进程的LSP分片扩展：</strong></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-isis-1]lsp-fragments-extend [[ level-1 | level-2| level-1-2 ]|[mode-1 |mode-2] ] 
+#	缺省情况下，设备未使能IS-IS进程的LSP分片扩展功能
+#	配置LSP分片扩展时，如果不指定mode和level级别，则默认为mode-1和level-1-2
+	-level-1：指定在Level-1级别使能分片扩展
+	-level-2：指定在Level-2级别使能分片扩展
+	-level-1-2：指定在Level-1-2级别使能分片扩展
+	-mode-1：该模式可以兼容以前老版本不支持LSP分片扩展特性的情况
+	-mode-2：该模式要求所有路由器都支持LSP分片扩展特性<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>2、配置一个虚拟系统：</strong></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-isis-1] virtual-system virtual-system-id 
+#	缺省情况下，设备没有配置虚拟系统
+#	为了使设备生成扩展LSP分片，应至少配置一个虚拟系统的系统ID。这个虚拟系统的系统ID在整个路由域中必须唯一
+#	一个IS-IS进程最多可配置50个虚拟系统的System ID
+	-virtual-system-id：指定IS-IS进程的虚拟系统ID。长度是6字节（48比特），格式是XXXX.XXXX.XXXX<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>以上两条命令是配合使用的，只有使能了LSP分片扩展，并用reset isis all命令重启了IS-IS进程后，配置的虚拟系统ID才会生效</p>
+
                 
             </div>
             <hr/>
@@ -1155,7 +1363,7 @@ match-any参数：
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">400.4k</span>
+                        class="white-color">405.1k</span>
             
             
             
