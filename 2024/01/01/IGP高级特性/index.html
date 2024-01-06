@@ -539,7 +539,7 @@
 <li>当需要保护的对象是经过特定设备的流量时，流量保护类型为节点链路双保护。节点保护优先级高于链路保护</li>
 </ul>
 </blockquote>
-<img src="D:\blog\shierjinghuang\source\_posts\IGP高级特性\OSPF_IP_FRR流量保护.png" style="zoom:80%;" />
+<img src="https://shierjinghuang.github.io/2024/01/01/IGP高级特性/OSPF_IP_FRR流量保护.png" style="zoom:80%;" />
 
 <h5 id="OSPF-IP-FRR的基础配置命令"><a href="#OSPF-IP-FRR的基础配置命令" class="headerlink" title="OSPF IP FRR的基础配置命令"></a>OSPF IP FRR的基础配置命令</h5><p>使能OSPF IP FRR</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-ospf-1] frr
@@ -558,7 +558,7 @@
 <ul>
 <li>配置指定进程或指定接口的OSPF与BFD联动功能，可以快速检测链路的状态，故障检测时间可以达到毫秒级，提高链路状态变化时OSPF的收敛速度</li>
 </ul>
-<img src="D:\blog\shierjinghuang\source\_posts\IGP高级特性\OSPF与BFD联动工作原理.png" style="zoom:80%;" />
+<img src="https://shierjinghuang.github.io/2024/01/01/IGP高级特性/OSPF与BFD联动工作原理.png" style="zoom:80%;" />
 
 <h5 id="OSPF与BFD联动的基础配置命令"><a href="#OSPF与BFD联动的基础配置命令" class="headerlink" title="OSPF与BFD联动的基础配置命令"></a>OSPF与BFD联动的基础配置命令</h5><p><strong>1、配置OSPF的BFD特性</strong></p>
 <blockquote>
@@ -602,7 +602,7 @@
 <li><strong><font color="blue">区域边界路由器[ABR]</font></strong>  发布<strong>Type3 LSA</strong>，指导区域内路由器进行区域之间报文的转发</li>
 <li><strong><font color="blue">自治系统边界路由器[ASBR]</font></strong>  发布<strong>Type5 LSA</strong>或<strong>Type7 LSA</strong>，指导OSPF路由域内路由器进行域外报文的转发</li>
 </ul>
-<img src="D:\blog\shierjinghuang\source\_posts\IGP高级特性\表格1.png" style="zoom:80%;" />
+<img src="https://shierjinghuang.github.io/2024/01/01/IGP高级特性/表格1.png" style="zoom:80%;" />
 
 <blockquote>
 <p><font color="blue">缺省路由是指目的地址和掩码都是0的路由。当设备无精确匹配的路由时，就可以通过缺省路由进行报文转发。由于OSPF路由的分级管理，Type3缺省路由的优先级高于Type5或Type7路由</font></p>
@@ -723,7 +723,7 @@ match-any参数：
 <blockquote>
 <p><strong><font color="blue">OSPF网络中所有路由器都配置相同的上限值，只要路由器上外部路由的数量达到该上限，路由器就进入Overflow状态，并同时启动Overflow状态定时器，路由器在定时器超过5秒后自动退出Overflow状态</font></strong></p>
 </blockquote>
-<img src="D:\blog\shierjinghuang\source\_posts\IGP高级特性\Overflow数据库超限处理.png" style="zoom:80%;" />
+<img src="https://shierjinghuang.github.io/2024/01/01/IGP高级特性/Overflow数据库超限处理.png" style="zoom:80%;" />
 
 <h3 id="OSPF其他特性"><a href="#OSPF其他特性" class="headerlink" title="OSPF其他特性"></a>OSPF其他特性</h3><h4 id="OSPF多进程"><a href="#OSPF多进程" class="headerlink" title="OSPF多进程"></a>OSPF多进程</h4><blockquote>
 <p><strong><font color="orange">OSPF支持多进程，在同一台路由器上可以运行多个不同的OSPF进程，它们之间互不影响，彼此独立。不同OSPF进程之间的路由交互相当于不同路由协议之间的路由交互</font></strong></p>
@@ -738,7 +738,7 @@ match-any参数：
 <li>通过使能OSPF与BGP联动特性，可以解决流量丢失问题</li>
 <li>使能了OSPF与BGP联动特性的设备会在设定的<font color="blue">联动时间内保持为Stub路由器</font>，也就是说，该设备发布的LSA中的链路度量值为最大值[65535]，从而告知其它OSPF设备不要使用这个路由器来转发数据</li>
 </ul>
-<img src="D:\blog\shierjinghuang\source\_posts\IGP高级特性\OSPF与BGP联动后的收敛.png" style="zoom:67%;" />
+<img src="https://shierjinghuang.github.io/2024/01/01/IGP高级特性/OSPF与BGP联动后的收敛.png" style="zoom:67%;" />
 
 <ul>
 <li>配置Stub路由器是一种特殊的路由选路，配置了Stub路由器的路径不被优选</li>
@@ -760,7 +760,7 @@ match-any参数：
 <h4 id="OSPF转发地址"><a href="#OSPF转发地址" class="headerlink" title="OSPF转发地址:"></a>OSPF转发地址:</h4><blockquote>
 <p><strong><font color="FF6600">FA[Forwarding Address，转发地址]：到达所通告的目的地的数据包应该被转发到的地址，如果转发地址为0.0.0.0，那么数据包将被转发到始发ASBR上</font></strong></p>
 </blockquote>
-<img src="D:\blog\shierjinghuang\source\_posts\IGP高级特性\FA转发地址.png" style="zoom:50%;" />
+<img src="https://shierjinghuang.github.io/2024/01/01/IGP高级特性/FA转发地址.png" style="zoom:50%;" />
 
 <h5 id="FA的取值"><a href="#FA的取值" class="headerlink" title="FA的取值:"></a>FA的取值:</h5><ul>
 <li><ul>
@@ -796,7 +796,8 @@ match-any参数：
 <h4 id="I-SPF"><a href="#I-SPF" class="headerlink" title="I-SPF"></a>I-SPF</h4><blockquote>
 <p><strong><font color="black">I-SPF的工作原理：当网络拓扑改变的时候，只对受影响的节点进行路由计算，而不是对全部节点重新进行路由计算，从而加快了路由的计算</font></strong></p>
 </blockquote>
-<p><img src="D:\blog\shierjinghuang\source_posts\IGP高级特性\I-SPF示例.png"></p>
+<img src="https://shierjinghuang.github.io/2024/01/01/IGP高级特性/I-SPF示例.png" style="zoom:67%;" />
+
 <ul>
 <li><strong><font color="orange">使用SPF算法进行路由计算：当网络拓扑中有一个节点发生变化时，SPF算法需要重新计算网络中的所有节点，计算时间长，占用过多的CPU资源，影响整个网络的收敛速度</font></strong></li>
 <li><strong><font color="orange">I-SPF改进了SPF算法，除了第一次SPF计算时需要计算全部节点外，之后每次都通过I-SPF计算受到影响的节点，而最后生成的最短路径树与原来的算法所计算的结果相同，大大降低了CPU的占用率，提高了网络收敛速度</font></strong></li>
@@ -820,7 +821,18 @@ match-any参数：
 #	level-1：表示在Level-1中使能此特性。如果命令中没有指定级别，则缺省同时在Level-1和Level-2中使能此功能
 #	level-2：表示在Level-2中使能此特性。同上<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="IS-IS路由控制"><a href="#IS-IS路由控制" class="headerlink" title="IS-IS路由控制"></a>IS-IS路由控制</h3><h4 id="等价路由-1"><a href="#等价路由-1" class="headerlink" title="等价路由"></a>等价路由</h4><p>当IS-IS网络中有多条冗余链路时，可能会出现多条等价路由，此时可以采取两种方式：<br>配置负载分担。流量会被均匀的分配到每条链路上<br>该方式可以提高网络中链路的利用率及减少某些链路负担过重造成阻塞发生的情况。但是由于对流量转发具有一定的随机性，因此可能不利于对业务流量的管理<br>配置等价路由优先级。针对等价路由中的每一条路由，明确指定其优先级，优先级高的路由将被优选，优先级低的路由可以作为备用链路<br>当IS-IS网络中有多条冗余链路时，可能会出现多条等价路由，即达到某一目的网段有多条等开销路径。配置等价路由优先级可以在不修改原有配置的基础上，指定某条路由被优选，便于业务的管理，同时提高网络的可靠性<br>注意：配置等价路由优先级后，IS-IS设备在转发到达目的网段的流量时，将不采用负载分担方式，而是将流量转发到优先级最高的下一跳</p>
+<h3 id="IS-IS路由控制"><a href="#IS-IS路由控制" class="headerlink" title="IS-IS路由控制"></a>IS-IS路由控制</h3><h4 id="等价路由-1"><a href="#等价路由-1" class="headerlink" title="等价路由"></a>等价路由</h4><p>当IS-IS网络中有多条冗余链路时，可能会出现多条等价路由，此时可以采取两种方式：</p>
+<ul>
+<li>配置负载分担。流量会被均匀的分配到每条链路上<ul>
+<li>该方式可以提高网络中链路的利用率及减少某些链路负担过重造成阻塞发生的情况。但是由于对流量转发具有一定的随机性，因此可能不利于对业务流量的管理</li>
+</ul>
+</li>
+<li>配置等价路由优先级。针对等价路由中的每一条路由，明确指定其优先级，优先级高的路由将被优选，优先级低的路由可以作为备用链路<ul>
+<li>当IS-IS网络中有多条冗余链路时，可能会出现多条等价路由，即达到某一目的网段有多条等开销路径。配置等价路由优先级可以在不修改原有配置的基础上，指定某条路由被优选，便于业务的管理，同时提高网络的可靠性</li>
+</ul>
+</li>
+</ul>
+<p>注意：配置等价路由优先级后，IS-IS设备在转发到达目的网段的流量时，将不采用负载分担方式，而是将流量转发到优先级最高的下一跳</p>
 <h5 id="配置IS-IS对等价路由的处理方式"><a href="#配置IS-IS对等价路由的处理方式" class="headerlink" title="配置IS-IS对等价路由的处理方式"></a>配置IS-IS对等价路由的处理方式</h5><p><strong>1、配置IS-IS路由负载分担</strong></p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-isis-1] maximum load-balancing number
 #	配置在负载分担方式下的等价路由的最大数量。
@@ -845,7 +857,7 @@ match-any参数：
 <li>在IS-IS中发布缺省路由</li>
 </ul>
 <h5 id="LSP的报文格式："><a href="#LSP的报文格式：" class="headerlink" title="LSP的报文格式："></a>LSP的报文格式：</h5><p>**ATT [Attachment]**：<font color="blue">由Level-1-2路由器产生，用来指明始发路由器是否与其它区域相连。此字段有4bit，华为数通产品只使用了其中1bit</font></p>
-<img src="D:\blog\shierjinghuang\source\_posts\IGP高级特性\LSP的报文格式.png" style="zoom: 60%;" />
+<img src="https://shierjinghuang.github.io/2024/01/01/IGP高级特性/LSP的报文格式.png" style="zoom: 60%;" />
 
 <h5 id="通过设置ATT位控制缺省路由生成"><a href="#通过设置ATT位控制缺省路由生成" class="headerlink" title="通过设置ATT位控制缺省路由生成:"></a>通过设置ATT位控制缺省路由生成:</h5><ul>
 <li><p><font color="FF1234">IS-IS规定，如果<strong>IS-IS Level-1-2</strong>设备根据LSDB判断通过Level-2区域比Level-1区域能够到达更多的区域，该设备会在所发布的Level-1 LSP内将ATT位置位</font></p>
@@ -926,7 +938,7 @@ match-any参数：
 <p>在IS-IS中，每个系统ID都标识一个系统，每个系统都最多可生成256个LSP分片。通过增加附加系统ID，可以最多配置50个虚拟系统，从而使得IS-IS进程最多可生成13056个LSP分片</p>
 </blockquote>
 <p>IS-IS路由器可以在两种模式下运行LSP分片扩展特性：</p>
-<img src="D:\blog\shierjinghuang\source\_posts\IGP高级特性\两种模式下运行LSP分片扩展特性.png" style="zoom:80%;" />
+<img src="https://shierjinghuang.github.io/2024/01/01/IGP高级特性/两种模式下运行LSP分片扩展特性.png" style="zoom:80%;" />
 
 <ul>
 <li>Mode-1工作原理：<ul>
