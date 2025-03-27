@@ -1,0 +1,1365 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Java项目 即时通讯系统, 十二惊惶">
+    <meta name="description" content="这是你自定义的文章摘要内容，如果这个属性有值，文章卡片摘要就显示这段文字，否则程序会自动截取文章的部分内容作为摘要">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Java项目 即时通讯系统 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Java项目 即时通讯系统</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/" class="post-category">
+                                项目设计
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-03-18
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2025-03-27
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    17 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="即时通讯系统"><a href="#即时通讯系统" class="headerlink" title="即时通讯系统"></a>即时通讯系统</h2><h3 id="1-系统概述"><a href="#1-系统概述" class="headerlink" title="1  系统概述"></a>1  系统概述</h3><blockquote>
+<p><font color=blue>即时通讯是一款基于互联网的即时通讯软件，旨在为企业提供高效、安全、便捷的沟通工具。</font></p>
+<p>本项目是一个基于Java语言开发的企业QQ系统，是基于C/S模型实现。系统可分为两个部分，服务端和客户端。服务端的工作主要是来监听和接收来自客户端的请求，然后存储并处理客户端发来的消息，并通知客户端。而客户端的功能是能够让新用户注册，通过用户名密码登陆并且使用该系统。通过服务端和客户端的协同工作最终使用户能够使用该程序，完成用户和用户之间的沟通。</p>
+</blockquote>
+<h4 id="1-1-功能概述"><a href="#1-1-功能概述" class="headerlink" title="1.1 功能概述"></a>1.1 功能概述</h4><ol>
+<li><p>好友管理：支持用户进行好友添加、好友删除、修改等操作，同时也支持用户自行注册、登录、修改个人信息等操作</p>
+</li>
+<li><p>群组管理：支持用户创建、删除、修改群组，同时也支持用户加入、退出、查看群组等操作</p>
+</li>
+<li><p>即时通讯：支持用户之间的即时聊天，同时也支持群组内的多人聊天，聊天内容可以包括文字、图片、文件、表情等</p>
+</li>
+<li><p>安全性保障：所有数据传输均采用加密方式，保证用户信息和聊天内容的安全性</p>
+</li>
+<li><p>消息推送：支持消息推送功能，当有新消息到达时，系统会及时向用户发送通知，方便用户及时查看聊天记录</p>
+</li>
+<li><p>日志记录：系统会记录用户的聊天记录以及操作日志，方便管理员进行管理和监控</p>
+</li>
+</ol>
+<h4 id="1-2-技术概述"><a href="#1-2-技术概述" class="headerlink" title="1.2 技术概述"></a>1.2 技术概述</h4><p><strong>1.2.1 Java基础知识：包括语法、面向对象编程</strong></p>
+<p>Java具有简单性、面向对象、分布式、健壮性、安全性、平台独立与可移植性、多线程、多线程、动态性等特点。Java可以编写桌面应用程序、Web应用程序、分布式系统和嵌入式系统应用程序等</p>
+<p><strong>1.2.2 网络编程技术Socket</strong></p>
+<p>在本程序中为实现客户端和服务器之间的通信，使用Socket技术，socket能够通过java程序发出请求和处理网络发过来的请求。在建立双方网络连接的时候会使用到socket套接字。当网络成功建立连接后，双方都会有一个socket的实例被建立，通过使用和操作这个实例完成各种需求。对双方的连接来说，客户端和服务端并没有什·么差别socket是平等的，它们都是通过socket的实现类和它的子类来完成的</p>
+<p>socket分为服务端和客户端两部分，服务端主要是可以监听一个特殊的端口，它能够监听并且捕获的向这个特定的端口发出的请求，这个请求就是由客户端来发起的。当连接建立之后会产生会话，完成会话之后关闭连接。而客户端主要是发起请求，它能够向某一个特定的服务器上的一个特殊的端口发起请求，然后建立连接处理会话，会话完成后和服务端一样关闭socket。客户端并不用像服务器一样规定一个特殊的打开的端口，系统会自动分配一个能够使用的端口</p>
+<p><strong>1.2.3 数据库java.SQL与MySQL数据库</strong></p>
+<p>Java.SQL是Java语言中用于访问关系型数据库的API，Java.SQL API提供了一组简单易用的接口和类来访问关系型数据库，使得开发者可以方便地进行数据库操作，Java.SQL API是面向对象的，它将数据库中的数据结构映射为Java中的对象，使得开发者可以使用面向对象的方式来操作数据库，Java.SQL API支持插件式的驱动程序架构，使得开发者可以通过添加新的驱动程序来支持更多的数据库类型</p>
+<p>MySQL是一种开源的、关系型数据库管理系统（RDBMS），它是由瑞典MySQL AB公司开发的，现在属于Oracle公司旗下产品。MySQL广泛应用于Web应用程序的开发中，是目前使用最为广泛的关系型数据库之一。其具有高性能，可扩展性、简单易用、跨平台性、可靠性，被广泛应用于各种应用程序的开发中</p>
+<p><strong>1.2.4 前端技术java.swing与java.awt</strong></p>
+<p>Java Swing是一组用于创建图形用户界面（GUI）的Java类库。它提供了丰富的组件和工具，可以帮助开发人员构建跨平台的GUI应用程序。ava Swing提供了许多常用的GUI组件，例如按钮、文本框、下拉列表、表格等，还提供了一些高级组件，例如树形控件、分隔面板、标签页等。Java Swing提供了多种布局管理器，例如BorderLayout、FlowLayout、GridLayout等，可以帮助开发人员快速构建复杂的GUI界面</p>
+<p><strong>1.2.5 系统及文件流操作java.io</strong></p>
+<p>Java的核心库java.io提供了全面的IO接口。包括：文件读写、标准设备输出等。Java中IO是以流为基础进行输入输出的，所有数据被串行化写入输出流，或者从输入流读入。支持文件输入输出、网络输入输出、内存输入输出等多种方式，可以处理各种来源的数据</p>
+<p><strong>1.2.6 各类型数据处理java.util</strong></p>
+<p>Java.util是Java语言中一个重要的标准库，提供了许多常用的工具类和数据结构，用于处理各种数据类型、日期、时间、集合等问题。Java.util提供了众多的数据结构，如数组、列表、队列、栈、堆、哈希表、树、图等，可以满足不同场景下的数据存储和处理需求。此外提供了Date、Calendar、DateFormat、SimpleDateFormat等类，支持日期和时间的格式化、解析、计算和比较等操作</p>
+<p><strong>1.2.7 java.long多线程设置</strong></p>
+<p>java.lang包中的Thread类是Java实现多线程的核心类之一。通过创建Thread对象并调用其start()方法，可以启动一个新的线程并执行其中的代码</p>
+<p>创建了一个新的线程后，会将其作为参数传递给Thread构造函数的Runnable对象中定义的代码块作为该线程的执行内容。调用start()方法后，该线程会在后台运行并执行其中的代码。除了Thread类，java.lang包中还提供了一些其他的类和接口，如Runnable接口、ThreadGroup类等，用于实现多线程编程。通过这些类和接口，可以方便地管理和控制多个线程的执行</p>
+<h3 id="2-系统设计"><a href="#2-系统设计" class="headerlink" title="2  系统设计"></a>2  系统设计</h3><h4 id="2-1功能设计"><a href="#2-1功能设计" class="headerlink" title="2.1功能设计"></a>2.1功能设计</h4><p>系统功能框架如图2-1所示:</p>
+<img src="./Java实训/系统功能框架.jpg" style="zoom: 67%;" />
+
+<center>图2-1系统功能框架</center>
+系统使用流程如图2-1所示：
+
+<img src="./Java实训/系统使用流程.jpg" alt="img" style="zoom:67%;" />
+
+<center>图2-2系统使用流程</center>
+即时通讯是一款基于互联网的即时通讯系统，系统分为两个部分服务端和客户端,实现基础的注册登录、好友管理、群组管理、即时通讯、日志记录、提供安全保障功能。
+
+<p>客户端为用户提供了注册登录功能，新用户通过注册账号进入即时通讯系统，系统自动展示好友列表窗体。用户根据需求通过用户账号、用户名的搜索实现好友添加，通过查看与设置好友信息实现对好友的备注、分类与管理；用户通过群号、群名的搜索想要加入的群聊，同时用户可以选取好友创建属于自己的群聊，根据需求修改群信息实现个性化群聊。</p>
+<p>服务端实现了三大功能，界面显示功能、业务处理功能、数据传送功能。界面显示功能通过服务端的设置把控主窗体界面显示；业务处理功能管理对应的用户线程，顺利实现用户的注册、登录与退出，依托服务器连接数据库实现聊天业务的处理，完成信息的记录与查询；数据传送功能是即时聊天系统的核心功能，实现简单信息传输的同时，支持一定大小文件与图片的传输，同时为了增加交互的趣味性，支持表情包的传输，其余功能有待开发。</p>
+<p><strong>2.1.1 登录界面</strong></p>
+<ol>
+<li><p>用户登录: 对输入用户名和密码进行验证。用户输入数据，发送到指定的客户端，由客户端与其相连的数据库进行比较</p>
+</li>
+<li><p>注册账号: 设置用户名、昵称、手机号、所在地、年龄、性别、密码并对信息进行存储</p>
+</li>
+</ol>
+<p><strong>2.1.2 主界面</strong></p>
+<ol>
+<li><p>好友列表: 对好友分组实现创建、修改、删除；对好友实现修改备注、查看资料、清空聊天记录、置顶聊天等功能</p>
+</li>
+<li><p>群组列表: 对群组实现创建、解散、修改资料等功能</p>
+</li>
+<li><p>其他功能: 实现用户资料修改、查找/添加群和好友、查看群/好友申请列表/修改用户密码/退出登录等功能。</p>
+</li>
+</ol>
+<p><strong>2.1.3聊天界面</strong></p>
+<ul>
+<li>实现消息发送、图片发送、表情发送、文件发送、截图、查看聊天记录、字体设置等功能。</li>
+</ul>
+<h4 id="2-2数据库设计"><a href="#2-2数据库设计" class="headerlink" title="2.2数据库设计"></a>2.2数据库设计</h4><p><strong>2.2.1 实体关系设计</strong></p>
+<p>即时通讯系统采用的是MySQL数据库，然后借助数据库可视化软MySQL workbeach 创建数据库，通过相应建表语句，最后完整的设计出系统数据库。</p>
+<p>系统数据库表基本E-R表关系如图2-2所示。</p>
+<p>系统数据库实体属性如图2-3、图2-4、图2-5、图2-6所示。</p>
+<img src="./Java实训/数据库基本E-R图.jpg" style="zoom:80%;" />
+
+<center>图2-2系统E-R图</center>
+<img src="./Java实训/用户实体.jpg" style="zoom: 80%;" />
+
+<center>图2-3用户属性图</center>
+<img src="./Java实训/好友属性E-R图.jpg" style="zoom:80%;" />
+
+<center>图2-4好友属性图</center>
+<img src="./Java实训/消息属性E-R图.jpg" style="zoom:67%;" />
+
+<center>图2-5消息记录属性图</center>
+<img src="./Java实训/群属性E-R图.jpg" style="zoom:80%;" />
+
+<center>图2-6群属性图</center>
+**2.2.2表**
+
+<p>以下列出数据库设计过程中相关表的情况。</p>
+<ol>
+<li>yonghu用户信息表 :该表主要用于存储注册用户的个人账号信息，主要由账号密码、性别、年龄、昵称、电话、地址、注册日期等字段组成，其表结构如表2-1所示。</li>
+</ol>
+<center>表2-1 yonghu表的结构</center>
+|   字段名   | 数据类型 | 长度 | 是否主键 |   描述   |
+| :--------: | :------: | ---- | :------: | :------: |
+| yonghuming | varchar  | 200  |    是    |  用户名  |
+|    mima    | varchar  | 200  |    否    |   密码   |
+|  xingbie   | varchar  | 200  |    否    |   性别   |
+|  nianling  | varchar  | 200  |    否    |   年龄   |
+|   aihao    | varchar  | 200  |    否    |   爱好   |
+|    role    | varchar  | 200  |    否    |   角色   |
+|  nicheng   | varchar  | 200  |    否    |   昵称   |
+|   phone    | varchar  | 200  |    否    |   电话   |
+|  address   | varchar  | 200  |    否    |   地址   |
+|  headimg   | varchar  | 200  |    否    |   头像   |
+| registdate | varchar  | 200  |    否    | 注册日期 |
+
+<ol start="2">
+<li>haoyou好友表 :该表主要用于存储用户的好友信息并记录是否置顶，好友信息主要由好友名、好友备注、昵称、归属组ID组成，其表结构主要如表2-2所示。</li>
+</ol>
+<center>表2-2 haoyou表的结构</center>
+| 字段名           | 数据类型 | 长度 | 是否主键 | 描述       |
+| :--------------- | :------: | :--: | :------: | :--------- |
+| id               | varchar  | 200  |    是    | 好友ID     |
+| haoyouyonghuming | varchar  | 200  |    否    | 好友用户名 |
+| beizhuname       | varchar  | 200  |    否    | 备注名称   |
+| nickname         | varchar  | 200  |    否    | 昵称       |
+| zhiding          | varchar  | 200  |    否    | 是否置顶   |
+| fenleiid         |   int    |  10  |    否    | 归属组ID   |
+
+<ol start="3">
+<li>qun 群组表 :该表主要记录创建的群的群号、群名、群主、群备注以及群头像，其表结构主要如表2-3所示</li>
+</ol>
+<center>表2-3 qun表的结构</center>
+| 字段名  | 数据类型 | 长度 | 是否主键 |  描述  |
+| :-----: | :------: | :--: | :------: | :----: |
+| qunhao  | varchar  | 200  |    是    |  群号  |
+| qunming | varchar  | 200  |    否    |  群名  |
+| qunzhu  | varchar  | 200  |    否    |  群主  |
+|  note   | varchar  | 200  |    否    |  备注  |
+| headimg | varchar  | 200  |    否    | 群头像 |
+
+<ol start="4">
+<li>qunyonghu 群用户表 :该表主要记录群用户ID、用户名，以及归属群的群号，其表结构主要如表2-4所示。</li>
+</ol>
+<center>表2-4 qunyonghu表的结构</center>
+| 字段名     | 数据类型 | 长度 | 是否主键 | 描述     |
+| ---------- | -------- | ---- | -------- | -------- |
+| id         | varchar  | 200  | 是       | 群用户ID |
+| qunhao     | varchar  | 200  | 否       | 归属群号 |
+| yonghuming | varchar  | 200  | 否       | 用户名   |
+
+<ol start="5">
+<li>xiaoxijilu 消息记录表 :该表主要是消息记录流，记录消息的发送方、接收方、类型、内容、大小，其表结构主要如表2-5所示</li>
+</ol>
+<center>表2-5 xiaoxijilu表的结构</center>
+| 字段名        | 数据类型 | 长度 | 是否主键 | 描述     |
+| ------------- | -------- | ---- | -------- | -------- |
+| id            | varchar  | 200  | 是       | 编号     |
+| fasongren     | varchar  | 200  | 否       | 发送方   |
+| jieshouren    | varchar  | 200  | 否       | 接收方   |
+| neirong       | varchar  | 200  | 否       | 消息内容 |
+| leixing       | varchar  | 200  | 否       | 消息类型 |
+| fasongshijian | varchar  | 200  | 否       | 发送时间 |
+| size          | varchar  | 200  | 否       | 消息大小 |
+
+<ol start="6">
+<li>fenlei :该表主要记录用户的所属分组，主要包括用户名、归属分组名、归属分组的ID，其表结构主要如表2-6所示</li>
+</ol>
+<center>表2-6 fenlei表的结构</center>
+| 字段名    | 数据类型 | 长度 | 是否主键 |   描述   |
+| --------- | :------: | :--: | :------: | :------: |
+| id        |   int    |  10  |    是    |    ID    |
+| parentid  |   int    |  10  |    否    | 归属组ID |
+| mingcheng | varchar  | 200  |    否    |   组名   |
+| username  | varchar  | 200  |    否    |  用户名  |
+
+<ol start="7">
+<li>qiandao :该表用于记录用户的上线日期，其表结构主要如表2-7所示</li>
+</ol>
+<center>表2-7 qiandao表的结构</center>
+|   字段名    | 数据类型 | 长度 | 是否主键 |   描述   |
+| :---------: | :------: | :--: | :------: | :------: |
+|     id      | varchar  | 200  |    是    |    ID    |
+| qiandaoren  | varchar  | 200  |    否    |  用户名  |
+| qiandaoriqi | varchar  | 200  |    否    | 上线日期 |
+
+<h3 id="3-系统实现"><a href="#3-系统实现" class="headerlink" title="3  系统实现"></a>3  系统实现</h3><h4 id="3-1登录界面"><a href="#3-1登录界面" class="headerlink" title="3.1登录界面"></a>3.1登录界面</h4><p><strong>3.1.1用户登录</strong></p>
+<p>用户登录界面如图3-1所示。</p>
+<img src="./Java实训/用户登录界面.png"  />
+
+<center>图3-1用户登录界面图</center>
+页面由swing代码设计完成，通过swing的addMouseListener鼠标点击触发器，检测各功能的使用，当用户按下登录初始化一个消息对象，Message msg=new Message(textField.getText());并指定消息对象的类型为connect，并将消息发送给客户端，并开启线程监听服务器端发送信息。
+
+<p>在服务器端有Server.Task用于处理客户端发送的各种消息，当检查到消息类型为connect，进入登录审查，检查数据库签到表，如果表项不为空，说明当前账户已经在其他设备登录，返回该用户已登录信息，防之存储用户名对应的ip 端口，并查询数据库用户表项用户是否存在和密码是否正确。</p>
+<p>如果账户密码匹配成功则返回信息，登录成功，反之返回登录失败，客户端会通过线程监听服务器返回的信息作出相应的反馈。</p>
+<p><strong>3.1.2注册账号</strong></p>
+<p>注册账号界面如图3-2所示。</p>
+<img src="./Java实训/账号注册页面.png" style="zoom:67%;" />
+
+<center>图3-2注册账号界面图</center>
+与登录流程类似，当用户点击注册按钮，会初始化一个消息对象，消息对象的类型字段为regist，并通过java.sql将数据存储到用户表上，此外与登录页面类似
+
+<p>另外的，在上传头像上使用java.io库中的getSelectedFile函数，在本地计算机中选取图像与头像，头像的传输与其在数据库的存储则是这一项目中较为困难的点，我们在用户表中设有headimg用于经过计算得到的存储32位的头像散列，并将其一流的形式发到对应服务器的headimg中，在用户登录时也是对应将这里的数据流发送给客户端</p>
+<h4 id="3-2主界面"><a href="#3-2主界面" class="headerlink" title="3.2主界面"></a>3.2主界面</h4><p>即时通讯系统主界面如图3-3所示。</p>
+<img src="./Java实训/即时通讯系统主界面.png"  />
+
+<center>图3-3主界面</center>
+**3.2.1好友列表**
+
+<p>分组创建功能实现如图3-4所示，修改好友备注功能实现如图3-5所示。</p>
+<img src="./Java实训/创建图片.png" style="zoom:80%;" />
+
+<center>图3-4分组创建</center>
+<img src="./Java实训/修改备注.png"  />
+
+<center>图3-5修改备注</center>
+**3.2.2群组列表**
+
+<p>创建群功能实现如图3-6所示。</p>
+<img src="./Java实训/群聊功能实现.jpg"  />
+
+<center>图3-6群创建</center>
+**3.2.3其他功能**
+
+<p>添加好友功能实现如图3-7所示，添加群聊功能实现如图3-8所示，好友申请列表如图3-9所示</p>
+<img src="./Java实训/添加好友功能实现.png" style="zoom:80%;" />
+
+<center>图3-7添加好友</center>
+<img src="./Java实训/入群申请.png" style="zoom:80%;" />
+
+<center>图3-8申请入群</center>
+<img src="./Java实训/好友申请列表.png"  />
+
+<center>图3-9好友申请列表</center>
+#### 3.3聊天界面
+
+<p>私聊聊天界面如图3-10所示，群聊聊天界面如图3-11所示</p>
+<img src="./Java实训/私聊界面.png" style="zoom:80%;" />
+
+<center>图3-10 私聊聊天界面</center>
+本项目作为一个模仿QQ设计的即时通讯软件，私聊与群聊毫无疑问是程序的核心，在聊天的功能基础上我们受课程原始项目启发，实现了原有项目未能实现的字体设计，图片发送与文件发送，及表情包。表情包的本质实际为预先存储于程序文件夹下的图片与图片传输没有本质区别，在两个客户端均省去了，使用java.io库中程序寻找文件和，发送文件流的过程。
+
+<p>截图功能作为老师所提供项目本就实现的功能，在原有基础上没有做太大改动。文件传输与图片传输与用户注册或修改用户信息时头像的传输方式类似，都是同msg流实现文件在网络中传输，发送的数据会记录到数据库中，而接受放客户端在接受到想用信息后会将msg流存储与/msg文件夹下，实现了信息的本地存储。</p>
+<h4 id="3-4数据存储实现"><a href="#3-4数据存储实现" class="headerlink" title="3.4数据存储实现"></a>3.4数据存储实现</h4><p>数据存储结果如图3-12</p>
+<img src="./Java实训/数据存储结果.jpg" style="zoom:80%;" />
+
+<center>图3-12 数据存储结果</center>
+**在数据库的实现过程中具体操作如下：**
+
+<ol>
+<li><p>获取数据库连接：使用getConnection方法加载MySQL数据库驱动程序”jdbc:mysql://“+ip+”:3306/“+ dbname +”?characterEncoding=utf-8”, username, password,并通过getConnection()方法建立数据库连接</p>
+</li>
+<li><p>在代码中实现创建数据库和数据表，比如createStatement().execute()方法执行创建数据库命令及getConn() .createStatement().executeUpdate()方法实现数据表创建</p>
+</li>
+<li><p>对建立的数据库连接进行测试Connection对象的createStatement()方法创建Statement对象，使用Statement对象执行SQL语句，通过executeQuery()方法执行查询语句</p>
+</li>
+<li><p>创建对象，使用userService.save()实现将各种所需数据数据记录进数据表中</p>
+</li>
+</ol>
+<h3 id="4-结论"><a href="#4-结论" class="headerlink" title="4  结论"></a>4  结论</h3><p>本项目是一个基于Java的企业QQ系统，实现了用户注册、登录、添加好友、聊天等基本功能。能够完成用户日常交流的需要。</p>
+<p>通过本项目的实践，我们深入理解了Java语言和相关技术的应用，掌握了Swing、Java SQL、Java.util、MySQL、多线程等技术的使用，提高了自己的编码能力和项目开发经验。同时，本项目也为企业内部沟通和协作提供了一种新的方式，具有一定的实际应用价值。</p>
+<h3 id="5-源代码"><a href="#5-源代码" class="headerlink" title="5 源代码"></a>5 源代码</h3><p>怎么说呢，在实训过程中找代码学习是非常麻烦的，这里我就直接放部分找到的材料源代码的百度网盘吧……</p>
+<blockquote>
+<p><font color=orange>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1mk02u-x_Cp-ULR5G-zkLCA?pwd=pv7m">https://pan.baidu.com/s/1mk02u-x_Cp-ULR5G-zkLCA?pwd=pv7m</a> </font ><br><font color=orange>提取码：pv7m </font></p>
+</blockquote>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/2023/03/18/Java%E5%AE%9E%E8%AE%AD/">https://shierjinghuang.github.io/2023/03/18/Java%E5%AE%9E%E8%AE%AD/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/04/12/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%B3%95/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="网络安全法">
+                        
+                        <span class="card-title">网络安全法</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-04-12
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                    网络安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%B3%95%E5%BE%8B%E6%B3%95%E8%A7%84/">
+                        <span class="chip bg-color">法律法规</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/11/01/%E5%9B%BD%E8%B5%9B%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="古代玻璃制品的成分分析与鉴别">
+                        
+                        <span class="card-title">古代玻璃制品的成分分析与鉴别</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="post-category">
+                                    数学建模
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
+                        <span class="chip bg-color">数学建模</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2025</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">76.6k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
