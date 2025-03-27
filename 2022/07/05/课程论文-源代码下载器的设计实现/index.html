@@ -4,9 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="课程论文：基于C++的可视化飞机大战游戏, 十二惊惶">
-    <meta name="description" content="
-摘要： 飞机大战是一款经典的游戏，最早应追溯到打击者1945（Strikers 1945），这是日本彩京公司于1995年发售的飞行射击游戏。本作是参照打击者1945基于visual C++写成的飞行射击类游戏。本作中实现了敌机的产生功能、">
+    <meta name="keywords" content="课程论文-源代码下载器的设计实现, 十二惊惶">
+    <meta name="description" content="网站源代码下载器的设计与实现
+&gt; **摘要：**随着时代的进步以及科技的发展，人们越来越多的需要高效地从互联网上获取所需的信息，然而其对网络的要求和一些站点人为的限制，却也制约了用户对网络信息的获取和保存。对此，针对于一项可以实现将网站数据">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +18,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>课程论文：基于C++的可视化飞机大战游戏 | 十二惊惶</title>
+    <title>课程论文-源代码下载器的设计实现 | 十二惊惶</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -347,12 +347,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">课程论文：基于C++的可视化飞机大战游戏</h1>
+                    <h1 class="description center-align post-title">课程论文-源代码下载器的设计实现</h1>
                 </div>
             </div>
         </div>
@@ -380,6 +380,10 @@
                                 <span class="chip bg-color">课程论文</span>
                             </a>
                         
+                            <a href="/tags/Python%E7%88%AC%E8%99%AB/">
+                                <span class="chip bg-color">Python爬虫</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -401,7 +405,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-07-31
+                    2022-07-05
                 </div>
                 
 
@@ -415,14 +419,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.1k
+                    3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    15 分
+                    11 分
                 </div>
                 
 
@@ -445,154 +449,99 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <hr>
-<p>摘要： 飞机大战是一款经典的游戏，最早应追溯到打击者1945（Strikers 1945），这是日本彩京公司于1995年发售的飞行射击游戏。本作是参照打击者1945基于visual C++写成的飞行射击类游戏。本作中实现了敌机的产生功能、子弹的发射功能、飞机中弹销毁和计算得分等功能,而且通过文件读写的相关操作完成了存档与读档的相关操作。本作通过便捷的操作方式，使玩家可以轻易地上手该游戏，在游戏中放松心情，释放压力，提高反应能力。游玩该游戏可以为玩家带来欢乐。</p>
-<hr>
-<p>关键词： 可视化 飞机大战 游戏设计</p>
-<p>引言 随着社会的不断发展，人们的生活方式也不断的在变化，人们的娱乐方式也越发的多种多样。人们对美好生活的向往，不单单局限于物质生活，人们的精神生活也在一天天的丰富。游戏是很多人精神生活中的一种重要组成部分。毫无疑问飞机大战是一款极其经典的游戏，玩家通过鼠标或键盘操作飞机攻击敌方飞机，躲避碰撞和敌方飞机攻击。极其简单的操作和轻松的上手，使得这一款游戏带给了无数人欢乐。</p>
-<h4 id="1-需求分析"><a href="#1-需求分析" class="headerlink" title="1 需求分析"></a>1 需求分析</h4><p>在飞行射击类游戏中，玩家登陆游戏后可以通过鼠标或键盘操作飞机前进，躲避敌机攻击，并通过点击鼠标左键或空格键发射子弹击败敌机。</p>
-<p>完成这个飞机大战游戏的设计，需要完成用户飞机的移动功能，敌机的产生功能、子弹的发射功能、飞机中弹销毁和计算得分等功能。在用户需要时可以暂停游戏，可以通过文件读写完成存档与读档。为丰富游戏的趣味性，相应增加了各种音效，并会根据用户的得分产生相应的敌机。</p>
-<h4 id="2-关键技术"><a href="#2-关键技术" class="headerlink" title="2 关键技术"></a>2 关键技术</h4><h5 id="2-1-C-面向对象的程序设计"><a href="#2-1-C-面向对象的程序设计" class="headerlink" title="2.1 C++面向对象的程序设计"></a>2.1 C++面向对象的程序设计</h5><p>C++起始于C语言。当C语言发展到巅峰时出现了增加关键词和类的C with class的C语言版本，而这是C语言的一大突破，开发者将这一种语言命名为C++。这便是C++最早的版本。</p>
-<blockquote>
-<p>美国AT&amp;T贝尔实验室的本贾尼·斯特劳斯特鲁普博士在20世纪80年代初期成功地实现了C++，即C with classes。当时C++是作为C语言的加强版本出现，从给C增加类开始，不断增加新的特征<sup>[1]</sup>。</p>
-</blockquote>
-<p>然而就目前而言，C++可以认为它是一门独立的编程语言，它源于C语言但是它并不依赖于C语言。C++与C语言也是有本质差别：在于C++是面向对象的，而C语言是面向过程的。或者说C++是在C语言的基础上增加了面向对象程序设计的新内容，是对C语言的一次更重要的改革，使得C++成为软件开发的重要工具。</p>
-<h5 id="2-2-C-语言的优点"><a href="#2-2-C-语言的优点" class="headerlink" title="2.2 C++语言的优点"></a>2.2 C++语言的优点</h5><ul>
-<li>在C语言的基础上进行扩充和完善，使C++兼容了C语言的面向过程特点，又成为了一种面向对象的程序设计语言</li>
-<li>可以使用抽象数据类型进行基于对象的编程</li>
-<li>可以使用多继承、多态进行面向对象的编程</li>
-<li>可以担负起以模版为特征的泛型化编程    </li>
-<li>C++实现了面向对象程序设计。在高级语言当中，处理运行速度是最快的，大部分的游戏软件，系统都是由C++来编写的</li>
-<li>C++语言非常灵活，功能非常强大。如果说C语言的优点是指针，那么C++的优点就是性能和类层次结构的设计</li>
-<li>C++非常严谨、精确和数理化，标准定义很细致</li>
-<li>C++语言的语法思路层次分明、相呼应;语法结构是显式的、明确的</li>
-</ul>
-<h5 id="2-3-Visual-C-的优点"><a href="#2-3-Visual-C-的优点" class="headerlink" title="2.3 Visual C++的优点"></a>2.3 Visual C++的优点</h5><p>（1）与Windows紧密结合，MFC类库集成了大量已经预先定义好的类，用户可以根据编程的需要定义相应的类，或根据需要自己定义相应的类。因此Visual C++在使用API等方面和Windows联系的最为紧密<sup>[</sup><sup>2]</sup>。</p>
-<p>（2）强大的类库支持和类改造能力。代码重用是C++追求的目标，重用就是从已有的基类派生出新的C++类；MFC提供了大量的基类供程序员们根据不同的应用要求生成新的类以满足要求。VC++有了MFC，具有非常强大对类改造的能力。只要集成MFC类，稍加修改就可以得到符合要求的控件类或应用类。</p>
-<p>（3）拥有高效的运行速度。高的运行速度取决于两点：1.软件本身编写的质量，2.编程工具的编译质量。因为VC++非常接近Windows底层，所以编译器所编译的质量相当高，从而保证了VC++编写出来的软件产品拥有高效的运行速度<sup>[</sup><sup>3]</sup>。</p>
-<h5 id="2-4-C-的语言体系"><a href="#2-4-C-的语言体系" class="headerlink" title="2.4 C++的语言体系"></a>2.4 C++的语言体系</h5><p>（1）C子语言。C++是以C语言为基础，C++几乎支持C语言的全部功能。</p>
-<p>（2）面向对象的C++。C++首先是一门面向对象的程序设计语言，并以此闻名。</p>
-<p>（3） 泛型编程语言。相比C语言，C++增加了模板，C++强大的模板功能使系统能够在编译期间就能完成许多工作，从而大大提高了运行效率<sup>[</sup><sup>4]</sup>。</p>
-<p>（4）STL。随着STL的不断发展，渐渐成为C++程序设计体系中不可或缺的一部分。其安全性与规范性的优秀使得它受到程序员的欢迎<sup>[</sup><sup>1]</sup>。</p>
-<h4 id="3-游戏总体设计"><a href="#3-游戏总体设计" class="headerlink" title="3.游戏总体设计"></a>3.游戏总体设计</h4><p>游戏被分成两个部分，一部分是与用户输入有关的更新，包括根据鼠标位置或键盘按键进行飞机的移动和炮弹发射等等。另一部分是与用户输入无关的更新，包括子弹移动，敌机移动逻辑等判断。图1为飞机大战程序设计图。</p>
-<img src=".\基于C++的可视化飞机大战游戏\飞机大战程序设计图.png" style="zoom:50%;" />
+                <h1><center>网站源代码下载器的设计与实现</center></h1>
+> **摘要：**随着时代的进步以及科技的发展，人们越来越多的需要高效地从互联网上获取所需的信息，然而其对网络的要求和一些站点人为的限制，却也制约了用户对网络信息的获取和保存。对此，针对于一项可以实现将网站数据便捷获取并长期保存的网站源代码下载器进行了学习研究设计开发，主要应用了爬虫技术通过伪装成客户端与服务器进行数据交互，实现数据采集。可视化网站源代码下载器将实现对用户输入站点的下载实现长期保存，便于用户访问。
 
-<center>图1 飞机大战程序设计图</center>
+<p><strong>关键词：</strong> <code>计算机网络</code>   <code>网络爬虫</code>   <code>WxPython正则表达式</code>   <code>requests</code></p>
+<h3 id="1-HTTP协议"><a href="#1-HTTP协议" class="headerlink" title="1.HTTP协议"></a>1.HTTP协议</h3><p>HTTP 报文是在应用程序之间发送的数据块,这些数据块将通过以文本形式的元信息开头，用于 HTTP 协议交互。请求端(客户端)的 HTTP 报文叫做请求报文，响应端(服务器端)的叫做响应报文。 HTTP 报文本身是由多行(用 CR+LF 作换行符)数据构成的字符串文本。（图1.1 Http报文格式）</p>
+<img src="D:\blog\shierjinghuang\source\_posts\课程论文-源代码下载器的设计实现\Http报文格式.png" style="zoom:150%;" />
 
-<h4 id="4-游戏功能实现"><a href="#4-游戏功能实现" class="headerlink" title="4 游戏功能实现"></a>4 游戏功能实现</h4><h5 id="4-1-代码设计"><a href="#4-1-代码设计" class="headerlink" title="4.1 代码设计"></a>4.1 代码设计</h5><p>4.1.1 头文件</p>
-<ol>
-<li>#include<iostream>头文件，包含头文件输入输出流，c++中没有c语言中输入输出语句，而是利用数据流来解决这个问题。要使用比如cout,cin语句输入输出函数。其中#include文件的目的是把多个编译单元公用的内容单独放在一个文件里减少整体代码尺寸，或者提供可跨工程使用的公共代码；</li>
-<li>#include <fstream>头文件#include 是C++的预编译语句，作用是包含对应的文件，在这里是包含C++的STL头文件fstream。在包含了这个文件后，就可以使用fstream中定义的类及各种成员函数了。fstream是C++ STL中对文件操作的合集，包含了常用的所有文件操作。在C++中，所有的文件操作，都是以流(stream)的方式进行的，fstream也就是文件流file stream<sup>[</sup><sup>5]</sup>。</li>
-<li>#include<iomanip>头文件,这个头文件是声明一些 “流操作符”的，比较常用的setw(int);//设置显示宽度、left//right//设置左右对齐、setprecision(int);//设置浮点数的精确度。</li>
-<li>#include<fstream>包含读写文件头文件，实际上是一个输出流的类模板，含有ifstream和ofstream两个派生类。</li>
-<li>#include &lt;math.h&gt; 是包含math头文件的意思，math.h头文件中声明了常用的一些数学运算，比如乘方，开方运算等等。</li>
-<li>#include&lt;graphics.h&gt;头文件是C语言和visual studio的图形库文件，包含像素函数、线型函数、画线函数、相对画线函数等多种函数，可进行图形的快速编程。这也是实现可视化的最重要工具。使用easyx.exe，可以直接运行安装图形库到visual studio。然后直接使用</li>
-<li>#include&lt;windows.h&gt;头文件是最重要的头文件之一，它包含了其他Windows头文件，这些头文件也包含了其他头文件，其中有用户界面函数&lt;Winuser.h&gt;、图形设备接口函数&lt;Wingdi.h&gt;<sup>[</sup><sup>6]</sup></li>
-<li>#include&lt;conio.h&gt;是Console Input/Output（控制台输入输出）的简写，其中定义了通过控制台进行数据输入和数据输出的函数，主要是一些用户通过按键盘产生的对应操作，比如getch()函数等等<sup>[</sup><sup>4]</sup></li>
-<li>#pragma comment(lib,”Winmm.lib”)声明程序使用了winmm.lib库，这个库是是Windows多媒体相关应用程序接口，用于低档的音频和游戏手柄。可以用来实现音频的添加和利用。在该飞机大战程序中这个库中的内容实现了游戏运行时中的背景音乐的开始和结束放映等功能</li>
-</ol>
-<p>4.1.2使用函数</p>
-<ul>
-<li>settextstyle() 设置文本型式函数，函数settextstyle() 设置图形文本当前字体、文本显示方向（水平显示或垂直显示）以及字符大小。在使用中用于显示得分和成绩。通常与Outtextxy配套使用。</li>
-<li>Outtextxy()函数，这个函数用于在指定位置输出字符串</li>
-<li>loadimageLoadImage()函数，功能是装载图标，光标，或位图。在本程序中用于加载图片</li>
-<li>Initgraph()函数功能为初始化图形系统。pathtodriver表示存放图形驱动文件的路径</li>
-<li>SetTextColor()，Windows API 函数，设置指定DC中的文字颜色</li>
-<li>kbhit()是一个C和C++函数，用于非阻塞地响应键盘输入事件。其中文可译为“键盘敲击”(keyboard hit)，注意这个函数在高版本VC下已被淘汰，应使用_kbhit()函数</li>
-<li>MouseHit()函数是实现鼠标操作最关键的函数，用于判断是否有鼠标信息。<sup>[</sup><sup>5]</sup>使用MouseHit()函数效果与kbhit()函数效果类似，如果没有鼠标信息自动跳过。避免了因为没有鼠标信息导致程序无法运行的状况<sup>[7]</sup></li>
-<li>getch()是编程中所用的函数，这个函数是一个不回显函数，当用户按下某个字符时，函数自动读取，无需按回车，有的C语言命令行程序会用到此函数做游戏，但是这个函数并非标准函数。在高版本VC或者VS中已经无法使用应该使用_getch()函数<sup>[8]</sup></li>
-<li>SetBkMode()函数这就需要使用SetBkMode函数来设置DrawText函数的输出方式，显示设备共有两种输出方式：OPAQUE和TRANSPARENT。OPAQUE的方式是用当前背景的画刷的颜色输出显示文字的背景，而TRANSPARENT是使用透明的输出，也就是文字的背景是不改变的。</li>
-<li>MCI (Media Control Interface，媒体控制接口) 函数中，有些只适用于一种接口方式，有些则两种接口都可以用。mciSendString只适用于命令串接口方式（命令串中不区分大小写）以形如mciSendString(“play movie”,buf,sizeof(buf),NULL);的方式进行音频播放，以形如mciSendString(“pause movie”,buf,sizeof(buf),NULL);的方式暂停播放。以形如mciSendString(“close movie”,buf,sizeof(buf),NULL)的形式关闭播放。</li>
-</ul>
-<h5 id="4-2操作逻辑"><a href="#4-2操作逻辑" class="headerlink" title="4.2操作逻辑"></a>4.2操作逻辑</h5><p>本程序使用两种操作方式，依靠键盘按键操作和依靠鼠标位置进行操作。图2为飞机移动操作逻辑示意图。</p>
-<img src=".\基于C++的可视化飞机大战游戏\飞机移动操作逻辑示意图.png" style="zoom:80%;" />
+<center>图1.1 Http报文格式</center>
+### 2.网络爬虫
 
-<center>图2 飞机移动操作逻辑示意图</center>
-使用鼠标操作代码如下：
+<p>网络爬虫就是自动从互联网中定向或者不定项的采集信息的一种程序。网络爬虫通过伪装成客户端与服务器进行数据交互的，从而实现数据采集，搜索引擎，模拟操作等功能（图2.1 网络爬虫知识图谱）。网络爬虫大致可分为三大模块即，发送请求获取数据，解析数据与获取数据。</p>
+<p>爬虫的第一个步骤是获取数据，就是对起始 URL 发送请求，以获取其返回的响应，值得注意的是，发送请求实质上是指发送请求报文的过程。其报文头部的内容广泛使用于反爬虫策略与抗反爬虫策略。</p>
+<p>数据下载是数据爬取过程中的重要环节。执行数据下载之前首先需要对数据爬取对象网站进行全面地了解，包括此网站数据展示介质、网站背景、网站的组织结构及今后的发展等，在对爬取对象可能出现的展示形式（Web、PC 端应用、APP）进行分析后，才能确定要爬取的具体展现形式[5]</p>
+<p>一个完整的爬虫应用不光涉及网络技术，在获取并下载数据后，还需要对数据进行分析，提取需要的信息，并对数据进行可视化分析和展示。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\课程论文-源代码下载器的设计实现\网络爬虫知识图谱.png"  />
 
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">if (isExpolde &#x3D;&#x3D; 0)
-&#123;
-    MOUSEMSG m;
-    while (MouseHit())
-    &#123;
-        m &#x3D; GetMouseMsg();
-        if(m.uMsg &#x3D;&#x3D; WM_MOUSEMOVE)
-        &#123;
-            position_x &#x3D; m.x;
-            position_y &#x3D; m.y;
-        &#125;
-        else if (m.uMsg &#x3D;&#x3D; WM_LBUTTONDOWN)
-        &#123;
-            bullet_x &#x3D; position_x;
-            bullet_y &#x3D; position_y - 85;
-        &#125;
-    &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<center>图2.1 网络爬虫知识图谱</center>
+#### 2.1 requests
 
-<p>对应的使用键盘操作代码为：</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">char input;
-if (_kbhit())  &#x2F;&#x2F; 判断是否有输入
-&#123;
-    input &#x3D; _getch();  &#x2F;&#x2F; 根据用户的不同输入来移动，不必输入回车
-    if (input &#x3D;&#x3D; 27) &#x2F;&#x2F; ESC键的ACSII码为27
-        gameStatus &#x3D; 3;
-    if (input &#x3D;&#x3D; &#39;a&#39;)
-        position_x -&#x3D; 10;
-    if (input &#x3D;&#x3D; &#39;d&#39;)
-        position_x +&#x3D; 10;
-    if (input &#x3D;&#x3D; &#39;w&#39;)
-        position_y +&#x3D; 10;
-    if (input &#x3D;&#x3D; &#39;s&#39;)
-        position_y -&#x3D; 10;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>requests库是基于<code>urllib</code>库，采用<code>Apache2 Licensed </code>开源协议编写的，基于其内置的urllib3，其允许程序发送HTTP/1.1请求，且不需要手动的为URL添加查询字串，也不需要对<strong>POST</strong>数据进行表单编码，可以轻易的向对应的网站发起请求，从而对网页数据进行获取，还可以获取服务器返回的响应内容和状态码。</p>
+<h4 id="2-2-正则表达式"><a href="#2-2-正则表达式" class="headerlink" title="2.2 正则表达式"></a>2.2 正则表达式</h4><p>正则表达式是使用单个字符串来描述、匹配一系列符合某个句法规则的字符串，是一种匹配字符串的方法，通过一些特殊符号，实现快速查找、删除、替换某个特定字符串。正则表达式一般用于脚本编程与文本编辑器中，在本程序中通过python re库正则表达式匹配方法，实现对正确输入文本的匹配及对部分内容的批量替换。</p>
+<h4 id="2-3-WxPython"><a href="#2-3-WxPython" class="headerlink" title="2.3 WxPython"></a>2.3 WxPython</h4><p>WxPython是一个开发桌面端图形界面的跨平台函数库，开发语言为Python，它是基于C++的函数库wxWidgets的封装的跨平台GUI工具。</p>
+<h4 id="2-4-Beautiful-Soup"><a href="#2-4-Beautiful-Soup" class="headerlink" title="2.4 Beautiful Soup"></a>2.4 Beautiful Soup</h4><p>Beautiful Soup就是Python的一个HTML或XML的解析库，提供一些简单的、Python式的函数来处理导航、搜索、修改分析树等功能，主要用于将HTML标签转换为Python对象树，并通过解析文档为用户提供需要抓取的数据。</p>
+<h4 id="2-5-抗反爬虫策略"><a href="#2-5-抗反爬虫策略" class="headerlink" title="2.5 抗反爬虫策略"></a>2.5 抗反爬虫策略</h4><p>随着反爬虫程序被研发利用来，越多的网站都有自己的反爬机制，抓取数据已经不像以前那么容易。</p>
+<p>目前，大部分网站都希望正常的用户进行访问，不希望爬虫轻易抓取他们的网站。究其原因，爬虫一方面会给他们的网站带来无用的性能压力，另一方面爬虫会造成他们网站的数据被“盗取”，于是，这些网站开始制定相应的反爬虫策略。一般的反爬策略例如：设置单个IP在单位时间内不能请求次数超过阈值或者请求的频率高于他们认为的人为行为频率、请求参数中带有他们加密后的字段值等。</p>
+<p>要解决网站反爬的问题，首先要知道自己被封的原因和对方的“封堵机制”，这样才能更有效地使用上面的措施解决问题。针对单个IP单位时间内不能请求超过阈值情况，我们需要更改自己的抗反爬策略，一般情况下可以使用User-Agent池、降低下载频率、使用代理IP池等方式解决 ；针对数据加密的情况，可以通过反编译进行解决。</p>
+<h4 id="2-6-关于网络爬虫的法律问题"><a href="#2-6-关于网络爬虫的法律问题" class="headerlink" title="2.6 关于网络爬虫的法律问题"></a>2.6 关于网络爬虫的法律问题</h4><p>遵守Robots协议，此协议声明那些内容不应被搜索引擎的漫游器获取的，哪些是可以被漫游器获取的。 </p>
+<p>不能造成对方服务器瘫痪，2021年颁布实施的《数据安全管理办法》规定网络运营者采取自动化手段访问收集网站数据，不得妨碍网站正常运行[5]</p>
+<p>不能非法获利，不能涉及个人隐私采集的信息，属于公民个人信息的，有可能构成非法获取公民个人信息的违法行为，情节严重的，有可能构成“侵犯公民个人信息罪”因此爬虫开发者的道德和良知才是避免触碰法律底线的根本所在。</p>
+<h3 id="3-设计方法及思路"><a href="#3-设计方法及思路" class="headerlink" title="3. 设计方法及思路"></a><strong>3.</strong> 设计方法及思路</h3><h4 id="3-1-问题分析"><a href="#3-1-问题分析" class="headerlink" title="3.1 问题分析"></a>3.1 问题分析</h4><p>网站源代码下载器这一程序设计的关键在于如何使用户更加便利的保存网络站点上的信息，实现在无互联网的情况下的长期保存。程序将在完成，发送请求获取数据，解析数据与获取数据这三大基本功能的前提下，实现将网页原始数据的加工处理。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\课程论文-源代码下载器的设计实现\流程图.png"  />
 
-<p>先定义MOUSEMSG的鼠标类型参数m;通过while (MouseHit()) 进行操作，既能保证能够使用鼠标进行操作也避免了，在没有鼠标操作时游戏的停止。</p>
-<p>类似的有定义char 类型的的变量通过while(_kbhit())来进行是否有键盘信息的判断，用_getch()函数获取键盘的敲击值。</p>
-<h5 id="4-3-与用户输出无关的逻辑"><a href="#4-3-与用户输出无关的逻辑" class="headerlink" title="4.3 与用户输出无关的逻辑"></a>4.3 与用户输出无关的逻辑</h5><p>4.3.1 敌机生成逻辑</p>
-<p>使用rand()函数生成一个最大为32767的数，并通过%(Width-50)得到飞机的初始坐标，并同时将blood等参数复原。</p>
-<p>4.3.2 敌机简单移动逻辑<br>代码如下:</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">if (enemy_y &lt; High - 25)
-&#123;
-    if (enemy_x &#x3D;&#x3D; 0)
-        flag &#x3D; 0;
-    if (enemy_x &#x3D;&#x3D; 500)
-        flag &#x3D; 1;
-    enemy_y &#x3D; enemy_y + 1;
-    if (flag &#x3D;&#x3D; 1)
-        enemy_x &#x3D; enemy_x--;
-    else enemy_x &#x3D; enemy_x++;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>该模块通过定义全局变量static flag 进行操控飞机的飞行方向，同时在每个循环过程中使飞机能够实现摆动下降。</p>
-<h5 id="4-4暂停页面与存储逻辑"><a href="#4-4暂停页面与存储逻辑" class="headerlink" title="4.4暂停页面与存储逻辑"></a>4.4暂停页面与存储逻辑</h5><p>通过_getch()函数读取输入，如存在按键为Esc时，将gameStatus设置为3，出现暂停页面，图3为游戏暂停页面。<br>图3 游戏暂停页面<br>游戏数据储存逻辑</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">void read<span class="token punctuation">(</span><span class="token punctuation">)</span> 
-<span class="token punctuation">&#123;</span>
-    ifstream file2<span class="token punctuation">;</span><span class="token operator">//</span>输入指针
-    file2<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"../data.txt"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    file2 <span class="token operator">>></span> position_x <span class="token operator">>></span> position_y <span class="token operator">>></span> bullet_x <span class="token operator">>></span> enemy_x <span class="token operator">>></span> enemy_y <span class="token operator">>></span> isExpolde <span class="token operator">>></span> score<span class="token punctuation">;</span>
-    file2<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-void write<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    ofstream file1<span class="token punctuation">;</span>
-    file1<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"./data.txt"</span><span class="token punctuation">,</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>ios<span class="token punctuation">:</span><span class="token punctuation">:</span>app<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>!file1<span class="token punctuation">.</span>is_open<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
-    <span class="token punctuation">&#123;</span>
-        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"打开文件失败！！\n"</span><span class="token punctuation">;</span>
-        exit<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-    file1 <span class="token operator">&lt;&lt;</span> position_x <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> position_y <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> bullet_x <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> enemy_x <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> enemy_y <span class="token operator">&lt;&lt;</span><span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> isExpolde <span class="token operator">&lt;&lt;</span><span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> score <span class="token operator">&lt;&lt;</span> <span class="token string">"\n"</span><span class="token punctuation">;</span>
-    file1<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>通过ifstream和ofstream两个类进行操作，实现数据的存储于写入。也通过键盘操作识别Esc按钮实现暂停操作。</p>
-<p>图4为飞机大战程序登录界面，图5为程序运行截图</p>
-<img src=".\基于C++的可视化飞机大战游戏\程序登录界面.png" style="zoom:80%;" />
+<h4 id="3-2-设计思路"><a href="#3-2-设计思路" class="headerlink" title="3.2 设计思路"></a>3.2 设计思路</h4><p>基于网络爬虫下实现网站源代码下载器的设计开发，在针对大量网站进行研究后，总结部分结论，不同类型站点网页设计人员对项目设计的方式差异性明显，部分站点可能因为开发时间和后期的修改，呈现出十分混乱的特点，这些都增加了网站源代码下载器的设计难度。针对以上特点，对网站源代码下载器的功能进行设计，利用正则匹配等方式尽可能保留站点原始样貌。</p>
+<p>对于程序设计采用python语言，建立两大模块，即可视化客户端与网络爬虫程序，本项目的网络爬虫程序接近于聚焦网络爬虫，聚焦到特定主题目标网站进行爬取，包含页面爬取模块、无关链接过滤等功能。再对爬取到的信息进行提取和分析，最终能够运行实现网站源码下载器的开发。</p>
+<h3 id="4-具体代码设计及运行"><a href="#4-具体代码设计及运行" class="headerlink" title="4. 具体代码设计及运行"></a>4. 具体代码设计及运行</h3><p>设置一个class类Frame，使用WxPython库的方法实现可视化程序的实现并提供后台接口（如图3.1 网络源代码下载器），通过输入事件监听与正则表达式对用户输入数据进行分析。在输入内容符合要求时通过后台网络爬虫，之后进行数据采集。实现网站源代码下载器的应用。（如图3.2 网站源码下载反馈）</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">an1_anbdj</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> event<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>url <span class="token operator">==</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        toastone <span class="token operator">=</span> wx<span class="token punctuation">.</span>MessageDialog<span class="token punctuation">(</span><span class="token boolean">None</span><span class="token punctuation">,</span> <span class="token string">"网站地址不能为空!"</span><span class="token punctuation">,</span> <span class="token string">"错误信息提示"</span><span class="token punctuation">,</span> wx<span class="token punctuation">.</span>YES_DEFAULT <span class="token operator">|</span> wx<span class="token punctuation">.</span>ICON_QUESTION<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> toastone<span class="token punctuation">.</span>ShowModal<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> wx<span class="token punctuation">.</span>ID_YES<span class="token punctuation">:</span>
+            <span class="token comment"># 如果点击了提示框的确定按钮</span>
+            toastone<span class="token punctuation">.</span>Destroy<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token comment"># 则关闭提示框</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        match<span class="token operator">=</span>re<span class="token punctuation">.</span>search<span class="token punctuation">(</span><span class="token string">'(https?|ftp|file)://[-A-Za-z0-9+&amp;@#/%?=~_|!:,.;]+[-A-Za-z0-9+&amp;@#/%=~_|]'</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>url<span class="token punctuation">)</span>
+        <span class="token keyword">if</span> match<span class="token punctuation">:</span>
+            download_img<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<center>  图4 程序登录界面 </center>
+<img src="D:\blog\shierjinghuang\source\_posts\课程论文-源代码下载器的设计实现\网络源代码下载器.png"  />
 
-<img src=".\基于C++的可视化飞机大战游戏\程序运行截图.png" style="zoom: 80%;" />
+<center>图4.1 网络源代码下载器</center>
+后台程序接收到可执行的信息后，对信息做出后续处理。对网页内各种资源标签进行匹配，将网页数据（如图片，CSS文件，JS文件）保存至本地，并将其转为相对路径，便于用户直接使用。（如图4.2 本地存储文件、图4.3 本地网页展示）
 
-<center> 图5 程序运行截图</center>
+<img src="D:\blog\shierjinghuang\source\_posts\课程论文-源代码下载器的设计实现\本地存储文件.png"  />
 
-<h4 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h4><p>基于C++的可视化飞机大战游戏是一个简单的可视化的小游戏，玩家能够通过鼠标或键盘进行操控飞机的移动和攻击，并且运用了文件操作技术，可以实现数据的永久性保存。基于C++的飞机大战游戏是采用C++语言及其easyX拓展模块开发完成的。本项目实现了游戏流程中的所有功能，界面布局更加人性化,并有着良好的可扩展性。但游戏依旧存在一些不足之处，比如说本游戏还没有实现对玩家操纵飞机进行血量的显示，敌方飞机尚无法发射子弹，对击中逻辑的判断还存在问题。</p>
-<h4 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h4><p>[1]黄宝贵等.C++面向对象程序设计[M] 北京:清华大学出版社，2019:2-3<br>[2]童晶编著.C语言程序设计与游戏开发实践教程[M] 北京:清华大学出版社 2017:16<br>[3]黄维通等.Visual C++面向对象与可视化程序设计[M]（第三版）北京:清华大学出版社 2011:14<br>[4]郑莉等编著.C++程序设计语言(第三版)[M].北京:清华大学出版社,2005:134-139.<br>[5]刘振安等编著.C++程序设计课程设计[M] 北京:机械工业出版社,2004:23-31  [6]朱立华等编著.面向对象程设计及C++[M].北京:人民邮电出版社,2008:43  [7]郑莉,董渊.C++语言程序设计(第二版) [M].北京清华大学出版社,2002:23  [8]陈维兴,林小茶.C++面向对象程序设计教程(第2版)[M].北京清华大学出版社.2007:34</p>
+<center>图4.2 本地存储文件</center>
+<img src="D:\blog\shierjinghuang\source\_posts\课程论文-源代码下载器的设计实现\本地网页展示.png" style="zoom: 150%;" />
+
+<center>图4.3 本地网页展示</center>
+在程序的后台处理中依次实现了，发送请求获取数据，解析数据与获取数据请求获取数据，并对其进行解析：
+
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">host <span class="token operator">=</span> re<span class="token punctuation">.</span>search<span class="token punctuation">(</span><span class="token string">u'[a-zA-Z0-9][-a-zA-Z0-9]&#123;0,62&#125;(\.[a-zA-Z0-9][-a-zA-Z0-9]&#123;0,62&#125;)+\.?'</span><span class="token punctuation">,</span> self<span class="token punctuation">.</span>url<span class="token punctuation">)</span>
+Host <span class="token operator">=</span> <span class="token string">'https://'</span><span class="token operator">+</span> host<span class="token punctuation">.</span>group<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+a <span class="token operator">=</span> requests<span class="token punctuation">.</span>get<span class="token punctuation">(</span>self<span class="token punctuation">.</span>url<span class="token punctuation">,</span> verify<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+a<span class="token punctuation">.</span>encoding <span class="token operator">=</span> <span class="token string">"utf-8"</span>
+bsobj <span class="token operator">=</span> BeautifulSoup<span class="token punctuation">(</span>a<span class="token punctuation">.</span>content<span class="token punctuation">,</span> <span class="token string">'lxml'</span><span class="token punctuation">)</span> 
+<span class="token comment"># 将网页源码构造成BeautifulSoup对象，方便操作</span>
+a_list <span class="token operator">=</span> bsobj<span class="token punctuation">.</span>find_all<span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span>  <span class="token comment"># 获取网页中的所有a标签对象</span>
+script_list <span class="token operator">=</span> bsobj<span class="token punctuation">.</span>find_all<span class="token punctuation">(</span><span class="token string">'script'</span><span class="token punctuation">)</span><span class="token comment"># 获取网页中所有的script标签</span>
+link_list <span class="token operator">=</span> bsobj<span class="token punctuation">.</span>find_all<span class="token punctuation">(</span><span class="token string">'link'</span><span class="token punctuation">)</span><span class="token comment"># 获取网页中所有的link标签</span>
+img_list <span class="token operator">=</span> bsobj<span class="token punctuation">.</span>find_all<span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>对获取到的数据在运行空间暂存，程序对其进行分析，生成标准URL，再次转入数据获取函数，在数据获取完成后，对文件进行格式化保存，将通过数据解析的数据，以其在服务器的相对位置进行存储。</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">save_file</span><span class="token punctuation">(</span>chdir_path<span class="token punctuation">,</span> filename<span class="token punctuation">,</span> content<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> filename<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">4</span><span class="token punctuation">:</span><span class="token punctuation">]</span> <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token string">'.jpg'</span><span class="token punctuation">,</span> <span class="token string">'.png'</span><span class="token punctuation">,</span> <span class="token string">'webp'</span><span class="token punctuation">,</span><span class="token string">'.png'</span><span class="token punctuation">,</span><span class="token string">'jpeg'</span><span class="token punctuation">,</span> <span class="token string">'.gif'</span><span class="token punctuation">,</span> <span class="token string">'.bmp'</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+        <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>chdir_path <span class="token operator">+</span> <span class="token string">'/'</span> <span class="token operator">+</span> <span class="token string">'images/'</span> <span class="token operator">+</span> filename <span class="token punctuation">,</span> <span class="token string">"wb+"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+            f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>content<span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> filename<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'js'</span><span class="token punctuation">:</span>
+        <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>chdir_path <span class="token operator">+</span> <span class="token string">'/'</span> <span class="token operator">+</span> <span class="token string">'js/'</span> <span class="token operator">+</span> filename<span class="token punctuation">,</span> <span class="token string">'w+'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+            f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>content<span class="token punctuation">)</span>
+    <span class="token keyword">elif</span> filename<span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">:</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'css'</span><span class="token punctuation">:</span>
+        <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>chdir_path <span class="token operator">+</span> <span class="token string">'/'</span> <span class="token operator">+</span> <span class="token string">'css/'</span> <span class="token operator">+</span> filename<span class="token punctuation">,</span> <span class="token string">'w+'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+            f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>content<span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>chdir_path <span class="token operator">+</span> <span class="token string">'/'</span> <span class="token operator">+</span> filename<span class="token punctuation">,</span> <span class="token string">'w+'</span><span class="token punctuation">,</span>encoding<span class="token operator">=</span><span class="token string">'utf-8'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+            f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>content<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>为便于用户后期的直接长期阅读，程序后台还通过re模块通过正则匹配将原程序Html文件及CSS中超链接路径匹配为相应的相对路径。</p>
+<h3 id="5．总结"><a href="#5．总结" class="headerlink" title="5．总结"></a>5．总结</h3><p>本文使用Python程序设计软件设计开发了简单的源代码下载器，利用WxPython的有关知识，建立了可视化端口，为爬虫程序提供可用接口，基于网络爬虫的原理下，成功的设计出了程序，实现了网站源码下载器的开发。并且在正则表达式的支持下，将网页原始路径转化为相对路径，不会出现因防盗链和文件路径的不准确或者丢失的情况出现。实现了在没有互联网的情况之下数据的长期保存。</p>
+<h3 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h3><p>[1] 朱荣.《python与大数据分析应用》.清华大学出版社.2021.3.P101-P107</p>
+<p>[2] 谢希仁.《计算机网络》.电子工业出版社.2013.6.P35-P37、P115-P124、P238-P241</p>
+<p>[3] 吴海燕,佟秋利《我国网络安全法律法规体系框架》.中国教育网络.2021.08 P66-P67</p>
+<p>[4] 2021 Bad Bot Report [EB/OL]. <a target="_blank" rel="noopener" href="https://www.imperva.com/resources/reports/Bad-Bot-Report">https://www.imperva.com/resources/reports/Bad-Bot-Report</a> 2021</p>
+<p>[5] 孟宝灿,《Python网络爬虫应用探讨》广播电视信息 2022.03 P108-P110</p>
 
                 
             </div>
@@ -619,7 +568,7 @@ void write<span class="token punctuation">(</span><span class="token punctuation
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://shierjinghuang.github.io/2021/07/31/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98%E6%B8%B8%E6%88%8F/">https://shierjinghuang.github.io/2021/07/31/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98%E6%B8%B8%E6%88%8F/</a>
+                    <a href="https://shierjinghuang.github.io/2022/07/05/%E8%AF%BE%E7%A8%8B%E8%AE%BA%E6%96%87-%E6%BA%90%E4%BB%A3%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0/">https://shierjinghuang.github.io/2022/07/05/%E8%AF%BE%E7%A8%8B%E8%AE%BA%E6%96%87-%E6%BA%90%E4%BB%A3%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -659,6 +608,10 @@ void write<span class="token punctuation">(</span><span class="token punctuation
                             
                                 <a href="/tags/%E8%AF%BE%E7%A8%8B%E8%AE%BA%E6%96%87/">
                                     <span class="chip bg-color">课程论文</span>
+                                </a>
+                            
+                                <a href="/tags/Python%E7%88%AC%E8%99%AB/">
+                                    <span class="chip bg-color">Python爬虫</span>
                                 </a>
                             
                         </div>
@@ -708,13 +661,13 @@ void write<span class="token punctuation">(</span><span class="token punctuation
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/07/05/%E8%AF%BE%E7%A8%8B%E8%AE%BA%E6%96%87-%E6%BA%90%E4%BB%A3%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0/">
+                <a href="/2022/08/10/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%E5%9B%BD%E8%B5%9B%E9%80%89%E6%8B%94/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="课程论文-源代码下载器的设计实现">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="数学建模：综合选拔题">
                         
-                        <span class="card-title">课程论文-源代码下载器的设计实现</span>
+                        <span class="card-title">数学建模：综合选拔题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -725,61 +678,8 @@ void write<span class="token punctuation">(</span><span class="token punctuation
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-05
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-08-10
                         </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/" class="post-category">
-                                    项目设计
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E8%AF%BE%E7%A8%8B%E8%AE%BA%E6%96%87/">
-                        <span class="chip bg-color">课程论文</span>
-                    </a>
-                    
-                    <a href="/tags/Python%E7%88%AC%E8%99%AB/">
-                        <span class="chip bg-color">Python爬虫</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/07/17/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1%EF%BC%9A%E5%85%A8%E7%90%83%E9%A3%9F%E5%93%81%E7%B3%BB%E7%BB%9F%E5%86%8D%E4%BC%98%E5%8C%96/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="数学建模：全球食品系统再优化">
-                        
-                        <span class="card-title">数学建模：全球食品系统再优化</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-17
-                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -797,6 +697,55 @@ void write<span class="token punctuation">(</span><span class="token punctuation
                     
                     <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
                         <span class="chip bg-color">数学建模</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/07/31/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98%E6%B8%B8%E6%88%8F/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="课程论文：基于C++的可视化飞机大战游戏">
+                        
+                        <span class="card-title">课程论文：基于C++的可视化飞机大战游戏</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-31
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/" class="post-category">
+                                    项目设计
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AF%BE%E7%A8%8B%E8%AE%BA%E6%96%87/">
+                        <span class="chip bg-color">课程论文</span>
                     </a>
                     
                 </div>
