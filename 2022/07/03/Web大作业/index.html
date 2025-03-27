@@ -4,11 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="QFNU_CTF迎新赛题解, 十二惊惶">
-    <meta name="description" content="QFNU_CTF迎新赛题解
-这一套题目实际上是为新生准备的，我和对内另一位师哥在迎新的几天才知道这个题目的存在，也是正好我们没什么事情，就做了一下，这里将赛题的wp整理一下，同时考虑到纳新还在解题，不能给出完全的答案。
-[TOC]
-（一）M">
+    <meta name="keywords" content="2022年Web程序设计大作业与课程论文, 十二惊惶">
+    <meta name="description" content="
+写这个主要是我们，那个Web前段开发设计的课采用的是大作业的方式，正好今天我期末结束，任务基本完工，整理下今年做的一些东西。
+
+绿动出行企业门户的设计与实现[TOC]
+1.网站相关知识1.1目录结构规范、各种标识符命名规范建立一个好的前端">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +21,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>QFNU_CTF迎新赛题解 | 十二惊惶</title>
+    <title>2022年Web程序设计大作业与课程论文 | 十二惊惶</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -349,12 +350,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">QFNU_CTF迎新赛题解</h1>
+                    <h1 class="description center-align post-title">2022年Web程序设计大作业与课程论文</h1>
                 </div>
             </div>
         </div>
@@ -378,8 +379,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95/">
-                                <span class="chip bg-color">解题记录</span>
+                            <a href="/tags/%E8%AF%BE%E7%A8%8B%E8%AE%BA%E6%96%87/">
+                                <span class="chip bg-color">课程论文</span>
+                            </a>
+                        
+                            <a href="/tags/Web/">
+                                <span class="chip bg-color">Web</span>
                             </a>
                         
                     </div>
@@ -390,8 +395,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/CTF/" class="post-category">
-                                CTF
+                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/" class="post-category">
+                                项目设计
                             </a>
                         
                     </div>
@@ -403,28 +408,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-09-20
+                    2022-07-03
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-10-28
+                    2025-03-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    3.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    14 分
                 </div>
                 
 
@@ -447,87 +452,185 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="QFNU-CTF迎新赛题解"><a href="#QFNU-CTF迎新赛题解" class="headerlink" title="QFNU_CTF迎新赛题解"></a>QFNU_CTF迎新赛题解</h2><hr>
-<p>这一套题目实际上是为新生准备的，我和对内另一位师哥在迎新的几天才知道这个题目的存在，也是正好我们没什么事情，就做了一下，这里将赛题的wp整理一下，同时考虑到纳新还在解题，不能给出完全的答案。</p>
-<p>[TOC]</p>
-<h2 id="（一）Misc"><a href="#（一）Misc" class="headerlink" title="（一）Misc"></a>（一）Misc</h2><h3 id="1-签到"><a href="#1-签到" class="headerlink" title="1.  签到"></a>1.  签到</h3><p>​        这道题提供了半张二维码，考虑是否有图像隐写，如修改图像高度。推荐使用工具winhex，png头下面一行的前四位16进制数为宽，后四位为高。</p>
-<p>这里附带常见的文件头</p>
-<pre class="line-numbers language-none"><code class="language-none">File                                ExtensionsHeader4 
-JPEG                                0xFFD8FF
-PNG                                 0x89504E470D0A1A0A
-gif                                 GIF8
-TIFF                                0x49492A00
-TIFF                                0x4D4D002A9
-Bit                                 BM
-AOL ART                             0x4A47040E0000003
-AOL ART                             0x4A47030E000000&amp;
-PC                                  0x0A0501080
-emf                                 0x0100000058000000#
-cdr                                 CDR
-dwg                                 0x41433130
-psd                                 8BPS3
-rtf                                 rtf6 
-XML                                 xml                              
-html;htm;php;php3;php4;phtml;shtml  type&amp; 
-Email                               Delivery-date:
-dbx                                 0xCFAD12FE
-doc;xls;dot;ppt;xla;ppa;pps;pot;msi;sdw;db    0xD0CF11E0A1B11AE1
-mdb;mda;mde;mdt                     Standard
-wpd                                 0xFF575043
-qdf                                 0xAC9EBD8F
-qbb                                 0x4586000006004
-sly.or.srt.or.slt;sly;srt;slt       0x53520100
-lwp                          0x576F726450726F
-zip;jar                             0x504B03041
-zip                                 0x504B3030
-rar                                 Rar!
-gz;tgz                              0x1F8B085 
-bz2                                 BZh
-arj                                 0x60EA
-7z                                                                              7z集&#39;&amp; 
-mpg;mpeg                            0x000001BA# 
-mpg;mpeg                            0x000001B3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                <blockquote>
+<p>写这个主要是我们，那个Web前段开发设计的课采用的是大作业的方式，正好今天我期末结束，任务基本完工，整理下今年做的一些东西。</p>
+</blockquote>
+<h2 id="绿动出行企业门户的设计与实现"><a href="#绿动出行企业门户的设计与实现" class="headerlink" title="绿动出行企业门户的设计与实现"></a>绿动出行企业门户的设计与实现</h2><p>[TOC]</p>
+<h3 id="1-网站相关知识"><a href="#1-网站相关知识" class="headerlink" title="1.网站相关知识"></a>1.网站相关知识</h3><h4 id="1-1目录结构规范、各种标识符命名规范"><a href="#1-1目录结构规范、各种标识符命名规范" class="headerlink" title="1.1目录结构规范、各种标识符命名规范"></a>1.1目录结构规范、各种标识符命名规范</h4><p>建立一个好的前端应该具有一个好的目录结构，每个前端项目总是包含库、jQuery插件和大量的JavaScript脚本与CSS文件，以达到不同的目的和目标。我们需要将所有东西通过遵循一种模式或公约置入文件夹中，以此来保持清晰、整洁。这对我们而言是非常重要的</p>
+<ol>
+<li>整洁的结构：<ul>
+<li>CSS（主文件夹）这个文件夹包含了所有CSS文件。例如index.css可以对应控制index.html文件</li>
+<li>image/img 存放所有的图片文件：.png、.jpg、.jpeg、壁纸等。</li>
+<li>JS (主文件夹) 存放.js文件 </li>
+<li>media 存放多媒体文件  一般指视频与音频文件，在部分情况下可以分为多个媒体文件夹。</li>
+</ul>
+</li>
+</ol>
+<h4 id="1-2文件名命名规范"><a href="#1-2文件名命名规范" class="headerlink" title="1.2文件名命名规范"></a>1.2文件名命名规范</h4><p>文件名称统一用小写的英文字母、数字和下划线的组合，其中不得包含汉字、空格和特殊字符；命名原则的指导思想一是使得每一个成员能够方便的理解每一个文件的意义，二是当我们在文件夹中使用“按名称排例”的命令时，同一种大类的文件能够排列在一起，以便我们查找、修改、替换、计算负载量等等操作。</p>
+<p>引文件统一使用index.htm index.html index.asp文件名（小写） 各子页命名的原则首先应该以栏目名的英语翻译取单一单词为名称例如本系统中已经完成的login.html（登录页面）,about.html(关于我们)</p>
+<h4 id="1-3-HTML结构"><a href="#1-3-HTML结构" class="headerlink" title="1.3 HTML结构"></a>1.3 HTML结构</h4><p>HTML的全称为超文本标记语言，是一种标记语言。它包括一系列标签．通过这些标签可以将网络上的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%96%87%E6%A1%A3/1009768">文档</a>格式统一，使分散的Internet资源连接为一个逻辑整体。HTML文本是由HTML命令组成的描述性<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%96%87%E6%9C%AC/5443630">文本</a>，HTML命令可以说明文字，图形、动画、声音、表格、链接等。</p>
+<p>一、常见HTML元素</p>
+<ol>
+<li>盒子模型<ul>
+<li>块级标签：<code>&lt;p&gt;/&lt;h1&gt;/&lt;table&gt;/&lt;ol&gt;/&lt;ul&gt;/&lt;form&gt;/&lt;div&gt;</code></li>
+<li>内联标签：<code>&lt;a&gt;/&lt;input/&gt;/&lt;img/&gt;/&lt;sub&gt;/&lt;sup&gt;/&lt;textarea&gt;/&lt;span&gt;</code></li>
+</ul>
+</li>
+<li>特殊字符：&lt;&gt; ×©</li>
+<li>图像标签：<code>&lt;img src=&quot;&quot; width=&quot;&quot; height=&quot;&quot;/&gt;</code></li>
+<li>表格：<code>&lt;table&gt;&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</code></li>
+<li>表单：<code>&lt;form&gt;&lt;lable for=&quot;A&quot;&gt;&lt;/lable&gt;&lt;input type=””placeholder=”” name=”A” id=”A” pattern=””/&gt;&lt;/form&gt;</code></li>
+<li>列表：<code>&lt;ul&gt;&lt;li&gt;&lt;/li&gt;&lt;/ul&gt;&lt;ol&gt;&lt;li&gt;&lt;/li&gt;&lt;/ol&gt;&lt;dl&gt;&lt;dt&gt;&lt;dt&gt;&lt;/dd&gt;&lt;/dd&gt;&lt;/dl&gt;</code></li>
+<li>音频：<code>&lt;audio&gt;&lt;/audio&gt;</code></li>
+<li>视频：<code>&lt;video&gt;&lt;/video&gt;</code></li>
+<li>浮动框架：<code>&lt;iframe&gt;&lt;/iframe&gt;</code></li>
+</ol>
+<p>HTML5是构建Web内容的一种语言描述方式。HTML5是互联网的下一代标准，是构建以及呈现互联网内容的一种语言方式．被认为是互联网的核心技术之一。在2012年已经形成稳定版本。</p>
+<ul>
+<li>全新结构元素：<ul>
+<li>头部标签：<code>&lt;header&gt;&lt;/header&gt;</code></li>
+<li>导航栏标签：<code>&lt;nav&gt;&lt;/nav&gt;</code></li>
+<li>底部标签：<code>&lt;footer&gt;&lt;/footer&gt;</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="1-4-CSS层叠样式表"><a href="#1-4-CSS层叠样式表" class="headerlink" title="1.4 CSS层叠样式表"></a>1.4 CSS层叠样式表</h4><p>层叠样式表(Cascading Style Sheets)是一种用来表现HTML或XML等文件样式的计算机语言。CSS不仅可以静态地修饰网页，还可以配合各种脚本语言动态地对网页各元素进行格式化。CSS 能够对网页中元素位置的排版进行像素级精确控制，支持几乎所有的字体字号样式，拥有对网页对象和模型样式编辑的能力。</p>
+<p>一、CSS3</p>
+<p>CSS3是CSS层叠样式表技术的升级版本，于1999年开始制订，2001年5月23日W3C完成了CSS3的工作草案，主要包括盒子模型、列表模块、超链接方式、语言模块、背景和边框、文字特效、多栏布局等模块</p>
+<blockquote>
+<p>使用方式：包括内联方式，嵌入方式，链接方式，导入方式</p>
+</blockquote>
+<p>内联方式指的是直接在 HTML 标签中的 style 属性中添加 CSS。内联方式引入 CSS 代码会导致 HTML 代码变得冗长，且使得代码难以维护。</p>
+<p>嵌入方式的 CSS 只对当前的网页有效，当多个页面需要引入相同的 CSS 代码时，这样写会导致代码冗余，也不利于维护。</p>
+<p>链接方式这是最常见的也是最推荐的引入 CSS 的方式。使用这种方式，所有的 CSS 代码只存在于单独的 CSS 文件中，所以具有良好的可维护性。并且所有的 CSS 代码只存在于 CSS 文件中，CSS 文件会在第一次加载时引入，以后切换页面时只需加载 HTML 文件即可。</p>
+<p>在本次的项目中，由于导师所做要求，暨整个网站有一外部CSS文件控制所有页面的统一样式，每个页面的个别样式采用内部CSS。所以同时采用了以上三种使用方式。</p>
+<ul>
+<li>CSS选择器：<ul>
+<li>标签选择器（全局）、类选择器（最多）、id选择器（锚点）</li>
+<li>通配符选择器</li>
+<li>并集选择器、交集选择器、后代选择器</li>
+<li>伪类选择器 :first-child,:last-child,nth-of-type(n)</li>
+<li>伪元素选择器 :link :hover :visited</li>
+</ul>
+</li>
+<li>字体样式：<ul>
+<li>字体大小：font-size</li>
+<li>字体：font-family</li>
+<li>字体粗细：font-weight</li>
+</ul>
+</li>
+<li>文本外观<ul>
+<li>文本颜色：color</li>
+<li>文本行间距：line-height</li>
+<li>文本对齐方式：text-align</li>
+<li>首行缩进：text-indent:2em;</li>
+<li>标识文本溢出：text-overflow:ellipsis;</li>
+<li>文本格式：text-decoration: underline;</li>
+</ul>
+</li>
+<li>背景：<ul>
+<li>背景颜色：background-color</li>
+<li>背景图片：background-image</li>
+<li>背景图像平铺：background-repeat:no-repeat;</li>
+<li>背景图像位置：background-position:center center;</li>
+<li>背景图像固定：background-attachment:fixed;</li>
+<li>背景图像大小：background-size:cover/ % %;</li>
+</ul>
+</li>
+<li>表单：<ul>
+<li>接收并处理表单数据的服务器程序的地址：action=”#”</li>
+<li>提交方式：method=”post”</li>
+<li>表单名称：name=””</li>
+<li>表单控件form、select控件、textarea控件</li>
+</ul>
+</li>
+<li>视频/音频：<ul>
+<li>自动播放：autoplay:autoplay;</li>
+<li>结束重新开始：loop:loop;</li>
+<li>缓冲不足连接一个图像：poster:url();</li>
+<li>静音播放：muted</li>
+<li>显示按键：controls:controls;</li>
+</ul>
+</li>
+<li>CSS媒体查询<ul>
+<li>媒体查询旨在为不同的设备（显示器、平板电脑、手机等）定义不同的样式规则，使用媒体查询是一种流行的技术，可以向台式机、笔记本电脑、平板电脑和手机（例如 iPhone 和 Android 手机）提供定制的样式表。</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-5-JavaScript和JQuery动态"><a href="#1-5-JavaScript和JQuery动态" class="headerlink" title="1.5 JavaScript和JQuery动态"></a>1.5 JavaScript和JQuery动态</h4><p>JavaScript（简称“JS”）是一种具有函数优先的轻量级，解释型或即时编译型的高级编程语言。虽然它是作为开发web页面的脚本语言而出名的，但是它也被用到了很多非浏览器环境中，JavaScript 基于原型编程、多范式的动态脚本语言，并且支持面向对象、命令式和声明式（如函数式编程）风格。</p>
+<p>jQuery 是一个 JavaScript 库，也是一个JS文件。 JQ中封装实现了很多方法，让使用变得更加简单不再像js那样需要使用大量的方法调用。但JQ也只是实现了一些方法，还有些没有实现，因此能够使用JQ是实现的，JS都能做，但是能够用JS做的，JQ不一定能够实现。</p>
+<h3 id="2-网站的设计与实现"><a href="#2-网站的设计与实现" class="headerlink" title="2.网站的设计与实现"></a>2.网站的设计与实现</h3><h4 id="2-1-index-html"><a href="#2-1-index-html" class="headerlink" title="2.1 index.html"></a>2.1 index.html</h4><ul>
+<li><p>头部和导航栏：</p>
+<p>在整个项目中Header及footer的内容都是一致的，增加了代码的复用性，又增强了整个网页格式的统一。</p>
+<p>在index页面中，存在整个项目唯一的nav元素，主要原因在于在实现过程中，我将Header元素用作链接整体，就淡化了<code>&lt;nav&gt;</code>标签的作用。</p>
+<p>可以注意到在第二行右侧，出现了几个圆形图标，在这里是引入iconfont.ttf图标文字库代替图标图片。因为目前为止项目后端并没有完成，班列定制，APP下载等功能并没有进行开发。</p>
+</li>
+<li><p>banner块布局</p>
+<p>在这一块引入了内嵌的JS代码做了一个简单地JS动态窗口，具体体现就是在banner块的中央位置插入了我一句比较喜欢的名言，也是我博客上所展示的”从来没有真正的绝境, 只有心灵的迷途”,”Never really desperate, only the lost of the soul”。</p>
+<p>Banner块的底部通过CSS修饰，通过button按钮，页内超连接，与img图片属性制作出一个向下开启绿色生活的跳转样式。</p>
+<img src="./Web大作业/1.png" style="zoom: 67%;" />
 
-<p>这个在后期我们会发的个人CTF工具包里就有，不需要都记住，但是zip，rar，png等几个少数常用的，还是希望能够看见就清楚是哪个。</p>
-<h3 id="2-捉猫猫"><a href="#2-捉猫猫" class="headerlink" title="2.  捉猫猫"></a>2.  捉猫猫</h3><p>这道题完全可以通过玩游戏得到，实际上应该是个简单的逆向，但是我是玩出来的(玩出来的内容并不完整，另一部分在哪呢？)所以有兴趣的可以去用逆向试一试</p>
-<h3 id="3-relax"><a href="#3-relax" class="headerlink" title="3. relax"></a>3. relax</h3><p>这一道题是最经典的音频隐写题目，只需要使用<code>audacity-win-2-1-2.exe</code>工具，和一点脑洞。</p>
-<h3 id="4-EasyPcap"><a href="#4-EasyPcap" class="headerlink" title="4. EasyPcap"></a>4. EasyPcap</h3><p>这道题算是最简单的流量分析题目，里面只有HTML和tcp两个流，依次追踪一遍就能知道答案。</p>
-<h3 id="5-曲阜师范大学"><a href="#5-曲阜师范大学" class="headerlink" title="5. 曲阜师范大学"></a>5. 曲阜师范大学</h3><p>他已经给出了提示，感觉里面全是文字，我们可以用winhex看看这个题，这里需要用到第一题常用文件头的知识。然后还需要一个formost工具，工具已经提供了。后续还有一步密码破解，试试究竟是找出密码还是怎么做吧？</p>
-<h2 id="（二）web"><a href="#（二）web" class="headerlink" title="（二）web"></a>（二）web</h2><p>关于web在这里我其实想吐槽一句，这个真是是给21级新生做的吗？居然考了sql注入和php反序列化。</p>
-<h3 id="1-Easy-Web"><a href="#1-Easy-Web" class="headerlink" title="1.Easy_Web"></a>1.Easy_Web</h3><p>如题easy web，很多靶场都会有这一种类型的题目，是最经典的送分题。</p>
-<h3 id="2-Findit"><a href="#2-Findit" class="headerlink" title="2.Findit"></a>2.Findit</h3><p>这一道题，较上一道题难度有所提升，flag被分成了两块，试着找出来吧（说实话我一开始以为那部分缺的一半是自己猜的呢），注意在找到前半部分的flag之后不要尝试去补全句子，这样是得不到flag的。</p>
-<h2 id="（三）Crypto"><a href="#（三）Crypto" class="headerlink" title="（三）Crypto"></a>（三）Crypto</h2><h3 id="1-签到-1"><a href="#1-签到-1" class="headerlink" title="1. 签到"></a>1. 签到</h3><p>这道题实际上就是base64，关于base系列的密码有一整个系列，如base32，base64，base96等。</p>
-<blockquote>
-<p>cWZudXtodWFuX3lpbmdfbGFpX2Rhb19xdV95dWFuX2RhX2ppYV90aW5nfQ==</p>
-</blockquote>
-<h3 id="2-栅栏密码"><a href="#2-栅栏密码" class="headerlink" title="2.栅栏密码"></a>2.栅栏密码</h3><p>这个真就是栅栏密码，这两个题都属于是古典密码，类似的还有很多，这类密码最重要的</p>
-<blockquote>
-<p>qn{nls_ss_a}fuegihi_onn</p>
-</blockquote>
-<h3 id="3-emoji密码"><a href="#3-emoji密码" class="headerlink" title="3. emoji密码"></a>3. emoji密码</h3><p>一个用颜表情做的密码，这个密码在之前我也没见过，这种就是考察查找利用知识对能力和快速学习的能力。</p>
-<h3 id="4-BrainFUCK"><a href="#4-BrainFUCK" class="headerlink" title="4. BrainFUCK"></a>4. BrainFUCK</h3><p>BrainFUCK正好是一种密码的方式，不过这道题更多了一些小心思。</p>
-<h3 id="5-RSA"><a href="#5-RSA" class="headerlink" title="5.RSA"></a>5.RSA</h3><p>这道题也是我硕抱怨的另一个点，这道题是RSA加密算法，解决的话需要会编写脚本的能力，和对RSA密码的了解，在这里提供一个<a target="_blank" rel="noopener" href="http://ctf.ssleye.com/pub_asys.html">公钥分析</a>的网址，通过这里可以提取n和e，</p>
-<blockquote>
-<p> cmd 进入 yafu 的解压目录，输入 yafu-x64<br>factor(需要分解的大数)<br>遇到因数位数过长：新建文件 p.txt，内容写上 n 的值，最后面要换行<br>yafu-x64 “factor(@)” -batchfile p.txt </p>
-</blockquote>
-<p>这是题库wp里提供的解题思路，不过这一道题完全可以使用在线的解题工具分解n得到指数p和q，这是<a target="_blank" rel="noopener" href="http://factordb.com/">解题工具</a>。在通过编写脚本完成解题。</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> hashlib
-<span class="token keyword">import</span> base64
-<span class="token keyword">import</span> gmpy2
-<span class="token keyword">import</span> rsa
-p <span class="token operator">=</span> <span class="token number">55801219744752013328353829126338788731389</span>
-q <span class="token operator">=</span> <span class="token number">1306404104626383868633664968881427933</span>
-e <span class="token operator">=</span> <span class="token number">65537</span>
-n <span class="token operator">=</span> <span class="token number">72898942517702846572619158917269560125985151716076557250750365689783898488937</span>
-d <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>gmpy2<span class="token punctuation">.</span>invert<span class="token punctuation">(</span>e<span class="token punctuation">,</span><span class="token punctuation">(</span>q<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span>p<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-key <span class="token operator">=</span> rsa<span class="token punctuation">.</span>PrivateKey<span class="token punctuation">(</span>n<span class="token punctuation">,</span>e<span class="token punctuation">,</span>d<span class="token punctuation">,</span>p<span class="token punctuation">,</span>q<span class="token punctuation">)</span>
-<span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token string">"flag.enc"</span><span class="token punctuation">,</span><span class="token string">"r"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
-    f <span class="token operator">=</span> f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
-a<span class="token operator">=</span>base64<span class="token punctuation">.</span>b64decode<span class="token punctuation">(</span>f<span class="token punctuation">)</span>
-<span class="token keyword">print</span><span class="token punctuation">(</span>rsa<span class="token punctuation">.</span>decrypt<span class="token punctuation">(</span>a<span class="token punctuation">,</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<center>2.1 绿动出行主业</center></li>
+<li><p>主体DIV块布局</p>
+<p>该页面主题我采用了三列的弹性盒，在左右两栏通过CSS的:hover 选择器设置，鼠标悬停效果和动画，在鼠标选中时，通过css动画将原本置于页面左右两侧，背景和字体颜色都通过RGBA设为透明的两个块，通过transition: all 0.5s ease-in 0s;以及改变透明度的方式呈现出动画效果</p>
+<p>中间列，通过JS与JQ实现了一个多图轮播机制，通过index.js代码进行控制实现页面的展示效果的增强。</p>
+<img src="./Web大作业/2.png" style="zoom:67%;" />
 
-<p>(四)Reverse</p>
-<p>reverse的题目至少第一二道很简单，都可以看看，这里就不写解题过程了。</p>
+<center>2.2 多图轮播页面</center></li>
+<li><p>Footer页面设置</p>
+<p>在footer页面展示稍微少一些，这边我实际上只是采用了表格和图片进行了样式修饰，没有太多的其他效果。</p>
+</li>
+<li><p>全页效果</p>
+<p>页面采用了css3媒体查询的方式，在窗口大小过小时整体会呈现出一个单列布局（图2.1-3 在手机端单列布局的展示），采用<code>&lt;source&gt;</code>标签进行背景音频的播放。</p>
+<p><img src="./Web%E5%A4%A7%E4%BD%9C%E4%B8%9A/3.png"></p>
+<center>2.3 媒体查询下效果</center></li>
+</ul>
+<h4 id="2-2-project-html"><a href="#2-2-project-html" class="headerlink" title="2.2 project.html"></a>2.2 project.html</h4><img src="./Web大作业/4.png" style="zoom:67%;" />
+
+<center>2.4 project.html</center>
+这个页面因为一些对老师要求的理解失误，这个页面便采用的是外部链接样式+内部CSS样式上，通过cards和card标签为下方图片增加卡片效果，同时也采用了一些简单的媒体查询，会在屏幕大小较小是将其改为单列图片。
+
+<h4 id="2-3-about-html"><a href="#2-3-about-html" class="headerlink" title="2.3 about.html"></a>2.3 about.html</h4><p>这一个页面也是整体多是CSS做的显示内容，通过背景和容器两层标签的使用，在container块中依次通过居中，设置内边距与外边距完成整体的样式设计。使背景正好覆盖整个页面的上半部分，文字和视频部分居中。</p>
+<img src="./Web大作业/5.png" style="zoom:67%;" />
+
+<center>图2.5 关于我们页面</center>
+#### 2.4 login.html
+
+<p>这一个登录和注册页面其实并没有采用表单，只是通过修饰的两列输入栏，通过内置的js代码进行匹配，当鼠标点击对应位置时js代码段对content标签进行验证，将其改为对应的显示。</p>
+<img src="./Web大作业/6.png" style="zoom:67%;" />
+
+<center>图2.6 登录页面</center>
+#### 2.5 information_acquisition.html
+
+<p>这个页面实际上是最初没有的，到现在也跟整个项目有些格格不入，在这个页面内，通过表格和表单嵌套使用做出整体美观的显示，之后通过HTML代码和JS代码进行输入验证。</p>
+<ul>
+<li><p>HTML验证:</p>
+<p>由于HTML5有很多全新的表单控件，比如input type=”email” ，在这些控件在进行HTML代码会自动对其进行合法性验证，同时在不具备自动验证的块，通过设置正则表达式完成对块数据的验证如：pattern=”^[\u4e00-\u9fa5]{0,}$”这就是一个判断是否为中文的验证。</p>
+</li>
+<li><p>JS输入验证：</p>
+<p>因为是临时赶工做出来的页面，我对其要求也有所降低，JS验证是通过在每个需要进行验证的输入栏后面设置一个空的块，块里不赋值，在点击注册后表单通过onsubmit=”return validateForm()”将数据传递给页面内的js validateForm()函数对其进行空值验证。</p>
+</li>
+</ul>
+<img src="./Web大作业/7.png" style="zoom:67%;" />
+
+<h4 id="2-6-user-html"><a href="#2-6-user-html" class="headerlink" title="2.6 user.html"></a>2.6 user.html</h4><p>这个页面也是在最后跟老师的实验要求进行对比后再补充的一个页面，具体采用了列表加浮动框架的方式进行设计，在列表左侧为链接栏目，通过在链接栏中选择页面，会加载到右侧的浮动框架中。</p>
+<img src="./Web大作业/8.png" style="zoom:67%;" />
+
+<h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3 总结"></a>3 总结</h3><p>这个站点实际上是我大一初学web前段的目的，当时我和其他几位同学一起参加挑战杯，这个站点和其相应功能是当时没有完成制作出来，虽然现在为止，比如班列定制等功能也没有写出来，至少在前段展示上比当时好了很多。</p>
+<p>另一方面在这一次我其实参考了不少的企业页面，因为这个是一个正经的参加挑战杯和大创的项目介绍，不能做到类似于博客，很多花式的前段效果在这个页面上其实不是很合适。也有很多不够圆满的地方，比如project页面，那四个cord块实际应该链接到项目提供的四项功能，但是两年过去，这些地方还没写完…..</p>
+<p>最后呢，是对老师要求的一些理解失误，比如说那个使用以个外部CSS文件，在后面与老师交流时，刘老师表示是至少一个外部CSS文件而我理解成了只能使用一个外部CSS文件，这是不符合正常的程序设计原则的….所以导致我采用了一种外部CSS样式存储如header，footer，body等标签样式，每个页面中的具体采用的则交给内部CSS样式进行控制。</p>
+<blockquote>
+<p>写在最后，这个大作业还是费了很多力气的，主要是因为老师那些神奇的要求，这边也把本次老师要求附上……</p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">1、网站内容丰富（包括各种类型的内容：文本、图像、音频、视频等）、功能完备（至少有五个栏目）。（20分）
+2、HTML代码结构清晰、规范（至少主页包括HTML5新增的结构元素）。（16分）
+3、整个网站有一外部CSS文件控制所有页面的统一样式，每个页面的个别样式采用内部CSS。（CSS代码书写规范，选择器使用及代码书写顺序合理）（16分）
+4、网站整体采用HTML+CSS方式布局页面（至少在一个页面采用浮动框架、至少在一个页面采用多列弹性盒、至少在一个页面使用CSS表格），页面布局合理。（18分）
+5、网站至少包含一个表单页面，表单页面中至少有一个输入栏位采用JS进行合法性验证，并采用pattern。（16）
+6、至少包含一个动画（CSS）或动态窗口（JS）或CSS响应式设计，至少在一页页面上设置动态样式。（8分）
+7、目录结构规范、文件名命名规范、各种标识符命名规范。（6分）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这玩意因为我一开始也没怎么考虑这些内容，然后…..看见这个之后大改……..</p>
 
                 
             </div>
@@ -554,7 +657,7 @@ a<span class="token operator">=</span>base64<span class="token punctuation">.</s
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://shierjinghuang.github.io/2021/09/20/QFNU%20CTF%20%E8%BF%8E%E6%96%B0%E8%B5%9B%E8%A7%A3%E9%A2%98/">https://shierjinghuang.github.io/2021/09/20/QFNU%20CTF%20%E8%BF%8E%E6%96%B0%E8%B5%9B%E8%A7%A3%E9%A2%98/</a>
+                    <a href="https://shierjinghuang.github.io/2022/07/03/Web%E5%A4%A7%E4%BD%9C%E4%B8%9A/">https://shierjinghuang.github.io/2022/07/03/Web%E5%A4%A7%E4%BD%9C%E4%B8%9A/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -592,8 +695,12 @@ a<span class="token operator">=</span>base64<span class="token punctuation">.</s
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95/">
-                                    <span class="chip bg-color">解题记录</span>
+                                <a href="/tags/%E8%AF%BE%E7%A8%8B%E8%AE%BA%E6%96%87/">
+                                    <span class="chip bg-color">课程论文</span>
+                                </a>
+                            
+                                <a href="/tags/Web/">
+                                    <span class="chip bg-color">Web</span>
                                 </a>
                             
                         </div>
@@ -643,13 +750,13 @@ a<span class="token operator">=</span>base64<span class="token punctuation">.</s
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/10/03/DASCTF%20X%20%E6%B5%99%E6%B1%9F%E5%B7%A5%E4%B8%9A%E5%A4%A7%E5%AD%A6%E7%A7%8B%E5%AD%A3%E6%8C%91%E6%88%98%E8%B5%9B/">
+                <a href="/2022/07/05/%E8%AF%BE%E7%A8%8B%E8%AE%BA%E6%96%87-%E6%BA%90%E4%BB%A3%E7%A0%81%E4%B8%8B%E8%BD%BD%E5%99%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="浙江工业大学秋季挑战赛wp">
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="课程论文-源代码下载器的设计实现">
                         
-                        <span class="card-title">浙江工业大学秋季挑战赛wp</span>
+                        <span class="card-title">课程论文-源代码下载器的设计实现</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -660,8 +767,61 @@ a<span class="token operator">=</span>base64<span class="token punctuation">.</s
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-03
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-07-05
                         </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/" class="post-category">
+                                    项目设计
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%AF%BE%E7%A8%8B%E8%AE%BA%E6%96%87/">
+                        <span class="chip bg-color">课程论文</span>
+                    </a>
+                    
+                    <a href="/tags/Python%E7%88%AC%E8%99%AB/">
+                        <span class="chip bg-color">Python爬虫</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/06/09/Debuggerrr%C2%B2%E6%88%98%E9%98%9FCISCN%E5%88%9D%E8%B5%9B%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Debuggerrr²战队CISCN初赛解题记录">
+                        
+                        <span class="card-title">Debuggerrr²战队CISCN初赛解题记录</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -681,57 +841,8 @@ a<span class="token operator">=</span>base64<span class="token punctuation">.</s
                         <span class="chip bg-color">解题记录</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/07/31/C%E8%AF%AD%E8%A8%80%E5%AE%9E%E8%AE%AD%E4%B9%8B%E5%91%98%E5%B7%A5%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="C语言课程实训：员工信息管理系统">
-                        
-                        <span class="card-title">C语言课程实训：员工信息管理系统</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-31
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/" class="post-category">
-                                    项目设计
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/C/">
-                        <span class="chip bg-color">C</span>
-                    </a>
-                    
-                    <a href="/tags/%E8%AF%BE%E7%A8%8B%E8%AE%BA%E6%96%87/">
-                        <span class="chip bg-color">课程论文</span>
+                    <a href="/tags/CISCN/">
+                        <span class="chip bg-color">CISCN</span>
                     </a>
                     
                 </div>
