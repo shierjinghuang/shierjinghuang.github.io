@@ -501,12 +501,12 @@
 | India          | 23.00     | 160.00   | +137.00         | +596%           |
 | Pakistan       | 26.00     | 165.00   | +139.00         | +535%           |
 
-<img src="D:\blog\shierjinghuang\source\_posts\2022年美赛数学建模\Nuclear weapons change line graph.png" style="zoom:50%;" />
+<img src="https://shierjinghuang.github.io/2024/03/31/2022年美赛数学建模/Nuclear weapons change line graph.png" style="zoom:50%;" />
 
 <center>Fig.5-1 Nuclear weapons change line graph </center>
 ​        To solve question c, to analyze the data of the form Tests attached to the question and get  the number of nuclear weapons experiments conducted in the world every year. In order to get  the conclusion intuitively, the bar graph is drawn and the graph of the number of nuclear  weapons experiments from 1945 to 2019 is obtained. It can be concluded that in 1962, 1958,  1968, 1966, 1966 and 19615, nuclear weapon tests occurred the most, 178 times, 116 times, 79  times, 76 times and 71 times respectively. 
 
-<img src="D:\blog\shierjinghuang\source\_posts\2022年美赛数学建模\The graph of the number of nuclear weapon tests from 1945 to 2019.png" style="zoom:50%;" />
+<img src="https://shierjinghuang.github.io/2024/03/31/2022年美赛数学建模/The graph of the number of nuclear weapon tests from 1945 to 2019.png" style="zoom:50%;" />
 
 <center>Fig.5-2 The graph of the number of nuclear weapon tests from 1945 to 2019 </center>
 ​        According to question a, 10 countries that once possessed nuclear weapons have been  known. In order to facilitate the analysis of question e, 10 countries that once possessed  nuclear weapons given in the form Position in the attachment are analyzed and a broken line  chart is drawn, obtaining the positions of China and Israel on nuclear weapons in Fig5-3, India  and Pakistan on nuclear weapons in Fig5-4 and South Africa and North Korea on nuclear  weapons in Fig5-5. In the positions of countries on nuclear weapons in Fig5-3, Fig5-4 and  Fig5-5, 0 represents no consideration, 1 represents Consideration, 2 represents Pursuit and 3 represents Possession, and the transition year table from "no consideration of nuclear weapons"  to "possession of nuclear weapons" for each country in Tab.5-2 is obtained, and the United States can be seen the transition from "no consideration of nuclear weapons" to "possession of  nuclear weapons" is the fastest. 
@@ -525,13 +525,13 @@
 | South Africa   | 1968              | 1979      | 11              |
 | North Korea    | 1961              | 2006      | 45              |
 
-<img src="D:\blog\shierjinghuang\source\_posts\2022年美赛数学建模\Chart of positions of China and Israel on nuclear weapons.png" style="zoom: 67%;" />
+<img src="https://shierjinghuang.github.io/2024/03/31/2022年美赛数学建模/Chart of positions of China and Israel on nuclear weapons.png" style="zoom: 67%;" />
 
 <center>Fig.5-3 Chart of positions of China and Israel on nuclear weapons </center>
-<img src="D:\blog\shierjinghuang\source\_posts\2022年美赛数学建模\India and Pakistan's position on nuclear weapons.png" style="zoom: 67%;" />
+<img src="https://shierjinghuang.github.io/2024/03/31/2022年美赛数学建模/India and Pakistan's position on nuclear weapons.png" style="zoom: 67%;" />
 
 <center> Fig.5-4 India and Pakistan's position on nuclear weapons</center>
-<img src="D:\blog\shierjinghuang\source\_posts\2022年美赛数学建模\Position graph of nuclear weapons in South Africa and North Korea.png" style="zoom:67%;" />
+<img src="https://shierjinghuang.github.io/2024/03/31/2022年美赛数学建模/Position graph of nuclear weapons in South Africa and North Korea.png" style="zoom:67%;" />
 
 <center>Fig.5-5 Position graph of nuclear weapons in South Africa and North Korea </center>
 ### 5.3 entropy weight method analyzes the research activity of nuclear weapons
@@ -579,37 +579,37 @@
 <p>For question a, we establish a time series model and solve the model. </p>
 <p><strong>Step 1: Data stationarity test</strong> </p>
 <p>​        Firstly, using Matlab to test the data stationarity. If the data of different countries are found  to be less stable after being brought in, the difference of the original data is taken, and then the  test is carried out until it passes the test. Because there are many countries, we takes China as an  example here, as shown in Fig.6-1.</p>
-<img src="D:\blog\shierjinghuang\source\_posts\2022年美赛数学建模\Variance analysis diagram of China.png" style="zoom:50%;" />
+<img src="https://shierjinghuang.github.io/2024/03/31/2022年美赛数学建模/Variance analysis diagram of China.png" style="zoom:50%;" />
 
 <center>Fig. 6-1 Variance analysis diagram of China </center>
 **Step 2: Determine the model parameters** 
 
 <p>​        The model parameters p, q and d were determined by autocorrelation function(ACF) and  partial autocorrelation function(PACF) based on the stabilized data. Where d isthe difference  order, p, q are determined by the order of the following equation using AIC and BIC criteria  through matlab.<br>$$<br>X_𝒕 = 𝒄 + a_𝟏 X_{𝒕−𝟏} + 𝜶<em>𝟐 X</em>{𝒕−𝟐} + ⋯ + 𝜶<em>𝒑 X</em>{𝒕−𝒑} + 𝜺<em>𝒕 + 𝜷_𝟏 𝜺</em>{𝒕−𝟏} + ⋯ + 𝜷<em>𝒒 𝜺</em>{𝒕−𝒒}<br>$$<br>The autocorrelation and partial autocorrelation graphs drawn by matlab are shown in Fig.6-2. </p>
-<img src="D:\blog\shierjinghuang\source\_posts\2022年美赛数学建模\Autocorrelation and partial autocorrelation pictures of China.png" style="zoom:67%;" />
+<img src="https://shierjinghuang.github.io/2024/03/31/2022年美赛数学建模/Autocorrelation and partial autocorrelation pictures of China.png" style="zoom:67%;" />
 
 <center>Fig.6-2 Autocorrelation and partial autocorrelation pictures of China </center>
 **Step 3: Model construction** 
 
 <p>​        Matlab and its own prediction tool are used to construct and predict the model and Fig. 6-3  is obtained:</p>
-<img src="D:\blog\shierjinghuang\source\_posts\2022年美赛数学建模\China's time series model prediction chart.png" style="zoom: 60%;" />
+<img src="https://shierjinghuang.github.io/2024/03/31/2022年美赛数学建模/China's time series model prediction chart.png" style="zoom: 60%;" />
 
 <center>Fig. 6-3 China's time series model prediction chart </center>
 ### 6.3 Solution of Problem 2 model
 
 <p>​        Step 1: For question b, the relationship between the number and year of nuclear weapons in  the country and the world can be obtained by using fitting calculation, as shown in Fig.6-4 to  Fig.6-10. </p>
-<img src="D:\blog\shierjinghuang\source\_posts\2022年美赛数学建模\Number and Year fitting graph of nuclear weapons of China and France.png" style="zoom: 60%;" />
+<img src="https://shierjinghuang.github.io/2024/03/31/2022年美赛数学建模/Number and Year fitting graph of nuclear weapons of China and France.png" style="zoom: 60%;" />
 
 <center>Fig. 6-4 Number and Year fitting graph of nuclear weapons of China and France </center>
-<img src="D:\blog\shierjinghuang\source\_posts\2022年美赛数学建模\Number and Year fitting graph of nuclear weapons of India and Israel.png" style="zoom:60%;" />
+<img src="https://shierjinghuang.github.io/2024/03/31/2022年美赛数学建模/Number and Year fitting graph of nuclear weapons of India and Israel.png" style="zoom:60%;" />
 
 <center>Fig.6-5 Number and Year fitting graph of nuclear weapons of India and Israel</center>
-<img src="D:\blog\shierjinghuang\source\_posts\2022年美赛数学建模\Number and Year fitting graph of nuclear weapons of North Korea and Pakistan.png" style="zoom:60%;" />
+<img src="https://shierjinghuang.github.io/2024/03/31/2022年美赛数学建模/Number and Year fitting graph of nuclear weapons of North Korea and Pakistan.png" style="zoom:60%;" />
 
 <center>Fig.6-6 Number and Year fitting graph of nuclear weapons of North Korea and Pakistan</center>
-<img src="D:\blog\shierjinghuang\source\_posts\2022年美赛数学建模\Number and Year fitting graph of nuclear weapons of Russia and the United Kingdom.png" style="zoom:60%;" />
+<img src="https://shierjinghuang.github.io/2024/03/31/2022年美赛数学建模/Number and Year fitting graph of nuclear weapons of Russia and the United Kingdom.png" style="zoom:60%;" />
 
 <center>Fig.6-7 Number and Year fitting graph of nuclear weapons of Russia and the United Kingdom</center>
-<img src="D:\blog\shierjinghuang\source\_posts\2022年美赛数学建模\Number and Year fitting graph of nuclear weapons of the United States and the World.png" style="zoom:60%;" />
+<img src="https://shierjinghuang.github.io/2024/03/31/2022年美赛数学建模/Number and Year fitting graph of nuclear weapons of the United States and the World.png" style="zoom:60%;" />
 
 <center>Fig.6-8 Number and Year fitting graph of nuclear weapons of the United States and the World </center>
 **The corresponding formula for China is:** 
@@ -739,21 +739,21 @@ $$
 <h4 id="7-1-2-um-number-of-nuclear-bombs-to-destroy-the-Earth"><a href="#7-1-2-um-number-of-nuclear-bombs-to-destroy-the-Earth" class="headerlink" title="7.1.2 um number of nuclear bombs to destroy the Earth"></a>7.1.2 um number of nuclear bombs to destroy the Earth</h4><p>​        The Earth was originally gravitationally collapsed from the remnants of the solar nebula, and to shatter the Earth into a nebula that can no longer be gravitationally held together, the energy produced by the nuclear bomb would need to exceed the gravitational binding energy of the Earth, which the energy required 2.2 × 1032 J. Because 1tTNT = 4.19 × 109 J, so 2.2 × 1032 J is the equivalent of 5.25 × 1022 tTNT, and the number of nuclear bombs in 100 megabytes TNT equivalent is 5.25 × 10^14^. </p>
 <p>​        The number of nuclear bombs in 100-megabyte TNT equivalent needed to blast off the surface of the world is 23.57 × 1012.lf destroying the earth is to make the earth uninhabitable, that is to destroy the living environment of human beings and creatures on the earth. The five conditions for life on Earth are stable sunlight, a safe orbit, suitable temperature, liquid water, and the thickness and composition of the atmosphere. Destroying the atmosphere need 3.2 × 1026J and heating the Earth’s oceans to evaporate and drying out all the land need 7.0 × 1027J . So the number of nuclear bombs in 100-megabyte TNT  equivalent is 1.74 × 1010. </p>
 <h3 id="7-2-Solution-and-analysis-of-b-question"><a href="#7-2-Solution-and-analysis-of-b-question" class="headerlink" title="7.2 Solution and analysis of b question"></a>7.2 Solution and analysis of b question</h3><p>​        “Big Ivan” is the most powerful nuclear bomb known in the world at present, namely the Czar Bomb made in the Soviet era. It is 8m in length, 2.1m in diameter, can weigh up to 27t and has a design TNT equivalent of 100Mt. According to the formula 16 and formula 17, the maximum effective kill radius is 25.55km, resulting in an effective kill area of 2055.05𝑘𝑚^2^,  and the energy of 2.10 × 1013 J released by the shock wave. According to the simulation of nuclear explosion, the altitude of the mushroom cloud is 52.8km, the diameter of the  mushroom cloud head is 204km, and the height of the mushroom cloud head is 11.4km.</p>
-<img src="D:\blog\shierjinghuang\source\_posts\2022年美赛数学建模\Dimensions of the mushroom cloud.png" style="zoom:67%;" />
+<img src="https://shierjinghuang.github.io/2024/03/31/2022年美赛数学建模/Dimensions of the mushroom cloud.png" style="zoom:67%;" />
 
 <center>Fig.7-1 Dimensions of the mushroom cloud </center>
 ​        The radiation radius（500rem）is 6.99km and the area is about 153km². A 500rem dose of ionizing radiation can be fatal in humans within about 1 month, and 15% of survivors will eventually die of cancer as a result of exposure. The fireball has a radius of 7.92km and an  area of 197km².Damage with the ground depends on the height of the blast. The amount of radioactive fallout increases significantly if the ground is touched. Anything inside the fireball will be effectively vaporized. The heavy blast damager adius(20 psi)is 10.1km and  the area is 321km². 
 
 <p>​        At 20 psi overpressure, heavy concrete structures were severely damaged or dismantled,  with fatalities approaching 100%.The medium blast damage radius (5 psi) is 21.2 km and the area is 1,420 km².At 5 psi overpressure, most residential buildings collapse with widespread injury and death. The potential for fire in commercial and residential damage is high, and damaged buildings are likely to spread fire. The light burst damage radius (1 psi) is 54.6 km and the area is 9,370 km².At an overpressure of about 1 psi, the glass window may break. The thermal radiation radius(Third degree burns) is 64.2 km and the area is 12,960km².Third  degree burns burn all skin and because of the destruction of painful nerves, are usually  painless, which can lead to severe scarring or disability, and may require amputation. </p>
-<center><img src="D:\blog\shierjinghuang\source\_posts\2022年美赛数学建模\Nuclear explosion with southwesterly wind up_1.png" style="zoom:50%;" /><img src="D:\blog\shierjinghuang\source\_posts\2022年美赛数学建模\Nuclear explosion with southwesterly wind up_2.png" style="zoom:50%;" /></center>
+<center><img src="https://shierjinghuang.github.io/2024/03/31/2022年美赛数学建模/Nuclear explosion with southwesterly wind up_1.png" style="zoom:50%;" /><img src="https://shierjinghuang.github.io/2024/03/31/2022年美赛数学建模/Nuclear explosion with southwesterly wind up_2.png" style="zoom:50%;" /></center>
 <center>Fig.7-2 Nuclear explosion with southwesterly wind up</center>
 In 1986, there were 70,300 nuclear weapons on in Earth. Today, the global Arsenal has been reduced by 80 percent, leaving an estimated 12,705 nuclear weapons , which not enough to destroy the planet but enough to destroy 18 percent of its land mass. 
 
 <h3 id="7-3-Solution-and-Analysis-of-c-Question"><a href="#7-3-Solution-and-Analysis-of-c-Question" class="headerlink" title="7.3. Solution and Analysis of c Question"></a>7.3. Solution and Analysis of c Question</h3><p>​        Since the end of the Cold War, steps have been taken to reduce nuclear arsenals and some progress has been made, but the world’s total stockpile of nuclear warheads remains at a very high level. Today, there are 12,705 nuclear warheads in possession by nine countries.Fig.7-3 shows that 86% of nuclear warheads are owned by Russia and the United States, which have a combined stockpile of 8,185. The number of nuclear warheads needed to protect national security is exaggerated. As Fig.7-4 shows, the total global stockpile of nuclear weapons is declining, but at a slower rate than over the past 30 years. Among them, the United States and Russia are slowly reducing their stockpiles. France’s and Israel’s stockpiles are relatively stable. But China, India, North Korea, Pakistan are adding to their stockpiles. The current nuclear states do not seem to be planning nuclear disarmament, but rather to keep large arsenals indefinitely; All are committed to modernizing their remaining nuclear forces, and all seem committed to retaining nuclear weapons indefinitely, in conflict with the Nuclear Non-Proliferation Treaty. In the short term, it is highly unlikely that the world will achieve a total stockpile of zero nuclear weapons and protect the planet from  nuclear destruction. </p>
-<img src="D:\blog\shierjinghuang\source\_posts\2022年美赛数学建模\Ratio of nuclear warheads among nuclearstatesin 2022.png" style="zoom:50%;" />
+<img src="https://shierjinghuang.github.io/2024/03/31/2022年美赛数学建模/Ratio of nuclear warheads among nuclearstatesin 2022.png" style="zoom:50%;" />
 
 <center>Fig.7-3 Ratio of nuclear warheads among nuclearstatesin 2022 </center>
-<img src="D:\blog\shierjinghuang\source\_posts\2022年美赛数学建模\Global stockpile of nuclear warheads 1945-2022.png" style="zoom: 60%;" />
+<img src="https://shierjinghuang.github.io/2024/03/31/2022年美赛数学建模/Global stockpile of nuclear warheads 1945-2022.png" style="zoom: 60%;" />
 
 <center>Fig.7-4 Global stockpile of nuclear warheads 1945-2022 </center>
 ​        In order to protect the earth and the environment on which we depend, we consider limiting the total number of nuclear warheads in the world to 10% of the land damage caused by a nuclear explosion. By calculation, the global stockpile limit is 7,250 nuclear warheads. Countries that already have nuclear weapons are limited to the number of warheads they need to defend their national security. We chose the number of nuclear warheads that could destroy a large nation as the maximum number of nuclear warheads that a nuclear power could possess. By calculation, the limit for nuclear warheads is 487. 
@@ -788,7 +788,7 @@ In 1986, there were 70,300 nuclear weapons on in Earth. Today, the global Arsena
 <p>$$<br>𝑓(𝑦, 𝑥) = \frac {𝑑𝑥} {𝑑𝑦} , 𝑦(0) = 𝑦^0<br>$$<br>​        Differential equation of sensitivity can be obtained with respect to differentiation X<del>j</del> . </p>
 <p>$$<br>\frac d {dt} \frac {𝜕y} {𝜕x_j}=j  \frac {𝜕y} {𝜕x_j} + \frac {𝜕f} {𝜕x_j} (S=JṠ+F)<br>$$<br>​        The sensitivity formula can be obtained by 𝑆 taking the derivative of pair x<del>j</del> . </p>
 <p>$$<br>S^𝑠 = −𝐽 ^{−1} 𝐹<br>$$<br>​        SPSS was used to make the roc curve of Syria, and the sensitivity graph was as follows. </p>
-<img src="D:\blog\shierjinghuang\source\_posts\2022年美赛数学建模\The sensitivity analysis chart of Syria.png" style="zoom: 67%;" />
+<img src="https://shierjinghuang.github.io/2024/03/31/2022年美赛数学建模/The sensitivity analysis chart of Syria.png" style="zoom: 67%;" />
 
 <center>Fig.9-1The sensitivity analysis chart of Syria </center>
 ## 10 del evaluation 
