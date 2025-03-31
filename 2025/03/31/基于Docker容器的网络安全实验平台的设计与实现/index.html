@@ -404,10 +404,6 @@
                                 项目设计
                             </a>
                         
-                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
-                                网络安全
-                            </a>
-                        
                     </div>
                     
                 </div>
@@ -726,7 +722,7 @@
 <p>​		在具体实现过程中，即通过前端点击触发后端接口进而通过云服务器创建容器，并将容器的80端口映射到服务器的开放端口。由于阿里云服务器自带防火墙，会隔绝外部访问，所以需要进行安全组管理，将接口池的30080端口到30880端口设置为测试端口，允许外部IP地址访问。在容器下发完成后，平台用户访问对应题目，即访问远程服务器开放端口。</p>
 <center> <img src="D:\blog\shierjinghuang\source\_posts\基于Docker容器的网络安全实验平台的设计与实现\wps23.png" style="zoom: 80%;" /></center>
 <center>图4-6容器的下发与回收</center>
-<h5 id="4-2-2-文章模块的实现">4.2.2 文章模块的实现</h5>
+##### 4.2.2 文章模块的实现
 <p>​		用户端的文章模块，管理员和用户可以将自己认为有价值的内容上传，也可是上传平台题目解题思路，同时前台将进行展示。文章模块提供搜索功能，可以检索带有关键字的文章。文章模块如图4-7所示。</p>
 <p>​		同时文章模块可以根据Articles库中的id值，将存储在Articles表中的文章信息映射到对应的Article:id页面，进行展示。由于在文章发布模块使用WangEditor，通过json流将带有标签和样式的信息存入Content中。对应文章页面的实现过程与存入过程正好相反，通过json数据流读出数据库Content中的标签及样式信息，写入前端Vue文件中，并对其进行动态渲染，从而实现对应文章的展示。</p>
 <p><strong>关键代码如下：</strong></p>
@@ -742,17 +738,17 @@
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <img src="D:\blog\shierjinghuang\source\_posts\基于Docker容器的网络安全实验平台的设计与实现\wps24.jpg" style="zoom:80%;" />
 <center>图4-7文章模块实现</center>
-<h4 id="4-3-管理员功能模块实现">4.3 管理员功能模块实现</h4>
+#### 4.3 管理员功能模块实现
 <p>​		安全是“三分技术，七分管理”，网络安全实验平台的长期安全运营，也需要经过实践的检验。系统中管理员功能主要职责为维护网络安全实验平台的正常运行，主要实现信息发布，用户信息管理、文章管理、题目管理、容器管理等功能。</p>
 <h5 id="4-3-1-用户信息管理的实现">4.3.1 用户信息管理的实现</h5>
 <p>​		在该系统后台中管理员不仅可以管理用户账号和用户信息，还能对用户的个人账户密码进行更改，从而保证了系统的正常运行。在特点情况下可以删除用户，如图4-8所示。</p>
 <img src="D:\blog\shierjinghuang\source\_posts\基于Docker容器的网络安全实验平台的设计与实现\wps25.jpg" style="zoom:80%;" />
 <center>图4-8用户信息管理页面</center>
-<h5 id="4-3-2-文章管理模块的实现">4.3.2 文章管理模块的实现</h5>
+##### 4.3.2 文章管理模块的实现
 <p>​		文章管理功能，包括文章信息管理和文章发布及公共发布，文章发布功能使用wangeditor框架的富文本模块进行开发，将管理员在前端输入内容与样式作为整体存入数据库，文章信息管理则与前面的用户信息管理内容相似。题目上传页面具体内容如图4-9所示。</p>
 <img src="D:\blog\shierjinghuang\source\_posts\基于Docker容器的网络安全实验平台的设计与实现\wps26.jpg" style="zoom:80%;" />
 <center>图4-9 题目上传页面</center>
-<p>题目上传代码如下所示：</p>
+题目上传代码如下所示：
 <pre class="line-numbers language-go" data-language="go"><code class="language-go"><span class="token keyword">func</span> ProblemUpload <span class="token punctuation">(</span>p <span class="token operator">*</span>gin<span class="token punctuation">.</span> Context<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
 
   DB<span class="token punctuation">:</span> <span class="token operator">=</span> common<span class="token punctuation">.</span> GetDB <span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -781,7 +777,7 @@
 <p>​		同时由于在Web和Pwn两种类型的题目中使用了Docker容器，管理员模块在题目管理下设一栏容器管理。在容器管理中会显示服务器中目前运行的Docker容器信息，包括容器的IP地址，所占空间，开启用户等。同时由于平台云服务器实际条件的限制，允许管理员可以在后台手动释放用户开启的容器。</p>
 <img src="D:\blog\shierjinghuang\source\_posts\基于Docker容器的网络安全实验平台的设计与实现\wps27.jpg" style="zoom:80%;" />
 <center>图4-10 题目管理页面</center>
-<h4 id="4-4-排行榜及积分实现">4.4 排行榜及积分实现</h4>
+#### 4.4 排行榜及积分实现
 <p>用户在提交正确的Flag后，用户会获得当前题目的分值，该分值由题目初始分值和题目通过次数与解题次数共同决定。后端会将题目当前的分值添加给用户。排行榜通过统计用户获得的分数对用户进行排名，并将系统内前十的用户成绩展示，排名模块如图4-11所示。</p>
 <p><img src="D:%5Cblog%5Cshierjinghuang%5Csource_posts%5C%E5%9F%BA%E4%BA%8EDocker%E5%AE%B9%E5%99%A8%E7%9A%84%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E9%AA%8C%E5%B9%B3%E5%8F%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%5Cwps28.jpg" alt="img"></p>
 <p>图4-11 排行榜模块实现</p>
@@ -967,10 +963,6 @@
                             
                             <a href="/categories/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/" class="post-category">
                                     项目设计
-                                </a>
-                            
-                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
-                                    网络安全
                                 </a>
                             
                             
