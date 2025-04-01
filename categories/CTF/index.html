@@ -391,11 +391,11 @@
                 
                 
                 
-                <a href="/categories/CTF/" title="CTF: 11">
+                <a href="/categories/CTF/" title="CTF: 13">
                     <span class="chip center-align waves-effect waves-light
                              chip-active "
                             style="background-color: #F9EBEA;">CTF
-                        <span class="tag-length">11</span>
+                        <span class="tag-length">13</span>
                     </span>
                 </a>
                 
@@ -409,11 +409,11 @@
                 </a>
                 
                 
-                <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" title="网络安全: 5">
+                <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" title="网络安全: 6">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
                             style="background-color: #D5F5E3;">网络安全
-                        <span class="tag-length">5</span>
+                        <span class="tag-length">6</span>
                     </span>
                 </a>
                 
@@ -436,11 +436,11 @@
                 </a>
                 
                 
-                <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="学习笔记: 9">
+                <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="学习笔记: 10">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
                             style="background-color: #F8F9F9;">学习笔记
-                        <span class="tag-length">9</span>
+                        <span class="tag-length">10</span>
                     </span>
                 </a>
                 
@@ -752,6 +752,61 @@ SSRF Me
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
+                    <a href="/2021/10/17/BugkuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95Web%E7%AF%87/">
+                        <div class="card-image tag-image">
+                            
+                            
+                            <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="BugkuCTF之web解题记录(一)">
+                            
+                            <span class="card-title">BugkuCTF之web解题记录(一)</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                
+BugkuCTF之web解题记录(一)
+[TOC]
+1 文件包含
+题目明示了这个题的漏洞类型，文件包含漏洞。
+构造payload：?file=php://filter/read=convert.base64-encode/resource
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-17
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/CTF/" class="post-category">
+                                    CTF
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="card-action article-tags">
+                        
+                        <a href="/tags/Web/">
+                            <span class="chip bg-color">Web</span>
+                        </a>
+                        
+                        <a href="/tags/Bugku/">
+                            <span class="chip bg-color">Bugku</span>
+                        </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
                     <a href="/2021/10/11/0xGame%202021%20WriteUp/">
                         <div class="card-image tag-image">
                             
@@ -944,25 +999,32 @@ ret2tex
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2021/07/30/QFNUCTF%E6%98%A5%E5%AD%A3%E7%BB%83%E4%B9%A0%E8%B5%9B%E7%BB%93%E9%A2%98%E8%AE%B0%E5%BD%95/">
+                    <a href="/2021/08/01/BugkuCTF%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bmisc/">
                         <div class="card-image tag-image">
                             
                             
-                            <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="QFNUCTF春季练习赛结题记录">
+                            <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="BUGKU靶场解题记录之misc(一)">
                             
-                            <span class="card-title">QFNUCTF春季练习赛结题记录</span>
+                            <span class="card-title">BUGKU靶场解题记录之misc(一)</span>
                         </div>
                     </a>
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                杂项1 二维码题目下载出的压缩包中是一张二维码这张二维码，用手机扫一扫后输出secret in here .试了一下这东西不是flag，使用Formost分解图片找到了一个压缩包，里面的txt文件名字叫做4.number。
-使用软件进行爆破
+                                BugkuCTF解题记录之misc（一）
+
+[TOC]
+
+1、签到题
+直接扫描二维码就行，这是最简单的签到题
+2、 0和1的故事
+这道题是一个较为常见的二维码隐写题目，用0和1分别作为二维码的黑色与白色部分。在使用工具扫码得到flag。
+这
                             
                         </div>
                         <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-01
                             </span>
                             <span class="publish-author">
                                 
@@ -980,10 +1042,6 @@ ret2tex
                     
                     <div class="card-action article-tags">
                         
-                        <a href="/tags/%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95/">
-                            <span class="chip bg-color">解题记录</span>
-                        </a>
-                        
                         <a href="/tags/Misc/">
                             <span class="chip bg-color">Misc</span>
                         </a>
@@ -996,6 +1054,30 @@ ret2tex
         </div>
     </article>
 </main>
+
+
+<div class="container paging">
+    <div class="row">
+        <div class="col s6 m4 l4">
+            
+            <a class="left btn-floating btn-large disabled">
+                <i class="fas fa-angle-left"></i>
+            </a>
+            
+        </div>
+        <div class="page-info col m4 l4 hide-on-small-only">
+            <div class="center-align b-text-gray">1 / 2</div>
+        </div>
+        <div class="col s6 m4 l4">
+            
+            <a href="/categories/CTF/page/2/"
+               class="right btn-floating btn-large waves-effect waves-light bg-color">
+                <i class="fas fa-angle-right"></i>
+            </a>
+            
+        </div>
+    </div>
+</div>
 
 
 
@@ -1070,7 +1152,7 @@ ret2tex
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">239.4k</span>
+                        class="white-color">253.2k</span>
             
             
             
