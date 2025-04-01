@@ -1,0 +1,1341 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="通信原理思考题, 十二惊惶">
+    <meta name="description" content="这是你自定义的文章摘要内容，如果这个属性有值，文章卡片摘要就显示这段文字，否则程序会自动截取文章的部分内容作为摘要">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>通信原理思考题 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">通信原理思考题</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/">
+                                <span class="chip bg-color">通信原理</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                学习笔记
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-03-09
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2025-04-01
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    16 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h5 id="第一章"><strong>第一章</strong></h5>
+<p>1-11衡量数字通信系统有效性和可靠性的性能指标有哪些?</p>
+<blockquote>
+<p>有效性用传输速率和频带利用率来衡量，可靠性用误码率、误信率来衡量</p>
+</blockquote>
+<p><font color="blue">1-12何谓是码元速率和信息速率?他们之间的关系如何?</font></p>
+<blockquote>
+<p>码元速率定义为单位时间里传输码元的个数，单位为波特(Baud)，信息速率定义为单位时间传输的比特数，单位是bit/s</p>
+<p>码元速率在数值上小于等于信息速率。码元速率决定了发送信号所需的传输带宽。</p>
+</blockquote>
+<p>1-13何谓误码率和误信率?它们之间关系如何?</p>
+<ul>
+<li>误码率是指错误接收的码元数在传输总码元数中所占的比例  Pe=错误码元数/传输总码元数</li>
+<li>误信率是指错误接收的比特数在传输总比特数中所占得比例  Pb=错误比特数/传输总比特数</li>
+<li>它们是描述差错率的两种不同表述，在二进制中，二者数值相等</li>
+</ul>
+<h5 id="第二章"><strong>第二章</strong></h5>
+<p>确知信号按照其强度可以分为能量信号和功率信号。功率信号按照其有无周期性划分，可以分为周期性信号和非周期性信号。</p>
+<p>2-1何为确知信号?</p>
+<blockquote>
+<p>确知信号是指其取值在任何时间都是确定的和预知的信号</p>
+</blockquote>
+<p>2-2试分别说明能量信号和功率信号的特性?</p>
+<blockquote>
+<p>能量信号的其能量为有限的正值，但其功率等于零;功率信号其能量近似等于无穷大，其平均功率为有限值</p>
+</blockquote>
+<h5 id="第三章"><strong>第三章</strong></h5>
+<p>随机过程的定义</p>
+<p>定义一:<strong>随机过程是所有样本函数的集合</strong>，定义二:<strong>随机过程看作是在时间进程中处于不同时刻的随机变量的集合</strong></p>
+<p>随机过程的统计特性由其分布函数或概率密度函数描述。</p>
+<p>什么是各态历经性过程？</p>
+<blockquote>
+<p>随机过程中的任何一次实现都经历了随机过程的所有可能状态<font color="blue">（一个随机过程的所有样本函数都服从同一分布）</font></p>
+</blockquote>
+<ul>
+<li>与平稳过程关系：具有各态历经性的过程一定是平稳随机过程，反之不一定成立</li>
+</ul>
+<p>3-1	何谓随机过程?它具有什么特点?</p>
+<blockquote>
+<p>随机过程是一类随时间随机变化的过程，他不能用确切的函数来表示。特点：1是对应不同随机试验结果的时间过程的集合，2是随机变量概念的延伸</p>
+</blockquote>
+<p>3-3	何谓严平稳?何谓广义平稳?他们之间的关系如何?</p>
+<ul>
+<li>严平稳:		若一个随机过程的统计特性与时间起点无关，时间平移不影响其任何统计特性</li>
+<li>广义平稳:    均值与时间无关为常数，自相关函数只与时间间隔有关</li>
+<li><font color="blue">关系:           若一个一般随机过程是严平稳随机过程，则它一定是广义平稳随机过程，反之不一定成立。若一个高斯过程，则严平稳随机过程与广义平稳随机过程等价。</font></li>
+</ul>
+<p>3-4	平稳过程的自相关函数有哪些性质?他与功率谱密度的关系如何?</p>
+<pre class="line-numbers language-none"><code class="language-none">(1)	平稳随机过程的自然相关函数与时间起点无关，只与时间间隔有关，而且是偶函数。
+(2) 平稳随机过程的功率谱密度与其自相关函数是一对傅里叶变换<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<center><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20221214235304920.png" alt="image-20221214235304920" style="zoom:50%;" /> </center>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20221214235400829.png" alt="image-20221214235400829" style="zoom:50%;" />
+<p>3-5	什么是高斯过程，其主要性质有哪些?</p>
+<blockquote>
+<p>如果随机过程的任意的n维分布均服从正态分布，则称它为正态过程或高斯过程</p>
+</blockquote>
+<ol>
+<li>高斯过程的n维分布只依赖于各个随机变量的均值，方差和归一化协方差;</li>
+<li>广义平稳的高斯过程也是严平稳;</li>
+<li>如果高斯过程在不同时刻的取值是不相关的，那么他们也是统计独立的;</li>
+<li>高斯过程经过线性变换后仍然是高斯过程</li>
+</ol>
+<p>3-12	什么是白噪声?其频谱和自相关函数有什么特点?白噪声通过理想低通或理想带通滤波器后的情况如何?</p>
+<pre class="line-numbers language-none"><code class="language-none">(1)噪声的功率谱密度在所有与频率上均为常数则称为白噪声;
+(2)频谱为一常数，自相关函数只在R(0)处为0 ;
+(3)通过理想低通或理想带通滤波器后分别变成低通白噪声或带通白噪声<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<center><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20221214235802823.png" alt="image-20221214235802823" style="zoom:50%;" /></center>
+3-13	何为高斯白噪声?它的概率密度函数、功率频谱密度如何表示?
+<blockquote>
+<p>如果白噪声取值的概率密度分布服从高斯分布，则称之为高斯白噪声;其概率密度函数为高斯函数，其功率谱密度为常数</p>
+</blockquote>
+<p>3-13补充：什么是高斯噪声?它们各有什么特点?性质？P45</p>
+<blockquote>
+<p>高斯噪声:概率密度函数符合正态分布的噪声。</p>
+</blockquote>
+<blockquote>
+<p>高斯噪声的特点:它的n维分布仅由各随机变量的数学期望、方差和两两之间的归一化协方差函数决定。若高斯噪声是宽平稳，则也是严平稳的。若随机变量之间互不相关，则也是统计独立的</p>
+</blockquote>
+<center><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20221215000148202.png" alt="image-20221215000148202" style="zoom:50%;" /> 
+<h5 id="第四章"><strong>第四章</strong></h5>
+<p>按照传输媒质的不同分为：无线信道（自由空间或大气层）和有线信道（明线、电缆、光纤）</p>
+<p>无线信道按照传播方式区分，包括地波、天波和视线传播三种。</p>
+<p>有线信道分为有线电信道和有线光信道两大类</p>
+<p>信道的数学模型分为调制信道模型和编码信道模型两类。</p>
+<p>香农公式？<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20221215000533207.png" alt="image-20221215000533207" style="zoom:50%;" /></p>
+<p>4-6	何为多径效应?</p>
+<blockquote>
+<p>多径传播对信号的影响称为多径效应。多径传播指信号信号经过几条路径到达接收端，而且每条路径的长度（时延）和衰减都随着时间而变。</p>
+</blockquote>
+<p>4-8	何谓恒参信道，何谓随参信道，他们分别对信号传输有哪些主要影响?</p>
+<pre class="line-numbers language-none"><code class="language-none">信道特性基本上不随时间变化或者变化很慢称为恒参信道;信道特性随机变化的信道称为随参信道;
+（乘性干扰随机变化的信道称为随参信道；乘性干扰基本保持恒定的信道称为恒参信道）
+恒参信道对信号传输的影响可以完全消除,而随参信道对信号传输的影响只能在统计平均的意义下消除<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>4-9	何谓加性干扰，何谓乘性干扰?</p>
+<blockquote>
+<p>信道中的噪声 n(t)是叠加在信号上的，而无论有无信号，噪声n(t)是始终存在的，该n(t)称加性干扰。<br>
+信道的作用相当于对输入信号乘一个系数k(t)，该k(t)可看作是对信号的一种干扰，k(t)称为乘性干扰。</p>
+<blockquote>
+<p>无论信号有无都存在的噪声称为加性干扰;随信号大小变化的干扰称为乘性千扰~~(这个是原答案)~~</p>
+</blockquote>
+</blockquote>
+<p>4-17	试述信道容量的定义?</p>
+<blockquote>
+<p>信道容量是指信道能够传输的最大平均信息量</p>
+</blockquote>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20221215001532071.png" alt="image-20221215001532071" style="zoom:67%;" /> 
+<h5 id="第五章"><strong>第五章</strong></h5>
+<p>模拟调制分为：幅度调制和角度调制</p>
+<ul>
+<li>
+<p>幅度调制包括：调幅AM、双边带DSB、单边带SSB、残留边带VSB调制</p>
+<ul>
+<li>所占带宽、特点、调制效率(功率利用率)</li>
+<li>调幅AM特点：<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20221215003003169.png" alt="image-20221215003003169" style="zoom: 33%;" /><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20221215003100632.png" alt="image-20221215003100632" style="zoom: 33%;" /></li>
+<li>双边带DSB特点：<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20221215003417004.png" alt="image-20221215003417004" style="zoom: 33%;" /></li>
+<li>单边带SSB：<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20221215003509942.png" alt="image-20221215003509942" style="zoom:33%;" /></li>
+<li>残留边带VSB调制：<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20221215003542088.png" alt="image-20221215003542088" style="zoom:33%;" /></li>
+</ul>
+<center><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/image-20221215003706914.png" alt="image-20221215003706914" style="zoom: 33%;" /> </center>
+</li>
+</ul>
+<center>P122页表格</center>
+- 角度调制分为：调频FM和调相PM
+<p>线性调制的通用模型：滤波法和相移法</p>
+<p>解调方法：相干解调和非相干解调</p>
+<p>5-1	何为调制?调制在通信系统中的作用是什么?</p>
+<pre class="line-numbers language-none"><code class="language-none">调制:把信号转换成适合在信道中传输的形式的一种过程（按调制信号的变化规律去控制载波的某个参数的过程，书上解释）
+作用:频谱搬移;实现信道的多路复用;扩展信号带宽,提高系统的抗干扰能力、抗衰落能力，还可实现传输带宽与信噪比之间的互换。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>5-2	什么是线性调制?常见的线性调制有哪些?</p>
+<blockquote>
+<p>正弦载波的幅度随调制信号做线性变化的过程。从频谱上说，已调信号的频谱结构与基带信号的频谱结构相同，只是频率位置发生变化。</p>
+</blockquote>
+<blockquote>
+<p>常见的线性调制有调幅（AM)、双边带调制(DSB)、单边带调制(SSB)和残留边带调制(VSB)</p>
+</blockquote>
+<p>5-5	为什么要抑制载波?相对AM信号来说，抑制载波的双边带信号可以增加多少功效?</p>
+<blockquote>
+<p>抑制载波可以提高调制效率；对于抑制载波的双边带，可以使其调制效率由1/3提高到1</p>
+</blockquote>
+<p>5-9	DSB调制系统和SSB调制系统的抗噪声性能是否相同，为什么?</p>
+<blockquote>
+<p>相同，如果解调器的输入噪声功率密度相同，输入信号功率也相同，则单边带和双边带解调器输出的信噪比是相等的</p>
+</blockquote>
+<h5 id="第六章"><strong>第六章</strong></h5>
+<p>6-4	构成AMI码和HDB3码的规则是什么?它们各有什么优缺点?</p>
+<blockquote>
+<p>AMI的编码规则:将消息代码0（空号）仍然变换成传输码0，而把1(传码）交替的变换为传输码的+1，-1…。因此AMI码为三电平序列，三元码，伪三进制，1B/1T码。</p>
+</blockquote>
+<ul>
+<li>AMI的优点:0,1不等概率是也无直流；零频附近的低频分量小；整流后即RZ码；编译码电路简单而且便于观察误码情况</li>
+<li>AMI的缺点是:连续0码多时，RZ码连0也多，不利于提取高质量的位同步信号</li>
+</ul>
+<blockquote>
+<p>HDB3的编码规则:先把消息代码变换AMI码，然后去检查AMI码的连零情况，没有四个或者四个以上的连零串时,这时的AMI码就是HDB3码;当出现四个或者四个以上的连零串时，将四个连零小段的第四个0变换于迁移非0符号同极性的符号，称为v符号（破坏码)。当相邻V符号之间有偶数个非零符号时，再将该小段的第一个0变成+B或者-B（平衡码)，B符号的极性与前一非零符号的极性相反，并让后面的非О符号从V符号开始再交替变化。</p>
+</blockquote>
+<p>HDB3码的优点:保持了AMl的优点，还增加了使连零串减少到至多三个，对于定时信号的恢复是十分有利的。</p>
+<p>6-6	什么是码间串扰?它是如何产生的?对通信质量有什么影响?</p>
+<pre class="line-numbers language-none"><code class="language-none">(1)码间串扰:由于系统的总特性不理想，导致前后码元的波形畸变、展宽，并使前面的波形出现很长的拖尾，蔓延到当前码元的抽样时刻，从而对当前码元的判决造成干扰
+(2)码间干扰的产生是因为在第k个抽样时刻理想状态时抽样时刻所得的是仅有第k个波形在此时刻被取值，但在实际系统中，会有除了第k个波形以外的波形可能再抽样时刻被取值。码间干扰会导致判决电路对信号进行误判，使信号失真，产生误码，从而通信质量下降
+(3)码间干扰会导致判决电路对信号进行误判，使信号失真，产生误码，从而通信质量下降<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>6-7 	为了消除码间串扰，基带传输系统的传输函数应满足什么条件?其相应的冲激响应应具有什么特点?</p>
+<p>为消除码间串扰，基带传输系统的传输函数应满足:</p>
+<img src="D:\gitee-blog\source\_posts\子域名深度挖掘\传输函数.png"  />
+<p>即满足无码间串扰频域条件。</p>
+<p>其相应的冲激响应应具有：</p>
+<img src="D:\gitee-blog\source\_posts\子域名深度挖掘\冲激响应.png"  />
+<p>即具有无码间串扰时域条件。</p>
+<p>6-8	何谓奈奎斯特速率和奈奎斯特带宽?此时的频带利用率有多大?</p>
+<blockquote>
+<p>理想低通传输特性的带宽称为奈奎斯特带宽,将该系统无码间干扰的最高传输速率称为奈奎斯特速率。此时频带利用率为2B/Hz</p>
+</blockquote>
+<p>6-13	什么是眼图?它有什么作用?由眼图模型可以说明基带传输系统的哪些性能?具有升余弦脉冲波形的HDB,码的眼图应是什么样的图形?</p>
+<blockquote>
+<p>眼图是实验手段估计基带传输系统性能的一种方法。它是指接收滤波器输出信号波形在示波器上叠加所形成的图像</p>
+</blockquote>
+<pre class="line-numbers language-none"><code class="language-none">眼图和系统性能的关系：
+1.最佳抽样时刻是“眼睛”张最大的时刻;
+2.对定时误差的灵敏度可由眼睛的斜率决定，斜率越陡，对定时误差就越灵敏;
+3.图中阴影区域的垂直高度表示信号畸变范围;
+4.图中央的横轴位置对应判决门限电平;
+5.在抽样时刻上，上下阴影区的间隔距离之半为噪声容限,即若噪声瞬时值超过这个容限，就可能发生错误判决
+
+眼图：一种宏观评价系统性能得一种手段；
+&#96;最佳抽样时刻：眼睛张开最大得时刻；
+定时误差灵敏度：眼眶的斜率，斜率越大越敏感；
+判决明显电平：横轴；
+噪声容限：纵轴；
+(1)最佳取样时刻应选择在眼睛张开最大的时刻;(2)眼睛闭合的速率，即眼图斜边的斜率，表示系统对定时误差灵敏的程度，斜边愈陡，对定位误差愈敏感;(3)在取样时刻上，阴影区的垂直宽度表示最大信号失真量;(4)在取样时刻上，上下两阴影区的间隔垂直距离之半是最小噪声容限，噪声瞬时值超过它就有可能发生错误判决;(5)阴影区与横轴相交的区间表示零点位置变动范围，它对于从信号平均零点位置提取定时信息的解调器有重要影响。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>具有升余弦脉冲波形的HDB,码的眼图中间会有一条代表0的水平线</p>
+<h5 id="第七章"><strong>第七章</strong></h5>
+<p>P205页信息</p>
+<p>7-1	什么是数字调制?它和模拟调制有哪些异同点?</p>
+<blockquote>
+<p>数字调制是用载波信号的某些离散状态来表征传送的信息,在接收端对载波信号的离散调制参量进行检测。<br>
+和模拟调制一样数字调制也有调幅，调频和调相三种基本形式，并可以派生出多种其他形式。在原理上二者并没有什么区别。只不过模拟调制是对载波信号的参量进行离散调制，在接收端也只需对载波信号的离散调制参量估值</p>
+</blockquote>
+<p>7-2	数字调制的基本方式有哪些?其时间波形上各有什么特点?数字调制技术有两种方法:</p>
+<blockquote>
+<p>一是利用模拟调制方法去实现数字式调制，即把数字调制看成是模拟调制的一个特例，把数字基带信号当成模拟信号的特殊情况处理</p>
+</blockquote>
+<blockquote>
+<p>二是利用数字信号的离散取值的特点通过开关键控载波，从而实现数字调制，这种调制方式通常有幅度键控、频率键控和相位键控。其时间波形上来说，有可能是不连续的</p>
+</blockquote>
+<p>7-5	什么是频移键控?2FSK信号产生和解调方法有哪些?</p>
+<blockquote>
+<p>频移键控是指用不同的载频来表示所传送的数字信息。<br>
+产生:1、利用矩形脉冲序列对一个载波进行调频产生;2、利用受矩形脉冲序列控制的开关电路对两个不同的频率进行选通，即键控法。<br>
+解调:通常采用非相干解调和相干解调两种方法，同时还有鉴频法，过零检测法和差分检波法</p>
+</blockquote>
+<p>7-6	2FSK信号相邻码元的相位是否连续变化与其产生方法有何关系?</p>
+<blockquote>
+<p>采用模拟调频电路实现的2FSK信号，其相位变化是连续的;采用数字键控法产生的2FSK信号其相位变化不一定连续</p>
+</blockquote>
+<p>7-8	什么是绝对移相?什么是相对移相?他们有何区别?绝对移相是用载波的相位直接表示码元;</p>
+<blockquote>
+<p>相对移相是用相邻码元的相对载波相位值表示数字信息。<br>
+相对移相信号可以看作是把数字信息序列绝对码变换成相对码,然后根据相对码进行绝对移相而成</p>
+</blockquote>
+<p>7-9	2PSK信号和2DPSK信号可以用哪些方法产生和解调?它们是否可以采用包络检波法解调?为什么?</p>
+<blockquote>
+<p>2PSK信号和2DPSK信号可以用模拟调制法和键控调制法产生;<br>
+2PSK信号可以用极性比较法，鉴相法解调，2DPSK信号通常用极性比较码变换法，差分相干法解调。<br>
+它们都不能采用包络检波法解调，因为它们是用相位而不是振幅来携带传送信息的</p>
+</blockquote>
+<p>7-10	2PSK信号及2DPSK信号的功率谱密度有何特点?试将它们与OOK信号的功率谱密度加以比较。</p>
+<blockquote>
+<p>2PSK信号的功率谱密度同样由离散谱和连续谱组成，但当双极性基带信号以相等的概率出现时，不存在离散谱部分。同时，连续谱部分与2ASK信号基本相同，因此，2PSK信号的带宽也与2ASK信号相同。此外，2DPSK信号的带宽也与2ASK信号的相同</p>
+</blockquote>
+<p>补充2DPSK如何克服π现象？</p>
+<p>DPSK</p>
+<pre class="line-numbers language-none"><code class="language-none">2PSK的“倒∏现象”或“反向工作”:
+在波形图中,假设相干载波的基准相位与2PSK信号的调制载波的基准相位一致(通常默认为0相位)。但是,由于在2PSK信号的载波恢复过程中存在着的相位模糊,即恢复的本地载波与所需的相干载波可能同相,也可能反相,这种相位关系的不确定性将会造成解调出的数字基带信号与发送的数字基带信号正好相反,即“1”变为“0”,“0”变为“1”,判决器输出数字信号全部出错。这种现象称为2PSK 方式的“倒π”现象或“反相工作”。这也是2PSK方式在实际中很少采用的主要原因。另外,在随机信号码元序列中,信号波形有可能出现长时间连续的正弦波形,致使在接收端无法辨认信号码元的起止时刻。为了解决上述问题,可以采用差分相移键控(DPSK)体制。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+ <center><img src="D:\gitee-blog\source\_posts\子域名深度挖掘\2DPSK相干解调法.png" style="zoom:50%;" /></center> 
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Eureka</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/2023/03/09/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86%E6%80%9D%E8%80%83%E9%A2%98/">https://shierjinghuang.github.io/2023/03/09/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86%E6%80%9D%E8%80%83%E9%A2%98/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Eureka</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/">
+                                    <span class="chip bg-color">通信原理</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/03/18/Java%E5%AE%9E%E8%AE%AD/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Java项目 即时通讯系统">
+                        
+                        <span class="card-title">Java项目 即时通讯系统</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            这是你自定义的文章摘要内容，如果这个属性有值，文章卡片摘要就显示这段文字，否则程序会自动截取文章的部分内容作为摘要
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-18
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/" class="post-category">
+                                    项目设计
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/03/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%80%9D%E8%80%83%E9%A2%98/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="计算机网络安全思考题">
+                        
+                        <span class="card-title">计算机网络安全思考题</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    学习笔记
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">网络安全</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2025</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">223.6k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
