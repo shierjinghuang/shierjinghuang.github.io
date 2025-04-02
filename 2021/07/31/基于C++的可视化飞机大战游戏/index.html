@@ -408,7 +408,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2025-03-27
+                    2025-04-02
                 </div>
                 
 
@@ -450,36 +450,43 @@
 <hr>
 <p>关键词： 可视化 飞机大战 游戏设计</p>
 <p>引言 随着社会的不断发展，人们的生活方式也不断的在变化，人们的娱乐方式也越发的多种多样。人们对美好生活的向往，不单单局限于物质生活，人们的精神生活也在一天天的丰富。游戏是很多人精神生活中的一种重要组成部分。毫无疑问飞机大战是一款极其经典的游戏，玩家通过鼠标或键盘操作飞机攻击敌方飞机，躲避碰撞和敌方飞机攻击。极其简单的操作和轻松的上手，使得这一款游戏带给了无数人欢乐。</p>
-<h4 id="1-需求分析"><a href="#1-需求分析" class="headerlink" title="1 需求分析"></a>1 需求分析</h4><p>在飞行射击类游戏中，玩家登陆游戏后可以通过鼠标或键盘操作飞机前进，躲避敌机攻击，并通过点击鼠标左键或空格键发射子弹击败敌机。</p>
+<h4 id="1-需求分析">1 需求分析</h4>
+<p>在飞行射击类游戏中，玩家登陆游戏后可以通过鼠标或键盘操作飞机前进，躲避敌机攻击，并通过点击鼠标左键或空格键发射子弹击败敌机。</p>
 <p>完成这个飞机大战游戏的设计，需要完成用户飞机的移动功能，敌机的产生功能、子弹的发射功能、飞机中弹销毁和计算得分等功能。在用户需要时可以暂停游戏，可以通过文件读写完成存档与读档。为丰富游戏的趣味性，相应增加了各种音效，并会根据用户的得分产生相应的敌机。</p>
-<h4 id="2-关键技术"><a href="#2-关键技术" class="headerlink" title="2 关键技术"></a>2 关键技术</h4><h5 id="2-1-C-面向对象的程序设计"><a href="#2-1-C-面向对象的程序设计" class="headerlink" title="2.1 C++面向对象的程序设计"></a>2.1 C++面向对象的程序设计</h5><p>C++起始于C语言。当C语言发展到巅峰时出现了增加关键词和类的C with class的C语言版本，而这是C语言的一大突破，开发者将这一种语言命名为C++。这便是C++最早的版本。</p>
+<h4 id="2-关键技术">2 关键技术</h4>
+<h5 id="2-1-c-面向对象的程序设计">2.1 C++面向对象的程序设计</h5>
+<p>C++起始于C语言。当C语言发展到巅峰时出现了增加关键词和类的C with class的C语言版本，而这是C语言的一大突破，开发者将这一种语言命名为C++。这便是C++最早的版本。</p>
 <blockquote>
 <p>美国AT&amp;T贝尔实验室的本贾尼·斯特劳斯特鲁普博士在20世纪80年代初期成功地实现了C++，即C with classes。当时C++是作为C语言的加强版本出现，从给C增加类开始，不断增加新的特征<sup>[1]</sup>。</p>
 </blockquote>
 <p>然而就目前而言，C++可以认为它是一门独立的编程语言，它源于C语言但是它并不依赖于C语言。C++与C语言也是有本质差别：在于C++是面向对象的，而C语言是面向过程的。或者说C++是在C语言的基础上增加了面向对象程序设计的新内容，是对C语言的一次更重要的改革，使得C++成为软件开发的重要工具。</p>
-<h5 id="2-2-C-语言的优点"><a href="#2-2-C-语言的优点" class="headerlink" title="2.2 C++语言的优点"></a>2.2 C++语言的优点</h5><ul>
+<h5 id="2-2-c-语言的优点">2.2 C++语言的优点</h5>
+<ul>
 <li>在C语言的基础上进行扩充和完善，使C++兼容了C语言的面向过程特点，又成为了一种面向对象的程序设计语言</li>
 <li>可以使用抽象数据类型进行基于对象的编程</li>
 <li>可以使用多继承、多态进行面向对象的编程</li>
-<li>可以担负起以模版为特征的泛型化编程    </li>
+<li>可以担负起以模版为特征的泛型化编程</li>
 <li>C++实现了面向对象程序设计。在高级语言当中，处理运行速度是最快的，大部分的游戏软件，系统都是由C++来编写的</li>
 <li>C++语言非常灵活，功能非常强大。如果说C语言的优点是指针，那么C++的优点就是性能和类层次结构的设计</li>
 <li>C++非常严谨、精确和数理化，标准定义很细致</li>
 <li>C++语言的语法思路层次分明、相呼应;语法结构是显式的、明确的</li>
 </ul>
-<h5 id="2-3-Visual-C-的优点"><a href="#2-3-Visual-C-的优点" class="headerlink" title="2.3 Visual C++的优点"></a>2.3 Visual C++的优点</h5><p>（1）与Windows紧密结合，MFC类库集成了大量已经预先定义好的类，用户可以根据编程的需要定义相应的类，或根据需要自己定义相应的类。因此Visual C++在使用API等方面和Windows联系的最为紧密<sup>[</sup><sup>2]</sup>。</p>
+<h5 id="2-3-visual-c-的优点">2.3 Visual C++的优点</h5>
+<p>（1）与Windows紧密结合，MFC类库集成了大量已经预先定义好的类，用户可以根据编程的需要定义相应的类，或根据需要自己定义相应的类。因此Visual C++在使用API等方面和Windows联系的最为紧密<sup>[</sup><sup>2]</sup>。</p>
 <p>（2）强大的类库支持和类改造能力。代码重用是C++追求的目标，重用就是从已有的基类派生出新的C++类；MFC提供了大量的基类供程序员们根据不同的应用要求生成新的类以满足要求。VC++有了MFC，具有非常强大对类改造的能力。只要集成MFC类，稍加修改就可以得到符合要求的控件类或应用类。</p>
 <p>（3）拥有高效的运行速度。高的运行速度取决于两点：1.软件本身编写的质量，2.编程工具的编译质量。因为VC++非常接近Windows底层，所以编译器所编译的质量相当高，从而保证了VC++编写出来的软件产品拥有高效的运行速度<sup>[</sup><sup>3]</sup>。</p>
-<h5 id="2-4-C-的语言体系"><a href="#2-4-C-的语言体系" class="headerlink" title="2.4 C++的语言体系"></a>2.4 C++的语言体系</h5><p>（1）C子语言。C++是以C语言为基础，C++几乎支持C语言的全部功能。</p>
+<h5 id="2-4-c-的语言体系">2.4 C++的语言体系</h5>
+<p>（1）C子语言。C++是以C语言为基础，C++几乎支持C语言的全部功能。</p>
 <p>（2）面向对象的C++。C++首先是一门面向对象的程序设计语言，并以此闻名。</p>
 <p>（3） 泛型编程语言。相比C语言，C++增加了模板，C++强大的模板功能使系统能够在编译期间就能完成许多工作，从而大大提高了运行效率<sup>[</sup><sup>4]</sup>。</p>
 <p>（4）STL。随着STL的不断发展，渐渐成为C++程序设计体系中不可或缺的一部分。其安全性与规范性的优秀使得它受到程序员的欢迎<sup>[</sup><sup>1]</sup>。</p>
-<h4 id="3-游戏总体设计"><a href="#3-游戏总体设计" class="headerlink" title="3.游戏总体设计"></a>3.游戏总体设计</h4><p>游戏被分成两个部分，一部分是与用户输入有关的更新，包括根据鼠标位置或键盘按键进行飞机的移动和炮弹发射等等。另一部分是与用户输入无关的更新，包括子弹移动，敌机移动逻辑等判断。图1为飞机大战程序设计图。</p>
+<h4 id="3-游戏总体设计">3.游戏总体设计</h4>
+<p>游戏被分成两个部分，一部分是与用户输入有关的更新，包括根据鼠标位置或键盘按键进行飞机的移动和炮弹发射等等。另一部分是与用户输入无关的更新，包括子弹移动，敌机移动逻辑等判断。图1为飞机大战程序设计图。</p>
 <img src=".\基于C++的可视化飞机大战游戏\飞机大战程序设计图.png" style="zoom:50%;" />
-
 <center>图1 飞机大战程序设计图</center>
-
-<h4 id="4-游戏功能实现"><a href="#4-游戏功能实现" class="headerlink" title="4 游戏功能实现"></a>4 游戏功能实现</h4><h5 id="4-1-代码设计"><a href="#4-1-代码设计" class="headerlink" title="4.1 代码设计"></a>4.1 代码设计</h5><p>4.1.1 头文件</p>
+#### 4 游戏功能实现
+<h5 id="4-1-代码设计">4.1 代码设计</h5>
+<p>4.1.1 头文件</p>
 <ol>
 <li>#include<iostream>头文件，包含头文件输入输出流，c++中没有c语言中输入输出语句，而是利用数据流来解决这个问题。要使用比如cout,cin语句输入输出函数。其中#include文件的目的是把多个编译单元公用的内容单独放在一个文件里减少整体代码尺寸，或者提供可跨工程使用的公共代码；</li>
 <li>#include <fstream>头文件#include 是C++的预编译语句，作用是包含对应的文件，在这里是包含C++的STL头文件fstream。在包含了这个文件后，就可以使用fstream中定义的类及各种成员函数了。fstream是C++ STL中对文件操作的合集，包含了常用的所有文件操作。在C++中，所有的文件操作，都是以流(stream)的方式进行的，fstream也就是文件流file stream<sup>[</sup><sup>5]</sup>。</li>
@@ -489,7 +496,7 @@
 <li>#include&lt;graphics.h&gt;头文件是C语言和visual studio的图形库文件，包含像素函数、线型函数、画线函数、相对画线函数等多种函数，可进行图形的快速编程。这也是实现可视化的最重要工具。使用easyx.exe，可以直接运行安装图形库到visual studio。然后直接使用</li>
 <li>#include&lt;windows.h&gt;头文件是最重要的头文件之一，它包含了其他Windows头文件，这些头文件也包含了其他头文件，其中有用户界面函数&lt;Winuser.h&gt;、图形设备接口函数&lt;Wingdi.h&gt;<sup>[</sup><sup>6]</sup></li>
 <li>#include&lt;conio.h&gt;是Console Input/Output（控制台输入输出）的简写，其中定义了通过控制台进行数据输入和数据输出的函数，主要是一些用户通过按键盘产生的对应操作，比如getch()函数等等<sup>[</sup><sup>4]</sup></li>
-<li>#pragma comment(lib,”Winmm.lib”)声明程序使用了winmm.lib库，这个库是是Windows多媒体相关应用程序接口，用于低档的音频和游戏手柄。可以用来实现音频的添加和利用。在该飞机大战程序中这个库中的内容实现了游戏运行时中的背景音乐的开始和结束放映等功能</li>
+<li>#pragma comment(lib,“Winmm.lib”)声明程序使用了winmm.lib库，这个库是是Windows多媒体相关应用程序接口，用于低档的音频和游戏手柄。可以用来实现音频的添加和利用。在该飞机大战程序中这个库中的内容实现了游戏运行时中的背景音乐的开始和结束放映等功能</li>
 </ol>
 <p>4.1.2使用函数</p>
 <ul>
@@ -504,12 +511,11 @@
 <li>SetBkMode()函数这就需要使用SetBkMode函数来设置DrawText函数的输出方式，显示设备共有两种输出方式：OPAQUE和TRANSPARENT。OPAQUE的方式是用当前背景的画刷的颜色输出显示文字的背景，而TRANSPARENT是使用透明的输出，也就是文字的背景是不改变的。</li>
 <li>MCI (Media Control Interface，媒体控制接口) 函数中，有些只适用于一种接口方式，有些则两种接口都可以用。mciSendString只适用于命令串接口方式（命令串中不区分大小写）以形如mciSendString(“play movie”,buf,sizeof(buf),NULL);的方式进行音频播放，以形如mciSendString(“pause movie”,buf,sizeof(buf),NULL);的方式暂停播放。以形如mciSendString(“close movie”,buf,sizeof(buf),NULL)的形式关闭播放。</li>
 </ul>
-<h5 id="4-2操作逻辑"><a href="#4-2操作逻辑" class="headerlink" title="4.2操作逻辑"></a>4.2操作逻辑</h5><p>本程序使用两种操作方式，依靠键盘按键操作和依靠鼠标位置进行操作。图2为飞机移动操作逻辑示意图。</p>
+<h5 id="4-2操作逻辑">4.2操作逻辑</h5>
+<p>本程序使用两种操作方式，依靠键盘按键操作和依靠鼠标位置进行操作。图2为飞机移动操作逻辑示意图。</p>
 <img src=".\基于C++的可视化飞机大战游戏\飞机移动操作逻辑示意图.png" style="zoom:80%;" />
-
 <center>图2 飞机移动操作逻辑示意图</center>
 使用鼠标操作代码如下：
-
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">if (isExpolde &#x3D;&#x3D; 0)
 &#123;
     MOUSEMSG m;
@@ -528,7 +534,6 @@
         &#125;
     &#125;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>对应的使用键盘操作代码为：</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">char input;
 if (_kbhit())  &#x2F;&#x2F; 判断是否有输入
@@ -545,12 +550,13 @@ if (_kbhit())  &#x2F;&#x2F; 判断是否有输入
     if (input &#x3D;&#x3D; &#39;s&#39;)
         position_y -&#x3D; 10;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>先定义MOUSEMSG的鼠标类型参数m;通过while (MouseHit()) 进行操作，既能保证能够使用鼠标进行操作也避免了，在没有鼠标操作时游戏的停止。</p>
 <p>类似的有定义char 类型的的变量通过while(_kbhit())来进行是否有键盘信息的判断，用_getch()函数获取键盘的敲击值。</p>
-<h5 id="4-3-与用户输出无关的逻辑"><a href="#4-3-与用户输出无关的逻辑" class="headerlink" title="4.3 与用户输出无关的逻辑"></a>4.3 与用户输出无关的逻辑</h5><p>4.3.1 敌机生成逻辑</p>
+<h5 id="4-3-与用户输出无关的逻辑">4.3 与用户输出无关的逻辑</h5>
+<p>4.3.1 敌机生成逻辑</p>
 <p>使用rand()函数生成一个最大为32767的数，并通过%(Width-50)得到飞机的初始坐标，并同时将blood等参数复原。</p>
-<p>4.3.2 敌机简单移动逻辑<br>代码如下:</p>
+<p>4.3.2 敌机简单移动逻辑<br>
+代码如下:</p>
 <pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">if (enemy_y &lt; High - 25)
 &#123;
     if (enemy_x &#x3D;&#x3D; 0)
@@ -563,7 +569,10 @@ if (_kbhit())  &#x2F;&#x2F; 判断是否有输入
     else enemy_x &#x3D; enemy_x++;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>该模块通过定义全局变量static flag 进行操控飞机的飞行方向，同时在每个循环过程中使飞机能够实现摆动下降。</p>
-<h5 id="4-4暂停页面与存储逻辑"><a href="#4-4暂停页面与存储逻辑" class="headerlink" title="4.4暂停页面与存储逻辑"></a>4.4暂停页面与存储逻辑</h5><p>通过_getch()函数读取输入，如存在按键为Esc时，将gameStatus设置为3，出现暂停页面，图3为游戏暂停页面。<br>图3 游戏暂停页面<br>游戏数据储存逻辑</p>
+<h5 id="4-4暂停页面与存储逻辑">4.4暂停页面与存储逻辑</h5>
+<p>通过_getch()函数读取输入，如存在按键为Esc时，将gameStatus设置为3，出现暂停页面，图3为游戏暂停页面。<br>
+图3 游戏暂停页面<br>
+游戏数据储存逻辑</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">void read<span class="token punctuation">(</span><span class="token punctuation">)</span> 
 <span class="token punctuation">&#123;</span>
     ifstream file2<span class="token punctuation">;</span><span class="token operator">//</span>输入指针
@@ -584,15 +593,17 @@ void write<span class="token punctuation">(</span><span class="token punctuation
 <p>通过ifstream和ofstream两个类进行操作，实现数据的存储于写入。也通过键盘操作识别Esc按钮实现暂停操作。</p>
 <p>图4为飞机大战程序登录界面，图5为程序运行截图</p>
 <img src=".\基于C++的可视化飞机大战游戏\程序登录界面.png" style="zoom:80%;" />
-
 <center>  图4 程序登录界面 </center>
-
 <img src=".\基于C++的可视化飞机大战游戏\程序运行截图.png" style="zoom: 80%;" />
-
 <center> 图5 程序运行截图</center>
-
-<h4 id="5-总结"><a href="#5-总结" class="headerlink" title="5.总结"></a>5.总结</h4><p>基于C++的可视化飞机大战游戏是一个简单的可视化的小游戏，玩家能够通过鼠标或键盘进行操控飞机的移动和攻击，并且运用了文件操作技术，可以实现数据的永久性保存。基于C++的飞机大战游戏是采用C++语言及其easyX拓展模块开发完成的。本项目实现了游戏流程中的所有功能，界面布局更加人性化,并有着良好的可扩展性。但游戏依旧存在一些不足之处，比如说本游戏还没有实现对玩家操纵飞机进行血量的显示，敌方飞机尚无法发射子弹，对击中逻辑的判断还存在问题。</p>
-<h4 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h4><p>[1]黄宝贵等.C++面向对象程序设计[M] 北京:清华大学出版社，2019:2-3<br>[2]童晶编著.C语言程序设计与游戏开发实践教程[M] 北京:清华大学出版社 2017:16<br>[3]黄维通等.Visual C++面向对象与可视化程序设计[M]（第三版）北京:清华大学出版社 2011:14<br>[4]郑莉等编著.C++程序设计语言(第三版)[M].北京:清华大学出版社,2005:134-139.<br>[5]刘振安等编著.C++程序设计课程设计[M] 北京:机械工业出版社,2004:23-31  [6]朱立华等编著.面向对象程设计及C++[M].北京:人民邮电出版社,2008:43  [7]郑莉,董渊.C++语言程序设计(第二版) [M].北京清华大学出版社,2002:23  [8]陈维兴,林小茶.C++面向对象程序设计教程(第2版)[M].北京清华大学出版社.2007:34</p>
+#### 5.总结
+<p>基于C++的可视化飞机大战游戏是一个简单的可视化的小游戏，玩家能够通过鼠标或键盘进行操控飞机的移动和攻击，并且运用了文件操作技术，可以实现数据的永久性保存。基于C++的飞机大战游戏是采用C++语言及其easyX拓展模块开发完成的。本项目实现了游戏流程中的所有功能，界面布局更加人性化,并有着良好的可扩展性。但游戏依旧存在一些不足之处，比如说本游戏还没有实现对玩家操纵飞机进行血量的显示，敌方飞机尚无法发射子弹，对击中逻辑的判断还存在问题。</p>
+<h4 id="参考文献：">参考文献：</h4>
+<p>[1]黄宝贵等.C++面向对象程序设计[M] 北京:清华大学出版社，2019:2-3<br>
+[2]童晶编著.C语言程序设计与游戏开发实践教程[M] 北京:清华大学出版社 2017:16<br>
+[3]黄维通等.Visual C++面向对象与可视化程序设计[M]（第三版）北京:清华大学出版社 2011:14<br>
+[4]郑莉等编著.C++程序设计语言(第三版)[M].北京:清华大学出版社,2005:134-139.<br>
+[5]刘振安等编著.C++程序设计课程设计[M] 北京:机械工业出版社,2004:23-31  [6]朱立华等编著.面向对象程设计及C++[M].北京:人民邮电出版社,2008:43  [7]郑莉,董渊.C++语言程序设计(第二版) [M].北京清华大学出版社,2002:23  [8]陈维兴,林小茶.C++面向对象程序设计教程(第2版)[M].北京清华大学出版社.2007:34</p>
 
                 
             </div>
@@ -761,13 +772,13 @@ void write<span class="token punctuation">(</span><span class="token punctuation
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/07/30/QFNUCTF%E6%98%A5%E5%AD%A3%E7%BB%83%E4%B9%A0%E8%B5%9B%E7%BB%93%E9%A2%98%E8%AE%B0%E5%BD%95/">
+                <a href="/2021/07/31/%E5%9F%BA%E4%BA%8EC++%E7%9A%84%E9%85%92%E5%BA%97%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="QFNUCTF春季练习赛结题记录">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="基于C++的酒店管理系统的设计与实现">
                         
-                        <span class="card-title">QFNUCTF春季练习赛结题记录</span>
+                        <span class="card-title">基于C++的酒店管理系统的设计与实现</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -778,14 +789,14 @@ void write<span class="token punctuation">(</span><span class="token punctuation
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-31
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/CTF/" class="post-category">
-                                    CTF
+                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/" class="post-category">
+                                    项目设计
                                 </a>
                             
                             
@@ -795,12 +806,12 @@ void write<span class="token punctuation">(</span><span class="token punctuation
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95/">
-                        <span class="chip bg-color">解题记录</span>
+                    <a href="/tags/%E8%AF%BE%E7%A8%8B%E8%AE%BA%E6%96%87/">
+                        <span class="chip bg-color">课程论文</span>
                     </a>
                     
-                    <a href="/tags/Misc/">
-                        <span class="chip bg-color">Misc</span>
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
                     </a>
                     
                 </div>
@@ -997,7 +1008,7 @@ void write<span class="token punctuation">(</span><span class="token punctuation
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">256.6k</span>
+                        class="white-color">260.6k</span>
             
             
             
