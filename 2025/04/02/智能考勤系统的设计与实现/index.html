@@ -1,0 +1,2323 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="智能考勤系统的设计与实现, 十二惊惶">
+    <meta name="description" content="智能考勤系统的设计与实现
+**摘要：**在经历过疫情严重的生活后，网上招聘就业越来越流行，人才市场就业愈发激烈，所以使用开发工具IDEA、SPRING等技术学习开发的企业智能考勤信息系统。帮助企业更高效的管理员工信息以及上下班考勤情况。此企">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>智能考勤系统的设计与实现 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">智能考勤系统的设计与实现</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87/">
+                                <span class="chip bg-color">毕业论文</span>
+                            </a>
+                        
+                            <a href="/tags/Java-Spring/">
+                                <span class="chip bg-color">Java Spring</span>
+                            </a>
+                        
+                            <a href="/tags/Tomcat/">
+                                <span class="chip bg-color">Tomcat</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/" class="post-category">
+                                项目设计
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2025-04-02
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2025-04-02
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    6.2k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    23 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="智能考勤系统的设计与实现">智能考勤系统的设计与实现</h2>
+<p>**摘要：**在经历过疫情严重的生活后，网上招聘就业越来越流行，人才市场就业愈发激烈，所以使用开发工具IDEA、SPRING等技术学习开发的企业智能考勤信息系统。帮助企业更高效的管理员工信息以及上下班考勤情况。此企业考勤系统主要包括系统主管理员模块、企业管理模块、员工上下班考勤和请假、部门薪资等一系列结合而成。该系统可以方便信息的共享和管理、提高人力资源管理效率以及实现薪资数据自动汇总分析。综上所述，该系统对于企业而言，不仅能够提高管理效率，降低管理成本，而且能够加强对人力资源的管理、实现对企业的整体监控，对企业的长期稳定发展具有一定的帮助作用。</p>
+<p>**关键词：**企业考勤 人事 薪资管理 JAVA SPRING</p>
+<h3 id="引言">引言</h3>
+<p>企业考勤管理系统的理论最早起源于西方发达国家，它是市场经济高度发达和现代社会化大生产发展的产物。考勤系统的理念提出历史已经十分悠久，而且经过长时间的实践和验证，已经不断完善成为公司必不可少的体系结构，在各个领域都及早地实现了由人力管理转向计算机管理的模式。企业考勤管理系统是为了解决职工考勤管理问题而设计的，目的是要实现对职工考勤的智能化、规范化管理，帮助考勤工作人员利用计算机技术方便快速的对企业各个部门的考勤信息进行管理，使散乱的考勤信息能够具体化、直观化。这样，系统所需的考勤工作人员数量减少，同时也减轻了他们的负担，有利于提高企业考勤管理的效率。而且企业考勤管理系统运用计算机管理技术，并通过不断的实践和修改，避免了人为管理的一些主观问题，运用最少的人力资源，实现员工考勤的高效管理。</p>
+<h3 id="1-系统开发技术">1 系统开发技术</h3>
+<p>系统开发工具及环境如表1-1所示</p>
+<center>表1-1 系统开发工具及环境</center>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>开发工具及环境</th>
+<th>版本号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Windows</td>
+<td>10</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Java JDK</td>
+<td>1.8</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Idea</td>
+<td>2020</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Tomcat</td>
+<td>9.0</td>
+</tr>
+<tr>
+<td>5</td>
+<td>MySQL</td>
+<td>5.7</td>
+</tr>
+</tbody>
+</table>
+<p>企业考勤管理系统基于idea软件开发平台，采用三层体系结构、B/S模式，采用Tomcat9.0作为服务器管理程序，在服务器端用JSP编写程序，实现客户机和服务器之间的交互功能。运用JDBC实现和数据库服务器上的MySQL数据库的数据交换。用户通过在客户端登录进入系统，借助IE浏览器访问Web服务器，即实现客户端与web服务器之间信息的存储与传递。本系统主要应用的技术是数据库的JDBC技术、SQL语句、JSP的内建对象以及JavaBean。</p>
+<ol>
+<li>
+<p>将整个企业考勤管理系统开发过程进行划分。</p>
+</li>
+<li>
+<p>使用了SSM+JSP的开发方式，自下而上进行开发。</p>
+</li>
+<li>
+<p>先完成管理方面业务，再进行普通员工的业务开发。</p>
+</li>
+<li>
+<p>在系统分析以及系统设计时，先进行对整体的分析，在进行模块的细分。</p>
+</li>
+<li>
+<p>在系统实施阶段从基本模块开始，按照系统设计要求完成模块，再逐步拼接模块进行调试，最终完成整个系统</p>
+</li>
+</ol>
+<h4 id="1-1-idea-2020">1.1  IDEA 2020</h4>
+<p>IDEA全称IntelliJ IDEA，是Java语言开发的集成环境，是JetBrains公司的产品。IntelliJ在业界被公认为最好的Java开发工具，尤其在智能代码助手、代码自动提示、重构、Java EE支持、各类版本工具(git、svn等)、JUnit、CVS整合、代码分析、创新的GUI设计等方面的功能可以说是超常的。IDEA提倡的是智能编码，目的是减少程序员的工作，其特色功能有智能的选取、丰富的导航模式、历史记录功能等，最突出的功能是调试（Debug），可以对Java代码、JavaScript、JQuery等技术进行调试。因此智能考勤系统使用IDEA进行开发。</p>
+<h4 id="1-2-java">1.2  JAVA</h4>
+<p>Java是一种可以撰写跨平台应用程序的面向对象的程序设计语言。Java技术具有卓越的通用性、高效性、平台移植性和安全性，广泛应用于PC、数据中心、游戏控制台、科学超级计算机、移动电话和互联网，同时拥有全球最大的开发者专业社群。Java是功能完善的通用程序设计语言，可以用来开发可靠的、要求严格的应用程序。Java是纯面向对象开发，功能强大，分支众多，没有java不能做的软件。C/S也好B/S也好。从功能上讲，没有语言可以和Java相比。</p>
+<h4 id="1-3-jsp">1.3  JSP</h4>
+<p>JSP [Java Server Pages]，中文名是Java服务器页面，是一个简化的Servlet设计，是一种动态网页技术标准。JSP在传统的网页HTML [标准通用标记语言]的子集文件 [.htm，.html]中插入Java程序段 [Script lets]和JSP标记 [tag]，从而形成JSP文件，后缀名为[.jsp]。JSP实现了Html语法中的java扩展（以 &lt;%，%&gt;形式）。通常返回给客户端的就是一个HTML文本，因此客户端只要有浏览器就能浏览。JSP技术使用Java编程语言编写类XML的tags和script lets，来封装产生动态网页的处理逻辑。网页还能通过tags和script lets访问存在于服务端的资源的应用逻辑。JSP将网页逻辑与网页设计的显示分离，支持可重用的基于组件的设计，使基于Web的应用程序的开发变得容易。</p>
+<h4 id="1-4-tomcat">1.4  Tomcat</h4>
+<p>Tomcat服务器是一个开放源代码的免费的轻量级Web应用服务器，在中小型系统和并发访问用户不是很多的场合下被普遍使用。Tomcat可以用来装载Java Web程序，它是一个Servlets容器。它是一个中间件，在B/S架构中，浏览器发出的HTTP请求经过Tomcat中间件，转发到最终的目的服务器上，响应消息再通过Tomcat返回到浏览器。Tomcat所做的事情主要有：开启监听端口监听用户的请求，解析用户发来的HTTP请求然后访问到你指定的应用系统，然后你返回的页面经过Tomcat返回给用户。</p>
+<h3 id="2系统需求分析">2系统需求分析</h3>
+<p>企业考勤管理系统是企事业单位不可或缺的一部分，最初的考勤管理都是靠人工来完成的。当企业规模比较小的时候，人工可以完成，随着企业的规模越来越大，企业的员工人数也越来越多，人力进行考勤管理必然会造成工作效率低，工作错误增高的问题。因此对于企业来说，开发一个智能化、高效率的企业考勤管理系统是非常有必要的，具有深远的意义。</p>
+<h4 id="2-1-系统功能需求分析">2.1  系统功能需求分析</h4>
+<p>智能考勤系统应当具有足以满足企业日常需要的各项功能以方便管理，如下表中所示的八项功能</p>
+<center>表2-1 系统功能</center>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>功能名称</th>
+<th>功能描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01</td>
+<td>用户管理</td>
+<td>使用考勤系统的所有用户信息</td>
+</tr>
+<tr>
+<td>02</td>
+<td>部门管理</td>
+<td>企业所有的部门信息</td>
+</tr>
+<tr>
+<td>03</td>
+<td>职称管理</td>
+<td>部门的职称</td>
+</tr>
+<tr>
+<td>04</td>
+<td>员工管理</td>
+<td>企业员工信息</td>
+</tr>
+<tr>
+<td>05</td>
+<td>考勤管理</td>
+<td>员工打卡签到信息管理员工加班管理</td>
+</tr>
+<tr>
+<td>06</td>
+<td>请假管理</td>
+<td>员工请假信息申请批准</td>
+</tr>
+<tr>
+<td>07</td>
+<td>公告管理</td>
+<td>公告信息</td>
+</tr>
+<tr>
+<td>08</td>
+<td>薪资管理</td>
+<td>薪资信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3-系统设计">3 系统设计</h3>
+<h4 id="3-1-系统体系结构设计">3.1 系统体系结构设计</h4>
+<p>企业考勤管理系统分为三层，具体如图3-1所示。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\企业考勤管理系统体系结构图.png" style="zoom:67%;" />
+<center>图3-1 企业考勤管理系统体系结构图</center>
+<h4 id="3-2-系统功能结构设计">3.2 系统功能结构设计</h4>
+<p>企业考勤管理系统的模块分为10部分，分别为注册登录、个人信息管理、请假信息管理、员工管理、加班信息管理、考勤信息管理、部门管理、职称管理、公告管理以及薪资管理，如图3-2所示。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\企业考勤管理系统结构图.png" style="zoom:80%;" />
+<center>图3-2 企业考勤管理系统结构图</center>
+<p>系统分为多个角色，可以通过人事部主任账号对员工信息管理，以及对部门信息和职称信息统一管理，不同员工登陆的系统后可以操作不同的菜单功能。具体设计如图3-3、图3-4所示。</p>
+<center><img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\管理员用例图.png" style="zoom:50%;" /><img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\企业员工用例图.png" style="zoom:50%;" /></center>
+<center>图3-3 管理员用例图&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp图3-4 企业员工用例图</center>
+<h4 id="3-3-系统业务流程">3.3 系统业务流程</h4>
+<p>管理员可以查看员工的考勤信息。部门主任在员工考勤完成后可以查看员工的考勤信息。人事部员工可以管理各个模块的信息。人事部主任可以管理所有信息同时负责员工的请假加班。具体业务流程如图3-5所示。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\核心业务流程图.png" style="zoom: 80%;" />
+<center>图3-5 核心业务流程图</center>
+<h4 id="3-4-系统数据流分析">3.4 系统数据流分析</h4>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\顶层数据流图.png" style="zoom:80%;" />
+<center>图3-6 顶层数据流图</center>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\一层数据流图.png" style="zoom:67%;" />
+<center>图3-7 一层数据流图</center>
+<h4 id="3-5-数据库概念结构设计">3.5 数据库概念结构设计</h4>
+<p>人事部主任可以管理员工信息，员工添加请假信息，人事部主任负责审批请假信息。人事部主任管理员工的加班信息、公告信息。部门信息包括部门名称和部门职能，人事部主任管理部门信息和职能信息。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\系统整体E-R图.png" style="zoom: 67%;" />
+<center>图3-8 系统整体E-R图</center>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\wps13.png" style="zoom:50%;" />
+<center>图3-9员工表属性图</center>
+<p>员工表的属性图如图3-9所示。其中员工ID为主键。员工通过用户名和密码来登录系统进行考勤。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\wps14.png" style="zoom:50%;" />
+<center>图3-10 部门表属性图</center>
+<p>部门表的属性图如图3-10所示。部门表包括部门信息和部门职能，以及管理人员和联系方式。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\wps15.png" alt="img" style="zoom:50%;" />
+<center>图3-11 职称表属性图</center>
+<p>职能表的属性图如图3-11所示。职能表属于部门信息的一部分， 每个职能有自己的id和编号，名称，以及所属的哪个部门。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\wps16.png" style="zoom:50%;" />
+<center>图3-12 加班表属性图</center>
+<p>加班表的属性图如图3-12所示。加班表负责储存需要加班的员工的信息，开始加班的时间和结束加班的时间。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\wps17.png" style="zoom:60%;" />
+<center>图3-13 请假表属性图</center>
+<p>请假表的属性图如上图3-13所示。请假表负责储存请假员工的信息以及所属部门，请假天数，日期和原因。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\wps18.png" style="zoom:60%;" />
+<center>图3-14 考勤表属性图</center>
+<p>考勤表的属性图如图3-14所示。考勤表负责记录员工的考勤时间，判断员工是否迟到。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\wps19.png" style="zoom:60%;" />
+<center>图3-15 公告表属性图</center>
+<p>公告表的属性图如图3-15所示。公告表负责发布公告信息。</p>
+<h4 id="3-6-数据库结构设计">3.6 数据库结构设计</h4>
+<center>表3-2 数据库关系模式表</center>
+<table>
+<thead>
+<tr>
+<th>数据库表</th>
+<th>关系模式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attendance</code></td>
+<td>( <code>id``employee_number``day</code> <code>time_type</code> <code>start_time</code> <code>start_type``end_time</code> <code>end_type``work_type</code>  <code>notes</code>)</td>
+</tr>
+<tr>
+<td><code>department</code></td>
+<td>( <code>id</code> <code>department_number</code> <code>name</code> <code>manager</code> <code>telephone</code> <code>address</code> <code>notes</code> )</td>
+</tr>
+<tr>
+<td><code>employee</code></td>
+<td>(<code>id</code> <code>employee_number</code> <code>name</code> <code>gender</code> <code>birthday</code> <code>telephone</code> <code>email</code> <code>address</code> <code>photo</code> <code>education``department_number</code> <code>position_number</code> <code>in_time</code> <code>password</code> <code>notes</code> )</td>
+</tr>
+<tr>
+<td><code>gonggao</code></td>
+<td>(<code>id</code>  <code>title</code> <code>content</code>)</td>
+</tr>
+<tr>
+<td><code>history</code></td>
+<td>(<code>id``employee_number</code> <code>name``gender</code> <code>birthday``telephone``email</code> <code>address</code> <code>photo</code>  <code>education``in_time</code> <code>out_time</code> <code>department_number</code> <code>position_number``status</code>  <code>home``notes</code>)</td>
+</tr>
+<tr>
+<td><code>lea</code></td>
+<td>(<code>id</code> <code>employee_number</code> <code>department_number</code> <code>start_time</code> <code>end_time``days``reason</code> <code>type``manager</code> <code>status</code>  <code>notes</code>)</td>
+</tr>
+<tr>
+<td><code>move</code></td>
+<td>( <code>id</code> <code>employee_number</code> <code>before</code> <code>after</code> <code>time</code> <code>manager</code> <code>notes</code> )</td>
+</tr>
+<tr>
+<td><code>overtime</code></td>
+<td>(<code>id</code> <code>department_number</code> <code>employee_number</code> <code>day``start_time</code> <code>end_time</code> <code>notes</code>)</td>
+</tr>
+<tr>
+<td><code>position</code></td>
+<td>( <code>id</code> <code>position_number</code> <code>name</code>  <code>level</code> <code>notes</code>)</td>
+</tr>
+<tr>
+<td><code>rewards_punishment</code></td>
+<td>(<code>id``employee_number``type``reason</code> <code>money</code>  <code>time</code> <code>manager``notes</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>每张表具体的逻辑设计及其功能信息如表3-3所示。</p>
+<center>表3-3 表</center>
+<table>
+<thead>
+<tr>
+<th>数据库表</th>
+<th>表名</th>
+<th>表功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>attendance</code></td>
+<td>考勤表</td>
+<td>存放考勤的基本信息</td>
+</tr>
+<tr>
+<td><code>department</code></td>
+<td>部门表</td>
+<td>存放部门基本信息</td>
+</tr>
+<tr>
+<td><code>employee</code></td>
+<td>员工表</td>
+<td>存放员工基本信息</td>
+</tr>
+<tr>
+<td><code>gonggao</code></td>
+<td>公告表</td>
+<td>存放公告基本信息</td>
+</tr>
+<tr>
+<td><code>history</code></td>
+<td>员工调度表</td>
+<td>存放档案基本信息</td>
+</tr>
+<tr>
+<td><code>lea</code></td>
+<td>请假表</td>
+<td>存放请假基本信息</td>
+</tr>
+<tr>
+<td><code>move</code></td>
+<td>离职表</td>
+<td>存放离职基本信息</td>
+</tr>
+<tr>
+<td><code>overtime</code></td>
+<td>加班表</td>
+<td>存放加班基本信息</td>
+</tr>
+<tr>
+<td><code>position</code></td>
+<td>职称表</td>
+<td>存放职称基本信息</td>
+</tr>
+</tbody>
+</table>
+<p><code>attendanc</code>表结构设计如表3-4所示。</p>
+<center>表3-4attendance表结构设计</center>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>字段名</th>
+<th>类型</th>
+<th>长度</th>
+<th>主键/外键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>id</code></td>
+<td>int</td>
+<td>100</td>
+<td>主键</td>
+<td>ID</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>employee_number</code></td>
+<td>int</td>
+<td>10</td>
+<td></td>
+<td>员工编号</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>day</code></td>
+<td>date</td>
+<td>0</td>
+<td></td>
+<td>时间</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>time_type</code></td>
+<td>Data</td>
+<td>0</td>
+<td></td>
+<td>时间类型</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>start_time</code></td>
+<td>time</td>
+<td>0</td>
+<td></td>
+<td>开始时间</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>start_type</code></td>
+<td>Data</td>
+<td>0</td>
+<td></td>
+<td>开始类型</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>end_time</code></td>
+<td>time</td>
+<td>0</td>
+<td></td>
+<td>结束时间</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>end_type</code></td>
+<td>Data</td>
+<td>0</td>
+<td></td>
+<td>结束类型</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>work_type</code></td>
+<td>Varchar</td>
+<td>0</td>
+<td></td>
+<td>工作类型</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>notes</code></td>
+<td>varchar</td>
+<td>255</td>
+<td></td>
+<td>备注</td>
+</tr>
+</tbody>
+</table>
+<p><code>department</code>表结构设计如表3-5所示。</p>
+<center>表3-5 department表结构设计</center>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>字段名</th>
+<th>类型</th>
+<th>长度</th>
+<th>主键/外键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>id</code></td>
+<td>Int</td>
+<td>10</td>
+<td>主键</td>
+<td>ID</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>department_number</code></td>
+<td>Int</td>
+<td>10</td>
+<td></td>
+<td>部门编号</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code> </code>name``</td>
+<td>Varchar</td>
+<td>20</td>
+<td></td>
+<td>名称</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>manager</code></td>
+<td>Varchar</td>
+<td>10</td>
+<td></td>
+<td>管理</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>telephone</code></td>
+<td>Varchar</td>
+<td>20</td>
+<td></td>
+<td>联系方式</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>address</code></td>
+<td>Varchar</td>
+<td>50</td>
+<td></td>
+<td>地址</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>notes</code></td>
+<td>Varchar</td>
+<td>255</td>
+<td></td>
+<td>备注</td>
+</tr>
+</tbody>
+</table>
+<p><code>employee</code>表结构设计如表3-6所示。</p>
+<center>表3-6 employee表结构设计</center>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>字段名</th>
+<th>类型</th>
+<th>长度</th>
+<th>主键/外键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>id</code></td>
+<td>Int</td>
+<td>10</td>
+<td>主键</td>
+<td>ID</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>employee_number</code></td>
+<td>Int</td>
+<td>10</td>
+<td></td>
+<td>员工编号</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code> name</code></td>
+<td>Varchar</td>
+<td>10</td>
+<td></td>
+<td>名称</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>gender</code></td>
+<td>Varchar</td>
+<td>0</td>
+<td></td>
+<td>性别</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>birthday</code></td>
+<td>Date</td>
+<td>0</td>
+<td></td>
+<td>生日</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>telephone</code></td>
+<td>Varchar</td>
+<td>15</td>
+<td></td>
+<td>联系方式</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>email</code></td>
+<td>Varchar</td>
+<td>30</td>
+<td></td>
+<td>邮箱</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>address</code></td>
+<td>Varchar</td>
+<td>50</td>
+<td></td>
+<td>地址</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>photo</code></td>
+<td>Varchar</td>
+<td>50</td>
+<td></td>
+<td>照片</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>education</code></td>
+<td>Varchar</td>
+<td>20</td>
+<td></td>
+<td>教育</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>department_number</code></td>
+<td>Int</td>
+<td>10</td>
+<td></td>
+<td>部门编号</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>position_number</code></td>
+<td>Int</td>
+<td>10</td>
+<td></td>
+<td>职称编号</td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>in_time</code></td>
+<td>Date</td>
+<td>0</td>
+<td></td>
+<td>参加时间</td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>password</code></td>
+<td>Varchar</td>
+<td>20</td>
+<td></td>
+<td>密码</td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>notes</code></td>
+<td>Varchar</td>
+<td>255</td>
+<td></td>
+<td>状态</td>
+</tr>
+</tbody>
+</table>
+<p><code>gonggao</code>表结构设计如表3-7所示。</p>
+<center>表3-7 gonggao表结构设计</center>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>字段名</th>
+<th>类型</th>
+<th>长度</th>
+<th>主键/外键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>id</code></td>
+<td>Int</td>
+<td>11</td>
+<td>主键</td>
+<td>ID</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>title</code></td>
+<td>Varchar</td>
+<td>255</td>
+<td></td>
+<td>标题</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>content</code></td>
+<td>Varchar</td>
+<td>255</td>
+<td></td>
+<td>详情</td>
+</tr>
+</tbody>
+</table>
+<p><code>history</code>表结构设计如表3-8所示。</p>
+<center>表3-8 history表结构设计</center>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>字段名</th>
+<th>类型</th>
+<th>长度</th>
+<th>主键/外键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>id</code></td>
+<td>int</td>
+<td>10</td>
+<td>主键</td>
+<td>ID</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>employee_number</code></td>
+<td>int</td>
+<td>10</td>
+<td></td>
+<td>员工编号</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code> name</code></td>
+<td>varchar</td>
+<td>10</td>
+<td></td>
+<td>名称</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>gender</code></td>
+<td>Varchar</td>
+<td>0</td>
+<td></td>
+<td>性别</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>birthday</code></td>
+<td>date</td>
+<td>0</td>
+<td></td>
+<td>生日</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>telephone</code></td>
+<td>varchar</td>
+<td>20</td>
+<td></td>
+<td>联系方式</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>email</code></td>
+<td>varchar</td>
+<td>30</td>
+<td></td>
+<td>邮箱</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>address</code></td>
+<td>varchar</td>
+<td>50</td>
+<td></td>
+<td>地址</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>photo</code></td>
+<td>varchar</td>
+<td>50</td>
+<td></td>
+<td>照片</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>education</code></td>
+<td>varchar</td>
+<td>20</td>
+<td></td>
+<td>教育</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>department_number</code></td>
+<td>Int</td>
+<td>10</td>
+<td></td>
+<td>部门编号</td>
+</tr>
+<tr>
+<td>12</td>
+<td><code>position_number</code></td>
+<td>Int</td>
+<td>10</td>
+<td></td>
+<td>职称编号</td>
+</tr>
+<tr>
+<td>13</td>
+<td><code>in_time</code></td>
+<td>date</td>
+<td>0</td>
+<td></td>
+<td>参加时间</td>
+</tr>
+<tr>
+<td>14</td>
+<td><code>out_time</code></td>
+<td>varchar</td>
+<td>0</td>
+<td></td>
+<td>离职时间</td>
+</tr>
+<tr>
+<td>15</td>
+<td><code>notes</code></td>
+<td>varchar</td>
+<td>255</td>
+<td></td>
+<td>备注</td>
+</tr>
+<tr>
+<td>16</td>
+<td><code>status</code></td>
+<td>varchar</td>
+<td>255</td>
+<td></td>
+<td>状态</td>
+</tr>
+</tbody>
+</table>
+<p><code>lea</code>表结构设计如表3-9所示。</p>
+<center>表3-9 lea表结构设计</center>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>字段名</th>
+<th>类型</th>
+<th>长度</th>
+<th>主键/外键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>id</code></td>
+<td>int</td>
+<td>10</td>
+<td>主键</td>
+<td>ID</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>employee_number</code></td>
+<td>int</td>
+<td>10</td>
+<td></td>
+<td>员工编号</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>department_number</code></td>
+<td>varchar</td>
+<td>10</td>
+<td></td>
+<td>部门编号</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>start_time</code></td>
+<td>enum</td>
+<td>0</td>
+<td></td>
+<td>入职时间</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>end_time</code></td>
+<td>date</td>
+<td>0</td>
+<td></td>
+<td>离职时间</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>days</code></td>
+<td>varchar</td>
+<td>10</td>
+<td></td>
+<td>天数</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>reason</code></td>
+<td>varchar</td>
+<td>100</td>
+<td></td>
+<td>原因</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>type</code></td>
+<td>varchar</td>
+<td>0</td>
+<td></td>
+<td>类型</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>manager</code></td>
+<td>varchar</td>
+<td>10</td>
+<td></td>
+<td>管理人</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>notes</code></td>
+<td>varchar</td>
+<td>255</td>
+<td></td>
+<td>备注</td>
+</tr>
+<tr>
+<td>11</td>
+<td><code>status</code></td>
+<td>varchar</td>
+<td>255</td>
+<td></td>
+<td>状态</td>
+</tr>
+</tbody>
+</table>
+<p><code>move</code>表结构设计如表3-10所示。</p>
+<center>表3-10 move表结构设计</center>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>字段名</th>
+<th>类型</th>
+<th>长度</th>
+<th>主键/外键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>id</code></td>
+<td>int</td>
+<td>10</td>
+<td>主键</td>
+<td>ID</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>employee_number</code></td>
+<td>int</td>
+<td>10</td>
+<td></td>
+<td>员工编号</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>before</code></td>
+<td>varchar</td>
+<td>10</td>
+<td></td>
+<td>之后</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>after</code></td>
+<td>Varchar</td>
+<td>10</td>
+<td></td>
+<td>之前</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>time</code></td>
+<td>date</td>
+<td>0</td>
+<td></td>
+<td>时间</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>manager</code></td>
+<td>varchar</td>
+<td>10</td>
+<td></td>
+<td>管理人</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>notes</code></td>
+<td>varchar</td>
+<td>255</td>
+<td></td>
+<td>备注</td>
+</tr>
+</tbody>
+</table>
+<p><code>overtime</code>表结构设计如表3-11所示。</p>
+<center>表3-11  overtime表结构设计</center>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>字段名</th>
+<th>类型</th>
+<th>长度</th>
+<th>主键/外键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>id</code></td>
+<td>int</td>
+<td>10</td>
+<td>主键</td>
+<td>ID</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>employee_number</code></td>
+<td>int</td>
+<td>10</td>
+<td></td>
+<td>员工编号</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>department_number</code></td>
+<td>varchar</td>
+<td>10</td>
+<td></td>
+<td>之后</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>day</code></td>
+<td>Varchar</td>
+<td>0</td>
+<td></td>
+<td>之前</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>time</code></td>
+<td>date</td>
+<td>0</td>
+<td></td>
+<td>时间</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>manager</code></td>
+<td>varchar</td>
+<td>0</td>
+<td></td>
+<td>管理人</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>status</code></td>
+<td>varchar</td>
+<td></td>
+<td></td>
+<td>状态</td>
+</tr>
+</tbody>
+</table>
+<p><code>position</code>表结构设计如表3-12所示。</p>
+<center>表3-12 position表结构设计</center>
+<table>
+<thead>
+<tr>
+<th>No</th>
+<th>字段名</th>
+<th>类型</th>
+<th>长度</th>
+<th>主键/外键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>id</code></td>
+<td>int</td>
+<td>10</td>
+<td>主键</td>
+<td>ID</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>position_number</code></td>
+<td>int</td>
+<td>10</td>
+<td></td>
+<td>职称编号</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>name</code></td>
+<td>varchar</td>
+<td>20</td>
+<td></td>
+<td>名称</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>level</code></td>
+<td>Varchar</td>
+<td>0</td>
+<td></td>
+<td>级别</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>notes</code></td>
+<td>varchar</td>
+<td>255</td>
+<td></td>
+<td>备注</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4系统实现展示">4系统实现展示</h3>
+<h4 id="4-1-登陆界面">4.1 登陆界面</h4>
+<p>在此界面输入账号密码进入系统，如图4-1所示。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\登陆界面.jpg" style="zoom:50%;" />
+<center>图4-1 登陆界面</center>
+<h4 id="4-2-系统首页">4.2 系统首页</h4>
+<p>不同权限用户进入不同的首页，具体区别在于可以使用的功能不同，如图4-2所示是普通员工首页，管理员首页左侧有本系统支持的各种功能，点击可以展开并跳转到该功能界面，在系统首页可以签到签退，在签到签退按钮下方会显示最新公告以便于查看，首页右上方可以退出系统登录，如图4-3所示</p>
+<h4 id="4-3-系统个人信息模块功能">4.3 系统个人信息模块功能</h4>
+<h5 id="4-3-1-查看个人信息：">4.3.1 查看个人信息：</h5>
+<p>在此界面可以查看职工个人信息，如图4-6所示。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\查看个人信息.jpg" style="zoom: 67%;" />
+<center>图4-6 查看个人信息</center>
+<h5 id="4-3-2-查看考勤记录：">4.3.2 查看考勤记录：</h5>
+<p>可以查看各员工的签到时间，签退时间等考勤信息，如图4-7所示。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\考勤信息查看.jpg" style="zoom: 80%;" />
+<center>图4-7 考勤信息查看</center>
+<h5 id="4-3-3-查看加班信息">4.3.3 查看加班信息</h5>
+<p>查看加班信息支持查看加班信息的查看以及安排加班，如图4-8所示。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\加班信息查看.jpg" style="zoom:80%;" />
+<center>图4-8 加班信息查看</center>
+<p>安排加班需要通过下拉栏选定员工和时间来安排加班，各项信息都是必填，倘若未填写则会有红字报错提醒</p>
+<h5 id="4-3-4-申请请假">4.3.4 申请请假</h5>
+<p>若企业员工需要请假，可以通过申请请假界面来实现请假操作，如图所示，员工需要填写各项信息，若必填信息未填写则会有提醒。如图4-10所示。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\申请请假.jpg" style="zoom:80%;" />
+<center>图4-10 申请请假</center>
+<h5 id="4-3-5-查看请假记录">4.3.5 查看请假记录</h5>
+<p>查看请假记录可以实现对请假列表的查看，请假列表包含了请假人姓名，请假时间、请假原因和审批状态等信息，如图4-11所示。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\查看请假记录.jpg" style="zoom: 80%;" />
+<center>图4-11 查看请假记录</center>
+<h4 id="4-4-系统员工模块功能">4.4 系统员工模块功能</h4>
+<p>系统员工模块实现对员工信息的管理、考勤管理以及请假管理。</p>
+<h5 id="4-4-1-员工管理">4.4.1 员工管理</h5>
+<p>员工管理包括在职员工管理、离休员工管理、员工档案管理三项。在职员工管理可以查看在职员工信息并进行修改和删除，删除只需点击删除按钮即可，如图4-12所示。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\在职员工管理.jpg" style="zoom:80%;" />
+<center>图4-13 在职员工管理</center>
+<p>添加员工需要按格式输入各项信息，其中有必填信息是必须要填写的，否则会有报错提醒，如图4-13所示。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\添加员工.jpg" style="zoom: 67%;" />
+<center>图4-13 添加员工</center>
+<p>离休员工管理可以查看离休员工列表，获取离休时间等信息。如图4-14所示。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\离休员工管理.jpg" style="zoom: 80%;" />
+<center>图4-14 离休员工管理</center>
+<h5 id="4-4-2考勤管理">4.4.2考勤管理</h5>
+<p>考勤管理包含考勤管理和加班管理两项，其中考勤管理可以查看各员工的考勤记录，如图4-15所示。加班管理则是可以安排加班，如图4-16所示。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\员工考勤记录.jpg" style="zoom: 80%;" />
+<center>图4-15 员工考勤记录</center>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\加班管理.jpg" style="zoom: 80%;" />
+<center>图4-16 加班管理</center>
+<p>加班管理可以安排人员加班，也可以修改和删除加班信息，安排加班具体如图4-17所示。修改加班信息如图4-18所示。删除加班信息点击删除按钮即可，如图4-16所示。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\添加加班安排.jpg" style="zoom: 80%;" />
+<center>图4-17 添加加班安排</center>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\加班信息修改.jpg" style="zoom: 80%;" />
+<center>图4-18 加班信息修改</center>
+<h5 id="4-4-3-请假管理">4.4.3 请假管理</h5>
+<p>请假管理是管理员功能，可以查看已批准和未批准的请假以及请假记录，如下图4-19所示，在请假记录一栏中可以看到各项已批准和未批准的请假记录，如图4-20所示。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\请假列表.jpg" style="zoom:80%;" />
+<center>图4-20 请假列表</center>
+<h4 id="4-5-系统部门模块功能">4.5 系统部门模块功能</h4>
+<p>部门管理模块是管理员功能，其中有两部分，分别为部门管理和职称管理。</p>
+<h5 id="4-5-1部门管理">4.5.1部门管理</h5>
+<p>部门管理页面展示了如部门名称、部门电话、部门地址等信息，通过此界面可以实现对部门的查看、添加和删除，对部门信息的修改功能，如图4-21所示。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\部门管理.jpg" style="zoom: 80%;" />
+<center>图4-21 部门管理</center>
+<p>对部门的添加需要按格式输入部门的各项信息，如果出错则会报错提示，如图4-22所示：</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\添加部门.jpg" style="zoom:80%;" />
+<center>图4-22 添加部门</center>
+<p>修改部门信息则需要在原信息基础上修改，如图4-23所示，修改完成后会弹窗提示修改成功，如图4-24所示：</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\修改部门信息.jpg" style="zoom:80%;" />
+<center>图4-23 修改部门信息</center>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\修改成功提示.jpg" style="zoom:80%;" />
+<center>图4-24 修改成功提示</center>
+<h5 id="4-5-2-职称管理">4.5.2 职称管理</h5>
+<p>职称管理与部门管理大致相同，其实现了对职称的查看、添加、修改和删除。如图4-25所示，界面中展示了已有职称的信息，如要增删改需要按下相关按钮</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\职称管理.jpg" style="zoom:80%;" />
+<center>图4-25 职称管理</center>
+<p>如图4-26所示为添加职称，其中职称名称为必填选项，如果未填写会有错误提示，职称的权限可以通过下拉栏来选择。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\职称添加.jpg" style="zoom:80%;" />
+<center>图4-26 职称添加</center>
+<p>对职称的修改需要点击修改按钮，在原基础上进行修改，如图4-27所示</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\职称修改.jpg" style="zoom:80%;" />
+<center>图4-27 职称修改</center>
+<h4 id="4-6-系统公告模块功能">4.6 系统公告模块功能</h4>
+<h5 id="4-6-1公告管理">4.6.1公告管理</h5>
+<p>公告管理中可以对公告进行查看、添加、修改、删除，如图4-28所示。添加公告时需要输入公告标题和内容，如图4-29所示。修改可以修改公告的标题和内容，如图4-30所示。删除只需点击删除按钮即可。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\公告管理.jpg" style="zoom:80%;" />
+<center>图4-28 公告管理</center>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\添加公告.jpg" style="zoom:80%;" />
+<center>图4-29 添加公告</center>
+<img src="D:\blog\shierjinghuang\source\_posts\智能考勤系统的设计与实现\修改公告.jpg" style="zoom: 80%;" />
+<center>图4-30 修改公告</center>
+<h3 id="5-结束语">5 结束语</h3>
+<p>企业考勤管理系统是为了解决员工考勤管理而设计的,目的是建立一个能够初步实现企业考勤管理系统的智能化管理,提高考勤管理效率,工作人员能够在各个岗位上的工作状态得到及时的反馈,而系统所需的工作人员的数量少,效率高，是一个企业单位不可缺少的一部分。企业考勤管理系统的开发是一项系统性工程，它不但涉及JSP、Web、数据库技术等技术领域，还涉及到管理观念、管理体制和管理科学，以及一些制度和人为的因素。因此，系统开发的各个环节都需要有效地衔接，有条不紊的进行。本文研究的主要目的是为了开发一个智能化、高效率的企业考勤管理系统。在本项目中我们初步分析了企业考勤管理系统的几个主要模块的功能与作用，经多次调试，该系统基本能够达到预期的效果。本系统是基于Web的企业考勤管理系统。由于企业考勤管理系统本身的复杂性，以及我们能力、开发技术的局限性，此系统还存在不少的缺陷和漏洞，有待进一步的改进和研究。</p>
+<h3 id="参考文献：">参考文献：</h3>
+<p>[1] 尚中君.探析JAVA编程语言在计算机软件开发中的应用[J].信息记录材料,2021,22(03):176-178.</p>
+<p>[2] 朱宝善,陈光浦,李鹏程,王深.基于B/S模式和MySQL的人力资源管理系统设计[J].现代电子技术,2021,44(14):65-69.</p>
+<p>[3] 张淼,刘东旭.基于JavaEE的人力资源管理系统的设计与实现[J].普洱学院学报,2020,36(03):35-36.</p>
+<p>[4] 张艳明.动态网页开发Servlet基础实验综述[J].电脑知识与技术,2019,15 (20):80-82.</p>
+<p>[5] 王军.计算机网络环境下的大学就业信息网研究[J],中国宇航出版社,2019,(10),115-117.</p>
+<p>[6] 韩坤,林关成,安嘉豪,陈泽.基于B/S的高校学生学业预警系统设计与实现[J].信息技术,2021,(08):53-58.</p>
+<p>[7] 王烽杰,郭玉靖.JAVA编程语言在计算机软件开发中运用[J].大众标准化,2020,(18):66-67.</p>
+<p>[8] 赵国文,夏平平.基于JavaEE的人事管理系统的设计与实现[J].现代工业经济和信息化,2019,9(11):88-89.</p>
+<p>[9] 王佳林,郭炀.基于计算机软件开发Java编程语言的分析研究及技术思考[J].科技风,2019,(33):108.</p>
+<p>[10] 李琼.基于三层B/S架构的企业信息化管理系统的设计与实现[J].信息与电脑(理论版),2021,33(04):126-128.</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/2025/04/02/%E6%99%BA%E8%83%BD%E8%80%83%E5%8B%A4%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/">https://shierjinghuang.github.io/2025/04/02/%E6%99%BA%E8%83%BD%E8%80%83%E5%8B%A4%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87/">
+                                    <span class="chip bg-color">毕业论文</span>
+                                </a>
+                            
+                                <a href="/tags/Java-Spring/">
+                                    <span class="chip bg-color">Java Spring</span>
+                                </a>
+                            
+                                <a href="/tags/Tomcat/">
+                                    <span class="chip bg-color">Tomcat</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2025/04/02/%E6%99%BA%E8%83%BD%E8%80%83%E5%8B%A4%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="智能考勤系统的设计与实现">
+                        
+                        <span class="card-title">智能考勤系统的设计与实现</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-04-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/" class="post-category">
+                                    项目设计
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87/">
+                        <span class="chip bg-color">毕业论文</span>
+                    </a>
+                    
+                    <a href="/tags/Java-Spring/">
+                        <span class="chip bg-color">Java Spring</span>
+                    </a>
+                    
+                    <a href="/tags/Tomcat/">
+                        <span class="chip bg-color">Tomcat</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2025/03/31/%E7%BB%93%E5%90%88AIGC%E6%8A%80%E6%9C%AF%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%B9%B3%E5%8F%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="结合AIGC结合AIGC技术的数据分析平台的设计与实现">
+                        
+                        <span class="card-title">结合AIGC结合AIGC技术的数据分析平台的设计与实现</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-03-31
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/" class="post-category">
+                                    项目设计
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87/">
+                        <span class="chip bg-color">毕业论文</span>
+                    </a>
+                    
+                    <a href="/tags/React/">
+                        <span class="chip bg-color">React</span>
+                    </a>
+                    
+                    <a href="/tags/SpringBoot/">
+                        <span class="chip bg-color">SpringBoot</span>
+                    </a>
+                    
+                    <a href="/tags/AIGC/">
+                        <span class="chip bg-color">AIGC</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2025</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">277.1k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
