@@ -5,7 +5,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="数据库语法汇总, 十二惊惶">
-    <meta name="description" content="">
+    <meta name="description" content="MySQL 数据库操作命令
+[TOC]
+1. 数据库操作
+创建数据库
+-- 创建数据库
+CREATE DATABASE database_name;
+
+-- 创建数据库并指定字符集
+-- 创建数据库时推荐使用 utf8mb4 字符集以支持完">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -373,12 +381,25 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                <span class="chip bg-color">数据库</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                学习笔记
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -401,14 +422,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    0
+                    4.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    21 分
                 </div>
                 
 
@@ -431,7 +452,826 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h2 id="mysql-数据库操作命令">MySQL 数据库操作命令</h2>
+<p>[TOC]</p>
+<h3 id="1-数据库操作">1. 数据库操作</h3>
+<p><strong>创建数据库</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 创建数据库</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> database_name<span class="token punctuation">;</span>
+
+<span class="token comment">-- 创建数据库并指定字符集</span>
+<span class="token comment">-- 创建数据库时推荐使用 utf8mb4 字符集以支持完整的 Unicode 字符(包括emoji)</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> database_name <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> utf8mb4 <span class="token keyword">COLLATE</span> utf8mb4_unicode_ci<span class="token punctuation">;</span>
+
+<span class="token comment">-- 创建数据库(如果不存在)</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> <span class="token keyword">IF</span> <span class="token operator">NOT</span> <span class="token keyword">EXISTS</span> database_name<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>修改数据库</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 修改数据库字符集</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">DATABASE</span> database_name <span class="token keyword">CHARACTER</span> <span class="token keyword">SET</span> utf8mb4 <span class="token keyword">COLLATE</span> utf8mb4_unicode_ci<span class="token punctuation">;</span>
+
+<span class="token comment">-- 重命名数据库(MySQL没有直接重命名数据库的命令，通常需要导出再导入)</span>
+<span class="token comment">-- 替代方案：创建新数据库，迁移数据，删除旧数据库</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>删除数据库</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 删除数据库</span>
+<span class="token keyword">DROP</span> <span class="token keyword">DATABASE</span> database_name<span class="token punctuation">;</span>
+
+<span class="token comment">-- 删除数据库(如果存在)</span>
+<span class="token keyword">DROP</span> <span class="token keyword">DATABASE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> database_name<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>使用数据库</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 选择/使用数据库</span>
+<span class="token keyword">USE</span> database_name<span class="token punctuation">;</span>
+
+<span class="token comment">-- 查看当前使用的数据库</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">DATABASE</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 查看所有数据库</span>
+<span class="token keyword">SHOW</span> <span class="token keyword">DATABASES</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 查看数据库创建语句</span>
+<span class="token keyword">SHOW</span> <span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> database_name<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>数据库备份与恢复</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 备份数据库(命令行)</span>
+mysqldump -u username -p database_name <span class="token operator">></span> backup_file.sql
+
+<span class="token comment"># 恢复数据库(命令行)</span>
+mysql -u username -p database_name <span class="token operator">&lt;</span> backup_file.sql<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="2-数据表操作">2. 数据表操作</h3>
+<h4 id="2-1-创建数据表">2.1. 创建数据表</h4>
+<blockquote>
+<p>基本创建语法</p>
+</blockquote>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">CREATE TABLE 表名 (
+    -- 列名 数据类型 [约束条件]
+    列名1 数据类型 [约束条件] [COMMENT &#39;列注释&#39;],
+    列名2 数据类型 [约束条件] [COMMENT &#39;列注释&#39;],
+    ...
+    -- 表级约束（如主键、外键、唯一约束等）
+    [CONSTRAINT 约束名] 约束类型 (列名)
+) 
+-- 表选项
+[ENGINE&#x3D;存储引擎] 
+[DEFAULT CHARSET&#x3D;字符集] 
+[COMMENT&#x3D;&#39;表注释&#39;];<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>完整创建示例</p>
+</blockquote>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">CREATE TABLE 表名 (
+    -- 列定义开始
+    id INT AUTO_INCREMENT,               -- 整数类型，自增长
+    username VARCHAR(50) NOT NULL,       -- 变长字符串，不能为空
+    password CHAR(60) NOT NULL,          -- 定长字符串，不能为空
+    
+    -- 列约束示例
+    age INT UNSIGNED DEFAULT 18,         -- 无符号整数，默认值18
+    email VARCHAR(100) UNIQUE,           -- 唯一约束
+    balance DECIMAL(10,2) CHECK (balance &gt;&#x3D; 0),  -- 检查约束
+    
+    -- 日期时间类型
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,           -- 默认当前时间
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- 自动更新
+    
+    -- 表级约束（定义在所有列之后）
+    PRIMARY KEY (id),                    -- 主键约束
+    UNIQUE KEY uk_username (username),   -- 唯一键约束
+    INDEX idx_email (email),             -- 普通索引
+    FOREIGN KEY (role_id) REFERENCES roles(id) -- 外键约束
+)
+-- 表选项
+ENGINE&#x3D;InnoDB                          -- 存储引擎（默认InnoDB）
+DEFAULT CHARSET&#x3D;utf8mb4                -- 字符集（推荐utf8mb4支持emoji）
+COLLATE&#x3D;utf8mb4_unicode_ci             -- 排序规则
+COMMENT&#x3D;&#39;用户信息表&#39;;                  -- 表注释<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ol>
+<li>
+<p><strong>列定义</strong>:</p>
+<ul>
+<li>格式：<code>列名 数据类型 [约束] [COMMENT '注释']</code></li>
+<li>常用数据类型：INT, VARCHAR, CHAR, TEXT, DATE, TIMESTAMP, DECIMAL等</li>
+<li>常用约束：NOT NULL, DEFAULT, UNIQUE, CHECK, AUTO_INCREMENT等</li>
+</ul>
+</li>
+<li>
+<p><strong>表级约束</strong>:</p>
+<ul>
+<li>主键：<code>PRIMARY KEY (列名)</code></li>
+<li>外键：<code>FOREIGN KEY (列名) REFERENCES 外表名(列名)</code></li>
+<li>索引：<code>INDEX 索引名 (列名)</code></li>
+<li>唯一约束：<code>UNIQUE KEY 约束名 (列名)</code></li>
+</ul>
+</li>
+<li>
+<p><strong>表选项</strong>:</p>
+<ul>
+<li><code>ENGINE</code>：指定存储引擎（InnoDB/MyISAM等）</li>
+<li><code>DEFAULT CHARSET</code>：设置默认字符集</li>
+<li><code>COLLATE</code>：设置排序规则</li>
+<li><code>COMMENT</code>：为表添加注释</li>
+</ul>
+</li>
+<li>
+<p><strong>注释方式</strong>:</p>
+<ul>
+<li>列注释：在列定义中使用 <code>COMMENT '注释内容'</code></li>
+<li>表注释：在表选项中使用 <code>COMMENT='注释内容'</code></li>
+</ul>
+</li>
+</ol>
+<p><strong>从现有表创建新表</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 只复制结构</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> new_table <span class="token operator">LIKE</span> original_table<span class="token punctuation">;</span>
+
+<span class="token comment">-- 复制结构和数据</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> new_table <span class="token keyword">AS</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> original_table<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="2-2-修改数据表">2.2. 修改数据表</h4>
+<p><strong>添加列：</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">ALTER TABLE table_name
+-- 修改指定表
+ADD COLUMN column_name datatype constraints;
+-- 添加新列（列名、数据类型、约束）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>修改列：</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 修改列数据类型
+ALTER TABLE table_name
+MODIFY COLUMN column_name new_datatype;
+
+-- 重命名列
+ALTER TABLE table_name
+CHANGE COLUMN old_name new_name datatype;  -- 重命名列（必须指定数据类型）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>删除列：</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">ALTER TABLE table_name 
+DROP COLUMN column_name;  -- 删除指定列<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong>添加约束：</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 添加主键
+ALTER TABLE table_name
+ADD PRIMARY KEY (column_name);  -- 将指定列设为主键
+
+-- 添加外键
+ALTER TABLE table_name
+ADD CONSTRAINT fk_name  -- 指定外键约束名称
+FOREIGN KEY (column_name) REFERENCES other_table(column_name);  -- 设置外键关系
+
+-- 添加唯一约束
+ALTER TABLE table_name
+ADD UNIQUE (column_name);  -- 使指定列的值唯一<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>删除约束：</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 删除主键
+ALTER TABLE table_name 
+DROP PRIMARY KEY;
+-- 删除外键
+ALTER TABLE table_name 
+DROP FOREIGN KEY fk_name;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>重命名表：</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 方法1
+RENAME TABLE old_name TO new_name;  -- 重命名表
+-- 方法2
+ALTER TABLE old_name RENAME TO new_name;  -- 重命名表的另一种方式<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="2-3-删除数据表">2.3. 删除数据表</h4>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 删除表</span>
+<span class="token keyword">DROP</span> <span class="token keyword">TABLE</span> table_name<span class="token punctuation">;</span>
+<span class="token comment">-- 删除表(如果存在)</span>
+<span class="token keyword">DROP</span> <span class="token keyword">TABLE</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> table_name<span class="token punctuation">;</span>
+<span class="token comment">-- 截断表(删除所有数据但保留结构)</span>
+<span class="token keyword">TRUNCATE</span> <span class="token keyword">TABLE</span> table_name<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="2-4-使用数据表">2.4. 使用数据表</h4>
+<p><strong>查看表信息：</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">SHOW TABLES;  -- 显示当前数据库中的所有表
+
+DESCRIBE table_name;  -- 显示表结构（列名、类型、约束等）
+DESC table_name;  -- DESCRIBE的简写形式
+SHOW COLUMNS FROM table_name;  -- 显示表列的另一种方式
+
+SHOW CREATE TABLE table_name;  -- 显示创建该表的完整SQL语句<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>表数据操作：</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 插入数据
+INSERT INTO table_name (column1, column2, ...) 
+VALUES (value1, value2, ...);
+
+-- 查询数据
+SELECT * FROM table_name;
+
+-- 更新数据
+UPDATE table_name 
+SET column1 &#x3D; value1, column2 &#x3D; value2 
+WHERE condition;
+
+-- 删除数据
+DELETE FROM table_name WHERE condition;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>索引操作：</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 创建索引
+CREATE INDEX index_name ON table_name (column_name);
+
+-- 创建唯一索引
+CREATE UNIQUE INDEX index_name ON table_name (column_name);
+
+-- 删除索引
+DROP INDEX index_name ON table_name;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="2-5-实用技巧">2.5. 实用技巧</h4>
+<p><strong>复制表结构及数据：</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> new_table <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> original_table<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>快速清空并重置自增ID：</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">TRUNCATE TABLE table_name;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>添加注释：</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 表注释
+ALTER TABLE table_name COMMENT &#39;表注释内容&#39;;
+
+-- 列注释
+ALTER TABLE table_name 
+MODIFY COLUMN column_name datatype COMMENT &#39;列注释内容&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="3-查询操作">3. 查询操作</h3>
+<h4 id="3-1-单表查询">3.1. 单表查询</h4>
+<p><strong>基本查询</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 查询表中所有列的所有数据
+SELECT * FROM table_name;
+
+-- 仅查询表中的特定列
+SELECT column1, column2 FROM table_name;
+
+-- 为查询结果的列设置别名（便于理解和展示）
+SELECT column1 AS &#39;列1别名&#39;, column2 AS &#39;列2别名&#39; FROM table_name;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>条件查询</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 基础条件查询（condition可以是任何有效的条件表达式）
+SELECT * FROM table_name WHERE column1 &#x3D; &#39;value&#39;;
+
+-- 多条件AND查询（必须同时满足所有条件）
+SELECT * FROM table_name WHERE condition1 AND condition2;
+
+-- 多条件OR查询（满足任一条件即可）
+SELECT * FROM table_name WHERE condition1 OR condition2;
+
+-- 范围查询（包含边界值）
+SELECT * FROM table_name WHERE column BETWEEN value1 AND value2;
+
+-- IN查询（检查列值是否在指定列表中）
+SELECT * FROM table_name WHERE column IN (&#39;value1&#39;, &#39;value2&#39;, &#39;value3&#39;);
+
+-- LIKE模糊查询（%表示任意多个字符，_表示单个字符）
+SELECT * FROM table_name WHERE column LIKE &#39;张%&#39;;  -- 查找以&quot;张&quot;开头的值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>排序查询</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 单列排序（ASC升序-默认，DESC降序）
+SELECT * FROM table_name ORDER BY column1 DESC;
+
+-- 多列排序（先按column1排序，相同值再按column2排序）
+SELECT * FROM table_name ORDER BY column1 ASC, column2 DESC;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>分页查询</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 传统LIMIT分页（offset从0开始，count表示每页数量）
+SELECT * FROM table_name LIMIT 10, 20;  -- 跳过前10条，返回接下来的20条
+
+-- 现代分页写法（语义更明确）
+SELECT * FROM table_name LIMIT 20 OFFSET 10;  -- 同上，跳过10条取20条<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="3-2-分组查询">3.2. 分组查询</h4>
+<p><strong>基本分组</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 按单列分组并计算每组的记录数
+SELECT department, COUNT(*) AS &#39;员工数量&#39; 
+FROM employees 
+GROUP BY department;
+
+-- 按多列分组（复合分组）
+SELECT department, gender, COUNT(*) 
+FROM employees 
+GROUP BY department, gender;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>分组后过滤</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- HAVING用于对分组结果进行过滤（WHERE是对原始数据过滤）
+SELECT department, COUNT(*) as emp_count 
+FROM employees 
+GROUP BY department 
+HAVING emp_count &gt; 5;  -- 只显示员工数大于5的部门<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>聚合函数</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 常用聚合函数示例</span>
+<span class="token keyword">SELECT</span> 
+    <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token string">'总记录数'</span><span class="token punctuation">,</span>
+    <span class="token function">SUM</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token string">'薪资总额'</span><span class="token punctuation">,</span>
+    <span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token string">'平均薪资'</span><span class="token punctuation">,</span>
+    <span class="token function">MAX</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token string">'最高薪资'</span><span class="token punctuation">,</span>
+    <span class="token function">MIN</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token string">'最低薪资'</span>
+<span class="token keyword">FROM</span> employees<span class="token punctuation">;</span>
+
+<span class="token comment">-- 分组聚合（计算每个部门的平均薪资）</span>
+<span class="token keyword">SELECT</span> department<span class="token punctuation">,</span> <span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token string">'部门平均薪资'</span>
+<span class="token keyword">FROM</span> employees 
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> department<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="3-3-连接查询">3.3. 连接查询</h4>
+<p><strong>内连接 (INNER JOIN)</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 基本内连接（只返回两表中匹配的行）
+SELECT e.name, d.department_name 
+FROM employees e
+INNER JOIN departments d ON e.dept_id &#x3D; d.id;
+
+-- 多表内连接（连接三个表）
+SELECT o.order_id, c.customer_name, p.product_name
+FROM orders o
+INNER JOIN customers c ON o.customer_id &#x3D; c.id
+INNER JOIN products p ON o.product_id &#x3D; p.id;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>外连接</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 左外连接（返回左表所有行，右表无匹配则为NULL）
+SELECT e.name, d.department_name FROM employees e LEFT JOIN departments d ON e.dept_id &#x3D; d.id;
+
+-- 右外连接（返回右表所有行，左表无匹配则为NULL）
+SELECT e.name, d.department_name FROM employees e RIGHT JOIN departments d ON e.dept_id &#x3D; d.id;
+
+-- 全外连接模拟（MySQL没有FULL JOIN，用UNION实现）
+SELECT e.name, d.department_name FROM employees e LEFT JOIN departments d ON e.dept_id &#x3D; d.id UNION SELECT e.name, d.department_name FROM employees e RIGHT JOIN departments d ON e.dept_id &#x3D; d.id;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>交叉连接 (CROSS JOIN)</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 显式交叉连接（返回两表的笛卡尔积）
+SELECT p.product_name, s.size_name FROM products p CROSS JOIN sizes s;
+
+-- 隐式交叉连接（不推荐使用，不易读）
+SELECT p.product_name, s.size_name FROM products p, sizes s;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>自连接</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 自连接示例：查找员工及其经理（同一表内连接）
+SELECT e1.name AS &#39;员工姓名&#39;, e2.name AS &#39;经理姓名&#39;
+FROM employees e1
+LEFT JOIN employees e2 ON e1.manager_id &#x3D; e2.id;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="3-4-嵌套查询-子查询">3.4. 嵌套查询 (子查询)</h4>
+<p><strong>WHERE子句中的子查询</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 单行子查询（子查询返回单行单列）</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> employees 
+<span class="token keyword">WHERE</span> salary <span class="token operator">></span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token keyword">FROM</span> employees<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 多行子查询（使用IN操作符）</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> products 
+<span class="token keyword">WHERE</span> category_id <span class="token operator">IN</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> id <span class="token keyword">FROM</span> categories <span class="token keyword">WHERE</span> is_active <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 比较子查询（使用ALL/ANY）</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> employees 
+<span class="token keyword">WHERE</span> salary <span class="token operator">></span> <span class="token keyword">ALL</span> <span class="token punctuation">(</span><span class="token keyword">SELECT</span> salary <span class="token keyword">FROM</span> employees <span class="token keyword">WHERE</span> dept_id <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>FROM子句中的子查询</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 将子查询结果作为临时表</span>
+<span class="token keyword">SELECT</span> dept_stats<span class="token punctuation">.</span>dept_name<span class="token punctuation">,</span> dept_stats<span class="token punctuation">.</span>avg_salary
+<span class="token keyword">FROM</span> <span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> d<span class="token punctuation">.</span>name <span class="token keyword">AS</span> dept_name<span class="token punctuation">,</span> <span class="token function">AVG</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>salary<span class="token punctuation">)</span> <span class="token keyword">AS</span> avg_salary
+    <span class="token keyword">FROM</span> departments d
+    <span class="token keyword">JOIN</span> employees e <span class="token keyword">ON</span> d<span class="token punctuation">.</span>id <span class="token operator">=</span> e<span class="token punctuation">.</span>dept_id
+    <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> d<span class="token punctuation">.</span>name
+<span class="token punctuation">)</span> <span class="token keyword">AS</span> dept_stats
+<span class="token keyword">WHERE</span> dept_stats<span class="token punctuation">.</span>avg_salary <span class="token operator">></span> <span class="token number">5000</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>SELECT子句中的子查询</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 在SELECT中使用子查询（相关子查询）</span>
+<span class="token keyword">SELECT</span> p<span class="token punctuation">.</span>product_name<span class="token punctuation">,</span> 
+       <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">FROM</span> order_items <span class="token keyword">WHERE</span> product_id <span class="token operator">=</span> p<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token keyword">AS</span> order_count
+<span class="token keyword">FROM</span> products p<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>EXISTS子查询</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 使用EXISTS检查是否存在相关记录</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> customers c
+<span class="token keyword">WHERE</span> <span class="token keyword">EXISTS</span> <span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> <span class="token number">1</span> <span class="token keyword">FROM</span> orders o 
+    <span class="token keyword">WHERE</span> o<span class="token punctuation">.</span>customer_id <span class="token operator">=</span> c<span class="token punctuation">.</span>id <span class="token operator">AND</span> o<span class="token punctuation">.</span>total_amount <span class="token operator">></span> <span class="token number">1000</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="3-5-集合查询">3.5. 集合查询</h4>
+<p><strong>UNION (去重合并)</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 合并两个查询结果并去重
+SELECT product_name FROM current_products UNION 
+SELECT product_name FROM discontinued_products;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><strong>UNION ALL (不去重合并)</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 合并两个查询结果保留所有重复项
+SELECT employee_name FROM full_time_employees 
+UNION ALL 
+SELECT employee_name FROM part_time_employees;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>INTERSECT (交集 - MySQL 8.0+)</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 获取两个查询结果的交集
+SELECT customer_id FROM premium_customers 
+INTERSECT
+SELECT customer_id FROM active_customers;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>EXCEPT/MINUS (差集 - MySQL 8.0+)</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 获取第一个查询有而第二个查询没有的结果</span>
+<span class="token keyword">SELECT</span> product_id <span class="token keyword">FROM</span> all_products
+<span class="token keyword">EXCEPT</span>
+<span class="token keyword">SELECT</span> product_id <span class="token keyword">FROM</span> discontinued_products<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="3-6-高级查询技巧">3.6. 高级查询技巧</h4>
+<p><strong>公用表表达式 (CTE)</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 基本CTE（提高复杂查询的可读性）</span>
+<span class="token keyword">WITH</span> dept_salary <span class="token keyword">AS</span> <span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> dept_id<span class="token punctuation">,</span> <span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token keyword">AS</span> avg_salary
+    <span class="token keyword">FROM</span> employees
+    <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> dept_id
+<span class="token punctuation">)</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> dept_salary <span class="token keyword">WHERE</span> avg_salary <span class="token operator">></span> <span class="token number">5000</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 递归CTE (处理层级数据，如组织结构)</span>
+<span class="token keyword">WITH</span> RECURSIVE org_tree <span class="token keyword">AS</span> <span class="token punctuation">(</span>
+    <span class="token comment">-- 基础查询（顶级节点）</span>
+    <span class="token keyword">SELECT</span> id<span class="token punctuation">,</span> name<span class="token punctuation">,</span> parent_id<span class="token punctuation">,</span> <span class="token number">1</span> <span class="token keyword">AS</span> <span class="token keyword">level</span>
+    <span class="token keyword">FROM</span> employees
+    <span class="token keyword">WHERE</span> parent_id <span class="token operator">IS</span> <span class="token boolean">NULL</span>
+    
+    <span class="token keyword">UNION</span> <span class="token keyword">ALL</span>
+    
+    <span class="token comment">-- 递归查询（下级节点）</span>
+    <span class="token keyword">SELECT</span> e<span class="token punctuation">.</span>id<span class="token punctuation">,</span> e<span class="token punctuation">.</span>name<span class="token punctuation">,</span> e<span class="token punctuation">.</span>parent_id<span class="token punctuation">,</span> ot<span class="token punctuation">.</span><span class="token keyword">level</span> <span class="token operator">+</span> <span class="token number">1</span>
+    <span class="token keyword">FROM</span> employees e
+    <span class="token keyword">JOIN</span> org_tree ot <span class="token keyword">ON</span> e<span class="token punctuation">.</span>parent_id <span class="token operator">=</span> ot<span class="token punctuation">.</span>id
+<span class="token punctuation">)</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> org_tree <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token keyword">level</span><span class="token punctuation">,</span> name<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>窗口函数 (MySQL 8.0+)</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- ROW_NUMBER() 为每行分配唯一序号</span>
+<span class="token keyword">SELECT</span> employee_name<span class="token punctuation">,</span> salary<span class="token punctuation">,</span>
+       ROW_NUMBER<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">OVER</span> <span class="token punctuation">(</span><span class="token keyword">ORDER</span> <span class="token keyword">BY</span> salary <span class="token keyword">DESC</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> salary_rank
+<span class="token keyword">FROM</span> employees<span class="token punctuation">;</span>
+
+<span class="token comment">-- RANK() 和 DENSE_RANK() 处理并列排名</span>
+<span class="token keyword">SELECT</span> product_name<span class="token punctuation">,</span> sales<span class="token punctuation">,</span>
+       RANK<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">OVER</span> <span class="token punctuation">(</span><span class="token keyword">ORDER</span> <span class="token keyword">BY</span> sales <span class="token keyword">DESC</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> rank<span class="token punctuation">,</span>          <span class="token comment">-- 标准排名（会跳号）</span>
+       DENSE_RANK<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">OVER</span> <span class="token punctuation">(</span><span class="token keyword">ORDER</span> <span class="token keyword">BY</span> sales <span class="token keyword">DESC</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> dense_rank  <span class="token comment">-- 密集排名（不跳号）</span>
+<span class="token keyword">FROM</span> products<span class="token punctuation">;</span>
+
+<span class="token comment">-- 聚合窗口函数（计算移动平均值等）</span>
+<span class="token keyword">SELECT</span> <span class="token keyword">date</span><span class="token punctuation">,</span> revenue<span class="token punctuation">,</span>
+       <span class="token function">SUM</span><span class="token punctuation">(</span>revenue<span class="token punctuation">)</span> <span class="token keyword">OVER</span> <span class="token punctuation">(</span><span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token keyword">date</span> <span class="token keyword">ROWS</span> <span class="token operator">BETWEEN</span> <span class="token number">2</span> <span class="token keyword">PRECEDING</span> <span class="token operator">AND</span> <span class="token keyword">CURRENT</span> <span class="token keyword">ROW</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token number">3</span>_day_total<span class="token punctuation">,</span>
+       <span class="token function">AVG</span><span class="token punctuation">(</span>revenue<span class="token punctuation">)</span> <span class="token keyword">OVER</span> <span class="token punctuation">(</span><span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token keyword">date</span> <span class="token keyword">ROWS</span> <span class="token operator">BETWEEN</span> <span class="token number">2</span> <span class="token keyword">PRECEDING</span> <span class="token operator">AND</span> <span class="token keyword">CURRENT</span> <span class="token keyword">ROW</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> <span class="token number">3</span>_day_avg
+<span class="token keyword">FROM</span> daily_sales<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>JSON查询 (MySQL 5.7+)</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 从JSON字段提取数据</span>
+<span class="token keyword">SELECT</span> id<span class="token punctuation">,</span> 
+       JSON_EXTRACT<span class="token punctuation">(</span>product_details<span class="token punctuation">,</span> <span class="token string">'$.specs.weight'</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> product_weight
+<span class="token keyword">FROM</span> products<span class="token punctuation">;</span>
+
+<span class="token comment">-- 使用->操作符简写JSON路径</span>
+<span class="token keyword">SELECT</span> id<span class="token punctuation">,</span> product_details<span class="token operator">-</span><span class="token operator">></span><span class="token string">'$.price'</span> <span class="token keyword">AS</span> product_price
+<span class="token keyword">FROM</span> products<span class="token punctuation">;</span>
+
+<span class="token comment">-- JSON条件查询</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> products 
+<span class="token keyword">WHERE</span> product_details<span class="token operator">-</span><span class="token operator">></span><span class="token string">'$.rating'</span> <span class="token operator">>=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- JSON数组处理</span>
+<span class="token keyword">SELECT</span> id<span class="token punctuation">,</span> 
+       JSON_EXTRACT<span class="token punctuation">(</span>tags<span class="token punctuation">,</span> <span class="token string">'$[0]'</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> first_tag<span class="token punctuation">,</span>
+       JSON_LENGTH<span class="token punctuation">(</span>tags<span class="token punctuation">)</span> <span class="token keyword">AS</span> tag_count
+<span class="token keyword">FROM</span> articles<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="4-插入数据-insert">4. 插入数据（INSERT）</h3>
+<p><strong>基本插入</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 插入单行数据（指定列）
+INSERT INTO table_name (column1, column2, column3) VALUES (value1, value2, value3);
+#	1. 列名和值必须一一对应
+#	2. 可以省略自增主键列
+#	3. 对于有默认值的列可以省略
+
+-- 插入单行数据（省略列名，必须提供所有列的值）
+INSERT INTO table_name VALUES (value1, value2, value3, ...);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>批量插入</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 批量插入多行数据（高效方式）
+INSERT INTO table_name (column1, column2)
+VALUES 
+    (value1, value2),
+    (value3, value4),
+    (value5, value6);
+-- 优点：
+#  1. 减少客户端与服务器通信次数
+#  2. 提高插入效率
+
+-- 使用SET语法插入（较少用）
+INSERT INTO table_name 
+SET column1 &#x3D; value1, 
+    column2 &#x3D; value2;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>特殊插入方式</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 从其他表复制数据插入
+INSERT INTO target_table (column1, column2)
+SELECT source_col1, source_col2 
+FROM source_table
+WHERE condition;
+
+-- 插入时忽略重复键错误
+INSERT IGNORE INTO table_name (column1, column2)
+VALUES (value1, value2);
+
+-- 1. 对于主键或唯一键冲突的记录会被静默忽略
+-- 2. 不会报错中断执行
+
+-- 替换已有记录（先删除后插入）
+REPLACE INTO table_name (id, column1, column2) VALUES (1, &#39;new_value1&#39;, &#39;new_value2&#39;);
+&#x2F;* 等同于：
+DELETE FROM table_name WHERE id &#x3D; 1;
+INSERT INTO table_name (id, column1, column2) VALUES (1, &#39;new_value1&#39;, &#39;new_value2&#39;);
+*&#x2F;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="5-更新数据-update">5. 更新数据（UPDATE）</h3>
+<p><strong>基本更新</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 更新符合条件的记录
+UPDATE table_name
+SET column1 &#x3D; new_value1,
+    column2 &#x3D; new_value2
+WHERE condition;
+
+-- 1. 一定要有WHERE条件，否则会更新所有行
+-- 2. 可以同时更新多列
+
+-- 使用表达式更新
+UPDATE products
+SET price &#x3D; price * 1.1  -- 价格上调10%
+WHERE category &#x3D; &#39;电子产品&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>特殊更新方式</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 使用子查询更新</span>
+<span class="token keyword">UPDATE</span> employees
+<span class="token keyword">SET</span> salary <span class="token operator">=</span> salary <span class="token operator">*</span> <span class="token number">1.05</span>
+<span class="token keyword">WHERE</span> department <span class="token operator">IN</span> <span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> department <span class="token keyword">FROM</span> high_performance_depts
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 多表关联更新</span>
+<span class="token keyword">UPDATE</span> orders o
+<span class="token keyword">JOIN</span> customers c <span class="token keyword">ON</span> o<span class="token punctuation">.</span>customer_id <span class="token operator">=</span> c<span class="token punctuation">.</span>id
+<span class="token keyword">SET</span> o<span class="token punctuation">.</span><span class="token keyword">status</span> <span class="token operator">=</span> <span class="token string">'VIP'</span>
+<span class="token keyword">WHERE</span> c<span class="token punctuation">.</span><span class="token keyword">level</span> <span class="token operator">=</span> <span class="token string">'黄金会员'</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 使用ORDER BY和LIMIT限制更新</span>
+<span class="token keyword">UPDATE</span> log_entries
+<span class="token keyword">SET</span> processed <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">WHERE</span> processed <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> created_at
+<span class="token keyword">LIMIT</span> <span class="token number">1000</span><span class="token punctuation">;</span>  <span class="token comment">-- 每次只处理1000条</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>增量更新</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 基于当前值的增量更新</span>
+<span class="token keyword">UPDATE</span> inventory
+<span class="token keyword">SET</span> stock <span class="token operator">=</span> stock <span class="token operator">-</span> <span class="token number">5</span>  <span class="token comment">-- 库存减少5</span>
+<span class="token keyword">WHERE</span> product_id <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 时间戳自动更新</span>
+<span class="token keyword">UPDATE</span> articles
+<span class="token keyword">SET</span> view_count <span class="token operator">=</span> view_count <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    last_viewed <span class="token operator">=</span> <span class="token keyword">CURRENT_TIMESTAMP</span>
+<span class="token keyword">WHERE</span> id <span class="token operator">=</span> <span class="token number">456</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="6-删除数据-delete">6. 删除数据（DELETE）</h3>
+<p><strong>基本删除</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 删除符合条件的记录
+DELETE FROM table_name WHERE condition;
+
+-- 1. 没有WHERE条件会删除表中所有数据！
+-- 2. 删除操作不可逆，建议先备份
+
+-- 示例：删除30天前的日志
+DELETE FROM system_logs
+WHERE created_at &lt; DATE_SUB(NOW(), INTERVAL 30 DAY);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>特殊删除方式</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 多表关联删除</span>
+<span class="token keyword">DELETE</span> p  <span class="token comment">-- 只删除products表中的记录</span>
+<span class="token keyword">FROM</span> products p
+<span class="token keyword">JOIN</span> discontinued_items d <span class="token keyword">ON</span> p<span class="token punctuation">.</span>id <span class="token operator">=</span> d<span class="token punctuation">.</span>product_id
+<span class="token keyword">WHERE</span> d<span class="token punctuation">.</span>discontinued_date <span class="token operator">&lt;</span> <span class="token string">'2023-01-01'</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 使用ORDER BY和LIMIT限制删除</span>
+<span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> temp_data
+<span class="token keyword">WHERE</span> expired <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> created_at
+<span class="token keyword">LIMIT</span> <span class="token number">1000</span><span class="token punctuation">;</span>  <span class="token comment">-- 每次只删除1000条</span>
+
+<span class="token comment">-- 快速清空表（不可回滚）</span>
+<span class="token keyword">TRUNCATE</span> <span class="token keyword">TABLE</span> table_name<span class="token punctuation">;</span>
+<span class="token comment">/* 与DELETE的区别：
+1. 速度更快
+2. 重置自增计数器
+3. 无法通过事务回滚
+4. 不触发DELETE触发器
+*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="7-综合操作技巧">7. 综合操作技巧</h3>
+<p><strong>事务处理</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 使用事务确保数据一致性</span>
+<span class="token keyword">START</span> <span class="token keyword">TRANSACTION</span><span class="token punctuation">;</span>
+
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> orders <span class="token punctuation">(</span>customer_id<span class="token punctuation">,</span> amount<span class="token punctuation">)</span> 
+<span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token number">123</span><span class="token punctuation">,</span> <span class="token number">99.99</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">UPDATE</span> accounts 
+<span class="token keyword">SET</span> balance <span class="token operator">=</span> balance <span class="token operator">-</span> <span class="token number">99.99</span>
+<span class="token keyword">WHERE</span> user_id <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span>
+
+<span class="token keyword">COMMIT</span><span class="token punctuation">;</span>  <span class="token comment">-- 或 ROLLBACK 回滚</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>条件插入/更新</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 存在则更新，不存在则插入（MySQL特有语法）</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> users <span class="token punctuation">(</span>id<span class="token punctuation">,</span> name<span class="token punctuation">,</span> login_count<span class="token punctuation">)</span>
+<span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'张三'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token keyword">ON</span> <span class="token keyword">DUPLICATE</span> <span class="token keyword">KEY</span> <span class="token keyword">UPDATE</span> 
+    login_count <span class="token operator">=</span> login_count <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    last_login <span class="token operator">=</span> <span class="token function">NOW</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>使用临时表批量操作</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 创建临时表存储要处理的数据</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TEMPORARY</span> <span class="token keyword">TABLE</span> temp_updates <span class="token punctuation">(</span>
+    id <span class="token keyword">INT</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span><span class="token punctuation">,</span>
+    new_value <span class="token keyword">VARCHAR</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 批量插入要更新的数据</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> temp_updates <span class="token keyword">VALUES</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">'A'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token string">'B'</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token string">'C'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">-- 使用临时表批量更新</span>
+<span class="token keyword">UPDATE</span> main_table m
+<span class="token keyword">JOIN</span> temp_updates t <span class="token keyword">ON</span> m<span class="token punctuation">.</span>id <span class="token operator">=</span> t<span class="token punctuation">.</span>id
+<span class="token keyword">SET</span> m<span class="token punctuation">.</span><span class="token keyword">column</span> <span class="token operator">=</span> t<span class="token punctuation">.</span>new_value<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="8-安全操作建议">8. 安全操作建议</h3>
+<ol>
+<li>
+<p><strong>重要数据操作前先备份</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 创建备份表</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> orders_backup <span class="token keyword">AS</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> orders<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p><strong>使用SELECT测试WHERE条件</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 执行DELETE前先用SELECT确认影响范围</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> orders <span class="token keyword">WHERE</span> <span class="token keyword">status</span> <span class="token operator">=</span> <span class="token string">'cancelled'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p><strong>启用安全更新模式</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 防止无WHERE条件的更新/删除</span>
+<span class="token keyword">SET</span> SQL_SAFE_UPDATES <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p><strong>分批处理大数据量</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 使用LIMIT分批删除</span>
+<span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> large_table <span class="token keyword">WHERE</span> condition <span class="token keyword">LIMIT</span> <span class="token number">10000</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p><strong>考虑使用软删除</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 添加is_deleted标记而非物理删除</span>
+<span class="token keyword">UPDATE</span> customers <span class="token keyword">SET</span> is_deleted <span class="token operator">=</span> <span class="token number">1</span> <span class="token keyword">WHERE</span> id <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+</ol>
+<h3 id="9-mysql-视图操作命令">9. MySQL 视图操作命令</h3>
+<h4 id="9-1-创建视图">9.1. 创建视图</h4>
+<p><strong>基本视图创建</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">CREATE VIEW view_name AS SELECT column1, column2, ... FROM table_name
+WHERE condition;
+
+-- 1. 视图是基于SQL查询的虚拟表
+-- 2. 不实际存储数据，每次访问时动态生成
+-- 3. 可以简化复杂查询<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>创建带检查选项的视图</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">CREATE VIEW view_name AS SELECT column1, column2 FROM table_name
+WHERE condition
+WITH [CASCADED|LOCAL] CHECK OPTION;
+
+-- CHECK OPTION作用：
+-- 1. 通过视图修改数据时，必须符合视图定义的条件
+-- 2. CASCADED：严格检查所有底层视图条件
+-- 3. LOCAL：只检查当前视图条件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>创建算法确定的视图</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">ALGORITHM</span> <span class="token operator">=</span> <span class="token keyword">MERGE</span> <span class="token keyword">VIEW</span> view_name <span class="token keyword">AS</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> table_name <span class="token keyword">WHERE</span> condition<span class="token punctuation">;</span>
+<span class="token comment">/*
+算法选项：
+1. MERGE：将视图查询与外部查询合并执行（性能最佳）
+2. TEMPTABLE：先执行视图查询创建临时表
+3. UNDEFINED：由MySQL自动选择（默认）
+*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>创建带有安全限制的视图</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">SQL</span> SECURITY <span class="token keyword">DEFINER</span> <span class="token keyword">VIEW</span> view_name <span class="token keyword">AS</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> table_name<span class="token punctuation">;</span>
+<span class="token comment">/*
+安全选项：
+1. DEFINER：以视图创建者权限执行（默认）
+2. INVOKER：以调用者权限执行
+*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="9-2-修改视图">9.2. 修改视图</h4>
+<p><strong>完全替换视图定义</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token operator">OR</span> <span class="token keyword">REPLACE</span> <span class="token keyword">VIEW</span> view_name <span class="token keyword">AS</span>
+<span class="token keyword">SELECT</span> new_columns
+<span class="token keyword">FROM</span> new_tables
+<span class="token keyword">WHERE</span> new_conditions<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>使用ALTER修改视图</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">ALTER</span> <span class="token keyword">VIEW</span> view_name <span class="token keyword">AS</span>
+<span class="token keyword">SELECT</span> updated_columns
+<span class="token keyword">FROM</span> updated_tables
+<span class="token keyword">WHERE</span> updated_conditions<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>修改视图属性</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">ALTER VIEW view_name ALGORITHM &#x3D; TEMPTABLE
+SQL SECURITY INVOKER
+WITH CHECK OPTION;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="9-3-删除视图">9.3. 删除视图</h4>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 基本删除语法</span>
+<span class="token keyword">DROP</span> <span class="token keyword">VIEW</span> <span class="token punctuation">[</span><span class="token keyword">IF</span> <span class="token keyword">EXISTS</span><span class="token punctuation">]</span> view_name<span class="token punctuation">;</span>
+
+<span class="token comment">-- 同时删除多个视图</span>
+<span class="token keyword">DROP</span> <span class="token keyword">VIEW</span> view1<span class="token punctuation">,</span> view2<span class="token punctuation">,</span> view3<span class="token punctuation">;</span>
+
+<span class="token comment">-- 安全删除（视图不存在时不报错）</span>
+<span class="token keyword">DROP</span> <span class="token keyword">VIEW</span> <span class="token keyword">IF</span> <span class="token keyword">EXISTS</span> view_name<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="9-4-使用视图">9.4. 使用视图</h4>
+<p><strong>查询视图数据</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 像普通表一样查询视图</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> view_name <span class="token keyword">WHERE</span> condition<span class="token punctuation">;</span>
+
+<span class="token comment">-- 查看视图结构</span>
+<span class="token keyword">DESCRIBE</span> view_name<span class="token punctuation">;</span>
+<span class="token keyword">DESC</span> view_name<span class="token punctuation">;</span>  <span class="token comment">-- 简写</span>
+
+<span class="token comment">-- 查看视图创建语句</span>
+<span class="token keyword">SHOW</span> <span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> view_name<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>通过视图更新数据</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 通过视图插入数据</span>
+<span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> view_name <span class="token punctuation">(</span>column1<span class="token punctuation">,</span> column2<span class="token punctuation">)</span> 
+<span class="token keyword">VALUES</span> <span class="token punctuation">(</span>value1<span class="token punctuation">,</span> value2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/* 限制条件：
+1. 视图必须基于单表
+2. 不能包含聚合函数、DISTINCT、GROUP BY等
+3. 必须包含基表中所有NOT NULL列
+*/</span>
+
+<span class="token comment">-- 通过视图更新数据</span>
+<span class="token keyword">UPDATE</span> view_name 
+<span class="token keyword">SET</span> column1 <span class="token operator">=</span> new_value 
+<span class="token keyword">WHERE</span> condition<span class="token punctuation">;</span>
+
+<span class="token comment">-- 通过视图删除数据</span>
+<span class="token keyword">DELETE</span> <span class="token keyword">FROM</span> view_name 
+<span class="token keyword">WHERE</span> condition<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="9-5-视图管理命令">9.5. 视图管理命令</h4>
+<p><strong>查看所有视图</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 查看当前数据库所有视图
+SHOW FULL TABLES WHERE TABLE_TYPE LIKE &#39;VIEW&#39;;
+
+-- 从information_schema查询视图信息
+SELECT * FROM information_schema.VIEWS WHERE TABLE_SCHEMA &#x3D; &#39;your_database&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>视图依赖关系查询</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">-- 查看视图依赖的表
+SELECT TABLE_NAME, VIEW_DEFINITION FROM information_schema.VIEWS 
+WHERE TABLE_SCHEMA &#x3D; &#39;your_database&#39;;
+
+-- 查看依赖于某表的所有视图
+SELECT * FROM information_schema.VIEWS WHERE VIEW_DEFINITION LIKE &#39;%your_table%&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="9-6-高级视图技巧">9.6. 高级视图技巧</h4>
+<p><strong>嵌套视图</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 创建基于其他视图的视图</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> nested_view <span class="token keyword">AS</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> base_view <span class="token keyword">WHERE</span> column1 <span class="token operator">></span> <span class="token number">100</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong>联合视图</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 创建合并多个查询结果的视图</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> union_view <span class="token keyword">AS</span> <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> table1 <span class="token keyword">WHERE</span> condition1
+<span class="token keyword">UNION</span> <span class="token keyword">ALL</span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> table2 <span class="token keyword">WHERE</span> condition2<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>聚合视图</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 创建包含聚合数据的视图</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> sales_summary <span class="token keyword">AS</span>
+<span class="token keyword">SELECT</span> 
+    product_id<span class="token punctuation">,</span>
+    <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> total_orders<span class="token punctuation">,</span>
+    <span class="token function">SUM</span><span class="token punctuation">(</span>amount<span class="token punctuation">)</span> <span class="token keyword">AS</span> total_revenue
+<span class="token keyword">FROM</span> sales
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> product_id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>可更新视图限制</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 检查视图是否可更新</span>
+<span class="token keyword">SELECT</span> TABLE_NAME<span class="token punctuation">,</span> IS_UPDATABLE 
+<span class="token keyword">FROM</span> information_schema<span class="token punctuation">.</span>VIEWS 
+<span class="token keyword">WHERE</span> TABLE_SCHEMA <span class="token operator">=</span> <span class="token string">'your_database'</span><span class="token punctuation">;</span>
+<span class="token comment">/*
+不可更新视图常见情况：
+1. 包含聚合函数
+2. 使用DISTINCT
+3. 包含GROUP BY/HAVING
+4. 包含UNION
+5. 包含子查询在某些情况下
+*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="9-7-视图最佳实践">9.7. 视图最佳实践</h4>
+<ol>
+<li>
+<p><strong>命名规范</strong>：使用<code>v_</code>或<code>view_</code>前缀区分视图和表</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> v_customer_orders <span class="token keyword">AS</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p><strong>性能考虑</strong>：复杂视图可能影响查询性能</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 考虑物化视图替代方案</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> mv_sales_summary <span class="token keyword">AS</span> <span class="token keyword">SELECT</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p><strong>安全应用</strong>：使用视图实现行列级安全</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 创建只显示部分数据的视图</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> v_employee_limited <span class="token keyword">AS</span>
+<span class="token keyword">SELECT</span> id<span class="token punctuation">,</span> name<span class="token punctuation">,</span> department <span class="token keyword">FROM</span> employees
+<span class="token keyword">WHERE</span> department <span class="token operator">=</span> CURRENT_USER_DEPARTMENT<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p><strong>版本控制</strong>：将视图定义纳入数据库版本管理</p>
+</li>
+<li>
+<p><strong>文档注释</strong>：为视图添加注释说明</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> v_monthly_sales <span class="token keyword">COMMENT</span> <span class="token string">'月度销售汇总视图'</span> <span class="token keyword">AS</span>
+<span class="token keyword">SELECT</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+</ol>
+<h4 id="9-8-视图使用示例">9.8. 视图使用示例</h4>
+<p><strong>简化复杂查询</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> v_order_details <span class="token keyword">AS</span>
+<span class="token keyword">SELECT</span> 
+    o<span class="token punctuation">.</span>order_id<span class="token punctuation">,</span>
+    o<span class="token punctuation">.</span>order_date<span class="token punctuation">,</span>
+    c<span class="token punctuation">.</span>customer_name<span class="token punctuation">,</span>
+    p<span class="token punctuation">.</span>product_name<span class="token punctuation">,</span>
+    od<span class="token punctuation">.</span>quantity<span class="token punctuation">,</span>
+    od<span class="token punctuation">.</span>unit_price
+<span class="token keyword">FROM</span> orders o
+<span class="token keyword">JOIN</span> customers c <span class="token keyword">ON</span> o<span class="token punctuation">.</span>customer_id <span class="token operator">=</span> c<span class="token punctuation">.</span>customer_id
+<span class="token keyword">JOIN</span> order_details od <span class="token keyword">ON</span> o<span class="token punctuation">.</span>order_id <span class="token operator">=</span> od<span class="token punctuation">.</span>order_id
+<span class="token keyword">JOIN</span> products p <span class="token keyword">ON</span> od<span class="token punctuation">.</span>product_id <span class="token operator">=</span> p<span class="token punctuation">.</span>product_id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>数据安全控制</strong></p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 创建仅显示公开产品的视图</span>
+<span class="token keyword">CREATE</span> <span class="token keyword">VIEW</span> v_public_products <span class="token keyword">AS</span>
+<span class="token keyword">SELECT</span> product_id<span class="token punctuation">,</span> product_name<span class="token punctuation">,</span> price
+<span class="token keyword">FROM</span> products
+<span class="token keyword">WHERE</span> is_public <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>报表视图</strong></p>
+<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">CREATE VIEW v_monthly_sales_report AS
+SELECT 
+    YEAR(order_date) AS year,
+    MONTH(order_date) AS month,
+    COUNT(*) AS total_orders,
+    SUM(amount) AS total_sales,
+    AVG(amount) AS avg_order_value
+FROM orders
+GROUP BY YEAR(order_date), MONTH(order_date);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
                 
             </div>
             <hr/>
@@ -494,7 +1334,11 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                    <span class="chip bg-color">数据库</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -831,7 +1675,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">302.9k</span>
+                        class="white-color">307.8k</span>
             
             
             
