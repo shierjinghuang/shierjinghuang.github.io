@@ -1,0 +1,1334 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="基于Java语言的五子棋游戏, 十二惊惶">
+    <meta name="description" content="基于Java语言的五子棋游戏
+摘要：五子棋作为起源于中国的古老游戏，兼顾老少皆宜与增强思维能力的优点，是一种需要两方参与的纯策略型棋类游戏。游戏规则大致为双方各执一色棋子，在空棋盘开局下，由持黑子方先下，随后黑白交替，每次只能下一子，首先一">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>基于Java语言的五子棋游戏 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">基于Java语言的五子棋游戏</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87/">
+                                <span class="chip bg-color">毕业论文</span>
+                            </a>
+                        
+                            <a href="/tags/JAVA/">
+                                <span class="chip bg-color">JAVA</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/" class="post-category">
+                                项目设计
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2024-05-05
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2025-04-05
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    7.5k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    26 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="基于java语言的五子棋游戏">基于Java语言的五子棋游戏</h2>
+<p><strong>摘要</strong>：五子棋作为起源于中国的古老游戏，兼顾老少皆宜与增强思维能力的优点，是一种需要两方参与的纯策略型棋类游戏。游戏规则大致为双方各执一色棋子，在空棋盘开局下，由持黑子方先下，随后黑白交替，每次只能下一子，首先一方形成五个相同颜色棋子连线即可获胜。论文将五子棋游戏与JAVA语言相结合，通过IntelliJ IDEA Community Edition开发工具，制作出了可以在计算机上进行游玩的五子棋游戏系统。该系统将游戏细分为棋盘、落子规则、胜负判定等多个模块，并且支持双人、人机游玩模式。该游戏系统界面简洁明了，方便操作。论文的最后讨论了系统还可有改进优化的空间。</p>
+<p><strong>关键词</strong>：五子棋 JAVA 规则判定 双人游戏</p>
+<h3 id="引言">引言</h3>
+<p>五子棋作为需要两人参与的对弈棋类游戏，自中国古代起，就深受全国男女老少的喜爱。五子棋棋子一般分为黑与白两色，游戏双方各执一种颜色的棋子，由黑方先下一子，随后是白方下一子，双方轮流交错，直到有一方首先达成自己的棋子有五颗在同一条连线上，则宣布游戏结束，首先达成条件的人为胜利的一方。</p>
+<p>作者综合考虑五子棋游戏特性以及当下比较流行的几大编程语言的特点，决定使用JAVA语言来开发五子棋游戏。Java不仅可以用于游戏开发，而且在游戏开发领域拥有广泛的应用^[1]^。该语言功能强大、安全稳定，拥有大量并且类型丰富的类库。除此之外，还使用了IntelliJ IDEA Community Edition工具，该工具是个集成开发工具，有多种功能，可以对代码进行编译、编辑和调试，是一款功能很强大的集成开发环境，而且IDEA同JAVA一样，能够跨平台工作，使得五子棋游戏能够在多种操作系统上运行。使用JAVA语言与IDEA，使游戏里的规则实现可以轻松方便地执行。最终实现的五子棋系统稳定可靠，功能齐全。</p>
+<p>该系统的实现，使得玩家摆脱了实体游戏道具的束缚，可以随时随地在多种操作系统上进行游玩。除此之外，作者在游戏里开发的人机模式，利用了属于人工智能的人机博弈^[2]^。作为人工智能领域的重要分支，人机博弈一直是人们进行科研探索的热门方向，应用领域十分广泛^[3]^。人机对战模式降低了游戏人数的要求，使得一个人也可以体验到五子棋游戏的乐趣。</p>
+<h3 id="1-绪论">1 绪论</h3>
+<h4 id="1-1-研发背景">1.1 研发背景</h4>
+<p>五子棋，作为中国古代就存在的古老游戏，其历史可以追溯数千年前，比如在《三国演义》中就有关五子棋里“连珠”的描述，至今已经成为了体系丰富完整的中国文化，甚至已经成为世界性的棋类游戏，特别在东南亚地区深受喜爱。比如在韩国，人们将五子棋爱称为“情侣棋”，意为情侣之间下五子棋有利于增进感情。在日本，因为众多的中老年群体对五子棋的喜爱，所以将五子棋称为“中老年棋”。而西方人将五子棋称为“绅士棋”，意为下五子棋可以展示出绅士的风度。时至今日，五子棋作为独特的棋类玩法，已经形成了丰富多彩的体系文化，它已经从单纯的娱乐项目，演变出了国际性的竞技运动。世界各国都建有有关五子棋的协议与赛事活动，各国人民积极参与。</p>
+<p>五子棋作为一款经典的可休闲娱乐，也可竞技比赛的棋类游戏，也因其简单易懂的游戏规则，已经成为了一种文化符号，将长久地活跃在人们的生活里。</p>
+<h4 id="1-2-研发意义">1.2 研发意义</h4>
+<p>之所以选择五子棋游戏在计算机上的开发，是因为具有很深远的意义。首先五子棋中国古代就存在的古老游戏，将其通过互联网传播，会让世界上更多的人，从五子棋文化的角度来接触中华文明，而且以计算机为载体，将五子棋游戏数据化保存在网络中，也是一种新的文化遗产留存保护形式，为古老的文化遗产增添新的传承方式。而且通过互联网这一传播途经，更容易将五子棋文化推广给年青一代的互联网网民。</p>
+<p>设计五子棋系统，还可以为人们提供一种娱乐方式。无论是在公共场合，办公室还是在家中，人们都可以在不用五子棋道具的情况下，摆脱一定环境与道具的束缚，随时随地通过计算机就可以轻松体会到五子棋带来的乐趣。并且用计算机完五子棋，拥有现实中玩五子棋无法做到的优点，就是可在只有一个玩家的情况下，用计算机来陪同下棋，从而降低了五子棋的游玩门槛。</p>
+<p>众所周知，五子棋是一款益智的棋类游戏，通过在五子棋中对弈，能够促进玩家的思维能力，逻辑推理能力和决策能，从而达到锻炼玩家智力的效果。而对于研发五子棋游戏的人来说，编译这款游戏可以起到编程语言练手的作用，可以帮助编译者熟练掌握计算机语言编程的技巧与方法。比如在研究五子棋算法时，能够提升研发人计算机语言的理解和计算机语言的实际应用能力。</p>
+<p>最后，研发五子棋游戏，可以称为一个研发创新的起点。通过不断地研究创新，为五子棋游戏系统增添新的功能，优化游戏算法，美化游戏界面，像这样的不断地完善升级游戏内容，从而提升玩家游戏体验。</p>
+<h4 id="1-3-研发内容">1.3 研发内容</h4>
+<p>该系统的实现目标是将五子棋的基本功能完整地体现在五子棋系统中，这里面会包括很多技术与功能。</p>
+<p>首先是在游戏开始前的界面上，界面整体设计需要简洁明了，能让玩家一眼看出界面上各选择按钮的功能，颜色搭配上需要柔和不伤眼睛。其次要有基本的功能选择，例如双人对战，还要有具有五子棋系统特色的人机对战，即在一个人的时候也可以在计算机作为陪同对手的情况下游玩。</p>
+<p>对于游戏内的设定，首先要有基本的胜负判断功能，合法落子功能，和棋盘绘制功能。根据五子棋的游戏规则，胜负的判定是五子连珠^[4]^的判定，即一方首先达成在一条方向线上，实现五颗本方颜色棋子连续，其中方向线是指水平方向、竖直方向以及斜方向。合法落子是指新落下的棋子位置上，不能存在其他棋子，即棋子只能放在空的落棋点上。对棋盘绘制功能的要求是，棋盘要有基本的15道盘规格，对棋盘棋子风格的绘制要明了柔和。玩家在选择人机对战时，电脑下棋算法要具有推算最优落子位置功能。此外，五子棋系统除了需要拥有基本的开始，结束功能，还有具备满足玩家基本需求的悔棋、认输功能。还有一些比较人性化的功能，比如界面提醒，提示玩家轮到哪一方落子。由于玩家一般需要通过鼠标来进行游戏操作，所以还要引入鼠标事件技术。</p>
+<p>最后还要实现判断五子棋游戏结束条件，除了上文提到的胜负判定，还有棋满平局提醒。</p>
+<h3 id="2-开发语言与工具介绍">2 开发语言与工具介绍</h3>
+<h4 id="2-1-java语言">2.1 JAVA语言</h4>
+<p>Java是一种完全的面向对象语言，所有的操作都是通过对象来完成的。Java中一切皆为对象，包括基本数据类型，如整型、字符型等^[5]^。Java的创造者是由Sun Microsystems公司里的James Gosling与他背后的团队于1995年，秉持着“一次编写，处处运行”（Write Once, Run Anywhere, 简称WORA）的设计理念开发出来的，意在编写出来的Java代码可以在任何支持Java平台上正常运行，并且无需进行额外的修改。</p>
+<p>选择Java语言编译五子棋游戏是因为该语言具有多种优点。例如Java语言的平台无关性，Java程序可以跨不同的诸如Windows、Linux和Mac OS平台系统移植，这得益于Java程序的编写流程，其首先编译成与操作平台没有关系的字节码，然后只要任何一台设备安装了Java虚拟机（JVM），它就可以运行这些字节码。面向对象编程（OOP）是一种软件开发方法，它将程序设计的重点放在对象的创建、操作和互动上^[6]^。这种面向对象的特点，支持封装、继承和多态等面向对象的特性，这种特色有助于构建模块化的程序和复用代码。除此之外Java还可以自动管理内存，减少内存泄漏，具有一系列运行时对环境的一系列检查等多种优点。</p>
+<p>综上所述，Java语言具有跨平台性、健壮性、安全性等特点的优秀编程语言</p>
+<h4 id="2-2-intellij-idea-community-edition工具">2.2 IntelliJ IDEA Community Edition工具</h4>
+<p>IntelliJ IDEA Community Edition是由JetBrains 公司制作的集成开发环境 (IDE)，专门用来开发Java，里面丰富的工具与功能，能很大地提高开发者的生产效率和生产质量，作为免费的开源开发工具，能够胜任大多数基本的Java开发任务。</p>
+<p>IntelliJ IDEA具有智能的代码完成与导航功能，能够根据代码的上下文甚至代码风格提供建议，而高效的导航功能能帮助开发者快速定位浏览代码。IntelliJ IDEA中的诸如重命名、提取方法、提取变量等代码重构工具，可以让开发者更轻松的重构优化代码，从而达到提高代码质量与可维护性的效果。IntelliJ IDEA中还有例如Git、Subversion 等的控制系统，可以方便开发人员的团队协作与代码管理。IDE还提供了强大的调试工具，可以进行断点调试、变量查看、表达式评估等，从而提升解决代码中问题的效率。此外IDE同Java一样也具有跨平台性，可以在 Windows、macOS 和 Linux 等主流操作系统上运行。</p>
+<p>综上所述，IntelliJ IDEA Community Edition 是一款功能强大且易于使用的开发工具，它丰富的功能与多样的工具可以极大地提升开发者的工作效率与舒适度。</p>
+<h3 id="3-系统分析">3 系统分析</h3>
+<h4 id="3-1-五子棋游戏规则介绍">3.1 五子棋游戏规则介绍</h4>
+<p>五子棋游戏道具由棋子与棋盘构成，棋子分为两色，一般为一黑一白，一般定黑子113枚，白子112枚，棋盘一般由纵横各15道线条等距离，垂直交叉的平行线构成，这些线条交叉构成了225个交叉点，也就是落子点。玩家在一局游戏内，一方执黑棋，另一方执白旗。</p>
+<p>五子棋游戏规则为：</p>
+<p>（1）玩家在一局游戏内，一方执黑棋，另一方执白旗。</p>
+<p>（2）开局的棋盘为空棋盘。</p>
+<p>（3）由执黑子方先下，随后是白方，以此交替落子，每次都只能下一子。</p>
+<p>（4）棋子只能落在交叉点上，棋子落定后不能在移动或拿走棋子。</p>
+<p>（5）黑棋的第一枚棋子必须落在中心交叉点上。</p>
+<p>（6）一方首先达成五颗连续的本方棋子在一条方向线上，则游戏胜利。</p>
+<h4 id="3-2-五子棋游戏系统分析">3.2 五子棋游戏系统分析</h4>
+<h5 id="3-2-1-需求分析">3.2.1 需求分析</h5>
+<p>作为一款游戏系统，必须拥有最基本的功能，游戏开始、游戏结束，而作为五子棋游戏，还要拥有悔棋功能，而作为一款必须要求两人进行的游戏，可以提供人机模式，实现人机对战，既能降低游戏人数的要求，还可以锻炼玩家的五子棋的游戏技巧能力。最后还可以添加先后手模式，让玩家拥有更多的游戏方式选择。</p>
+<p>五子棋游戏系统需要拥有必要的视图设计[7]，包括开始菜单，棋盘棋子绘制，游戏信息提示。关于游戏规则，系统需要有游戏平局、游戏一方胜利的游戏结束，还有棋子合法落定等功能。</p>
+<p>综上所述，本系统需要拥有游戏开始、游戏结束、悔棋、人人对战模式、人机对战模式、先后手选择以及游戏平局判定、游戏胜利判定和棋子合法落定判定。</p>
+<h5 id="3-2-2-系统设计">3.2.2 系统设计</h5>
+<p>根据五子棋游戏系统的需求分析，可以将五子棋游戏细分为如下的功能模块。</p>
+<p>界面展示模块，该模块主要负责五子棋游戏的界面的展示，包括展示开始界面的背景图，模式功能选择连接，开始游戏、先后手选择、人机或者人人模式、悔棋功能、停止当前游戏（结束游戏）和一些人性化提示，这些基础且必要的功能都要通过界面展示模块展示在屏幕上供玩家使用。</p>
+<p>棋盘绘制模块，脱离了棋具的五子棋游戏系统，需要设计绘制出电子棋盘和棋子，以便玩家能够正常地得到五子棋游戏中的信息反馈。在棋盘绘制时，选择最常规的15道盘，棋子颜色取黑白两色，为了使棋盘更美观，显得不那么单调，还可以为棋盘下设计背景图，特别是柔和的图片，以免玩家过早视觉疲劳。</p>
+<p>胜负判定模块，该模块是整个五子棋能够正常运行的重要模块之一，需要在每一次游戏一方落子后，以该棋子为中心进行横向、纵向和斜方向的扫描，查看是否达成五子连珠的胜利条件，若是则调用结束模块，否则继续游戏。</p>
+<p>悔棋模块，悔棋功能是棋类游戏一般都需要拥有的功能，玩家在已经有成功落子的记录后，通过悔棋来撤销该操作。</p>
+<p>AI下棋模块，该模块主要应用于人机对战模式，在需要电脑落子时，五子棋系统需要根据当前棋局形势查找最有利的落子位置[8]，这包括属于防守的以己方达成五子连珠为目的的最佳落子点，还包括属于进攻的以破坏敌方达成五子连珠为目的的最佳落子点，最后根据哪一思路最优来落子。</p>
+<p>系统提示模块，该模块非五子棋游戏刚需，目的是为了提高玩家的游戏体验。系统提示模块的主要功能为提醒玩家当前需要哪一方进行落子操作，以免混淆落子顺序。</p>
+<p>如图2-1为系统结构图。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\基于Java语言的五子棋游戏\系统结构图.png" style="zoom:60%;" />
+<center>图2-1 系统结构图</center>
+<h5 id="3-2-3-系统流程">3.2.3 系统流程</h5>
+<p>启动游戏，玩家在开始界面可以选择人机对战和人人对战两种模式，其中在人机对战里，还有先后手模式的选择。</p>
+<p>在人人对战里，默认首先下棋的一方为黑色棋子，玩家落子后，系统就会启动胜负判定模块，查看该落子位置是否存在五子连珠情况，若存在，则该玩家判定为获得胜利，游戏直接结束。若无五子连珠情况，则会进入下一种局势判定，是否平局，其实就是查看棋盘是否已满，若已满，则游戏结束，若没满，则交换到对方落子。另外，非平局结果判定后，还可以选择悔棋，撤回刚刚落下的棋子，选择新的落棋点，这个操作是在交换下棋方之前执行的。</p>
+<p>如下图2-2为选择人人对战的五子棋游戏系统流程图。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\基于Java语言的五子棋游戏\人人模式对战流程图.png" style="zoom:60%;" />
+<center>图2-2 人人模式对战流程图</center>
+<p>在人机对战里，开始游戏前会有一个先后手模式的选择，不予选择的话，默认玩家为后手。在后手情况下，AI系统会先扫描整个棋盘，并对每个合法落子点进行打分，选择在最高得分落子点落子，然后进入胜利判断，若为玩家先手，则没有AI的计算过程，在玩家落子后直接进入胜利判断——有无五子连珠。若为五子连珠，则判定当前棋手胜利，游戏结束。若无五子连珠，则会进行平局判定，这些与人人对战的判定都是相同的，若不是平局，则交换下棋方。非平局非一方胜利情况下，玩家可以选择悔棋，与人人模式悔棋只撤回最后下的棋子不同的是，人机对战模式不仅会撤回最后的棋子，还会回档到AI最后落子前，即直接回到上一次的玩家回合。</p>
+<p>如图2-3为选择人机对战的五子棋游戏系统流程图。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\基于Java语言的五子棋游戏\人机模式对战流程图.png" alt="img" style="zoom:60%;" />
+<center>图2-3 人机模式对战流程图</center>
+<h3 id="4-关键功能实现">4 关键功能实现</h3>
+<h4 id="4-1-ai落子算法">4.1 AI落子算法</h4>
+<p>该算法是五子棋游戏系统的核心算法，是围绕五子棋博弈[9]设计出来的。其中包含了落子博弈，落子赋值，极大值搜索算法，最佳位置随机选取等。</p>
+<p>落子赋值，也可称为权值法[10]，其实是对棋盘的每一个可以的落子点进行赋值打分，比较出最高分后，算则在此位置落子。打分的标准是根据棋子位置来定的。例如，给可以达成五子连珠己方棋子的位置打最高分，在这里赋值十万，对于已有三枚连续的己方棋子，可达成四子连珠的情况，在这里赋值五千，还有种种情况进行一一打分。当然，算法的打分还包括为敌方的可落子位置打分，并且因情况而论，打分的依据与己方会有所不同，例如某个落地点可达成敌方的五子连珠，会给予三万的评分。这是仅次于己方五子连珠的第二高评分。</p>
+<p>极大值搜索算法，该算法是在完成落子赋值算法后的，算法的功能是把每个位置的值放进他们对应的二维数组，通过冒泡排序比较出最大值，算出来的最大值将为之后的落子博弈提供数据。</p>
+<p>落子博弈，落子博弈的基础是依赖于落子赋值与极大搜索值的，博弈分为进攻与防守，当所有的合法落子点都赋值以后，算法会进行防守与进攻两种情况的选择，防守的情况是，最高分为趋向于构成己方的五子连珠，也就是说将棋子落在对自己有利的位置。进攻的情况是，最高分为趋向于破坏敌方的五子连珠，也就是说将棋子落在不利于敌方的位置。</p>
+<p>最佳位置随机选取，该算法是在特殊情况下使用的，为的是保证玩家不会因为固定套路取胜。当落子赋值与极大值搜索完成以后，最高的赋值可能不止一个，但由于五子棋游戏规则，每次下棋只能下一枚的缘故，所以要选出唯一的一个最高赋值点，这里采用的是随机生成数，用随机的方法避免被玩家摸索出算法算则最佳落子点的逻辑。</p>
+<p>落子赋值与落子博弈核心代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">//左边：黑方Ai的棋子判断      右边：Ai结束后，玩家可能的棋子判断</span>
+
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"*****"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span> <span class="token number">100000</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//连五</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"ooooo"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span> <span class="token number">30000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"-****-"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span> <span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//活四</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"-oooo-"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span> <span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"*-***"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span> <span class="token number">700</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//冲四  1</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"o-ooo"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span> <span class="token number">150</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"***-*"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span> <span class="token number">700</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//冲四  1  反向</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"ooo-o"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span> <span class="token number">150</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"-****o"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//冲四  2</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"-oooo*"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"o****-"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//冲四  2  反向</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"*oooo-"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>极大值搜索算法核心代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">long</span> max <span class="token operator">=</span> value<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token class-name">Position</span> position <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Position</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> row <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> row <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> row<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> col <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> col <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> col<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        f <span class="token punctuation">(</span>value<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token operator">></span>max<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            max<span class="token operator">=</span>value<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            position<span class="token punctuation">.</span>x <span class="token operator">=</span>row<span class="token punctuation">;</span>
+            position<span class="token punctuation">.</span>y <span class="token operator">=</span>col<span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>最佳位置随机选取核心代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Position</span><span class="token punctuation">></span></span> positions <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+positions<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>position<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> row <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> row <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> row<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> col <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> col <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> col<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>value<span class="token punctuation">[</span>row<span class="token punctuation">]</span><span class="token punctuation">[</span>col<span class="token punctuation">]</span><span class="token operator">==</span>value<span class="token punctuation">[</span>position<span class="token punctuation">.</span>x<span class="token punctuation">]</span><span class="token punctuation">[</span>position<span class="token punctuation">.</span>y<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            positions<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Position</span><span class="token punctuation">(</span>row<span class="token punctuation">,</span>col<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="4-2-鼠标事件">4.2 鼠标事件</h4>
+<p>鼠标事件，用来监听棋盘，也就是鼠标监听算法，该算法用来监听用户的点击动作，并进行相应的响应，比如判断鼠标点击的点是不是在范围内，判断玩家点击的范围是否在可落子的范围内，判断该位置之前有没有棋子。如果满足情况，就会在棋盘上显示棋子，并根据当前的系统的流程进度执行相应的操作，比如重绘棋盘，胜负判定，平局判定等。</p>
+<p>鼠标事件核心代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">ChessPanel</span> instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ChessPanel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">private</span> <span class="token class-name">ChessPanel</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//为界面添加鼠标监听器</span>
+    <span class="token comment">//这样就能响应并绘制棋子</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">addMouseListener</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ChessPanelListener</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">ChessPanel</span> <span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这段代码实现了一个单实例模式的ChessPanel类，确保了在整个应用程序中只有一个ChessPanel实例，并为这个实例添加了鼠标监听器以处理用户的鼠标事件。实现了具体鼠标实例的创建和引入。</p>
+<p>在具体落子位置判断上也有对应函数如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">mouseReleased</span><span class="token punctuation">(</span><span class="token class-name">MouseEvent</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">ChessPad</span> chessPad <span class="token operator">=</span> <span class="token class-name">ChessPad</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">ButtonPanel</span> buttonPanel <span class="token operator">=</span> <span class="token class-name">ButtonPanel</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//获取 绘制的棋盘上 每个交点的坐标 用来判读后面鼠标点击的点是不是在范围内</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Position</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> <span class="token class-name">ChessPanel</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAllPositions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> x <span class="token operator">=</span> e<span class="token punctuation">.</span><span class="token function">getX</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token keyword">int</span> y <span class="token operator">=</span> e<span class="token punctuation">.</span><span class="token function">getY</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    
+    <span class="token keyword">int</span> chessBorder <span class="token operator">=</span> <span class="token class-name">ChessPanel</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>chessBorder<span class="token punctuation">;</span>
+    <span class="token comment">//鼠标位置</span>
+    <span class="token class-name">Position</span> p <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Position</span> position <span class="token operator">:</span> list<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment">// 这里既要判断玩家点击的范围是否在可落子的范围内</span>
+        <span class="token comment">// 也要判断该位置之前有没有棋子</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>x <span class="token operator">&lt;=</span> position<span class="token punctuation">.</span>x <span class="token operator">+</span> chessBorder <span class="token operator">&amp;&amp;</span> x <span class="token operator">>=</span> position<span class="token punctuation">.</span>x <span class="token operator">-</span> chessBorder<span class="token punctuation">)</span><span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>y <span class="token operator">&lt;=</span> position<span class="token punctuation">.</span>y <span class="token operator">+</span> chessBorder <span class="token operator">&amp;&amp;</span> y <span class="token operator">>=</span> position<span class="token punctuation">.</span>y <span class="token operator">-</span> chessBorder<span class="token punctuation">)</span><span class="token operator">&amp;&amp;</span> chessPad<span class="token punctuation">.</span><span class="token function">isEmptyPosition</span><span class="token punctuation">(</span><span class="token class-name">PositionUtil</span><span class="token punctuation">.</span><span class="token function">drawToPad</span><span class="token punctuation">(</span>position<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> 
+            p <span class="token operator">=</span> position<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="4-3-五子连珠获胜判定以及平局判定算法">4.3 五子连珠获胜判定以及平局判定算法</h4>
+<p>游戏胜利的判定条件为存在相同颜色棋子五颗连续的情况，这会涉及到对整个棋盘满足五颗连续棋子的存储单元进行扫描，每次扫描是与五子连珠进行对比，若完全相同，即可判定游戏胜利。</p>
+<p>胜利判定关键代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token class-name">PVPResult</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> allStringList<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//这里要将绘图坐标转换为棋盘坐标</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">String</span> s <span class="token operator">:</span> allStringList<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">"*****"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span><span class="token comment">//表示五个黑子连成一串</span>
+            <span class="token class-name">JOptionPane</span><span class="token punctuation">.</span><span class="token function">showMessageDialog</span><span class="token punctuation">(</span><span class="token class-name">MainFrame</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">"黑方获胜"</span><span class="token punctuation">,</span><span class="token string">"游戏结束"</span><span class="token punctuation">,</span><span class="token class-name">JOptionPane</span><span class="token punctuation">.</span>INFORMATION_MESSAGE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token string">"ooooo"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token comment">// 表示五个白子连成一串</span>
+            <span class="token class-name">JOptionPane</span><span class="token punctuation">.</span><span class="token function">showMessageDialog</span><span class="token punctuation">(</span><span class="token class-name">MainFrame</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">"白方获胜"</span><span class="token punctuation">,</span><span class="token string">"游戏结束"</span><span class="token punctuation">,</span><span class="token class-name">JOptionPane</span><span class="token punctuation">.</span>INFORMATION_MESSAGE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>平局判定相比较胜利判定会简单很多，就是查看整个棋盘是否已满，由于胜利判定的流程先于平局判定，所以棋满就会平局，反之交换下棋方，继续下棋。</p>
+<p>平局判定核心代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">drawCheckAndShowResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>chessPad<span class="token punctuation">.</span><span class="token function">isFullPad</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">JOptionPane</span><span class="token punctuation">.</span><span class="token function">showMessageDialog</span><span class="token punctuation">(</span><span class="token class-name">MainFrame</span><span class="token punctuation">.</span><span class="token function">getInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"平局"</span><span class="token punctuation">,</span> <span class="token string">"游戏结束"</span><span class="token punctuation">,</span> <span class="token class-name">JOptionPane</span><span class="token punctuation">.</span>INFORMATION_MESSAGE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="4-4-棋盘绘制">4.4 棋盘绘制</h4>
+<p>棋盘绘制，在预先规定了棋盘行列数和棋盘宽度及任意两条线之间宽度后，就可以进行棋盘绘制，在本程序中是先对天元和占据棋盘的四颗星进行绘制，使其突出显示，再将行线和列线的每一个交点进行绘制，即可落子的点。</p>
+<p>关键代码如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Position</span><span class="token punctuation">></span></span> <span class="token function">getAllPositions</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">//返回绘图板上所有交点的位置</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Position</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">15</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> <span class="token number">15</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Position</span><span class="token punctuation">(</span>gap <span class="token operator">+</span> i <span class="token operator">*</span> size<span class="token punctuation">,</span> gap <span class="token operator">+</span> j <span class="token operator">*</span> size<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> list<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="5-系统测试">5 系统测试</h3>
+<h4 id="5-1-开始界面及棋盘棋子绘制">5.1 开始界面及棋盘棋子绘制</h4>
+<p>五子棋游戏系统的开始界面如图4-1所示。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\基于Java语言的五子棋游戏\开始界面.jpg" style="zoom: 80%;" />
+<center>图4-1 开始界面</center>
+<p>五子棋游戏系统的棋盘与棋子绘制如下图4-2所示。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\基于Java语言的五子棋游戏\绘画界面.jpg" style="zoom:80%;" />
+<center>图4-2 绘画界面</center>
+<h4 id="5-2-胜利判定及系统提示">5.2 胜利判定及系统提示</h4>
+<p>五子棋游戏系统的胜利判定以及系统提示如下图4-3所示。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\基于Java语言的五子棋游戏\游戏胜利.jpg" style="zoom:80%;" />
+<center>图4-3 游戏胜利</center>
+<h3 id="6-总结">6 总结</h3>
+<p>本文对基于Java语言的五子棋游戏系统进行开发，其中进行了详细的设计，对其功能进行了实现并且进行了功能测试。这里面主要包括对五子棋游戏背景的研究，对游戏规则进行的分析与系统设计，游戏界面的设计，人机功能的实现，还有实现后的测试和优化。</p>
+<p>本文先对五子棋游戏的规则进行了深度的解析，这其中包括棋盘的样式，棋子的数量，落子规则和胜负判断等，这为后续的游戏系统开发打下了坚实的基础。随后作者基于Java语言设计了五子棋游戏的图形用户界面，棋盘的绘制，落子的合法判定，胜利、平局判定，游戏系统提示等，以便用户能够舒适地体验游戏。除此之外，作者还设计了人机对战模式与先后手功能的选择。人机对战使得玩家可以与计算机进行对弈以提升棋技，同先后手功能的选择共同增加了游戏的趣味与挑战性。</p>
+<p>五子棋游戏设计完成后，作者对其进行测试与优化，对其中尚有欠缺的地方进行优化，以提升游戏的用户体验与性能表现。</p>
+<p>虽然本文实现了基于Java语言的五子棋游戏的一定功能，但仍然还存在可以优化的地方。比如对AI下棋算法进行优化，实现人机对战中难度的选择，还可以新增添提示功能，让玩家不知道该怎么下棋时，由AI计算出最佳落子点。</p>
+<p>综上所述，本在基于Java语言的五子棋游戏上取得了一定的成果，但还有可以改进的地方，今后可以对该游戏系统进行深入的研究与优化，以提升玩家的游戏体验。</p>
+<h3 id="参考文献">参考文献</h3>
+<p>[1] 张国芳.Java编程语言在计算机软件开发中的应用方向分析[J].信息记录料,2023,24(11):138-141.</p>
+<p>[2] 刘瑞. 五子棋人工智能算法设计与实现[D].华南理工大学,2013:5-15.</p>
+<p>[3] 车志宏，吕峰.基于α-β剪枝算法的五子棋游戏设计与实现[J].电脑编程技巧与维护,2024(04):131-133+153.</p>
+<p>[4] 院旺.消除五子连珠情况的策略研究[J].科教文汇(上旬刊),2018(04):61-62.</p>
+<p>[5] 李程，胡五音.Jav，a编程语言在计算机软件开发中的应用[J].电子技术,2024,53(03):66-67．</p>
+<p>[6] 韩小龙,司珍,吕晓峰,等.基于面向对象编程的Java语言程序设计方法分析[J].集成电路应用,2024,41(01):228-229．</p>
+<p>[7] 赵旭东.计算机软件开发与设计中Java语言的应用研究[J].信息与电脑(理论版),2023,35(24):31-33．</p>
+<p>[8] 陈雪荣，岳书丹.基于Java的五子棋游戏的设计与实现[J].信息系统工程,2020(08):104-105.</p>
+<p>[9] 曹风云，赵卫华.基于Java的五子棋博弈平台研究[J].重庆工商大学学报(自然科学版),2021,38(02):10-15．</p>
+<p>[10] 何星，段华琼.基于C语言的五子棋游戏的设计与实现[J].信息与电脑(理论版),2021,33(24):118-120.</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/2024/05/05/%E5%9F%BA%E4%BA%8EJava%E8%AF%AD%E8%A8%80%E7%9A%84%E4%BA%94%E5%AD%90%E6%A3%8B%E6%B8%B8%E6%88%8F/">https://shierjinghuang.github.io/2024/05/05/%E5%9F%BA%E4%BA%8EJava%E8%AF%AD%E8%A8%80%E7%9A%84%E4%BA%94%E5%AD%90%E6%A3%8B%E6%B8%B8%E6%88%8F/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87/">
+                                    <span class="chip bg-color">毕业论文</span>
+                                </a>
+                            
+                                <a href="/tags/JAVA/">
+                                    <span class="chip bg-color">JAVA</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2024/08/02/%E7%BD%91%E7%BB%9C%E4%BA%92%E8%81%94%E6%8A%80%E6%9C%AF%E7%9A%84%E7%A0%94%E7%A9%B6%E4%B8%8E%E5%BA%94%E7%94%A8/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="网络互联技术的研究与应用">
+                        
+                        <span class="card-title">网络互联技术的研究与应用</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2024-08-02
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/" class="post-category">
+                                    项目设计
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87/">
+                        <span class="chip bg-color">毕业论文</span>
+                    </a>
+                    
+                    <a href="/tags/MSTP/">
+                        <span class="chip bg-color">MSTP</span>
+                    </a>
+                    
+                    <a href="/tags/OSPF/">
+                        <span class="chip bg-color">OSPF</span>
+                    </a>
+                    
+                    <a href="/tags/IS-IS/">
+                        <span class="chip bg-color">IS-IS</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2024/03/31/2022%E5%B9%B4%E7%BE%8E%E8%B5%9B%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="2022年美赛数学建模">
+                        
+                        <span class="card-title">2022年美赛数学建模</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-03-31
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/" class="post-category">
+                                    数学建模
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
+                        <span class="chip bg-color">数学建模</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2025</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">315.2k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
