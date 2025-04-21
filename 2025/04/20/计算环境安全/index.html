@@ -1,0 +1,1522 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="计算环境安全, 十二惊惶">
+    <meta name="description" content="计算环境安全
+
+操作系统安全
+操作系统安全机制
+操作系统安全目标：
+
+标识系统中的用户和进行身份鉴别
+依据系统安全策略对用户的操作进行访问控制，防止用户和外来入侵者对计算机资源的非法访问
+监督系统运行的安全性
+保证系统自身的安全和完整性
+
+">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>计算环境安全 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">计算环境安全</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/CISP%EF%BC%8C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                                <span class="chip bg-color">CISP，操作系统</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                网络安全
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2025-04-20
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2025-04-21
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.5k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    11 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="计算环境安全">计算环境安全</h2>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\CISP课件V4.2标准版\计算环境安全\知识框架.png" style="zoom:50%;" />
+<h3 id="操作系统安全">操作系统安全</h3>
+<h4 id="操作系统安全机制">操作系统安全机制</h4>
+<p>操作系统安全目标：</p>
+<ul>
+<li>标识系统中的用户和进行身份鉴别</li>
+<li>依据系统安全策略对用户的操作进行访问控制，防止用户和外来入侵者对计算机资源的非法访问</li>
+<li>监督系统运行的安全性</li>
+<li>保证系统自身的安全和完整性</li>
+</ul>
+<p>实现目标的安全机制：</p>
+<ul>
+<li><strong>标识与鉴别、访问控制、最小特权管理、信道保护、安全审计、内存存取保护、文件系统保护等</strong></li>
+</ul>
+<h5 id="标识与鉴别">标识与鉴别</h5>
+<ul>
+<li>Windows系统的标识：<strong>安全主体 [账户、计算机、服务等]</strong>、<strong>安全标识符 [Security Identifier，SID]</strong></li>
+<li>Linux/Unix系统的标识：安全主体：用户标识号 [User ID]</li>
+</ul>
+<p><strong>Windows系统用户信息管理</strong></p>
+<ul>
+<li>存储在注册表中，运行期锁定</li>
+<li>操作权限system，依靠系统服务进行访问</li>
+</ul>
+<p><strong>身份鉴别</strong></p>
+<ul>
+<li>远程鉴别：SMB、LM、NTLM</li>
+<li>本地鉴别</li>
+</ul>
+<p><strong>Linux系统用户信息管理</strong></p>
+<ul>
+<li>用户帐号文件 [ /etc/passwd ]：使用不可逆DES算法加密的用户密码散列（早期）
+<ul>
+<li>文本格式、全局可读</li>
+</ul>
+</li>
+<li>影子文件 [ /etc/shadow ]：存储存放用户密码散列、密码管理信息等
+<ul>
+<li>文本格式，仅对root可读可写</li>
+</ul>
+</li>
+</ul>
+<h5 id="访问控制">访问控制</h5>
+<ul>
+<li>Windows的访问控制
+<ul>
+<li><strong>访问令牌 [包含SID和特权列表]</strong>，以用户身份运行的进程都拥有该令牌的一个拷贝</li>
+<li><strong>访问控制列表 [ACL]</strong>，仅NTFS文件系统支持</li>
+</ul>
+</li>
+<li>Linux下的访问控制
+<ul>
+<li>需要文件系统格式支持</li>
+<li>权限类型：读、写、执行 [UGO管理机制]</li>
+<li>权限表示方式：模式位</li>
+</ul>
+</li>
+</ul>
+<h5 id="权限管理">权限管理</h5>
+<ul>
+<li>Windows系统特权管理
+<ul>
+<li>用户帐户控制 [UAC]：标准受限访问令牌、完全访问令牌</li>
+</ul>
+</li>
+<li>Linux系统特权管理
+<ul>
+<li>限制对root使用，Su及Sudo命令</li>
+<li>Suid位：任何用户执行文件运行权限都为文件所有者的权限</li>
+</ul>
+</li>
+</ul>
+<h5 id="信道保护">信道保护</h5>
+<ul>
+<li>正常信道的保护：<strong>可信通路 [Trusted Path]、安全键 [SAK]</strong></li>
+<li>隐蔽信道保护
+<ul>
+<li>隐蔽信道指利用系统中那些本来不是用于通信的系统资源绕过强制存取控制进行非法通信的一种机制</li>
+<li>发现隐蔽信道：
+<ul>
+<li>共同访问权限、共同修改权限、接收进程可检资源的改变，而发送进程有权限改变、某种机制可启动通信并改变通信事件的顺序</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="安全审计">安全审计</h5>
+<p>对系统中有关安全的活动进行记录、检查以及审核，一般是一个独立的过程</p>
+<ul>
+<li>Windows系统的安全审计：Windows日志 [系统、应用程序、安全]、应用程序和服务日志[ IIS日志等]</li>
+<li>Linux系统的安全审计：连接时间日志、进程统计、错误日志、应用程序日志</li>
+</ul>
+<h5 id="内存保护与文件系统保护">内存保护与文件系统保护</h5>
+<p><strong>内存保护</strong></p>
+<ul>
+<li>进程间/系统进程内存保护</li>
+<li>段式保护、页式保护和段页式保护</li>
+</ul>
+<p>文件系统保护机制：</p>
+<ul>
+<li>访问控制列表、加密</li>
+</ul>
+<h4 id="操作系统安全配置">操作系统安全配置</h4>
+<p>最小化部署：明确需要的功能和组件，不需要的服务和功能都关闭</p>
+<p>远程访问控制：开放端口、远程连接的限制</p>
+<p><strong>账户策略及密码策略：</strong></p>
+<blockquote>
+<p>管理员更名并给予安全的口令</p>
+</blockquote>
+<ul>
+<li>
+<p>密码策略：密码必须符合复杂性要求、密码长度最小值、强制密码历史</p>
+</li>
+<li>
+<p>帐号锁定策略 [应对暴力破解] ：帐户锁定时间、帐户锁定阀值、重置帐户锁定计数器</p>
+</li>
+</ul>
+<p>日志设置</p>
+<ul>
+<li>日志项、存储空间、访问权限</li>
+<li>日志服务器</li>
+</ul>
+<p>其他安全设置</p>
+<ul>
+<li>安全增强软件（防病毒、主机入侵检测、安全加固软件等）</li>
+<li>针对操作系统特性的设置</li>
+<li>Windows关闭共享、自动播放功能</li>
+<li>Linux中默认创建文件权限等</li>
+</ul>
+<h3 id="信息收集与系统攻击">信息收集与系统攻击</h3>
+<h4 id="信息收集">信息收集</h4>
+<p>信息收集的概念：</p>
+<p>互联网时代的信息收集：</p>
+<h5 id="收集哪些信息">收集哪些信息</h5>
+<ul>
+<li>目标系统的信息系统相关资料
+<ul>
+<li>域名、网络拓扑、操作系统、应用软件、相关脆弱性</li>
+</ul>
+</li>
+<li>目标系统的组织相关资料
+<ul>
+<li>组织架构及关联组织、地理位置细节、电话号码、邮件等联系方式、近期重大事件、员工简历</li>
+</ul>
+</li>
+<li>其他可能令攻击者感兴趣的任何信息</li>
+</ul>
+<h5 id="公开信息收集-搜索引擎">公开信息收集-搜索引擎</h5>
+<p>快速定位、信息挖掘、定点采集、隐藏信息、后台入口</p>
+<p>网络信息收集：</p>
+<ul>
+<li>正常服务 [如whois]</li>
+<li>系统功能：Ping、Tracert</li>
+</ul>
+<p>系统及应用信息收集：<strong>服务旗标、欢迎信息、端口扫描、TCP/IP协议指纹识别</strong></p>
+<h5 id="信息收集与分析的防范">信息收集与分析的防范</h5>
+<ul>
+<li>公开信息收集防御：信息展示最小化原则，不必要的信息不要发布</li>
+<li>网络信息收集防御：部署网络安全设备、设置安全设备应对信息收集）</li>
+<li>系统及应用信息收集防御：修改默认配置、减少攻击面</li>
+</ul>
+<h4 id="缓冲区溢出攻击">缓冲区溢出攻击</h4>
+<p>缓冲区溢出攻击原理：</p>
+<blockquote>
+<p>缓冲区溢出攻击利用编写不够严谨的程序，通过向程序的缓冲区写入超过预定长度的数据，造成缓存的溢出，从而破坏程序的堆栈，导致程序执行流程的改变</p>
+</blockquote>
+<p>缓冲区溢出是最大数量的漏洞类型，且漏洞危害等级高</p>
+<h5 id="缓冲区溢出基础-堆栈-指针-寄存器">缓冲区溢出基础-堆栈、指针、寄存器</h5>
+<ul>
+<li>堆栈概念：一段连续分配的内存空间</li>
+<li>堆栈特点：
+<ul>
+<li>后进先出</li>
+<li>堆栈生长方向与内存地址方向相反</li>
+</ul>
+</li>
+<li>指针：指针是指向内存单元的地址</li>
+<li>寄存器：暂存指令、数据和位址
+<ul>
+<li>ESP（栈顶）</li>
+<li>EBP（栈底）</li>
+<li>EIP（返回地址）</li>
+</ul>
+</li>
+</ul>
+<p><strong>缓冲区溢出攻击过程</strong></p>
+<blockquote>
+<p>如果可精确控制内存跳转地址，就可以执行指定代码，获得权限或破坏系统</p>
+</blockquote>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\CISP课件V4.2标准版\计算环境安全\缓冲区溢出攻击过程.png" style="zoom:50%;" />
+<p>缓冲区溢出的防范</p>
+<ul>
+<li>用户层面：补丁、防火墙</li>
+<li>开发人员层面：编写安全代码，对输入数据进行验证、使用相对安全的函数</li>
+<li>系统层面：缓冲区不可执行技术、虚拟化技术</li>
+</ul>
+<h3 id="恶意代码防护">恶意代码防护</h3>
+<blockquote>
+<p>计算机病毒，是指编制或者在计算机程序中插入的破坏计算机功能或者毁坏数据，影响计算机使用，并能自我复制的一组计算机指令或者程序代码</p>
+</blockquote>
+<blockquote>
+<p>恶意代码，是指能够引起计算机故障，破坏计算机数据，影响计算机系统的正常使用的程序代码、指令</p>
+</blockquote>
+<ul>
+<li>类型：<strong>二进制代码、脚本语言、宏语言</strong>等</li>
+<li>表现形式：<strong>病毒、蠕虫、后门程序、木马、流氓软件、逻辑炸弹</strong>等</li>
+</ul>
+<p>恶意代码传播方式</p>
+<ul>
+<li>文件传播：感染、移动介质</li>
+<li>网络传播：网页、电子邮件、即时通讯、共享、漏洞</li>
+<li>软件部署：<strong>逻辑炸弹、预留后门、文件捆绑</strong></li>
+</ul>
+<h5 id="恶意代码的预防技术">恶意代码的预防技术</h5>
+<p>增强安全策略与意识</p>
+<ul>
+<li>减少漏洞：补丁管理、主机加固</li>
+<li>减轻威胁：防病毒软件、间谍软件检测和删除工具、入侵检测/入侵防御系统、防火墙、路由器、应用安全设置等</li>
+</ul>
+<h5 id="恶意代码检测技术-特征码扫描">恶意代码检测技术-特征码扫描</h5>
+<p>工作机制：特征匹配</p>
+<ul>
+<li>病毒库 [恶意代码特征库]</li>
+<li>扫描 [特征匹配过程]</li>
+</ul>
+<p>优势：误报率低、易于管理<br>
+不足：效率问题 [特征库不断庞大、依赖厂商]、滞后 [先有病毒后有特征库，需要持续更新]</p>
+<h5 id="恶意代码检测技术-行为检测">恶意代码检测技术-行为检测</h5>
+<p>工作机制：基于统计数据</p>
+<ul>
+<li>恶意代码行为、行为符合度</li>
+</ul>
+<p>优势：能检测到未知病毒</p>
+<p>不足：误报率高</p>
+<p>难点：病毒不可判定原则</p>
+<h5 id="恶意代码分析技术">恶意代码分析技术</h5>
+<p>静态分析：不实际执行恶意代码，直接对二进制代码进行分析</p>
+<ul>
+<li>文件特性，如文件形态、版本、存储位置、长度等</li>
+<li>文件格式，如PE信息、API调用等</li>
+</ul>
+<p>动态分析：运行恶意代码并使用监控及测试软件分析</p>
+<ul>
+<li>本地行为：文件读写、注册表读写等</li>
+<li>网络行为：远程访问、调用等</li>
+</ul>
+<p><strong>恶意代码的清除</strong></p>
+<ul>
+<li>感染引导区：修复/重建引导区</li>
+<li>感染文件：附着型：逆向还原、替换型：备份还原</li>
+<li>独立文件：内存退出，删除文件</li>
+<li>嵌入型：更新软件或系统、重置系统</li>
+</ul>
+<p><strong>基于互联网技术的防御</strong></p>
+<ul>
+<li>恶意代码监测与预警体系：如蜜罐、蜜网，恶意代码云查杀：如分布式计算</li>
+</ul>
+<h3 id="应用安全">应用安全</h3>
+<h4 id="web应用安全">Web应用安全</h4>
+<blockquote>
+<p>应用系统的复杂性和多样性使得安全问题也呈现出多样化的特点</p>
+</blockquote>
+<p>主要包括：WEB服务器端安全问题 [支撑软件、应用程序]、Web客户端 [浏览器]、Web协议 [Http]</p>
+<p><strong>HTTP协议安全问题</strong></p>
+<ul>
+<li><strong>信息泄漏</strong> [传输数据明文]</li>
+<li><strong>弱验证</strong> [会话双方没有严格认证机制]
+<ul>
+<li>http1.1提供摘要访问认证机制，采用MD5将用户名、密码、请求包头等进行封装，但仍然不提供对实体信息的保护</li>
+</ul>
+</li>
+<li><strong>缺乏状态跟踪</strong>（请求响应机制决定http是一个无状态协议）
+<ul>
+<li>Session解决方案带来的安全问题</li>
+</ul>
+</li>
+</ul>
+<p><strong>Web服务端软件安全问题</strong></p>
+<ul>
+<li>服务支撑软件安全问题</li>
+<li>软件自身安全漏洞</li>
+<li>软件配置缺陷：默认账号与口令、不安全的配置</li>
+<li>应用软件安全问题</li>
+</ul>
+<h5 id="web安全防护技术">Web安全防护技术</h5>
+<p><strong>Web防火墙</strong></p>
+<p>基本功能：审计并拦截HTTP数据流、Web应用访问控制、Web应用加固</p>
+<p>网页防篡改：监控Web服务器上的页面文件，防止被篡改</p>
+<ul>
+<li>机制：备份文件对比、摘要文件对比、删改操作触发、系统底层过滤</li>
+</ul>
+<p><strong>典型注入攻击-SQL注入</strong></p>
+<blockquote>
+<p>原理：程序没有对用户输入数据的合法性进行判断，使攻击者可以绕过应用程序限制，构造一段SQL语句并传递到数据库中，实现对数据库的操作</p>
+</blockquote>
+<p>可以传递到数据库的数据都是攻击对象</p>
+<p><strong>SQL注入的危害</strong></p>
+<ul>
+<li>数据库信息收集：数据检索</li>
+<li>操作数据库：增加数据、删除数据、更改数据</li>
+<li>借助数据库某些功能操作系统</li>
+</ul>
+<p>SQL注入的防御</p>
+<p>防御的对象：所有外部传入数据</p>
+<ul>
+<li>用户的输入：提交的URL请求中的参数部分、从cookie中得到的数据</li>
+<li>其他系统传入的数据</li>
+</ul>
+<p>防御的方法：</p>
+<ul>
+<li>
+<p>白名单：限制传递数据的格式</p>
+</li>
+<li>
+<p>黑名单：过滤</p>
+<ul>
+<li>过滤特殊字串：update、insert、delete等</li>
+<li>开发时过滤特殊字符：单引号、双引号、斜杠、反斜杠、冒号、空字符等的字符<br>
+部署防SQL注入系统或脚本</li>
+</ul>
+</li>
+<li>
+<p>部署防SQL注入系统或脚本</p>
+</li>
+</ul>
+<h5 id="针对web应用的攻击-跨站脚本">针对Web应用的攻击-跨站脚本</h5>
+<p>原理：由于程序没有对用户提交的变量中的HTML代码进行过滤或转换，使得脚本可被执行，攻击者可以利用用户和服务器之间的信任关系实现恶意攻击</p>
+<p>危害：<strong>敏感信息泄露、账号劫持、Cookie欺骗、拒绝服务、钓鱼</strong>等</p>
+<p>防范：不允许HTML中脚本运行、对所有脚本进行严格过滤</p>
+<h5 id="针对web应用的攻击">针对WEB应用的攻击</h5>
+<ul>
+<li>失效的验证和会话管理、不安全的对象直接引用、跨站请求伪造、不安全的配置管理、不安全的密码存储、错误的访问控制、传输保护不足、未经验证的网址重定向、不恰当的异常处理、拒绝服务攻击</li>
+</ul>
+<h4 id="电子邮件安全">电子邮件安全</h4>
+<ul>
+<li>POP3/SMTP协议工作机制：简单的请求响应模式</li>
+<li>安全问题：信息泄漏（用户帐号密码、邮件内容）、身份验证不足（社会工程学攻击、垃圾邮件）</li>
+<li>安全解决：
+<ul>
+<li>服务器端：安全邮件协议、使用SSL保护会话、安全策略</li>
+<li>客户端</li>
+</ul>
+</li>
+</ul>
+<h4 id="其他互联网应用">其他互联网应用</h4>
+<ul>
+<li>远程接入、域名系统、即时通信</li>
+</ul>
+<h3 id="数据安全">数据安全</h3>
+<h4 id="数据库安全">数据库安全</h4>
+<p>数据库安全措施：用户标识与鉴别、授权与访问控制、数据加密、安全审计等</p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\CISP课件V4.2标准版\计算环境安全\数据库安全措施.png" style="zoom: 50%;" />
+<h4 id="数据泄露防护">数据泄露防护</h4>
+<p>检查、监控、审计</p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\CISP课件V4.2标准版\计算环境安全\审计流程.png" style="zoom:50%;" />
+<h5 id="数据库安全防护-构建深度防御体系">数据库安全防护-构建深度防御体系</h5>
+<ul>
+<li>安全机制：标识与鉴别、访问控制、传输加密、审计等</li>
+<li>安全策略：密码策略、备份策略等</li>
+</ul>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\CISP课件V4.2标准版\计算环境安全\构建深度防御体系.png" style="zoom:50%;" />
+<h5 id="数据库安全防护-安全特性检查">数据库安全防护-安全特性检查</h5>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\CISP课件V4.2标准版\计算环境安全\安全特性检查.png" style="zoom:50%;" />
+<p><strong>数据库安全特性检查</strong></p>
+<ul>
+<li>安全配置：补丁、协议（端口、传输协议）</li>
+<li>账号相关：用户名及密码、口令策略、权限</li>
+<li>存储过程</li>
+<li>触发器</li>
+<li>备份</li>
+</ul>
+<h5 id="数据库安全防护-运行监控">数据库安全防护-运行监控</h5>
+<p><strong>数据库安全防护-安全审计</strong></p>
+<p>数据库审计关注的问题</p>
+<ul>
+<li>审计对象（对谁进行审计）
+<ul>
+<li>标准审计（系统级、用户级）、细粒度审计（对象级）</li>
+</ul>
+</li>
+<li>审计内容（对什么行为进行审计）
+<ul>
+<li>访问数据库应用程序、位置及用户信息，包括用户操作、操作日期与时间、操作涉及的相关数据、操作是否成功等</li>
+</ul>
+</li>
+</ul>
+<p><strong>数据防泄露</strong></p>
+<p>网络安全法中对数据保护的要求<br>
+“未经被收集者同意，不得向他人提供个人信息”<br>
+“采取技术措施和其他必要措施，确保其收集的个人信息安全，防止信息泄露、毁损、丢失。”</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/2025/04/20/%E8%AE%A1%E7%AE%97%E7%8E%AF%E5%A2%83%E5%AE%89%E5%85%A8/">https://shierjinghuang.github.io/2025/04/20/%E8%AE%A1%E7%AE%97%E7%8E%AF%E5%A2%83%E5%AE%89%E5%85%A8/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/CISP%EF%BC%8C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                                    <span class="chip bg-color">CISP，操作系统</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2025/04/20/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%94%AF%E6%92%91%E6%8A%80%E6%9C%AF/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="信息安全支撑技术">
+                        
+                        <span class="card-title">信息安全支撑技术</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2025-04-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                    网络安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CISP/">
+                        <span class="chip bg-color">CISP</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%BA%AB%E4%BB%BD%E9%89%B4%E5%88%AB/">
+                        <span class="chip bg-color">身份鉴别</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/">
+                        <span class="chip bg-color">访问控制</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2025/04/20/%E4%B8%9A%E5%8A%A1%E8%BF%9E%E7%BB%AD%E6%80%A7/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="业务连续性">
+                        
+                        <span class="card-title">业务连续性</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-04-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                    网络安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CISP/">
+                        <span class="chip bg-color">CISP</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">
+                        <span class="chip bg-color">应急响应</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2025</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">361.1k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

@@ -1,0 +1,1490 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="业务连续性, 十二惊惶">
+    <meta name="description" content="业务连续性
+知识框架：
+
+[TOC]
+业务连续性管理
+业务连续性管理基础
+业务连续性 [BC]：业务连续性 [Business Continuity, BC]是组织对事故和业务中断的规划和响应，使业务可能在预先定义的级别上持续运行的组织策略">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>业务连续性 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">业务连续性</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/CISP/">
+                                <span class="chip bg-color">CISP</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">
+                                <span class="chip bg-color">应急响应</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                网络安全
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2025-04-20
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2025-04-21
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    15 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="业务连续性">业务连续性</h2>
+<p><strong>知识框架</strong>：</p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\CISP课件V4.2标准版\业务连续性\业务连续性.png" style="zoom:50%;" />
+<p>[TOC]</p>
+<h3 id="业务连续性管理">业务连续性管理</h3>
+<h4 id="业务连续性管理基础">业务连续性管理基础</h4>
+<p><strong>业务连续性</strong> [BC]：业务连续性 [Business Continuity, BC]是组织对事故和业务中断的规划和响应，使业务可能在预先定义的级别上持续运行的组织策略和战术上的能力</p>
+<p><strong>业务连续性管理</strong> [BCM]：BCM是找出组织有潜在影响的威胁及其对组织业务运行的影响，通过有效响应措施保护组织的利益、信誉、品牌和创造价值的活动，并为组织提供建设恢复能力框架的整体管理过程</p>
+<blockquote>
+<p>业务连续性管理是一项综合管理流程，由业务驱动，集合了技术、管理的一体化动态管理流程</p>
+</blockquote>
+<p>BCM与组织机构：</p>
+<ul>
+<li>BCM应为<strong>业务战略服务</strong></li>
+<li>BCM是<strong>风险管理框架的补充</strong>，主要考虑业务中断的影响</li>
+</ul>
+<p><strong>BCM的生命周期</strong>：</p>
+<ol>
+<li>需求、组织和管理程序的确定</li>
+<li>业务分析，确定关键业务流程和关键因素</li>
+<li>制定业务策略</li>
+<li>开发并执行业务持续计划</li>
+<li>意识培养和建立</li>
+<li>计划演练</li>
+</ol>
+<h4 id="业务连续性计划">业务连续性计划</h4>
+<blockquote>
+<p>业务连续性计划是一套基于业务运行规律的管理要求和规章流程，能够使一个组织在突发事件面前迅速做出反应，以确保关键业务功能可以持续，而不造成业务中断或业务流程本质的改变</p>
+</blockquote>
+<ul>
+<li>业务连续性计划建立在对组织机构各种过程的风险评估之上</li>
+<li>业务连续性计划关注基础设施功能和资源减少或受限的情况下维持业务操作</li>
+<li>BCP应成为组织管理文化的一部分，企业业务模式或业务过程变化情况下，应重新设计</li>
+</ul>
+<h5 id="组织管理">组织管理</h5>
+<ul>
+<li>理解业务组织：充分了解组织的体系结构及其组成部分、清晰每个业务流程及相互依赖关系</li>
+<li><strong>建立BCP团队</strong>：负责人 、团队成员</li>
+<li>评估BCP资源：<strong>购买和部署冗余设备</strong>、办公用品；BCP开发过程，BCP测试、培训、和维护过程中的人力资源</li>
+<li>BCP的<strong>合规性</strong>要求：法律法规合规性、合同的合规性</li>
+</ul>
+<h5 id="业务影响分析">业务影响分析</h5>
+<blockquote>
+<p>确定组织持续运行的关键资产、针对这些资产的威胁、评估每种资产出现的威胁及对业务的影响 ，提供量化度量以确定投入资源的优先顺序</p>
+</blockquote>
+<p>工作内容 ：确定业务优先级、风险分析、资产优先级划分</p>
+<p><strong>1. 确定业务优先级</strong></p>
+<blockquote>
+<p>业务流程综合列表，按重要性排序</p>
+</blockquote>
+<ul>
+<li>业务功能实际运作需要资源（计算机系统、人员、通信、物理设备）和服务</li>
+<li>确定业务优先级的关键点：业务所需资源的相互关系、对外部组织或其他方的依赖</li>
+</ul>
+<p>确定业务优先级需要做的工作</p>
+<ol>
+<li>评估如果业务中断，随时间推移对组织所造成的影响</li>
+<li>为每项业务建立最大允许中断时间</li>
+<li>识别任何相互依赖的活动、资产、用于支持的基础设施和资源</li>
+</ol>
+<p>度量标准：<strong>恢复时间目标</strong>（ RTO）</p>
+<p><strong>2. 风险分析</strong></p>
+<blockquote>
+<p>识别并分析组织所面临的重大风险</p>
+</blockquote>
+<p>风险要素识别：威胁分析、可能性分析、影响分析</p>
+<p><strong>3. 资产优先级划分</strong></p>
+<p>针对各种不同风险所分配的业务连续性资源的优先级</p>
+<ul>
+<li>确定资源水平时，应考虑相关利益方的需求 ，优先级列表可结合定量和定性两种方法确定</li>
+</ul>
+<h5 id="制定及批准实施">制定及批准实施</h5>
+<blockquote>
+<p>BCP的制定：确定业务连续性计划要处理的风险及采取的措施</p>
+</blockquote>
+<ul>
+<li>四种风险处置方式：风险降低、风险转移、风险规避、风险接受</li>
+</ul>
+<p><strong>1. 风险降低</strong></p>
+<p>预防性策略和反应性策略：采用适当地、低成本的预防性措施应当优于反应性策略</p>
+<p>重点保护对象：人力资源</p>
+<ul>
+<li>人是BCP的关键组成部分</li>
+<li>措施：<strong>人员冗余</strong>、负责同一重要业务人员不能同时面临某个特定风险</li>
+</ul>
+<p>重点保护对象：IT基础设施</p>
+<ul>
+<li>信息系统设施主要部分（硬件、软件、支撑环境等）</li>
+<li>措施：保护性措施（发电机、火灾探测和灭火社保等）、冗余措施等</li>
+</ul>
+<p>重点保护对象：辅助性设施</p>
+<ul>
+<li>为完成业务所需要的其他设施、措施：强化机制和过程、备用场所</li>
+</ul>
+<p><strong>2. 风险转移</strong></p>
+<blockquote>
+<p>风险转移是降低财务风险或资产的风险的有效方式，但有些风险不能转移</p>
+</blockquote>
+<p>转移方式：购买保险、合同 [外包合同中承诺的赔付、采购第三方服务]</p>
+<p><strong>3. 风险规避</strong></p>
+<blockquote>
+<p>变更、延缓或停止某种服务或业务功能，该措施只能在与组织目标、法律法规符合性以及利益相关方的期望不发生冲突时考虑</p>
+</blockquote>
+<p><strong>4. 风险接受</strong></p>
+<ul>
+<li>采取措施的潜在收益与成本不成比例，对某些风险能够采取措施的能力有限</li>
+</ul>
+<h5 id="文档化">文档化</h5>
+<p>文档化是BCP过程中的关键步骤</p>
+<ul>
+<li>文档需要包含的内容：BCP的目标:必须细化、职责声明：确保相关人员都了解他们的职责、优先级声明、风险评估、BCP策略、关键业务记录计划、应急响应的知道原则、测试与演练</li>
+</ul>
+<p><strong>批准与实施</strong></p>
+<p>向高层汇报并获得计划的批准</p>
+<p>培训和教育，计划中涉及的所有人都需要接受与 职责相关的培训</p>
+<p><strong>评估及维护</strong></p>
+<p>业务的动态性决定了业务连续性要求也会随时改变 ，需要定期讨论、复审、测试结果，必要时进行版本更新</p>
+<h3 id="信息安全应急响应">信息安全应急响应</h3>
+<h4 id="信息安全事件与应急响应">信息安全事件与应急响应</h4>
+<h5 id="应急响应的概念">应急响应的概念</h5>
+<p><strong>信息安全事件</strong></p>
+<ul>
+<li>由于自然或人为以及软、硬件本身缺陷或故障的原因，对信息系统造成危害，或者在信息系统内发生对社会造成负面影响的事件</li>
+<li>对信息安全事件进行有效管理和响应，是组织机构安全战略的一部分</li>
+</ul>
+<blockquote>
+<p>应急响应：组织为了应对突发/重大信息安全事件的发生所做的准备，以及在事件发生后所采取的措施</p>
+</blockquote>
+<h5 id="信息安全事件分类分级">信息安全事件分类分级</h5>
+<blockquote>
+<p>信息安全事件分类分级是有效防范和响应信息安全事件的基础，能够使事前准备、事中应对和事后处理的各项相关工作更具针对性和有效性</p>
+</blockquote>
+<p>分类：GB/Z 20986-2007 中，分<strong>有害程序事件、网络攻击事件、信息破坏事件、信息内容安全事件、设备设施故障、灾害性事件和其他信息安全事件</strong>7个基本类别，每个类别下有若干子类</p>
+<p><strong>分级</strong></p>
+<ul>
+<li>参考要素：<strong>信息系统的重要程度、系统损失和社会影响</strong></li>
+<li>四级（GB/Z 20986—2007）:特别重大事件（I级）、重大事件（II级）、较大事件（III级）、一般事件（IV级）</li>
+</ul>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\CISP课件V4.2标准版\业务连续性\信息安全事件分类分级.png" style="zoom: 50%;" />
+<p><strong>信息安全应急响应组织</strong></p>
+<ul>
+<li>国际应急响应组织：计算机应急响应协调中心（CERT /CC）</li>
+<li>国家应急响应组织：国家计算机网络应急技术处理协调中心（CNCERT /CC ）</li>
+<li>组织机构应急响应组织架构：应急响应领导组、应急响应技术保障组、应急响应专家组、应急响应实施组、应急响应日常运行组</li>
+</ul>
+<h4 id="网络安全应急响应预案">网络安全应急响应预案</h4>
+<p><strong>应急响应预案</strong></p>
+<blockquote>
+<p>应急响应预案：在分析网络与信息系统突发事件后果和应急能力的基础上，针对可能发生的重大网络与信息系统突发事件，预先制定的行动计划或应急对策。</p>
+</blockquote>
+<p>应急预案编制：</p>
+<ol>
+<li>建立在综合防灾规划之上</li>
+<li>描述支持应急操作的技术能力，并适应组织要求</li>
+<li>在详细程度和灵活程度之间取得平衡</li>
+<li>为信息安全事件中不熟悉计划的人员提供快捷明确的指导</li>
+</ol>
+<p><strong>应急演练与演习</strong></p>
+<blockquote>
+<p>检验应急响应预案的有效性、应急准备的完善性、应急响应能力的适应性和应急人员的协同性</p>
+</blockquote>
+<ul>
+<li>演练方式：桌面演练、模拟演练、实战演练</li>
+<li>演练深度：数据级演练、应用级演练、业务级演练</li>
+</ul>
+<h5 id="信息安全应急演练的操作流程">信息安全应急演练的操作流程</h5>
+<ul>
+<li>应急事件通报、确定应急事件优先级、应急响应启动实施、应急响应时间后期运维、更新现有应急预案</li>
+</ul>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\CISP课件V4.2标准版\业务连续性\信息安全应急演练的操作流程.png" style="zoom:50%;" />
+<h4 id="计算机取证及保全">计算机取证及保全</h4>
+<h5 id="计算机取证的概念">计算机取证的概念</h5>
+<blockquote>
+<p>计算机取证是使用先进的技术和工具，按照标准规程全面地检查计算机系统，以提取和保护有关计算机犯罪的相关证据的活动</p>
+</blockquote>
+<ul>
+<li>原则：<strong>合法原则、充分授权原则、优先保护证据原则、全程监督原则</strong></li>
+</ul>
+<h5 id="取证流程">取证流程</h5>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\CISP课件V4.2标准版\业务连续性\取证流程.png" style="zoom:80%;" />
+<p><strong>1. 准备阶段</strong></p>
+<ul>
+<li>获取授权：取证工作获得明确的授权（授权书）</li>
+<li>目标明确：对取证的目的有清晰的认识</li>
+<li>工具准备：对取证环境的了解及需要准备的工具</li>
+<li>软件准备：对取证的软件进行过有效的验证</li>
+<li>介质准备：确保有符合要求的干净的介质可用于取证</li>
+</ul>
+<p><strong>2. 保护阶段</strong></p>
+<ul>
+<li>保证数据安全性：制作磁盘映像——不在原始磁盘上操作</li>
+<li>保证数据完整性：取证中不使用可能破坏完整性的操作</li>
+<li>第三方监督：所有操作都有第三方在场监督</li>
+</ul>
+<p><strong>3. 提取阶段</strong></p>
+<ul>
+<li>优先提取易消失的证据：<strong>内存信息、系统进程、网络连接信息、路由信息、临时文件、缓存</strong></li>
+<li>文件系统中进行提取的方法：<strong>数据恢复、隐藏文件、加密文件、系统日志</strong></li>
+<li>应用系统：系统日志</li>
+</ul>
+<p><strong>4. 分析及提交</strong></p>
+<p>证据在什么地方：日志、删除的文件、临时文件、缓存</p>
+<h4 id="应急响应六阶段">应急响应六阶段</h4>
+<h5 id="第一阶段：准备">第一阶段：准备</h5>
+<ul>
+<li>工作目标
+<ul>
+<li>确定重要资产和风险，实施针对风险的防护措施；</li>
+<li>编制和管理应急响应计划
+<ul>
+<li>应急响应计划的编制准备、编制应急响应计划、应急响应计划的测试、培训演练和维护</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>为响应组织和准备相关资源
+<ul>
+<li>人力资源、财力资源、物质资源、技术资源和社会关系资源等</li>
+</ul>
+</li>
+</ul>
+<h5 id="第二阶段：检测">第二阶段：检测</h5>
+<p><strong>工作目标</strong>：检测并确认事件的发生、确定事件性质和影响</p>
+<p>工作内容：</p>
+<ul>
+<li>进行监测、报告及信息收集</li>
+<li>确定事件类别和级别</li>
+<li>指定事件处理人，进行初步响应</li>
+<li>评估事件的影响范围</li>
+<li>事件通告（<strong>信息通报、信息上报、信息披露</strong>）</li>
+</ul>
+<h5 id="第三阶段：遏制">第三阶段：遏制</h5>
+<ul>
+<li>工作目标：限制事件影响的范围、损失</li>
+<li>工作内容：启动应急响应计划、确定适当的响应方式、实施遏制行动、要求用户按应急行为规范要求配合遏制工作</li>
+</ul>
+<h5 id="第四阶段：根除">第四阶段：根除</h5>
+<ul>
+<li>工作目标：避免问题再次发生的长期的补救措施</li>
+<li>工作内容：详细分析，确定原因、实施根除措施，消除原因</li>
+</ul>
+<h5 id="第五阶段：恢复">第五阶段：恢复</h5>
+<ul>
+<li>工作目标：恢复系统至正常状态</li>
+<li>工作内容：
+<ul>
+<li>根据破坏程度决定是在原系统还是备份系统中恢复</li>
+<li>按恢复优先顺序恢复系统和业务运行</li>
+</ul>
+</li>
+</ul>
+<h5 id="第六阶段：跟踪总结">第六阶段：跟踪总结</h5>
+<ul>
+<li>工作目标：回顾并汇总所发生事件的相关信息</li>
+</ul>
+<p>工作内容</p>
+<ul>
+<li>关注系统恢复以后的安全状况，记录跟踪结果</li>
+<li>评估损失、响应措施效果</li>
+<li>分析和总结经验、教训</li>
+<li>重新评估和修改安全策略、措施和应急响应计划</li>
+<li>对进入司法程序的事件，进行进一步调查，打击违法犯罪活动</li>
+<li>编制并提交应急响应报告</li>
+</ul>
+<h3 id="灾难备份与恢复">灾难备份与恢复</h3>
+<h4 id="灾难备份与恢复基础">灾难备份与恢复基础</h4>
+<p><strong>灾备概念</strong>：</p>
+<ul>
+<li>为了保证关键业务和应用在经历各种灾难后，仍然能够最大限度的提供正常服务所进行的一系列系统计划及建设行为，其目的就是确保关键业务持续运行以及减少非计划宕机时间</li>
+<li>灾难备份是灾难恢复的基础，灾难恢复不能只考虑信息系统的恢复，更应关注业务的恢复</li>
+</ul>
+<p><strong>灾难恢复计划</strong></p>
+<ul>
+<li>定义信息系统灾难恢复过程中所需的任务、行动、数据和资源的文件，用于指导相关人员在预定的灾难恢复目标内恢复信息系统支持的关键业务功能</li>
+</ul>
+<h5 id="灾备指标">灾备指标</h5>
+<p>恢复点目标 [RPO] ：灾难发生后，系统和数据必须恢复到的时间点要求</p>
+<ul>
+<li>代表了当灾难发生时允许丢失的数据量</li>
+</ul>
+<p>恢复时间目标 [RTO]：灾难发生后，信息系统和业务功能从停顿到必须恢复的时间要求</p>
+<ul>
+<li>代表了企业能容忍的信息系统和业务功能恢复的时间</li>
+</ul>
+<p><strong>灾备组织</strong></p>
+<ul>
+<li>组织构成：<strong>领导组、规划实施组、日常运行组</strong></li>
+<li>规划工作可聘请外部专家，实施和运行也可委托外包机构承担</li>
+</ul>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\CISP课件V4.2标准版\业务连续性\组织构成.png" style="zoom:50%;" />
+<h5 id="国家灾备政策及相关标准">国家灾备政策及相关标准</h5>
+<ul>
+<li>重要信息系统灾难恢复指南：指明了灾难恢复的工作流程、等级划分和预案的制定框架</li>
+<li>GB/T 20988-2007，规定了灾难恢复工作流程、灾难恢复等及方案设计、预案、演练</li>
+<li>《灾难恢复中心建设与运维管理规范》，指出了灾备中心建设的全生命周期、灾备中心的运维工作</li>
+</ul>
+<h4 id="灾难恢复相关技术">灾难恢复相关技术</h4>
+<h5 id="存储技术">存储技术</h5>
+<p><strong>直接附加存储 [DAS]</strong>：直接连接在各种服务器或客户端扩展接口下的数据存储设备， 依赖计算机，是硬件堆叠，不带操作系统</p>
+<ul>
+<li>优点：适用物理位置分散情况、容易实现打容量存储，性能较高、实施简单</li>
+<li>缺点：对服务器依赖性强，占用服务器资源、扩展性较差、资源利用率低、可管理性差</li>
+</ul>
+<p><strong>存储区域网络 [SAN]</strong></p>
+<ul>
+<li>优点：专用网络、效率高、扩展方便</li>
+<li>缺点：成本高、实施复杂、难度大</li>
+</ul>
+<p><strong>网络附加存储 [NAS]</strong>：直接通过网络接口将存储设备与网络相连实现数据存储的机制，有独立IP地址，操作系统等</p>
+<ul>
+<li>优点：易于安装不是和管理、不占用服务器资源、跨平台</li>
+<li>不足：性能相对较差，因为数据传输使用网络，可能影响网络流量、甚至可能产生数据泄漏等安全问题</li>
+</ul>
+<h5 id="备份技术">备份技术</h5>
+<ul>
+<li>备份方式：<strong>完全备份、增量备份、差量备份</strong></li>
+<li>备份介质：<strong>磁带、硬盘</strong></li>
+</ul>
+<p><strong>冗余磁盘阵列 [RAID]</strong></p>
+<p>实现方式</p>
+<ul>
+<li><strong>RAID-O [条带]</strong>：提高了磁盘子系统的性能，但不提供容错能力</li>
+<li><strong>RAID-1 [镜像]</strong>：磁盘一对一镜像，确保数据不丢失</li>
+<li><strong>RAID-5 [奇偶校验]</strong>：三块以上磁盘，其中一块作为校验信息，允许第一磁盘损坏</li>
+</ul>
+<p>可基于硬件，也可基于软件</p>
+<ul>
+<li>备用场所：冷站、温站、热站、移动站、镜像站</li>
+</ul>
+<h4 id="灾难恢复策略">灾难恢复策略</h4>
+<h5 id="国际标准share78">国际标准SHARE78</h5>
+<p>灾难备份能力0~6级</p>
+<ul>
+<li>0级：<strong>无异地备份</strong>、1级：<strong>简单异地备份</strong>、2级：<strong>热备中心备份</strong>、3级：<strong>电子传输备份</strong>、4级：<strong>自动定时备份</strong>、5级：<strong>实时数据备份</strong>、6级：<strong>数据零丢失</strong></li>
+</ul>
+<p><strong>重要信息系统灾难恢复指南</strong></p>
+<p>6个灾难恢复等级：</p>
+<ul>
+<li>第1级 基本支持、第2级 备用场地支持、第3级 电子传输和部分设备支持、第4级 电子传输及完整设备支持、第5级 实时数据传输及完整设备支持、第6级 数据零丢失和远程集群支持</li>
+</ul>
+<p><strong>组织容灾策略构建</strong></p>
+<ul>
+<li>根据对灾难的抵抗程度，容灾技术可分为以下三种：<strong>数据容灾 [首要前提]、系统容灾 [基本基础]、应用容灾 [主要关键]</strong></li>
+</ul>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\CISP课件V4.2标准版\业务连续性\容灾技术.png" style="zoom: 80%;" />
+<h4 id="灾难恢复管理过程">灾难恢复管理过程</h4>
+<ul>
+<li>灾难恢复规划是一个周而复始的、持续改进的过程，包含以下四个阶段：<strong>灾难恢复需求分析、灾难恢复策略制定、灾难恢复策略实现、灾难恢复预案的制定和管理</strong></li>
+</ul>
+<p><strong>灾难恢复需求分析</strong></p>
+<ul>
+<li>风险分析：<strong>资产、威胁、脆弱性、可能性、影响</strong></li>
+<li>业务影响分析：分析业务功能和相关资源配置、评估中断影响</li>
+<li>确定灾难恢复目标：关键业务功能及恢复的优先顺序、RTO和RPO的范围</li>
+</ul>
+<p>灾难恢复策略制定及策略实现</p>
+<ul>
+<li>策略制定：明确需要哪些灾难恢复资源、各项灾难恢复资源的获取方式，以及对各项灾难恢复资源的具体要求</li>
+<li>策略实现：选择和建设灾难备份中心、实现灾难备份系统技术方案、实现专业技术支持能力、实现运行维护管理能力</li>
+</ul>
+<p>灾难恢复预案制定和管理</p>
+<ul>
+<li><strong>制定灾难恢复预案、灾难恢复计划的教育与培训、灾难恢复计划演习、灾难恢复预案的保存与分发</strong></li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/2025/04/20/%E4%B8%9A%E5%8A%A1%E8%BF%9E%E7%BB%AD%E6%80%A7/">https://shierjinghuang.github.io/2025/04/20/%E4%B8%9A%E5%8A%A1%E8%BF%9E%E7%BB%AD%E6%80%A7/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/CISP/">
+                                    <span class="chip bg-color">CISP</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/">
+                                    <span class="chip bg-color">应急响应</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2025/04/20/%E8%AE%A1%E7%AE%97%E7%8E%AF%E5%A2%83%E5%AE%89%E5%85%A8/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="计算环境安全">
+                        
+                        <span class="card-title">计算环境安全</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2025-04-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                    网络安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CISP%EF%BC%8C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                        <span class="chip bg-color">CISP，操作系统</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2025/04/19/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E8%AF%84%E4%BC%B0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="信息安全评估">
+                        
+                        <span class="card-title">信息安全评估</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-04-19
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                    网络安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CISP/">
+                        <span class="chip bg-color">CISP</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AE%89%E5%85%A8%E8%AF%84%E4%BC%B0/">
+                        <span class="chip bg-color">安全评估</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2025</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">361.1k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
