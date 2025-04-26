@@ -5,12 +5,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="IPv6过渡技术, 十二惊惶">
-    <meta name="description" content="IPv6过渡技术# 理解使用隧道机制实现IPv6穿越IPv4的原理
+    <meta name="description" content="IPv6过渡技术
+# 理解使用隧道机制实现IPv6穿越IPv4的原理
 # 掌握6to4自动隧道、ISATAP自动隧道的实现机制
 # 掌握Win 7下配置6to4路由器、ISATAP路由器的方法
-
 [TOC]
-IPv6过渡技术概述IPv6过渡期">
+IPv6过渡技术概述
+IPv6过渡">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -449,16 +450,19 @@ IPv6过渡技术概述IPv6过渡期">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="IPv6过渡技术"><a href="#IPv6过渡技术" class="headerlink" title="IPv6过渡技术"></a>IPv6过渡技术</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 理解使用隧道机制实现IPv6穿越IPv4的原理</span>
+                <h2 id="ipv6过渡技术">IPv6过渡技术</h2>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 理解使用隧道机制实现IPv6穿越IPv4的原理</span>
 <span class="token comment"># 掌握6to4自动隧道、ISATAP自动隧道的实现机制</span>
 <span class="token comment"># 掌握Win 7下配置6to4路由器、ISATAP路由器的方法</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
 <p>[TOC]</p>
-<h3 id="IPv6过渡技术概述"><a href="#IPv6过渡技术概述" class="headerlink" title="IPv6过渡技术概述"></a>IPv6过渡技术概述</h3><h4 id="IPv6过渡期的特点"><a href="#IPv6过渡期的特点" class="headerlink" title="IPv6过渡期的特点"></a>IPv6过渡期的特点</h4><ul>
+<h3 id="ipv6过渡技术概述">IPv6过渡技术概述</h3>
+<h4 id="ipv6过渡期的特点">IPv6过渡期的特点</h4>
+<ul>
 <li>协议的过渡需要在网络中的所有节点上安装和配置新的协议，并且检验所有主机和路由器都能正确运行</li>
 <li>要实施IPv6网络，必须充分考虑现有的网络条件，充分利用现有的条件构造下一代互联网，以避免过多的浪费</li>
 </ul>
-<h4 id="过渡时期采用技术的选择"><a href="#过渡时期采用技术的选择" class="headerlink" title="过渡时期采用技术的选择"></a>过渡时期采用技术的选择</h4><p><strong>双栈技术(Dual Stack)</strong></p>
+<h4 id="过渡时期采用技术的选择">过渡时期采用技术的选择</h4>
+<p><strong>双栈技术(Dual Stack)</strong></p>
 <ul>
 <li>让IPv4和IPv6共存于同一设备和网络中(RFC 2893)，采用该技术的节点上同时运行IPv4和IPv6两套协议栈</li>
 <li>对IPv4和IPv6提供了完全的兼容，但对于IP地址耗尽问题没有任何帮助</li>
@@ -474,13 +478,16 @@ IPv6过渡技术概述IPv6过渡期">
 <li>让纯IPv6节点能够和纯IPv4节点相互通信(RFC2766)</li>
 <li>转换网关除了要进行IPv4和IPv6地址转换之外，还要进行协议的转换和翻译。</li>
 </ul>
-<h3 id="兼容的地址"><a href="#兼容的地址" class="headerlink" title="兼容的地址"></a>兼容的地址</h3><ol>
-<li>IPv4兼容地址<ul>
+<h3 id="兼容的地址">兼容的地址</h3>
+<ol>
+<li>IPv4兼容地址
+<ul>
 <li>格式为:0:0:0:0:0:0:w.x.y.z:w或::w.x.y.z，(其中w.x.y.z是公共IPv4地址的点缀十进制表示)，用于IPv6/IPv4节点，它使IPv4/IPv6节点可以通过IPv4网络与IPv6节点进行通信</li>
 <li>如果IPv6通信流的目的地址是IPv4兼容地址，则IPv6通信流会被IPv4报头自动封装，并通过IPv4网络发送到目标节点</li>
 </ul>
 </li>
-<li>IPv4映射地址<ul>
+<li>IPv4映射地址
+<ul>
 <li>格式为:0:0:0:0:0:0:FFFF:w.x.y.z或::FFFF:w.x.y.z，用于将一个IPv4-only节点表示为一个IPv6节点，它仅用于内部表示</li>
 <li>IPv4映射地址从不用作IPv6数据包的源地址或目的地址，主要用于一些在IPv4-only节点和IPv6-only节点间进行协议转换的实现方案中</li>
 </ul>
@@ -492,58 +499,69 @@ IPv6过渡技术概述IPv6过渡期">
 <li>当使用RFC2529中定义的自动隧道机制时，系统会将6over4地址分配给一个连接到支持多播IPv4网络结构中的IPv6节点</li>
 </ul>
 <ol start="4">
-<li>6to4地址<ul>
+<li>6to4地址
+<ul>
 <li>6to4地址基于前缀2002:WWXX:YYZZ::/48(其中WWXX:YYZZ是公共IPv4地址w.x.y.z的冒号十六进制表示)</li>
 <li>当使用RFC3056中定义的自动隧道机制时，6to4地址前缀用于创建站点的全球地址前缀，以及站点中的IPv6节点的全球地址</li>
 </ul>
 </li>
-<li>ISATAP地址<ul>
+<li>ISATAP地址
+<ul>
 <li>ISATAP(Intra-Site Automatic Tunnel Addressing Protocol)地址由一个有效的64位IPv4单播地址前缀和接口标符::5EFE:w.x.y.z所组成(其中w.x.y.z是一个接口的单播IPv4地址)</li>
 <li>当使用RFC5214中定义的自动隧迫礼制时，系统会将使用ISATAP接口标识符的地址分配给IPv6/IPv4节点</li>
 </ul>
 </li>
 </ol>
-<h3 id="双栈技术"><a href="#双栈技术" class="headerlink" title="双栈技术"></a>双栈技术</h3><h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><p>即主机和路由器在同一网络接口上运行IPv4栈和IPv6栈。这样，双栈节点既可以接收和发送IPv4包和IPv6包，因而两个协议可以在同一网络中共存</p>
+<h3 id="双栈技术">双栈技术</h3>
+<h4 id="工作原理">工作原理</h4>
+<p>即主机和路由器在同一网络接口上运行IPv4栈和IPv6栈。这样，双栈节点既可以接收和发送IPv4包和IPv6包，因而两个协议可以在同一网络中共存</p>
 <img src="./IPv6协议结构/IPv6双栈技术示意图.png" style="zoom:67%;" />
-
-<h4 id="三种工作模式"><a href="#三种工作模式" class="headerlink" title="三种工作模式"></a>三种工作模式</h4><ul>
+<h4 id="三种工作模式">三种工作模式</h4>
+<ul>
 <li>只运行IPv6协议，对外呈现为IPv6节点;</li>
 <li>只运行IPv4协议，对外呈现为IPv4节点;</li>
 <li>同时运行IPv4协议和IPv6协议，对外呈现双栈模式。</li>
 </ul>
 <p>支持三种隧道模式为：不运行隧道；仅运行手工隧道；同时运行手工和自动隧道。</p>
-<h4 id="双栈技术的特点"><a href="#双栈技术的特点" class="headerlink" title="双栈技术的特点"></a>双栈技术的特点</h4><blockquote>
+<h4 id="双栈技术的特点">双栈技术的特点</h4>
+<blockquote>
 <p>双栈技术是一切过渡技术的基础，隧道机制和翻译机制都要利用双栈节点</p>
 </blockquote>
 <ul>
 <li>双栈技术应该能独立的配置IPv4和IPv6地址</li>
 </ul>
 <p>双栈技术的优点是互通性好，易于理解；缺点是需要给每个新的运行IPv6协议的网络设备和终端分配IPv4地址，不能解决IPv4地址短缺问题</p>
-<h3 id="隧道技术"><a href="#隧道技术" class="headerlink" title="隧道技术"></a>隧道技术</h3><blockquote>
+<h3 id="隧道技术">隧道技术</h3>
+<blockquote>
 <p>隧道(Tunnel)是指将一种协议首部封装在另一种协议首部中，使得一种协议可以通过另一种协议的封装进行通信</p>
 </blockquote>
 <ul>
 <li>优点在于隧道的透明性，不需要大量的IPv6专用设备和链路，可以明显的减少投资</li>
 <li>缺点是配置麻烦，不能实现纯IPv4和纯IPv6主机之间的通信。</li>
 </ul>
-<h4 id="工作原理-1"><a href="#工作原理-1" class="headerlink" title="工作原理"></a>工作原理</h4><ul>
+<h4 id="工作原理">工作原理</h4>
+<ul>
 <li>核心思想是通过把IPv6数据报文封装入IPv4数据报文中，让现有IPv4网络成为载体以建立IPv6的通信，隧道两端的节点间数据报文的传送通过IPv4机制进行，隧道被看成一个直接连接的通道</li>
 <li>隧道有两个端点，隧道入口点和隧道出口点。在入口点，路由器将IPv6分组封装在IPv4中，该IPv4的源地址和目的地址分别是入口和出口的IPv4地址。在出口点将IPv6分组取出转发给目的站点</li>
 </ul>
-<h4 id="IPv6数据包的封装步骤"><a href="#IPv6数据包的封装步骤" class="headerlink" title="IPv6数据包的封装步骤"></a>IPv6数据包的封装步骤</h4><ul>
-<li>入口点将IPv6跳数限制减去1，并把该数据包封装进某个IPv4首部中。IPv4首部“协议”域设置为”41”，指示这个分组的净荷是一个IPv6的分组</li>
+<h4 id="ipv6数据包的封装步骤">IPv6数据包的封装步骤</h4>
+<ul>
+<li>入口点将IPv6跳数限制减去1，并把该数据包封装进某个IPv4首部中。IPv4首部“协议”域设置为&quot;41&quot;，指示这个分组的净荷是一个IPv6的分组</li>
 <li>通过隧道传输封装后的数据包，如果必要，封装后的IPv4数据包进行分段</li>
 <li>隧道出口点接收到封装后的数据包。如果数据包被分段，出口点进行重组</li>
 <li>出口点剥离IPv4首部，将IPv6数据包传递到目的地址</li>
 </ul>
 <img src="./IPv6协议结构/IPv6数据包封装.png" style="zoom:67%;" />
-
-<h4 id="隧道的实现方式"><a href="#隧道的实现方式" class="headerlink" title="隧道的实现方式"></a>隧道的实现方式</h4><ul>
-<li><p>为了让数据通过隧道，必须知道两个端点的地址。确定入口点的是直接的因为它出现在IPv4基础结构的边界;确定隧道的出口点要复杂些</p>
+<h4 id="隧道的实现方式">隧道的实现方式</h4>
+<ul>
+<li>
+<p>为了让数据通过隧道，必须知道两个端点的地址。确定入口点的是直接的因为它出现在IPv4基础结构的边界;确定隧道的出口点要复杂些</p>
 </li>
-<li><p>根据隧道终点地址的获得方式可将隧道分为<strong>配置隧道</strong>和<strong>自动隧道</strong>，其中配置隧道主要用于路由器到路由器</p>
+<li>
+<p>根据隧道终点地址的获得方式可将隧道分为<strong>配置隧道</strong>和<strong>自动隧道</strong>，其中配置隧道主要用于路由器到路由器</p>
 </li>
-<li><p>自动隧道有以下几种方式:</p>
+<li>
+<p>自动隧道有以下几种方式:</p>
 <ul>
 <li>Tunnel Brokers(RFC 3053):基于服务器的半自动隧道;</li>
 <li>6to4(RFC 3056):路由器到路由器;</li>
@@ -553,29 +571,36 @@ IPv6过渡技术概述IPv6过渡期">
 </ul>
 </li>
 </ul>
-<h5 id="过渡初期"><a href="#过渡初期" class="headerlink" title="过渡初期"></a>过渡初期</h5><ul>
+<h5 id="过渡初期">过渡初期</h5>
+<ul>
 <li>使IPv6报文在IPv4网络中传输。手动隧道包括IPv6 over lPv4隧道，自动隧道包括IPv4兼容IPv6自动隧道、6to4隧道和ISATAP隧道</li>
 </ul>
-<h5 id="过渡后期"><a href="#过渡后期" class="headerlink" title="过渡后期"></a>过渡后期</h5><ul>
+<h5 id="过渡后期">过渡后期</h5>
+<ul>
 <li>使用IPv4 over lPv6隧道，使IPv4报文在lPv6网络中传输。</li>
 </ul>
-<h4 id="配置隧道"><a href="#配置隧道" class="headerlink" title="配置隧道"></a>配置隧道</h4><ul>
+<h4 id="配置隧道">配置隧道</h4>
+<ul>
 <li>需要隧道两个端点所在网络的管理员协作完成</li>
 <li>隧道的端点地址由配置来决定，不需要为站点分配特殊的IPv6地址</li>
 <li>适用于经常通信的IPv6站点之间</li>
 </ul>
-<h4 id="基本的自动隧道技术"><a href="#基本的自动隧道技术" class="headerlink" title="基本的自动隧道技术"></a>基本的自动隧道技术</h4><ul>
-<li>自动配置的隧道<ul>
+<h4 id="基本的自动隧道技术">基本的自动隧道技术</h4>
+<ul>
+<li>自动配置的隧道
+<ul>
 <li>端点地址根据分组的目的地址确定，适用于单独的主机之间或者不经常通信的站点之间。需要站点使用IPv4兼容的IPv6地址(O::IPv4/96)，且站点之间有可用的IPv4连接，每个采用这种机制的主机都需要一个IPv4地址</li>
 <li>不能解决IPv4地址空间耗尽的问题。两个端点都必须支持双协议栈</li>
 </ul>
 </li>
 </ul>
-<h5 id="IPv4多播隧道6-over-4"><a href="#IPv4多播隧道6-over-4" class="headerlink" title="IPv4多播隧道6 over 4"></a>IPv4多播隧道6 over 4</h5><ul>
+<h5 id="ipv4多播隧道6-over-4">IPv4多播隧道6 over 4</h5>
+<ul>
 <li>与配置隧道不同的是它不需要任何地址配置;与自动隧道不同的是它不要求使用lIPv4兼容的IPv6地址</li>
 <li>当通过支持6 over 4的路由器与外界相连时，站点内的主机可以和外部IPv6站点通信</li>
 </ul>
-<h4 id="6to4隧道"><a href="#6to4隧道" class="headerlink" title="6to4隧道"></a>6to4隧道</h4><blockquote>
+<h4 id="6to4隧道">6to4隧道</h4>
+<blockquote>
 <p>6to4是一种自动隧道机制，通常在站点的边界路由器之间建立隧道，它为IPv6站点和主机之间提供了跨IPv4 Internet的单播IPv6连通性</p>
 </blockquote>
 <p><strong>使用前缀为2002:IPv4addr:/48的6to4地址，其中IPv4addr是站点边界路由器的IPv4地址</strong></p>
@@ -583,34 +608,39 @@ IPv6过渡技术概述IPv6过渡期">
 <li>当两个站点中任两台主机通信时，隧道首节点自动从IPv6源地址和目的地址中提取出隧道首尾节点的IPv4地址，在两个站点的边界路由器之间建立一条IPv4隧道</li>
 </ul>
 <p>隧道不需要维护任何信息，通信开始时建立，通信结束时自动撤销</p>
-<h5 id="6to4路由器"><a href="#6to4路由器" class="headerlink" title="6to4路由器"></a>6to4路由器</h5><blockquote>
+<h5 id="6to4路由器">6to4路由器</h5>
+<blockquote>
 <p>6to4路由器是支持使用6to4隧道接口的IPv6/IPv4路由器，它通常用于一个站点中的6to4主机和IPv4网络(如: Internet)上的其它6to4路由器或6to4中继路由器之间转发目标为6to4地址的通信流，充当了隧道的端点</p>
 </blockquote>
 <p>6to4路由器应实现双栈和6to4隧道功能，并且至少有一个全球唯一的可路由IPv4地址需要使用额外的处理逻辑，以正确地封装和拆封，并且还可能需要额外的手工配置</p>
-<h5 id="6to4中继路由器"><a href="#6to4中继路由器" class="headerlink" title="6to4中继路由器"></a>6to4中继路由器</h5><ul>
+<h5 id="6to4中继路由器">6to4中继路由器</h5>
+<ul>
 <li>在Internet上的6to4路由器和IPv6 Internet上的主机之间转发目标为6to4地址的通信流的IPv6/IPv4路由器</li>
 </ul>
 <img src="./IPv6协议结构/6to4中继路由器.png" style="zoom:67%;" />
-
-<h4 id="lSATAP隧道"><a href="#lSATAP隧道" class="headerlink" title="lSATAP隧道"></a>lSATAP隧道</h4><blockquote>
+<h4 id="lsatap隧道">lSATAP隧道</h4>
+<blockquote>
 <p>站点内自动隧道寻址协议(Intra-Site Automatic Tunnel AddressingProtocol)，将没有IPv6路由器的IPv4内部网中的IPv6节点连接起来，为IPv6主机之间提供了<strong>跨越IPv4内部网络</strong>单播IPv6连通性</p>
 </blockquote>
 <ul>
 <li>ISATAP主机使用标准地址自动配置机制来创建lSATAP地址。ISATAP地址格式为:64位前缀:5EFE: w.x.y.z。其中前缀可以是链路本地地址前缀、站点本地前缀和全球前缀(包括6to4前缀)</li>
 </ul>
 <img src="./IPv6协议结构/ISATAP隧道.png" style="zoom:67%;" />
-
-<h3 id="协议转换技术"><a href="#协议转换技术" class="headerlink" title="协议转换技术"></a>协议转换技术</h3><h4 id="NAT技术"><a href="#NAT技术" class="headerlink" title="NAT技术"></a>NAT技术</h4><ul>
+<h3 id="协议转换技术">协议转换技术</h3>
+<h4 id="nat技术">NAT技术</h4>
+<ul>
 <li>NAT有三种类型:静态NAT;动态NAT;网络地址端口转换NAPT</li>
 <li>对于IPv4向IPv6过渡机制来讲，这里的内网和外网可以分别对应IPv4网络或IPv6网络</li>
 <li>NAT网关使用一个IPv4地址池，并把这些地址和相应IPv6地址绑定在一起。不需要对终端节点做任何修改</li>
 <li>转换技术依据转换所对应计算机网络体系结构的层次。缺点是不支持lPv6高级特性，例如端到端的安全</li>
 </ul>
-<h3 id="过渡机制的选择"><a href="#过渡机制的选择" class="headerlink" title="过渡机制的选择"></a>过渡机制的选择</h3><p>在现有的IPv4网络上逐步融合IPv6技术，过渡的内容包括:</p>
+<h3 id="过渡机制的选择">过渡机制的选择</h3>
+<p>在现有的IPv4网络上逐步融合IPv6技术，过渡的内容包括:</p>
 <blockquote>
 <p>网络的过渡；主机节点的过渡；应用程序的过渡；IPv4网络与IPv6网络之间的互通；IPv6网络之间的互通</p>
 </blockquote>
-<h4 id="lPv6过渡时期建议采用的过渡原则"><a href="#lPv6过渡时期建议采用的过渡原则" class="headerlink" title="lPv6过渡时期建议采用的过渡原则:"></a>lPv6过渡时期建议采用的过渡原则:</h4><ul>
+<h4 id="lpv6过渡时期建议采用的过渡原则">lPv6过渡时期建议采用的过渡原则:</h4>
+<ul>
 <li>能直接建立IPv6链路的情况下，使用纯IPv6路由</li>
 <li>不能使用IPv6链路的情况下，IPv6节点间使用隧道技术</li>
 <li>双栈的IPv4/IPv6主机和纯IPv4或纯IPv6网络的主机通信尽量不要采用协议转换，直接自动选择相应的通信协议</li>
@@ -1013,7 +1043,7 @@ IPv6过渡技术概述IPv6过渡期">
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">368.4k</span>
+                        class="white-color">380.3k</span>
             
             
             

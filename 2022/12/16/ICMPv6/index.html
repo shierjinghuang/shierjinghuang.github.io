@@ -5,13 +5,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="ICPMv6协议基础, 十二惊惶">
-    <meta name="description" content="ICMPv6协议[TOC]
+    <meta name="description" content="ICMPv6协议
+[TOC]
 #掌握四种差错报文的格式及用途
 #掌握请求&amp;#x2F;回显报文的格式
 #理解IPv6的路径MTU发现过程
+ICMPv6协议概述
+ICMPv6的功能
 
-ICMPv6协议概述ICMPv6的功能
-IPv6的ICMP(Internet Control Messa">
+IPv6的ICMP(Internet Control Mes">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -420,7 +422,7 @@ IPv6的ICMP(Internet Control Messa">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.8k
+                    1.9k
                 </div>
                 
 
@@ -450,72 +452,78 @@ IPv6的ICMP(Internet Control Messa">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="ICMPv6协议"><a href="#ICMPv6协议" class="headerlink" title="ICMPv6协议"></a>ICMPv6协议</h2><p>[TOC]</p>
+                <h2 id="icmpv6协议">ICMPv6协议</h2>
+<p>[TOC]</p>
 <pre class="line-numbers language-Python" data-language="Python"><code class="language-Python">#掌握四种差错报文的格式及用途
 #掌握请求&#x2F;回显报文的格式
 #理解IPv6的路径MTU发现过程<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="ICMPv6协议概述"><a href="#ICMPv6协议概述" class="headerlink" title="ICMPv6协议概述"></a>ICMPv6协议概述</h3><h4 id="ICMPv6的功能"><a href="#ICMPv6的功能" class="headerlink" title="ICMPv6的功能"></a>ICMPv6的功能</h4><blockquote>
+<h3 id="icmpv6协议概述">ICMPv6协议概述</h3>
+<h4 id="icmpv6的功能">ICMPv6的功能</h4>
+<blockquote>
 <p style="color:orange;">IPv6的ICMP(Internet Control Message Protocol)，属于IPv6协议的一个组成部分，IPv6网络中的每一个节点均要实现ICMPv6</p>
 </blockquote>
 <ul>
-<li><p>在IPv6分组<strong>不能被正确处理</strong>时，ICMPv<strong>6向源节点报告分组在传输过程中的出错信息和通告信息</strong>，使网络中的节点可以知道网络中所传输的IPv6分组的情况，以及当前网络状态的重要信息</p>
+<li>
+<p>在IPv6分组<strong>不能被正确处理</strong>时，ICMPv<strong>6向源节点报告分组在传输过程中的出错信息和通告信息</strong>，使网络中的节点可以知道网络中所传输的IPv6分组的情况，以及当前网络状态的重要信息</p>
 </li>
-<li><p><strong>ICMPv6报文作为IPv6分组的数据载荷</strong></p>
+<li>
+<p><strong>ICMPv6报文作为IPv6分组的数据载荷</strong></p>
 </li>
 </ul>
-<h4 id="lCMPv6与ICMPv4的比较"><a href="#lCMPv6与ICMPv4的比较" class="headerlink" title="lCMPv6与ICMPv4的比较"></a>lCMPv6与ICMPv4的比较</h4><blockquote>
+<h4 id="lcmpv6与icmpv4的比较">lCMPv6与ICMPv4的比较</h4>
+<blockquote>
 <p style="color:blue;">ICMPv6与ICMPv4是两个不同的协议，两个版本的ICMP并不兼容</p>
 </blockquote>
 <p>ICMPv6增加的功能包括:</p>
 <ul>
-<li><ul>
+<li>
+<ul>
 <li>IGMP、ARP、RARP功能被加入到ICMPv6中。</li>
 <li>引入了<strong>邻居发现(Neighbor Discovery)协议</strong>，实现了路由器和前缀发现、地址解析地址自动配置、下一跳地址确定、邻居可达性检测、重复地址检测、重定向等功能</li>
 <li>ICMPv6还支持Mobile lPv6</li>
 </ul>
 </li>
 </ul>
-<h3 id="ICMPv6协议报文格式"><a href="#ICMPv6协议报文格式" class="headerlink" title="ICMPv6协议报文格式"></a>ICMPv6协议报文格式</h3><p>ICMPv6报头由其前一个报头中的下一个报头字段值58来标识。</p>
+<h3 id="icmpv6协议报文格式">ICMPv6协议报文格式</h3>
+<p>ICMPv6报头由其前一个报头中的下一个报头字段值58来标识。</p>
 <img src="./IPv6协议结构/ICMPv6报文的一般格式.png" style="zoom:67%;" />
-
 <center>ICMPv6报文的一般格式</center>
 <img src="./IPv6协议结构/携带ICMPv6分组的报文格式.png" style="zoom:50%;" />
-
 <center>携带ICMPv6分组的报文格式</center>
 #### 各字段含义
-
 <ul>
 <li>类型:8位，标识ICMPv6报文的类型，决定了报文剩余部分的格式</li>
 <li>代码:8位，取决于报文类型，在特定情况下提供更多详细的信息，标识报文类型下一层次的作用</li>
 <li>校验和:16位，对ICMPv6首部和部分IPv6首部中数据的正确性进行检验</li>
 <li>报文主体:对于不同的类型和代码，包含不同的数据。如果是错误报文，则可包含用来帮助故障排除的尽可能多的信息。但<strong>ICMPv6数据包的总大小不能超过IPv6的MTU的最小值1280</strong></li>
 </ul>
-<h3 id="ICMPv6报文类型"><a href="#ICMPv6报文类型" class="headerlink" title="ICMPv6报文类型"></a>ICMPv6报文类型</h3><h4 id="ICMPv6差错报文"><a href="#ICMPv6差错报文" class="headerlink" title="ICMPv6差错报文"></a>ICMPv6差错报文</h4><ul>
+<h3 id="icmpv6报文类型">ICMPv6报文类型</h3>
+<h4 id="icmpv6差错报文">ICMPv6差错报文</h4>
+<ul>
 <li>差错报文是由目标节点或中间路由器发送的，用于报告在转发或传送IPv6数据包过程中出现的错误。在所有的ICMPv6差错报文中，8位类型字段中的最高位都为0。因此，类型字段的范围是0~127。</li>
 </ul>
-<h5 id="目的地址失效差错报文"><a href="#目的地址失效差错报文" class="headerlink" title="目的地址失效差错报文"></a>目的地址失效差错报文</h5><blockquote>
+<h5 id="目的地址失效差错报文">目的地址失效差错报文</h5>
+<blockquote>
 <p style="color:blue;">当数据包无法被转发到目标节点或上层协议时，路由器或目标节点发送ICMPv6目的地址失效差错报文</p>
 </blockquote>
 <img src="./IPv6协议结构/目的地址失效差错报文.png" style="zoom:67%;" />
-
 <img src="./IPv6协议结构/目的地址失效差错报文代码值.png" style="zoom: 80%;" />
-
-<h5 id="包过大差错报文"><a href="#包过大差错报文" class="headerlink" title="包过大差错报文"></a>包过大差错报文</h5><blockquote>
+<h5 id="包过大差错报文">包过大差错报文</h5>
+<blockquote>
 <p style="color:blue;">数据包无法转发是由于路由器的转发接口的链路MTU小于IPv6数据包的长度，就要发送ICMPv6包过大报文</p>
 </blockquote>
 <ul>
 <li>该ICMPv6错误报文中有一个字段指出导致该问题的链路的MTU值</li>
 </ul>
 <img src="./IPv6协议结构/包过大差错报文.png" style="zoom:67%;" />
-
-<h5 id="超时报文"><a href="#超时报文" class="headerlink" title="超时报文"></a>超时报文</h5><ul>
+<h5 id="超时报文">超时报文</h5>
+<ul>
 <li>代码为0:当IPv6报头中的跳数限制字段在转发过程中减小为0时，路由器发送ICMPv6超时报文</li>
 <li>代码为1:当目标主机的分片重组定时器超时，目标主机发送，RFC2460规定分片重组时间为60秒</li>
 </ul>
 <img src="./IPv6协议结构/报文超时差错报文.png" style="zoom:67%;" />
-
-<h5 id="参数问题"><a href="#参数问题" class="headerlink" title="参数问题"></a>参数问题</h5><blockquote>
+<h5 id="参数问题">参数问题</h5>
+<blockquote>
 <p>当IPv6报文或扩展报头出现错误，从而导致IPv6不能进行进一步处理时，发送该报文。该报文由路由器或者目标节点发送</p>
 </blockquote>
 <ul>
@@ -526,24 +534,25 @@ IPv6的ICMP(Internet Control Messa">
 <blockquote>
 <p style="color:blue;">指针字段指出了IPv6数据包中错误发生的位置，其值为从0开始的字节偏移量</p>
 </blockquote>
-<h4 id="ICMPv6信息报文"><a href="#ICMPv6信息报文" class="headerlink" title="ICMPv6信息报文"></a>ICMPv6信息报文</h4><ul>
+<h4 id="icmpv6信息报文">ICMPv6信息报文</h4>
+<ul>
 <li>信息报文提供诊断功能和附加的主机功能，比如多播侦听发现(MLD）协议和邻居发现协议。在所有的ICMPv6信息报文中，8位类型字段中的最高位都为1。因此，类型字段的范围是128～255。</li>
 </ul>
 <img src="./IPv6协议结构/ICMPv6信息报文与差错报文.png" style="zoom: 67%;" />
-
-<h5 id="回送请求报文"><a href="#回送请求报文" class="headerlink" title="回送请求报文"></a>回送请求报文</h5><ul>
+<h5 id="回送请求报文">回送请求报文</h5>
+<ul>
 <li>ICMPv6回送请求报文用于发送至目标节点，以请求目标节点立即发回一个回送应答报文</li>
 <li>发送方主机设置标识符字段和序列号字段，用于将收到的回送应答报文与发送的回送请求报文进行匹配</li>
 </ul>
 <img src="./IPv6协议结构/回送请求报文.png" style="zoom:67%;" />
-
-<h5 id="回送应答报文"><a href="#回送应答报文" class="headerlink" title="回送应答报文"></a>回送应答报文</h5><ul>
+<h5 id="回送应答报文">回送应答报文</h5>
+<ul>
 <li>ICMPv6回送应答报文用于响应接收到的ICMPv6回送请求报文</li>
 <li>回送应答报文的标识符字段，序列号字段和数据字段的值被置为与回送请求报文中的相应字段一样的值</li>
 </ul>
 <img src="./IPv6协议结构/回送应答报文.png" style="zoom:67%;" />
-
-<h3 id="ICMP处理规则"><a href="#ICMP处理规则" class="headerlink" title="ICMP处理规则"></a>ICMP处理规则</h3><blockquote>
+<h3 id="icmp处理规则">ICMP处理规则</h3>
+<blockquote>
 <p>如果节点收到一条未知类型的ICMPv6错误报文，必须把它传送给上层协议</p>
 </blockquote>
 <blockquote>
@@ -553,20 +562,23 @@ IPv6的ICMP(Internet Control Messa">
 <p>网络层协议把ICMPv6差错报文传送到上层协议的进程时，原包中的上层协议字段被取出，用来选择合适的上一层进程来处理错误。如果原包含有一个很大的扩展首部，那么有可能上层协议类型并没有包含在ICMPv6差错报文中。原因是为了满足最小IPv6 MTU的限制，原包被切断了。这种情况下，差错报文在任何IPv6层处理后被丢弃。</p>
 <p>如果接收到的数据包为下列情况之一，则不发送ICMPv6差错报文:</p>
 <pre class="line-numbers language-none"><code class="language-none">ICMPv6错误报文，一个ICMPv6重定向报文，一个发往多播地址的，链路层多播包，链路层广播包，一个源地址不能唯一确定某个单独节点的数据包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
 <p>对上述情况，存在两个例外，即包过大报文和代码为2，表示不可识别的lPv6选项的参数问题报文。</p>
-<h4 id="路径MTU发现"><a href="#路径MTU发现" class="headerlink" title="路径MTU发现"></a>路径MTU发现</h4><h5 id="lPv6-MTU"><a href="#lPv6-MTU" class="headerlink" title="lPv6 MTU"></a>lPv6 MTU</h5><ul>
+<h4 id="路径mtu发现">路径MTU发现</h4>
+<h5 id="lpv6-mtu">lPv6 MTU</h5>
+<ul>
 <li>IPv6要求链路层的最小MTU为1280字节，建议MTU长度最小为1500字节</li>
 <li><strong>PMTU:从源到目的节点的所有链路上最小的链路MTU</strong></li>
 <li><strong>PMTU发现的目的是为了确保可以使用某个路径上支持的最大可能的大小来发送数据包</strong></li>
 </ul>
-<h5 id="路径MTU发现工作过程"><a href="#路径MTU发现工作过程" class="headerlink" title="路径MTU发现工作过程"></a>路径MTU发现工作过程</h5><ul>
+<h5 id="路径mtu发现工作过程">路径MTU发现工作过程</h5>
+<ul>
 <li>首先主机假定PMTU与第一跳链路的MTU相同，并且使用该大小发送数据包</li>
 <li>如果该数据包对于路径中某个路由器过大，路由器丢弃该数据包并返回类型为“数据包过大”的ICMPv6消息，且该消息中包含下一跳链路的MTU大小</li>
 <li>主机使用这个MTU来把后续的包发往同一目的地。主机发送的数据包肯定不会小于IPv6的最小MTU (1280 Bytes)</li>
 <li>重复上述过程，直到数据包到达目的地。</li>
 </ul>
-<h5 id="PMTU的改变"><a href="#PMTU的改变" class="headerlink" title="PMTU的改变"></a>PMTU的改变</h5><ul>
+<h5 id="pmtu的改变">PMTU的改变</h5>
+<ul>
 <li>由于路由拓扑结构的变化，源节点和目标节点之间的路径会随着时间而改变。·路径MTU的减小，可以通过接收到的ICMPv6包过大报文被立即发现。而路径MTU的增大，则必须通过发送方的检测才能发现。根据RFC1981，发送方可以通过试图发送更长的数据包来进行检测。而这种检测应该在距离接收到ICMPv6包过大报文最少5分钟(建议取10分钟)之后进行</li>
 </ul>
 
@@ -965,7 +977,7 @@ IPv6的ICMP(Internet Control Messa">
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">368.4k</span>
+                        class="white-color">380.3k</span>
             
             
             

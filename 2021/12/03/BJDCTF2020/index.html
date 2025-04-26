@@ -5,8 +5,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="BJDCTF2020, 十二惊惶">
-    <meta name="description" content="MISC1 签到一个简单的隐写题目， 压缩包里面有个hello.zip，用winhex打开，可以知道这是一张图片，改成png，打开发现是一个二维码，扫二维码得到flag：xaflag&amp;#123;i_am_a_tupian&amp;#125; 
-2 ">
+    <meta name="description" content="MISC
+1 签到
+一个简单的隐写题目， 压缩包里面有个hello.zip，用winhex打开，可以知道这是一张图片，改成png，打开发现是一个二维码，扫二维码得到flag：xaflag&amp;#123;i_am_a_tupian&amp;#125; 
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -445,15 +447,24 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="MISC"><a href="#MISC" class="headerlink" title="MISC"></a>MISC</h2><h4 id="1-签到"><a href="#1-签到" class="headerlink" title="1 签到"></a>1 签到</h4><p>一个简单的隐写题目， 压缩包里面有个hello.zip，用winhex打开，可以知道这是一张图片，改成png，打开发现是一个二维码，扫二维码得到flag：<code>xaflag&#123;i_am_a_tupian&#125; </code></p>
-<h4 id="2-藏藏藏"><a href="#2-藏藏藏" class="headerlink" title="2 藏藏藏"></a>2 藏藏藏</h4><p> binwalk发现zip压缩包，使用foremost分离然后解压，得到福利.docx，打开里面又一个二维码，扫码得到<code>flag&#123;you are the best!&#125;</code></p>
-<h4 id="3-认真你就输了"><a href="#3-认真你就输了" class="headerlink" title="3 认真你就输了"></a>3 认真你就输了</h4><p> 解压出来xls，binwalk分离文件得到flag.txt，打开得到flag：<code>flag&#123;M9eVfi2Pcs#&#125; </code></p>
-<h4 id="4-你猜我是个啥"><a href="#4-你猜我是个啥" class="headerlink" title="4 你猜我是个啥"></a>4 你猜我是个啥</h4><p>是一个无法打开的zip压缩包，file命令查看发现是个png图片，直接cat即可得到flag.</p>
-<h4 id="5-鸡你太美"><a href="#5-鸡你太美" class="headerlink" title="5 鸡你太美"></a>5 鸡你太美</h4><p><code>GIF89a</code>这个文件头丢失,<code>winhex</code>打开，填上4个字节，修复文件头，得到<code>flag</code></p>
-<h4 id="6-纳尼"><a href="#6-纳尼" class="headerlink" title="6 纳尼"></a>6 纳尼</h4><p>和上一个题一样，还是缺了4位二进制数，打开winhex修复gif文件头，补充47,49,46,38，然后把 gif 不同帧连起来得到一个base64，Q1RGe3dhemdfYmFvX3FpYW5nX2lzX3NhZH0=解密后得到一段有问题的flag。<code>CTF&#123;wazg_bao_qiang_is_sad&#125;</code>这个实际上有点问题，我怀疑是我输入出错了<code>CTF&#123;wang_bao_qiang_is_sad&#125;</code></p>
+                <h2 id="misc">MISC</h2>
+<h4 id="1-签到">1 签到</h4>
+<p>一个简单的隐写题目， 压缩包里面有个hello.zip，用winhex打开，可以知道这是一张图片，改成png，打开发现是一个二维码，扫二维码得到flag：<code>xaflag&#123;i_am_a_tupian&#125; </code></p>
+<h4 id="2-藏藏藏">2 藏藏藏</h4>
+<p>binwalk发现zip压缩包，使用foremost分离然后解压，得到福利.docx，打开里面又一个二维码，扫码得到<code>flag&#123;you are the best!&#125;</code></p>
+<h4 id="3-认真你就输了">3 认真你就输了</h4>
+<p>解压出来xls，binwalk分离文件得到flag.txt，打开得到flag：<code>flag&#123;M9eVfi2Pcs#&#125; </code></p>
+<h4 id="4-你猜我是个啥">4 你猜我是个啥</h4>
+<p>是一个无法打开的zip压缩包，file命令查看发现是个png图片，直接cat即可得到flag.</p>
+<h4 id="5-鸡你太美">5 鸡你太美</h4>
+<p><code>GIF89a</code>这个文件头丢失,<code>winhex</code>打开，填上4个字节，修复文件头，得到<code>flag</code></p>
+<h4 id="6-纳尼">6 纳尼</h4>
+<p>和上一个题一样，还是缺了4位二进制数，打开winhex修复gif文件头，补充47,49,46,38，然后把 gif 不同帧连起来得到一个base64，Q1RGe3dhemdfYmFvX3FpYW5nX2lzX3NhZH0=解密后得到一段有问题的flag。<code>CTF&#123;wazg_bao_qiang_is_sad&#125;</code>这个实际上有点问题，我怀疑是我输入出错了<code>CTF&#123;wang_bao_qiang_is_sad&#125;</code></p>
 <p>王宝强很悲伤。</p>
-<h4 id="7-just-a-rar"><a href="#7-just-a-rar" class="headerlink" title="7 just a rar"></a>7 just a rar</h4><p>解压出来一个rar名称为 4 位数，爆破得到密码：2016，一张青雉的图片，用 stegsolve 打开使用 Analyse 分析，找到<code>flag &#123;Wadf_123&#125;</code></p>
-<h4 id="8-一叶障目"><a href="#8-一叶障目" class="headerlink" title="8 一叶障目"></a>8 一叶障目</h4><p>png 的 CRC 校验问题，图片的宽高被改了导致无法打开，这里有我之前在一个ctf地图平台上找到了一个脚本。</p>
+<h4 id="7-just-a-rar">7 just a rar</h4>
+<p>解压出来一个rar名称为 4 位数，爆破得到密码：2016，一张青雉的图片，用 stegsolve 打开使用 Analyse 分析，找到<code>flag &#123;Wadf_123&#125;</code></p>
+<h4 id="8-一叶障目">8 一叶障目</h4>
+<p>png 的 CRC 校验问题，图片的宽高被改了导致无法打开，这里有我之前在一个ctf地图平台上找到了一个脚本。</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> binascii
 <span class="token keyword">import</span> struct
 <span class="token keyword">import</span> sys
@@ -480,11 +491,13 @@ n <span class="token operator">=</span> <span class="token number">4095</span>
             fw <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span><span class="token builtin">file</span><span class="token operator">+</span><span class="token string">'.png'</span><span class="token punctuation">,</span><span class="token string">'wb'</span><span class="token punctuation">)</span>
             fw<span class="token punctuation">.</span>write<span class="token punctuation">(</span>newpic<span class="token punctuation">)</span>
             fw<span class="token punctuation">.</span>close<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>得到flag <code>xaflag&#123;66666&#125;</code></p>
-<h2 id="CRYPTO"><a href="#CRYPTO" class="headerlink" title="CRYPTO"></a>CRYPTO</h2><h4 id="1-签到-1"><a href="#1-签到-1" class="headerlink" title="1 签到"></a>1 签到</h4><p>十六进制转字符串即可得flag   <code>BJD&#123;We1c0me_t4_BJDCTF&#125;</code></p>
-<h4 id="2-编码与调制"><a href="#2-编码与调制" class="headerlink" title="2 编码与调制"></a>2 编码与调制</h4><blockquote>
-<p> 本题灵感来自2019年第三届i春秋的11月月赛，主要是想对曼切斯特编码进行考察，其中为了提供一下思路，给了一张code的图片作为提示，当然也可以直接自行百度这种编码方式，毕竟他的编码方式也很有特点，仅采用了4种字符，百度一下也可以找到解决方案 编码规则，直接复制的百度百科 在曼彻斯特编码中，每一位的中间有一跳变，位中间的跳变既作时钟信号，又作数据信号；从高到低跳变表示“1”，从低到高跳变表示“0”。还有一种是差分曼彻斯特编码，每位中间的跳变仅提供时钟定时，而用每位开始时有无跳变表示“0”或“1”，有跳变为“0”，无跳变为“1”。 编程思路： 而我们在编程实现时，也很简单只要先将明文转成二进制（也就是先进行NRZ编码），而后对于其中的高电平‘1’，用‘10’替换，低电平‘0’，用‘01’替换，获得一串新的二进制比特流，最后再将其进行16进制封装即可 解码思路： 解码也就是一个逆过程，先将hex转成bin，在一步步替换‘10’为‘1’，‘01’为‘0’ 下面给出解密脚本： </p>
+<h2 id="crypto">CRYPTO</h2>
+<h4 id="1-签到">1 签到</h4>
+<p>十六进制转字符串即可得flag   <code>BJD&#123;We1c0me_t4_BJDCTF&#125;</code></p>
+<h4 id="2-编码与调制">2 编码与调制</h4>
+<blockquote>
+<p>本题灵感来自2019年第三届i春秋的11月月赛，主要是想对曼切斯特编码进行考察，其中为了提供一下思路，给了一张code的图片作为提示，当然也可以直接自行百度这种编码方式，毕竟他的编码方式也很有特点，仅采用了4种字符，百度一下也可以找到解决方案 编码规则，直接复制的百度百科 在曼彻斯特编码中，每一位的中间有一跳变，位中间的跳变既作时钟信号，又作数据信号；从高到低跳变表示“1”，从低到高跳变表示“0”。还有一种是差分曼彻斯特编码，每位中间的跳变仅提供时钟定时，而用每位开始时有无跳变表示“0”或“1”，有跳变为“0”，无跳变为“1”。 编程思路： 而我们在编程实现时，也很简单只要先将明文转成二进制（也就是先进行NRZ编码），而后对于其中的高电平‘1’，用‘10’替换，低电平‘0’，用‘01’替换，获得一串新的二进制比特流，最后再将其进行16进制封装即可 解码思路： 解码也就是一个逆过程，先将hex转成bin，在一步步替换‘10’为‘1’，‘01’为‘0’ 下面给出解密脚本：</p>
 </blockquote>
 <p>直接放官方的答案吧</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">msg<span class="token operator">=</span><span class="token number">0x2559659965656a9a65656996696965a6695669a9695a699569666a5a6a6569666a59695a69aa696569666aa6</span>
@@ -496,10 +509,10 @@ r<span class="token operator">=</span><span class="token string">""</span>
     <span class="token keyword">else</span><span class="token punctuation">:</span>
         r <span class="token operator">+=</span> <span class="token string">'0'</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">hex</span><span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">(</span>r<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>decode<span class="token punctuation">(</span><span class="token string">'hex'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>**BJD{DifManchestercode} **</p>
-<h4 id="3-Polybius"><a href="#3-Polybius" class="headerlink" title="3 Polybius"></a>3 Polybius</h4><blockquote>
-<p>密文：ouauuuoooeeaaiaeauieuooeeiea hint：VGhlIGxlbmd0aCBvZiB0aGlzIHBsYWludGV4dDogMTQ= 首先将hint base64解密查看提示：The length of this plaintext: 14 而后再观察一下发现密文长度时28位，所以猜测是棋盘密码（额，其实题目就已经提示加密方式了） 观察发现一共有五个字母重复出现在密文中，所以可能的加密表是aeiou，但是解出结果会发现是乱码，所以可以尝试爆破，一共也就5！种情况。 </p>
+<h4 id="3-polybius">3 Polybius</h4>
+<blockquote>
+<p>密文：ouauuuoooeeaaiaeauieuooeeiea hint：VGhlIGxlbmd0aCBvZiB0aGlzIHBsYWludGV4dDogMTQ= 首先将hint base64解密查看提示：The length of this plaintext: 14 而后再观察一下发现密文长度时28位，所以猜测是棋盘密码（额，其实题目就已经提示加密方式了） 观察发现一共有五个字母重复出现在密文中，所以可能的加密表是aeiou，但是解出结果会发现是乱码，所以可以尝试爆破，一共也就5！种情况。</p>
 </blockquote>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> itertools
 key <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
@@ -520,7 +533,6 @@ cipher <span class="token operator">=</span> <span class="token string">"ouauuuo
         result <span class="token operator">+=</span> <span class="token builtin">chr</span><span class="token punctuation">(</span>current_ascii<span class="token punctuation">)</span>
     <span class="token keyword">if</span> <span class="token string">"flag"</span> <span class="token keyword">in</span> result<span class="token punctuation">:</span>
         <span class="token keyword">print</span><span class="token punctuation">(</span>each<span class="token punctuation">,</span>result<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>得到flag        **BJD{flagispolybius} **</p>
 <p>4 easyrsa</p>
 <p>很简单的一个rsa，就是再求取欧拉函数是对于(p-1)(q-1)的获取要先进行一步转换，题中给出了p和q的关系式，及一个求导的过程，化简后可以得出<code>z=p^2+q^2</code>,最后再根据<code>n=p * q</code>,即可得出<code>（p-1）*（q-1） </code>下面是exp：</p>
@@ -540,8 +552,8 @@ Euler_function <span class="token operator">=</span> n <span class="token operat
 d <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>gmpy2<span class="token punctuation">.</span>invert<span class="token punctuation">(</span>e<span class="token punctuation">,</span>Euler_function<span class="token punctuation">)</span><span class="token punctuation">)</span>
 m<span class="token operator">=</span><span class="token builtin">pow</span><span class="token punctuation">(</span>c<span class="token punctuation">,</span>d<span class="token punctuation">,</span>n<span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>long_to_bytes<span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="5-rsa-output"><a href="#5-rsa-output" class="headerlink" title="5 rsa_output"></a>5 rsa_output</h4><p>题目描述直接给出，模的相关攻击，再看一下给出的附件，发现两次的N是相同的，所以可以确定是共模攻击</p>
+<h4 id="5-rsa-output">5 rsa_output</h4>
+<p>题目描述直接给出，模的相关攻击，再看一下给出的附件，发现两次的N是相同的，所以可以确定是共模攻击</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> Crypto<span class="token punctuation">.</span>Util<span class="token punctuation">.</span>number <span class="token keyword">import</span> long_to_bytes
 <span class="token keyword">import</span> gmpy2
 n <span class="token operator">=</span> <span class="token number">21058339337354287847534107544613605305015441090508924094198816691219103399526800112802416383088995253908857460266726925615826895303377801614829364034624475195859997943146305588315939130777450485196290766249612340054354622516207681542973756257677388091926549655162490873849955783768663029138647079874278240867932127196686258800146911620730706734103611833179733264096475286491988063990431085380499075005629807702406676707841324660971173253100956362528346684752959937473852630145893796056675793646430793578265418255919376323796044588559726703858429311784705245069845938316802681575653653770883615525735690306674635167111</span>
@@ -563,9 +575,9 @@ gcd<span class="token punctuation">,</span> s<span class="token punctuation">,</
 plain <span class="token operator">=</span> gmpy2<span class="token punctuation">.</span>powmod<span class="token punctuation">(</span>message1<span class="token punctuation">,</span> s<span class="token punctuation">,</span> n<span class="token punctuation">)</span> <span class="token operator">*</span> gmpy2<span class="token punctuation">.</span>powmod<span class="token punctuation">(</span>message2<span class="token punctuation">,</span> t<span class="token punctuation">,</span> n<span class="token punctuation">)</span> <span class="token operator">%</span> n
 <span class="token keyword">print</span><span class="token punctuation">(</span>plain<span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>long_to_bytes<span class="token punctuation">(</span>plain<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="8-伏羲六十四卦"><a href="#8-伏羲六十四卦" class="headerlink" title="8 伏羲六十四卦"></a>8 伏羲六十四卦</h4><p>套娃题目，这个是哪个人才像出来的？</p>
-<p>伏羲六十四卦： 题目中给出了几段描述，大致可以猜测一下可能会有多层加密 首先一开始提到六十四卦，百度一下，可以看到其实是利用六位二进制对文字进行替换，根据其二进制矩阵先构造码表，然后根据码表将密文转成二进制： </p>
+<h4 id="8-伏羲六十四卦">8 伏羲六十四卦</h4>
+<p>套娃题目，这个是哪个人才像出来的？</p>
+<p>伏羲六十四卦： 题目中给出了几段描述，大致可以猜测一下可能会有多层加密 首先一开始提到六十四卦，百度一下，可以看到其实是利用六位二进制对文字进行替换，根据其二进制矩阵先构造码表，然后根据码表将密文转成二进制：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">enc<span class="token operator">=</span><span class="token string">'升随临损巽睽颐萃小过讼艮颐小过震蛊屯未济中孚艮困恒晋升损蛊萃蛊未济巽解艮贲未济观豫损蛊晋噬嗑晋旅解大畜困未济随蒙升解睽未济井困未济旅萃未济震蒙未济师涣归妹大有'</span>
 mydisc<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token string">'坤'</span><span class="token punctuation">:</span> <span class="token string">'000000'</span><span class="token punctuation">,</span> <span class="token string">'剥'</span><span class="token punctuation">:</span> <span class="token string">'000001'</span><span class="token punctuation">,</span> <span class="token string">'比'</span><span class="token punctuation">:</span> <span class="token string">'000010'</span><span class="token punctuation">,</span> <span class="token string">'观'</span><span class="token punctuation">:</span> <span class="token string">'000011'</span><span class="token punctuation">,</span> <span class="token string">'豫'</span><span class="token punctuation">:</span> <span class="token string">'000100'</span><span class="token punctuation">,</span> <span class="token string">'晋'</span><span class="token punctuation">:</span> <span class="token string">'000101'</span><span class="token punctuation">,</span> <span class="token string">'萃'</span><span class="token punctuation">:</span> <span class="token string">'000110'</span><span class="token punctuation">,</span> <span class="token string">'否'</span><span class="token punctuation">:</span> <span class="token string">'000111'</span><span class="token punctuation">,</span> <span class="token string">'谦'</span><span class="token punctuation">:</span> <span class="token string">'001000'</span><span class="token punctuation">,</span> <span class="token string">'艮'</span><span class="token punctuation">:</span> <span class="token string">'001001'</span><span class="token punctuation">,</span> <span class="token string">'蹇'</span><span class="token punctuation">:</span> <span class="token string">'001010'</span><span class="token punctuation">,</span> <span class="token string">'渐'</span><span class="token punctuation">:</span> <span class="token string">'001011'</span><span class="token punctuation">,</span> <span class="token string">'小过'</span><span class="token punctuation">:</span> <span class="token string">'001100'</span><span class="token punctuation">,</span> <span class="token string">'旅'</span><span class="token punctuation">:</span> <span class="token string">'001101'</span><span class="token punctuation">,</span> <span class="token string">'咸'</span><span class="token punctuation">:</span> <span class="token string">'001110'</span><span class="token punctuation">,</span> <span class="token string">'遁'</span><span class="token punctuation">:</span> <span class="token string">'001111'</span><span class="token punctuation">,</span> <span class="token string">'师'</span><span class="token punctuation">:</span> <span class="token string">'010000'</span><span class="token punctuation">,</span> <span class="token string">'蒙'</span><span class="token punctuation">:</span> <span class="token string">'010001'</span><span class="token punctuation">,</span> <span class="token string">'坎'</span><span class="token punctuation">:</span> <span class="token string">'010010'</span><span class="token punctuation">,</span> <span class="token string">'涣'</span><span class="token punctuation">:</span> <span class="token string">'010011'</span><span class="token punctuation">,</span> <span class="token string">'解'</span><span class="token punctuation">:</span> <span class="token string">'010100'</span><span class="token punctuation">,</span> <span class="token string">'未济'</span><span class="token punctuation">:</span> <span class="token string">'010101'</span><span class="token punctuation">,</span> <span class="token string">'困'</span><span class="token punctuation">:</span> <span class="token string">'010110'</span><span class="token punctuation">,</span> <span class="token string">'讼'</span><span class="token punctuation">:</span> <span class="token string">'010111'</span><span class="token punctuation">,</span> <span class="token string">'升'</span><span class="token punctuation">:</span> <span class="token string">'011000'</span><span class="token punctuation">,</span> <span class="token string">'蛊'</span><span class="token punctuation">:</span> <span class="token string">'011001'</span><span class="token punctuation">,</span> <span class="token string">'井'</span><span class="token punctuation">:</span> <span class="token string">'011010'</span><span class="token punctuation">,</span> <span class="token string">'巽'</span><span class="token punctuation">:</span> <span class="token string">'011011'</span><span class="token punctuation">,</span> <span class="token string">'恒'</span><span class="token punctuation">:</span> <span class="token string">'011100'</span><span class="token punctuation">,</span> <span class="token string">'鼎'</span><span class="token punctuation">:</span> <span class="token string">'011101'</span><span class="token punctuation">,</span> <span class="token string">'大过'</span><span class="token punctuation">:</span> <span class="token string">'011110'</span><span class="token punctuation">,</span> <span class="token string">'姤'</span><span class="token punctuation">:</span> <span class="token string">'011111'</span><span class="token punctuation">,</span> <span class="token string">'复'</span><span class="token punctuation">:</span> <span class="token string">'100000'</span><span class="token punctuation">,</span> <span class="token string">'颐'</span><span class="token punctuation">:</span> <span class="token string">'100001'</span><span class="token punctuation">,</span> <span class="token string">'屯'</span><span class="token punctuation">:</span> <span class="token string">'100010'</span><span class="token punctuation">,</span> <span class="token string">'益'</span><span class="token punctuation">:</span> <span class="token string">'100011'</span><span class="token punctuation">,</span> <span class="token string">'震'</span><span class="token punctuation">:</span> <span class="token string">'100100'</span><span class="token punctuation">,</span> <span class="token string">'噬嗑'</span><span class="token punctuation">:</span> <span class="token string">'100101'</span><span class="token punctuation">,</span> <span class="token string">'随'</span><span class="token punctuation">:</span> <span class="token string">'100110'</span><span class="token punctuation">,</span> <span class="token string">'无妄'</span><span class="token punctuation">:</span> <span class="token string">'100111'</span><span class="token punctuation">,</span> <span class="token string">'明夷'</span><span class="token punctuation">:</span> <span class="token string">'101000'</span><span class="token punctuation">,</span> <span class="token string">'贲'</span><span class="token punctuation">:</span> <span class="token string">'101001'</span><span class="token punctuation">,</span> <span class="token string">'既济'</span><span class="token punctuation">:</span> <span class="token string">'101010'</span><span class="token punctuation">,</span> <span class="token string">'家人'</span><span class="token punctuation">:</span> <span class="token string">'101011'</span><span class="token punctuation">,</span> <span class="token string">'丰'</span><span class="token punctuation">:</span> <span class="token string">'101100'</span><span class="token punctuation">,</span> <span class="token string">'离'</span><span class="token punctuation">:</span> <span class="token string">'101101'</span><span class="token punctuation">,</span> <span class="token string">'革'</span><span class="token punctuation">:</span> <span class="token string">'101110'</span><span class="token punctuation">,</span> <span class="token string">'同人'</span><span class="token punctuation">:</span> <span class="token string">'101111'</span><span class="token punctuation">,</span> <span class="token string">'临'</span><span class="token punctuation">:</span> <span class="token string">'110000'</span><span class="token punctuation">,</span> <span class="token string">'损'</span><span class="token punctuation">:</span> <span class="token string">'110001'</span><span class="token punctuation">,</span> <span class="token string">'节'</span><span class="token punctuation">:</span> <span class="token string">'110010'</span><span class="token punctuation">,</span> <span class="token string">'中孚'</span><span class="token punctuation">:</span> <span class="token string">'110011'</span><span class="token punctuation">,</span> <span class="token string">'归妹'</span><span class="token punctuation">:</span> <span class="token string">'110100'</span><span class="token punctuation">,</span> <span class="token string">'睽'</span><span class="token punctuation">:</span> <span class="token string">'110101'</span><span class="token punctuation">,</span> <span class="token string">'兑'</span><span class="token punctuation">:</span> <span class="token string">'110110'</span><span class="token punctuation">,</span> <span class="token string">'履'</span><span class="token punctuation">:</span> <span class="token string">'110111'</span><span class="token punctuation">,</span> <span class="token string">'泰'</span><span class="token punctuation">:</span> <span class="token string">'111000'</span><span class="token punctuation">,</span> <span class="token string">'大畜'</span><span class="token punctuation">:</span> <span class="token string">'111001'</span><span class="token punctuation">,</span> <span class="token string">'需'</span><span class="token punctuation">:</span> <span class="token string">'111010'</span><span class="token punctuation">,</span> <span class="token string">'小畜'</span><span class="token punctuation">:</span> <span class="token string">'111011'</span><span class="token punctuation">,</span> <span class="token string">'大壮'</span><span class="token punctuation">:</span> <span class="token string">'111100'</span><span class="token punctuation">,</span> <span class="token string">'大有'</span><span class="token punctuation">:</span> <span class="token string">'111101'</span><span class="token punctuation">,</span> <span class="token string">'夬'</span><span class="token punctuation">:</span> <span class="token string">'111110'</span><span class="token punctuation">,</span> <span class="token string">'乾'</span><span class="token punctuation">:</span> <span class="token string">'111111'</span><span class="token punctuation">&#125;</span>
 keys<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'坤'</span><span class="token punctuation">,</span> <span class="token string">'剥'</span><span class="token punctuation">,</span> <span class="token string">'比'</span><span class="token punctuation">,</span> <span class="token string">'观'</span><span class="token punctuation">,</span> <span class="token string">'豫'</span><span class="token punctuation">,</span> <span class="token string">'晋'</span><span class="token punctuation">,</span> <span class="token string">'萃'</span><span class="token punctuation">,</span> <span class="token string">'否'</span><span class="token punctuation">,</span> <span class="token string">'谦'</span><span class="token punctuation">,</span> <span class="token string">'艮'</span><span class="token punctuation">,</span> <span class="token string">'蹇'</span><span class="token punctuation">,</span> <span class="token string">'渐'</span><span class="token punctuation">,</span> <span class="token string">'小过'</span><span class="token punctuation">,</span> <span class="token string">'旅'</span><span class="token punctuation">,</span> <span class="token string">'咸'</span><span class="token punctuation">,</span> <span class="token string">'遁'</span><span class="token punctuation">,</span> <span class="token string">'师'</span><span class="token punctuation">,</span> <span class="token string">'蒙'</span><span class="token punctuation">,</span> <span class="token string">'坎'</span><span class="token punctuation">,</span> <span class="token string">'涣'</span><span class="token punctuation">,</span> <span class="token string">'解'</span><span class="token punctuation">,</span> <span class="token string">'未济'</span><span class="token punctuation">,</span> <span class="token string">'困'</span><span class="token punctuation">,</span> <span class="token string">'讼'</span><span class="token punctuation">,</span> <span class="token string">'升'</span><span class="token punctuation">,</span> <span class="token string">'蛊'</span><span class="token punctuation">,</span> <span class="token string">'井'</span><span class="token punctuation">,</span> <span class="token string">'巽'</span><span class="token punctuation">,</span> <span class="token string">'恒'</span><span class="token punctuation">,</span> <span class="token string">'鼎'</span><span class="token punctuation">,</span> <span class="token string">'大过'</span><span class="token punctuation">,</span> <span class="token string">'姤'</span><span class="token punctuation">,</span> <span class="token string">'复'</span><span class="token punctuation">,</span> <span class="token string">'颐'</span><span class="token punctuation">,</span> <span class="token string">'屯'</span><span class="token punctuation">,</span> <span class="token string">'益'</span><span class="token punctuation">,</span> <span class="token string">'震'</span><span class="token punctuation">,</span> <span class="token string">'噬嗑'</span><span class="token punctuation">,</span> <span class="token string">'随'</span><span class="token punctuation">,</span> <span class="token string">'无妄'</span><span class="token punctuation">,</span> <span class="token string">'明夷'</span><span class="token punctuation">,</span> <span class="token string">'贲'</span><span class="token punctuation">,</span> <span class="token string">'既济'</span><span class="token punctuation">,</span> <span class="token string">'家人'</span><span class="token punctuation">,</span> <span class="token string">'丰'</span><span class="token punctuation">,</span> <span class="token string">'离'</span><span class="token punctuation">,</span> <span class="token string">'革'</span><span class="token punctuation">,</span> <span class="token string">'同人'</span><span class="token punctuation">,</span> <span class="token string">'临'</span><span class="token punctuation">,</span> <span class="token string">'损'</span><span class="token punctuation">,</span> <span class="token string">'节'</span><span class="token punctuation">,</span> <span class="token string">'中孚'</span><span class="token punctuation">,</span> <span class="token string">'归妹'</span><span class="token punctuation">,</span> <span class="token string">'睽'</span><span class="token punctuation">,</span> <span class="token string">'兑'</span><span class="token punctuation">,</span> <span class="token string">'履'</span><span class="token punctuation">,</span> <span class="token string">'泰'</span><span class="token punctuation">,</span> <span class="token string">'大畜'</span><span class="token punctuation">,</span> <span class="token string">'需'</span><span class="token punctuation">,</span> <span class="token string">'小畜'</span><span class="token punctuation">,</span> <span class="token string">'大壮'</span><span class="token punctuation">,</span> <span class="token string">'大有'</span><span class="token punctuation">,</span> <span class="token string">'夬'</span><span class="token punctuation">,</span> <span class="token string">'乾'</span><span class="token punctuation">]</span>
@@ -575,16 +587,14 @@ keys<span class="token operator">=</span><span class="token punctuation">[</span
     <span class="token keyword">for</span> each <span class="token keyword">in</span> keys<span class="token punctuation">:</span>
         mingwen<span class="token operator">=</span>mingwen<span class="token punctuation">.</span>replace<span class="token punctuation">(</span>each<span class="token punctuation">,</span>mydisc<span class="token punctuation">[</span>each<span class="token punctuation">]</span><span class="token punctuation">)</span>
     <span class="token keyword">print</span><span class="token punctuation">(</span>mingwen<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>第二层：下一步就是将二进制转换成ASCII：  </p>
+<p>第二层：下一步就是将二进制转换成ASCII：</p>
 <p>第三层：发现是base64，再解密：发现是一段奇怪的密文，此时附件中的py文件中有提示是加密的源码，分析发现是第四和第五层的加密方式，第四层这里我们可以发现，这里是采用一个偏移量为5并且依次后移一位的加密，这里只要将减换成加即可。</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">enc<span class="token operator">=</span><span class="token string">'n]h\]kka[[eiWW_R`bO]]`NMUWWIFXHUCP'</span>
 temp<span class="token operator">=</span><span class="token string">''</span>
 offset<span class="token operator">=</span><span class="token number">5</span>
 <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token builtin">len</span><span class="token punctuation">(</span>enc<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
     temp<span class="token operator">+=</span><span class="token builtin">chr</span><span class="token punctuation">(</span><span class="token builtin">ord</span><span class="token punctuation">(</span>enc<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">+</span>offset<span class="token operator">+</span>i<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p> 得到解密后结果： Scodfuvmhityhirfuxfuvziiruvigzkyhv 而后再是第五层：这里采用了仿射密码，根据加密方式写一下解密脚本即可 </p>
+<p>得到解密后结果： Scodfuvmhityhirfuxfuvziiruvigzkyhv 而后再是第五层：这里采用了仿射密码，根据加密方式写一下解密脚本即可</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">string <span class="token operator">=</span> <span class="token string">'scodfuvmhityhirfuxfuvziiruvigzkyhv'</span>
 b<span class="token operator">=</span><span class="token number">7</span>
 <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">9</span><span class="token punctuation">,</span><span class="token number">21</span><span class="token punctuation">,</span><span class="token number">15</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">23</span><span class="token punctuation">,</span><span class="token number">19</span><span class="token punctuation">,</span><span class="token number">11</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">17</span><span class="token punctuation">,</span><span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -592,8 +602,7 @@ b<span class="token operator">=</span><span class="token number">7</span>
     <span class="token keyword">for</span> k <span class="token keyword">in</span> string<span class="token punctuation">:</span>
         flag <span class="token operator">+=</span> <span class="token builtin">chr</span><span class="token punctuation">(</span>i<span class="token operator">*</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token builtin">ord</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token operator">-</span><span class="token builtin">ord</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">-</span>b<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">26</span><span class="token operator">+</span><span class="token builtin">ord</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
     <span class="token keyword">print</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span><span class="token string">':'</span><span class="token punctuation">,</span>flag<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p> 最终得到flag： 加上格式即可：<code>BJD&#123;bjdcongratulationsongettingtheflag&#125; </code></p>
+<p>最终得到flag： 加上格式即可：<code>BJD&#123;bjdcongratulationsongettingtheflag&#125; </code></p>
 
                 
             </div>
@@ -709,13 +718,13 @@ b<span class="token operator">=</span><span class="token number">7</span>
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/03/22/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AE%9E%E9%AA%8C%E6%8A%A5%E5%91%8A/">
+                <a href="/2022/03/17/CTFshow%E4%B9%8BWeb%E4%B8%93%E9%A2%98%20PHP%E7%89%B9%E6%80%A7/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="应用密码学课程实验记录">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="CTFshow之web入门---PHP特性">
                         
-                        <span class="card-title">应用密码学课程实验记录</span>
+                        <span class="card-title">CTFshow之web入门---PHP特性</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -726,14 +735,14 @@ b<span class="token operator">=</span><span class="token number">7</span>
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-22
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-17
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
-                                    网络安全
+                            <a href="/categories/CTF/" class="post-category">
+                                    CTF
                                 </a>
                             
                             
@@ -743,12 +752,12 @@ b<span class="token operator">=</span><span class="token number">7</span>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/">
-                        <span class="chip bg-color">密码学</span>
+                    <a href="/tags/Web/">
+                        <span class="chip bg-color">Web</span>
                     </a>
                     
-                    <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
-                        <span class="chip bg-color">学习记录</span>
+                    <a href="/tags/ctfshow/">
+                        <span class="chip bg-color">ctfshow</span>
                     </a>
                     
                 </div>
@@ -998,7 +1007,7 @@ b<span class="token operator">=</span><span class="token number">7</span>
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">368.4k</span>
+                        class="white-color">380.3k</span>
             
             
             

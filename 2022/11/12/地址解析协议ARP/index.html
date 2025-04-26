@@ -5,18 +5,24 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="地址解析协议 ARP, 十二惊惶">
-    <meta name="description" content="地址解析协议 ARP[TOC]
+    <meta name="description" content="地址解析协议 ARP
+[TOC]
 ARP的定义与基本功能
+
+
 掌握ARP协议的报文格式
+
 
 掌握ARP协议的工作原理
 
+
 理解ARP高速缓存的作用
+
 
 掌握ARP缓存表的维护过程
 
 
-ARP(Address Resolution Protocol，RF">
+ARP(Address Resolution Proto">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -459,37 +465,48 @@ ARP(Address Resolution Protocol，RF">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="地址解析协议-ARP"><a href="#地址解析协议-ARP" class="headerlink" title="地址解析协议 ARP"></a>地址解析协议 ARP</h2><p>[TOC]</p>
-<h3 id="ARP的定义与基本功能"><a href="#ARP的定义与基本功能" class="headerlink" title="ARP的定义与基本功能"></a>ARP的定义与基本功能</h3><ul>
-<li><p>掌握ARP协议的报文格式</p>
+                <h2 id="地址解析协议-arp">地址解析协议 ARP</h2>
+<p>[TOC]</p>
+<h3 id="arp的定义与基本功能">ARP的定义与基本功能</h3>
+<ul>
+<li>
+<p>掌握ARP协议的报文格式</p>
 </li>
-<li><p>掌握ARP协议的工作原理</p>
+<li>
+<p>掌握ARP协议的工作原理</p>
 </li>
-<li><p>理解ARP高速缓存的作用</p>
+<li>
+<p>理解ARP高速缓存的作用</p>
 </li>
-<li><p>掌握ARP缓存表的维护过程</p>
+<li>
+<p>掌握ARP缓存表的维护过程</p>
 </li>
 </ul>
 <p><strong>ARP</strong>(Address Resolution Protocol，RFC 826）是根据IP地址获取物理地址的一个TCP/IP协议。主机通过将ARP请求<strong>广播</strong>到网络上的所有主机并接收返回消息来确定目标IP地址的物理地址，同时将IP地址和硬件地址存入本机ARP缓存中，下次请求时直接查询<strong>ARP缓存</strong>。</p>
-<h4 id="物理地址："><a href="#物理地址：" class="headerlink" title="物理地址："></a>物理地址：</h4><p>物理地址通常是由硬件来实现的，例如以太网的物理地址被写入到网卡中，任何一块网卡的物理地址是唯一的</p>
+<h4 id="物理地址：">物理地址：</h4>
+<p>物理地址通常是由硬件来实现的，例如以太网的物理地址被写入到网卡中，任何一块网卡的物理地址是唯一的</p>
 <blockquote>
 <p style="color:blue;">物理地址的长度和格式取决于具体的网络，以太网的物理地址是6字节地址物理地址可以是单播地址、多播地址或广播地址。</p>
 </blockquote>
-<h4 id="逻辑地址："><a href="#逻辑地址：" class="headerlink" title="逻辑地址："></a>逻辑地址：</h4><p>逻辑地址与物理设备本身没有关联, 逻辑地址可以是单播地址、多播地址和广播地址。</p>
+<h4 id="逻辑地址：">逻辑地址：</h4>
+<p>逻辑地址与物理设备本身没有关联, 逻辑地址可以是单播地址、多播地址和广播地址。</p>
 <blockquote>
 <p style="color:skyblue;">目前Internet上的IPv4协议逻辑地址是32位的IP地址， IPv6地址有128位长
 </blockquote>
-<h4 id="地址解析"><a href="#地址解析" class="headerlink" title="地址解析:"></a>地址解析:</h4><p>逻辑地址是在网络层使用的，但数据包是在物理网络传递。主机或路由器是通过物理地址来识别的,因此将一个数据包传递到一个主机或路由器要进行寻址，需要将一个逻辑地址映射到相应的物理地址。</p>
+<h4 id="地址解析">地址解析:</h4>
+<p>逻辑地址是在网络层使用的，但数据包是在物理网络传递。主机或路由器是通过物理地址来识别的,因此将一个数据包传递到一个主机或路由器要进行寻址，需要将一个逻辑地址映射到相应的物理地址。</p>
 <blockquote>
 <p style="color:blue;">地址解析就是主机在发送帧前将目的逻辑地址转换成目的物理地址的过程。</p>
 </blockquote>
-<h5 id="静态映射"><a href="#静态映射" class="headerlink" title="静态映射:"></a>静态映射:</h5><p>手工创建IP地址与物理地址的映射关系，建立映射表。当已知IP地址时，通过查找映射表得到对应的物理地址。</p>
+<h5 id="静态映射">静态映射:</h5>
+<p>手工创建IP地址与物理地址的映射关系，建立映射表。当已知IP地址时，通过查找映射表得到对应的物理地址。</p>
 <blockquote>
 <p style="color:orange;">局限性: 主机更换了网卡，也就改变了主机的物理地址。当主机从一个网络移到另一个网络时，物理地址没变，但IP地址改变了。·要适应这些变化，会增大维护静态映射表的开销。</p>
 </blockquote>
-<h5 id="用协议实现地址映射："><a href="#用协议实现地址映射：" class="headerlink" title="用协议实现地址映射："></a>用协议实现地址映射：</h5><p>在使用TCP/IP协议的以太网中，<strong>ARP</strong>(Address Resolution Protocol)协议完成将IP地址映射到MAC地址的过程，逆地址解析协议<strong>RARP</strong>(Reverse Address Resolution Protocol)将物理地址映射为IP地址</p>
-<h3 id="ARP的报文格式："><a href="#ARP的报文格式：" class="headerlink" title="ARP的报文格式："></a>ARP的报文格式：</h3><img src="D:\blog\shierjinghuang\source\_posts\地址解析协议ARP\ARP的报文格式.png"  />
-
+<h5 id="用协议实现地址映射：">用协议实现地址映射：</h5>
+<p>在使用TCP/IP协议的以太网中，<strong>ARP</strong>(Address Resolution Protocol)协议完成将IP地址映射到MAC地址的过程，逆地址解析协议<strong>RARP</strong>(Reverse Address Resolution Protocol)将物理地址映射为IP地址</p>
+<h3 id="arp的报文格式：">ARP的报文格式：</h3>
+<img src="D:\blog\shierjinghuang\source\_posts\地址解析协议ARP\ARP的报文格式.png"  />
 <p style="color:blue; text-indent: 112px;">硬件类型:16bit，定义运行ARP的网络类型，如以太网的硬件类型是1。</p>
 <p style="color:blue; text-indent: 112px;">协议类型:16bit，定义使用ARP的高层协议，如对于IPv4协议，该字段的值是Ox0800。</p>
 <p style="color:blue; text-indent: 112px;">硬件长度:8bit，以字节为单位的物理地址长度，如以太网硬件地址长度为6。</p>
@@ -500,10 +517,10 @@ ARP(Address Resolution Protocol，RF">
 <p style="color:rgb(255, 118, 0); text-indent: 112px;">目的端硬件地址:变长字段，对于ARP请求报文，该字段全为0</p>
 <p style="color:blue; text-indent: 112px;">目的端逻辑地址:变长字段，定义目标逻辑地址。</p>
 <p style="color:black;">ARP数据报直接封装在数据链路层的帧中</p>
-
 <img src="D:\blog\shierjinghuang\source\_posts\地址解析协议ARP\ARP封装.png" style="zoom:80%;" />
-
-<h3 id="ARP的运行过程："><a href="#ARP的运行过程：" class="headerlink" title="ARP的运行过程："></a>ARP的运行过程：</h3><h4 id="数据包传输步骤"><a href="#数据包传输步骤" class="headerlink" title="数据包传输步骤"></a>数据包传输步骤</h4><blockquote>
+<h3 id="arp的运行过程：">ARP的运行过程：</h3>
+<h4 id="数据包传输步骤">数据包传输步骤</h4>
+<blockquote>
 <ul>
 <li>发送端知道目的端的IP地址。</li>
 <li>IP要求ARP创建一个ARP请求报文，其中包含了发送方的物理地址、发送方的IP地址和目的端的IP地址。目的端的物理地址用0填充</li>
@@ -514,13 +531,20 @@ ARP(Address Resolution Protocol，RF">
 <li>将IP数据报封装在一个帧中，并单播到目的地址。</li>
 </ul>
 </blockquote>
-<h3 id="ARP高速缓存："><a href="#ARP高速缓存：" class="headerlink" title="ARP高速缓存："></a>ARP高速缓存：</h3><p>当主机A通过ARP请求得到B的物理地址后就将“IP地址—MAC地址”的绑定信息存储在<strong>高速缓存</strong>中。对于后续发往E的分组，可以通过缓存得到物理地址<br>当ARP被询问一个已知IP地址节点的MAC地址时，先在ARP缓存表查看，若存在，就直接返回MAC地址，若不存在，才发送ARP请求向局域网查询。</p>
-<h4 id="缓存表内容："><a href="#缓存表内容：" class="headerlink" title="缓存表内容："></a>缓存表内容：</h4><p>静态项目一直保留在缓存中，直到重新启动计算机为止。</p>
-<p>动态项目随时间推移自动添加和删除，每个动态ARP缓存项的潜在生命周期是10分钟。<br>新加到缓存中的项目带有时间戳，如果某个项目添加后2分钟内没有再使用，则此项目过期并从ARP缓存中删除;<br>如果某个项目已在使用，则又收到2分钟的生命周期;<br>如果某个项目始终在使用，则会另外收到2分钟的生命周期，一直到10分钟的最长生命周期。</p>
-<h4 id="arp命令的用法"><a href="#arp命令的用法" class="headerlink" title="arp命令的用法:"></a>arp命令的用法:</h4><p>arp命令用于对本地arp缓存进行操作，不会发送ARP请求</p>
+<h3 id="arp高速缓存：">ARP高速缓存：</h3>
+<p>当主机A通过ARP请求得到B的物理地址后就将“IP地址—MAC地址”的绑定信息存储在<strong>高速缓存</strong>中。对于后续发往E的分组，可以通过缓存得到物理地址<br>
+当ARP被询问一个已知IP地址节点的MAC地址时，先在ARP缓存表查看，若存在，就直接返回MAC地址，若不存在，才发送ARP请求向局域网查询。</p>
+<h4 id="缓存表内容：">缓存表内容：</h4>
+<p>静态项目一直保留在缓存中，直到重新启动计算机为止。</p>
+<p>动态项目随时间推移自动添加和删除，每个动态ARP缓存项的潜在生命周期是10分钟。<br>
+新加到缓存中的项目带有时间戳，如果某个项目添加后2分钟内没有再使用，则此项目过期并从ARP缓存中删除;<br>
+如果某个项目已在使用，则又收到2分钟的生命周期;<br>
+如果某个项目始终在使用，则会另外收到2分钟的生命周期，一直到10分钟的最长生命周期。</p>
+<h4 id="arp命令的用法">arp命令的用法:</h4>
+<p>arp命令用于对本地arp缓存进行操作，不会发送ARP请求</p>
 <blockquote>
 <ul>
-<li>arp -a:              列出ARP缓存中的所有条目</li>
+<li>arp -a:		      列出ARP缓存中的所有条目</li>
 <li>arp -a ip:          列出缓存中与ip对应的条目</li>
 <li>arp -d:              清空arp缓存</li>
 <li>arp -d ip:          删除缓存中与ip对应的条目</li>
@@ -646,6 +670,55 @@ ARP(Address Resolution Protocol，RF">
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
+                <a href="/2022/11/13/%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AEUDP%E4%B8%8ETCP/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="传输层协议TCP与UDP">
+                        
+                        <span class="card-title">传输层协议TCP与UDP</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-11-13
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                    网络工程相关
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/">
+                        <span class="chip bg-color">网络协议分析</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
                 <a href="/2022/11/12/%E7%BD%91%E9%99%85%E5%8D%8F%E8%AE%AEIP/">
                     <div class="card-image">
                         
@@ -662,9 +735,9 @@ ARP(Address Resolution Protocol，RF">
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-11-12
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-12
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -686,55 +759,6 @@ ARP(Address Resolution Protocol，RF">
                     
                     <a href="/tags/IP%E5%8D%8F%E8%AE%AE/">
                         <span class="chip bg-color">IP协议</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2022/11/01/%E5%9B%BD%E8%B5%9B%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="古代玻璃制品的成分分析与鉴别">
-                        
-                        <span class="card-title">古代玻璃制品的成分分析与鉴别</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-01
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%85%B6%E4%BB%96/" class="post-category">
-                                    其他
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
-                        <span class="chip bg-color">数学建模</span>
                     </a>
                     
                 </div>
@@ -931,7 +955,7 @@ ARP(Address Resolution Protocol，RF">
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">368.4k</span>
+                        class="white-color">380.3k</span>
             
             
             

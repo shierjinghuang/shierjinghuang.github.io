@@ -5,10 +5,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="网际协议IP, 十二惊惶">
-    <meta name="description" content="网际协议IP[TOC]
+    <meta name="description" content="网际协议IP
+[TOC]
 IP协议简介（lP- Internet Protocol）
+
 网际协议IP是TCP/IP最核心的协议，也是最重要的因特网标准协议之一
-IP负责将数据包从源点交付到终点，所有的TCP、UDP、ICMP及IGMP数据都以I">
+IP负责将数据包从源点交付到终点，所有的TCP、UDP、ICMP及IGMP数据都">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -451,12 +453,15 @@ IP负责将数据包从源点交付到终点，所有的TCP、UDP、ICMP及IGMP�
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="网际协议IP"><a href="#网际协议IP" class="headerlink" title="网际协议IP"></a>网际协议IP</h2><p>[TOC]</p>
-<h3 id="IP协议简介（lP-Internet-Protocol）"><a href="#IP协议简介（lP-Internet-Protocol）" class="headerlink" title="IP协议简介（lP- Internet Protocol）"></a>IP协议简介（lP- Internet Protocol）</h3><ul>
+                <h2 id="网际协议ip">网际协议IP</h2>
+<p>[TOC]</p>
+<h3 id="ip协议简介-lp-internet-protocol">IP协议简介（lP- Internet Protocol）</h3>
+<ul>
 <li>网际协议IP是TCP/IP最核心的协议，也是最重要的因特网标准协议之一</li>
 <li>IP负责将数据包从源点交付到终点，所有的TCP、UDP、ICMP及IGMP数据都以IP数据报格式传输。</li>
 </ul>
-<h4 id="IP的特性："><a href="#IP的特性：" class="headerlink" title="IP的特性："></a>IP的特性：</h4><blockquote>
+<h4 id="ip的特性：">IP的特性：</h4>
+<blockquote>
 <p style="color:blue;">不可靠:不保证分组成功地送到目的站。任何可靠性的要求必须由上层协议实现。</p>
 </blockquote>
 <blockquote>
@@ -465,13 +470,15 @@ IP负责将数据包从源点交付到终点，所有的TCP、UDP、ICMP及IGMP�
 <blockquote>
 <p style="color:red;">尽最大努力交付:IP协议尽力发送每个分组，只有当资源用完或网络出现故障时才会发送失败</p>
 </blockquote>
-<h4 id="IP地址及表示方法："><a href="#IP地址及表示方法：" class="headerlink" title="IP地址及表示方法："></a>IP地址及表示方法：</h4><p>IP地址：一个IP地址惟一地标识了Internet上的一台主机，IPv4协议使用32位地址，这表示地址空间是2^32。而IPv6协议使用128位地址，地址空间为2^128。<br>表示方法：点分十进制表示:每个字节用一个十进制数表示。</p>
+<h4 id="ip地址及表示方法：">IP地址及表示方法：</h4>
+<p>IP地址：一个IP地址惟一地标识了Internet上的一台主机，IPv4协议使用32位地址，这表示地址空间是2^32。而IPv6协议使用128位地址，地址空间为2^128。<br>
+表示方法：点分十进制表示:每个字节用一个十进制数表示。</p>
 <img src="./网际协议IP/IP地址分类.png"/>
-
-<h5 id="网络号："><a href="#网络号：" class="headerlink" title="网络号："></a>网络号：</h5><p>D类地址和E类地址不划分网络号和主机号。</p>
+<h5 id="网络号：">网络号：</h5>
+<p>D类地址和E类地址不划分网络号和主机号。</p>
 <img src="./网际协议IP/网络号.png" style="zoom:67%;" />
-
-<h5 id="特殊的IP地址："><a href="#特殊的IP地址：" class="headerlink" title="特殊的IP地址："></a>特殊的IP地址：</h5><blockquote>
+<h5 id="特殊的ip地址：">特殊的IP地址：</h5>
+<blockquote>
 <p style="color:blue;">网络地址:主机号全0的IP地址，不分配给任何主机，作为网络本身的标识</p>
 </blockquote>
 <blockquote>
@@ -489,25 +496,35 @@ IP负责将数据包从源点交付到终点，所有的TCP、UDP、ICMP及IGMP�
 <p style="color:black;">环回地址:27.0.0.1称为回环地址，可用来测试TCP/IP协议是否正常工作，常用于本机上软件测试和本机上网络应用程序之间的通信地址。</p>
 - 使用回送地址发送数据，协议软件立即返回，不进行任何网络传输。
 </blockquote>
-<h5 id="专用IP地址："><a href="#专用IP地址：" class="headerlink" title="专用IP地址："></a>专用IP地址：</h5><p>专用lIP地址:仅用于专用网内部的本地主机。<br>大多数路由器不转发携带专用IP地址的数据包，本地主机必须经网络地址转换服务器才能访问Internet。<br>专用IP地址范围: </p>
+<h5 id="专用ip地址：">专用IP地址：</h5>
+<p>专用lIP地址:仅用于专用网内部的本地主机。<br>
+大多数路由器不转发携带专用IP地址的数据包，本地主机必须经网络地址转换服务器才能访问Internet。<br>
+专用IP地址范围:</p>
 <img src="./网际协议IP/专用IP地址.png" style="zoom:67%;" />
-
-<h4 id="子网划分："><a href="#子网划分：" class="headerlink" title="子网划分："></a>子网划分：</h4><p><strong>Subnetting</strong><br>提高IP空间的利用率，增加IP分配的灵活性。<br>从主机号借用若干个比特作为子网号subnet-id，而主机号host-id也就相应减少若干个比特</p>
-<p><img src="./%E7%BD%91%E9%99%85%E5%8D%8F%E8%AE%AEIP/%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E7%A4%BA%E6%84%8F%E5%9B%BE.png"></p>
-<h4 id="子网掩码："><a href="#子网掩码：" class="headerlink" title="子网掩码："></a>子网掩码：</h4><blockquote>
+<h4 id="子网划分：">子网划分：</h4>
+<p><strong>Subnetting</strong><br>
+提高IP空间的利用率，增加IP分配的灵活性。<br>
+从主机号借用若干个比特作为子网号subnet-id，而主机号host-id也就相应减少若干个比特</p>
+<p><img src="./%E7%BD%91%E9%99%85%E5%8D%8F%E8%AE%AEIP/%E5%AD%90%E7%BD%91%E5%88%92%E5%88%86%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt=""></p>
+<h4 id="子网掩码：">子网掩码：</h4>
+<blockquote>
 <p style="color:blue;">子网掩码是一个网络号全1，主机号全0的32位二进制数，用于确定P中有多少位用于子网号。</p>
 - **~~表示方法~~**：点分十进制，IP地址后用`/`后面写明网络号的位数
 - 子网掩码与IP地址**按位做与**得到IP地址对应的**网络地址**
 </blockquote>
-<h3 id="IP数据格式："><a href="#IP数据格式：" class="headerlink" title="IP数据格式："></a>IP数据格式：</h3><p><img src="./%E7%BD%91%E9%99%85%E5%8D%8F%E8%AE%AEIP/IP%E7%9A%84%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F.png"></p>
+<h3 id="ip数据格式：">IP数据格式：</h3>
+<p><img src="./%E7%BD%91%E9%99%85%E5%8D%8F%E8%AE%AEIP/IP%E7%9A%84%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F.png" alt=""></p>
 <p>IP数据报由首部和数据两部分组成</p>
-<h4 id="各字段的含义："><a href="#各字段的含义：" class="headerlink" title="各字段的含义："></a>各字段的含义：</h4><p>版本:4 bit，指IP协议的版本，目前的IP协议版本号为4(即IPv4)</p>
+<h4 id="各字段的含义：">各字段的含义：</h4>
+<p>版本:4 bit，指IP协议的版本，目前的IP协议版本号为4(即IPv4)</p>
 <p>首部长度:4 bit，以4字节为单位，因此IP的首部长度最大是60字节</p>
 <p>服务类型: 8 bit，区分服务，一般不用。</p>
 <p>总长度: 16 bit，首部和数据之和的长度，单位为字节，因此数据报的最大长度为65535字节。总长度不能超过网络的最大传输单元MTU。</p>
 <p>标识:16 bit，数据报计数器</p>
 <blockquote>
-<p>IP软件在存储器中维持一个计数器，每产生一个数据报，计数器加1，并将此值赋给标识字段。<br>当数据报由于长度超过网络MTU而必须分片时，标识字段的值就被复制到所有的数据报分片的标识字段中。<br>相同的标识字段的值使分片后的各数据报片能正确重组成原来的数据报。</p>
+<p>IP软件在存储器中维持一个计数器，每产生一个数据报，计数器加1，并将此值赋给标识字段。<br>
+当数据报由于长度超过网络MTU而必须分片时，标识字段的值就被复制到所有的数据报分片的标识字段中。<br>
+相同的标识字段的值使分片后的各数据报片能正确重组成原来的数据报。</p>
 </blockquote>
 <p>标志: 3 bit，目前只有两位有意义</p>
 <blockquote>
@@ -521,43 +538,61 @@ IP负责将数据包从源点交付到终点，所有的TCP、UDP、ICMP及IGMP�
 <p>生存时间:8 bit，记为TTL (Time To Live)</p>
 <blockquote>
 <ul>
-<li><p>表明数据报在网络中的寿命，其单位为秒。现在TTL的单位是跳数，指明数据报在因特网中至多可经过多少个路由器，最大值为255，通常为32、64、128。</p>
+<li>
+<p>表明数据报在网络中的寿命，其单位为秒。现在TTL的单位是跳数，指明数据报在因特网中至多可经过多少个路由器，最大值为255，通常为32、64、128。</p>
 </li>
-<li><p>当TTL值为1时，表示这个数据报只能在本局域网内传送，因为这个数据报传送到局域网上的某个路由器，在被转发之前TTL值就减小到0，因而会被路由器丢弃。</p>
+<li>
+<p>当TTL值为1时，表示这个数据报只能在本局域网内传送，因为这个数据报传送到局域网上的某个路由器，在被转发之前TTL值就减小到0，因而会被路由器丢弃。</p>
 </li>
 </ul>
 </blockquote>
 <p>协议: 8 bit，指出此数据报携带的数据使用何种协议，以便目的主机的IP层将数据部分上交给对应的进程处理。</p>
-<p><img src="./%E7%BD%91%E9%99%85%E5%8D%8F%E8%AE%AEIP/IP%E7%9A%84%E9%AB%98%E5%B1%82%E5%8D%8F%E8%AE%AE.png"></p>
+<p><img src="./%E7%BD%91%E9%99%85%E5%8D%8F%E8%AE%AEIP/IP%E7%9A%84%E9%AB%98%E5%B1%82%E5%8D%8F%E8%AE%AE.png" alt=""></p>
 <p>首部检验和:16 bit，检验数据报的首部，不包括数据部分。采用简单的16位反码求和的计算方法。</p>
 <p>源IP地址: 32bit，定义了源主机的IP地址。在IP数据包从源主机传送到目的主机期间，该字段保持不变。</p>
 <p>目的IP地址: 32bit，定义了目的主机的IP地址。在IP数据报从源主机传送到目的主机期间，该字段保持不变。</p>
-<h3 id="IP数据报分片："><a href="#IP数据报分片：" class="headerlink" title="IP数据报分片："></a>IP数据报分片：</h3><p>数据包可能经过多个不同的网络，每一个路由器把收到的帧进行拆装，处理后又封装成另一个帧。<br>收到帧的格式与长度取决于这个帧刚经过的物理网络所使用的协发<br>送出去的帧的格式与长度取决于这个帧将要经过的物理网络所使用的协议。</p>
-<p><strong>最大传输单元MTU</strong>：不同网络所能传送的数据包的最大长度是不同的，这个最大长度叫做最大传输单元MTU ( Maximum Transmission Unit ) </p>
+<h3 id="ip数据报分片：">IP数据报分片：</h3>
+<p>数据包可能经过多个不同的网络，每一个路由器把收到的帧进行拆装，处理后又封装成另一个帧。<br>
+收到帧的格式与长度取决于这个帧刚经过的物理网络所使用的协发<br>
+送出去的帧的格式与长度取决于这个帧将要经过的物理网络所使用的协议。</p>
+<p><strong>最大传输单元MTU</strong>：不同网络所能传送的数据包的最大长度是不同的，这个最大长度叫做最大传输单元MTU ( Maximum Transmission Unit )</p>
 <blockquote>
 <p style="color:orange;">MTU即该网络的数据链路层帧的数据部分的最大长度。</p>
 </blockquote>
-<h4 id="分片："><a href="#分片：" class="headerlink" title="分片："></a>分片：</h4><blockquote>
+<h4 id="分片：">分片：</h4>
+<blockquote>
 <ul>
-<li><p>对于物理网络，如果数据包的长度超过了MTU，就要把数据部分进行分片。</p>
+<li>
+<p>对于物理网络，如果数据包的长度超过了MTU，就要把数据部分进行分片。</p>
 </li>
-<li><p>每个分片都有自己的首部。</p>
+<li>
+<p>每个分片都有自己的首部。</p>
 </li>
-<li><p>如果已经分片的数据包要经过更小MTU的网络，那么这些已经分片的数据包还可再进行分片，数据包在到达最后终点之前可以经过多次的分片。</p>
+<li>
+<p>如果已经分片的数据包要经过更小MTU的网络，那么这些已经分片的数据包还可再进行分片，数据包在到达最后终点之前可以经过多次的分片。</p>
 </li>
-<li><p style="color:red;">数据包可以被源主机或在其路径上的路由器进行分片，但是数据包的重装只能在目的主机上进行。</p></li>
+<li>
+<p style="color:red;">数据包可以被源主机或在其路径上的路由器进行分片，但是数据包的重装只能在目的主机上进行。</p>
+</li>
 </ul>
 </blockquote>
-<h4 id="重组"><a href="#重组" class="headerlink" title="重组"></a>重组</h4><h5 id="目的主机进行分片重组"><a href="#目的主机进行分片重组" class="headerlink" title="目的主机进行分片重组"></a>目的主机进行分片重组</h5><blockquote>
+<h4 id="重组">重组</h4>
+<h5 id="目的主机进行分片重组">目的主机进行分片重组</h5>
+<blockquote>
 <p style="color:blue;">IP规定，数据报分片的重组地点是目的主机，中间路由器不对任何被分片的数据报进行重组，即使其转发接口的MTU非常大。</p>
 </blockquote>
 <blockquote>
-<p>优点:<br>简化了路由软件的操作，提高了路由器的处理效率。<br>可以避免重复分片。在数据报投递过程中，途经网络的MTU是不可预知的</p>
+<p>优点:<br>
+简化了路由软件的操作，提高了路由器的处理效率。<br>
+可以避免重复分片。在数据报投递过程中，途经网络的MTU是不可预知的</p>
 </blockquote>
 <blockquote>
-<p>缺点<br>浪费带宽。因为每个分片都要有一个首部，分片越多，首部开销越大。<br>增加了数据包丢失的可能性。分片越多，丢失的可能性越大。一旦丢失了一个分片，整个数据报就必须重新传输。</p>
+<p>缺点<br>
+浪费带宽。因为每个分片都要有一个首部，分片越多，首部开销越大。<br>
+增加了数据包丢失的可能性。分片越多，丢失的可能性越大。一旦丢失了一个分片，整个数据报就必须重新传输。</p>
 </blockquote>
-<h5 id="分片重组："><a href="#分片重组：" class="headerlink" title="分片重组："></a>分片重组：</h5><p>有关的三个字段是:标识字段、标志字段和偏移量字段。</p>
+<h5 id="分片重组：">分片重组：</h5>
+<p>有关的三个字段是:标识字段、标志字段和偏移量字段。</p>
 <p>当目的主机收到一个数据报时，可以根据偏移量和MF位判断:</p>
 <ul>
 <li>片偏移不为0，表明它是一个分片;</li>
@@ -565,15 +600,19 @@ IP负责将数据包从源点交付到终点，所有的TCP、UDP、ICMP及IGMP�
 <li>如果片偏移为0，且MF位为0，则表明它是一个完整的数据报。</li>
 </ul>
 <p>根据数据报首部“标识”字段的值，可判断哪些分片属于同一个原始数据报片偏移用来确定分片在原始数据报中的位置。</p>
-<h5 id="重组定时器："><a href="#重组定时器：" class="headerlink" title="重组定时器："></a>重组定时器：</h5><p>为防止因等待一个丢失的分片而无限期延长重组过程，在重组分片时启动一个定时器,如果超时后仍然没有收到一个数据报的全部分片，则该数据报被丢弃。<br>IP数据报校验和：</p>
+<h5 id="重组定时器：">重组定时器：</h5>
+<p>为防止因等待一个丢失的分片而无限期延长重组过程，在重组分片时启动一个定时器,如果超时后仍然没有收到一个数据报的全部分片，则该数据报被丢弃。<br>
+IP数据报校验和：</p>
 <blockquote>
 <p style="color:blue;">校验和：数据包上的附加信息，能够识别数据包在传输过程中是否出错。</p>
 </blockquote>
 <p>发送端先计算校验和，并把得到的结果与数据包一起发送出去。接收端对数据包进行同样的计算。若结果正确，则接受这个数据包，否则就丢弃它。</p>
-<h4 id="校验和的计算："><a href="#校验和的计算：" class="headerlink" title="校验和的计算："></a>校验和的计算：</h4><p>发送端：将数据包按16位分段。把这些段用反码算术运算相加，将相加后得到的和再取反码就得出了校验和。<br>接收端：把收到的数据包按16位分段，并把这些段相加。得到的和取反码。若结果为0，则接受这个数据包，否则拒绝这个数据包。</p>
+<h4 id="校验和的计算：">校验和的计算：</h4>
+<p>发送端：将数据包按16位分段。把这些段用反码算术运算相加，将相加后得到的和再取反码就得出了校验和。<br>
+接收端：把收到的数据包按16位分段，并把这些段相加。得到的和取反码。若结果为0，则接受这个数据包，否则拒绝这个数据包。</p>
 <img src="./网际协议IP/校验计算.png" style="zoom: 50%;" />
-
-<h4 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h4><blockquote>
+<h4 id="说明：">说明：</h4>
+<blockquote>
 <blockquote>
 <p style="color:blue;">IP数据包的校验和只校验IP首部部分而不校验IP数据部分。</p>
 </blockquote>
@@ -701,55 +740,6 @@ IP负责将数据包从源点交付到终点，所有的TCP、UDP、ICMP及IGMP�
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/11/13/%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AEUDP%E4%B8%8ETCP/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="传输层协议TCP与UDP">
-                        
-                        <span class="card-title">传输层协议TCP与UDP</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-11-13
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
-                                    网络工程相关
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90/">
-                        <span class="chip bg-color">网络协议分析</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
                 <a href="/2022/11/12/%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%8D%8F%E8%AE%AEARP/">
                     <div class="card-image">
                         
@@ -766,9 +756,9 @@ IP负责将数据包从源点交付到终点，所有的TCP、UDP、ICMP及IGMP�
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-12
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-11-12
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -790,6 +780,55 @@ IP负责将数据包从源点交付到终点，所有的TCP、UDP、ICMP及IGMP�
                     
                     <a href="/tags/ARP%E5%8D%8F%E8%AE%AE/">
                         <span class="chip bg-color">ARP协议</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/11/01/%E5%9B%BD%E8%B5%9B%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="古代玻璃制品的成分分析与鉴别">
+                        
+                        <span class="card-title">古代玻璃制品的成分分析与鉴别</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%85%B6%E4%BB%96/" class="post-category">
+                                    其他
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">
+                        <span class="chip bg-color">数学建模</span>
                     </a>
                     
                 </div>
@@ -986,7 +1025,7 @@ IP负责将数据包从源点交付到终点，所有的TCP、UDP、ICMP及IGMP�
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">368.4k</span>
+                        class="white-color">380.3k</span>
             
             
             

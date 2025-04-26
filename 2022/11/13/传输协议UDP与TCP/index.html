@@ -6,11 +6,13 @@
     <meta charset="utf-8">
     <meta name="keywords" content="传输层协议TCP与UDP, 十二惊惶">
     <meta name="description" content="[TOC]
-传输层协议TCP与UDP进程间通信：
+传输层协议TCP与UDP
+进程间通信：
+
 点到点的通信:IP协议负责主机到主机的通信。作为网络层协议，IP协议只能把报文交付给目的主机。
 
 
-端到端的通信：运输层协议负责进程到进程的通信。TCP和UDP协议负责把报文交付到正确的进程">
+端到端的通信：运输层协议负责进程到进程的通信。TCP和UDP协议负责把报文交付到正确的">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -450,29 +452,32 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>[TOC]</p>
-<h2 id="传输层协议TCP与UDP"><a href="#传输层协议TCP与UDP" class="headerlink" title="传输层协议TCP与UDP"></a>传输层协议TCP与UDP</h2><h3 id="进程间通信："><a href="#进程间通信：" class="headerlink" title="进程间通信："></a>进程间通信：</h3><blockquote>
+<h2 id="传输层协议tcp与udp">传输层协议TCP与UDP</h2>
+<h3 id="进程间通信：">进程间通信：</h3>
+<blockquote>
 <p style="color:orange;">点到点的通信:IP协议负责主机到主机的通信。作为网络层协议，IP协议只能把报文交付给目的主机。</p>
 </blockquote>
 <blockquote>
 <p style="color:orange;">端到端的通信：运输层协议负责进程到进程的通信。TCP和UDP协议负责把报文交付到正确的进程。</p>
 </blockquote>
 <img src=".\传输协议UDP与TCP\进程间通信.png" style="zoom:80%;" />
-
-<h4 id="端口号"><a href="#端口号" class="headerlink" title="端口号:"></a>端口号:</h4><p>主机是用IP地址来标识的，而要标识主机中的进程，就需要使用端口号。TCP/IP协议族中，端口号占16 bit，用0~65535之间的整数标识。TCP和UDP是两个独立的软件模块，因此各自的端口号也相互独立。·端口号只具有本地意义，不同计算机的相同端口号是没有联系的。</p>
-<h5 id="三类端口号："><a href="#三类端口号：" class="headerlink" title="三类端口号："></a>三类端口号：</h5><ul>
+<h4 id="端口号">端口号:</h4>
+<p>主机是用IP地址来标识的，而要标识主机中的进程，就需要使用端口号。TCP/IP协议族中，端口号占16 bit，用0~65535之间的整数标识。TCP和UDP是两个独立的软件模块，因此各自的端口号也相互独立。·端口号只具有本地意义，不同计算机的相同端口号是没有联系的。</p>
+<h5 id="三类端口号：">三类端口号：</h5>
+<ul>
 <li>熟知端口，数值为0~1023，用于标识服务器进程。</li>
 <li>登记端口号，数值为1024~49151，为没有熟知端口号的服务器进程使用。使用这个范围的端口号必须在IANA登记，以防止重复。</li>
 <li>客户端口号或短暂端口号，数值为49152~65535，留给客户进程选择暂时使用，一般由应用程序开发者指定或由操作系统随机分配一个未使用的端口号。当服务器进程收到客户进程的报文时，就知道了客户进程所使用的动态端口号。通信结束后，这个端口号可供其它客户进程使用。</li>
 </ul>
-<h5 id="UDP的熟知端口号："><a href="#UDP的熟知端口号：" class="headerlink" title="UDP的熟知端口号："></a>UDP的熟知端口号：</h5><img src=".\传输协议UDP与TCP\UDP的熟知端口号.png" style="zoom:80%;" />
-
-<h5 id="套接字："><a href="#套接字：" class="headerlink" title="套接字："></a>套接字：</h5><p>为了使多主机、多进程通信时不发生混乱，必须把主机的IP地址和端口号结合起来使用，称为<strong>套接字(Socket)</strong>.</p>
+<h5 id="udp的熟知端口号：">UDP的熟知端口号：</h5>
+<img src=".\传输协议UDP与TCP\UDP的熟知端口号.png" style="zoom:80%;" />
+<h5 id="套接字：">套接字：</h5>
+<p>为了使多主机、多进程通信时不发生混乱，必须把主机的IP地址和端口号结合起来使用，称为<strong>套接字(Socket)</strong>.</p>
 <blockquote>
 <p>客户套接字地址唯一地定义了客户进程;服务器套接字地址唯一地定义了服务器进程;TCP与UDP都使用套接字通信;</p>
 </blockquote>
-<p>套接字包括**IP地址(32位)<strong>和</strong>端口号(16位)**，共48位.进行通信的一对套接字在整个Internet中是唯一的。</p>
+<p>套接字包括<strong>IP地址(32位)<strong>和</strong>端口号(16位)</strong>，共48位.进行通信的一对套接字在整个Internet中是唯一的。</p>
 <img src=".\传输协议UDP与TCP\套接字.png"  />
-
 <blockquote>
 <p style="color:orange;">面向连接的服务：进行数据交换前，先建立连接，传输结柬后释放连接</p>
 </blockquote>
@@ -487,18 +492,23 @@
 <blockquote>
 <p>无连接服务灵活方便，但不能防止报文的丢失、重复和乱序。·每个报文必须包含完整的源地址和目的地址，因此开销较大。</p>
 </blockquote>
-<h3 id="用户数据报协议UDP"><a href="#用户数据报协议UDP" class="headerlink" title="用户数据报协议UDP"></a>用户数据报协议UDP</h3><pre class="line-numbers language-Python" data-language="Python"><code class="language-Python">#	掌握UDP协议的报文格式
+<h3 id="用户数据报协议udp">用户数据报协议UDP</h3>
+<pre class="line-numbers language-Python" data-language="Python"><code class="language-Python">#	掌握UDP协议的报文格式
 #	掌握UDP协议校验和的计算方法
 #	理解UDP协议的优缺点<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="UDP协议简介："><a href="#UDP协议简介：" class="headerlink" title="UDP协议简介："></a>UDP协议简介：</h4><blockquote>
+<h4 id="udp协议简介：">UDP协议简介：</h4>
+<blockquote>
 <p style="color:blue;">UDP (User Datagram Protocol，用户数据报协议）提供无连接的传输服务，对等的UDP实体在传输时不建立端到端的连接，只是简单地发送或接收数据报</p>
 </blockquote>
-<p>UDP协议直接位于IP协议的上层，属于运输层协议。<br>UDP协议不提供端到端的确认和重传功能，它不保证数据包一定能到达目的地，因此是不可靠协议，使用UDP的程序可根据自己的需求设计相应的可靠性机制，如TFTP。</p>
-<h5 id="UDP协议的特点"><a href="#UDP协议的特点" class="headerlink" title="UDP协议的特点"></a>UDP协议的特点</h5><p>发送数据之前不需要建立连接，UDP主机不需要维持复杂的连接状态表。</p>
-<p>UDP用户数据报只有8个字节的首部开销。<br>网络的拥塞不会使源主机的发送速率降低，这对某些实时应用是很重要的。·当数据包在传送过程中发生错误时UDP不能报告错误。<br>UDP保留应用程序定义的报文边界，当应用程序把一块数据交给UDP发送时，这块数据将作为独立的单元到达对方的应用程序，因此，应用程序必须关心IP数据报的长度。</p>
-<h4 id="UDP报文格式："><a href="#UDP报文格式：" class="headerlink" title="UDP报文格式："></a>UDP报文格式：</h4><img src=".\传输协议UDP与TCP\UDP报文格式.png" style="zoom: 67%;" />
-
+<p>UDP协议直接位于IP协议的上层，属于运输层协议。<br>
+UDP协议不提供端到端的确认和重传功能，它不保证数据包一定能到达目的地，因此是不可靠协议，使用UDP的程序可根据自己的需求设计相应的可靠性机制，如TFTP。</p>
+<h5 id="udp协议的特点">UDP协议的特点</h5>
+<p>发送数据之前不需要建立连接，UDP主机不需要维持复杂的连接状态表。</p>
+<p>UDP用户数据报只有8个字节的首部开销。<br>
+网络的拥塞不会使源主机的发送速率降低，这对某些实时应用是很重要的。·当数据包在传送过程中发生错误时UDP不能报告错误。<br>
+UDP保留应用程序定义的报文边界，当应用程序把一块数据交给UDP发送时，这块数据将作为独立的单元到达对方的应用程序，因此，应用程序必须关心IP数据报的长度。</p>
+<h4 id="udp报文格式：">UDP报文格式：</h4>
+<img src=".\传输协议UDP与TCP\UDP报文格式.png" style="zoom: 67%;" />
 <p>首部字段和数据字段。首部字段8个字节，由4个字段组成，每个字段2字节</p>
 <ol>
 <li>源端口:表示发送端的端口号。不同的应用程序使用不同的端口号，实现了同一时间段内多个应用程序可以一起使用网络进行数据的发送和接收。</li>
@@ -508,33 +518,36 @@
 </ol>
 <p>UDP用户数据报封装在IP数据报中，IP数据报的“协议类型”字段的值是17，表示数据部分是从UDP协议来的。</p>
 <img src=".\传输协议UDP与TCP\UDP封装.png" style="zoom:67%;" />
-
-<h5 id="UDP校验和的计算"><a href="#UDP校验和的计算" class="headerlink" title="UDP校验和的计算"></a>UDP校验和的计算</h5><blockquote>
+<h5 id="udp校验和的计算">UDP校验和的计算</h5>
+<blockquote>
 <p style="color:blue;">UDP校验和的计算与IP和ICMP校验和的计算不同。UDP校拉和T拉H围包括三部分:伪首部、UDP首部以及从应用层来的数据。</p>
 </blockquote>
 <p>伪首部是IP首部的一部分，其中有些字段要填入0。若校演和不包括伪首部，用户数据报也可能是安全的和正确的。但是，若lP首部受到损伤，则它可能被交付到错误的主机。</p>
 <p>伪首部中的高层协议类型是为了确保这个数据报是属于UDP而不是是属丁于TCP。UDP的高层协议类型是17，若这个值在传输过程中出错，接收端就能检出并丢弃这个数据包，从而不会交付给错误的协议。</p>
-<h4 id="UDP的应用："><a href="#UDP的应用：" class="headerlink" title="UDP的应用："></a>UDP的应用：</h4><p>UDP适用于这样的进程，它需要简单的请求—响应通信，而较少考虑流量控制和差错控制。对于需要传送成块数据的进程，如FTP，则通常不使用UDP。<br>UDP适用于具有内部流量控制和差错控制机制的进程。对多播和广播来说，UDP是个比较合适的传输层协议。UDP可用于管理进程，如SNMP协议。<br>UDP可用于某些路由选择更新协议，如RIP协议。</p>
-<h3 id="传输控制协议TCP"><a href="#传输控制协议TCP" class="headerlink" title="传输控制协议TCP"></a>传输控制协议TCP</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 掌握TCP协议的报文格式</span>
+<h4 id="udp的应用：">UDP的应用：</h4>
+<p>UDP适用于这样的进程，它需要简单的请求—响应通信，而较少考虑流量控制和差错控制。对于需要传送成块数据的进程，如FTP，则通常不使用UDP。<br>
+UDP适用于具有内部流量控制和差错控制机制的进程。对多播和广播来说，UDP是个比较合适的传输层协议。UDP可用于管理进程，如SNMP协议。<br>
+UDP可用于某些路由选择更新协议，如RIP协议。</p>
+<h3 id="传输控制协议tcp">传输控制协议TCP</h3>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 掌握TCP协议的报文格式</span>
 <span class="token comment"># 掌握TCP连接的建立和释放过程</span>
 <span class="token comment"># 掌握TCP数据传输中编号与确认的过程掌握TCP协议校验和的计算方法</span>
 <span class="token comment"># 理解TCP重传机制</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="TCP协议简介："><a href="#TCP协议简介：" class="headerlink" title="TCP协议简介："></a>TCP协议简介：</h4><p>TCP协议是TCP/IP协议族中的面向连接的、可靠的、端到端的运输层协议。</p>
+<h4 id="tcp协议简介：">TCP协议简介：</h4>
+<p>TCP协议是TCP/IP协议族中的面向连接的、可靠的、端到端的运输层协议。</p>
 <p>TCP提供全双工服务，全双工连接包括两个独立的、方向相反的数据流。与UDP不同，TCP允许发送和接收字节流形式的数据。为了使服务器和客户端以不同的速度双向发送和接收数据，TCP提供了发送和接收两个缓冲区。TCP在报文中加上一个递增的确认序列号来告诉发送端，接收端期望收到的下一个报文，如果在规定时间内，没有收到关于这个包的确认响应，则重新发送此包，这保证了TCP是一种可靠的传输层协议。</p>
 <img src=".\传输协议UDP与TCP\TCP的熟知端口号.png" style="zoom:50%;" />
-
-<h4 id="TCP报文格式："><a href="#TCP报文格式：" class="headerlink" title="TCP报文格式："></a>TCP报文格式：</h4><img src=".\传输协议UDP与TCP\TCP报文格式.png" style="zoom: 50%;" />
-
+<h4 id="tcp报文格式：">TCP报文格式：</h4>
+<img src=".\传输协议UDP与TCP\TCP报文格式.png" style="zoom: 50%;" />
 <p>源端口:2字节，主机中发送这个报文的应用程序端口号。</p>
 <p>目的端口:2字节，目的主机中接收这个报文的应用程序的端口号。</p>
 <p>序列号:4字节，定义了指派给本报文第一个数据字节的一个序号。TCP是流式传输协议，为了保证连通性，要在发送的每一个字节上编号。序号指定了这个序列中的哪一个字节是报文的第一个字节。在连接建立时，双方使用随机数产生器产生初始序号，通常每一方的初始序号都是不同的。</p>
 <p>确认号:4字节，接收端期望收到的下一个报文段中数据部分的第一个字节的序号。</p>
-<p>首部长度:4位，指定TCP首部的长度，以4字节为单位。首部长度可以在20~60字节之间。因此，这个字段的值可以在5至15之间。<br>保留字段:4位，保留为今后使用，目前应置为0。<br>控制字段:定义了8种不同的标志。用在TCP的流量控制、连接建立和终止以及数据传送的方式等方面。在同一时间可设置一位或多位标志。</p>
+<p>首部长度:4位，指定TCP首部的长度，以4字节为单位。首部长度可以在20~60字节之间。因此，这个字段的值可以在5至15之间。<br>
+保留字段:4位，保留为今后使用，目前应置为0。<br>
+控制字段:定义了8种不同的标志。用在TCP的流量控制、连接建立和终止以及数据传送的方式等方面。在同一时间可设置一位或多位标志。</p>
 <img src=".\传输协议UDP与TCP\TCP的控制字段.png" style="zoom:67%;" />
-
 <img src="./网际协议IP/\TCP控制字段具体信息.png" style="zoom: 50%;" />
-
 <p>窗口:2字节，窗口字段用来控制对方发送的数据量，单位为字节。TCP连接的一端根据设置的缓存空间大小确定自己的接收窗口大小，然后通知对方以确定对方的发送窗口的上限。这时，发送端必须服从接收端的决定。</p>
 <p>检验和:2字节，检验的范围包括首部和数据这两部分。在计算检验和时，要在TCP报文段的前面加上12字节的伪首部。</p>
 <p>紧急指针:2字节，只有当URG=1时才有效，指出在本报文段中的紧急数据的最后一个字节的序号，使接收方知道紧急数据共有多少字节(紧急数据结束后是普通数据)。发送方TCP即使发送窗口为0，也要对带有URG标志的数据段实行强制发送。</p>
@@ -542,7 +555,7 @@
 <p>最大报文段长度MSS (Maximum Segment Size)。</p>
 <blockquote>
 <ul>
-<li> TCP报文段中的数据字段的最大长度。</li>
+<li>TCP报文段中的数据字段的最大长度。</li>
 <li>与接收窗口值没有关系，不是考虑接收方的缓存是否可以放下TCP报文段中的数据。</li>
 <li>目的是提高网络的利用率，使TCP报文段携带的数据尽可能多，以提高分组中数据部分所占的比例。</li>
 <li>MSS应该尽可能大，只要在IP层不需要进行分片即可。但由于传输路径的动态性，很难确定最佳MSS。</li>
@@ -550,23 +563,24 @@
 </ul>
 </blockquote>
 <p>填充:为了使整个首部长度是4字节的整数倍，全0填充。</p>
-<h5 id="TCP的封装："><a href="#TCP的封装：" class="headerlink" title="TCP的封装："></a>TCP的封装：</h5><p>TCP报文封装在lP数据报中，IP数据报的“协议类型”字段的值是6</p>
+<h5 id="tcp的封装：">TCP的封装：</h5>
+<p>TCP报文封装在lP数据报中，IP数据报的“协议类型”字段的值是6</p>
 <img src=".\传输协议UDP与TCP\TCP的封装.png" style="zoom:67%;" />
-
-<h4 id="TCP链接的建立与释放："><a href="#TCP链接的建立与释放：" class="headerlink" title="TCP链接的建立与释放："></a>TCP链接的建立与释放：</h4><blockquote>
+<h4 id="tcp链接的建立与释放：">TCP链接的建立与释放：</h4>
+<blockquote>
 <p style="color:blue;">连接的三个阶段:连接建立、数据传送和连接释放。连接建立</p>
 </blockquote>
 <p>服务器首先准备接收TCP连接，这个过程叫做被动打开。这时的服务器的TCP已经准备好接受任何一台主机的TCP连接了。客户程序发出TCP请求的过程叫做主动打开。然后服务器与客户端就开始三次握手过程。</p>
-<h5 id="三次握手建立连接："><a href="#三次握手建立连接：" class="headerlink" title="三次握手建立连接："></a>三次握手建立连接：</h5><p>1．客户发送第一个报文，这是一个SYN报文，在这个报文中只有SYN标志置为1，这个报文的作用是使序号同步。</p>
+<h5 id="三次握手建立连接：">三次握手建立连接：</h5>
+<p>1．客户发送第一个报文，这是一个SYN报文，在这个报文中只有SYN标志置为1，这个报文的作用是使序号同步。</p>
 <img src=".\传输协议UDP与TCP\第一次握手.png" style="zoom:50%;" />
-
 <p>2．服务器发送第二个报文，即SYN+ACK报文，其中SYN和ACK标志被置为1首先，它是一个用来和对方进行通信的SYN报文。服务器使用这个报文同步初始序号，以便从服务器向客户发送字节。服务器还使用ACK标志确认已从客户端收到了SYN报文，同时给出期望从客户端收到的下一个序号。另外，服务器还定义了客户端要使用的接收窗口的大小。</p>
 <img src=".\传输协议UDP与TCP\第二次握手.png" style="zoom:50%;" />
-
-<p>3．客户发送第三个报文。这仅仅是一个ACK报文。它使用ACK标志和确认号字段来确认收到了第二个报文。<br>然后客户端就可以通知上层应用进程，连接已经建立。服务器收到客户机的确认后，也通知上层应用进程，连接已经建立。</p>
+<p>3．客户发送第三个报文。这仅仅是一个ACK报文。它使用ACK标志和确认号字段来确认收到了第二个报文。<br>
+然后客户端就可以通知上层应用进程，连接已经建立。服务器收到客户机的确认后，也通知上层应用进程，连接已经建立。</p>
 <img src=".\传输协议UDP与TCP\第三次握手.png" style="zoom:50%;" />
-
-<h5 id="半关闭的四次握手方式终止连接："><a href="#半关闭的四次握手方式终止连接：" class="headerlink" title="半关闭的四次握手方式终止连接："></a>半关闭的四次握手方式终止连接：</h5><blockquote>
+<h5 id="半关闭的四次握手方式终止连接：">半关闭的四次握手方式终止连接：</h5>
+<blockquote>
 <p style="color:blue;">半关闭:TCP连接中，一方可以终止发送数据，但仍然保持接收数据，称为半关闭。半关闭通常是由客户端发起的。</p>
 </blockquote>
 <p><strong>半关闭的过程</strong></p>
@@ -574,73 +588,81 @@
 <li>客户发送FIN报文，半关闭了这个连接</li>
 <li>服务器发送ACK报文接受了这个半关闭。但是，现在服务器仍然可以发送数据</li>
 <li>当服务器已经把所有处理的数据都发送完毕时，就发送FIN报文</li>
-<li>客户端发送ACK报文给予确认。<ul>
+<li>客户端发送ACK报文给予确认。
+<ul>
 <li>在半关闭一条连接后，客户端仍然可以接收服务器发送的数据，而服务器也可以接收客户端发送的确认。但是，客户端不能传送数据给服务器。</li>
 </ul>
 </li>
 </ol>
 <img src=".\传输协议UDP与TCP\半关闭的四次握手方式终止连接.png" style="zoom:50%;" />
-
-<h4 id="流量控制："><a href="#流量控制：" class="headerlink" title="流量控制："></a>流量控制：</h4><p>发送端收到接收端的确认报文之前，对发送端发送的数据量进行管理</p>
-<p>在不考虑流量控制的情况下，传输层协议可以每次只发送一个字节的数据，然后在发送下一个字节数据之前等待接收端的确认报文。这是一个非常缓慢的过程，发送端在等待确认报文时一直处于空闲状态。<br>还有一种情况是传输层协议一次就将全部数据发送出去，而不理会确认报文。这样虽然加速了发送过程，但可能会使接收端来不及接收而瘫痪。此外，若有一部分数据丢失、重复、失序或损坏，发送端就要一直等到接收端将全部数据都检查完毕后才能知道。</p>
-<h4 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h4><p>TCP的流量控制在缓存上定义了一个窗口，称为滑动窗口，窗口大小的单位是字节，TCP发送数据的多少由滑动窗口决定。</p>
+<h4 id="流量控制：">流量控制：</h4>
+<p>发送端收到接收端的确认报文之前，对发送端发送的数据量进行管理</p>
+<p>在不考虑流量控制的情况下，传输层协议可以每次只发送一个字节的数据，然后在发送下一个字节数据之前等待接收端的确认报文。这是一个非常缓慢的过程，发送端在等待确认报文时一直处于空闲状态。<br>
+还有一种情况是传输层协议一次就将全部数据发送出去，而不理会确认报文。这样虽然加速了发送过程，但可能会使接收端来不及接收而瘫痪。此外，若有一部分数据丢失、重复、失序或损坏，发送端就要一直等到接收端将全部数据都检查完毕后才能知道。</p>
+<h4 id="滑动窗口">滑动窗口</h4>
+<p>TCP的流量控制在缓存上定义了一个窗口，称为滑动窗口，窗口大小的单位是字节，TCP发送数据的多少由滑动窗口决定。</p>
 <p>TCP报文段首部的窗口字段就是给发送方设置的发送窗口的上限。</p>
 <p>发送窗口在连接建立时由双方商定，在通信过程中动态调整。</p>
 <p>如果发送方收到接收方的窗口大小U HIr以人tx’P送数据（带URG标志的数据段除外）。</p>
 <img src=".\传输协议UDP与TCP\滑动窗口.png" style="zoom:67%;" />
-
-<p>发送端只要收到了对方的确认，发送窗口就可前移。<br>发送TCP维护一个指针。每发送一个报文段，指针向前移动一个报文段的距离。</p>
+<p>发送端只要收到了对方的确认，发送窗口就可前移。<br>
+发送TCP维护一个指针。每发送一个报文段，指针向前移动一个报文段的距离。</p>
 <blockquote>
 <p style="color:red;">滑动窗口的右沿可以向左移动吗?</p>
 **滑动窗口的右沿向左移动通常发生在对方通知窗口缩小时**。使某些可以发送的数据变成不能发送，如果发送端已经发送了这些数据，就会产生错误。
-
 <p>TCP标准强烈不赞成这样做。</p>
 </blockquote>
 <blockquote>
 <p style="color:red;">滑动窗口的左沿可以向左移动吗?</p>
 **窗口的左沿不能向左移动**，因为这表示已经发送出去的并且经过确认的数据现在又要回收了
 </blockquote>
-<h4 id="拥塞控制："><a href="#拥塞控制：" class="headerlink" title="拥塞控制："></a>拥塞控制：</h4><h5 id="拥塞控制与流量控制的对比"><a href="#拥塞控制与流量控制的对比" class="headerlink" title="拥塞控制与流量控制的对比:"></a>拥塞控制与流量控制的对比:</h5><blockquote>
-<p style="color:blue;">出现资源拥塞的条件:    对资源需求的总和>可用资源</p>
+<h4 id="拥塞控制：">拥塞控制：</h4>
+<h5 id="拥塞控制与流量控制的对比">拥塞控制与流量控制的对比:</h5>
+<blockquote>
+<p style="color:blue;">出现资源拥塞的条件:	对资源需求的总和>可用资源</p>
 </blockquote>
 <ul>
 <li>防止过多的数据注入到网络中，可以使路由器或者链路不至于过载。</li>
 <li>拥塞控制是一个<strong>全局性</strong>的过程，涉及到所有的主机、路由器，以及与降低网络传输性能有关的所有因素。</li>
 </ul>
-<p><strong>流量控制：</strong>在给定的发送端和接收端之间的<strong>点对点通信量的控制</strong>。</p>
+<p><strong>流量控制：<strong>在给定的发送端和接收端之间的</strong>点对点通信量的控制</strong>。</p>
 <ul>
 <li>流量控制所要做的就是抑制发送端发送数据的速率，以便使接收端来得及接收</li>
 </ul>
-<h5 id="拥塞控制的作用："><a href="#拥塞控制的作用：" class="headerlink" title="拥塞控制的作用："></a>拥塞控制的作用：</h5><img src=".\传输协议UDP与TCP\拥塞控制.png" style="zoom:50%;" />
-
-<h5 id="拥塞控制方法"><a href="#拥塞控制方法" class="headerlink" title="拥塞控制方法"></a>拥塞控制方法</h5><blockquote>
-<p style="color:black;">慢开始:        初始设置拥塞窗口cwnd = 1，每收到一个对新的报文段的确认后，将拥塞窗口加1，逐步增大发送端的拥塞窗口cwnd。</p>
+<h5 id="拥塞控制的作用：">拥塞控制的作用：</h5>
+<img src=".\传输协议UDP与TCP\拥塞控制.png" style="zoom:50%;" />
+<h5 id="拥塞控制方法">拥塞控制方法</h5>
+<blockquote>
+<p style="color:black;">慢开始:		初始设置拥塞窗口cwnd = 1，每收到一个对新的报文段的确认后，将拥塞窗口加1，逐步增大发送端的拥塞窗口cwnd。</p>
 </blockquote>
 <blockquote>
-<p style="color:black;">拥塞避免:    使拥塞窗口cwnd按线性规律缓慢增长，“加法增大”。</p>
+<p style="color:black;">拥塞避免:	使拥塞窗口cwnd按线性规律缓慢增长，“加法增大”。</p>
 </blockquote>
 <img src=".\传输协议UDP与TCP\慢开始于拥塞避免.png" style="zoom:50%;" />
-
 <blockquote>
 <p style="color:black;">快重传:接收方每收到一个失序的报文段后就立即发出重复确认，这样做可以让发送方及早知道有报文段没有到达接收方。发送方只要一连收到三个重复确认就应当立即重传对方尚未收到的报文段。</p>
 </blockquote>
 <img src=".\传输协议UDP与TCP\快重传.png" style="zoom:50%;" />
-
 <blockquote>
 <p style="color:black;">快恢复:当发送端收到连续三个重复的确认时，就执行“乘法减小”算法，把慢开始门限ssthresh 减半，但接下去不执行慢开始算法，而是执行拥塞避免算法“加法增大”，使拥塞窗口缓慢地线性增大，实现快恢复。</p>
 </blockquote>
 <img src=".\传输协议UDP与TCP\快恢复.png" style="zoom:50%;" />
-
-<h5 id="发送窗口大小"><a href="#发送窗口大小" class="headerlink" title="发送窗口大小:"></a>发送窗口大小:</h5><p>考虑拥塞控制的情况下，窗口大小由接收窗口和拥塞窗口两者中的较小者决定。接收窗口大小由接收方发送的确认报文中的窗口大小字段值所确定。这是接收端在缓存溢出导致数据被丢弃之前所能接受的最大字节数。拥塞窗口大小是由网络根据拥塞情况而确定的。<br>发送窗口的上限值= Min [rwnd, cwnd]</p>
+<h5 id="发送窗口大小">发送窗口大小:</h5>
+<p>考虑拥塞控制的情况下，窗口大小由接收窗口和拥塞窗口两者中的较小者决定。接收窗口大小由接收方发送的确认报文中的窗口大小字段值所确定。这是接收端在缓存溢出导致数据被丢弃之前所能接受的最大字节数。拥塞窗口大小是由网络根据拥塞情况而确定的。<br>
+发送窗口的上限值= Min [rwnd, cwnd]</p>
 <blockquote>
 <ul>
-<li><p>当rwnd &lt; cwnd时，是接收方的接收能力限制发送窗口的最大值</p>
+<li>
+<p>当rwnd &lt; cwnd时，是接收方的接收能力限制发送窗口的最大值</p>
 </li>
-<li><p>当cwnd &lt; rwnd时，则是网络的拥塞限制发送窗口的最大值。</p>
+<li>
+<p>当cwnd &lt; rwnd时，则是网络的拥塞限制发送窗口的最大值。</p>
 </li>
 </ul>
 </blockquote>
-<h4 id="差错控制："><a href="#差错控制：" class="headerlink" title="差错控制："></a>差错控制：</h4><h5 id="TCP的差错控制"><a href="#TCP的差错控制" class="headerlink" title="TCP的差错控制"></a>TCP的差错控制</h5><ul>
+<h4 id="差错控制：">差错控制：</h4>
+<h5 id="tcp的差错控制">TCP的差错控制</h5>
+<ul>
 <li>应用程序把数据流交付给TCP后，就依靠TCP把整个数据流交付给接收端的应用程序，并且保证数据流是按序的、没有差错的、也没有任何一部分是丢失的或重复的。</li>
 <li>TCP使用差错控制提供可靠性。差错控制包括以下的一些机制:检测受到损伤的报文、丢失的报文、失序的报文和重复的报文。</li>
 </ul>
@@ -648,16 +670,19 @@
 <p style="color:blue;">实现方式：通过校验和、确认以及超时重传三种机制实现</p>
 </blockquote>
 <ul>
-<li><p>校验和:用来检验报文是否出错，如果出错，接收端就将报文丢弃</p>
+<li>
+<p>校验和:用来检验报文是否出错，如果出错，接收端就将报文丢弃</p>
 </li>
-<li><p>确认</p>
+<li>
+<p>确认</p>
 <ul>
 <li>累积确认：不必对收到的分组逐个发送确认，而是对按序到达的最后一个分组发送确认</li>
 <li>选择确认：首部选项SACK用于报告收到的不连续的字节块的边界</li>
 <li>确认报文不携带数据，但消耗一个序号。除了ACK报文之外，确认报文也需要被确认。</li>
 </ul>
 </li>
-<li><p>重传</p>
+<li>
+<p>重传</p>
 <ul>
 <li>超时计时器到时:发送端为每一个TCP报文段都设置一个超时计时器，若计时器到时仍没收到确认，就重传这个报文。超时计时器的值是动态的，根据报文的往返时间而更新</li>
 <li>快重传:发送端只要一连收到三个重复的ACK即可断定有报文段丢失了，就应立即重传而不必等待计时器超时。</li>
@@ -828,13 +853,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/11/12/%E7%BD%91%E9%99%85%E5%8D%8F%E8%AE%AEIP/">
+                <a href="/2022/11/12/%E5%9C%B0%E5%9D%80%E8%A7%A3%E6%9E%90%E5%8D%8F%E8%AE%AEARP/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="网际协议IP">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="地址解析协议 ARP">
                         
-                        <span class="card-title">网际协议IP</span>
+                        <span class="card-title">地址解析协议 ARP</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -866,8 +891,8 @@
                         <span class="chip bg-color">网络协议分析</span>
                     </a>
                     
-                    <a href="/tags/IP%E5%8D%8F%E8%AE%AE/">
-                        <span class="chip bg-color">IP协议</span>
+                    <a href="/tags/ARP%E5%8D%8F%E8%AE%AE/">
+                        <span class="chip bg-color">ARP协议</span>
                     </a>
                     
                 </div>
@@ -1064,7 +1089,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">368.4k</span>
+                        class="white-color">380.3k</span>
             
             
             

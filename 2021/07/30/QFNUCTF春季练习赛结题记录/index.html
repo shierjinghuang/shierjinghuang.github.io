@@ -5,8 +5,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="QFNUCTF春季练习赛结题记录, 十二惊惶">
-    <meta name="description" content="杂项1 二维码题目下载出的压缩包中是一张二维码这张二维码，用手机扫一扫后输出secret in here .试了一下这东西不是flag，使用Formost分解图片找到了一个压缩包，里面的txt文件名字叫做4.number。
-使用软件进行爆破">
+    <meta name="description" content="杂项
+1 二维码
+题目下载出的压缩包中是一张二维码
+这张二维码，用手机扫一扫后输出secret in here .试了一下这东西不是flag，使用Formost分解图片找到了一个压缩包，里面的txt文件名字叫做4.number。
+
+使用软件">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -419,7 +423,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    948
+                    949
                 </div>
                 
 
@@ -449,22 +453,37 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h2><h4 id="1-二维码"><a href="#1-二维码" class="headerlink" title="1 二维码"></a>1 二维码</h4><p>题目下载出的压缩包中是一张二维码<br>这张二维码，用手机扫一扫后输出secret in here .试了一下这东西不是flag，使用Formost分解图片找到了一个压缩包，里面的txt文件名字叫做4.number。<br><img src="https://upload-images.jianshu.io/upload_images/24919094-cc97408e49939ec3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+                <h2 id="杂项">杂项</h2>
+<h4 id="1-二维码">1 二维码</h4>
+<p>题目下载出的压缩包中是一张二维码<br>
+这张二维码，用手机扫一扫后输出secret in here .试了一下这东西不是flag，使用Formost分解图片找到了一个压缩包，里面的txt文件名字叫做4.number。<br>
+<img src="https://upload-images.jianshu.io/upload_images/24919094-cc97408e49939ec3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>使用软件进行爆破，得到密码7639，得到flag：CTF{vjpw_wnoei}</p>
-<h4 id="2-基础破解"><a href="#2-基础破解" class="headerlink" title="2  基础破解"></a>2  基础破解</h4><p>给你一个压缩包，你并不能获得什么，因为他是四位数字加密的，嗯题干说的很清晰，密码是四位数字加密的，同样暴力跑下，得到结果2563，输入打开密码文件，得道，</p>
+<h4 id="2-基础破解">2  基础破解</h4>
+<p>给你一个压缩包，你并不能获得什么，因为他是四位数字加密的，嗯题干说的很清晰，密码是四位数字加密的，同样暴力跑下，得到结果2563，输入打开密码文件，得道，</p>
 <pre class="line-numbers language-none"><code class="language-none">ZmxhZ3s3MDM1NDMwMGE1MTAwYmE3ODA2ODgwNTY2MWI5M2E1Y30&#x3D;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>很明显这是base64编码,使用工具解码得flag{70354300a5100ba78068805661b93a5c}，换成相应格式就可以提交了。</p>
-<h3 id="3-大白-●—●"><a href="#3-大白-●—●" class="headerlink" title="3 大白(●—●)"></a>3 大白(●—●)</h3><p>大白这道题真是一道老题，使用winhex修改图片高度就可以得到flag，但是在之前我的winhex被我玩坏了，重下外带激活，忙活了老一阵。</p>
-<p>####4 多种方法解决<br>从平台下载下来到文件是exe类型，但是无法正常打开，修改拓展名为txt，发现文件头是：</p>
+<h3 id="3-大白-●-●">3 大白(●—●)</h3>
+<p>大白这道题真是一道老题，使用winhex修改图片高度就可以得到flag，但是在之前我的winhex被我玩坏了，重下外带激活，忙活了老一阵。</p>
+<p>####4 多种方法解决<br>
+从平台下载下来到文件是exe类型，但是无法正常打开，修改拓展名为txt，发现文件头是：</p>
 <blockquote>
 <p>data:image/jpg;base64,</p>
 </blockquote>
 <p>这个是将jpg文件转化成的base64编码，使用工具<a target="_blank" rel="noopener" href="http://tool.chinaz.com/tools/imgtobase">base64图片在线转换工具</a>将base64编码专为图片，扫描图片得到flag，KEY{dca57f966e4e4e31fd5b15417da63269}</p>
-<h4 id="5-爱因斯坦"><a href="#5-爱因斯坦" class="headerlink" title="5 爱因斯坦"></a>5 爱因斯坦</h4><p>题目下载下来是一张爱因斯坦的表情包，在图片的属性中有备注this_is_not_password，那么我觉得应该是在图片中有压缩包，使用formost进行分解，得到压缩包，但是txt文件解压需要密码，密码来源我觉得是在图片的高度上，毕竟1366,768可能被隐藏了一部分，然后由于我渣渣的winhex使用，图片高度每有调整，我还不知道如何解决。<br>设想使用暴力破解，但是试了6位没有，实验七位时间已经超过数个小时，这样绝对行不通。<br>在这个题中我唯一知道的信息是this_is_not_password，实验下，结果就是这个。<br>打开txt文档flag{dd22a92bf2cceb6c0cd0d6b83ff51606}</p>
-<h4 id="6-神秘龙卷风"><a href="#6-神秘龙卷风" class="headerlink" title="6 神秘龙卷风"></a>6 神秘龙卷风</h4><p>题干描述科学家用四位数字为它命名，和之前一样，爆破得到密码5463，打开压缩文件，打开txt文件神秘的龙卷风，好家伙这不就是Brainfuck编码吗？</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/24919094-6678e719593812b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>将文本内容复制，用在线工具将他转化为txt得到flag{e4bbef8bdf9743f8bf5b727a9f6332a8}</p>
-<h4 id="7-刷新过的图片"><a href="#7-刷新过的图片" class="headerlink" title="7 刷新过的图片"></a>7 刷新过的图片</h4><p>没做出来</p>
-<h4 id="8-wireshark"><a href="#8-wireshark" class="headerlink" title="8 wireshark"></a>8 wireshark</h4><p>使用wirshark追踪http流得到，在追踪多个http流后发现有</p>
+<h4 id="5-爱因斯坦">5 爱因斯坦</h4>
+<p>题目下载下来是一张爱因斯坦的表情包，在图片的属性中有备注this_is_not_password，那么我觉得应该是在图片中有压缩包，使用formost进行分解，得到压缩包，但是txt文件解压需要密码，密码来源我觉得是在图片的高度上，毕竟1366,768可能被隐藏了一部分，然后由于我渣渣的winhex使用，图片高度每有调整，我还不知道如何解决。<br>
+设想使用暴力破解，但是试了6位没有，实验七位时间已经超过数个小时，这样绝对行不通。<br>
+在这个题中我唯一知道的信息是this_is_not_password，实验下，结果就是这个。<br>
+打开txt文档flag{dd22a92bf2cceb6c0cd0d6b83ff51606}</p>
+<h4 id="6-神秘龙卷风">6 神秘龙卷风</h4>
+<p>题干描述科学家用四位数字为它命名，和之前一样，爆破得到密码5463，打开压缩文件，打开txt文件神秘的龙卷风，好家伙这不就是Brainfuck编码吗？</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/24919094-6678e719593812b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>
+将文本内容复制，用在线工具将他转化为txt得到flag{e4bbef8bdf9743f8bf5b727a9f6332a8}</p>
+<h4 id="7-刷新过的图片">7 刷新过的图片</h4>
+<p>没做出来</p>
+<h4 id="8-wireshark">8 wireshark</h4>
+<p>使用wirshark追踪http流得到，在追踪多个http流后发现有</p>
 <pre class="line-numbers language-none"><code class="language-none">email&#x3D;flag&amp;password&#x3D;ffb7567a1d4f4abdffdb54e022f8facd&amp;captcha&#x3D;BYUGHTTP&#x2F;1.1 200 OK
 Date: Mon, 29 Jun 2015 15:09:10 GMT
 Content-Type: text&#x2F;html; charset&#x3D;UTF-8
@@ -477,8 +496,17 @@ Server: yunjiasu-nginx
 CF-RAY: 1fe28d0a63e91c3b-JXG
 Content-Encoding: gzip<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>email=flag&amp;password=ffb7567a1d4f4abdffdb54e022f8facd&amp;captcha=BYUG得到flag</p>
-<h2 id="逆向"><a href="#逆向" class="headerlink" title="逆向"></a>逆向</h2><h4 id="1-easy-re"><a href="#1-easy-re" class="headerlink" title="1 easy.re"></a>1 easy.re</h4><p>由于做逆向少，ctftools里的工具又不知道为什么打不开easy.exe，从网上下载了IDA就那个图标很磕碜的软件，easy.red的flag就在main（）里<br><img src="https://upload-images.jianshu.io/upload_images/24919094-8aab620e79a564b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>“flag{this_Is_a_EaSyRe}”</p>
-<h4 id="2-reverse-1"><a href="#2-reverse-1" class="headerlink" title="2 reverse_1"></a>2 reverse_1</h4><p>说实话这道题我是用最笨的方法做的，将文件用IDA反编译，从头到尾一个个的找下去，在sub_1400118C0这个项目里面找到了“hello world”这个可能是flag的东西，<br><img src="https://upload-images.jianshu.io/upload_images/24919094-c2f7d359bfd385ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"><br>this is the right flag!更加坚定了我的想法，尝试输入，不对。之后憨憨的从这里到下面全部翻了一遍，试了几个字符串发现没有结果后，最后又回到这里。<br>考虑到之前做bugku的题目有的题目有我们解出的是o，在需要输入的flag上却是0的情况，试着输入0代替o，然后correct。<br>QFNU{hell0_w0rld}</p>
+<h2 id="逆向">逆向</h2>
+<h4 id="1-easy-re">1 <a target="_blank" rel="noopener" href="http://easy.re">easy.re</a></h4>
+<p>由于做逆向少，ctftools里的工具又不知道为什么打不开easy.exe，从网上下载了IDA就那个图标很磕碜的软件，easy.red的flag就在main（）里<br>
+<img src="https://upload-images.jianshu.io/upload_images/24919094-8aab620e79a564b3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>
+“flag{this_Is_a_EaSyRe}”</p>
+<h4 id="2-reverse-1">2 reverse_1</h4>
+<p>说实话这道题我是用最笨的方法做的，将文件用IDA反编译，从头到尾一个个的找下去，在sub_1400118C0这个项目里面找到了“hello world”这个可能是flag的东西，<br>
+<img src="https://upload-images.jianshu.io/upload_images/24919094-c2f7d359bfd385ad.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>
+this is the right flag!更加坚定了我的想法，尝试输入，不对。之后憨憨的从这里到下面全部翻了一遍，试了几个字符串发现没有结果后，最后又回到这里。<br>
+考虑到之前做bugku的题目有的题目有我们解出的是o，在需要输入的flag上却是0的情况，试着输入0代替o，然后correct。<br>
+QFNU{hell0_w0rld}</p>
 
                 
             </div>
@@ -883,7 +911,7 @@ Content-Encoding: gzip<span aria-hidden="true" class="line-numbers-rows"><span><
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">368.4k</span>
+                        class="white-color">380.3k</span>
             
             
             

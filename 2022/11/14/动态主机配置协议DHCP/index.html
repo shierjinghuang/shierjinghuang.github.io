@@ -5,15 +5,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="动态主机配置协议DHCP, 十二惊惶">
-    <meta name="description" content="动态主机配置协议DHCP[TOC]
+    <meta name="description" content="动态主机配置协议DHCP
+[TOC]
 #	掌握DHCP的报文格式
 #	掌握DHCP的工作原理
-
 DHCP简介：
+
 动态主机配置协议(Dynamic Host Configuration Protocol )是一种动态指定IP地址的机制
 
 
-DH">
+D">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -452,23 +453,26 @@ DH">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="动态主机配置协议DHCP"><a href="#动态主机配置协议DHCP" class="headerlink" title="动态主机配置协议DHCP"></a>动态主机配置协议DHCP</h3><p>[TOC]</p>
+                <h3 id="动态主机配置协议dhcp">动态主机配置协议DHCP</h3>
+<p>[TOC]</p>
 <pre class="line-numbers language-php" data-language="php"><code class="language-php"><span class="token comment">#	掌握DHCP的报文格式</span>
 <span class="token comment">#	掌握DHCP的工作原理</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<h4 id="DHCP简介："><a href="#DHCP简介：" class="headerlink" title="DHCP简介："></a>DHCP简介：</h4><blockquote>
+<h4 id="dhcp简介：">DHCP简介：</h4>
+<blockquote>
 <p style="color:blue;">动态主机配置协议(Dynamic Host Configuration Protocol )是一种动态指定IP地址的机制</p>
 </blockquote>
 <ul>
 <li>DHCP服务器能自动为客户端分配IP地址，减少了客户机IP地址配置的复杂度和管理开销</li>
 <li><strong>DHCP服务器</strong>是安装了DHCP服务器软件的计算机，可在网络中设置一台或多台</li>
 </ul>
-<p>分配给客户的IP是临时的，DHCP客户只能在有限的时间内使用该IP，这段时间称为<strong>租用期</strong><br>租用期的数值应由DHCP服务器决定(默认1小时)，DHCP客户也可在自己发送的报文中提出对租用期的要求。<br>当租期到了的时候，服务器可以把这个IP地址分配给别的主机使用。</p>
+<p>分配给客户的IP是临时的，DHCP客户只能在有限的时间内使用该IP，这段时间称为<strong>租用期</strong><br>
+租用期的数值应由DHCP服务器决定(默认1小时)，DHCP客户也可在自己发送的报文中提出对租用期的要求。<br>
+当租期到了的时候，服务器可以把这个IP地址分配给别的主机使用。</p>
 <blockquote>
 <p style="color:orange;">DHCP使用UDP协议封装，使用UDP的熟知端口67和68，68是DHCP请求报文中的源端口，67是DHCP服务器的目标端口</p>
 </blockquote>
-<h4 id="DHCP报文格式："><a href="#DHCP报文格式：" class="headerlink" title="DHCP报文格式："></a>DHCP报文格式：</h4><img src="D:\blog\shierjinghuang\source\_posts\动态主机配置协议DHCP\DHCP报文格式.png" style="zoom:50%;" />
-
+<h4 id="dhcp报文格式：">DHCP报文格式：</h4>
+<img src="D:\blog\shierjinghuang\source\_posts\动态主机配置协议DHCP\DHCP报文格式.png" style="zoom:50%;" />
 <blockquote>
 <ol>
 <li>操作码:1字节，表示是请求报文还是应答报文，1代表请求，2代表应答</li>
@@ -488,18 +492,20 @@ DH">
 </ol>
 </blockquote>
 <img src="D:\blog\shierjinghuang\source\_posts\动态主机配置协议DHCP\DHCP协议封装.png" style="zoom:67%;" />
-
-<h4 id="静态地址分配与动态地址分配："><a href="#静态地址分配与动态地址分配：" class="headerlink" title="静态地址分配与动态地址分配："></a>静态地址分配与动态地址分配：</h4><h5 id="静态地址分配"><a href="#静态地址分配" class="headerlink" title="静态地址分配"></a>静态地址分配</h5><blockquote>
+<h4 id="静态地址分配与动态地址分配：">静态地址分配与动态地址分配：</h4>
+<h5 id="静态地址分配">静态地址分配</h5>
+<blockquote>
 <p style="color:blue;">将物理地址与IP地址绑定在一起，DHCP服务器将这个绑定文件存放在静态数据库中。</p>
 <p style="color:blue;">当有主机请求分配IP时，DHCP服务器首先检查静态数据库，若静态数据库存在所请求的物理地址条目，则将相应的IP地址返回给客户。</p>
 </blockquote>
-<h5 id="动态地址分配"><a href="#动态地址分配" class="headerlink" title="动态地址分配"></a>动态地址分配</h5><p>DHCP服务器有一个<strong>存放IP地址的数据库</strong>(IP地址池)。当客户请求临时IP地址时，DHCP服务器就查找可用的IP地址分配给客户。</p>
+<h5 id="动态地址分配">动态地址分配</h5>
+<p>DHCP服务器有一个<strong>存放IP地址的数据库</strong>(IP地址池)。当客户请求临时IP地址时，DHCP服务器就查找可用的IP地址分配给客户。</p>
 <blockquote>
 <p style="color:orange;">从DHCP服务器获得的IP地址是临时的，服务器预设了租用时间，租用时间到期时，客户就更新租用或停止使用这个IP地址。</p>
 </blockquote>
 <p>服务器对更新租用可选择同意或不同意，如果不同意，客户就停止使用这个地址。</p>
-<h4 id="DHCP状态转换"><a href="#DHCP状态转换" class="headerlink" title="DHCP状态转换"></a>DHCP状态转换</h4><img src="D:\blog\shierjinghuang\source\_posts\动态主机配置协议DHCP\DHCP状态转换.png" style="zoom: 50%;" />
-
+<h4 id="dhcp状态转换">DHCP状态转换</h4>
+<img src="D:\blog\shierjinghuang\source\_posts\动态主机配置协议DHCP\DHCP状态转换.png" style="zoom: 50%;" />
 <p><strong>一、初始化状态：</strong></p>
 <ul>
 <li>当DHCP客户端首次启动时，它处于初始化状态。客户使用向UDP端口67<strong>广播DHCPDISCOVER报文</strong>（带有DHCPDISCOVER选项的请求报文)。</li>
@@ -507,12 +513,12 @@ DH">
 <p><strong>二、选择状态：</strong></p>
 <ul>
 <li>发送DHCPDISCOVER报文后，客户就进入<strong>选择状态</strong>。收到请求报文的服务器用<strong>DHCPOFFER报文</strong>进行响应，提供了IP地址和租用时间，同时，服务器把提供的IP地址锁定，使这个地址不再提供给其它客户。</li>
-<li>如果客户没有收到DHCPOFFER报文，它就再尝试4次，每次间隔2s，如果仍然没有应答，客户就睡眠300s后再试 </li>
+<li>如果客户没有收到DHCPOFFER报文，它就再尝试4次，每次间隔2s，如果仍然没有应答，客户就睡眠300s后再试</li>
 </ul>
 <p><strong>三、 请求状态 ：</strong></p>
 <ul>
 <li>客户选择多个DHCP服务器所提供的地址中的一个，并广播发送<strong>DHCPREQUEST报文</strong>，然后进入请求状态。</li>
-<li>客户在请求状态等待，直到收到服务器的DHCPACK报文，然后客户进入绑定状态。 </li>
+<li>客户在请求状态等待，直到收到服务器的DHCPACK报文，然后客户进入绑定状态。</li>
 </ul>
 <p><strong>四、绑定状态：</strong></p>
 <ul>
@@ -521,35 +527,45 @@ DH">
 </ul>
 <p><strong>五、更新状态：</strong></p>
 <ul>
-<li><p>在更新状态下，如果客户收到更新租用的DHCPACK报文，就把计时器复位，然后回到绑定状态。</p>
+<li>
+<p>在更新状态下，如果客户收到更新租用的DHCPACK报文，就把计时器复位，然后回到绑定状态。</p>
 </li>
-<li><p>如果没有收到DHCPACK报文，且租用时间已到达87.5%，客户将再次向服务器发送DHCPREQUEST报文，进入重新绑定状态。 </p>
+<li>
+<p>如果没有收到DHCPACK报文，且租用时间已到达87.5%，客户将再次向服务器发送DHCPREQUEST报文，进入重新绑定状态。</p>
 </li>
 </ul>
-<h4 id="DHCP运行过程"><a href="#DHCP运行过程" class="headerlink" title="DHCP运行过程"></a>DHCP运行过程</h4><p><strong>一、发现阶段：</strong></p>
+<h4 id="dhcp运行过程">DHCP运行过程</h4>
+<p><strong>一、发现阶段：</strong></p>
 <ul>
 <li>DHCP客户寻找DHCP服务器的阶段。DHCP客户以广播方式发送DHCPDISCOVER报文来寻找DHCP服务器。</li>
 </ul>
 <img src="D:\blog\shierjinghuang\source\_posts\动态主机配置协议DHCP\DHCP发现阶段.png" style="zoom:67%;" />
-
 <p><strong>二、提供阶段：</strong></p>
 <ul>
-<li><p>服务器向DHCP客户提供lP地址的阶段。网络中收到<strong>DHCPDISCOVER</strong>的DHCP服务器都会做出响应，从尚未出租的IP中挑选一个分配给客户，向客户发送一个包含出租的IP地址和其它设置的<strong>DHCPOFFER</strong>报文。</p>
-<img src="D:\blog\shierjinghuang\source\_posts\动态主机配置协议DHCP\DHCP提供阶段.png" style="zoom:67%;" /></li>
+<li>
+<p>服务器向DHCP客户提供lP地址的阶段。网络中收到<strong>DHCPDISCOVER</strong>的DHCP服务器都会做出响应，从尚未出租的IP中挑选一个分配给客户，向客户发送一个包含出租的IP地址和其它设置的<strong>DHCPOFFER</strong>报文。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\动态主机配置协议DHCP\DHCP提供阶段.png" style="zoom:67%;" />
+</li>
 </ul>
 <p><strong>三、选择阶段：</strong></p>
 <ul>
-<li><p>DHCP客户端选择某台DHCP服务器提供的IP地址的阶段。</p>
+<li>
+<p>DHCP客户端选择某台DHCP服务器提供的IP地址的阶段。</p>
 </li>
-<li><p>如果有多台DHCP服务器向DHCP客户端发来的DHCPOFFER提供报文，则DHCP客户只接受第一个收到的DHCPOFFER提供报文，然后它就以广播方式回答一个DHCPREQUEST请求报文，该报文中包含向它所选定的DHCP服务器请求IP地址的内容。之所以要以广播方式回答，是为了通知所有的DHCP服务器，他将选择某台DHCP服务器所提供的IP地址。</p>
-<img src="D:\blog\shierjinghuang\source\_posts\动态主机配置协议DHCP\DHCP选择阶段.png" style="zoom: 80%;" /></li>
+<li>
+<p>如果有多台DHCP服务器向DHCP客户端发来的DHCPOFFER提供报文，则DHCP客户只接受第一个收到的DHCPOFFER提供报文，然后它就以广播方式回答一个DHCPREQUEST请求报文，该报文中包含向它所选定的DHCP服务器请求IP地址的内容。之所以要以广播方式回答，是为了通知所有的DHCP服务器，他将选择某台DHCP服务器所提供的IP地址。</p>
+<img src="D:\blog\shierjinghuang\source\_posts\动态主机配置协议DHCP\DHCP选择阶段.png" style="zoom: 80%;" />
+</li>
 </ul>
 <p><strong>四、确认阶段：</strong></p>
 <ul>
-<li><p>DHCP服务器确认所提供的IP地址的阶段</p>
+<li>
+<p>DHCP服务器确认所提供的IP地址的阶段</p>
 </li>
-<li><p>当DHCP服务器收到DHCP客户回答的DHCPREQUEST请求报文之后，它便向DHCP客户发送一个包含它所提供的IP地址和其它设置的DHCPACK确认报文，告诉DHCP客户可以使用它所提供的IP地址。然后DHCP客户便将其TCP/IP协议与网卡绑定，另外，除DHCP客户选中的服务器外，其它DHCP服务器都收回曾提供的IP地址</p>
-<img src="D:\blog\shierjinghuang\source\_posts\动态主机配置协议DHCP\DHCP确认阶段.png" style="zoom:80%;" /></li>
+<li>
+<p>当DHCP服务器收到DHCP客户回答的DHCPREQUEST请求报文之后，它便向DHCP客户发送一个包含它所提供的IP地址和其它设置的DHCPACK确认报文，告诉DHCP客户可以使用它所提供的IP地址。然后DHCP客户便将其TCP/IP协议与网卡绑定，另外，除DHCP客户选中的服务器外，其它DHCP服务器都收回曾提供的IP地址</p>
+<img src="D:\blog\shierjinghuang\source\_posts\动态主机配置协议DHCP\DHCP确认阶段.png" style="zoom:80%;" />
+</li>
 </ul>
 <p><strong>五、重新登录：</strong></p>
 <ul>
@@ -956,7 +972,7 @@ DH">
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">368.4k</span>
+                        class="white-color">380.3k</span>
             
             
             

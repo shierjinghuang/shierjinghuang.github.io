@@ -5,14 +5,16 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="路由信息协议RIP, 十二惊惶">
-    <meta name="description" content="路由信息协议RIP[TOC]
+    <meta name="description" content="路由信息协议RIP
+[TOC]
 #	掌握路由协议的分类，理解静态路由和动态路由
 #	掌握动态路由协议RIP的报文格式、工作原理及工作过程
 #	掌握RIP计时器的作用
 #	理解RIP的稳定性
-
-一、路由分类：静态路由与动态路由：路由选择:
-在从">
+一、路由分类：
+静态路由与动态路由：
+路由选择:
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -428,7 +430,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    7 分
                 </div>
                 
 
@@ -451,26 +453,34 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="路由信息协议RIP"><a href="#路由信息协议RIP" class="headerlink" title="路由信息协议RIP"></a>路由信息协议RIP</h2><p>[TOC]</p>
+                <h2 id="路由信息协议rip">路由信息协议RIP</h2>
+<p>[TOC]</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#	掌握路由协议的分类，理解静态路由和动态路由</span>
 <span class="token comment">#	掌握动态路由协议RIP的报文格式、工作原理及工作过程</span>
 <span class="token comment">#	掌握RIP计时器的作用</span>
 <span class="token comment">#	理解RIP的稳定性</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="一、路由分类："><a href="#一、路由分类：" class="headerlink" title="一、路由分类："></a>一、路由分类：</h3><h4 id="静态路由与动态路由："><a href="#静态路由与动态路由：" class="headerlink" title="静态路由与动态路由："></a>静态路由与动态路由：</h4><h5 id="路由选择"><a href="#路由选择" class="headerlink" title="路由选择:"></a>路由选择:</h5><blockquote>
-<p>在从源点到终点的通信过程中，数据包可能经过多个路由器，直到到达连接，目的网络路由器为止。<br>当路由器收到数据包时，它应当将数据包转发到哪一个网络，取决于路由表的信息。</p>
+<h3 id="一-路由分类：">一、路由分类：</h3>
+<h4 id="静态路由与动态路由：">静态路由与动态路由：</h4>
+<h5 id="路由选择">路由选择:</h5>
+<blockquote>
+<p>在从源点到终点的通信过程中，数据包可能经过多个路由器，直到到达连接，目的网络路由器为止。<br>
+当路由器收到数据包时，它应当将数据包转发到哪一个网络，取决于路由表的信息。</p>
 </blockquote>
-<h5 id="路由表"><a href="#路由表" class="headerlink" title="路由表:"></a>路由表:</h5><blockquote>
+<h5 id="路由表">路由表:</h5>
+<blockquote>
 <p>静态路由表:路由信息是管理员设置的，并由管理员手动进行更新。</p>
 </blockquote>
 <blockquote>
 <p>动态路由表:路由信息是随着互联网的变化而自动更新的。</p>
 </blockquote>
 <p>**路由选择协议:**路由选择协议是一些规则和过程的组合。规则使得路由器之间能够共享他们所知道的互联网情况和邻站信息，而过程用来合并从其它路由器收到的信息。</p>
-<h4 id="外部和内部路由选择："><a href="#外部和内部路由选择：" class="headerlink" title="外部和内部路由选择："></a>外部和内部路由选择：</h4><p><strong>自治系统（AS,Autonomous System)</strong><br>由同一个管理机构管理、使用统一路由策略的路由器的集合。<br>最初，自治系统内部只考虑运行单个路由协议;然而，随着网络的发展，一个自治系统内现在也可以支持同时运行多种路由协议</p>
+<h4 id="外部和内部路由选择：">外部和内部路由选择：</h4>
+<p><strong>自治系统（AS,Autonomous System)</strong><br>
+由同一个管理机构管理、使用统一路由策略的路由器的集合。<br>
+最初，自治系统内部只考虑运行单个路由协议;然而，随着网络的发展，一个自治系统内现在也可以支持同时运行多种路由协议</p>
 <img src=".\路由信息协议\自治系统.png" style="zoom:67%;" />
-
-<h5 id="两大类路由选择协议"><a href="#两大类路由选择协议" class="headerlink" title="两大类路由选择协议"></a>两大类路由选择协议</h5><p><strong>内部网关协议IGP(Interior Gateway Protocol)：</strong></p>
+<h5 id="两大类路由选择协议">两大类路由选择协议</h5>
+<p><strong>内部网关协议IGP(Interior Gateway Protocol)：</strong></p>
 <blockquote>
 <p style="color:blue;">内部网关协议IGP(Interior Gateway Protocol):在一个自治系统内部使用的路由选择协议</p>
 - 目前这类路由选择(域内路由选择)协议使用得最多，如**RIP**和**OSPF协议**。
@@ -480,7 +490,8 @@
 <p style="color:blue;">外部网关协议EGP(External Gateway Protocol):在自治系统之间使用的路由选择协议</p>
 - 在外部网关协议中目前使用最多的是**BGP-4**协议
 </blockquote>
-<h5 id="距离向量路由选择协议"><a href="#距离向量路由选择协议" class="headerlink" title="距离向量路由选择协议:"></a>距离向量路由选择协议:</h5><ol>
+<h5 id="距离向量路由选择协议">距离向量路由选择协议:</h5>
+<ol>
 <li>从路由器到直接连接的网络的距离定义为1</li>
 <li>从路由器到非直接连接的网络的距离定义为所经过的路由器数加1，因此也称为“跳数”</li>
 <li>每个节点维护一个到其它节点的最小距离向量表</li>
@@ -488,15 +499,24 @@
 <li>节点周期性地向其所有相邻节点发送它的路由表信息</li>
 <li>当一个节点从邻站收到路由表信息时，使用<strong>Bellman-Ford算法</strong>更新其路由表</li>
 </ol>
-<h3 id="二、RIP协议："><a href="#二、RIP协议：" class="headerlink" title="二、RIP协议："></a>二、RIP协议：</h3><h4 id="2-1：路由信息协议-Routing-Information-Protocol"><a href="#2-1：路由信息协议-Routing-Information-Protocol" class="headerlink" title="2.1：路由信息协议(Routing Information Protocol)"></a>2.1：路由信息协议(Routing Information Protocol)</h4><p>应用较早、使用较普遍的<strong>内部网关协议</strong>，适用于小型同类网络，是典型的<strong>距离向量路由协议</strong>。</p>
+<h3 id="二-rip协议：">二、RIP协议：</h3>
+<h4 id="2-1：路由信息协议-routing-information-protocol">2.1：路由信息协议(Routing Information Protocol)</h4>
+<p>应用较早、使用较普遍的<strong>内部网关协议</strong>，适用于小型同类网络，是典型的<strong>距离向量路由协议</strong>。</p>
 <blockquote>
 <ul>
-<li><p style="color:orange;">通过广播UDP协议520端口封装成的报文来交换路由信息，默认每30秒发送一次路由信息更新报文</p></li>
-<li><p style="color:orange;">RIP使用跳数作为路由距离度量，即数据报到达目标设备所必须经过的路由器数目</p></li>
-<li><p style="color:orange;">RIP最多支持的跳数为15，跳数16表示不可达</p></li>
+<li>
+<p style="color:orange;">通过广播UDP协议520端口封装成的报文来交换路由信息，默认每30秒发送一次路由信息更新报文</p>
+</li>
+<li>
+<p style="color:orange;">RIP使用跳数作为路由距离度量，即数据报到达目标设备所必须经过的路由器数目</p>
+</li>
+<li>
+<p style="color:orange;">RIP最多支持的跳数为15，跳数16表示不可达</p>
+</li>
 </ul>
 </blockquote>
-<h5 id="RIP的工作原理"><a href="#RIP的工作原理" class="headerlink" title="RIP的工作原理"></a>RIP的工作原理</h5><ol>
+<h5 id="rip的工作原理">RIP的工作原理</h5>
+<ol>
 <li>路由器启动时，路由表中只包含直通路由。运行RIP后，路由器会发送Request报文，用来请求邻居路由器的RIP路由</li>
 <li>运行RIP的邻居路由器收到该Request报文后，会根据自己的路由表，生成Response报文进行回复</li>
 <li>路由器在收到Response报文后，会将相应的路由添加到自己的路由表中</li>
@@ -504,11 +524,12 @@
 <li>路由表中的每一路由项都对应了一个老化定时器，当路由项在180秒内没有任何更新时，定时器超时，该路由项的度量值变为不可达</li>
 <li>某路由项的度量值变为不可达后，该路由会在Response报文中发布四次(120秒)，然后从路由表中清除。</li>
 </ol>
-<h5 id="RIP协议的特点"><a href="#RIP协议的特点" class="headerlink" title="RIP协议的特点"></a>RIP协议的特点</h5><p>仅和相邻路由器交换信息。</p>
+<h5 id="rip协议的特点">RIP协议的特点</h5>
+<p>仅和相邻路由器交换信息。</p>
 <pre class="line-numbers language-none"><code class="language-none">交换的信息是当前本路由器所知道的全部信息，即自己的路由表
 按固定的时间间隔交换路由信息<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<h5 id="RIPv1-vs-RIPv2"><a href="#RIPv1-vs-RIPv2" class="headerlink" title="RIPv1 vs RIPv2"></a>RIPv1 vs RIPv2</h5><p><strong>RIPv1</strong></p>
+<h5 id="ripv1-vs-ripv2">RIPv1 vs RIPv2</h5>
+<p><strong>RIPv1</strong></p>
 <blockquote>
 <p style="color:orange;">有类别路由协议，不支持VLSM和CIDR且不支持认证。以广播的形式发送报文，目的IP地址为广播地址255.255.255.255</p>
 </blockquote>
@@ -516,9 +537,10 @@
 <blockquote>
 <p style="color:orange;">无类别路由协议，支持VLSM、路由聚合与CIDR，支持明文认证和MD5密文认证，以广播或者组播(224.0.0.9)方式发送报文</p>
 </blockquote>
-<h4 id="2-2：RIP协议报文格式："><a href="#2-2：RIP协议报文格式：" class="headerlink" title="2.2：RIP协议报文格式："></a>2.2：RIP协议报文格式：</h4><h5 id="RIPv1的报文格式："><a href="#RIPv1的报文格式：" class="headerlink" title="RIPv1的报文格式："></a>RIPv1的报文格式：</h5><img src=".\路由信息协议\RIPv1的报文格式.png" style="zoom:67%;" />
-
-<p> 每个字段的值和作用</p>
+<h4 id="2-2：rip协议报文格式：">2.2：RIP协议报文格式：</h4>
+<h5 id="ripv1的报文格式：">RIPv1的报文格式：</h5>
+<img src=".\路由信息协议\RIPv1的报文格式.png" style="zoom:67%;" />
+<p>每个字段的值和作用</p>
 <blockquote>
 <p>Command:表示该报文是一个请求报文还是响应报文，1表示该报文是请求报文，2表示该报文是响应报文</p>
 <p>Version:表示RIP的版本信息。对于RIPv1，该字段的值为1</p>
@@ -529,23 +551,30 @@
 <blockquote>
 <p style="color:blue;">一个RIP路由更新消息中最多可包含25条路由表项，每个路由表项都携带了目的网络的地址和度量值。整个RIP报文大小限制为不超过504字节，如果整个路由表的更新消息超过该大小，需要发送多个RIPv1报文</p>
 </blockquote>
-<h5 id="RIPv2的报文格式："><a href="#RIPv2的报文格式：" class="headerlink" title="RIPv2的报文格式："></a>RIPv2的报文格式：</h5><img src=".\路由信息协议\RIPv2的报文格式.png" style="zoom: 50%;" />
-
+<h5 id="ripv2的报文格式：">RIPv2的报文格式：</h5>
+<img src=".\路由信息协议\RIPv2的报文格式.png" style="zoom: 50%;" />
 <p><strong>RIPv1与RIPv2的不同的字段</strong></p>
 <blockquote>
-<p>AFI:地址族标识除了表示支持的协议类型外，还可以用来描述认证信息<br>Route tag:用于标记外部路由。<br>Subnet Mask:指定IP地址的子网掩码，定义IP地址的网络或子网部分<br>Next Hop:指定通往目的地址的下—跳IP地址。</p>
+<p>AFI:地址族标识除了表示支持的协议类型外，还可以用来描述认证信息<br>
+Route tag:用于标记外部路由。<br>
+Subnet Mask:指定IP地址的子网掩码，定义IP地址的网络或子网部分<br>
+Next Hop:指定通往目的地址的下—跳IP地址。</p>
 </blockquote>
-<h3 id="三、RIP环路："><a href="#三、RIP环路：" class="headerlink" title="三、RIP环路："></a>三、RIP环路：</h3><p>RIP网络正常运行时，RTA会通过RTB学习到10.0.0.0/8网络的路由，度量值为1。一旦路由器RTB的直连网络10.0.0.0/8产生故障，RTB会立即检测到该故障，并认为该路由不可达。此时，RTA还没有收到该路由不可达的信息，于是会继续向RTB发送通往10.0.0.0/8的路由信息。RTB会学习此路由信息，认为可以通过RTA到达10.0.0.0/8网络，度量值为2。<br>此后，RTB发送的更新路由表，又会导致RTA路由表的更新，RTA会新增一条度量值为3的10.0.0.0/8网络路由表项，从而形成路由环路。这个过程会持续下去，直到度量值为16。</p>
-<h4 id="环路避免-水平分割"><a href="#环路避免-水平分割" class="headerlink" title="环路避免-水平分割"></a>环路避免-水平分割</h4><p>路由器从某个接口学到的路由，不会从该接口再发回给邻居路由器。</p>
+<h3 id="三-rip环路：">三、RIP环路：</h3>
+<p>RIP网络正常运行时，RTA会通过RTB学习到10.0.0.0/8网络的路由，度量值为1。一旦路由器RTB的直连网络10.0.0.0/8产生故障，RTB会立即检测到该故障，并认为该路由不可达。此时，RTA还没有收到该路由不可达的信息，于是会继续向RTB发送通往10.0.0.0/8的路由信息。RTB会学习此路由信息，认为可以通过RTA到达10.0.0.0/8网络，度量值为2。<br>
+此后，RTB发送的更新路由表，又会导致RTA路由表的更新，RTA会新增一条度量值为3的10.0.0.0/8网络路由表项，从而形成路由环路。这个过程会持续下去，直到度量值为16。</p>
+<h4 id="环路避免-水平分割">环路避免-水平分割</h4>
+<p>路由器从某个接口学到的路由，不会从该接口再发回给邻居路由器。</p>
 <blockquote>
 <p>RTA从RTB学习到的10.0.0.0/8网络的路由不会再从RTA的接收接口重新通告给RTB，由此避免了路由环路的产生。</p>
 </blockquote>
 <img src=".\路由信息协议\水平分割.png" style="zoom:67%;" />
-
-<h4 id="环路避免-毒性反转"><a href="#环路避免-毒性反转" class="headerlink" title="环路避免-毒性反转"></a>环路避免-毒性反转</h4><p>毒性反转机制的实现可以使错误路由立即超时。<br>毒性反转是指路由器从某个接口学到路由后，将该路由的跳数设置为16，并从原接收接口发回给邻居路由器</p>
+<h4 id="环路避免-毒性反转">环路避免-毒性反转</h4>
+<p>毒性反转机制的实现可以使错误路由立即超时。<br>
+毒性反转是指路由器从某个接口学到路由后，将该路由的跳数设置为16，并从原接收接口发回给邻居路由器</p>
 <img src=".\路由信息协议\毒性反转.png" style="zoom:67%;" />
-
-<h4 id="环路避免-触发更新"><a href="#环路避免-触发更新" class="headerlink" title="环路避免-触发更新"></a>环路避免-触发更新</h4><p style="color:skyblue;">触发更新是指当路由信息发生变化时，立即向邻居设备发送触发更新报文，而不需要等待更新定时器超时，从而加速了网络收敛</p>
+<h4 id="环路避免-触发更新">环路避免-触发更新</h4>
+<p style="color:skyblue;">触发更新是指当路由信息发生变化时，立即向邻居设备发送触发更新报文，而不需要等待更新定时器超时，从而加速了网络收敛</p>
 <img src=".\路由信息协议\触发更新.png" style="zoom:67%;" />
                 
             </div>
@@ -942,7 +971,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">368.4k</span>
+                        class="white-color">380.3k</span>
             
             
             

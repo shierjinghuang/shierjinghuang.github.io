@@ -6,9 +6,10 @@
     <meta charset="utf-8">
     <meta name="keywords" content="QFNU_CTF迎新赛题解, 十二惊惶">
     <meta name="description" content="QFNU_CTF迎新赛题解
+
 这一套题目实际上是为新生准备的，我和对内另一位师哥在迎新的几天才知道这个题目的存在，也是正好我们没什么事情，就做了一下，这里将赛题的wp整理一下，同时考虑到纳新还在解题，不能给出完全的答案。
 [TOC]
-（一）M">
+（一）">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -447,10 +448,13 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="QFNU-CTF迎新赛题解"><a href="#QFNU-CTF迎新赛题解" class="headerlink" title="QFNU_CTF迎新赛题解"></a>QFNU_CTF迎新赛题解</h2><hr>
+                <h2 id="qfnu-ctf迎新赛题解">QFNU_CTF迎新赛题解</h2>
+<hr>
 <p>这一套题目实际上是为新生准备的，我和对内另一位师哥在迎新的几天才知道这个题目的存在，也是正好我们没什么事情，就做了一下，这里将赛题的wp整理一下，同时考虑到纳新还在解题，不能给出完全的答案。</p>
 <p>[TOC]</p>
-<h2 id="（一）Misc"><a href="#（一）Misc" class="headerlink" title="（一）Misc"></a>（一）Misc</h2><h3 id="1-签到"><a href="#1-签到" class="headerlink" title="1.  签到"></a>1.  签到</h3><p>​        这道题提供了半张二维码，考虑是否有图像隐写，如修改图像高度。推荐使用工具winhex，png头下面一行的前四位16进制数为宽，后四位为高。</p>
+<h2 id="一-misc">（一）Misc</h2>
+<h3 id="1-签到">1.  签到</h3>
+<p>​        这道题提供了半张二维码，考虑是否有图像隐写，如修改图像高度。推荐使用工具winhex，png头下面一行的前四位16进制数为宽，后四位为高。</p>
 <p>这里附带常见的文件头</p>
 <pre class="line-numbers language-none"><code class="language-none">File                                ExtensionsHeader4 
 JPEG                                0xFFD8FF
@@ -487,28 +491,43 @@ arj                                 0x60EA
 7z                                                                              7z集&#39;&amp; 
 mpg;mpeg                            0x000001BA# 
 mpg;mpeg                            0x000001B3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>这个在后期我们会发的个人CTF工具包里就有，不需要都记住，但是zip，rar，png等几个少数常用的，还是希望能够看见就清楚是哪个。</p>
-<h3 id="2-捉猫猫"><a href="#2-捉猫猫" class="headerlink" title="2.  捉猫猫"></a>2.  捉猫猫</h3><p>这道题完全可以通过玩游戏得到，实际上应该是个简单的逆向，但是我是玩出来的(玩出来的内容并不完整，另一部分在哪呢？)所以有兴趣的可以去用逆向试一试</p>
-<h3 id="3-relax"><a href="#3-relax" class="headerlink" title="3. relax"></a>3. relax</h3><p>这一道题是最经典的音频隐写题目，只需要使用<code>audacity-win-2-1-2.exe</code>工具，和一点脑洞。</p>
-<h3 id="4-EasyPcap"><a href="#4-EasyPcap" class="headerlink" title="4. EasyPcap"></a>4. EasyPcap</h3><p>这道题算是最简单的流量分析题目，里面只有HTML和tcp两个流，依次追踪一遍就能知道答案。</p>
-<h3 id="5-曲阜师范大学"><a href="#5-曲阜师范大学" class="headerlink" title="5. 曲阜师范大学"></a>5. 曲阜师范大学</h3><p>他已经给出了提示，感觉里面全是文字，我们可以用winhex看看这个题，这里需要用到第一题常用文件头的知识。然后还需要一个formost工具，工具已经提供了。后续还有一步密码破解，试试究竟是找出密码还是怎么做吧？</p>
-<h2 id="（二）web"><a href="#（二）web" class="headerlink" title="（二）web"></a>（二）web</h2><p>关于web在这里我其实想吐槽一句，这个真是是给21级新生做的吗？居然考了sql注入和php反序列化。</p>
-<h3 id="1-Easy-Web"><a href="#1-Easy-Web" class="headerlink" title="1.Easy_Web"></a>1.Easy_Web</h3><p>如题easy web，很多靶场都会有这一种类型的题目，是最经典的送分题。</p>
-<h3 id="2-Findit"><a href="#2-Findit" class="headerlink" title="2.Findit"></a>2.Findit</h3><p>这一道题，较上一道题难度有所提升，flag被分成了两块，试着找出来吧（说实话我一开始以为那部分缺的一半是自己猜的呢），注意在找到前半部分的flag之后不要尝试去补全句子，这样是得不到flag的。</p>
-<h2 id="（三）Crypto"><a href="#（三）Crypto" class="headerlink" title="（三）Crypto"></a>（三）Crypto</h2><h3 id="1-签到-1"><a href="#1-签到-1" class="headerlink" title="1. 签到"></a>1. 签到</h3><p>这道题实际上就是base64，关于base系列的密码有一整个系列，如base32，base64，base96等。</p>
+<h3 id="2-捉猫猫">2.  捉猫猫</h3>
+<p>这道题完全可以通过玩游戏得到，实际上应该是个简单的逆向，但是我是玩出来的(玩出来的内容并不完整，另一部分在哪呢？)所以有兴趣的可以去用逆向试一试</p>
+<h3 id="3-relax">3. relax</h3>
+<p>这一道题是最经典的音频隐写题目，只需要使用<code>audacity-win-2-1-2.exe</code>工具，和一点脑洞。</p>
+<h3 id="4-easypcap">4. EasyPcap</h3>
+<p>这道题算是最简单的流量分析题目，里面只有HTML和tcp两个流，依次追踪一遍就能知道答案。</p>
+<h3 id="5-曲阜师范大学">5. 曲阜师范大学</h3>
+<p>他已经给出了提示，感觉里面全是文字，我们可以用winhex看看这个题，这里需要用到第一题常用文件头的知识。然后还需要一个formost工具，工具已经提供了。后续还有一步密码破解，试试究竟是找出密码还是怎么做吧？</p>
+<h2 id="二-web">（二）web</h2>
+<p>关于web在这里我其实想吐槽一句，这个真是是给21级新生做的吗？居然考了sql注入和php反序列化。</p>
+<h3 id="1-easy-web">1.Easy_Web</h3>
+<p>如题easy web，很多靶场都会有这一种类型的题目，是最经典的送分题。</p>
+<h3 id="2-findit">2.Findit</h3>
+<p>这一道题，较上一道题难度有所提升，flag被分成了两块，试着找出来吧（说实话我一开始以为那部分缺的一半是自己猜的呢），注意在找到前半部分的flag之后不要尝试去补全句子，这样是得不到flag的。</p>
+<h2 id="三-crypto">（三）Crypto</h2>
+<h3 id="1-签到">1. 签到</h3>
+<p>这道题实际上就是base64，关于base系列的密码有一整个系列，如base32，base64，base96等。</p>
 <blockquote>
 <p>cWZudXtodWFuX3lpbmdfbGFpX2Rhb19xdV95dWFuX2RhX2ppYV90aW5nfQ==</p>
 </blockquote>
-<h3 id="2-栅栏密码"><a href="#2-栅栏密码" class="headerlink" title="2.栅栏密码"></a>2.栅栏密码</h3><p>这个真就是栅栏密码，这两个题都属于是古典密码，类似的还有很多，这类密码最重要的</p>
+<h3 id="2-栅栏密码">2.栅栏密码</h3>
+<p>这个真就是栅栏密码，这两个题都属于是古典密码，类似的还有很多，这类密码最重要的</p>
 <blockquote>
 <p>qn{nls_ss_a}fuegihi_onn</p>
 </blockquote>
-<h3 id="3-emoji密码"><a href="#3-emoji密码" class="headerlink" title="3. emoji密码"></a>3. emoji密码</h3><p>一个用颜表情做的密码，这个密码在之前我也没见过，这种就是考察查找利用知识对能力和快速学习的能力。</p>
-<h3 id="4-BrainFUCK"><a href="#4-BrainFUCK" class="headerlink" title="4. BrainFUCK"></a>4. BrainFUCK</h3><p>BrainFUCK正好是一种密码的方式，不过这道题更多了一些小心思。</p>
-<h3 id="5-RSA"><a href="#5-RSA" class="headerlink" title="5.RSA"></a>5.RSA</h3><p>这道题也是我硕抱怨的另一个点，这道题是RSA加密算法，解决的话需要会编写脚本的能力，和对RSA密码的了解，在这里提供一个<a target="_blank" rel="noopener" href="http://ctf.ssleye.com/pub_asys.html">公钥分析</a>的网址，通过这里可以提取n和e，</p>
+<h3 id="3-emoji密码">3. emoji密码</h3>
+<p>一个用颜表情做的密码，这个密码在之前我也没见过，这种就是考察查找利用知识对能力和快速学习的能力。</p>
+<h3 id="4-brainfuck">4. BrainFUCK</h3>
+<p>BrainFUCK正好是一种密码的方式，不过这道题更多了一些小心思。</p>
+<h3 id="5-rsa">5.RSA</h3>
+<p>这道题也是我硕抱怨的另一个点，这道题是RSA加密算法，解决的话需要会编写脚本的能力，和对RSA密码的了解，在这里提供一个<a target="_blank" rel="noopener" href="http://ctf.ssleye.com/pub_asys.html">公钥分析</a>的网址，通过这里可以提取n和e，</p>
 <blockquote>
-<p> cmd 进入 yafu 的解压目录，输入 yafu-x64<br>factor(需要分解的大数)<br>遇到因数位数过长：新建文件 p.txt，内容写上 n 的值，最后面要换行<br>yafu-x64 “factor(@)” -batchfile p.txt </p>
+<p>cmd 进入 yafu 的解压目录，输入 yafu-x64<br>
+factor(需要分解的大数)<br>
+遇到因数位数过长：新建文件 p.txt，内容写上 n 的值，最后面要换行<br>
+yafu-x64 “factor(@)” -batchfile p.txt</p>
 </blockquote>
 <p>这是题库wp里提供的解题思路，不过这一道题完全可以使用在线的解题工具分解n得到指数p和q，这是<a target="_blank" rel="noopener" href="http://factordb.com/">解题工具</a>。在通过编写脚本完成解题。</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> hashlib
@@ -525,7 +544,6 @@ key <span class="token operator">=</span> rsa<span class="token punctuation">.</
     f <span class="token operator">=</span> f<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
 a<span class="token operator">=</span>base64<span class="token punctuation">.</span>b64decode<span class="token punctuation">(</span>f<span class="token punctuation">)</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span>rsa<span class="token punctuation">.</span>decrypt<span class="token punctuation">(</span>a<span class="token punctuation">,</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>(四)Reverse</p>
 <p>reverse的题目至少第一二道很简单，都可以看看，这里就不写解题过程了。</p>
 
@@ -643,13 +661,13 @@ a<span class="token operator">=</span>base64<span class="token punctuation">.</s
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/10/03/DASCTF%20X%20%E6%B5%99%E6%B1%9F%E5%B7%A5%E4%B8%9A%E5%A4%A7%E5%AD%A6%E7%A7%8B%E5%AD%A3%E6%8C%91%E6%88%98%E8%B5%9B/">
+                <a href="/2021/10/03/BUU%E9%9D%B6%E5%9C%BA%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95%E4%B9%8Bmisc/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="浙江工业大学秋季挑战赛wp">
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="BUU靶场解题记录之Misc">
                         
-                        <span class="card-title">浙江工业大学秋季挑战赛wp</span>
+                        <span class="card-title">BUU靶场解题记录之Misc</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -679,6 +697,14 @@ a<span class="token operator">=</span>base64<span class="token punctuation">.</s
                     
                     <a href="/tags/%E8%A7%A3%E9%A2%98%E8%AE%B0%E5%BD%95/">
                         <span class="chip bg-color">解题记录</span>
+                    </a>
+                    
+                    <a href="/tags/Misc/">
+                        <span class="chip bg-color">Misc</span>
+                    </a>
+                    
+                    <a href="/tags/BuuCTF/">
+                        <span class="chip bg-color">BuuCTF</span>
                     </a>
                     
                 </div>
@@ -924,7 +950,7 @@ a<span class="token operator">=</span>base64<span class="token punctuation">.</s
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">368.4k</span>
+                        class="white-color">380.3k</span>
             
             
             

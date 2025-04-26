@@ -6,7 +6,8 @@
     <meta charset="utf-8">
     <meta name="keywords" content="Python的GUI编程和tkinter，Wxpython, 十二惊惶">
     <meta name="description" content="Python的GUI编程和tkinter，Wxpython
-PythonGUI这个内容是我在课程论文准备之初临时去学的一些内容，起初我准备学下tkinter做我课程论文项目的前段显示，但是由于临时的一些变动，我最终是采用了Wxpython的">
+
+PythonGUI这个内容是我在课程论文准备之初临时去学的一些内容，起初我准备学下tkinter做我课程论文项目的前段显示，但是由于临时的一些变动，我最终是采用了Wxpython">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -449,16 +450,20 @@ PythonGUI这个内容是我在课程论文准备之初临时去学的一些内�
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Python的GUI编程和tkinter，Wxpython"><a href="#Python的GUI编程和tkinter，Wxpython" class="headerlink" title="Python的GUI编程和tkinter，Wxpython"></a>Python的GUI编程和tkinter，Wxpython</h1><blockquote>
+                <h1>Python的GUI编程和tkinter，Wxpython</h1>
+<blockquote>
 <p>PythonGUI这个内容是我在课程论文准备之初临时去学的一些内容，起初我准备学下tkinter做我课程论文项目的前段显示，但是由于临时的一些变动，我最终是采用了Wxpython的方式进行的可视化。当然这两个库在本质上都属于PythonGul。</p>
 </blockquote>
 <p>[TOC]</p>
-<h2 id="PythonGUI介绍："><a href="#PythonGUI介绍：" class="headerlink" title="PythonGUI介绍："></a>PythonGUI介绍：</h2><ul>
+<h2 id="pythongui介绍：">PythonGUI介绍：</h2>
+<ul>
 <li><strong>Tkinter：</strong> Tkinter 模块(Tk 接口)是 Python 的标准 Tk GUI 工具包的接口 .Tk 和 Tkinter 可以在大多数的 Unix 平台下使用,同样可以应用在 Windows 和 Macintosh 系统里。Tk8.0 的后续版本可以实现本地窗口风格,并良好地运行在绝大多数平台中。</li>
-<li><strong>wxPython：</strong>wxPython 是一款开源软件，是 Python 语言的一套优秀的 GUI 图形库，允许 Python 程序员很方便的创建完整的、功能健全的 GUI 用户界面。</li>
-<li><strong>Jython：</strong>Jython 程序可以和 Java 无缝集成。除了一些标准模块，Jython 使用 Java 的模块。Jython 几乎拥有标准的Python 中不依赖于 C 语言的全部模块。比如，Jython 的用户界面将使用 Swing，AWT或者 SWT。Jython 可以被动态或静态地编译成 Java 字节码。</li>
+<li>**wxPython：**wxPython 是一款开源软件，是 Python 语言的一套优秀的 GUI 图形库，允许 Python 程序员很方便的创建完整的、功能健全的 GUI 用户界面。</li>
+<li>**Jython：**Jython 程序可以和 Java 无缝集成。除了一些标准模块，Jython 使用 Java 的模块。Jython 几乎拥有标准的Python 中不依赖于 C 语言的全部模块。比如，Jython 的用户界面将使用 Swing，AWT或者 SWT。Jython 可以被动态或静态地编译成 Java 字节码。</li>
 </ul>
-<h2 id="tkinter"><a href="#tkinter" class="headerlink" title="tkinter"></a>tkinter</h2><h3 id="根窗体root："><a href="#根窗体root：" class="headerlink" title="根窗体root："></a>根窗体root：</h3><p>根窗体是图像化应用程序的根控制器，是tkinter的底层控件的实例。当导入tkinter模块后，调用 Tk()方法可初始化一个根窗体实例 root ,用 title() 方法可设置其标题文字，用geometry()方法可以设置窗体的大小（以像素为单位）。将其置于主循环中，除非用户关闭，否则程序始终处于运行状态。执行该程序，一个窗体就呈现出来了。在这个主循环的根窗体中，可持续呈现中的其他可视化控件实例，监测事件的发生并执行相应的处理程序 </p>
+<h2 id="tkinter">tkinter</h2>
+<h3 id="根窗体root：">根窗体root：</h3>
+<p>根窗体是图像化应用程序的根控制器，是tkinter的底层控件的实例。当导入tkinter模块后，调用 Tk()方法可初始化一个根窗体实例 root ,用 title() 方法可设置其标题文字，用geometry()方法可以设置窗体的大小（以像素为单位）。将其置于主循环中，除非用户关闭，否则程序始终处于运行状态。执行该程序，一个窗体就呈现出来了。在这个主循环的根窗体中，可持续呈现中的其他可视化控件实例，监测事件的发生并执行相应的处理程序</p>
 <p>主窗口位置和大小通过，geometry(‘wxh ± y ± z’)方法进行设置，w为宽度，h为高度，x用于分隔高度和宽度，+x表示距离屏幕左边的距离，-x表示距离屏幕右边的距离，±y同理。</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#代码实现：</span>
 <span class="token keyword">from</span> tkinter <span class="token keyword">import</span> <span class="token operator">*</span>
@@ -466,8 +471,8 @@ root<span class="token operator">=</span> Tk<span class="token punctuation">(</s
 root<span class="token punctuation">.</span>title<span class="token punctuation">(</span><span class="token string">'我的第一个Python窗体'</span><span class="token punctuation">)</span>
 root<span class="token punctuation">.</span>geometry<span class="token punctuation">(</span><span class="token string">'240x240'</span><span class="token punctuation">)</span> <span class="token comment"># 这里的乘号不是 * ，而是小写英文字母 x</span>
 root<span class="token punctuation">.</span>mainloop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="GUI组件表："><a href="#GUI组件表：" class="headerlink" title="GUI组件表："></a>GUI组件表：</h3><p>Tkinter的提供各种控件，如按钮，标签和文本框，一个GUI应用程序中使用。这些控件通常被称为控件或者部件。目前有15种Tkinter的部件。</p>
+<h3 id="gui组件表：">GUI组件表：</h3>
+<p>Tkinter的提供各种控件，如按钮，标签和文本框，一个GUI应用程序中使用。这些控件通常被称为控件或者部件。目前有15种Tkinter的部件。</p>
 <table>
 <thead>
 <tr>
@@ -475,7 +480,8 @@ root<span class="token punctuation">.</span>mainloop<span class="token punctuati
 <th>按钮控件；在程序中显示按钮。</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>Canvas</td>
 <td>画布控件；显示图形元素如线条或文本</td>
 </tr>
@@ -547,16 +553,17 @@ root<span class="token punctuation">.</span>mainloop<span class="token punctuati
 <td>messagebox</td>
 <td>用于显示你应用程序的消息框。</td>
 </tr>
-</tbody></table>
-<h4 id="Python-Tkinter-通用控件属性："><a href="#Python-Tkinter-通用控件属性：" class="headerlink" title="Python Tkinter 通用控件属性："></a>Python Tkinter 通用控件属性：</h4><img src="C:\Users\888888\AppData\Roaming\Typora\typora-user-images\1657019136331.png"  />
-
-<h4 id="Python-Tkinter-按钮组件-Button"><a href="#Python-Tkinter-按钮组件-Button" class="headerlink" title="Python Tkinter 按钮组件 (Button)"></a>Python Tkinter 按钮组件 (Button)</h4><p>按钮组件用于在 Python 应用程序中添加按钮，按钮上可以放上文本或图像，按钮可用于监听用户行为，能够与一个 Python 函数关联，当按钮被按下时，自动调用该函数。 </p>
+</tbody>
+</table>
+<h4 id="python-tkinter-通用控件属性：">Python Tkinter 通用控件属性：</h4>
+<img src="C:\Users\888888\AppData\Roaming\Typora\typora-user-images\1657019136331.png"  />
+<h4 id="python-tkinter-按钮组件-button">Python Tkinter 按钮组件 (Button)</h4>
+<p>按钮组件用于在 Python 应用程序中添加按钮，按钮上可以放上文本或图像，按钮可用于监听用户行为，能够与一个 Python 函数关联，当按钮被按下时，自动调用该函数。</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">w <span class="token operator">=</span> Button <span class="token punctuation">(</span> master<span class="token punctuation">,</span> option<span class="token operator">=</span>value<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">)</span>
 <span class="token comment"># master 组件的父容器</span>
 <span class="token comment"># option 可选项，这个包括很多内容这些选项可以用键 = 值的形式设置，并以逗号分隔</span>
 <span class="token comment"># 包括command（按钮的关联函数），font（文本字体），height（按钮的高度），image（按钮的背景图片），width，text（文本），underline（下划线）等内容</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p> Button按钮的状态有：<code>normal</code>  ,  <code>active</code>  ,  <code>disabled</code></p>
+<p>Button按钮的状态有：<code>normal</code>  ,  <code>active</code>  ,  <code>disabled</code></p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> tkinter
 <span class="token keyword">import</span> tkinter<span class="token punctuation">.</span>messagebox 
 top <span class="token operator">=</span> tkinter<span class="token punctuation">.</span>Tk<span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -565,16 +572,18 @@ top <span class="token operator">=</span> tkinter<span class="token punctuation"
 B <span class="token operator">=</span> tkinter<span class="token punctuation">.</span>Button<span class="token punctuation">(</span>top<span class="token punctuation">,</span> text<span class="token operator">=</span><span class="token string">"点我"</span><span class="token punctuation">,</span> command<span class="token operator">=</span>helloCallBack<span class="token punctuation">)</span>
 B<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token punctuation">)</span>
 top<span class="token punctuation">.</span>mainloop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>这里稍微做一点说明，这个实例来自于菜鸟教程，而在菜鸟教程上的写法是 import tkMessageBox ,还是有很多区别的，在python3以后的版本中，tkinter应该首字母小写，而tkMessageBox及库中对应的函数应该相应改为<strong>tkinter.messagebox</strong></p>
 <p>在具体使用按钮组件进行函数调用时也有对应内容：</p>
 <ul>
-<li><p>直接调用函数。<strong>参数表达式为“command=函数名”，注意函数名后面不要加括号，也不能传递参数</strong>。如下面的command=run1：</p>
+<li>
+<p>直接调用函数。<strong>参数表达式为“command=函数名”，注意函数名后面不要加括号，也不能传递参数</strong>。如下面的command=run1：</p>
 </li>
-<li><p>利用匿名函数调用函数和传递参数。参数的表达式为“command=lambda”:函数名（参数列表）</p>
+<li>
+<p>利用匿名函数调用函数和传递参数。参数的表达式为“command=lambda”:函数名（参数列表）</p>
 </li>
 </ul>
-<h5 id="Python-Tkinter-单选按钮控件-Radiobutton"><a href="#Python-Tkinter-单选按钮控件-Radiobutton" class="headerlink" title="Python Tkinter 单选按钮控件(Radiobutton)"></a>Python Tkinter 单选按钮控件(Radiobutton)</h5><p>是为了响应故乡排斥的若干单选项的单击事件以触发运行自定义函数所设的，该控件排除具有共有属性外，还具有显示文本（text）、返回变量（variable）、返回值（value）、响应函数名（command）等重要属性。响应函数名“command=函数名”的用法与Button相同，函数名最后也要加括号。返回变量variable=var通常应预先声明变量的类型var=IntVar()或var=StringVar(),在所调用的函数中方可用var.get()方法获取被选中实例的value值。</p>
+<h5 id="python-tkinter-单选按钮控件-radiobutton">Python Tkinter 单选按钮控件(Radiobutton)</h5>
+<p>是为了响应故乡排斥的若干单选项的单击事件以触发运行自定义函数所设的，该控件排除具有共有属性外，还具有显示文本（text）、返回变量（variable）、返回值（value）、响应函数名（command）等重要属性。响应函数名“command=函数名”的用法与Button相同，函数名最后也要加括号。返回变量variable=var通常应预先声明变量的类型var=IntVar()或var=StringVar(),在所调用的函数中方可用var.get()方法获取被选中实例的value值。</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> tkinter <span class="token keyword">import</span> <span class="token operator">*</span>
 <span class="token keyword">def</span> <span class="token function">Mysel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
       dic <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token number">0</span><span class="token punctuation">:</span><span class="token string">'甲'</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">:</span><span class="token string">'乙'</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token string">'丙'</span><span class="token punctuation">&#125;</span>
@@ -593,11 +602,10 @@ rd2<span class="token punctuation">.</span>pack<span class="token punctuation">(
 rd3 <span class="token operator">=</span> Radiobutton<span class="token punctuation">(</span>root<span class="token punctuation">,</span>text<span class="token operator">=</span><span class="token string">"丙"</span><span class="token punctuation">,</span>variable<span class="token operator">=</span>var<span class="token punctuation">,</span>value<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span>command<span class="token operator">=</span>Mysel<span class="token punctuation">)</span>
 rd3<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token punctuation">)</span>
 root<span class="token punctuation">.</span>mainloop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h5 id="Python-Tkinter-复选框（Checkbutton）"><a href="#Python-Tkinter-复选框（Checkbutton）" class="headerlink" title="Python Tkinter 复选框（Checkbutton）"></a>Python Tkinter 复选框（Checkbutton）</h5><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 定义方法</span>
+<h5 id="python-tkinter-复选框-checkbutton">Python Tkinter 复选框（Checkbutton）</h5>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 定义方法</span>
 w <span class="token operator">=</span> tkinter<span class="token punctuation">.</span>Checkbutton<span class="token punctuation">(</span> master<span class="token punctuation">,</span> option<span class="token operator">=</span>value<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">)</span>
 <span class="token comment"># 在python3中，复选框的定义方式发生了略微改变</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
 <p><strong>复选框</strong>：(Checkbutton) 是为了返回多个选项值的交互控件，通常不直接触发函数的执行。该控件除具有共有属性外，还具有显示文本（text）、返回变量（variable）、选中返回值（onvalue）和未选中默认返回值（offvalue）等重要属性。返回变量variable=var 通常可以预先逐项分别声明变量的类型var=IntVar() (默认)或 var=StringVar(), 在所调用的函数中方可分别调用 var.get()方法 取得被选中实例的 onvalue或offvalue值。复选框实例通常还可分别利用 select()、deselect()和 toggle() 方法对其进行选中、清除选中和反选操作。</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#简单样例：</span>
 <span class="token keyword">import</span> tkinter<span class="token punctuation">.</span>messagebox
@@ -610,19 +618,17 @@ C2 <span class="token operator">=</span> tkinter<span class="token punctuation">
 C1<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token punctuation">)</span>
 C2<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token punctuation">)</span>
 top<span class="token punctuation">.</span>mainloop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="Python-Tkinter-标签控件（Label）及消息控件（Message）"><a href="#Python-Tkinter-标签控件（Label）及消息控件（Message）" class="headerlink" title="Python Tkinter 标签控件（Label）及消息控件（Message）"></a>Python Tkinter 标签控件（Label）及消息控件（Message）</h4><p>Python Tkinter 标签控件（Label）指定的窗口中显示的文本和图像。如果需要使用一行或多行且不应该被用户更改的标签控件需要用label控件。</p>
+<h4 id="python-tkinter-标签控件-label-及消息控件-message">Python Tkinter 标签控件（Label）及消息控件（Message）</h4>
+<p>Python Tkinter 标签控件（Label）指定的窗口中显示的文本和图像。如果需要使用一行或多行且不应该被用户更改的标签控件需要用label控件。</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">w <span class="token operator">=</span> Label <span class="token punctuation">(</span> master<span class="token punctuation">,</span> option<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">)</span>
 <span class="token comment"># option 可选项内容与Button的可选项内容相近，但也有wraplength（标签文本显示行数）</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#一个简单样例：</span>
 <span class="token keyword">import</span> tkinter <span class="token keyword">as</span> tk
 root <span class="token operator">=</span> tk<span class="token punctuation">.</span>Tk<span class="token punctuation">(</span><span class="token punctuation">)</span>
 w <span class="token operator">=</span> tk<span class="token punctuation">.</span>Label<span class="token punctuation">(</span>root<span class="token punctuation">,</span> text<span class="token operator">=</span><span class="token string">"Hello RUNOOB!"</span><span class="token punctuation">)</span>
 w<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token punctuation">)</span>
 root<span class="token punctuation">.</span>mainloop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p><strong>标签（Label）</strong>和 <strong>消息（Message）</strong>：除了单行与多行的不同外，属性和用法基本一致，用于呈现文本信息。</p>
+<p>**标签（Label）**和 <strong>消息（Message）</strong>：除了单行与多行的不同外，属性和用法基本一致，用于呈现文本信息。</p>
 <p>值得注意的是：属性text通常用于实例在第一次呈现时的固定文本，而如果需要在程序执行后发生变化，则可以使用下列方法之一实现：</p>
 <p>1、用控件实例的configure()方法来改变属性text的值，可使显示的文本发生变化；</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> tkinter
@@ -640,7 +646,6 @@ lb <span class="token operator">=</span> tkinter<span class="token punctuation">
 lb<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token punctuation">)</span>
 gettime<span class="token punctuation">(</span><span class="token punctuation">)</span>
 root<span class="token punctuation">.</span>mainloop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <p>2、先定义一个tkinter的内部类型变量var=StringVar() 的值也可以使显示文本发生变化。</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> tkinter
 <span class="token keyword">import</span> time
@@ -656,10 +661,9 @@ lb <span class="token operator">=</span> tkinter<span class="token punctuation">
 lb<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token punctuation">)</span>
 gettime<span class="token punctuation">(</span><span class="token punctuation">)</span>
 root<span class="token punctuation">.</span>mainloop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="Python-Tkinter-文本组件-Text"><a href="#Python-Tkinter-文本组件-Text" class="headerlink" title="Python Tkinter 文本组件 (Text)"></a>Python Tkinter 文本组件 (Text)</h4><img src="C:\Users\888888\AppData\Roaming\Typora\typora-user-images\1657025434153.png"  />
-
-<p> 上表位置的取值可为整数，浮点数或END（末尾），例如0.0表示第0列第0行</p>
+<h4 id="python-tkinter-文本组件-text">Python Tkinter 文本组件 (Text)</h4>
+<img src="C:\Users\888888\AppData\Roaming\Typora\typora-user-images\1657025434153.png"  />
+<p>上表位置的取值可为整数，浮点数或END（末尾），例如0.0表示第0列第0行</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> tkinter <span class="token keyword">import</span> <span class="token operator">*</span>
 <span class="token keyword">import</span> time
 <span class="token keyword">import</span> datetime
@@ -673,11 +677,11 @@ txt<span class="token operator">=</span>Text<span class="token punctuation">(</s
 txt<span class="token punctuation">.</span>pack<span class="token punctuation">(</span><span class="token punctuation">)</span>
 gettime<span class="token punctuation">(</span><span class="token punctuation">)</span>
 root<span class="token punctuation">.</span>mainloop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <ul>
 <li><strong>输入框（Entry）</strong>：通常作为功能比较单一的接收单行文本输入的控件，虽然也有许多对其中文本进行操作的方法，但通常用的只有取值方法get()和用于删除文本的delete(起始位置，终止位置)，例如：清空输入框为delete(0，END)。</li>
 </ul>
-<h3 id="GUI应用程序类的通常写法"><a href="#GUI应用程序类的通常写法" class="headerlink" title="GUI应用程序类的通常写法"></a>GUI应用程序类的通常写法</h3><p>通过类application组织整个GUI程序，类application及继承了frame，及通过继承拥有了父类的特性。通过构造函数<code>_init_</code>()初始化窗口中的对象，通过createwidgets()方法创建窗口中的对象。</p>
+<h3 id="gui应用程序类的通常写法">GUI应用程序类的通常写法</h3>
+<p>通过类application组织整个GUI程序，类application及继承了frame，及通过继承拥有了父类的特性。通过构造函数<code>_init_</code>()初始化窗口中的对象，通过createwidgets()方法创建窗口中的对象。</p>
 <p>Frama框架是一个tkinter组件，表示一个矩形的区域。frame一般作为容器使用，可以放置其他组件，从而实现复杂的布局。</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> tkinter <span class="token keyword">as</span> tk
 <span class="token keyword">class</span> <span class="token class-name">Application</span><span class="token punctuation">(</span>tk<span class="token punctuation">.</span>Frame<span class="token punctuation">)</span><span class="token punctuation">:</span>
@@ -699,8 +703,8 @@ root<span class="token punctuation">.</span>mainloop<span class="token punctuati
 root <span class="token operator">=</span> tk<span class="token punctuation">.</span>Tk<span class="token punctuation">(</span><span class="token punctuation">)</span>
 app <span class="token operator">=</span> Application<span class="token punctuation">(</span>master<span class="token operator">=</span>root<span class="token punctuation">)</span>
 app<span class="token punctuation">.</span>mainloop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="几何管理（控件布局）"><a href="#几何管理（控件布局）" class="headerlink" title="几何管理（控件布局）"></a>几何管理（控件布局）</h3><p>Tkinter控件有特定的几何状态管理方法，管理整个控件区域组织，以下是Tkinter公开的几何管理类：包、网格、位置</p>
+<h3 id="几何管理-控件布局">几何管理（控件布局）</h3>
+<p>Tkinter控件有特定的几何状态管理方法，管理整个控件区域组织，以下是Tkinter公开的几何管理类：包、网格、位置</p>
 <table>
 <thead>
 <tr>
@@ -708,7 +712,8 @@ app<span class="token punctuation">.</span>mainloop<span class="token punctuatio
 <th>描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>pack()</td>
 <td>包装；</td>
 </tr>
@@ -720,8 +725,10 @@ app<span class="token punctuation">.</span>mainloop<span class="token punctuatio
 <td>place()</td>
 <td>位置；</td>
 </tr>
-</tbody></table>
-<h4 id="Pack-布局方式："><a href="#Pack-布局方式：" class="headerlink" title="Pack()布局方式："></a>Pack()布局方式：</h4><p>Pack()方法： 是一种简单的布局方法，如果不加参数的默认方式，将按布局语句的先后，以最小占用空间的方式自上而下地排列控件实例，并且保持控件本身的最小尺寸。</p>
+</tbody>
+</table>
+<h4 id="pack-布局方式：">Pack()布局方式：</h4>
+<p>Pack()方法： 是一种简单的布局方法，如果不加参数的默认方式，将按布局语句的先后，以最小占用空间的方式自上而下地排列控件实例，并且保持控件本身的最小尺寸。</p>
 <p>使用pack()方法可设置 fill、side 等属性参数。</p>
 <table>
 <thead>
@@ -730,7 +737,8 @@ app<span class="token punctuation">.</span>mainloop<span class="token punctuatio
 <th>取值的对应意义</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>fill=X/y/BOTH</td>
 <td>允许控件向水平方向、垂直方向或二维伸展填充未被占用控件</td>
 </tr>
@@ -738,7 +746,8 @@ app<span class="token punctuation">.</span>mainloop<span class="token punctuatio
 <td>side=left/right/bottom</td>
 <td>表示本控件实例的布局相对于下一个控件实例的方位</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> tkinter <span class="token keyword">import</span>  <span class="token operator">*</span>
 root <span class="token operator">=</span> Tk<span class="token punctuation">(</span><span class="token punctuation">)</span>
 lbred <span class="token operator">=</span> Label<span class="token punctuation">(</span>root<span class="token punctuation">,</span>text<span class="token operator">=</span><span class="token string">"Red"</span><span class="token punctuation">,</span>fg<span class="token operator">=</span><span class="token string">"Red"</span><span class="token punctuation">,</span>relief<span class="token operator">=</span>GROOVE<span class="token punctuation">)</span>
@@ -748,22 +757,24 @@ lbgreen<span class="token punctuation">.</span>pack<span class="token punctuatio
 lbblue <span class="token operator">=</span> Label<span class="token punctuation">(</span>root<span class="token punctuation">,</span>text<span class="token operator">=</span><span class="token string">"蓝"</span><span class="token punctuation">,</span>fg<span class="token operator">=</span><span class="token string">"blue"</span><span class="token punctuation">,</span>relief<span class="token operator">=</span>GROOVE<span class="token punctuation">)</span>
 lbblue<span class="token punctuation">.</span>pack<span class="token punctuation">(</span>fill<span class="token operator">=</span>X<span class="token punctuation">)</span>
 root<span class="token punctuation">.</span>mainloop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="grid-布局方式："><a href="#grid-布局方式：" class="headerlink" title="grid()布局方式："></a>grid()布局方式：</h4><p><strong>grid()方法</strong>：是基于网格的布局。先虚拟一个二维表格，再在该表格中布局控件实例。由于在虚拟表格的单元中所布局的控件实例大小不一，单元格也没有固定或均一的大小，因此其仅用于布局的定位。pack()方法与grid()方法不能混合使用。<br> <strong>grid()方法常用布局参数如下：</strong></p>
+<h4 id="grid-布局方式：">grid()布局方式：</h4>
+<p><strong>grid()方法</strong>：是基于网格的布局。先虚拟一个二维表格，再在该表格中布局控件实例。由于在虚拟表格的单元中所布局的控件实例大小不一，单元格也没有固定或均一的大小，因此其仅用于布局的定位。pack()方法与grid()方法不能混合使用。<br>
+<strong>grid()方法常用布局参数如下：</strong></p>
 <ul>
-<li> <strong>column:</strong> 控件实例的起始列，最左边为第0列。</li>
-<li> <strong>columnspan:</strong> 控件实例所跨越的列数，默认为1列。</li>
-<li> <strong>ipadx,ipady:</strong> 控件实例所呈现区域内部的像素数，用来设置控件实例的大小。</li>
-<li> <strong>padx,pady:</strong> 控件实例所占据空间像素数，用来设置实例所在单元格的大小。</li>
-<li> <strong>row:</strong> 控件实例的起始行，最上面为第0行。</li>
-<li> <strong>rowspan:</strong> 控件实例的起始行数，默认为1行。</li>
+<li><strong>column:</strong> 控件实例的起始列，最左边为第0列。</li>
+<li><strong>columnspan:</strong> 控件实例所跨越的列数，默认为1列。</li>
+<li><strong>ipadx,ipady:</strong> 控件实例所呈现区域内部的像素数，用来设置控件实例的大小。</li>
+<li><strong>padx,pady:</strong> 控件实例所占据空间像素数，用来设置实例所在单元格的大小。</li>
+<li><strong>row:</strong> 控件实例的起始行，最上面为第0行。</li>
+<li><strong>rowspan:</strong> 控件实例的起始行数，默认为1行。</li>
 </ul>
-<h4 id="place-布局方法："><a href="#place-布局方法：" class="headerlink" title="place()布局方法："></a>place()布局方法：</h4><p><strong>place()方法</strong>：根据控件实例在父容器中的绝对或相对位置参数进行布局。其常用布局参数如下：</p>
+<h4 id="place-布局方法：">place()布局方法：</h4>
+<p><strong>place()方法</strong>：根据控件实例在父容器中的绝对或相对位置参数进行布局。其常用布局参数如下：</p>
 <ul>
-<li><strong>x,y：</strong>控件实例在根窗体中水平和垂直方向上的其实位置（单位为像素）。注意，根窗体左上角为0,0,水平向右，垂直向下为正方向。</li>
-<li><strong>relx,rely：</strong>控件实例在根窗体中水平和垂直方向上起始布局的相对位置。即相对于根窗体宽和高的比例位置，取值在<code>0.0~1.0</code>之间。</li>
-<li><strong>height,width：</strong>控件实例本身的高度和宽度（单位为像素）。</li>
-<li><strong>relheight,relwidth：</strong>控件实例相对于根窗体的高度和宽度比例，取值在<code>0.0~1.0</code>之间。</li>
+<li>**x,y：**控件实例在根窗体中水平和垂直方向上的其实位置（单位为像素）。注意，根窗体左上角为0,0,水平向右，垂直向下为正方向。</li>
+<li>**relx,rely：**控件实例在根窗体中水平和垂直方向上起始布局的相对位置。即相对于根窗体宽和高的比例位置，取值在<code>0.0~1.0</code>之间。</li>
+<li>**height,width：**控件实例本身的高度和宽度（单位为像素）。</li>
+<li>**relheight,relwidth：**控件实例相对于根窗体的高度和宽度比例，取值在<code>0.0~1.0</code>之间。</li>
 <li>利用place()方法配合relx,rely和relheight,relwidth参数所得的到的界面可自适应根窗体尺寸的大小。place()方法与grid()方法可以混合使用。如下例子：利用place()方法排列消息（多行标签）。</li>
 </ul>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#参考样例：</span>
@@ -773,8 +784,8 @@ root<span class="token punctuation">.</span>geometry<span class="token punctuati
 msg1 <span class="token operator">=</span> Message<span class="token punctuation">(</span>root<span class="token punctuation">,</span>text<span class="token operator">=</span><span class="token triple-quoted-string string">'''我的水平起始位置相对窗体 0.2，垂直起始位置为绝对位置 80 像素，我的高度是窗体高度的0.4，宽度是200像素'''</span><span class="token punctuation">,</span>relief<span class="token operator">=</span>GROOVE<span class="token punctuation">)</span>
 msg1<span class="token punctuation">.</span>place<span class="token punctuation">(</span>relx<span class="token operator">=</span><span class="token number">0.2</span><span class="token punctuation">,</span>y<span class="token operator">=</span><span class="token number">80</span><span class="token punctuation">,</span>relheight<span class="token operator">=</span><span class="token number">0.4</span><span class="token punctuation">,</span>width<span class="token operator">=</span><span class="token number">200</span><span class="token punctuation">)</span>
 root<span class="token punctuation">.</span>mainloop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="Wxpython"><a href="#Wxpython" class="headerlink" title="Wxpython"></a>Wxpython</h2><blockquote>
+<h2 id="wxpython">Wxpython</h2>
+<blockquote>
 <p>Wxpython这个是我最后采用的gui库，倒不是因为有多大去别，主要是我找到了一个自动生成Wxpython的代码段的小程序，我最后选择了wxpython。</p>
 </blockquote>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># -*- coding:utf-8 -*-</span>
@@ -811,7 +822,6 @@ root<span class="token punctuation">.</span>mainloop<span class="token punctuati
 <span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
     app <span class="token operator">=</span> myApp<span class="token punctuation">(</span><span class="token punctuation">)</span>
     app<span class="token punctuation">.</span>MainLoop<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 
                 
             </div>
@@ -1216,7 +1226,7 @@ root<span class="token punctuation">.</span>mainloop<span class="token punctuati
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">368.4k</span>
+                        class="white-color">380.3k</span>
             
             
             

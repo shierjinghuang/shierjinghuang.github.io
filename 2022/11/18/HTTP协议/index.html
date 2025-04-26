@@ -5,13 +5,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="超文本传输协议HTTP, 十二惊惶">
-    <meta name="description" content="超文本传输协议HTTP#	掌握HTTP的报文格式
+    <meta name="description" content="超文本传输协议HTTP
+#	掌握HTTP的报文格式
 #	掌握HTTP的工作原理
 #	掌握HTTP常用方法
+万维网体系结构
+万维网，全称为World Wide Web，是一个由许多互相链接的超文本组成的系统，通过互联网访问。
 
-万维网体系结构万维网，全称为World Wide Web，是一个由许多互相链接的超文本组成的系统，通过互联网访问。
-
-在这个系统中，每">
+在这个系统中，">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -450,25 +451,25 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="超文本传输协议HTTP"><a href="#超文本传输协议HTTP" class="headerlink" title="超文本传输协议HTTP"></a>超文本传输协议HTTP</h2><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#	掌握HTTP的报文格式</span>
+                <h2 id="超文本传输协议http">超文本传输协议HTTP</h2>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#	掌握HTTP的报文格式</span>
 <span class="token comment">#	掌握HTTP的工作原理</span>
 <span class="token comment">#	掌握HTTP常用方法</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="万维网体系结构"><a href="#万维网体系结构" class="headerlink" title="万维网体系结构"></a>万维网体系结构</h3><p>万维网，全称为World Wide Web，是一个由许多互相链接的超文本组成的系统，通过互联网访问。</p>
+<h3 id="万维网体系结构">万维网体系结构</h3>
+<p>万维网，全称为World Wide Web，是一个由许多互相链接的超文本组成的系统，通过互联网访问。</p>
 <ul>
 <li>在这个系统中，每个有用的事物，称为“资源”，由全局“统一资源标识符(URL)”标识;这些资源通过超文本传输协议传送给用户，用户通过点击超链接来获得资源</li>
-<li>每一个网站保存有一个或多个文档，叫做万维网页面。浏览器用来读取万维网上的文档<ul>
+<li>每一个网站保存有一个或多个文档，叫做万维网页面。浏览器用来读取万维网上的文档
+<ul>
 <li>客户需要查看网站A的某些信息，它向网站A发送一个请求，请求包含了网站A和其中万维网页面的地址，称为统一资源定位符(URL)</li>
 <li>网站A收到请求后，将指定的文档发送给这个客户。</li>
 </ul>
 </li>
 </ul>
 <img src=".\HTTP协议\用户访问万维网示意图.png" style="zoom:67%;" />
-
 <center>用户访问万维网的示意图</center>
 > <p style="color:orange;">WWW服务是分布式的客户/服务器模式</p>
-
-<p><strong>浏览器：</strong>客户端程序，可以解释和显示万维网页面。</p>
+<p>**浏览器：**客户端程序，可以解释和显示万维网页面。</p>
 <p><strong>服务器：</strong></p>
 <blockquote>
 <ul>
@@ -477,37 +478,49 @@
 <li>通过多线程或多进程可使服务器的效率更加提高，服务器在同一时间可回答多个请求</li>
 </ul>
 </blockquote>
-<h4 id="统一资源定位符（URL"><a href="#统一资源定位符（URL" class="headerlink" title="统一资源定位符（URL)"></a>统一资源定位符（URL)</h4><blockquote>
+<h4 id="统一资源定位符-url">统一资源定位符（URL)</h4>
+<blockquote>
 <p style="color:orange;">Uniform Resource Locator，用于表示Internet上资源的位置和访问方法</p>
 </blockquote>
 <ul>
-<li>URL由4部分组成:<ol>
-<li><p><strong>协议</strong>:指定了用这个URL的客户/服务器程序。如，HTTP、FTP和TELNET等</p>
+<li>URL由4部分组成:
+<ol>
+<li>
+<p><strong>协议</strong>:指定了用这个URL的客户/服务器程序。如，HTTP、FTP和TELNET等</p>
 </li>
-<li><p>主机:指明了信息所存放的地址，可以是逻辑地址也可以是相应的域名</p>
+<li>
+<p>主机:指明了信息所存放的地址，可以是逻辑地址也可以是相应的域名</p>
 </li>
-<li><p>端口:指定了使用主机的某个端口，端口是可选的。</p>
+<li>
+<p>端口:指定了使用主机的某个端口，端口是可选的。</p>
 <blockquote>
-<p style="color:blue;">如果包含了端口，那么端口就插入在主机和路径之间，和主机用冒号分隔开</p></blockquote>
+<p style="color:blue;">如果包含了端口，那么端口就插入在主机和路径之间，和主机用冒号分隔开</p>
+</blockquote>
 </li>
-<li><p>路径:指定了文件存放的位置。路径本身可以包含斜线，用于将目录与子目录和文件分隔开。</p>
+<li>
+<p>路径:指定了文件存放的位置。路径本身可以包含斜线，用于将目录与子目录和文件分隔开。</p>
 </li>
 </ol>
 </li>
 </ul>
 <img src=".\HTTP协议\统一资源定位符.png" style="zoom:50%;" />
-
 <center>统一资源定位符格式:</center>
 ##### 静态文档
-
 <p>内容固定的文档，由服务器创建。文档的内容是在创建文档时就确定的，而不是在使用它时。</p>
-<h5 id="动态文档"><a href="#动态文档" class="headerlink" title="动态文档"></a>动态文档</h5><p>在浏览器请求该文档时才由万维网服务器创建出来。当请水到丛的，力维网服务器就运行创建动态文档的应用程序。服务器返回这个程序或脚本的输出，把它作为对请求该文档的浏览器的响应。<br>对每个请求都创建出新的文档，所以每个请求得到的动态文档内容可能不同。</p>
-<h5 id="活动文档"><a href="#活动文档" class="headerlink" title="活动文档"></a>活动文档</h5><p>有些文档需要程序在客户端运行，称为活动文档。当浏览器请求活动文档时，服务器就发送这个文档的一个副本或脚本，然后这个文档就在客户（浏览器)端运行。</p>
-<h3 id="HTTP报文格式："><a href="#HTTP报文格式：" class="headerlink" title="HTTP报文格式："></a>HTTP报文格式：</h3><p>超文本传输协议，Hyperlext Transfer Protocol，用于访问万维网上的数据</p>
-<p>它是一种详细规定了浏览器和万维网服务器之间互相通信的规则，通过因特网传送万维网文档的数据传送协议。<br>协议以普通文本、超文本、音频、视频等格式传输数据，它可以快速的在文档之间跳转</p>
+<h5 id="动态文档">动态文档</h5>
+<p>在浏览器请求该文档时才由万维网服务器创建出来。当请水到丛的，力维网服务器就运行创建动态文档的应用程序。服务器返回这个程序或脚本的输出，把它作为对请求该文档的浏览器的响应。<br>
+对每个请求都创建出新的文档，所以每个请求得到的动态文档内容可能不同。</p>
+<h5 id="活动文档">活动文档</h5>
+<p>有些文档需要程序在客户端运行，称为活动文档。当浏览器请求活动文档时，服务器就发送这个文档的一个副本或脚本，然后这个文档就在客户（浏览器)端运行。</p>
+<h3 id="http报文格式：">HTTP报文格式：</h3>
+<p>超文本传输协议，Hyperlext Transfer Protocol，用于访问万维网上的数据</p>
+<p>它是一种详细规定了浏览器和万维网服务器之间互相通信的规则，通过因特网传送万维网文档的数据传送协议。<br>
+协议以普通文本、超文本、音频、视频等格式传输数据，它可以快速的在文档之间跳转</p>
 <ul>
-<li><blockquote>
-<p style="color:orange;">HTTP是一个应用层协议，它使用TCP连接进行可靠的传送，在熟知端口80上提供服务。</p></blockquote>
+<li>
+<blockquote>
+<p style="color:orange;">HTTP是一个应用层协议，它使用TCP连接进行可靠的传送，在熟知端口80上提供服务。</p>
+</blockquote>
 </li>
 </ul>
 <blockquote>
@@ -515,36 +528,48 @@
 - 两种报文格式只有开始行不同。
 </blockquote>
 <ul>
-<li><p> 首部行</p>
+<li>
+<p>首部行</p>
 </li>
-<li><p>用来说明浏览器、服务器或报文主体的一些信息。</p>
+<li>
+<p>用来说明浏览器、服务器或报文主体的一些信息。</p>
 </li>
-<li><p>由关键字/值对组成，每行一对，关键字和值用英文冒号“:”分隔，结束的地方都要有回车换行</p>
+<li>
+<p>由关键字/值对组成，每行一对，关键字和值用英文冒号“:”分隔，结束的地方都要有回车换行</p>
 </li>
-<li><p>首部可以有好几行，但也可以不使用。</p>
+<li>
+<p>首部可以有好几行，但也可以不使用。</p>
 </li>
-<li><p>整个首部行结束时，还要有一个空行将首部行和后面的实体主体分</p>
+<li>
+<p>整个首部行结束时，还要有一个空行将首部行和后面的实体主体分</p>
 </li>
-<li><p>实体主体</p>
+<li>
+<p>实体主体</p>
 <ul>
 <li>在请求报文中一般不用，而在响应报文中也可能没有这个字段</li>
 </ul>
 </li>
 </ul>
-<h4 id="HTTP请求报文："><a href="#HTTP请求报文：" class="headerlink" title="HTTP请求报文："></a>HTTP请求报文：</h4><img src=".\HTTP协议\HTTP请求报文.png" style="zoom:67%;" />
-
+<h4 id="http请求报文：">HTTP请求报文：</h4>
+<img src=".\HTTP协议\HTTP请求报文.png" style="zoom:67%;" />
 <ul>
-<li><p>方法:</p>
+<li>
+<p>方法:</p>
 <ul>
-<li><p>常见的有GET和POST方法，在地址栏中输入网址访问网页时，浏览器采用GET方法向服务器获取资源，POST方法要求服务器接受附在请求后面的数据，常用于提交表单。</p>
-<img src=".\HTTP协议\HTTP方法.png" style="zoom:67%;" /></li>
+<li>
+<p>常见的有GET和POST方法，在地址栏中输入网址访问网页时，浏览器采用GET方法向服务器获取资源，POST方法要求服务器接受附在请求后面的数据，常用于提交表单。</p>
+<img src=".\HTTP协议\HTTP方法.png" style="zoom:67%;" />
+</li>
 </ul>
 </li>
-<li><p>URL:向服务器请求的资源</p>
+<li>
+<p>URL:向服务器请求的资源</p>
 </li>
-<li><p>HTTP版本:目前是http/1.1。</p>
+<li>
+<p>HTTP版本:目前是http/1.1。</p>
 </li>
-<li><p>首部字段：</p>
+<li>
+<p>首部字段：</p>
 <ul>
 <li>Accept:指定客户端接受哪些类型的信息，如text/html,image/gif等</li>
 <li>Accept-Language:指定一种自然语言。</li>
@@ -555,12 +580,14 @@
 </ul>
 </li>
 </ul>
-<h4 id="HTTP回应报文"><a href="#HTTP回应报文" class="headerlink" title="HTTP回应报文"></a>HTTP回应报文</h4><img src=".\HTTP协议\HTTP回应报文.png" style="zoom:67%;" />
-
+<h4 id="http回应报文">HTTP回应报文</h4>
+<img src=".\HTTP协议\HTTP回应报文.png" style="zoom:67%;" />
 <ul>
-<li><p>版本:与请求报文相同</p>
+<li>
+<p>版本:与请求报文相同</p>
 </li>
-<li><p>状态码:表示服务器的响应类型，有三位数字组成，其中第一个数字定义了响应的类别，有五种可能取值:</p>
+<li>
+<p>状态码:表示服务器的响应类型，有三位数字组成，其中第一个数字定义了响应的类别，有五种可能取值:</p>
 <blockquote>
 <ul>
 <li>1xx:通知信息—表示请求已接收，继续处理</li>
@@ -573,7 +600,6 @@
 </li>
 </ul>
 <img src=".\HTTP协议\HTTP协议状态码.png" style="zoom: 50%;" />
-
 <center>HTTP协议状态码：</center>
 - 短语:解释状态码的简单短语
 - 首部字段
@@ -583,24 +609,30 @@
   - Content-Length:实体正文的长度，十进制
   - Connection:连接状态。
   - Content-Type:发送给接收者的实体正文的媒体类型，如Content-Type:text/html;charset=GB2312。
-
-<h3 id="持久与非持久链接"><a href="#持久与非持久链接" class="headerlink" title="持久与非持久链接"></a>持久与非持久链接</h3><h4 id="非持久连接"><a href="#非持久连接" class="headerlink" title="非持久连接"></a>非持久连接</h4><ul>
+<h3 id="持久与非持久链接">持久与非持久链接</h3>
+<h4 id="非持久连接">非持久连接</h4>
+<ul>
 <li>对每一个请求/响应都要建立一次TCP连接</li>
 <li>非持久连接策略给服务器造成了很大的开销，因为服务器需要N个不同的缓存，而每次打开连接时都要使用慢开始过程</li>
 <li>版本1.1以前的HTTP协议默认是非持久连接</li>
 </ul>
-<h4 id="持久连接"><a href="#持久连接" class="headerlink" title="持久连接"></a>持久连接</h4><ul>
-<li><p>在使用持久连接时，服务器在发送响应后，让连接继续为一些请求打开</p>
+<h4 id="持久连接">持久连接</h4>
+<ul>
+<li>
+<p>在使用持久连接时，服务器在发送响应后，让连接继续为一些请求打开</p>
 </li>
-<li><p>服务器可以在客户发送关闭请求时等待或关闭这个连接。</p>
+<li>
+<p>服务器可以在客户发送关闭请求时等待或关闭这个连接。</p>
 </li>
-<li><p>服务器可在相同的TCP连接上向客户发送多个对象</p>
+<li>
+<p>服务器可在相同的TCP连接上向客户发送多个对象</p>
 <blockquote>
 <p>HTTP版本1.1默认使用持久连接策略。</p>
 </blockquote>
 </li>
 </ul>
-<h3 id="万维网的工作过程："><a href="#万维网的工作过程：" class="headerlink" title="万维网的工作过程："></a>万维网的工作过程：</h3><p>每个万维网网点都有一个服务器,它不断地监听TCP的端口80，以便发现是否有浏览器（即万维网客户)向它发出连接建立请求。一旦监听到连接请求并建立了TCP连接之后，浏览器就向万维网服务器发出浏览某个页面的请求，服务器接着就返回所请求的页面作为响应。最后释放TCP连接。</p>
+<h3 id="万维网的工作过程：">万维网的工作过程：</h3>
+<p>每个万维网网点都有一个服务器,它不断地监听TCP的端口80，以便发现是否有浏览器（即万维网客户)向它发出连接建立请求。一旦监听到连接请求并建立了TCP连接之后，浏览器就向万维网服务器发出浏览某个页面的请求，服务器接着就返回所请求的页面作为响应。最后释放TCP连接。</p>
 <img src=".\HTTP协议\万维网工作过程.png" style="zoom:67%;" />
                 
             </div>
@@ -997,7 +1029,7 @@
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">368.4k</span>
+                        class="white-color">380.3k</span>
             
             
             

