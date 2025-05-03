@@ -1,0 +1,1878 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="无线局域网技术, 十二惊惶">
+    <meta name="description" content="WLAN [Wireless Local Area Network，无线局域网]
+[TOC]
+WLAN概述
+
+WLAN即Wireless LAN（无线局域网），是指通过无线技术构建的无线局域网络
+
+
+WLAN广义上是指以无线电波、激光、红外">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>无线局域网技术 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">无线局域网技术</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/HCIA/">
+                                <span class="chip bg-color">HCIA</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                网络工程相关
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2025-03-30
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2025-05-03
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    9.7k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    36 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="wlan-wireless-local-area-network-无线局域网">WLAN [Wireless Local Area Network，无线局域网]</h2>
+<p>[TOC]</p>
+<h3 id="wlan概述">WLAN概述</h3>
+<blockquote>
+<p>WLAN即Wireless LAN（无线局域网），是指通过无线技术构建的无线局域网络</p>
+</blockquote>
+<blockquote>
+<p>WLAN广义上是指以无线电波、激光、红外线等无线信号来代替有线局域网中的部分或全部传输介质所构成的网络</p>
+</blockquote>
+<p>通过WLAN技术，用户可以方便地接入到无线网络，并在无线网络覆盖区域内自由移动，彻底摆脱有线网络的束缚</p>
+<p>无线网络根据应用范围可分为<strong>WPAN、WLAN、WMAN、WWAN</strong>：</p>
+<ul>
+<li><strong>WPAN [Wireless Personal Area Network]：个人无线网络</strong>，常用技术有<strong>Bluetooth、ZigBee、NFC、HomeRF、UWB</strong></li>
+<li><strong>WLAN [Wireless Local Area Network]：无线局域网</strong>，常用技术Wi-F</li>
+<li><strong>WMAN [Wireless Metropolitan Area Network]：无线城域网</strong>，常用技术有WiMax</li>
+<li><strong>WWAN [Wireless Wide Area Network]：无线广域网</strong>，常用技术有GSM、CDMA、WCDMA、TD-SCDMA、LTE、5G</li>
+</ul>
+<p><strong>IEEE 802.11</strong>是现今无线局域网通用的标准，是由国际电机电子工程学会(IEEE)定义的无线网络通信的标准</p>
+<p>Wi-Fi联盟制造商的商标，并做为产品的品牌认证，是一种创建于IEEE 802.11标准上的无线局域网技术。在大多数场景下，Wi-Fi可等同于802.11</p>
+<img src=".\华为Wlan\IEEE 802.11标准与Wi-Fi的世代.png" style="zoom:50%;" />
+<ul>
+<li>IEEE 802.11标准聚焦在TCP/IP对等模型的下两层：
+<ul>
+<li>数据链路层：主要负责信道接入、寻址、数据帧校验、错误检测、安全机制等内容</li>
+<li>物理层：主要负责在空口（空中接口）中传输比特流，例如规定所使用的频段等</li>
+</ul>
+</li>
+</ul>
+<p>IEEE 802.11第一个版本发表于1997年。更多基于IEEE 802.11的补充标准逐渐被定义，如802.11b、802.11a、802.11g、802.11n、802.11ac等</p>
+<blockquote>
+<p>在IEEE 802.11ax标准推出之际，Wi-Fi联盟将新Wi-Fi规格的名字简化为Wi-Fi 6，主流的IEEE 802.11ac改称Wi-Fi 5、IEEE 802.11n改称Wi-Fi 4，其他世代以此类推</p>
+</blockquote>
+<h3 id="wlan的基本概念">WLAN的基本概念</h3>
+<p><strong>家庭WLAN产品：</strong></p>
+<p>家庭Wi-Fi路由器：通过把有线网络信号转换成无线信号，供家庭电脑、手机等设备接收，实现无线上网功能</p>
+<p><strong>企业WLAN产品：</strong></p>
+<ul>
+<li>
+<p><strong>无线接入点 [AP, Access Point]</strong></p>
+<ul>
+<li>一般支持FAT AP、FIT AP和云管理AP三种工作模式，根据网络规划的需求，可以灵活地在多种模式下切换</li>
+<li>FAT AP：适用于家庭，独立工作，需单独配置，功能较为单一，成本低。独立完成用户接入、认证、数据安全、业务转发和QoS等功能</li>
+<li>FIT AP：适用于大中型企业，需要配合AC使用，由AC统一管理和配置，功能丰富，对网络维护人员的技能要求高。用户接入、AP上线、认证、路由、AP管理、安全协议、QoS等功能需要同AC配合完成</li>
+<li>云管理：适用于中小型企业，需要配合云管理平台使用，由云管理平台统一管理和配置，功能丰富，即插即用，对网络维护人员的技能要求低</li>
+</ul>
+</li>
+<li>
+<p><strong>无线接入控制器 [AC, Access Controller]</strong></p>
+<ul>
+<li>一般位于整个网络的汇聚层，提供高速、安全、可靠的WLAN业务</li>
+<li>提供大容量、高性能、高可靠性、易安装、易维护的无线数据控制业务，具有组网灵活、绿色节能等优势</li>
+</ul>
+</li>
+<li>
+<p><strong>PoE交换机 [Power over Ethernet，以太网供电]</strong></p>
+<ul>
+<li>是指通过以太网网络进行供电，也被称为基于局域网的供电系统PoL [Power over LAN]或有源以太网[Active Ethernet]</li>
+<li>PoE允许电功率通过传输数据的线路或空闲线路传输到终端设备</li>
+<li>在WLAN网络中，可以通过PoE交换机对AP设备进行供电</li>
+</ul>
+</li>
+</ul>
+<p><strong>WLAN基本概念：</strong></p>
+<ul>
+<li>工作站STA (Station)：
+<ul>
+<li>支持802.11标准的终端设备。例如带无线网卡的电脑、支持WLAN的手机等</li>
+</ul>
+</li>
+<li>无线接入控制器AC (Access Controller)：
+<ul>
+<li>在AC+FIT AP网络架构中，AC对无线局域网中的所有FIT AP进行控制和管理</li>
+</ul>
+</li>
+<li>无线接入点AP (Access Point)：
+<ul>
+<li>为STA提供基于802.11标准的无线接入服务，起到有线网络和无线网络的桥接作用</li>
+</ul>
+</li>
+<li>无线接入点控制与规范CAPWAP (Control And Provisioning of Wireless Access Points)：
+<ul>
+<li>由RFC5415协议定义的，实现AP和AC之间的互通的一个通用封装和传输机制</li>
+</ul>
+</li>
+<li>射频信号 (无线电磁波)：提供基于802.11标准的WLAN技术的传输介质，是具有远距离传输能力的高频电磁波</li>
+</ul>
+<h4 id="基本的wlan组网架构">基本的WLAN组网架构</h4>
+<blockquote>
+<p>WLAN网络架构分有线侧和无线侧两部分，有线侧是指AP上行到Internet的网络使用以太网协议，无线侧是指STA到AP之间的网络使用802.11协议</p>
+</blockquote>
+<p><strong>无线侧接入的WLAN网络架构</strong></p>
+<img src=".\华为Wlan\基本的WLAN组网架构.png" style="zoom:50%;" />
+<blockquote>
+<p>无线侧接入的WLAN网络架构为集中式架构，从最初的FAT AP架构，演进为AC+FIT AP架构。</p>
+</blockquote>
+<ul>
+<li>
+<p>FAT AP 架构</p>
+<ul>
+<li>
+<p>这种架构不需要专门的设备集中控制就可以完成无线用户的接入、业务数据的加密和业务数据报文的转发等功能，因此又称为<strong>自治式网络架构</strong></p>
+</li>
+<li>
+<p>适用范围：家庭</p>
+</li>
+<li>
+<p>特点：AP独立工作，需要单独配置，功能较为单一，成本低<br>
+缺点：随着WLAN覆盖面积增大，接入用户增多，需要部署的FAT AP数量也会增多，但FAT AP是独立工作的，缺少统一的控制设备，因此管理维护这些FAT AP就十分麻烦</p>
+</li>
+</ul>
+</li>
+<li>
+<p>AC+FIT AP 架构</p>
+<ul>
+<li>这种架构中，AC负责WLAN的接入控制、转发和统计、AP的配置监控、漫游管理、AP的网管代理、安全控制；FIT AP负责802.11报文的加解密、802.11的物理层功能、接受AC的管理等简单功能。</li>
+<li>适用范围：大中型企业</li>
+<li>特点：AP需要配合AC使用，由AC统一管理和配置，功能丰富，对网络运维人员的技能要求高。</li>
+</ul>
+</li>
+</ul>
+<p><strong>敏捷分布式AP架构</strong></p>
+<blockquote>
+<p>AP的一种特殊架构，将AP拆分为中心AP和敏分AP两部分，中心AP可管理多台敏分AP</p>
+</blockquote>
+<img src=".\华为Wlan\敏捷分布式AP架构.png" style="zoom:50%;" />
+<p>在适用的场景下，成本低，覆盖好。敏捷分布式AP可以用于FAT AP、AC+FIT AP、云管理架构</p>
+<p>适用范围：房间分布密集的场景</p>
+<h4 id="有线侧组网">有线侧组网</h4>
+<p><strong>有线侧组网概念：CAPWAP协议：</strong></p>
+<p><strong>CAPWAP [Control And Provisioning of Wireless Access Points Protocol，无线接入点控制和配置协议]</strong>：该协议定义了如何对AP进行管理、业务配置，即AC通过CAPWAP隧道来实现对AP的集中管理和控制</p>
+<img src=".\华为Wlan\CAPWAP协议.png" style="zoom:50%;" />
+<p><strong>CAPWAP隧道的功能：</strong></p>
+<ul>
+<li>AP与AC间的状态维护</li>
+<li>AC通过CAPWAP隧道对AP进行管理、业务配置下发</li>
+<li>当采用隧道转发模式时，AP将STA发出的数据通过CAPWAP隧道实现与AC之间的交互</li>
+</ul>
+<p><strong>CAPWAP介绍</strong></p>
+<ul>
+<li>CAPWAP是基于UDP进行传输的应用层协议</li>
+<li>CAPWAP协议在传输层运输两种类型的消息：
+<ul>
+<li>业务数据流量，封装转发无线数据帧——通过CAPWAP数据隧道</li>
+<li>管理流量，管理AP和AC之间交换的管理消息——通过CAPWAP控制隧道</li>
+</ul>
+</li>
+<li>CAPWAP数据和控制报文基于不同的UDP端口发送：
+<ul>
+<li>管理流量端口为UDP端口5246，业务数据流量端口为UDP端口5247</li>
+</ul>
+</li>
+</ul>
+<p><strong>有线侧组网概念：AP-AC组网方式：</strong></p>
+<p><img src=".%5C%E5%8D%8E%E4%B8%BAWlan%5C%E6%9C%89%E7%BA%BF%E4%BE%A7%E7%BB%84%E7%BD%91%E6%A6%82%E5%BF%B5%EF%BC%9AAP-AC%E7%BB%84%E7%BD%91%E6%96%B9%E5%BC%8F.png" alt=""></p>
+<p>二层是指AP和AC之间是二层组网，三层是指AC和AP之间是三层组网</p>
+<ul>
+<li>二层组网AP可以通过二层广播，或者DHCP过程，即插即用上线</li>
+<li>三层网络下，AP无法直接发现AC，需要通过DHCP或DNS方式动态发现，或者配置静态IP</li>
+</ul>
+<p><strong>有线侧组网概念：AC连接方式：</strong></p>
+<p><img src=".%5C%E5%8D%8E%E4%B8%BAWlan%5C%E6%9C%89%E7%BA%BF%E4%BE%A7%E7%BB%84%E7%BD%91%E6%A6%82%E5%BF%B5%EF%BC%9AAC%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F.png" alt=""></p>
+<p>直连模式下AC部署在用户的转发路径上，旁挂则相反</p>
+<p>直连模式用户流量要经过AC，会消耗AC转发能力，旁挂一般流量不会经过AC</p>
+<ul>
+<li>
+<p><strong>直连式组网：</strong></p>
+<ul>
+<li>对AC的吞吐量以及处理数据能力要求比较高，否则AC会是整个无线网络带宽的瓶颈</li>
+<li>优势：组网架构清晰，组网实施起来简单</li>
+</ul>
+</li>
+<li>
+<p><strong>旁挂式组网：</strong></p>
+<ul>
+<li>实际组网中，大部分不是早期就规划好无线网络，无线网络的覆盖架设是后期在现有网络中扩展而来</li>
+</ul>
+</li>
+<li>
+<p>旁挂式组网就比较容易进行扩展，只需将AC旁挂在现有网络中，就可以对终端AP进行管理</p>
+<ul>
+<li>旁挂式组网方式使用率比较高</li>
+</ul>
+<p><strong>在旁挂式组网中，AC只承载对AP的管理功能，管理流封装在CAPWAP隧道中传输，数据业务流可以通过CAPWAP数据隧道经AC转发，也可以不经过AC转发直接转发，后者无线用户业务流经汇聚交换机由汇聚交换机传输至上层网络</strong></p>
+</li>
+</ul>
+<h4 id="无线侧组网">无线侧组网</h4>
+<p><strong>无线侧组网概念：无线通信系统：</strong></p>
+<p>无线通信系统中，信息可以是图像、文字、声音等。信息需要先经过信源编码转换为方便于电路计算和处理的数字信号，再经过信道编码和调制，转换为无线电波发射出去</p>
+<ul>
+<li>编码：
+<ul>
+<li>信源编码：将最原始的信息，经过对应的编码，转换为数字信号的过程。</li>
+<li>信道编码：是一种对信息纠错、检错的技术，可以提升信道传输的可靠性。信息在无线传输过程中容易受到噪声的干扰，导致接收信息出错，引入信道编码能够在接收设备上最大程度地恢复信息，降低误码率</li>
+</ul>
+</li>
+<li>调制：将数字信号叠加到高频振荡电路产生的高频信号上，才能通过天线转换成无线电波发射出去。叠加动作就是调制的过程</li>
+<li>信道：传输信息的通道，无线信道就是空间中的无线电波</li>
+<li>空中接口：简称空口，无线信道使用的接口。发送设备和接收设备使用接口和信道连接，对于无线通信，接口是不可见的，连接着不可见的空间</li>
+</ul>
+<p><img src=".%5C%E5%8D%8E%E4%B8%BAWlan%5C%E6%97%A0%E7%BA%BF%E4%BE%A7%E7%BB%84%E7%BD%91%E6%A6%82%E5%BF%B5%EF%BC%9A%E6%97%A0%E7%BA%BF%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F.png" alt=""></p>
+<p><strong>无线侧组网概念：无线电磁波：</strong></p>
+<p>无线电磁波是频率介于3赫兹和约300G赫兹之间的电磁波，也叫作射频电波，或简称射频、射电。无线电技术将声音讯号或其他信号经过转换，利用无线电磁波传播</p>
+<p>常用频段：<strong>2.4GHz频段 2.4GHz~2.4835GHz</strong> 与<strong>5GHz频段  5.15GHz~5.35GHz 和 5.725GHz~5.85GHz</strong></p>
+<ul>
+<li>极低频 (3Hz–30Hz)：潜艇通讯或直接转换成声音</li>
+<li>超低频 (30Hz–300Hz) ：直接转换成声音或交流输电系统（50-60赫兹)</li>
+<li>特低频 (300Hz–3KHz) ：矿场通讯或直接转换成声音</li>
+<li>甚低频 (3KHz–30KHz) ：直接转换成声音、超声、地球物理学研究</li>
+<li>低频 (30KHz–300KHz) ：国际广播</li>
+<li>中频 (300KHz–3MHz) ：调幅(AM)广播、海事及航空通讯</li>
+<li>高频 (3MHz–30MHz) ：短波、民用电台</li>
+<li>甚高频 (30MHz–300MHz) ：调频(FM)广播、电视广播、航空通讯</li>
+<li>特高频 (300MHz–3GHz) ：电视广播、无线电话通讯、无线网络、微波炉</li>
+<li>超高频 (3GHz–30GHz) ：无线网络、雷达、人造卫星接收</li>
+<li>极高频 (30GHz–300GHz) ：射电天文学、遥感、人体扫描安检仪</li>
+<li>300GHz以上：红外线、可见光、紫外线、射线等</li>
+</ul>
+<p><strong>无线侧组网概念：无线信道：</strong></p>
+<p>信道是传输信息的通道，无线信道就是空间中的无线电磁波。无线电磁波无处不在，如果随意使用频谱资源，那将带来无穷无尽的干扰问题，所以无线通信协议除了要定义出允许使用的频段，还要精确划分出频率范围，每个频率范围就是信道</p>
+<img src=".\华为Wlan\无线侧组网概念：无线信道.png" style="zoom:67%;" />
+<p><strong>无线侧组网概念：BSS/SSID/BSSID：</strong></p>
+<ul>
+<li>
+<p><strong>基本服务集BSS [Basic Service Set]</strong>：</p>
+<p>无线网络的基本服务单元，通常由一个AP和若干STA组成，BSS是802.11网络的基本结构。由于无线介质共享性，BSS中报文收发需携带BSSID</p>
+<ul>
+<li>一个AP所覆盖的范围</li>
+<li>在一个BSS的服务区域内，STA可以相互通信</li>
+</ul>
+</li>
+<li>
+<p><strong>基本服务集标识符BSSID [Basic Service SetIdentifier]：</strong></p>
+<ul>
+<li>是无线网络的一个身份标识，用AP的MAC地址表示</li>
+<li>AP上的数据链路层MAC地址</li>
+<li>为了区分BSS，要求每个BSS都有唯一的BSSID，因此使用AP的MAC地址来保证其唯一性</li>
+</ul>
+</li>
+<li>
+<p><strong>服务集标识符SSID [Service Set Identifier]：</strong></p>
+<ul>
+<li>是无线网络的一个身份标识，用字符串表示，为了便于用户辨识不同的无线网络，用SSID代替BSSID</li>
+<li>如果一个空间部署了多个BSS，终端就会发现多个BSSID，只要选择加入的BSSID就行。但是做选择的是用户，为了使得AP的身份更容易辨识，则用一个字符串来作为AP的名字。这个字符串就是SSID。</li>
+</ul>
+</li>
+</ul>
+<p><strong>无线侧组网概念：VAP [Virtual Access Point] ：</strong></p>
+<p>VAP就是在一个物理实体AP上虚拟出的多个AP，是AP设备上虚拟出来的业务功能实体。</p>
+<ul>
+<li>每个VAP提供和物理实体AP一样的功能，用户可以在一个AP上创建不同的VAP来为不同的用户群体提供无线接入服务</li>
+<li>每个VAP对应1个BSS。这样1个AP，就可以提供多个BSS，可以再为这些BSS，设置不同的SSID。</li>
+</ul>
+<p><strong>无线侧组网概念：ESS</strong></p>
+<p>为了满足实际业务的需求，需要对BSS的覆盖范围进行扩展。同时用户从一个BSS移动到另一个BSS时，不能感知到SSID的变化，则可以通过扩展服务集ESS实现</p>
+<p><strong>扩展服务集ESS [Extend Service Set]</strong>：</p>
+<p>由多个使用相同SSID的BSS组成，是采用相同的SSID的多个BSS组成的更大规模的虚拟BSS</p>
+<img src=".\华为Wlan\无线侧组网概念：ESS.png" style="zoom: 60%;" />
+<p>ESS (Extend Service Set)：</p>
+<ul>
+<li>采用相同的SSID的多个BSS组成的更大规模的虚拟BSS</li>
+<li>用户可以带着终端在ESS内自由移动和漫游，不管用户移动到哪里，都可以认为使用的同一个WLAN</li>
+</ul>
+<p><strong>WLAN漫游：</strong></p>
+<blockquote>
+<p>WLAN漫游指STA在同属一个ESS的不同AP的覆盖范围之间移动且保持用户业务不中断的行为</p>
+</blockquote>
+<ul>
+<li>
+<p>WLAN网络的优势就是STA不受物理介质的影响，可以在WLAN覆盖范围内四处移动并且能够保持业务不中断</p>
+</li>
+<li>
+<p>同一个ESS内包含多个AP设备，当STA从一个AP覆盖区域移动到另外一个AP覆盖区域时，利用WLAN漫游技术可以实现STA用户业务的平滑切换</p>
+</li>
+</ul>
+<h3 id="wlan的工作原理">WLAN的工作原理</h3>
+<img src=".\华为Wlan\WLAN工作流程概述.png" style="zoom:50%;" />
+<h4 id="ap上线">AP上线</h4>
+<h5 id="1-ap获取ip地址">1. AP获取IP地址:</h5>
+<blockquote>
+<p>AP必须获得IP地址才能够与AC通信，WLAN网络才能够正常工作</p>
+</blockquote>
+<p>AP获取IP地址的方式包括以下：</p>
+<ul>
+<li>
+<p>静态方式：登录到AP设备上手工配置IP地址</p>
+</li>
+<li>
+<p>DHCP方式：通过配置DHCP服务器，使AP作为DHCP客户端向DHCP服务器请求IP地址</p>
+<img src=".\华为Wlan\AP获取IP地址：DHCP方式.png" style="zoom:50%;" />
+</li>
+</ul>
+<p>典型方案：</p>
+<ul>
+<li>部署专门的DHCP Server为AP分配IP地址</li>
+<li>使用AC的DHCP服务为AP分配IP地址</li>
+<li>使用网络中的设备，例如核心交换机为AP分配IP地址</li>
+</ul>
+<h5 id="2-ap发现ac并与之建立capwap隧道：">2. AP发现AC并与之建立CAPWAP隧道：</h5>
+<img src=".\华为Wlan\AP发现AC并与之建立CAPWAP隧道.png" style="zoom:50%;" />
+<p><strong>Step1：AP动态发现AC</strong></p>
+<ul>
+<li>静态方式：AP上预先配置了AC的静态IP地址列表。AP上线时，AP发送Discovery Request单播报文到所有预配置列表对应IP地址的AC。AP通过接收到的Discovery Response报文，选择一个AC开始建立CAPWAP隧道</li>
+<li>动态方式：分为DHCP方式、DNS方式和广播方式</li>
+</ul>
+<p><strong>DHCP方式：</strong></p>
+<ul>
+<li>通过DHCP的四步交互过程，获取AC的IP地址：
+<ul>
+<li>在没有预配置AC的IP列表时，则启动AP动态AC发现机制。通过DHCP获取IP地址，并通过DHCP协议中的Option返回AC地址列表（在DHCP服务器上配置DHCP响应报文中携带Option 43，且Option 43携带AC的IP地址列表）</li>
+<li>首先是AP发送DHCP Discover广播报文，请求DHCP Server响应，在DHCP服务器侦听到DHCP Discover报文后，它会从没有租约的地址范围中，选择最前面的闲置IP，连同其他TCP/IP设定，响应AP一个DHCP Offer报文，该报文中会包含一个租约期限的信息</li>
+<li>由于DHCP Offer报文既可以是单播报文，也可以是广播报文，当AP端收到多台DHCP Server的响应时，只会挑选其中一个Offer(通常是最先抵达的那个)，然后向网络中发送一个DHCP Request广播报文，告诉所有的Offer，并重新发送DHCP，将指定接收哪一台服务器提供的IP地址</li>
+<li>当DHCP Server接收到AP的Request报文之后，会向AP发送一个DHCP Ack响应，该报文中携带的信息包括了AP的IP地址，租约期限，网关信息，以及DNS Server IP等，以此确定租约的正式生效，就此完成DHCP的四步交互工作</li>
+</ul>
+</li>
+<li>通过AC发现机制，与AC关联：
+<ul>
+<li>AP通过DHCP服务获取AC的IP地址后，使用AC发现机制来获知哪些AC是可用的，决定与最佳AC来建立CAPWAP的连接</li>
+<li>AP启动CAPWAP协议的发现机制，以单播或广播的形式发送发现请求报文试图关联AC，AC收到AP的Discovery Request以后，会发送一个单播Discovery Response 给AP，AP可以通过Discover Response中所带的AC优先级或者AC上当前AP的个数等，确定与哪个AC建立会话</li>
+</ul>
+</li>
+</ul>
+<p><strong>广播方式：</strong></p>
+<ul>
+<li>当AP启动后，如果DHCP方式和DNS方式均未获得AC的IP或AP发出发现请求报文后未收到响应，则AP启动广播发现流程，以广播包方式发出发现请求报文</li>
+<li>接收到发现请求报文的AC检查该AP是否有接入本机的权限（已经授权的MAC地址或者序列号），如果有则发回响应。如果该AP没有接入权限，AC则拒绝请求</li>
+<li>广播发现方式只适用于AC/AP间为二层可达的网络场景</li>
+</ul>
+<img src=".\华为Wlan\Step1：AP动态发现AC.png" style="zoom:50%;" />
+<p><strong>Step2：建立CAPWAP隧道</strong></p>
+<p>AP与AC关联，完成CAPWAP隧道建立。包括数据隧道和控制隧道：<br>
+数据隧道：AP接收的业务数据报文经过CAPWAP数据隧道集中到AC上转发。同时还可以选择对数据隧道进行数据传输层安全DTLS（Datagram Transport Layer Security）加密，使能DTLS加密功能后，CAPWAP数据报文都会经过DTLS加解密。<br>
+控制隧道：通过CAPWAP控制隧道实现AP与AC之间的管理报文的交互。同时还可以选择对控制隧道进行数据传输层安全DTLS加密，使能DTLS加密功能后，CAPWAP控制报文都会经过DTLS加解密。</p>
+<img src=".\华为Wlan\Step2：建立CAPWAP隧道.png" style="zoom:50%;" />
+<h5 id="3-ap接入控制：">3. AP接入控制：</h5>
+<blockquote>
+<p>AP发现AC后，会发送Join Request报文。AC收到后会判断是否允许该AP接入，并响应Join Response报文</p>
+</blockquote>
+<img src=".\华为Wlan\AP接入控制.png" style="zoom:50%;" />
+<ul>
+<li>AC上支持三种对AP的认证方式：
+<ul>
+<li>MAC认证</li>
+<li>序列号（SN）认证</li>
+<li>不认证</li>
+</ul>
+</li>
+<li>AC上添加AP的方式有三种：
+<ul>
+<li>离线导入AP：预先配置AP的MAC地址和SN，当AP与AC连接时，如果AC发现AP和预先增加的AP的MAC地址和SN匹配，则AC开始与AP建立连接</li>
+<li>自动发现AP：当配置AP的认证模式为不认证或配置AP的认证模式为MAC或SN认证且将AP加入AP白名单中，则当AP与AC连接时，AP将被AC自动发现并正常上线</li>
+<li>手工确认未认证列表中的AP：当配置AP的认证模式为MAC或SN认证，但AP没有离线导入且不在已设置的AP白名单中，则该AP会被记录到未授权的AP列表中。需要用户手工确认后，此AP才能正常上线</li>
+</ul>
+</li>
+</ul>
+<h5 id="4-ap版本升级：">4. AP版本升级：</h5>
+<blockquote>
+<p>AP根据收到的Join Response报文中的参数判断当前的系统软件版本是否与AC上指定的一致。如果不一致，则AP通过发送Image Data Request报文请求软件版本，然后进行版本升级</p>
+</blockquote>
+<img src=".\华为Wlan\AP的版本升级.png" style="zoom:50%;" />
+<p><strong>在AC上给AP升级方式：</strong></p>
+<ul>
+<li>自动升级：主要用于AP还未在AC中上线的场景。通常先配置好AP上线时的自动升级参数，然后再配置AP接入。AP在之后的上线过程中会自动完成升级。如果AP已经上线，配置完自动升级参数后，任意方式触发AP重启，AP也会进行自动升级。但相比于自动升级，使用在线升级方式升级能够减少业务中断的时间
+<ul>
+<li>AC模式：AP升级时从AC上下载升级版本，适用于AP数量较少时的场景</li>
+<li>FTP模式：AP升级时从FTP服务器上下载升级版本，适用于网络安全性要求不是很高的文件传输场景中，采用明文传输数据，存在安全隐患</li>
+<li>SFTP模式：AP升级时从SFTP服务器上下载升级版本，适用于网络安全性要求高的场景，对传输数据进行了严格加密和完整性保护</li>
+</ul>
+</li>
+<li>在线升级：主要用于AP已在AC中上线并已承载了WLAN业务的场景。</li>
+<li>定时升级：主要用于AP已在AC中上线并已承载了WLAN业务的场景，通常指定在网络访问量少的时间段升级</li>
+</ul>
+<h5 id="5-capwap隧道维持：">5. CAPWAP隧道维持：</h5>
+<img src=".\华为Wlan\CAPWAP隧道维持.png" style="zoom:50%;" />
+<ul>
+<li>数据隧道维持：AP与AC之间交互Keepalive (UDP端口号为5247)报文来检测数据隧道的连通状态</li>
+<li>控制隧道维持：AP与AC交互Echo (UDP端口号为5246)报文来检测控制隧道的连通状态</li>
+</ul>
+<h4 id="wlan业务配置下发">WLAN业务配置下发</h4>
+<p>AC向AP发送Configuration Update Request请求消息，AP回应Configuration Update Response消息，AC再将AP的业务配置信息下发给AP</p>
+<img src=".\华为Wlan\WLAN业务配置下发.png" style="zoom:80%;" />
+<p><strong>配置模板</strong></p>
+<p>为了方便用户配置和维护WLAN的各个功能，针对WLAN的不同功能和特性设计了各种类型的模板，这些模板统称为WLAN模板</p>
+<img src=".\华为Wlan\配置模板.png" style="zoom: 50%;" />
+<blockquote>
+<p>AP组和AP下都能够引用如下模板：域管理模板、AP系统模板、射频模板、VAP模板，部分模板例还能继续引用其它模板</p>
+</blockquote>
+<ul>
+<li>域管理模板：
+<ul>
+<li>国家码用来标识AP射频所在的国家，不同国家码规定了不同的AP射频特性，包括AP的发送功率、支持的信道等。配置国家码是为了使AP的射频特性符合不同国家或区域的法律法规要求</li>
+<li>通过配置调优信道集合，可以在配置射频调优功能时指定AP信道动态调整的范围，同时避开雷达信道和终端不支持信道</li>
+</ul>
+</li>
+<li>射频模板：
+<ul>
+<li>根据实际的网络环境对射频的各项参数进行调整和优化，使AP具备满足实际需求的射频能力，提高WLAN网络的信号质量。射频模板中各项参数下发到AP后，只有AP支持的参数才会在AP上生效</li>
+<li>可配置的参数有：射频的类型、射频的速率、射频的无线报文组播发送速率、AP发送Beacon帧的周期等</li>
+</ul>
+</li>
+<li>VAP模板：
+<ul>
+<li>在VAP模板下配置各项参数，然后在AP组或AP中引用VAP模板，AP上就会生成VAP，VAP用来为STA提供无线接入服务。通过配置VAP模板下的参数，使AP实现为STA提供不同无线业务服务的能力</li>
+<li>VAP模板下还能继续引用SSID模板、安全模板、流量模板等</li>
+</ul>
+</li>
+<li>其他模板：如WIDS模板、AP有线口模板、WDS模板、定位模板和Mesh模板等</li>
+</ul>
+<p><strong>射频参数配置：</strong></p>
+<ul>
+<li>AP射频需要根据实际的WLAN网络环境来配置不同的基本射频参数，以使AP射频的性能达到更优</li>
+<li>WLAN网络中，相邻AP的工作信道存在重叠频段时，容易产生信号干扰，对AP的工作状态产生影响。为避免信号干扰，使AP工作在更佳状态，提高WLAN网络质量，可以手动配置相邻AP工作在非重叠信道上</li>
+<li>根据实际网络环境的需求，配置射频的发射功率和天线增益，使射频信号强度满足实际网络需求，提高WLAN网络的信号质量</li>
+<li>实际应用场景中，两个AP之间的距离可能为几十米到几十公里，因为AP间的距离不同，所以AP之间传输数据时等待ACK报文的时间也不相同。通过调整合适的超时时间参数，可以提高AP间的数据传输效率</li>
+</ul>
+<p><strong>VAP模板</strong></p>
+<img src=".\华为Wlan\VAP模板.png" style="zoom:50%;" />
+<ul>
+<li>SSID模板：主要用于配置WLAN网络的SSID名称，还可以配置其他功能，主要包括如下功能：
+<ul>
+<li>隐藏SSID功能：
+<ul>
+<li>用户在创建无线网络时，为了保护无线网络的安全，可以对无线网络名称进行隐藏设置。这样，只有知道网络名称的无线用户才能连接到这个无线网络中</li>
+</ul>
+</li>
+<li>单个VAP下能够关联成功的最大用户数：
+<ul>
+<li>单个VAP下接入的用户数越多，每个用户能够使用的平均网络资源就越少，为了保证用户的上网体验，可以根据实际的网络状况配置合理的最大用户接入数</li>
+</ul>
+</li>
+<li>用户数达到最大时自动隐藏SSID的功能：
+<ul>
+<li>使能用户数达到最大时自动隐藏SSID的功能后，当WLAN网络下接入的用户数达到最大时，SSID会被隐藏，新用户将无法搜索到SSID</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>安全模板：配置WLAN安全策略，可以对无线终端进行身份验证，对用户的报文进行加密，保护WLAN网络和用户的安全
+<ul>
+<li>WLAN安全策略支持开放认证、WEP、WPA/WPA2-PSK、WPA/WPA2-802.1X等，在安全模板中选择其中一种进行配置</li>
+</ul>
+</li>
+<li>数据转发方式：
+<ul>
+<li>控制报文是通过CAPWAP的控制隧道转发的，用户的数据报文分为隧道转发方式、直接转发方式</li>
+</ul>
+</li>
+<li>业务VLAN：
+<ul>
+<li>由于WLAN无线网络灵活的接入方式，STA可能会在某个地点集中接入到同一个WLAN无线网络中，然后漫游到其它AP覆盖的无线网络环境下
+<ul>
+<li>业务VLAN配置为单个VLAN时，在接入STA数众多的区域容易出现IP地址资源不足、而其它区域IP地址资源浪费的情况</li>
+<li>业务VLAN配置为VLAN pool时，可以在VLAN pool中加入多个VLAN，然后通过将VLAN pool配置为VAP的业务VLAN，实现一个SSID能够同时支持多个业务VLAN
+<ul>
+<li>新接入的STA会被动态的分配到VLAN pool中的各个VLAN中，减少了单个VLAN下的STA数目，缩小了广播域</li>
+<li>同时每个VLAN尽量均匀的分配IP地址，减少了IP地址的浪费</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="sta接入">STA接入</h4>
+<p>CAPWAP隧道建立完成后，用户就可以接入无线网络。</p>
+<p><strong>STA接入过程分为六个阶段：扫描阶段、链路认证阶段、关联阶段、接入认证阶段、DHCP、用户认证</strong></p>
+<h5 id="1-扫描阶段：">1. 扫描阶段：</h5>
+<blockquote>
+<p>STA可以通过主动扫描，定期搜索周围的无线网络，获取到周围的无线网络信息</p>
+</blockquote>
+<img src=".\华为Wlan\扫描.png" style="zoom:50%;" />
+<p><strong>主动扫描：</strong></p>
+<ul>
+<li>携带有指定SSID的主动扫描方式：
+<ul>
+<li>适用于STA通过主动扫描接入指定的无线网络</li>
+<li>客户端发送携带有指定SSID的Probe Request：STA依次在每个信道发出Probe Request帧，寻找与STA有相同SSID的AP，只有能够提供指定SSID无线服务的AP接收到该探测请求后才回复探查响应</li>
+</ul>
+</li>
+<li>携带空SSID的主动扫描方式：
+<ul>
+<li>适用于STA通过主动扫描可以获知是否存在可使用的无线服务</li>
+</ul>
+</li>
+</ul>
+<p><strong>被动扫描：</strong></p>
+<ul>
+<li>被动扫描是指客户端通过侦听AP定期发送的Beacon帧 [信标帧，包含：SSID、支持速率等信息]发现周围的无线网络，缺省状态下AP发送Beacon帧的周期为100TUs</li>
+</ul>
+<h5 id="2-链路认证阶段：">2. 链路认证阶段：</h5>
+<p><strong>无线接入安全协议</strong></p>
+<p>WLAN技术是以无线射频信号作为业务数据的传输介质，这种开放的信道使攻击者很容易对无线信道中传输的业务数据进行窃听和篡改</p>
+<img src=".\华为Wlan\常用的安全策略.png" style="zoom:50%;" />
+<p><strong>链路认证</strong></p>
+<blockquote>
+<p>为了保证无线链路的安全，接入过程中AP需要完成对STA的认证</p>
+</blockquote>
+<p>802.11链路定义了两种认证机制：<strong>开放系统认证</strong>和<strong>共享密钥认证</strong></p>
+<img src=".\华为Wlan\链路认证.png" style="zoom: 50%;" />
+<p><strong>共享密钥认证：</strong><br>
+STA和AP预先配置相同的共享密钥，AP在链路认证过程验证两边的密钥配置是否相同。一致则成功；否则失败</p>
+<ul>
+<li><strong>认证过程：</strong>
+<ol>
+<li>STA向AP发送认证请求 [Authentication Request]</li>
+<li>AP随即生成一个 挑战短语 [Challenge] 发给STA</li>
+<li>STA使用预先设置好的密钥加密挑战短语 [EncryptedChallenge] 并发给AP</li>
+<li>AP接收到经过加密的挑战短语，用预先设置好的密钥解密该消息，然后将解密后的挑战短语与之前发送给STA的进行比较。如果相同，认证成功；否则，认证失败</li>
+</ol>
+</li>
+</ul>
+<h5 id="3-关联：">3. 关联：</h5>
+<blockquote>
+<p>完成链路认证后，STA会继续发起链路服务协商，具体的协商通过Association报文实现</p>
+</blockquote>
+<blockquote>
+<p>终端关联过程实质上就是链路服务协商的过程，协商内容包括：支持的速率、信道等</p>
+</blockquote>
+<p>FIT AP架构中关联阶段处理过程：</p>
+<ol>
+<li>STA向AP发送Association Request请求，请求帧中会携带STA自身的参数以及根据服务配置选择的参数</li>
+<li>AP收到Association Request请求帧后将其进行CAPWAP封装，并上报AC</li>
+<li>AC收到关联请求后判断是否需要进行用户的接入认证，并回应Association Response</li>
+<li>AP收到Association Response后将其进行CAPWAP解封装，并发给STA</li>
+</ol>
+<img src=".\华为Wlan\关联阶段处理过程.png" style="zoom: 60%;" />
+<h5 id="4-接入认证：">4. 接入认证：</h5>
+<p>接入认证即对用户进行区分，并在用户访问网络之前限制其访问权限。相对于链路认证，接入认证安全性更高。</p>
+<p>主要包含：PSK认证和802.1X认证</p>
+<img src=".\华为Wlan\接入认证.png" style="zoom: 80%;" />
+<h5 id="5-sta地址分配-dhcp-：">5. STA地址分配 [DHCP]：</h5>
+<p>STA获取到自身的IP地址，是STA正常上线的前提条件</p>
+<p>如果STA是通过DHCP方式获取IP地址，可以用AC设备或汇聚交换机作为DHCP服务器为STA分配IP地址。一般情况下使用汇聚交换机作为DHCP服务器</p>
+<h5 id="6-用户认证：">6. 用户认证：</h5>
+<blockquote>
+<p>用户认证是一种“端到端”的安全结构，包括：802.1X认证、MAC认证和Portal认证</p>
+</blockquote>
+<h4 id="wlan业务数据转发">WLAN业务数据转发</h4>
+<p>CAPWAP中的数据包括控制报文和数据报文，控制报文是通过CAPWAP的控制隧道转发的</p>
+<p>用户的数据报文分为隧道转发方式和直接转发方式</p>
+<img src=".\华为Wlan\数据转发方式.png" style="zoom:80%;" />
+<ul>
+<li>隧道转发方式：
+<ul>
+<li>优点：AC集中转发数据报文，安全性好，方便集中管理和控制</li>
+<li>缺点：业务数据必须经过AC转发，报文转发效率比直接转发方式低，AC所受压力大</li>
+</ul>
+</li>
+<li>直接转发方式：
+<ul>
+<li>优点：数据报文不需要经过AC转发，报文转发效率高，AC所受压力小</li>
+<li>缺点：业务数据不便于集中管理和控制</li>
+</ul>
+</li>
+</ul>
+<h3 id="wlan的配置实现">WLAN的配置实现</h3>
+<h4 id="配置ap上线">配置AP上线</h4>
+<p><strong>1. 配置AC作为DHCP服务器，配置Option 43字段：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC-ip-pool-pool1]</span> option code <span class="token punctuation">[</span> sub<span class="token operator">-</span>option sub<span class="token operator">-</span>code <span class="token punctuation">]</span> <span class="token punctuation">&#123;</span> ascii ascii<span class="token operator">-</span>string <span class="token punctuation">|</span> hex hex<span class="token operator">-</span>string <span class="token punctuation">|</span> cipher cipher<span class="token operator">-</span>string <span class="token punctuation">|</span> ip<span class="token operator">-</span>address ip<span class="token operator">-</span>address
+<span class="token comment">#	配置DHCP服务器分配给DHCP客户端的自定义选项</span>
+<span class="token comment">#	参考语句：</span>
+&lt;HUAWEI> system<span class="token operator">-</span>view
+<span class="token namespace">[HUAWEI]</span> ip pool pool1
+<span class="token namespace">[HUAWEI-ip-pool-global1]</span> option 43 hex 11<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>code：指定自定义选项Option的数值。整数形式，取值范围1～254，但1、3、6、15、44、46、50、51、52、53、54、55、57、58、59、61、82、121、184不能配置</li>
+<li>sub-option sub-code：指定自定义的Option子选项的数值。整数形式，取值范围是1～254</li>
+<li>ascii | hex | cipher：指定自定义的选项码为ASCII字符串类型，或十六进制字符串类型，或密文字符串类型</li>
+<li>ip-address ip-address：指定自定义的选项码为IP地址类型</li>
+</ul>
+<p><strong>2. 创建域管理模板，并配置国家码：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC]</span> wlan	<span class="token comment">#进入WLAN视图</span>
+<span class="token namespace">[AC-wlan-view]</span> regulatory<span class="token operator">-</span>domain<span class="token operator">-</span>profile name profile<span class="token operator">-</span>name	
+<span class="token comment">#	创建域管理模板，并进入模板视图，若模板已存在则直接进入模板视图</span>
+<span class="token comment">#	name profile-name：指定域管理模板的名称</span>
+<span class="token namespace">[AC-wlan-regulate-domain-profile-name]</span> country<span class="token operator">-</span>code country<span class="token operator">-</span>code
+<span class="token comment">#	配置设备的国家码标识</span>
+<span class="token namespace">[AC-wlan-view]</span> ap<span class="token operator">-</span><span class="token function">group</span> name <span class="token function">group-name</span>
+<span class="token comment">#	创建AP组，并进入AP组视图，若AP组已存在则直接进入AP组视图</span>
+<span class="token comment">#	name group-name，指定AP组的名称</span>
+<span class="token namespace">[AC-wlan-ap-group-group-name]</span> regulatory<span class="token operator">-</span>domain<span class="token operator">-</span>profile profile<span class="token operator">-</span>name
+<span class="token comment">#	将指定的域管理模板引用到AP或AP组</span>
+<span class="token comment">#	用户在使用命令regulatory-domain-profile（WLAN视图）创建域管理模板后，需要在AP或AP组下引用域管理模板才能生效</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>3. 配置源接口或源地址：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC]</span> capwap source interface <span class="token punctuation">&#123;</span> loopback loopback<span class="token operator">-</span>number <span class="token punctuation">|</span> vlanif vlan<span class="token operator">-</span>id <span class="token punctuation">&#125;</span>
+<span class="token comment">#	配置AC与AP建立CAPWAP隧道的源接口</span>
+<span class="token namespace">[AC]</span> capwap source ip<span class="token operator">-</span>address ip<span class="token operator">-</span>address
+<span class="token comment">#	配置AC的源IP地址</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>loopback</strong> loopback-number</td>
+<td>指定Loopback接口为源接口</td>
+</tr>
+<tr>
+<td><strong>vlanif</strong> vlan-id</td>
+<td>指定VLANIF接口为源接口</td>
+</tr>
+</tbody>
+</table>
+<p><strong>4. 添加AP设备 – 离线导入AP：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC-wlan-view]</span> ap auth<span class="token operator">-</span>mode <span class="token punctuation">&#123;</span> mac<span class="token operator">-</span>auth <span class="token punctuation">|</span> no<span class="token operator">-</span>auth <span class="token punctuation">|</span> sn<span class="token operator">-</span>auth <span class="token punctuation">&#125;</span>
+<span class="token comment">#	配置AP认证模式为MAC地址认证，或SN认证，缺省为MAC地址认证</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>mac-auth</strong></td>
+<td>指定AP认证模式为MAC地址认证</td>
+</tr>
+<tr>
+<td><strong>no-auth</strong></td>
+<td>指定AP认证模式为不认证</td>
+</tr>
+<tr>
+<td><strong>sn-auth</strong></td>
+<td>指定AP认证模式为SN认证</td>
+</tr>
+</tbody>
+</table>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC-wlan-view]</span> ap<span class="token operator">-</span>id ap<span class="token operator">-</span>id <span class="token punctuation">[</span> <span class="token punctuation">[</span> <span class="token function">type</span><span class="token operator">-</span>id <span class="token function">type</span><span class="token operator">-</span>id <span class="token punctuation">|</span> ap<span class="token operator">-</span><span class="token function">type</span> ap<span class="token operator">-</span><span class="token function">type</span> <span class="token punctuation">]</span> <span class="token punctuation">&#123;</span> ap<span class="token operator">-</span>mac ap<span class="token operator">-</span>mac <span class="token punctuation">|</span> ap<span class="token operator">-</span>sn ap<span class="token operator">-</span>sn <span class="token punctuation">|</span> ap<span class="token operator">-</span>mac ap<span class="token operator">-</span>mac ap<span class="token operator">-</span>sn ap<span class="token operator">-</span>sn <span class="token punctuation">&#125;</span> <span class="token punctuation">]</span> <span class="token comment">#离线增加AP设备或进入AP视图</span>
+<span class="token namespace">[AC-wlan-ap-ap-id]</span> ap<span class="token operator">-</span>name ap<span class="token operator">-</span>name	<span class="token comment">#配置单个AP的名称</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th><strong>参数说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ap-id</td>
+<td>AP设备索引</td>
+</tr>
+<tr>
+<td><strong>type-id</strong> type-id</td>
+<td>AP设备类型索引</td>
+</tr>
+<tr>
+<td><strong>ap-type</strong> ap-type</td>
+<td>AP设备类型</td>
+</tr>
+<tr>
+<td><strong>ap-mac</strong> ap-mac</td>
+<td>AP的MAC地址</td>
+</tr>
+<tr>
+<td><strong>ap-sn</strong> ap-sn</td>
+<td>AP的序列号</td>
+</tr>
+</tbody>
+</table>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC-wlan-view]</span> ap<span class="token operator">-</span>id 0
+<span class="token namespace">[AC-wlan-ap-0]</span> ap<span class="token operator">-</span><span class="token function">group</span> ap<span class="token operator">-</span><span class="token function">group</span>	<span class="token comment">#配置AP所加入的组</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong>5. 检查AP上线结果：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC]</span> display ap <span class="token punctuation">&#123;</span> all <span class="token punctuation">|</span> ap<span class="token operator">-</span><span class="token function">group</span> ap<span class="token operator">-</span><span class="token function">group</span> <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>	<span class="token comment">#查看AP信息</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="配置射频">配置射频</h4>
+<p><strong>1. 进入射频视图：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC-wlan-view]</span> ap<span class="token operator">-</span>id 0
+<span class="token namespace">[AC-wlan-ap-0]</span> radio radio<span class="token operator">-</span>id
+<span class="token comment">#radio-id：射频ID，必须是已存在的射频ID</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><strong>2. 配置指定射频的工作带宽和信道：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC-wlan-radio-0/0]</span> channel <span class="token punctuation">&#123;</span> 20mhz <span class="token punctuation">|</span> 40mhz<span class="token operator">-</span>minus <span class="token punctuation">|</span> 40mhz<span class="token operator">-</span>plus <span class="token punctuation">|</span> 80mhz <span class="token punctuation">|</span> 160mhz <span class="token punctuation">&#125;</span> channel
+Warning: This action may cause service interruption<span class="token punctuation">.</span> <span class="token keyword">Continue</span>?<span class="token namespace">[Y/N]</span>
+<span class="token comment">#配置AP组中所有AP或单个AP指定射频的工作带宽和信道</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC-wlan-radio-0/0]</span> channel 80<span class="token operator">+</span>80mhz channel1 channel2
+Warning: This action may cause service interruption<span class="token punctuation">.</span> <span class="token keyword">Continue</span>?<span class="token namespace">[Y/N]</span>
+<span class="token comment">#配置AP组中所有AP或单个AP指定射频的工作带宽和信道</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><strong>3. 配置天线的增益：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC-wlan-radio-0/0]</span> antenna<span class="token operator">-</span>gain antenna<span class="token operator">-</span>gain <span class="token comment"># 配置AP组中所有AP或单个AP指定射频的天线增益</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+<th>取值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>antenna-gain</td>
+<td>天线增益</td>
+<td>整数，取值范围：–10dB～30dB</td>
+</tr>
+</tbody>
+</table>
+<p><strong>4. 配置射频的发射功率：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC-wlan-radio-0/0]</span> eirp eirp <span class="token comment">#配置AP组中所有AP或单个AP指定射频的发射功率</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>5. 配置射频覆盖距离参数：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC-wlan-radio-0/0]</span> coverage distance distance
+<span class="token comment">#配置AP组中所有AP或单个AP指定射频的射频覆盖距离参数</span>
+<span class="token comment">#distance：射频覆盖距离参数。每个射频覆盖距离参数对应一组slottime、acktimeout和ctstimeout数值</span>
+<span class="token comment">#根据AP间的实际距离配置射频覆盖距离参数后，AP设备根据此参数值调整对应的slottime、acktimeout和ctstimeout数值。整数类型，取值范围：1～400，单位为100m</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>6. 配置射频工作的频段：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC-wlan-radio-0/0]</span> frequency <span class="token punctuation">&#123;</span> 2<span class="token punctuation">.</span>4g <span class="token punctuation">|</span> 5g <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>7. 创建射频模板：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC-wlan-view]</span> radio<span class="token operator">-</span>2g<span class="token operator">-</span>profile name profile<span class="token operator">-</span>name<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>name profile-name：指定2G射频模板的名称。字符串类型，不区分大小写，可输入的字符串长度为1～35个字符。可见字符，不能包含“?”和空格，双引号不能出现在字符串的首尾</li>
+<li>缺省情况下，系统上存在名为default的2G射频模板</li>
+</ul>
+<p><strong>8. 引用射频模板：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC-wlan-view]</span> ap<span class="token operator">-</span><span class="token function">group</span> name <span class="token function">group-name</span>
+<span class="token namespace">[AC-wlan-ap-group-group-name]</span> radio<span class="token operator">-</span>2g<span class="token operator">-</span>profile profile<span class="token operator">-</span>name radio <span class="token punctuation">&#123;</span> radio<span class="token operator">-</span>id <span class="token punctuation">|</span> all <span class="token punctuation">&#125;</span>
+<span class="token comment">#在AP组中，将指定的2G射频模板引用到2G射频</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>profile-name：指定2G射频模板的名称。必须是已存在的2G射频模板名称</li>
+<li>radio radio-id：指定射频的ID。整数类型，取值范围：0和2</li>
+<li>radio all：指定所有的射频</li>
+</ul>
+<h4 id="配置vap">配置VAP</h4>
+<p><strong>1. 创建VAP模板：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC-wlan-view]</span> vap<span class="token operator">-</span>profile name profile<span class="token operator">-</span>name
+<span class="token comment">#	创建VAP模板，并进入模板视图，若模板已存在则直接进入模板视图</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong>2. 配置数据转发方式：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC-wlan-vap-prof-profile-name]</span> forward<span class="token operator">-</span>mode <span class="token punctuation">&#123;</span> direct<span class="token operator">-</span>forward <span class="token punctuation">|</span> tunnel <span class="token punctuation">&#125;</span>
+<span class="token comment">#	配置VAP模板下的数据转发方式，可以是直接转发或隧道转发</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong>3. 配置业务VLAN：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC-wlan-vap-prof-profile-name]</span> service<span class="token operator">-</span>vlan <span class="token punctuation">&#123;</span> vlan<span class="token operator">-</span>id vlan<span class="token operator">-</span>id <span class="token punctuation">|</span> vlan<span class="token operator">-</span>pool pool<span class="token operator">-</span>name <span class="token punctuation">&#125;</span>
+<span class="token comment">#	配置VAP的业务VLAN</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong>4. 配置安全模板：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC-wlan-view]</span> security<span class="token operator">-</span>profile name profile<span class="token operator">-</span>name	<span class="token comment">#创建安全模板或者进入安全模板视图</span>
+<span class="token comment">#	缺省情况下，系统已经创建名称为default、default-wds和default-mesh的安全模板</span>
+<span class="token namespace">[AC-wlan-view]</span> vap<span class="token operator">-</span>profile name profile<span class="token operator">-</span>name 
+<span class="token namespace">[AC-wlan-vap-prof-profile-name]</span> security<span class="token operator">-</span>profile profile<span class="token operator">-</span>name<span class="token comment">#	在指定VAP模板中引用安全模板</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>5. 配置SSID模板：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC-wlan-view]</span> ssid<span class="token operator">-</span>profile name profile<span class="token operator">-</span>name
+<span class="token comment">#	创建SSID模板，并进入模板视图，若模板已存在则直接进入模板视图</span>
+<span class="token comment">#	缺省情况下，系统上存在名为default的SSID模板</span>
+<span class="token namespace">[AC-wlan-ssid-prof-profile-name]</span> ssid ssid
+<span class="token comment">#	配置当前SSID模板中的服务组合识别码SSID（Service Set Identifier）。</span>
+<span class="token comment">#	缺省情况下，SSID模板中的SSID为HUAWEI-WLAN。</span>
+<span class="token namespace">[AC-wlan-view]</span> vap<span class="token operator">-</span>profile name profile<span class="token operator">-</span>name 
+<span class="token namespace">[AC-wlan-vap-prof-profile-name]</span> ssid<span class="token operator">-</span>profile profile<span class="token operator">-</span>name<span class="token comment">#	在指定VAP模板中引用SSID模板</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>6. 引用VAP模板：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC-wlan-view]</span> ap<span class="token operator">-</span><span class="token function">group</span> name <span class="token function">group-name</span>
+<span class="token namespace">[AC-wlan-ap-group-group-name]</span> vap<span class="token operator">-</span>profile profile<span class="token operator">-</span>name wlan wlan<span class="token operator">-</span>id radio <span class="token punctuation">&#123;</span> radio<span class="token operator">-</span>id <span class="token punctuation">|</span> all <span class="token punctuation">&#125;</span> <span class="token punctuation">[</span> service<span class="token operator">-</span>vlan <span class="token punctuation">&#123;</span> vlan<span class="token operator">-</span>id vlan<span class="token operator">-</span>id <span class="token punctuation">|</span> vlan<span class="token operator">-</span>pool pool<span class="token operator">-</span>name <span class="token punctuation">&#125;</span> <span class="token punctuation">]</span>
+<span class="token comment">#	在AP组中，将指定的VAP模板引用到射频</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><strong>7. 查看VAP信息：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[AC]</span> display vap <span class="token punctuation">&#123;</span> ap<span class="token operator">-</span><span class="token function">group</span> ap<span class="token operator">-</span><span class="token function">group-name</span> <span class="token punctuation">|</span> <span class="token punctuation">&#123;</span> ap<span class="token operator">-</span>name ap<span class="token operator">-</span>name <span class="token punctuation">|</span> ap<span class="token operator">-</span>id ap<span class="token operator">-</span>id <span class="token punctuation">&#125;</span> <span class="token punctuation">[</span> radio radio<span class="token operator">-</span>id <span class="token punctuation">]</span> <span class="token punctuation">&#125;</span> <span class="token punctuation">[</span> ssid ssid <span class="token punctuation">]</span>
+<span class="token namespace">[AC]</span> display vap <span class="token punctuation">&#123;</span> all <span class="token punctuation">|</span> ssid ssid <span class="token punctuation">&#125;</span><span class="token comment">#	查看业务型VAP的相关信息</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/2025/03/30/%E5%8D%8E%E4%B8%BAWlan/">https://shierjinghuang.github.io/2025/03/30/%E5%8D%8E%E4%B8%BAWlan/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/HCIA/">
+                                    <span class="chip bg-color">HCIA</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2025/03/31/%E5%9F%BA%E4%BA%8EDocker%E5%AE%B9%E5%99%A8%E7%9A%84%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%AE%9E%E9%AA%8C%E5%B9%B3%E5%8F%B0%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="基于Docker容器的网络安全实验平台的设计与实现">
+                        
+                        <span class="card-title">基于Docker容器的网络安全实验平台的设计与实现</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2025-03-31
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/" class="post-category">
+                                    项目设计
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87/">
+                        <span class="chip bg-color">毕业论文</span>
+                    </a>
+                    
+                    <a href="/tags/Vue/">
+                        <span class="chip bg-color">Vue</span>
+                    </a>
+                    
+                    <a href="/tags/Go/">
+                        <span class="chip bg-color">Go</span>
+                    </a>
+                    
+                    <a href="/tags/Docker/">
+                        <span class="chip bg-color">Docker</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2025/03/29/%E5%8D%8E%E4%B8%BA%E5%B9%BF%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="华为广域网技术">
+                        
+                        <span class="card-title">华为广域网技术</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-03-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                    网络工程相关
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/HCIA/">
+                        <span class="chip bg-color">HCIA</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2025</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">450.6k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

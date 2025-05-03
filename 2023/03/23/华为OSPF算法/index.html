@@ -1,0 +1,1679 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="OSPF算法相关内容, 十二惊惶">
+    <meta name="description" content="OSPF算法相关内容
+[TOC]
+OSPF [Open Shortest Path First，开放式最短路径优先] 具有扩展性强，收敛速度快等特点，作为优秀的内部网关协议被广泛使用
+链路状态路由协议——实现过程
+第一步 LSA泛洪:建立相">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>OSPF算法相关内容 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">OSPF算法相关内容</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/HCIA/">
+                                <span class="chip bg-color">HCIA</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                网络工程相关
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-03-23
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2025-05-02
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    18 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1>OSPF算法相关内容</h1>
+<p>[TOC]</p>
+<p>OSPF [Open Shortest Path First，开放式最短路径优先] 具有扩展性强，收敛速度快等特点，作为优秀的内部网关协议被广泛使用</p>
+<h3 id="链路状态路由协议-实现过程">链路状态路由协议——实现过程</h3>
+<h4 id="第一步-lsa泛洪-建立相邻路由器之间的邻居关系">第一步 LSA泛洪:建立相邻路由器之间的邻居关系</h4>
+<blockquote>
+<p>链路状态路由协议通告的的是链路状态</p>
+<p>运行链路状态路由协议的路由器之间首先会建立一个协议的邻居关系，然后彼此之间开始交互LSA [Link State Advertisement，链路状态通告]</p>
+</blockquote>
+<img src=".\华为OSPF算法\LSA泛洪.png" style="zoom: 40%;" />
+<h4 id="第二步-lsdb组建-交互链路状态信息和同步lsdb">第二步 LSDB组建:交互链路状态信息和同步LSDB</h4>
+<blockquote>
+<p>每台路由器都会产生LSAs，路由器将接收到的LSAs放入自己的 LSDB[Link State DataBase，链路状态数据库]，路由器通过对LSDB中所存储的LSA进行解析，进而了解全网拓扑</p>
+</blockquote>
+<ul>
+<li>LSDB汇总了网络中路由器对于自己接口的描述</li>
+<li>LSDB包含全网拓扑的描述</li>
+</ul>
+<h4 id="第三步-spf计算-进行优选路径计算">第三步 SPF计算:进行优选路径计算</h4>
+<blockquote>
+<p>每台路由器基于LSDB，使用SPF [最短路径优先] 算法进行计算。每台路由器都计算出一棵以自己为根的、无环的、拥有最短路径的树</p>
+</blockquote>
+<img src=".\华为OSPF算法\SPF计算.png" alt="1742828723653" style="zoom: 40%;" />
+<h4 id="第四步-路由表生成-根据最短路径树生成路由表项加载到路由表">第四步 路由表生成:根据最短路径树生成路由表项加载到路由表</h4>
+<blockquote>
+<p>最后，路由器将计算出来的优选路径，加载进自己的路由表 [Routing Table]</p>
+</blockquote>
+<h2 id="ospf协议概述">OSPF协议概述</h2>
+<p>OSPF是IETF定义的一种基于链路状态的内部网关路由协议</p>
+<p>目前针对IPv4协议使用的是OSPF Version 2 [RFC2328]；针对IPv6协议使用OSPF Version 3 [RFC2740]</p>
+<h3 id="ospf-基础术语">OSPF 基础术语</h3>
+<h4 id="ospf-area">OSPF Area</h4>
+<blockquote>
+<p>OSPF Area用于标识一个OSPF的区域</p>
+</blockquote>
+<blockquote>
+<p>OSPF Area 区域是从逻辑上将设备划分为不同的组，每个组用区域号 [Area ID] 来标识</p>
+</blockquote>
+<h4 id="router-id">Router-ID</h4>
+<blockquote>
+<p>Router-ID [Router Identifier，路由器标识符]，用于在一个OSPF域中唯一地标识一台路由器</p>
+</blockquote>
+<img src=".\华为OSPF算法\OSPF基础术语.png" style="zoom:40%;" />
+<p><strong>Router ID选举规则如下</strong>：</p>
+<ol>
+<li>手动配置OSPF路由器的Router ID</li>
+<li>如果没有手动配置Router ID，则路由器使用Loopback接口中最大的IP地址作为Router ID</li>
+<li>如果没有配置Loopback接口，则路由器使用物理接口中最大的IP地址作为Router ID</li>
+</ol>
+<ul>
+<li>Router ID一旦选定，之后如果要更改的话就需要重启OSPF进程</li>
+<li>在实际工程中，推荐手工指定OSPF路由设备的Router ID</li>
+</ul>
+<h4 id="cost-度量值">Cost 度量值</h4>
+<p>OSPF使用Cost [开销] 作为路由的度量值</p>
+<ul>
+<li>每一个激活了OSPF的接口都会维护一个接口Cost值，缺省时接口Cost值=100 Mbit/s /接口带宽。其中100 Mbit/s为OSPF指定的缺省参考值，该值是可配置的</li>
+<li>一条OSPF路由的Cost值可以理解为是从目的网段到本路由器沿途所有入接口的Cost值累加</li>
+</ul>
+<img src=".\华为OSPF算法\度量值计算.png" style="zoom:50%;" />
+<h4 id="ospf协议报文类型">OSPF协议报文类型</h4>
+<table>
+<thead>
+<tr>
+<th><strong>报文名称</strong></th>
+<th><strong>报文功能</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hello</td>
+<td>周期性发送，用来发现和维护OSPF邻居关系</td>
+</tr>
+<tr>
+<td>Database Description</td>
+<td>描述本地LSDB的摘要信息，用于两台设备进行数据库同步</td>
+</tr>
+<tr>
+<td>Link State Request</td>
+<td>用于向对方请求所需要的LSA</td>
+</tr>
+<tr>
+<td>Link State Update</td>
+<td>用于向对方发送其所需要的LSA</td>
+</tr>
+<tr>
+<td>Link State ACK</td>
+<td>用来对收到的LSA进行确认</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ospf三大表项">OSPF三大表项</h3>
+<p><strong>OSPF的邻居表</strong></p>
+<ul>
+<li>OSPF在传递链路状态信息之前，需先建立OSPF邻居关系</li>
+<li>OSPF的邻居关系通过交互Hello报文建立</li>
+<li>OSPF邻居表显示了OSPF路由器之间的邻居状态</li>
+</ul>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">&lt;R1> display ospf <span class="token punctuation">[</span> <span class="token keyword">process</span><span class="token operator">-</span>id <span class="token punctuation">]</span> peer <span class="token punctuation">[</span> <span class="token punctuation">[</span> interface<span class="token operator">-</span><span class="token function">type</span> interface<span class="token operator">-</span>number <span class="token punctuation">]</span> <span class="token punctuation">[</span> neighbor<span class="token operator">-</span>id <span class="token punctuation">]</span> <span class="token punctuation">|</span> brief <span class="token punctuation">|</span> last<span class="token operator">-</span>nbr<span class="token operator">-</span>down <span class="token punctuation">]</span>	<span class="token comment">#用来显示OSPF中各区域邻居的信息</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>process-id</td>
+<td>OSPF进程号</td>
+</tr>
+<tr>
+<td>interface-type interface-number</td>
+<td>指定接口类型和接口号</td>
+</tr>
+<tr>
+<td>neighbor-id</td>
+<td>邻居的Router ID</td>
+</tr>
+<tr>
+<td>brief</td>
+<td>显示OSPF各区域中邻居的概要信息</td>
+</tr>
+<tr>
+<td>last-nbr-down</td>
+<td>显示OSPF区域中最后Down掉的邻居的概要信息</td>
+</tr>
+</tbody>
+</table>
+<p><strong>OSPF的LSDB表</strong></p>
+<ul>
+<li>LSDB会保存自己产生的及从邻居收到的LSA信息</li>
+<li>Type标识LSA的类型，AdvRouter标识发送LSA的路由器</li>
+</ul>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">&lt;R1> display ospf lsdb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>OSPF的路由表</strong></p>
+<ul>
+<li>OSPF路由表和路由器路由表是两张不同的表项</li>
+<li>OSPF路由表包含Destination、Cost和NextHop等指导转发的信息。</li>
+</ul>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">display ospf <span class="token punctuation">[</span> <span class="token keyword">process</span><span class="token operator">-</span>id <span class="token punctuation">]</span> routing router<span class="token operator">-</span>id <span class="token punctuation">[</span> router<span class="token operator">-</span>id <span class="token punctuation">]</span>
+display ospf <span class="token punctuation">[</span> <span class="token keyword">process</span><span class="token operator">-</span>id <span class="token punctuation">]</span> routing <span class="token punctuation">[</span> ip<span class="token operator">-</span>address <span class="token punctuation">[</span> mask <span class="token punctuation">|</span> mask<span class="token operator">-</span>length <span class="token punctuation">]</span> <span class="token punctuation">]</span> <span class="token punctuation">[</span> interface interface<span class="token operator">-</span><span class="token function">type</span> interface<span class="token operator">-</span>number <span class="token punctuation">]</span> <span class="token punctuation">[</span> nexthop nexthop<span class="token operator">-</span>address <span class="token punctuation">]</span> <span class="token punctuation">[</span> verbose <span class="token punctuation">]</span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>process-id</td>
+<td>OSPF进程号</td>
+</tr>
+<tr>
+<td>router-id router-id</td>
+<td>目的设备的Router ID</td>
+</tr>
+<tr>
+<td>ip-address</td>
+<td>目的IP地址</td>
+</tr>
+<tr>
+<td>mask</td>
+<td>指定子网掩码</td>
+</tr>
+<tr>
+<td>mask-length</td>
+<td>指定掩码长度</td>
+</tr>
+<tr>
+<td>interface interface-type interface-number</td>
+<td>接口类型及接口号</td>
+</tr>
+<tr>
+<td>nexthop nexthop-address</td>
+<td>显示下一跳IP地址为此指定值的路由信息</td>
+</tr>
+<tr>
+<td>verbose</td>
+<td>查看详细信息</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ospf-协议报文格式与类型">OSPF 协议报文格式与类型</h3>
+<blockquote>
+<p>OSPF一共定义了5种类型的报文，不同类型的OSPF报文有相同的头部格式，OSPF报文直接采用IP封装，在报文的IP头部中，协议号为89</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th><strong>报文名称</strong></th>
+<th><strong>报文功能</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hello</td>
+<td>周期性发送，用来发现和维护OSPF邻居关系</td>
+</tr>
+<tr>
+<td>Database Description</td>
+<td>描述本地LSDB的摘要信息，用于两台设备进行数据库同步</td>
+</tr>
+<tr>
+<td>Link State Request</td>
+<td>用于向对方请求所需要的LSA。设备只有在OSPF邻居双方成功交换DD报文后才会向对方发出LSR报文</td>
+</tr>
+<tr>
+<td>Link State Update</td>
+<td>用于向对方发送其所需要的LSA</td>
+</tr>
+<tr>
+<td>Link State ACK</td>
+<td>用来对收到的LSA进行确认</td>
+</tr>
+</tbody>
+</table>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\数通\华为OSPF算法\OSPF报文格式.png" style="zoom: 60%;" />
+<p><strong>重要字段解释：</strong></p>
+<ul>
+<li>Version ：对于当前所使用的OSPFv2，该字段的值为2</li>
+<li>Router ID：表示生成此报文的路由器的Router ID</li>
+<li>Area ID：表示此报文需要被通告到的区域</li>
+<li>Type：类型字段</li>
+<li>Packet length：表示整个OSPF报文的长度，单位是字节</li>
+<li>Checksum：校验字段，其校验的范围是整个OSPF报文，包括OSPF报文头部</li>
+<li>Auth Type：为0时表示不认证；为1时表示简单的明文密码认证；为2时表示加密认证</li>
+<li>Authentication：认证所需的信息。该字段的内容随Au Type的值不同而不同</li>
+</ul>
+<h2 id="ospf协议工作原理">OSPF协议工作原理</h2>
+<h3 id="ospf邻接关系建立过程">OSPF邻接关系建立过程</h3>
+<blockquote>
+<p>OSPF完成邻接关系的建立有四个步骤，建立邻居关系、协商主/从、交互LSDB信息，同步LSDB</p>
+</blockquote>
+<img src=".\华为OSPF算法\OSPF邻接关系建立过程.png" alt="OSPF邻接关系建立过程" style="zoom:50%;" />
+<h4 id="建立邻居关系：">建立邻居关系：</h4>
+<blockquote>
+<p>OSPF使用Hello报文发现和建立邻居关系</p>
+</blockquote>
+<ul>
+<li>在以太网链路上，缺省时OSPF采用组播的形式发送Hello报文 [目的地址224.0.0.5]</li>
+<li>OSPF Hello报文中包含了路由器的Router ID、邻居列表等信息</li>
+</ul>
+<img src=".\华为OSPF算法\建立双向邻居关系.png" style="zoom:50%;" />
+<ol>
+<li>当一台OSPF路由器收到其他路由器发来的首个Hello报文时会从初始Down状态切换为Init状态</li>
+<li>当OSPF路由器收到的Hello报文中的邻居字段包含自己的Router ID时，从Init切换2-way状态</li>
+</ol>
+<h5 id="hello报文">Hello报文</h5>
+<p>Hello报文的主要作用：</p>
+<ul>
+<li>邻居发现：自动发现邻居路由器</li>
+<li>邻居建立：完成Hello报文中的参数协商，建立邻居关系</li>
+<li>邻居保持：通过周期性发送和接收，检测邻居运行状态</li>
+</ul>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\数通\华为OSPF算法\Hello报文.png" style="zoom:50%;" />
+<p><strong>重要字段解释：</strong></p>
+<ul>
+<li>Network Mask：发送Hello报文的接口的网络掩码</li>
+<li>HelloInterval：发送Hello报文的时间间隔。通常为10s</li>
+<li>RouterDeadInterval：失效时间。如果在此时间内未收到邻居发来的Hello报文，则认为邻居失效</li>
+<li>Neighbor：邻居，以Router ID标识</li>
+</ul>
+<p><strong>其它字段解释：</strong></p>
+<ul>
+<li>Options：
+<ul>
+<li>E：是否支持外部路由</li>
+<li>MC：是否支持转发组播数据包</li>
+<li>N/P：是否为NSSA区域</li>
+</ul>
+</li>
+<li>Router Priority ：DR优先级。默认为1。如果设置为0，则路由器不能参与DR或BDR的选举。</li>
+<li>Designated Router ：DR的接口地址</li>
+<li>Backup Designated Router ：BDR的接口地址</li>
+</ul>
+<h4 id="建立邻接关系：">建立邻接关系：</h4>
+<img src=".\华为OSPF算法\相互描述各自的LSDB.png" alt="相互描述各自的LSDB" style="zoom:50%;" />
+<ul>
+<li>邻居状态机从2-way转为Exstart状态后开始主从关系选举：
+<ul>
+<li>R1向R2发送的第一个DD报文内容为空，其Seq序列号假设为X</li>
+<li>R2也向R1发出第一个DD报文，其Seq序列号假设为Y</li>
+<li>选举主从关系的规则是比较Router ID，越大越优。R2的Router ID比R1大，因此R2成为真正的主设备主从关系比较结束后，R1的状态从Exstart转变为Exchange</li>
+</ul>
+</li>
+<li>R1邻居状态变为Exchange后，R1发送一个新的DD报文，包含自己LSDB的描述信息，其序列号采用主设备R2的序列号。R2收到后邻居状态从Exstart转变为Exchange</li>
+<li>R2向R1发送一个新的DD报文，包含自己LSDB的描述信息，序列号为Y+1</li>
+<li>R1作为从路由器需要对主路由R2发送的每个DD报文进行确认，回复报文的序列号与主路由R2一致</li>
+<li>发送完最后一个DD报文后，R1将邻居状态切换为Loading</li>
+</ul>
+<img src=".\华为OSPF算法\更新LSA并同步双方LSDB.png" alt="更新LSA并同步双方LSDB" style="zoom:50%;" />
+<ul>
+<li>邻居状态转变为Loading后，R1向R2发送LSR报文，请求那些在Exchange状态下通过DD报文发现的，但是在本地LSDB中没有的LSA</li>
+<li>R2收到后向R1回复LSU。在LSU报文中包含被请求的LSA的详细信息</li>
+<li>R1收到LSU报文后，向R2回复LS ACK报文，确认已接收到，确保信息传输的可靠性</li>
+<li>此过程中R2也会向R1发送LSA请求。当两端LSDB完全一致时，邻居状态变为Full，表示成功建立邻接关系</li>
+</ul>
+<h5 id="dd报文">DD报文</h5>
+<p>DD报文包含LSA头部信息，包括LS Type、LS ID、Advertising Router、LS Sequence Number、LS Checksum</p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\数通\华为OSPF算法\DD报文.png"  />
+<p>DD报文部分字段解释</p>
+<ul>
+<li>
+<p>Interface MTU：</p>
+<ul>
+<li>指示在不分片的情况下，此接口最大可发出的IP报文长度。在两个邻居发送DD报文中包含MTU参数，如果收到的DD报文中MTU和本端的MTU不相等，则丢弃该DD报文</li>
+<li>缺省情况下，华为设备未开启MTU检查</li>
+</ul>
+</li>
+<li>
+<p>Optinons：字段同Hello报文</p>
+</li>
+<li>
+<p>标准位：</p>
+<ul>
+<li>I：当发送连续多个DD报文时，如果这是第一个DD报文，则置为1，否则置为0。</li>
+<li>M [More]：当发送连续多个DD报文时，如果这是最后一个DD报文，则置为0。否则置为1，表示后面还有其他的DD报文。</li>
+<li>MS [Master/Slave]：当两台OSPF路由器交换DD报文时，首先需要确定双方的主从关系，Router ID大的一方会成为Master。当值为1时表示发送方为Master</li>
+</ul>
+</li>
+<li>
+<p>DD sequence number ：DD报文序列号。主从双方利用序列号来保证DD报文传输的可靠性和完整性</p>
+</li>
+</ul>
+<h4 id="邻居状态及含义说明：">邻居状态及含义说明：</h4>
+<table>
+<thead>
+<tr>
+<th>邻居状态</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Down</td>
+<td>初始状态，表示没有从邻居收到任何信息</td>
+</tr>
+<tr>
+<td>Init</td>
+<td>路由器已经从邻居收到了Hello报文，但自己的Router ID不在所收到的Hello报文的邻居列表中</td>
+</tr>
+<tr>
+<td>2-way</td>
+<td>路由器发现自己的Router ID存在于收到的Hello报文的邻居列表中</td>
+</tr>
+<tr>
+<td>ExStart</td>
+<td>路由器开始向邻居发送DD报文，在此状态下发送的DD报文不包含链路状态描述</td>
+</tr>
+<tr>
+<td>Exchange</td>
+<td>路由器与邻居之间相互发送包含链路状态信息摘要的DD报文</td>
+</tr>
+<tr>
+<td>Loading</td>
+<td>路由器与邻居之间相互发送LSR报文、LSU报文、LSAck报文</td>
+</tr>
+<tr>
+<td>Full</td>
+<td>路由器已完成了与邻居的LSDB同步</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ospf网络类型">OSPF网络类型</h3>
+<blockquote>
+<p>OSPF网络类型是一个非常重要的接口变量，会影响OSPF在接口上的操作。接口默认的OSPF网络类型取决于接口所使用的数据链路层封装</p>
+</blockquote>
+<ul>
+<li>OSPF的有四种网络类型，Broadcast、NBMA、P2MP和P2P</li>
+<li>链路两端的OSPF接口网络类型必须一致，否则双方无法建立邻居关系</li>
+</ul>
+<img src=".\华为OSPF算法\OSPF网络类型 一.png" style="zoom:50%;" />
+<img src=".\华为OSPF算法\OSPF网络类型 二.png" style="zoom:50%;" />
+<h3 id="dr-指定路由器-与bdr-备份指定路由器">DR [指定路由器] 与BDR [备份指定路由器]</h3>
+<p><strong>背景引入：</strong></p>
+<ul>
+<li>MA[ Multi-Access] 多路访问网络有两种类型：广播型多路访问网络 [BMA] 及非广播型多路访问网络[NBMA]</li>
+<li>以太网 [Ethernet] 是一种典型的广播型多路访问网络</li>
+<li>在MA网络中，如果每台OSPF路由器都与其他的所有路由器建立OSPF邻接关系，便会导致网络中存在过多的OSPF邻接关系，增加设备负担，也增加了网络中泛洪的OSPF报文数量</li>
+<li>当拓扑出现变更，网络中的LSA泛洪可能会造成带宽的浪费和设备资源的损耗</li>
+</ul>
+<p><strong>引入DR与BDR：</strong></p>
+<ul>
+<li>为优化MA网络中OSPF邻接关系，OSPF指定了三种OSPF路由器身份，DR [Designated Router，指定路由器]、BDR [Backup Designated Router，备用指定路由器 ]和 [DRother] 路由器</li>
+<li>只允许DR、BDR与其他OSPF路由器建立邻接关系。DRother之间不会建立全毗邻的OSPF邻接关系，双方停滞在2-way状态</li>
+<li>BDR会监控DR的状态，并在当前DR发生故障时接替其角色</li>
+</ul>
+<img src=".\华为OSPF算法\DR与BDR.png" style="zoom: 67%;" />
+<h5 id="选举规则：">选举规则：</h5>
+<ul>
+<li>
+<p>DR/BDR的选举是基于接口的</p>
+<ul>
+<li>优先级更高的接口成为该MA的DR，如果优先级相等 [默认值都是1]，则具有更高的OSPF Router-ID的路由器 [的接口] 被选举成DR</li>
+</ul>
+</li>
+<li>
+<p>DR/BDR的选举是非抢占式的</p>
+</li>
+</ul>
+<h5 id="广播链路或者nbma链路上dr和bdr的选举过程">广播链路或者NBMA链路上DR和BDR的选举过程</h5>
+<ol>
+<li>接口UP后，发送Hello报文，同时进入到Waiting状态。在Waiting状态下会有一个WaitingTimer，该计时器的长度与DeadTimer是一样的。默认值为40秒，用户不可自行调整。</li>
+<li>在WaitingTimer触发前，发送的Hello报文是没有DR和BDR字段的。在Waiting阶段，如果收到Hello报文中有DR和BDR，那么直接承认网络中的DR和BDR，而不会触发选举。直接离开Waiting状态，开始邻居同步</li>
+<li>假设网络中已经存在一个DR和一个BDR，这时新加入网络中的路由器，不论它的Router ID或者DR优先级有多大，都会承认现网中已有的DR和BDR</li>
+<li>当DR因为故障Down掉之后，BDR会继承DR的位置，剩下的优先级大于0的路由器会竞争成为新的BDR</li>
+<li>只有当不同Router ID，或者配置不同DR优先级的路由器同时起来，在同一时刻进行DR选举才会应用DR选举规则产生DR</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>OSPF网络类型</th>
+<th><strong>常见链路层协议</strong></th>
+<th>是否选举DR</th>
+<th>是否和邻居建立邻接关系</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Point-to-point</td>
+<td>PPP链路；HDLC链路</td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr>
+<td>Broadcast</td>
+<td>以太网链路</td>
+<td>是</td>
+<td>DR和BDR与其他设备建立邻接关系、DRother之间只建立邻居关系</td>
+</tr>
+<tr>
+<td>NBMA</td>
+<td>帧中继链路</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>P2MP</td>
+<td>需手工指定</td>
+<td>否</td>
+<td>是</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ospf域">OSPF域</h4>
+<blockquote>
+<p>OSPF域 [Domain]：一系列使用相同策略的连续OSPF网络设备所构成的网络<br>
+OSPF路由器在同一个区域 [Area ]内网络中泛洪LSA。为了确保每台路由器都拥有对网络拓扑的一致认知，LSDB需要在区域内进行同步</p>
+</blockquote>
+<p><strong>OSPF单区域与其产生的问题：</strong></p>
+<ul>
+<li>如果OSPF域仅有一个区域，随着网络规模越来越大，OSPF路由器的数量越来越多，这将导致诸多问题：
+<ul>
+<li>LSDB越来越庞大，同时导致OSPF路由表规模增加。路由器资源消耗多，设备性能下降，影响数据转发</li>
+<li>基于庞大的LSDB进行路由计算变得困难</li>
+<li>当网络拓扑变更时，LSA全域泛洪和全网SPF重计算带来巨大负担</li>
+</ul>
+</li>
+</ul>
+<img src=".\华为OSPF算法\OSPF单区域.png" style="zoom:50%;" />
+<p><strong>OSPF多区域：</strong></p>
+<ul>
+<li>OSPF引入区域 [Area] 的概念，将一个OSPF域划分成多个区域，可以使OSPF支撑更大规模组网</li>
+<li>OSPF多区域的设计减小了LSA泛洪的范围，有效的把拓扑变化的影响控制在区域内，达到网络优化的目的</li>
+<li>在区域边界可以做路由汇总，减小了路由表规模</li>
+<li>多区域提高了网络扩展性，有利于组建大规模的网络</li>
+</ul>
+<img src=".\华为OSPF算法\OSPF多区域.png" style="zoom:50%;" />
+<blockquote>
+<p>区域的分类：区域可以分为骨干区域与非骨干区域。骨干区域即Area0，其他区域都称为非骨干区域</p>
+</blockquote>
+<blockquote>
+<p>多区域互联原则：基于防止区域间环路的考虑，非骨干区域与非骨干区域不能直接相连，所有非骨干区域必须与骨干区域相连</p>
+</blockquote>
+<h3 id="ospf路由器类型">OSPF路由器类型</h3>
+<p>OSPF路由器根据其位置或功能不同，有这样几种类型：</p>
+<ul>
+<li>区域内路由器 IR [Internal Router]：该类路由器的所有接口都属于同一个OSPF区域</li>
+<li>区域边界路由器 ABR [Area Border Router]：该类路由器的接口同时属于两个以上的区域，但至少有一个接口属于骨干区域</li>
+<li>骨干路由器 BR [Backbone Router]：该类路由器至少有一个接口属于骨干区域</li>
+<li>自治系统边界路由器 ASBR [AS Boundary Router]：该类路由器与其他AS交换路由信息。只要一台OSPF路由器引入了外部路由的信息，它就成为ASBR</li>
+</ul>
+<img src=".\华为OSPF算法\OSPF路由器类型示意图.png" style="zoom:50%;" />
+<img src=".\华为OSPF算法\常见的OSPF示意图.png" style="zoom:50%;" />
+<h2 id="ospf协议配置命令">OSPF协议配置命令</h2>
+<p><strong>1. 创建并运行OSPF进程</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei]</span> ospf <span class="token punctuation">[</span> <span class="token keyword">process</span><span class="token operator">-</span>id <span class="token punctuation">|</span> router<span class="token operator">-</span>id router<span class="token operator">-</span>id <span class="token punctuation">]</span>
+<span class="token comment">#porcess-id用于标识OSPF进程，默认进程号为1</span>
+<span class="token comment">#OSPF支持多进程，在同一台设备上可以运行多个不同的OSPF进程，它们之间互不影响，彼此独立</span>
+<span class="token comment">#router-id用于手工指定设备的ID号。如果没有通过命令指定ID号，系统会从当前接口的IP地址中自动选取一个作为设备的ID号</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>2. 创建并进入OSPF区域</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-ospf-1]</span> area area<span class="token operator">-</span>id 
+<span class="token comment"># area命令用来创建OSPF区域，并进入OSPF区域视图</span>
+<span class="token comment"># area-id可以是十进制整数或点分十进制格式。采取整数形式时，取值范围是0～4294967295</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>area-id</td>
+<td>指定区域的标识，其中区域号area-id是0的称为骨干区域</td>
+</tr>
+</tbody>
+</table>
+<p><strong>3. [OSPF区域视图] 在OSPF区域中使能OSPF</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-ospf-1-area-0.0.0.0]</span> network network<span class="token operator">-</span>address wildcard<span class="token operator">-</span>mask <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>network-address</td>
+<td>接口所在的网段地址</td>
+</tr>
+<tr>
+<td>wildcard-mask</td>
+<td>IP地址的反码，将IP地址的掩码反转 [0变1，1变0]</td>
+</tr>
+<tr>
+<td>description text</td>
+<td>OSPF指定网段的描述信息</td>
+</tr>
+</tbody>
+</table>
+<p><strong>4. 接口视图下使能OSPF：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-GigabitEthernet1/0/0]</span> ospf enable <span class="token keyword">process</span><span class="token operator">-</span>id  area area<span class="token operator">-</span>id
+<span class="token comment">#	ospf enable命令用来在接口上使能OSPF，优先级高于network命令</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong>5. [接口视图] 配置OSPF接口开销</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-GE1/0/1]</span> ospf cost cost	<span class="token comment"># ospf cost命令用来配置接口上运行OSPF协议所需的开销</span>
+<span class="token comment">#	缺省情况下，OSPF会根据该接口的带宽自动计算其开销值cost取值范围是1～65535</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong>6.  [OSPF视图] 设置OSPF带宽参考值</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-ospf-1]</span> bandwidth<span class="token operator">-</span>reference value
+<span class="token comment">#	bandwidth-reference命令用来设置通过公式计算接口开销所依据的带宽参考值</span>
+<span class="token comment">#	value取值范围是1～2147483648，单位是Mbit/s，缺省值是100Mbit/s</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><strong>7.  [接口视图] 设置接口在选举DR时的优先级</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-GigabitEthernet0/0/0]</span> ospf dr<span class="token operator">-</span>priority priority
+<span class="token comment">#	缺省情况下，优先级为1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>priority</td>
+<td>接口在选举DR或BDR时的优先级，其值越大，优先级越高</td>
+</tr>
+</tbody>
+</table>
+<p><strong>8. [接口视图] 设置Hello报文发送的时间间隔：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-GigabitEthernet1/0/0]</span> ospf timer Hello interval
+<span class="token comment">#缺省情况下，P2P、Broadcast类型接口发送Hello报文的时间间隔的值为10秒，且同一接口上邻居失效时间是Hello间隔时间的4倍</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong>9. [接口视图] 设置网络类型：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-GigabitEthernet1/0/0]</span> ospf network<span class="token operator">-</span><span class="token function">type</span> <span class="token punctuation">&#123;</span> broadcast <span class="token punctuation">|</span> nbma <span class="token punctuation">|</span> p2mp <span class="token punctuation">|</span> p2p <span class="token punctuation">&#125;</span>
+<span class="token comment">#	缺省情况下，接口的网络类型根据物理接口而定。以太网接口的网络类型为广播，串口和POS口（封装PPP协议或HDLC协议时）网络类型为P2P</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/2023/03/23/%E5%8D%8E%E4%B8%BAOSPF%E7%AE%97%E6%B3%95/">https://shierjinghuang.github.io/2023/03/23/%E5%8D%8E%E4%B8%BAOSPF%E7%AE%97%E6%B3%95/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/HCIA/">
+                                    <span class="chip bg-color">HCIA</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/03/24/%E5%8D%8E%E4%B8%BAVLAN%E5%8E%9F%E7%90%86%E7%B2%BE%E8%AE%B2%E4%B8%8E%E9%85%8D%E7%BD%AE/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="华为VLAN原理精讲与配置">
+                        
+                        <span class="card-title">华为VLAN原理精讲与配置</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-24
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                    网络工程相关
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/HCIA/">
+                        <span class="chip bg-color">HCIA</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/03/18/Java%E5%AE%9E%E8%AE%AD/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Java项目 即时通讯系统">
+                        
+                        <span class="card-title">Java项目 即时通讯系统</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            这是你自定义的文章摘要内容，如果这个属性有值，文章卡片摘要就显示这段文字，否则程序会自动截取文章的部分内容作为摘要
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1/" class="post-category">
+                                    项目设计
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2025</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">450.6k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

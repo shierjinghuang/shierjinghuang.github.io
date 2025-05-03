@@ -1,0 +1,1401 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="访问控制列表ACL的原理与配置, 十二惊惶">
+    <meta name="description" content="随着网络的飞速发展，网络安全和网络服务质量QoS (Quality of Service)问题日益突出，访问控制列表 (ACL, Access Control List)是与其紧密相关的一个技术">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>访问控制列表ACL的原理与配置 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">访问控制列表ACL的原理与配置</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/HCIP/">
+                                <span class="chip bg-color">HCIP</span>
+                            </a>
+                        
+                            <a href="/tags/ACL/">
+                                <span class="chip bg-color">ACL</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                网络工程相关
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-03-26
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2025-05-02
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    10 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="访问控制列表acl的原理与配置">访问控制列表ACL的原理与配置</h2>
+<p>[TOC]</p>
+<h3 id="acl概述">ACL概述</h3>
+<blockquote>
+<p>访问控制列表 [ACL, Access Control List]</p>
+</blockquote>
+<p>通过ACL可以实现对网络中报文流的精确识别和控制，达到控制网络访问行为、防止网络攻击和提高网络带宽利用率的目的，从而切实保障网络环境的安全性和网络服务质量的可靠性</p>
+<ul>
+<li>ACL是由permit或deny语句组成的一系列有顺序的规则集合；它通过匹配报文的相关字段实现对报文的分类</li>
+<li>ACL是能够匹配一个IP数据包中的源IP地址、目的IP地址、协议类型、源目的端口等元素的基础性工具</li>
+<li>ACL还能够用于匹配路由条目</li>
+</ul>
+<h3 id="acl的组成">ACL的组成</h3>
+<blockquote>
+<p>ACL由若干条permit或deny语句组成。每条语句就是该ACL的一条规则，每条语句中的permit或deny就是与这条规则相对应的处理动作</p>
+</blockquote>
+<ul>
+<li>ACL编号：在网络设备上配置ACL时，每个ACL都需要分配一个编号，称为ACL编号，用来标识ACL</li>
+<li>规则：一个ACL通常由若干条permit/deny语句组成，每条语句就是该ACL的一条规则</li>
+<li>规则编号：每条规则都有一个相应的编号，称为规则编号，用来标识ACL规则
+<ul>
+<li>可以自定义，也可以系统自动分配</li>
+<li>ACL规则的编号范围是0～4294967294，所有规则均按照规则编号从小到大进行排序</li>
+</ul>
+</li>
+<li>动作：每条规则中的permit或deny，就是与这条规则相对应的处理动作，permit指允许，deny指拒绝
+<ul>
+<li>ACL一般是结合其他技术使用，不同的场景，处理动作的含义也有所不同</li>
+</ul>
+</li>
+<li>匹配项：ACL定义了极其丰富的匹配项
+<ul>
+<li>包括二层以太网帧头信息 [如源MAC、目的MAC、以太帧协议类型]、三层报文信息 [如目的地址、协议类型] 以及四层报文信息 [如TCP/UDP端口号] 等</li>
+</ul>
+</li>
+</ul>
+<h4 id="规则编号与步长">规则编号与步长</h4>
+<p><strong>规则编号 [Rule ID]：</strong></p>
+<ul>
+<li>每条规则都有一个相应的编号，称为规则编号，用来标识ACL规则，可以自定义，也可以系统自动分配</li>
+</ul>
+<p><strong>步长 [Step]:</strong></p>
+<ul>
+<li>步长是系统自动为ACL规则分配编号时，每个相邻规则编号之间的差值，缺省值为5。步长的作用是为了方便后续在旧规则之间，插入新的规则。</li>
+</ul>
+<p><strong>Rule ID分配规则：</strong></p>
+<ul>
+<li>系统为ACL中首条未手工指定编号的规则分配编号时，使用步长值作为该规则的起始编号</li>
+<li>为后续规则分配编号时，则使用大于当前ACL内最大规则编号且是步长整数倍的最小整数作为规则编号</li>
+</ul>
+<h4 id="通配符-wildcard">通配符 [Wildcard]</h4>
+<p>通配符是一个32比特长度的数值，用于指示IP地址中，哪些比特位需要严格匹配，哪些比特位无需匹配</p>
+<p>通配符通常采用类似网络掩码的点分十进制形式表示，但是含义却与网络掩码完全不同</p>
+<p>换算成二进制后，0表示匹配，1表示不关心</p>
+<blockquote>
+<p>rule	 5	 deny	   source  10.1.1.1  0<br>
+rule	10	deny	   source  10.1.1.2  0<br>
+rule	15	permit	source  10.1.1.0  0.0.0.255</p>
+</blockquote>
+<ul>
+<li>rule 5:：拒绝源IP地址为10.1.1.1报文通过——因为通配符为全0，所以每一位都要严格匹配，因此匹配的是主机IP地址10.1.1.1</li>
+<li>rule 15：允许源IP地址为10.1.1.0/24网段地址的报文通过——因为通配符：0.0.0.11111111，后8位为1，表示不关心，因此10.1.1.xxxxxxxx 的后8位可以为任意值，所以匹配的是10.1.1.0/24网段</li>
+</ul>
+<p><strong>特殊的通配符：</strong></p>
+<ul>
+<li>当通配符全为0来匹配IP地址时，表示精确匹配某个IP地址</li>
+<li>当通配符前七位全为1，最后一位为0——0.0.0.254，来匹配IP地址时，表示匹配网络号内的奇数IP地址</li>
+<li>当通配符全为1来匹配0.0.0.0地址时，表示匹配了所有IP地址</li>
+</ul>
+<h4 id="acl的分类与标识">ACL的分类与标识</h4>
+<p>基于ACL规则定义方式的划分，可分为：基本ACL、高级ACL、二层ACL、用户自定义ACL和用户ACL</p>
+<img src=".\访问控制列表ACL的原理与配置\基于ACL规则定义方式的划分.png" style="zoom:50%;" />
+<p>基于ACL标识方法的划分，则可分为：数字型ACL和命名型ACL</p>
+<img src=".\访问控制列表ACL的原理与配置\基于ACL标识方法的划分.png" style="zoom:50%;" />
+<h4 id="acl的匹配机制">ACL的匹配机制</h4>
+<img src=".\访问控制列表ACL的原理与配置\ACL的匹配机制.png" style="zoom:50%;" />
+<p>ACL的匹配机制概括来说就是：</p>
+<ul>
+<li>配置ACL的设备接收报文后，会将该报文与ACL中的规则逐条进行匹配，如果不能匹配上，就会继续尝试去匹配下一条规则</li>
+<li>一旦匹配上，则设备会对该报文执行这条规则中定义的处理动作，并且不再继续尝试与后续规则匹配</li>
+</ul>
+<p><strong>匹配流程</strong>：首先系统会查找设备上是否配置了ACL</p>
+<ul>
+<li>如果ACL不存在，则返回ACL匹配结果为：不匹配</li>
+<li>如果ACL存在，则查找设备是否配置了ACL规则
+<ul>
+<li>如果规则不存在，则返回ACL匹配结果为：不匹配</li>
+<li>如果规则存在，则系统会从ACL中编号最小的规则开始查找
+<ul>
+<li>如果匹配上了permit规则，则停止查找规则，并返回ACL匹配结果为：匹配 [允许]</li>
+<li>如果匹配上了deny规则，则停止查找规则，并返回ACL匹配结果为：匹配 [拒绝]</li>
+<li>如果未匹配上规则，则继续查找下一条规则，以此循环。如果一直查到最后一条规则，报文仍未匹配上，则返回ACL匹配结果为：不匹配</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>从整个ACL匹配流程可以看出，报文与ACL规则匹配后，会产生两种匹配结果：<strong>匹配和不匹配</strong></p>
+<ul>
+<li>匹配 [命中规则] ：指存在ACL，且在ACL中查找到了符合匹配条件的规则。不论匹配的动作是permit还是deny，都称为匹配，而不是只是匹配上permit规则才算匹配</li>
+<li>不匹配 [未命中规则] ：指不存在ACL，或ACL中无规则，再或者在ACL中遍历了所有规则都没有找到符合匹配条件的规则。以上三种情况，都叫做不匹配</li>
+</ul>
+<p><strong>匹配原则：一旦命中即停止匹配</strong></p>
+<p>配置顺序 [config模式] ：系统按照ACL规则编号从小到大的顺序进行报文匹配，规则编号越小越容易被匹配</p>
+<p><strong>ACL的匹配位置</strong></p>
+<img src=".\访问控制列表ACL的原理与配置\ACL的匹配位置.png" style="zoom:50%;" />
+<p><strong>入站 [Inbound]及出站 [Outbound]方向</strong></p>
+<img src=".\访问控制列表ACL的原理与配置\入站及出站.png" style="zoom:50%;" />
+<h3 id="acl的基础配置">ACL的基础配置</h3>
+<p><strong>1. 创建ACL：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei]</span> acl <span class="token punctuation">&#123;</span> <span class="token punctuation">[</span> number <span class="token punctuation">]</span> acl<span class="token operator">-</span>number <span class="token punctuation">|</span> name acl<span class="token operator">-</span>name <span class="token punctuation">[</span> <span class="token punctuation">[</span> number <span class="token punctuation">]</span> acl<span class="token operator">-</span>number <span class="token punctuation">|</span> basic <span class="token punctuation">|</span> advance <span class="token punctuation">|</span> link <span class="token punctuation">|</span> user <span class="token punctuation">|</span> arp <span class="token punctuation">]</span> <span class="token punctuation">&#125;</span>	<span class="token comment">#	完整配置</span>
+<span class="token namespace">[Huawei]</span> acl <span class="token punctuation">[</span> number <span class="token punctuation">]</span> acl<span class="token operator">-</span>number <span class="token punctuation">[</span> match<span class="token operator">-</span>order config <span class="token punctuation">]</span>
+<span class="token comment">#	使用编号创建一个ACL，并进入基本ACL视图</span>
+<span class="token namespace">[Huawei]</span> acl name acl<span class="token operator">-</span>name <span class="token punctuation">&#123;</span> basic <span class="token punctuation">|</span> acl<span class="token operator">-</span>number <span class="token punctuation">&#125;</span> <span class="token punctuation">[</span> match<span class="token operator">-</span>order config <span class="token punctuation">]</span>	
+<span class="token comment">#	使用名称创建一个命名型的基本ACL，并进入基本ACL视图</span>
+<span class="token namespace">[Huawei]</span> acl name acl<span class="token operator">-</span>name <span class="token punctuation">&#123;</span> advance <span class="token punctuation">|</span> acl<span class="token operator">-</span>number <span class="token punctuation">&#125;</span> <span class="token punctuation">[</span> match<span class="token operator">-</span>order config <span class="token punctuation">]</span>
+<span class="token comment">#	使用名称创建一个命名型的高级ACL，进入高级ACL视图</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>number</td>
+<td>指定用数字标识ACL</td>
+</tr>
+<tr>
+<td>acl-number</td>
+<td>指定ACL的编号</td>
+</tr>
+<tr>
+<td>name acl-name</td>
+<td>指定用名称标识ACL</td>
+</tr>
+<tr>
+<td>basic</td>
+<td>指定基本ACL</td>
+</tr>
+<tr>
+<td>advance</td>
+<td>指定高级ACL</td>
+</tr>
+<tr>
+<td>link</td>
+<td>指定二层ACL</td>
+</tr>
+<tr>
+<td>user</td>
+<td>指定用户自定义ACL</td>
+</tr>
+<tr>
+<td>arp</td>
+<td>指定基于ARP的ACL</td>
+</tr>
+<tr>
+<td>all</td>
+<td>指定删除所有的ACL</td>
+</tr>
+<tr>
+<td>match-order config</td>
+<td>指定ACL规则的匹配顺序，config表示配置顺序</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2. 配置基本ACL的规则：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-acl-basic-2000]</span> rule <span class="token punctuation">[</span> rule<span class="token operator">-</span>id <span class="token punctuation">]</span> <span class="token punctuation">&#123;</span> deny <span class="token punctuation">|</span> permit <span class="token punctuation">&#125;</span> <span class="token punctuation">[</span> source <span class="token punctuation">&#123;</span> source<span class="token operator">-</span>address source<span class="token operator">-</span>wildcard <span class="token punctuation">|</span> any <span class="token punctuation">&#125;</span> <span class="token punctuation">|</span> time<span class="token operator">-</span>range time<span class="token operator">-</span>name <span class="token punctuation">]</span> 
+<span class="token comment">#	在基本ACL视图下，通过此命令来配置基本ACL的规则</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li><strong>rule-id</strong>：指定ACL的规则ID</li>
+<li><strong>deny</strong>：指定拒绝符合条件的报文</li>
+<li><strong>permit</strong>：指定允许符合条件的报文</li>
+<li>source { source-address source-wildcard | any }：指定ACL规则匹配报文的源地址信息。如果不配置，表示报文的任何源地址都匹配。其中：
+<ul>
+<li><strong>source-address</strong>：指定报文的源地址</li>
+<li><strong>source-wildcard</strong>：指定源地址通配符</li>
+<li><strong>any</strong>：表示报文的任意源地址。相当于source-address为0.0.0.0或者source-wildcard为255.255.255.255</li>
+</ul>
+</li>
+<li>time-range time-name：指定ACL规则生效的时间段
+<ul>
+<li>time-name表示ACL规则生效时间段名称。如果不指定时间段，表示任何时间都生效</li>
+</ul>
+</li>
+</ul>
+<p><strong>3. traffic-filter [接口视图]：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">traffic<span class="token operator">-</span><span class="token keyword">filter</span> acl <span class="token punctuation">&#123;</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">&#123;</span> basic<span class="token operator">-</span>acl <span class="token punctuation">|</span> acl<span class="token operator">-</span>name <span class="token punctuation">&#125;</span> <span class="token punctuation">|</span> <span class="token punctuation">&#123;</span> advanced<span class="token operator">-</span>acl <span class="token punctuation">|</span> acl<span class="token operator">-</span>name <span class="token punctuation">&#125;</span> <span class="token punctuation">&#125;</span> <span class="token punctuation">|</span> <span class="token punctuation">&#123;</span> l2<span class="token operator">-</span>acl <span class="token punctuation">|</span> acl<span class="token operator">-</span>name <span class="token punctuation">&#125;</span> <span class="token punctuation">&#125;</span> <span class="token operator">*</span> <span class="token punctuation">&#123;</span> inbound <span class="token punctuation">[</span> priority <span class="token punctuation">&#123;</span> low <span class="token punctuation">|</span> high <span class="token punctuation">&#125;</span> <span class="token punctuation">]</span> <span class="token punctuation">|</span> outbound <span class="token punctuation">&#125;</span>
+<span class="token comment">#	traffic-filter命令用来在指定接口上配置基于ACL的报文过滤</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>basic-acl</td>
+<td>指定基于基本ACL进行报文过滤</td>
+</tr>
+<tr>
+<td>advanced-acl</td>
+<td>指定基于高级ACL进行报文过滤</td>
+</tr>
+<tr>
+<td>l2-acl</td>
+<td>指定基于二层ACL进行报文过滤</td>
+</tr>
+<tr>
+<td>acl-name</td>
+<td>指定基于命名型ACL进行报文过滤</td>
+</tr>
+<tr>
+<td>inbound</td>
+<td>指定在接口入方向上配置报文过滤</td>
+</tr>
+<tr>
+<td>outbound</td>
+<td>指定在接口出方向上配置报文过滤</td>
+</tr>
+</tbody>
+</table>
+<p><strong>4. 高级ACL的配置命令：</strong></p>
+<p>根据IP承载的协议类型不同，在设备上配置不同的高级ACL规则。对于不同的协议类型，有不同的参数组合</p>
+<ul>
+<li>
+<p>当参数protocol为IP时，高级ACL的命令格式为</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">rule <span class="token punctuation">[</span> rule<span class="token operator">-</span>id <span class="token punctuation">]</span> <span class="token punctuation">&#123;</span> deny <span class="token punctuation">|</span> permit <span class="token punctuation">&#125;</span> ip <span class="token punctuation">[</span> destination <span class="token punctuation">&#123;</span> destination<span class="token operator">-</span>address destination<span class="token operator">-</span>wildcard <span class="token punctuation">|</span> any <span class="token punctuation">&#125;</span> <span class="token punctuation">|</span> source <span class="token punctuation">&#123;</span> source<span class="token operator">-</span>address source<span class="token operator">-</span>wildcard <span class="token punctuation">|</span> any <span class="token punctuation">&#125;</span> <span class="token punctuation">|</span> time<span class="token operator">-</span>range time<span class="token operator">-</span>name <span class="token punctuation">|</span> <span class="token punctuation">[</span> dscp dscp <span class="token punctuation">|</span> <span class="token punctuation">[</span> tos tos <span class="token punctuation">|</span> precedence precedence <span class="token punctuation">]</span> <span class="token punctuation">]</span> <span class="token punctuation">]</span> 
+<span class="token comment">#	在高级ACL视图下，通过此命令来配置高级ACL的规则</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>ip ：指定ACL规则匹配报文的协议类型为IP</li>
+<li>destination { destination-address destination-wildcard | any }
+<ul>
+<li>指定ACL规则匹配报文的目的地址信息。如果不配置，表示报文的任何目的地址都匹配</li>
+</ul>
+</li>
+<li>dscp dscp：指定ACL规则报文，区分服务代码点 [Differentiated Services Code Point]，取值为：0~63</li>
+<li>tos tos：指定ACL规则匹配报文时，依据服务类型字段进行过滤，取值为：0~15</li>
+<li>precedence precedence：
+<ul>
+<li>指定ACL规则匹配报文时，依据优先级字段进行过滤</li>
+<li>precedence表示优先级字段值，取值为：0~7</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>当参数protocol为TCP时，高级ACL的命令格式为</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">rule <span class="token punctuation">[</span> rule<span class="token operator">-</span>id <span class="token punctuation">]</span> <span class="token punctuation">&#123;</span> deny <span class="token punctuation">|</span> permit <span class="token punctuation">&#125;</span> <span class="token punctuation">&#123;</span> protocol<span class="token operator">-</span>number <span class="token punctuation">|</span> tcp <span class="token punctuation">&#125;</span> <span class="token punctuation">[</span> destination <span class="token punctuation">&#123;</span> destination<span class="token operator">-</span>address destination<span class="token operator">-</span>wildcard <span class="token punctuation">|</span> any <span class="token punctuation">&#125;</span> <span class="token punctuation">|</span> destination<span class="token operator">-</span>port <span class="token punctuation">&#123;</span> eq port <span class="token punctuation">|</span> gt port <span class="token punctuation">|</span> lt port <span class="token punctuation">|</span> range port<span class="token operator">-</span><span class="token function">start</span> port<span class="token operator">-</span><span class="token keyword">end</span> <span class="token punctuation">&#125;</span> <span class="token punctuation">|</span> source <span class="token punctuation">&#123;</span> source<span class="token operator">-</span>address source<span class="token operator">-</span>wildcard <span class="token punctuation">|</span> any <span class="token punctuation">&#125;</span> <span class="token punctuation">|</span> source<span class="token operator">-</span>port <span class="token punctuation">&#123;</span> eq port <span class="token punctuation">|</span> gt port <span class="token punctuation">|</span> lt port <span class="token punctuation">|</span> range port<span class="token operator">-</span><span class="token function">start</span> port<span class="token operator">-</span><span class="token keyword">end</span> <span class="token punctuation">&#125;</span> <span class="token punctuation">|</span> tcp<span class="token operator">-</span>flag <span class="token punctuation">&#123;</span> ack <span class="token punctuation">|</span> fin <span class="token punctuation">|</span> syn <span class="token punctuation">&#125;</span> <span class="token operator">*</span> <span class="token punctuation">|</span> time<span class="token operator">-</span>range time<span class="token operator">-</span>name <span class="token punctuation">]</span> <span class="token operator">*</span>
+<span class="token comment">#	在高级ACL视图下，通过此命令来配置高级ACL的规则</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>
+<p>protocol-number | tcp：</p>
+<ul>
+<li>指定ACL规则匹配报文的协议类型为TCP，可以采用数值6表示指定TCP协议</li>
+</ul>
+</li>
+<li>
+<p>destination-port { eq port | gt port | lt port | range port-start port-end}：指定ACL规则匹配报文的UDP或者TCP报文的目的端口，仅在报文协议是TCP或者UDP时有效</p>
+</li>
+<li>
+<p>如果不指定，表示TCP/UDP报文的任何目的端口都匹配</p>
+<ul>
+<li>
+<p>eq port：指定等于目的端口</p>
+</li>
+<li>
+<p>gt port：指定大于目的端口</p>
+</li>
+<li>
+<p>lt port：指定小于目的端口</p>
+</li>
+<li>
+<p>range port-start port-end：指定源端口的范围</p>
+</li>
+</ul>
+</li>
+<li>
+<p>tcp-flag：指定ACL规则匹配报文的TCP报文头中SYN Flag</p>
+</li>
+</ul>
+</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/2023/03/26/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%88%97%E8%A1%A8ACL%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/">https://shierjinghuang.github.io/2023/03/26/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%88%97%E8%A1%A8ACL%E7%9A%84%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/HCIP/">
+                                    <span class="chip bg-color">HCIP</span>
+                                </a>
+                            
+                                <a href="/tags/ACL/">
+                                    <span class="chip bg-color">ACL</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/03/30/README_CN/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="hexo-theme-matery">
+                        
+                        <span class="card-title">hexo-theme-matery</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-03-30
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%85%B6%E4%BB%96/" class="post-category">
+                                    其他
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Hexo/">
+                        <span class="chip bg-color">Hexo</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/03/25/%E5%8D%8E%E4%B8%BA%E8%AE%BE%E5%A4%87%E9%93%BE%E8%B7%AF%E8%81%9A%E5%90%88%E6%8A%80%E6%9C%AF%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="链路聚合技术原理与配置">
+                        
+                        <span class="card-title">链路聚合技术原理与配置</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            通过部署冗余链路并辅以STP（Spanning Tree Protocol，生成树协议）协议实现高可靠。传统解决方案存在灵活度低、故障恢复时间长、配置复杂等缺点
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-03-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                    网络工程相关
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/HCIA/">
+                        <span class="chip bg-color">HCIA</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2025</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">450.6k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

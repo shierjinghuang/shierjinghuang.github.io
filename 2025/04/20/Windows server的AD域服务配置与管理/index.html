@@ -1,0 +1,1476 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Windows Server Active Directory域服务配置与管理全面指南, 十二惊惶">
+    <meta name="description" content="Windows Server Active Directory (AD) 域服务配置与管理全面指南
+[TOC]
+Active Directory (AD) 是 Windows Server 的核心服务，提供了集中式身份验证和授权服务。以下详">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Windows Server Active Directory域服务配置与管理全面指南 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Windows Server Active Directory域服务配置与管理全面指南</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/AD/">
+                                <span class="chip bg-color">AD</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="post-category">
+                                学习记录
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2025-04-20
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2025-05-02
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.1k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    11 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1>Windows Server Active Directory (AD) 域服务配置与管理全面指南</h1>
+<p>[TOC]</p>
+<p>Active Directory (AD) 是 Windows Server 的核心服务，提供了集中式身份验证和授权服务。以下详细介绍 AD 域服务的配置与管理。</p>
+<h2 id="一-active-directory-基础概念">一、Active Directory 基础概念</h2>
+<h3 id="1-1-什么是-active-directory">1.1 什么是 Active Directory</h3>
+<p><strong>Active Directory</strong> 是一种由微软开发的目录服务，它允许网络管理员存储和组织网络中的对象，如用户、计算机、打印机等，以及管理这些对象的访问和权限。</p>
+<ul>
+<li>用于:集中存储网络资源信息、提供身份验证和授权服务、实现策略管理和软件分发</li>
+</ul>
+<p><strong>主要功能和特点包括：</strong></p>
+<ol>
+<li><strong>身份验证和授权：</strong> Active Directory 提供了认证机制，允许用户通过登录来访问网络资源，并授权给用户适当的权限以执行特定的操作。</li>
+<li><strong>目录服务：</strong> 它是一个层次化的数据库，用于存储和组织网络中的对象信息。这些对象可以是用户、组、计算机、打印机等。</li>
+<li><strong>集中管理：</strong> 管理员可以使用 Active Directory 中心化地管理网络中的所有对象和其访问权限，而不需要在每台计算机上单独配置。</li>
+<li><strong>安全性和策略管理：</strong> Active Directory 提供了安全性功能，如访问控制、加密、审计和密码策略管理，以确保网络资源的安全性。</li>
+<li><strong>复制和冗余：</strong> Active Directory 使用多个域控制器（Domain Controller）来提供高可用性和冗余，确保即使一个域控制器失效，网络服务也能继续运行。</li>
+<li><strong>集成其他服务：</strong> 它与其他微软服务和产品集成紧密，如Exchange Server、SharePoint、Azure等，使得企业能够统一管理整个IT基础架构。</li>
+</ol>
+<p><strong>使用场景：</strong></p>
+<ul>
+<li><strong>企业内部网络管理：</strong> 主要用于大型组织和企业，以管理其内部的用户、计算机和资源访问。</li>
+<li><strong>单点登录（SSO）：</strong> Active Directory 可以作为单点登录（SSO）系统的基础，使用户在企业网络中的各种应用和服务中实现统一的登录体验。</li>
+<li><strong>安全管理和合规性：</strong> 通过强化的安全策略和审计功能，帮助组织保护其数据和资源，并符合相关的法规和标准。</li>
+</ul>
+<h3 id="1-2-核心组件">1.2 核心组件</h3>
+<ul>
+<li><strong>域 Domain <strong>: 活动目录的一种实现形式，主要由</strong>域控制器</strong>和<strong>成员计算机</strong>组成</li>
+<li>
+<ul>
+<li><strong>域控制器（Domain Controller, DC）：</strong> 域控制器是存储和管理 Active Directory 数据库的服务器。每个域至少有一个域控制器，它负责验证用户的登录请求、存储和维护域中的对象（如用户、组、计算机等）以及处理其他域控制器的同步和复制
+<ul>
+<li>一般来说：域控制器就是安装了活动目录的一台计算机</li>
+<li>活动目录的数据都存储在域控制器内</li>
+<li>一个域可以有多台域控制器</li>
+</ul>
+</li>
+<li><strong>域名系统（Domain Name System, DNS）：</strong> DNS 在 Active Directory 中扮演着重要角色，用于解析域名和 IP 地址之间的关系，确保客户端能够正确地定位和访问域控制器</li>
+</ul>
+</li>
+<li>**名称空间（DNS域名空间）：**是一个区域的名字，定位了网络资源（域名资源）的位置
+<ul>
+<li>**AD DS复制:**将AD DS数据库的所有更新复制到域中或林中的所有其他域控制器
+<ul>
+<li>作用：确保所有域控制器都有相同的信息、使用多主机复制模型、可通过创建AD DS站点来进行管理</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>**森林（Forest）：**一个森林是一个或多个域的逻辑集合，它们共享一个单一的林根和安全边界。森林是一个安全和管理的边界，它定义了信任关系和策略。</li>
+<li>**树（Tree）：**具有连续命名空间的域</li>
+<li><strong>组织单位（OU）：</strong> 用于组织和管理对象的容器</li>
+<li><strong>对象</strong>: 用户、计算机、组、打印机等资源
+<ul>
+<li>对象由一组属性组成，它代表的是具体的事物</li>
+<li>属性就是用来描述对象的数据</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-3-域结构">1.3 域结构</h3>
+<ul>
+<li>域的组成：物理结构、逻辑结构</li>
+<li>物理结构：侧重于活动目录的配置和优化</li>
+<li>逻辑结构：侧重于网络资源的管理</li>
+</ul>
+<p><strong>1、逻辑结构</strong></p>
+<ul>
+<li>单域：在网络中只建立了一个域</li>
+<li>域树：具有连续域名空间的多个域（<a target="_blank" rel="noopener" href="http://qfnu.com">qfnu.com</a> <a target="_blank" rel="noopener" href="http://jsj.qfnu.com">jsj.qfnu.com</a>）</li>
+<li>域林：由一个或者多个没有形成连续域名空的域树组成(<a target="_blank" rel="noopener" href="http://QFNU.com">QFNU.com</a>] <a target="_blank" rel="noopener" href="http://JNU.com">JNU.com</a>] )</li>
+<li>组织单位：域内部的一种容器（用于存放对象）</li>
+</ul>
+<p><strong>2、物理结构</strong></p>
+<ul>
+<li>站点：可以将高速连接的网络中多台域控制放入一个站点（一个站点必须一个GC 全局边路服务器）</li>
+<li>站点是一个物理范围，对应高速稳定的ip子网，如企业内部的局域网。</li>
+</ul>
+<p><strong>一个域的域控制器分布在不同的站点中</strong>，而站点之间是慢速连接，由于不同站点的域控制器之间会互相复制AD DS数据库，因此要谨慎规划执行复制的时段，尽量<strong>在离峰时段执行复制工作，频率不要过高，避免复制时占用站点之间的连接带宽，影响站点之间其他数据的传输效率</strong></p>
+<blockquote>
+<p>一个站点中可以包含多个域，一个域也可以包含多个站点</p>
+</blockquote>
+<p>同一个站点内的域控制器之间是通过快速链路连接在一起的，在复制AD DS数据时，可以实现<strong>快速复制</strong>。AD DS会设置让同一个站点内、隶属于同一个域的域控制器之间自动执行复制操作，默认的复制频率也要高于不同站点之间的域控制器</p>
+<p><strong>域控制器（DC）</strong></p>
+<p>域控制器在多域环境下同步活动目录数据的功能。</p>
+<p>域控制器保存了活动目录信息的副本，并负责把这些信息及其最新的变化复制到其他域控制器上，使各个DC上的信息保持同步。</p>
+<p>主要有以下3种类型的活动目录数据会在域控制器之间进行复制。</p>
+<p>域数据：包含域中的对象有关的信息，包括用户、计算机和电子邮件联系人等对象及他们的属性。</p>
+<p>配置数据：描述目录的拓扑结构，包括所有域、域树和域林的列表、以及域控制器和全局编录服务器的所处位置</p>
+<p>架构数据：对于活动目录中存储的所有对象和属性数据的正式定义。</p>
+<h2 id="二-ad-域服务安装与配置">二、AD 域服务安装与配置</h2>
+<h3 id="2-1-系统要求">2.1 系统要求</h3>
+<ul>
+<li>Windows Server 2012 R2 或更高版本</li>
+<li>至少 2GB RAM (建议 4GB 或更多)</li>
+<li>至少 20GB 可用磁盘空间</li>
+<li>静态 IP 地址</li>
+<li>DNS 服务支持</li>
+</ul>
+<h3 id="2-2-安装步骤">2.2 安装步骤</h3>
+<h4 id="方法1-使用服务器管理器">方法1: 使用服务器管理器</h4>
+<ol>
+<li>打开&quot;服务器管理器&quot;</li>
+<li>点击&quot;添加角色和功能&quot;</li>
+<li>选择&quot;基于角色或基于功能的安装&quot;</li>
+<li>选择服务器</li>
+<li>勾选&quot;Active Directory 域服务&quot;</li>
+<li>完成安装后，点击&quot;将此服务器提升为域控制器&quot;</li>
+</ol>
+<h4 id="方法2-使用-powershell">方法2: 使用 PowerShell</h4>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">Install-WindowsFeature</span> <span class="token operator">-</span>Name AD<span class="token operator">-</span>Domain<span class="token operator">-</span>Services <span class="token operator">-</span>IncludeManagementTools
+<span class="token function">Import-Module</span> ADDSDeployment
+<span class="token function">Install-ADDSForest</span> <span class="token operator">-</span>DomainName <span class="token string">"yourdomain.com"</span> <span class="token operator">-</span>DomainNetbiosName <span class="token string">"YOURDOMAIN"</span> <span class="token operator">-</span>InstallDns<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="2-3-域控制器配置选项">2.3 域控制器配置选项</h3>
+<ol>
+<li>
+<p><strong>部署配置</strong>:</p>
+<ul>
+<li>添加新林</li>
+<li>向现有域添加域控制器</li>
+<li>添加新域到现有林</li>
+</ul>
+</li>
+<li>
+<p><strong>域控制器选项</strong>:</p>
+<ul>
+<li>设置域功能级别(影响可用功能)</li>
+<li>指定 DNS 选项</li>
+<li>设置目录服务还原模式(DSRM)密码</li>
+</ul>
+</li>
+<li>
+<p><strong>DNS 选项</strong>:</p>
+<ul>
+<li>自动创建 DNS 委派(适用于子域)</li>
+</ul>
+</li>
+<li>
+<p><strong>路径</strong>:</p>
+<ul>
+<li>指定数据库、日志文件和 SYSVOL 的位置</li>
+</ul>
+</li>
+</ol>
+<h2 id="三-active-directory-管理工具">三、Active Directory 管理工具</h2>
+<h3 id="3-1-主要管理工具">3.1 主要管理工具</h3>
+<ol>
+<li>
+<p><strong>Active Directory 用户和计算机</strong></p>
+<ul>
+<li>管理用户、组、计算机和 OU</li>
+<li>路径: <code>dsa.msc</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Active Directory 站点和服务</strong></p>
+<ul>
+<li>管理物理网络拓扑和复制</li>
+<li>路径: <code>dssite.msc</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Active Directory 域和信任</strong></p>
+<ul>
+<li>管理域信任关系</li>
+<li>路径: <code>domain.msc</code></li>
+</ul>
+</li>
+<li>
+<p><strong>组策略管理(GPMC)</strong></p>
+<ul>
+<li>管理组策略对象(GPO)</li>
+<li>路径: <code>gpmc.msc</code></li>
+</ul>
+</li>
+<li>
+<p><strong>ADSI 编辑器</strong></p>
+<ul>
+<li>高级 AD 对象编辑</li>
+<li>路径: <code>adsiedit.msc</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="3-2-常用命令行工具">3.2 常用命令行工具</h3>
+<ul>
+<li><code>dsquery</code>: 查询 AD 对象</li>
+<li><code>dsadd</code>: 添加 AD 对象</li>
+<li><code>dsmod</code>: 修改 AD 对象</li>
+<li><code>dsmove</code>: 移动 AD 对象</li>
+<li><code>dsrm</code>: 删除 AD 对象</li>
+<li><code>nltest</code>: 测试域信任和 DC 定位</li>
+<li><code>repadmin</code>: 监控和管理复制</li>
+</ul>
+<h2 id="四-用户与组管理">四、用户与组管理</h2>
+<h3 id="4-1-用户账户管理">4.1 用户账户管理</h3>
+<h4 id="创建用户">创建用户</h4>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">New-ADUser</span> <span class="token operator">-</span>Name <span class="token string">"John Doe"</span> <span class="token operator">-</span>GivenName <span class="token string">"John"</span> <span class="token operator">-</span>Surname <span class="token string">"Doe"</span> <span class="token operator">-</span>SamAccountName <span class="token string">"jdoe"</span> <span class="token operator">-</span>UserPrincipalName <span class="token string">"jdoe@yourdomain.com"</span> <span class="token operator">-</span>Path <span class="token string">"OU=Users,DC=yourdomain,DC=com"</span> <span class="token operator">-</span>AccountPassword <span class="token punctuation">(</span><span class="token function">ConvertTo-SecureString</span> <span class="token string">"P@ssw0rd"</span> <span class="token operator">-</span>AsPlainText <span class="token operator">-</span>Force<span class="token punctuation">)</span> <span class="token operator">-</span>Enabled <span class="token boolean">$true</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="用户属性配置">用户属性配置</h4>
+<ul>
+<li>密码策略</li>
+<li>账户过期</li>
+<li>登录时间限制</li>
+<li>登录工作站限制</li>
+<li>配置文件路径(漫游配置文件)</li>
+<li>主目录</li>
+</ul>
+<h3 id="4-2-组管理">4.2 组管理</h3>
+<h4 id="组类型">组类型</h4>
+<ul>
+<li><strong>安全组</strong>: 用于分配权限</li>
+<li><strong>分发组</strong>: 仅用于电子邮件分发</li>
+</ul>
+<h4 id="组作用域">组作用域</h4>
+<ul>
+<li><strong>域本地组</strong>: 仅在创建它的域中使用</li>
+<li><strong>全局组</strong>: 可以在整个林中使用</li>
+<li><strong>通用组</strong>: 可以在整个林中使用，并可包含来自任何域的成员</li>
+</ul>
+<h4 id="创建组">创建组</h4>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token function">New-ADGroup</span> <span class="token operator">-</span>Name <span class="token string">"Sales Team"</span> <span class="token operator">-</span>GroupScope Global <span class="token operator">-</span>GroupCategory Security <span class="token operator">-</span>Path <span class="token string">"OU=Groups,DC=yourdomain,DC=com"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="五-组策略管理">五、组策略管理</h2>
+<h3 id="5-1-组策略基础">5.1 组策略基础</h3>
+<ul>
+<li><strong>GPO (组策略对象)</strong>: 包含策略设置的集合</li>
+<li><strong>GPC (组策略容器)</strong>: AD 中存储的 GPO 属性</li>
+<li><strong>GPT (组策略模板)</strong>: SYSVOL 中的策略文件</li>
+</ul>
+<h3 id="5-2-创建和链接-gpo">5.2 创建和链接 GPO</h3>
+<ol>
+<li>打开&quot;组策略管理&quot;</li>
+<li>右键&quot;组策略对象&quot;，选择&quot;新建&quot;</li>
+<li>指定名称，点击&quot;确定&quot;</li>
+<li>右键要应用 GPO 的域或 OU，选择&quot;链接现有 GPO&quot;</li>
+<li>选择刚创建的 GPO</li>
+</ol>
+<h3 id="5-3-常用策略设置">5.3 常用策略设置</h3>
+<ul>
+<li>
+<p><strong>计算机配置</strong>:</p>
+<ul>
+<li>密码策略</li>
+<li>账户锁定策略</li>
+<li>软件安装</li>
+<li>启动/关机脚本</li>
+<li>安全设置</li>
+</ul>
+</li>
+<li>
+<p><strong>用户配置</strong>:</p>
+<ul>
+<li>登录/注销脚本</li>
+<li>文件夹重定向</li>
+<li>Internet Explorer 设置</li>
+<li>开始菜单和任务栏限制</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-4-组策略处理顺序">5.4 组策略处理顺序</h3>
+<ol>
+<li>本地 GPO</li>
+<li>站点链接的 GPO</li>
+<li>域链接的 GPO</li>
+<li>OU 链接的 GPO(从父 OU 到子 OU)</li>
+<li>子 OU 链接的 GPO</li>
+</ol>
+<h3 id="5-5-组策略建模和结果">5.5 组策略建模和结果</h3>
+<ul>
+<li><strong>组策略建模</strong>: 模拟策略应用结果</li>
+<li><strong>组策略结果</strong>: 查看实际应用的策略</li>
+</ul>
+<h2 id="六-ad-维护与故障排除">六、AD 维护与故障排除</h2>
+<h3 id="6-1-日常维护任务">6.1 日常维护任务</h3>
+<ol>
+<li><strong>备份 AD</strong>:<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">wbadmin <span class="token function">start</span> systemstatebackup <span class="token operator">-</span>backuptarget:D:<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><strong>监控事件日志</strong>: 特别关注目录服务和 DNS 服务器日志</li>
+<li><strong>检查复制状态</strong>:<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">repadmin <span class="token operator">/</span>showrepl<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><strong>清理陈旧对象</strong>: 使用 <code>ntdsutil</code> 工具</li>
+</ol>
+<h3 id="6-2-常见问题排查">6.2 常见问题排查</h3>
+<ol>
+<li>
+<p><strong>登录问题</strong>:</p>
+<ul>
+<li>检查网络连接</li>
+<li>验证 DNS 配置</li>
+<li>检查账户状态(是否被锁定或过期)</li>
+</ul>
+</li>
+<li>
+<p><strong>复制问题</strong>:</p>
+<ul>
+<li>使用 <code>repadmin /syncall</code> 强制复制</li>
+<li>检查防火墙设置</li>
+<li>验证站点链接配置</li>
+</ul>
+</li>
+<li>
+<p><strong>DNS 问题</strong>:</p>
+<ul>
+<li>验证 SRV 记录</li>
+<li>使用 <code>nslookup</code> 测试解析</li>
+<li>检查动态更新设置</li>
+</ul>
+</li>
+</ol>
+<h3 id="6-3-灾难恢复">6.3 灾难恢复</h3>
+<ol>
+<li>
+<p><strong>目录服务还原模式(DSRM)</strong>:</p>
+<ul>
+<li>启动时按 F8 进入</li>
+<li>使用 <code>ntdsutil</code> 执行恢复操作</li>
+</ul>
+</li>
+<li>
+<p><strong>系统状态恢复</strong>:</p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">wbadmin <span class="token function">start</span> systemstaterecovery <span class="token operator">-</span>version:MM<span class="token operator">/</span>DD<span class="token operator">/</span>YYYY<span class="token operator">-</span>HH:MM<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ol>
+<h2 id="七-高级-ad-功能">七、高级 AD 功能</h2>
+<h3 id="7-1-ad-站点和服务">7.1 AD 站点和服务</h3>
+<ul>
+<li>优化跨地理位置域的复制</li>
+<li>配置站点链接成本和计划</li>
+</ul>
+<h3 id="7-2-ad-信任">7.2 AD 信任</h3>
+<ul>
+<li>创建外部信任(与外部域)</li>
+<li>创建林信任(与另一个 AD 林)</li>
+<li>创建领域信任(与 Kerberos 领域)</li>
+</ul>
+<h3 id="7-3-ad-证书服务-ad-cs">7.3 AD 证书服务(AD CS)</h3>
+<ul>
+<li>部署企业 CA</li>
+<li>配置证书自动注册</li>
+<li>管理证书模板</li>
+</ul>
+<h3 id="7-4-ad-联合身份验证服务-ad-fs">7.4 AD 联合身份验证服务(AD FS)</h3>
+<ul>
+<li>配置单点登录(SSO)</li>
+<li>建立与云服务的信任关系</li>
+<li>管理声明提供程序</li>
+</ul>
+<h2 id="八-最佳实践">八、最佳实践</h2>
+<ol>
+<li><strong>命名规范</strong>: 建立一致的命名约定</li>
+<li><strong>OU 设计</strong>: 基于管理需求而非组织结构</li>
+<li><strong>权限委派</strong>: 使用最小权限原则</li>
+<li><strong>文档记录</strong>: 记录所有配置变更</li>
+<li><strong>测试环境</strong>: 在生产环境变更前测试</li>
+<li><strong>定期审核</strong>: 检查账户权限和使用情况</li>
+<li><strong>备份策略</strong>: 定期备份系统状态</li>
+</ol>
+<p>通过以上配置和管理实践，您可以构建一个安全、稳定且高效的 Active Directory 环境，为组织提供可靠的身份验证和资源管理服务。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/2025/04/20/Windows%20server%E7%9A%84AD%E5%9F%9F%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE%E4%B8%8E%E7%AE%A1%E7%90%86/">https://shierjinghuang.github.io/2025/04/20/Windows%20server%E7%9A%84AD%E5%9F%9F%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE%E4%B8%8E%E7%AE%A1%E7%90%86/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/AD/">
+                                    <span class="chip bg-color">AD</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2025/04/20/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%94%AF%E6%92%91%E6%8A%80%E6%9C%AF/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="信息安全支撑技术">
+                        
+                        <span class="card-title">信息安全支撑技术</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2025-04-20
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                    网络安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CISP/">
+                        <span class="chip bg-color">CISP</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%BA%AB%E4%BB%BD%E9%89%B4%E5%88%AB/">
+                        <span class="chip bg-color">身份鉴别</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/">
+                        <span class="chip bg-color">访问控制</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2025/04/20/%E8%AE%A1%E7%AE%97%E7%8E%AF%E5%A2%83%E5%AE%89%E5%85%A8/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="计算环境安全">
+                        
+                        <span class="card-title">计算环境安全</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-04-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                    网络安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CISP/">
+                        <span class="chip bg-color">CISP</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                        <span class="chip bg-color">操作系统</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2025</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">450.6k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

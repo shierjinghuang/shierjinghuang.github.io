@@ -1,0 +1,1400 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="网络服务与应用, 十二惊惶">
+    <meta name="description" content="网络服务与应用
+[TOC]
+文件传输
+FTP协议
+
+
+FTP采用典型的C/S架构，客户端与服务器端建立TCP连接之后即可实现文件的上传、下载
+
+针对传输的文件类型不同，FTP可以采用不同的传输模式：
+ASCII模式：
+
+传输文本文件（TXT">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>网络服务与应用 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+</head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">网络服务与应用</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/HCIA/">
+                                <span class="chip bg-color">HCIA</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                网络工程相关
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2023-04-12
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2025-05-02
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    11 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="网络服务与应用">网络服务与应用</h2>
+<p>[TOC]</p>
+<h3 id="文件传输">文件传输</h3>
+<h4 id="ftp协议">FTP协议</h4>
+<img src=".\网络层服务汇总\FTP示意图.png" style="zoom: 60%;" />
+<blockquote>
+<p>FTP采用典型的C/S架构，客户端与服务器端建立TCP连接之后即可实现文件的上传、下载</p>
+</blockquote>
+<p>针对传输的文件类型不同，FTP可以采用不同的传输模式：</p>
+<p><strong>ASCII模式：</strong></p>
+<ul>
+<li>传输文本文件（TXT、LOG、CFG ）时会对文本内容进行编码方式转换，提高传输效率。当传输网络设备的配置文件、日志文件时推荐使用该模式</li>
+<li>ASCII模式用于传输文本文件。发送端的字符在发送前被转换成ASCII码格式之后进行传输，接收端收到之后再将其转换成字符</li>
+</ul>
+<p><strong>Binary [二进制] 模式：</strong></p>
+<ul>
+<li>非文本文件 [cc、BIN、EXE、PNG]，以二进制直接传输原始文件内容。当传输网络设备的版本文件时推荐使用该模式</li>
+<li>发送端在发送这些文件时无需转换格式即可传输</li>
+</ul>
+<h5 id="ftp传输过程">FTP传输过程</h5>
+<p>FTP存在两种工作方式：<strong>主动模式 [ PORT ]</strong> 和<strong>被动模式 [ PASV ]</strong></p>
+<p><strong>主动模式：</strong></p>
+<img src=".\网络层服务汇总\主动模式.png" style="zoom: 67%;" />
+<ul>
+<li>FTP客户端使用一个随机端口 [一般大于1024] 向FTP服务器端的端口21发送连接请求</li>
+<li>FTP服务器端接受请求，建立一条控制连接来传输控制消息</li>
+<li>FTP客户端开始监听另一随机端口P [一般大于1024] ，并使用PORT命令通知FTP服务器端</li>
+<li>当需要传输数据时，FTP服务器端从端口20向FTP客户端的端口P发送连接请求，建立一条传输连接来传输数据</li>
+</ul>
+<p><strong>被动模式：</strong></p>
+<img src=".\网络层服务汇总\被动模式.png" style="zoom:67%;" />
+<ul>
+<li>当使用被动模式时，FTP客户端使用一个随机端口（一般大于1024）向FTP服务器端的端口21发送连接请求，FTP服务器端接受请求，建立一条控制连接来传输控制消息。同时FTP客户端开始监听另一随机端口P（一般大于1024），并使用PASV命令通知FTP服务器端，FTP服务器端接到PASV 命令后，开启一个随机端口N（一般大于1024），并使用Enter PASV命令告知客户端自身开放端口号。当需要传输数据时，FTP客户端从端口P向FTP服务器端N端口发送连接请求，建立一条传输连接来传输数据。</li>
+<li>主动模式和被动模式建立数据连接方式完全不同，在实际使用中各有利弊：
+<ul>
+<li>使用主动模式传输数据时，如果FTP客户端在私有网络中并且FTP客户端和FTP服务器端之间存在NAT设备，那么FTP服务器端收到的PORT报文中携带的端口号、IP地址并不是FTP客户端经过NAT转换之后的地址、端口号，因此服务器端无法向PORT报文中携带的私网地址发起TCP连接（此时，客户端的私网地址在公有网络中路由不可达）</li>
+<li>使用被动模式传输数据时，FTP客户端主动向服务器端的一个开放端口发起连接，如果FTP服务器端在防火墙内部区域中，并且没有放通客户端所在区域到服务器端所在区域的主动访问，那么这个连接将无法建立成功，从而导致FTP无法正常传输</li>
+</ul>
+</li>
+</ul>
+<h5 id="ftp配置命令">FTP配置命令</h5>
+<p><strong>1. 开启FTP服务器端功能：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei]</span> ftp <span class="token punctuation">[</span> ipv6 <span class="token punctuation">]</span> server enable	<span class="token comment">#缺省情况下，设备的FTP服务器端功能是关闭的</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>2. 配置FTP本地用户：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei]</span>aaa
+<span class="token namespace">[Huawei]</span>local<span class="token operator">-</span>user user<span class="token operator">-</span>name password irreversible<span class="token operator">-</span>cipher password
+<span class="token namespace">[Huawei]</span>local<span class="token operator">-</span>user user<span class="token operator">-</span>name privilege level level
+<span class="token namespace">[Huawei]</span>local<span class="token operator">-</span>user user<span class="token operator">-</span>name service<span class="token operator">-</span><span class="token function">type</span> ftp
+<span class="token namespace">[Huawei]</span>local<span class="token operator">-</span>user user<span class="token operator">-</span>name ftp<span class="token operator">-</span>directory directory
+<span class="token comment">#	必须将用户级别配置在3级或者3级以上，否则FTP连接将无法成功</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="tftp协议">TFTP协议</h4>
+<p>TFTP的设计是以传输小文件为目标：</p>
+<ul>
+<li>使用UDP进行传输 [端口号69]</li>
+<li>无需认证</li>
+<li>只能直接向服务器端请求某个文件或者上传某个文件，无法查看服务器端的文件目录</li>
+</ul>
+<img src=".\网络层服务汇总\TFTP协议.png" style="zoom:67%;" />
+<p><strong>TFTP传输示例</strong></p>
+<img src=".\网络层服务汇总\TFTP传输示例.png" style="zoom:50%;" />
+<p>TFTP存在5种报文格式：</p>
+<ul>
+<li>RRQ：读请求包</li>
+<li>WRQ：写请求包</li>
+<li>DATA：数据传输报文</li>
+<li>ACK：应答包，用于确认收到对端的报文</li>
+<li>ERROR：差错控制报文</li>
+</ul>
+<p><strong>TFTP配置指令：</strong></p>
+<p><strong>1. VRP作为TFTP客户端下载/上传文件：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">&lt;Huawei> tftp <span class="token punctuation">[</span> <span class="token operator">-</span>a source<span class="token operator">-</span>ip<span class="token operator">-</span>address <span class="token punctuation">|</span> <span class="token operator">-</span>i interface<span class="token operator">-</span><span class="token function">type</span> interface<span class="token operator">-</span>number <span class="token punctuation">]</span> tftp<span class="token operator">-</span>server <span class="token punctuation">&#123;</span> get <span class="token punctuation">|</span> put <span class="token punctuation">&#125;</span> source<span class="token operator">-</span>filename <span class="token punctuation">[</span> destination<span class="token operator">-</span>filename <span class="token punctuation">]</span>
+<span class="token comment">#	TFTP无需登录，直接输入服务器端IP地址以及操作命令即可</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-a source-ip-address</td>
+<td>指定TFTP客户端连接使用的源地址，建议使用Loopback地址</td>
+</tr>
+<tr>
+<td>-i interface-type interface-number</td>
+<td>指定TFTP客户端连接使用的源接口，包括接口类型和接口编号。如果源接口下没有配置IP地址，则导致TFTP连接建立失败</td>
+</tr>
+<tr>
+<td>tftp-server</td>
+<td>指定IPv4 TFTP服务器的地址或者主机名</td>
+</tr>
+<tr>
+<td>get</td>
+<td>指定进行下载文件操作</td>
+</tr>
+<tr>
+<td>put</td>
+<td>指定进行上传文件操作</td>
+</tr>
+<tr>
+<td>source-filename</td>
+<td>指定源文件名。</td>
+</tr>
+<tr>
+<td>destination-filename</td>
+<td>指定目标文件名</td>
+</tr>
+</tbody>
+</table>
+<h3 id="telnet-远程登录协议">Telnet 远程登录协议</h3>
+<blockquote>
+<p>Telnet协议，无需专用线缆直连设备的Console接口，只要IP地址可达、能够和设备的TCP 23端口通信即可</p>
+</blockquote>
+<p>支持通过Telnet协议进行管理的设备被称为Telnet服务器端，而对应的终端则被称为Telnet客户端</p>
+<img src=".\网络层服务汇总\Telnet应用场景.png" style="zoom:50%;" />
+<h4 id="虚拟用户界面">虚拟用户界面</h4>
+<p>当用户使用Console接口、Telnet等方式登录设备的时候，系统会分配一个用户界面 [user-interface]来管理、监控设备与用户间的当前会话，每个用户界面视图可以配置一系列参数用于指定用户的认证方式、登录后的权限级别，当用户登录设备后将会受这些参数限制</p>
+<blockquote>
+<p>Telnet所对应的用户界面类型为VTY [Virtual Type Terminal，虚拟类型终端]</p>
+</blockquote>
+<h4 id="telnet配置命令">Telnet配置命令</h4>
+<p><strong>1. 开启Telnet服务器端功能：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei]</span> telnet server enable
+<span class="token comment">#	使能设备的Telnet服务器端功能，缺省情况下，设备的Telnet服务器端功能处于去使能状态</span>
+<span class="token comment">#	undo telnet server enable即可重新关闭Telnet服务器端功能</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><strong>2. 进入用户视图：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei]</span> user<span class="token operator">-</span>interface vty first<span class="token operator">-</span>ui<span class="token operator">-</span>number <span class="token punctuation">[</span> last<span class="token operator">-</span>ui<span class="token operator">-</span>number <span class="token punctuation">]</span>
+<span class="token comment">#	进入VTY用户界面视图，不同设备型号的VTY接口可能并不一致</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong>3. 配置VTY用户界面支持的协议：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-ui-vty0-4]</span><span class="token punctuation">]</span> protocol inbound <span class="token punctuation">&#123;</span> all <span class="token punctuation">|</span> telnet <span class="token punctuation">&#125;</span>
+<span class="token comment">#	缺省情况下，VTY用户界面支持的协议是SSH [Secure Shell Protocol ，安全外壳协议]和Telnet</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong>4. 配置认证方式以及密码认证方式下的认证密码：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-ui-vty0-4]</span> authentication<span class="token operator">-</span>mode <span class="token punctuation">&#123;</span>aaa <span class="token punctuation">|</span> none <span class="token punctuation">|</span> password<span class="token punctuation">&#125;</span>
+<span class="token namespace">[Huawei-ui-vty0-4]</span> <span class="token function">set</span> authentication password cipher
+<span class="token comment">#	缺省情况下，无默认认证方式，需要进行手动配置</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="dhcp-动态主机配置协议">DHCP 动态主机配置协议</h3>
+<blockquote>
+<p>DHCP采用C/S构架，主机无需配置，从服务器端获取地址，可实现接入网络后即插即用</p>
+</blockquote>
+<img src=".\网络层服务汇总\DHCP优点.png" style="zoom:50%;" />
+<h4 id="dhcp工作原理">DHCP工作原理</h4>
+<img src=".\网络层服务汇总\DHCP工作原理.png" style="zoom:60%;" />
+<ul>
+<li>DHCP Discover [广播]：用于发现当前网络中的DHCP服务器端</li>
+<li>DHCP Offer [单播]：携带分配给客户端的IP地址</li>
+<li>DHCP Request [广播]：告知服务器端自己将使用该IP地址</li>
+<li>DHCP Ack  [单播]：最终确认，告知客户端可以使用该IP地址</li>
+</ul>
+<h4 id="dhcp租期更新">DHCP租期更新</h4>
+<img src=".\网络层服务汇总\DHCP租期更新.png" style="zoom:67%;" />
+<blockquote>
+<p>如果在50%租期时客户端未得到原服务器端的回应，则客户端在87.5%租期时会广播发送DHCP Request，任意一台DHCP服务器端都可回应，该过程称为重绑定</p>
+</blockquote>
+<h4 id="dhcp配置命令">DHCP配置命令</h4>
+<p><strong>1. 开启DHCP功能：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei]</span> dhcp enable<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>2. 开启接口采用接口地址池的DHCP服务器端功能：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-Gigabitthernet0/0/0]</span>dhcp <span class="token function">select</span> interface<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>3. 指定接口地址池下的DNS服务器地址：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-Gigabitthernet0/0/0]</span>dhcp server dns<span class="token operator">-</span>list ip<span class="token operator">-</span>address<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>4. 配置接口地址池中不参与自动分配的IP地址范围：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-Gigabitthernet0/0/0]</span>dhcp server excluded<span class="token operator">-</span>ip<span class="token operator">-</span>address <span class="token function">start-ip</span><span class="token operator">-</span>address <span class="token punctuation">[</span> <span class="token keyword">end</span><span class="token operator">-</span>ip<span class="token operator">-</span>address <span class="token punctuation">]</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+<th>取值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>start-ip-address</td>
+<td>指定不参与自动分配的IP地址段的起始IP地址</td>
+<td>点分十进制形式</td>
+</tr>
+<tr>
+<td>end-ip-address</td>
+<td>指定不参与自动分配的IP地址段的结束IP地址。不指定该参数，表示只有一个IP地址start-ip-address</td>
+<td>应与start-ip-address在同一网段，并且不小于start-ip-address</td>
+</tr>
+</tbody>
+</table>
+<p><strong>5. 配置DHCP服务器接口地址池中IP地址的租用有效期限功能：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-Gigabitthernet0/0/0]</span> dhcp server lease <span class="token punctuation">&#123;</span> day day <span class="token punctuation">[</span> hour hour <span class="token punctuation">[</span> minute minute <span class="token punctuation">]</span> <span class="token punctuation">]</span> <span class="token punctuation">|</span> unlimited <span class="token punctuation">&#125;</span>  <span class="token comment">#	配置DHCP服务器接口地址池中IP地址的租用有效期限功能</span>
+<span class="token comment">#	缺省情况下，IP地址的租期为1天</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>day</strong> day</td>
+<td>指定租用有效期限的天数</td>
+</tr>
+<tr>
+<td><strong>hour</strong> hour</td>
+<td>指定租用有效期限的小时数</td>
+</tr>
+<tr>
+<td><strong>minute</strong> minute</td>
+<td>指定租用有效期限的分钟数</td>
+</tr>
+<tr>
+<td><strong>unlimited</strong></td>
+<td>指定租用有效期限为无限长</td>
+</tr>
+</tbody>
+</table>
+<p><strong>6. 创建全局地址池：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei]</span> ip pool ip<span class="token operator">-</span>pool<span class="token operator">-</span>name	<span class="token comment">#创建全局地址池，ip-pool-name指定地址池名称</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>7. 配置全局地址池可动态分配的IP地址范围：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-ip-pool-2]</span> network ip<span class="token operator">-</span>address <span class="token punctuation">[</span> mask <span class="token punctuation">&#123;</span> mask <span class="token punctuation">|</span> mask<span class="token operator">-</span>length <span class="token punctuation">&#125;</span> <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>8. 配置DHCP客户端的网关地址：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-ip-pool-2]</span> gateway<span class="token operator">-</span>list ip<span class="token operator">-</span>address	<span class="token comment">#配置DHCP客户端的网关地址</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>9. 配置DHCP客户端使用的DNS服务器的IP地址：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-ip-pool-2]</span>dns<span class="token operator">-</span>list ip<span class="token operator">-</span>address	<span class="token comment">#配置DHCP客户端使用的DNS服务器的IP地址</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>10. 配置IP地址租期：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-ip-pool-2]</span> lease <span class="token punctuation">&#123;</span> day day <span class="token punctuation">[</span> hour hour <span class="token punctuation">[</span> minute minute <span class="token punctuation">]</span> <span class="token punctuation">]</span> <span class="token punctuation">|</span> unlimited <span class="token punctuation">&#125;</span>
+<span class="token comment">#	lease命令用来配置地址池下的地址租期</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong>11. 使能接口的DHCP服务器功能：</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-Gigabitthernet0/0/0]</span> dhcp <span class="token function">select</span> global<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="http-超文本传输协议">HTTP 超文本传输协议</h3>
+<img src=".\网络层服务汇总\HTTP超文本传输协议.png" style="zoom: 60%;" />
+<blockquote>
+<p>HTTP [Hypertext Transfer Protocol，超文本传输协议]：客户端浏览器与Web服务器之间的应用层通信协议</p>
+</blockquote>
+<blockquote>
+<p>HTTP是典型的C/S构架应用，作为应用层协议使用TCP进行传输</p>
+</blockquote>
+<h3 id="dns域名解析系统">DNS域名解析系统</h3>
+<blockquote>
+<p>DNS [ Domain Name System，域名解析系统 ] 协议负责将域名解析到IP地址</p>
+</blockquote>
+<h4 id="域名系统组成">域名系统组成</h4>
+<p>域名：主机的字符标识方式</p>
+<p>域名解析服务器 [DNS Server] ：负责维护域名与IP地址对应关系的数据库，并对解析者的请求进行响应</p>
+<img src=".\网络层服务汇总\DNS工作方法.png" style="zoom: 67%;" />
+<p>域名的表示方法为：<strong>主机名 . 次顶级域名 . 顶级域名 . 根域</strong> ，根域为 <code>.</code> ，一般最后的根域不表示</p>
+<h4 id="dns查询方式">DNS查询方式</h4>
+<blockquote>
+<p>DNS是一个分布式系统，绝大多数的DNS服务器端的数据库不会拥有所有的域名记录</p>
+</blockquote>
+<ul>
+<li>客户端向DNS服务器端查询域名但该DNS服务器端上却没有该域名的记录时，此时有两种继续查询的方式：
+<ul>
+<li><strong>递归查询</strong>：由DNS服务器向其他DNS服务器进行查询，将最终查询结果返回给DNS客户端</li>
+<li><strong>迭代查询</strong>：DNS服务器告知DNS客户端其他DNS服务器地址，客户端自行向其他DNS服务器进行查询</li>
+</ul>
+</li>
+</ul>
+<img src=".\网络层服务汇总\DNS查询方式.png" style="zoom:67%;" />
+<h3 id="ntp时钟同步">NTP时钟同步</h3>
+<p><strong>网络时间协议NTP [ Network Time Protocol ]</strong> 是TCP/IP协议族里面的一个应用层协议</p>
+<ul>
+<li>NTP用于在一系列分布式时间服务器与客户端之间同步时钟</li>
+<li>NTP的实现基于IP和UDP，NTP报文通过UDP传输，端口号是123</li>
+</ul>
+<img src=".\网络层服务汇总\网络时间协议NTP.png" style="zoom:67%;" />
+<h4 id="ntp网络结构">NTP网络结构</h4>
+<ul>
+<li>主时间服务器：
+<ul>
+<li>通过线缆或无线电直接同步到标准参考时钟，标准参考时钟通常是Radio Clock或卫星定位系统等</li>
+</ul>
+</li>
+<li>二级时间服务器：
+<ul>
+<li>通过网络中的主时间服务器或者其他二级服务器取得同步。二级时间服务器通过NTP将时间信息传送到局域网内部的其它主机</li>
+</ul>
+</li>
+<li>层数（stratum）：
+<ul>
+<li>层数是对时钟同步情况的一个分级标准，代表了一个时钟的精确度，取值范围1～15，数值越小，精确度越高。1表示时钟精确度最高，15表示未同步</li>
+</ul>
+</li>
+</ul>
+<img src=".\网络层服务汇总\NTP网络结构.png" style="zoom:50%;" />
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/2023/04/12/%E7%BD%91%E7%BB%9C%E5%B1%82%E6%9C%8D%E5%8A%A1%E6%B1%87%E6%80%BB/">https://shierjinghuang.github.io/2023/04/12/%E7%BD%91%E7%BB%9C%E5%B1%82%E6%9C%8D%E5%8A%A1%E6%B1%87%E6%80%BB/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/HCIA/">
+                                    <span class="chip bg-color">HCIA</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2023/04/12/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%B3%95/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="网络安全法">
+                        
+                        <span class="card-title">网络安全法</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-04-12
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                    网络安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%B3%95%E5%BE%8B%E6%B3%95%E8%A7%84/">
+                        <span class="chip bg-color">法律法规</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2023/04/02/AAA%20%E8%AE%A4%E8%AF%81%E5%8F%8A%E9%85%8D%E7%BD%AE/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="AAA 认证、授权及计费">
+                        
+                        <span class="card-title">AAA 认证、授权及计费</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            AAA是一种管理框架，它提供了授权部分用户访问指定资源和记录这些用户操作行为的安全机制。因其具有良好的可扩展性，并且容易实现用户信息的集中管理而被广泛使用
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-04-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                    网络工程相关
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/HCIA/">
+                        <span class="chip bg-color">HCIA</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2025</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">450.6k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
