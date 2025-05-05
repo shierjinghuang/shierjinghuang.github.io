@@ -418,14 +418,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    708
+                    937
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -487,7 +487,24 @@
 clear configuration port<span class="token operator">-</span>isolate	<span class="token comment">#命令一键式清除设备上所有的端口隔离配置</span>
 port<span class="token operator">-</span>isolate exclude vlan	<span class="token comment">#命令配置端口隔离功能生效时排除的VLAN</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h3 id="mac地址表安全">MAC地址表安全</h3>
-<p>端口安全</p>
+<h4 id="mac地址表项类型">MAC地址表项类型</h4>
+<p>MAC地址表项类型包括：</p>
+<ul>
+<li>动态MAC地址表项：由接口通过报文中的源MAC地址学习获得，表项可老化。在系统复位、接口板热插拔或接口板复位后，动态表项会丢失</li>
+<li>静态MAC地址表项：由用户手工配置并下发到各接口板，表项不老化。在系统复位、接口板热插拔或接口板复位后，保存的表项不会丢失
+<ul>
+<li>接口和MAC地址静态绑定后，其他接口收到源MAC是该MAC地址的报文将会被丢弃</li>
+</ul>
+</li>
+<li>黑洞MAC地址表项：由用户手工配置，并下发到各接口板，表项不可老化
+<ul>
+<li>配置黑洞MAC地址后，源MAC地址或目的MAC地址是该MAC的报文将会被丢弃</li>
+</ul>
+</li>
+</ul>
+<h4 id="mac地址表安全功能">MAC地址表安全功能</h4>
+<h5 id="实现mac地址表安全的方法">实现MAC地址表安全的方法</h5>
+<h3 id="端口安全">端口安全</h3>
 <p>MAC地址漂移防止与检测</p>
 <p>MACsec</p>
 <p>交换机流量控制</p>
@@ -897,7 +914,7 @@ port<span class="token operator">-</span>isolate exclude vlan	<span class="token
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">505k</span>
+                        class="white-color">505.2k</span>
             
             
             
