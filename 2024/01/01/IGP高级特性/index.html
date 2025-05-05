@@ -478,13 +478,13 @@
 <blockquote>
 <p><strong><font color="blue">格式：[Huawei-ospf] lsa-originate-interval { 0 | { intelligent-timer max-interval start-interval hold-interval | other-type interval } }</font></strong></p>
 </blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#	0：指定LSA更新的时间间隔为0，即取消LSA的5秒的更新时间间隔。
-#	intelligent-timer：指定通过智能定时器设置OSPF Router LSA和Network LSA的更新间隔时间
-#	max-interval：指定更新OSPF LSA的最长间隔时间。整数形式，取值范围是1～120000，单位是毫秒。缺省值是5000
-#	start-interval：指定更新OSPF LSA的初始间隔时间。整数形式，取值范围是0～60000，单位是毫秒。缺省值是500
-#	hold-interval：指定更新OSPF LSA的基数间隔时间。整数形式，取值范围是1～60000，单位是毫秒。缺省值是1000
-#	other-type：指定设置除OSPF Router LSA和Network LSA外LSA的更新间隔时间
-#	interval：指定LSA更新的时间间隔。整数形式，取值范围是0～10，单位是秒。缺省值是5<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment">#	0：指定LSA更新的时间间隔为0，即取消LSA的5秒的更新时间间隔。</span>
+<span class="token comment">#	intelligent-timer：指定通过智能定时器设置OSPF Router LSA和Network LSA的更新间隔时间</span>
+<span class="token comment">#	max-interval：指定更新OSPF LSA的最长间隔时间。整数形式，取值范围是1～120000，单位是毫秒。缺省值是5000</span>
+<span class="token comment">#	start-interval：指定更新OSPF LSA的初始间隔时间。整数形式，取值范围是0～60000，单位是毫秒。缺省值是500</span>
+<span class="token comment">#	hold-interval：指定更新OSPF LSA的基数间隔时间。整数形式，取值范围是1～60000，单位是毫秒。缺省值是1000</span>
+<span class="token comment">#	other-type：指定设置除OSPF Router LSA和Network LSA外LSA的更新间隔时间</span>
+<span class="token comment">#	interval：指定LSA更新的时间间隔。整数形式，取值范围是0～10，单位是秒。缺省值是5</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>缺省情况下，使能智能定时器intelligent-timer，更新LSA的最长间隔时间max-interval为5000毫秒、初始间隔时间start-interval为500毫秒、基数间隔时间hold-interval为1000<strong>毫秒</strong></p>
 </blockquote>
@@ -550,14 +550,14 @@
 <img src="./IGP高级特性/OSPF_IP_FRR流量保护.png" style="zoom:80%;" />
 <h5 id="ospf-ip-frr的基础配置命令">OSPF IP FRR的基础配置命令</h5>
 <p>使能OSPF IP FRR</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-ospf-1] frr
-[Huawei-ospf-1-frr]
-#	创建并进入OSPF FRR视图。
-[Huawei-ospf-1-frr] loop-free-alternate
-#	使能OSPF IP FRR功能，利用LFA算法计算备份下一跳和备份出接口。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>Huawei-ospf-1<span class="token punctuation">]</span> frr
+<span class="token punctuation">[</span>Huawei-ospf-1-frr<span class="token punctuation">]</span>
+<span class="token comment">#	创建并进入OSPF FRR视图。</span>
+<span class="token punctuation">[</span>Huawei-ospf-1-frr<span class="token punctuation">]</span> loop-free-alternate
+<span class="token comment">#	使能OSPF IP FRR功能，利用LFA算法计算备份下一跳和备份出接口。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>阻止OSPF接口的FRR能力</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-GigabitEthernet0&#x2F;0&#x2F;1] ospf frr block
-#	对于承载重要业务的节点设备，通过该命令在指定接口上禁止OSPF IP FRR功能，从而使此接口相连的对端设备不成为备份链路上的节点设备，避免使能OSPF IP FRR功能后对节点设备上运行的重要业务造成影响。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>Huawei-GigabitEthernet0/0/1<span class="token punctuation">]</span> ospf frr block
+<span class="token comment">#	对于承载重要业务的节点设备，通过该命令在指定接口上禁止OSPF IP FRR功能，从而使此接口相连的对端设备不成为备份链路上的节点设备，避免使能OSPF IP FRR功能后对节点设备上运行的重要业务造成影响。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h4 id="ospf与bfd联动">OSPF与BFD联动:</h4>
 <blockquote>
 <p>OSPF与BFD联动就是将BFD和OSPF关联起来，一旦与邻居之间的链路出现故障，BFD对链路故障的快速感应能够加快OSPF对于网络拓扑变化的响应</p>
@@ -573,10 +573,10 @@
 <p><font color="blue">如果需要使用BFD功能快速检测链路故障，则必须在系统视图下执行bfd命令，使能全局BFD功能</font></p>
 </blockquote>
 </blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-ospf-1] bfd all-interfaces enable
-#	在OSPF进程下使能BFD特性
-[Huawei-ospf-1] bfd all-interfaces &#123;min-rx-interval receive-interval | min-tx-interval transmit-interval | detect-multiplier multiplier-value | frr-binding &#125; 
-#	配置BFD会话的参数值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>Huawei-ospf-1<span class="token punctuation">]</span> bfd all-interfaces <span class="token builtin class-name">enable</span>
+<span class="token comment">#	在OSPF进程下使能BFD特性</span>
+<span class="token punctuation">[</span>Huawei-ospf-1<span class="token punctuation">]</span> bfd all-interfaces <span class="token punctuation">&#123;</span>min-rx-interval receive-interval <span class="token operator">|</span> min-tx-interval transmit-interval <span class="token operator">|</span> detect-multiplier multiplier-value <span class="token operator">|</span> frr-binding <span class="token punctuation">&#125;</span> 
+<span class="token comment">#	配置BFD会话的参数值</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>min-rx-interval receive-interval：指定期望从对端接收BFD报文的最小接收间隔，取值范围是10～2000毫秒。缺省值是1000毫秒</li>
 <li>min-tx-interval transmit-interval：指定向对端发送BFD报文的最小发送间隔，取值范围是10～2000毫秒。缺省值是1000毫秒</li>
@@ -584,10 +584,10 @@
 <li>frr-binding：将BFD会话状态与接口的链路状态进行绑定。当BFD会话状态变为Down时，接口的物理层链路状态也会变为Down，从而触发流量切换到备份路径</li>
 </ul>
 <p><strong>2、配置指定接口的BFD特性</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-GigabitEthernet0&#x2F;0&#x2F;1] ospf bfd enable
-#	在使能OSPF的特定接口下使能BFD特性
-[Huawei-GigabitEthernet0&#x2F;0&#x2F;1] ospf bfd &#123; min-rx-interval receive-interval | min-tx-interval transmit-interval | detect-multiplier multiplier-value | frr-binding &#125;
-#	在使能OSPF的特定接口下配置BFD会话的参数值<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>Huawei-GigabitEthernet0/0/1<span class="token punctuation">]</span> ospf bfd <span class="token builtin class-name">enable</span>
+<span class="token comment">#	在使能OSPF的特定接口下使能BFD特性</span>
+<span class="token punctuation">[</span>Huawei-GigabitEthernet0/0/1<span class="token punctuation">]</span> ospf bfd <span class="token punctuation">&#123;</span> min-rx-interval receive-interval <span class="token operator">|</span> min-tx-interval transmit-interval <span class="token operator">|</span> detect-multiplier multiplier-value <span class="token operator">|</span> frr-binding <span class="token punctuation">&#125;</span>
+<span class="token comment">#	在使能OSPF的特定接口下配置BFD会话的参数值</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>可以配置OSPF IP FRR与BFD联动：</p>
 <ul>
 <li>配置OSPF IP FRR特性时，需要底层能够快速响应链路变化，以便迅速将流量切换到备份链路</li>
@@ -598,8 +598,8 @@
 <blockquote>
 <p><font color="FF6600">路由表中存在到达同一目的地址，且同一路由协议发现的多条路由时，若这几条路由的开销值也相同，那么这些路由就是等价路由，可以实现<strong>负载分担</strong></font></p>
 </blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#	设置进行负载分担的等价路由的最大数量：
-[Huawei-ospf-1] maximum load-balancing number<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment">#	设置进行负载分担的等价路由的最大数量：</span>
+<span class="token punctuation">[</span>Huawei-ospf-1<span class="token punctuation">]</span> maximum load-balancing number<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <h4 id="缺省路由">缺省路由:</h4>
 <blockquote>
 <p>区域边界和自治系统边界通常都是由多个路由器组成的多出口冗余备份或者负载分担。配置缺省路由，可以减少路由表的容量，保证网络的高可用性</p>
@@ -652,8 +652,8 @@
 </ul>
 <h5 id="将缺省路由通告到ospf路由区域">将缺省路由通告到OSPF路由区域</h5>
 <p><strong>1、将缺省路由通告到普通OSPF区域：</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-ospf-1] default-route-advertise [ [ always | permit-calculate-other ] | cost cost | type type | route-policy route-policy-name [ match-any ] ]
-#	缺省情况下，在普通OSPF区域内的OSPF设备不产生缺省路由<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>Huawei-ospf-1<span class="token punctuation">]</span> default-route-advertise <span class="token punctuation">[</span> <span class="token punctuation">[</span> always <span class="token operator">|</span> permit-calculate-other <span class="token punctuation">]</span> <span class="token operator">|</span> cost cost <span class="token operator">|</span> <span class="token builtin class-name">type</span> <span class="token builtin class-name">type</span> <span class="token operator">|</span> route-policy route-policy-name <span class="token punctuation">[</span> match-any <span class="token punctuation">]</span> <span class="token punctuation">]</span>
+<span class="token comment">#	缺省情况下，在普通OSPF区域内的OSPF设备不产生缺省路由</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <ul>
 <li><strong>always</strong>：无论本机是否存在激活的非本OSPF缺省路由，都会产生并发布一个描述缺省路由的LSA
 <ul>
@@ -702,16 +702,16 @@ match-any参数：
 <p><strong><font color="FF6600">在某些链路上通过对发送的LSA进行过滤，减少不必要的重传，节省带宽资源</font></strong></p>
 </blockquote>
 <p>通过对OSPF接口出方向的LSA进行过滤可以不向邻居发送无用的LSA，从而减少邻居LSDB的大小，提高网络收敛速度</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#	配置对OSPF接口出方向的LSA进行过滤：
-[Huawei-GigabitEthernet0&#x2F;0&#x2F;1] ospf filter-lsa-out &#123; all | &#123; summary [ acl &#123; acl-number | acl-name &#125; ] | ase [ acl &#123; acl-number | acl-name &#125; ] | nssa [ acl &#123; acl-number | acl-name &#125; ] &#125; &#125;
-#	对于已经发送的LSA，要到3600秒才能达到老化时间
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment">#	配置对OSPF接口出方向的LSA进行过滤：</span>
+<span class="token punctuation">[</span>Huawei-GigabitEthernet0/0/1<span class="token punctuation">]</span> ospf filter-lsa-out <span class="token punctuation">&#123;</span> all <span class="token operator">|</span> <span class="token punctuation">&#123;</span> summary <span class="token punctuation">[</span> acl <span class="token punctuation">&#123;</span> acl-number <span class="token operator">|</span> acl-name <span class="token punctuation">&#125;</span> <span class="token punctuation">]</span> <span class="token operator">|</span> ase <span class="token punctuation">[</span> acl <span class="token punctuation">&#123;</span> acl-number <span class="token operator">|</span> acl-name <span class="token punctuation">&#125;</span> <span class="token punctuation">]</span> <span class="token operator">|</span> nssa <span class="token punctuation">[</span> acl <span class="token punctuation">&#123;</span> acl-number <span class="token operator">|</span> acl-name <span class="token punctuation">&#125;</span> <span class="token punctuation">]</span> <span class="token punctuation">&#125;</span> <span class="token punctuation">&#125;</span>
+<span class="token comment">#	对于已经发送的LSA，要到3600秒才能达到老化时间</span>
 
-#	all：对除Grace LSA外的所有LSA进行过滤
-#	summary：对Network Summary LSA（Type3 LSA）进行过滤
-#	ase：对AS External LSA（Type5 LSA）进行过滤
-#	nssa：对NSSA LSA（Type7 LSA）进行过滤
-#	acl acl-number：指定基本访问控制列表编号。整数形式，取值范围是2000～2999
-#	acl acl-name：指定访问控制列表名称。不支持空格，长度范围是1～32，以英文字母a～z或A～Z开始<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">#	all：对除Grace LSA外的所有LSA进行过滤</span>
+<span class="token comment">#	summary：对Network Summary LSA（Type3 LSA）进行过滤</span>
+<span class="token comment">#	ase：对AS External LSA（Type5 LSA）进行过滤</span>
+<span class="token comment">#	nssa：对NSSA LSA（Type7 LSA）进行过滤</span>
+<span class="token comment">#	acl acl-number：指定基本访问控制列表编号。整数形式，取值范围是2000～2999</span>
+<span class="token comment">#	acl acl-name：指定访问控制列表名称。不支持空格，长度范围是1～32，以英文字母a～z或A～Z开始</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h5 id="对abr-type3-lsa进行过滤：">对ABR Type3 LSA进行过滤：</h5>
 <blockquote>
 <p>对区域内出、入方向ABR Type3 LSA[Summary LSA]设置过滤条件，只有通过过滤的LSA才能被发布和接收</p>
@@ -719,17 +719,17 @@ match-any参数：
 <blockquote>
 <p>通过对区域内的LSA进行过滤可以不向邻居发送无用的LSA，从而减少LSDB的大小，提高网络收敛速度</p>
 </blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#	配置对区域内出方向的Type3 LSA进行过滤：
-[Huawei-ospf-1-area-0.0.0.1] filter &#123; acl-number | acl-name acl-name | ip-prefix ip-prefix-name | route-policy route-policy-name &#125; export
-#	配置对区域内入方向的Type3 LSA进行过滤
-[Huawei-ospf-1-area-0.0.0.1] filter &#123; acl-number | acl-name acl-name | ip-prefix ip-prefix-name | route-policy route-policy-name &#125; import<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment">#	配置对区域内出方向的Type3 LSA进行过滤：</span>
+<span class="token punctuation">[</span>Huawei-ospf-1-area-0.0.0.1<span class="token punctuation">]</span> filter <span class="token punctuation">&#123;</span> acl-number <span class="token operator">|</span> acl-name acl-name <span class="token operator">|</span> ip-prefix ip-prefix-name <span class="token operator">|</span> route-policy route-policy-name <span class="token punctuation">&#125;</span> <span class="token builtin class-name">export</span>
+<span class="token comment">#	配置对区域内入方向的Type3 LSA进行过滤</span>
+<span class="token punctuation">[</span>Huawei-ospf-1-area-0.0.0.1<span class="token punctuation">]</span> filter <span class="token punctuation">&#123;</span> acl-number <span class="token operator">|</span> acl-name acl-name <span class="token operator">|</span> ip-prefix ip-prefix-name <span class="token operator">|</span> route-policy route-policy-name <span class="token punctuation">&#125;</span> <span class="token function">import</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h5 id="ospf-database-overflow">OSPF Database Overflow:</h5>
 <blockquote>
 <p><strong><font color="FF6600">OSPF要求同一个区域中的路由器保存相同的LSDB，一些路由器由于系统资源有限，不能再承载如此多的路由信息，这种状态就被称为数据库超限</font>	[OSPF Database Overflow]</strong></p>
 </blockquote>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#	对于路由信息不断增加导致路由器系统资源耗尽而失效的问题，可以通过配置Stub或NSSA区域来解决，但Stub或NSSA区域的方案不能解决动态路由增长导致的数据库超限问题
-#	为了解决数据库超限引发的问题，通过设置LSDB中External LSA的最大条目数，可以动态限制链路数据库的规模
-[Huawei-ospf-1] lsdb-overflow-limit number
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment">#	对于路由信息不断增加导致路由器系统资源耗尽而失效的问题，可以通过配置Stub或NSSA区域来解决，但Stub或NSSA区域的方案不能解决动态路由增长导致的数据库超限问题</span>
+<span class="token comment">#	为了解决数据库超限引发的问题，通过设置LSDB中External LSA的最大条目数，可以动态限制链路数据库的规模</span>
+<span class="token punctuation">[</span>Huawei-ospf-1<span class="token punctuation">]</span> lsdb-overflow-limit number
 	- number：指定LSDB中External LSA的最大条目数。整数形式，取值范围是1～1000000。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h5 id="避免ospf-database-overflow工作原理">避免OSPF Database Overflow工作原理</h5>
 <p>为了避免数据库超限，可以设置路由器上非缺省外部路由数量的上限</p>
@@ -840,12 +840,12 @@ match-any参数：
 </ul>
 </li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">#	     配置LSP快速扩散
-[Huawei-isis-1] flash-flood [ lsp-count | max-timer-interval interval | [ level-1 | level-2 ] ]
-#	lsp-count：指定每个接口一次扩散LSP的最大数量。整数形式，取值范围是1～15。缺省值是5。
-#	max-timer-interval interval：指定LSP扩散的最大间隔时间。取值范围是10～50000毫秒。缺省值是10毫秒
-#	level-1：表示在Level-1中使能此特性。如果命令中没有指定级别，则缺省同时在Level-1和Level-2中使能此功能
-#	level-2：表示在Level-2中使能此特性。同上<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment">#	     配置LSP快速扩散</span>
+<span class="token punctuation">[</span>Huawei-isis-1<span class="token punctuation">]</span> flash-flood <span class="token punctuation">[</span> lsp-count <span class="token operator">|</span> max-timer-interval interval <span class="token operator">|</span> <span class="token punctuation">[</span> level-1 <span class="token operator">|</span> level-2 <span class="token punctuation">]</span> <span class="token punctuation">]</span>
+<span class="token comment">#	lsp-count：指定每个接口一次扩散LSP的最大数量。整数形式，取值范围是1～15。缺省值是5。</span>
+<span class="token comment">#	max-timer-interval interval：指定LSP扩散的最大间隔时间。取值范围是10～50000毫秒。缺省值是10毫秒</span>
+<span class="token comment">#	level-1：表示在Level-1中使能此特性。如果命令中没有指定级别，则缺省同时在Level-1和Level-2中使能此功能</span>
+<span class="token comment">#	level-2：表示在Level-2中使能此特性。同上</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="is-is路由控制">IS-IS路由控制</h3>
 <h4 id="等价路由">等价路由</h4>
 <p>当IS-IS网络中有多条冗余链路时，可能会出现多条等价路由，此时可以采取两种方式：</p>
@@ -864,14 +864,14 @@ match-any参数：
 <p>注意：配置等价路由优先级后，IS-IS设备在转发到达目的网段的流量时，将不采用负载分担方式，而是将流量转发到优先级最高的下一跳</p>
 <h5 id="配置is-is对等价路由的处理方式">配置IS-IS对等价路由的处理方式</h5>
 <p><strong>1、配置IS-IS路由负载分担</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-isis-1] maximum load-balancing number
-#	配置在负载分担方式下的等价路由的最大数量。
-#	number：指定在负载分担方式下等价路由的最大数量。不同设备型号取值不同<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>Huawei-isis-1<span class="token punctuation">]</span> maximum load-balancing number
+<span class="token comment">#	配置在负载分担方式下的等价路由的最大数量。</span>
+<span class="token comment">#	number：指定在负载分担方式下等价路由的最大数量。不同设备型号取值不同</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <p><strong>2、配置IS-IS等价路由的优先级</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-isis-1] nexthop ip-address weight value
-#	缺省情况下，不设置IS-IS等价路由的优先级。value值越小，表示优先级越高。
-#	ip-address：指定下一跳的IP地址
-#	weight value：指定下一跳权重。value越小则优先级越高。value是整数形式，取值范围是1～254<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>Huawei-isis-1<span class="token punctuation">]</span> nexthop ip-address weight value
+<span class="token comment">#	缺省情况下，不设置IS-IS等价路由的优先级。value值越小，表示优先级越高。</span>
+<span class="token comment">#	ip-address：指定下一跳的IP地址</span>
+<span class="token comment">#	weight value：指定下一跳权重。value越小则优先级越高。value是整数形式，取值范围是1～254</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>当组网中存在的等价路由数量大于<strong>maximum load-balancing</strong>命令配置的等价路由数量时，按照下面原则选取有效路由进行负载分担：</p>
 <ol>
 <li><strong>路由优先级</strong>：选取优先级小[优先级高]的路由进行负载分担</li>
@@ -901,18 +901,18 @@ match-any参数：
 <p><strong><font color="orange">在实际应用中，可以根据需要对ATT比特位进行手动配置以更好地为网络服务:</font></strong></p>
 </blockquote>
 <p><strong>1、[Level-1-2设备]	设置IS-IS LSP报文的ATT比特位置位规则</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-isis-1] attached-bit advertise &#123; always | never &#125;
-#	缺省情况下，Level-1-2设备发布的LSP的ATT位根据缺省置位规则来决定置位情况。
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>Huawei-isis-1<span class="token punctuation">]</span> attached-bit advertise <span class="token punctuation">&#123;</span> always <span class="token operator">|</span> never <span class="token punctuation">&#125;</span>
+<span class="token comment">#	缺省情况下，Level-1-2设备发布的LSP的ATT位根据缺省置位规则来决定置位情况。</span>
 	-always:指定ATT位永远置位，收到该LSP的Level-1设备会生成缺省路由
 	-never:指定ATT位永不置位，可以避免Level-1设备生成缺省路由，减小路由表的规模
-#	虽然ATT位同时在Level-1 LSP和Level-2 LSP中进行了定义，但是它只会在Level-1 LSP中被置位，并且只有Level-1-2设备会设置这个字段，因此，该命令仅对Level-1-2设备生效<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">#	虽然ATT位同时在Level-1 LSP和Level-2 LSP中进行了定义，但是它只会在Level-1 LSP中被置位，并且只有Level-1-2设备会设置这个字段，因此，该命令仅对Level-1-2设备生效</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>2、[Level-1设备]	控制Level-1设备不因为ATT位下发缺省路由到路由表</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-isis-1] attached-bit avoid-learning
-#	缺省情况下，IS-IS按ATT位缺省使用规则生成缺省路由
-#	配置Level-1设备不将缺省路由下发到路由表，有以下两种方式可以实现:
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>Huawei-isis-1<span class="token punctuation">]</span> attached-bit avoid-learning
+<span class="token comment">#	缺省情况下，IS-IS按ATT位缺省使用规则生成缺省路由</span>
+<span class="token comment">#	配置Level-1设备不将缺省路由下发到路由表，有以下两种方式可以实现:</span>
 	-在Level-1-2设备上配置attached-bit advertise never命令，使得其不会发布ATT位置位的LSP
 	-在与Level-1-2设备相连的Level-1设备上配置attached-bit avoid-learning命令
-#	attached-bit avoid-learning命令适用于需要针对指定设备配置的情况<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">#	attached-bit avoid-learning命令适用于需要针对指定设备配置的情况</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h5 id="is-is发布缺省路由">IS-IS发布缺省路由</h5>
 <p><font color="FF6600"><strong>具有外部路由的边界设备上配置IS-IS发布缺省路由可以使该设备在IS-IS路由域内发布一条0.0.0.0/0的缺省路由</strong></font></p>
 <p>在执行此配置后，IS-IS域内的其他设备在转发流量时，将所有去往外部路由域的流量首先转发到该设备，然后通过该设备去往外部路由域</p>
@@ -925,8 +925,8 @@ match-any参数：
 </li>
 </ul>
 <p><strong>配置运行IS-IS的设备生成缺省路由：</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-isis-1] default-route-advertise [ always | match default | route-policy route-policy-name ] [ cost cost | tag tag | [ level-1 | level-1-2 | level-2 ] ] [ avoid-learning ]
-#	缺省情况下，运行IS-IS协议的设备不生成缺省路由
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>Huawei-isis-1<span class="token punctuation">]</span> default-route-advertise <span class="token punctuation">[</span> always <span class="token operator">|</span> match default <span class="token operator">|</span> route-policy route-policy-name <span class="token punctuation">]</span> <span class="token punctuation">[</span> cost cost <span class="token operator">|</span> tag tag <span class="token operator">|</span> <span class="token punctuation">[</span> level-1 <span class="token operator">|</span> level-1-2 <span class="token operator">|</span> level-2 <span class="token punctuation">]</span> <span class="token punctuation">]</span> <span class="token punctuation">[</span> avoid-learning <span class="token punctuation">]</span>
+<span class="token comment">#	缺省情况下，运行IS-IS协议的设备不生成缺省路由</span>
 	-always：指定设备无条件的发布缺省路由，且发布的缺省路由中将自己作为下一跳
 	-match default:如果路由表中存在其他路由协议或其它IS-IS进程生成的缺省路由，则在LSP中发布该缺省路由
 	-route-policy route-policy-name:指定路由策略名称。当该边界设备的路由表中存在满足路由策略的外部路由时，才向IS-IS域发布缺省路由，避免由于链路故障等原因造成该设备已经不存在某些重要的外部路由时，仍然发布缺省路由从而造成路由黑洞。此处的路由策略不影响IS-IS引入外部路由
@@ -957,7 +957,7 @@ match-any参数：
 </ul>
 </li>
 </ul>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei] isis [ process-id ] [ vpn-instance vpn-instance-name ]
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>Huawei<span class="token punctuation">]</span> isis <span class="token punctuation">[</span> process-id <span class="token punctuation">]</span> <span class="token punctuation">[</span> vpn-instance vpn-instance-name <span class="token punctuation">]</span>
 	-process-id:指定IS-IS进程号。如果不指定进程，则启动进程号为1的IS-IS进程，取值范围是1～65535。缺省值是1
 	-vpn-instance vpn-instance-name：指定VPN实例名。如果不指定此参数，则就不会配置VPN实例与相应的IS-IS进程相关联<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <h5 id="lsp分片">LSP分片</h5>
@@ -994,19 +994,19 @@ match-any参数：
 </ul>
 <h5 id="lsp分片扩展的基本配置命令：">LSP分片扩展的基本配置命令：</h5>
 <p><strong>1、使能IS-IS进程的LSP分片扩展：</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-isis-1]lsp-fragments-extend [[ level-1 | level-2| level-1-2 ]|[mode-1 |mode-2] ] 
-#	缺省情况下，设备未使能IS-IS进程的LSP分片扩展功能
-#	配置LSP分片扩展时，如果不指定mode和level级别，则默认为mode-1和level-1-2
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>Huawei-isis-1<span class="token punctuation">]</span>lsp-fragments-extend <span class="token punctuation">[</span><span class="token punctuation">[</span> level-1 <span class="token operator">|</span> level-2<span class="token operator">|</span> level-1-2 <span class="token punctuation">]</span><span class="token operator">|</span><span class="token punctuation">[</span>mode-1 <span class="token operator">|</span>mode-2<span class="token punctuation">]</span> <span class="token punctuation">]</span> 
+<span class="token comment">#	缺省情况下，设备未使能IS-IS进程的LSP分片扩展功能</span>
+<span class="token comment">#	配置LSP分片扩展时，如果不指定mode和level级别，则默认为mode-1和level-1-2</span>
 	-level-1：指定在Level-1级别使能分片扩展
 	-level-2：指定在Level-2级别使能分片扩展
 	-level-1-2：指定在Level-1-2级别使能分片扩展
 	-mode-1：该模式可以兼容以前老版本不支持LSP分片扩展特性的情况
 	-mode-2：该模式要求所有路由器都支持LSP分片扩展特性<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>2、配置一个虚拟系统：</strong></p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">[Huawei-isis-1] virtual-system virtual-system-id 
-#	缺省情况下，设备没有配置虚拟系统
-#	为了使设备生成扩展LSP分片，应至少配置一个虚拟系统的系统ID。这个虚拟系统的系统ID在整个路由域中必须唯一
-#	一个IS-IS进程最多可配置50个虚拟系统的System ID
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>Huawei-isis-1<span class="token punctuation">]</span> virtual-system virtual-system-id 
+<span class="token comment">#	缺省情况下，设备没有配置虚拟系统</span>
+<span class="token comment">#	为了使设备生成扩展LSP分片，应至少配置一个虚拟系统的系统ID。这个虚拟系统的系统ID在整个路由域中必须唯一</span>
+<span class="token comment">#	一个IS-IS进程最多可配置50个虚拟系统的System ID</span>
 	-virtual-system-id：指定IS-IS进程的虚拟系统ID。长度是6字节（48比特），格式是XXXX.XXXX.XXXX<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>以上两条命令是配合使用的，只有使能了LSP分片扩展，并用reset isis all命令重启了IS-IS进程后，配置的虚拟系统ID才会生效</p>
 
