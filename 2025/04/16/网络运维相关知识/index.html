@@ -1,0 +1,1955 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="网络运维相关知识, 十二惊惶">
+    <meta name="description" content="网络运维相关知识
+[TOC]
+网络运维
+日常维护
+网络维护概述
+
+网络的生命周期大致包括了网络规划与设计、网络实施、网络维护及优化等阶段
+
+网络维护可以分为两类：日常维护和故障排除
+
+日常维护是为了预防问题发生，尽量减少突发的故障。从故障排">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>网络运维相关知识 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">网络运维相关知识</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/HCIP/">
+                                <span class="chip bg-color">HCIP</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/">
+                                <span class="chip bg-color">网络工程</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%B7%AF%E7%94%B1%E4%B8%8E%E4%BA%A4%E6%8D%A2%E8%BF%9B%E9%98%B6/">
+                                <span class="chip bg-color">路由与交换进阶</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/">
+                                <span class="chip bg-color">网络运维</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                网络工程相关
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2025-04-16
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2025-04-24
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    7.4k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    26 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1>网络运维相关知识</h1>
+<p>[TOC]</p>
+<h2 id="网络运维">网络运维</h2>
+<h3 id="日常维护">日常维护</h3>
+<h4 id="网络维护概述">网络维护概述</h4>
+<blockquote>
+<p>网络的生命周期大致包括了<strong>网络规划与设计、网络实施、网络维护及优化</strong>等阶段</p>
+</blockquote>
+<p>网络维护可以分为两类：<strong>日常维护和故障排除</strong></p>
+<ul>
+<li>日常维护是为了预防问题发生，尽量减少突发的故障。从故障排除工作中找到的问题原因，可为日常维护工作提供参考</li>
+<li>网络维护不仅仅是技术问题，而且也是管理问题。日常维护对操作人员的技术要求不高，但对操作的规范性要求比较高。通过日常维护可以得出网络在正常情况下的各种参数，例如网络设备的版本、网络带宽、网络安全等，从而为故障排除工作打下良好的基础。</li>
+</ul>
+<h4 id="日常维护-内容和方法">日常维护 - 内容和方法</h4>
+<p>日常维护分为设备环境维护和设备软硬件维护两大部分</p>
+<ul>
+<li>
+<p>设备运行环境：</p>
+<ul>
+<li>硬件运行环境是指设备运行的机房、供电、散热等外部环境，这是设备运行的基础条件</li>
+<li>对于设备环境的维护，工作人员需要亲临现场，甚至借助一些专业工具进行观察、测量</li>
+</ul>
+</li>
+<li>
+<p>设备软硬件运行情况：</p>
+<ul>
+<li>设备软硬件运行情况与设备运行的具体业务密切相关。华为数通设备使用了通用的VRP平台，网络工程师应该掌握VRP平台的常用维护命令</li>
+<li>对于设备软硬件的维护，工作人员可以现场操作，也可以远程操作，主要通过设备的display命令实现</li>
+</ul>
+</li>
+<li>
+<p>日常维护可以使用以下两种方法：现场观测 ：观察设备硬件运行环境、远程操作：了解设备软硬件运行情况</p>
+</li>
+</ul>
+<h5 id="操作清单-checklist">操作清单 [Checklist]</h5>
+<p>![](C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\网络运维相关知识\Checklist.png)</p>
+<p><strong>设备环境检查</strong></p>
+<p>设备运行环境正常是保证设备正常运行的前提</p>
+<p>但实际工作的时候，当有故障发生，不会第一时间检查设备环境，因为设备环境相比较其他的因素来说，更加的稳定和不容易发生故障</p>
+<ul>
+<li>设备环境检测内容：设备位置摆放是否合理、机房温度、机房湿度、机房空调运行是否正常、清洁状况、能源系统是否正常</li>
+</ul>
+<p><strong>设备基本信息检查</strong></p>
+<p>设备基本信息检查包括软件版本检查、License检查、设备存储空间等信息</p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\网络运维相关知识\设备基本信息检查.png" style="zoom:50%;" />
+<table>
+<thead>
+<tr>
+<th><strong>检查项</strong></th>
+<th><strong>检查方法</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>设备运行的版本</td>
+<td>display version</td>
+</tr>
+<tr>
+<td>检查软件包</td>
+<td>display startup</td>
+</tr>
+<tr>
+<td>License信息</td>
+<td>display license state</td>
+</tr>
+<tr>
+<td>检查补丁信息</td>
+<td>display patch-information</td>
+</tr>
+<tr>
+<td>检查系统时间</td>
+<td>display clock</td>
+</tr>
+<tr>
+<td>检查Flash/SD卡/CF卡空间</td>
+<td>dir flash、dir slave、dir cfcard</td>
+</tr>
+<tr>
+<td>信息中心</td>
+<td>display info-center</td>
+</tr>
+<tr>
+<td>检查配置正确性</td>
+<td>display current-configuration</td>
+</tr>
+<tr>
+<td>检查debug开关</td>
+<td>display debugging</td>
+</tr>
+<tr>
+<td>检查配置是否保存</td>
+<td>compare configuration</td>
+</tr>
+</tbody>
+</table>
+<p><strong>设备运行状态检查</strong></p>
+<blockquote>
+<p>在进行设备运行状态检查时，重点关注设备硬件的运行状态，如板卡、电源、风扇、温度、CPU、内存等</p>
+</blockquote>
+<ul>
+<li>
+<p>一般设备上都设置了告警灯，通常硬件故障都会导致告警灯亮。因此，也可以通过现场观察发现设备运行异常状态</p>
+</li>
+<li>
+<p>对于板卡、电源、风扇等部件的运行状态，应遵照厂商的相关指导进行判断，有必要时联系厂商进行指导。如果确认为硬件故障，可以联系供应商处理</p>
+</li>
+</ul>
+<p><strong>运行状态检查内容</strong>：</p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\网络运维相关知识\运行状态检查内容.png" style="zoom:50%;" />
+<table>
+<thead>
+<tr>
+<th>检查项</th>
+<th>检查方法</th>
+<th>评估标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单板运行状态</td>
+<td>display device</td>
+<td>重点关注单板在位信息及状态信息是否正常</td>
+</tr>
+<tr>
+<td>设备复位情况</td>
+<td>display reset-reason、display reboot-info</td>
+<td>通过查看复位信息，确认无非正常复位</td>
+</tr>
+<tr>
+<td>设备温度</td>
+<td>display temperature、display environment</td>
+<td>各模块当前的温度应该在上下限之间</td>
+</tr>
+<tr>
+<td>风扇状态</td>
+<td>display fan</td>
+<td>Present项为YES表示正常</td>
+</tr>
+<tr>
+<td>电源状态</td>
+<td>display power</td>
+<td>State项为Supply表示正常</td>
+</tr>
+<tr>
+<td>FTP网络服务端口</td>
+<td>display ftp-server</td>
+<td>不使用的FTP网络服务端口要关闭</td>
+</tr>
+<tr>
+<td>告警信息</td>
+<td>display alarm all</td>
+<td>无告警信息。如果有告警，需要记录，对于严重以上告警需并立即分析并处理</td>
+</tr>
+<tr>
+<td>CPU状态</td>
+<td>display cpu-usage</td>
+<td>各模块的CPU占用率正常。如果CPU占用率如果超过80%，建议重点关注</td>
+</tr>
+<tr>
+<td>内存占用率</td>
+<td>display memory-usage</td>
+<td>内存占用情况正常，如果Memory Using Percentage Is超过60％时需要关注</td>
+</tr>
+<tr>
+<td>日志信息</td>
+<td>display logbuffer、display trapbuffer</td>
+<td>不存在异常信息</td>
+</tr>
+<tr>
+<td>主用板、备用板的备份状态</td>
+<td>display switchover state</td>
+<td>主备板同时存在时，要同时有主备板的显示状态信息</td>
+</tr>
+</tbody>
+</table>
+<p><strong>设备接口内容检查</strong></p>
+<ul>
+<li>网络设备通过接口来交换数据报文，接口状态异常会影响到网络的功能</li>
+<li>接口如果出现大量错包，并且在短时间内不断增加，通常是由于链路的问题造成的</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>检查项</th>
+<th><strong>检查方法</strong></th>
+<th><strong>评估标准</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>接口错包</td>
+<td>display interface</td>
+<td>业务运行时，要检查接口有无错包，包括CRC错包等</td>
+</tr>
+<tr>
+<td>接口协商模式</td>
+<td>display interface</td>
+<td>接口协商模式正确，两边接口要一致，不能有半双工模式</td>
+</tr>
+<tr>
+<td>接口配置</td>
+<td>display current-configuration interface</td>
+<td>接口的配置项合理，如接口双工模式、协商模式、速率、环回配置等</td>
+</tr>
+<tr>
+<td>接口状态</td>
+<td>display interface brief</td>
+<td>接口的Up/Down状态是否满足规划要求</td>
+</tr>
+<tr>
+<td>PoE供电</td>
+<td>display poe power-state interface interface-type interface-number</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>业务运行状态检查</strong></p>
+<ul>
+<li>业务运行状态主要是指网络协议的运行状态</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>检查项</strong></th>
+<th><strong>检查方法</strong></th>
+<th><strong>评估标准</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MAC地址表信息</td>
+<td>display mac-address</td>
+<td>MAC地址表信息正确</td>
+</tr>
+<tr>
+<td>VLAN信息</td>
+<td>display vlan</td>
+<td>查看所有VLAN的基本信息</td>
+</tr>
+<tr>
+<td>路由表信息</td>
+<td>display ip routing-table</td>
+<td>有默认路由或者精确路由，便于故障时远程定位</td>
+</tr>
+<tr>
+<td>OSPF邻居状态</td>
+<td>display ospf peer</td>
+<td>OSPF邻居状态：邻居状态State为Full或者2-Way</td>
+</tr>
+<tr>
+<td>IS-IS邻居状态</td>
+<td>display isis peer</td>
+<td>IS-IS邻居状态：邻居状态State为Up</td>
+</tr>
+<tr>
+<td>BGP邻居状态</td>
+<td>display bgp peer</td>
+<td>BGP邻居状态：邻居状态State为Established</td>
+</tr>
+<tr>
+<td>VRRP状态</td>
+<td>display vrrp statistics</td>
+<td>备份组中的设备的VRRP状态State不能同时为Master</td>
+</tr>
+<tr>
+<td>MSTP状态</td>
+<td>display stp brief</td>
+<td>指定端口和根端口的STP State为FORWARDING</td>
+</tr>
+</tbody>
+</table>
+<h5 id="软件与配置的备份">软件与配置的备份</h5>
+<blockquote>
+<p>备份的目的是为了在极端情况下恢复网络功能</p>
+</blockquote>
+<p>备份的实质是把对应的文件传输到备份服务器上，通常将设备作为FTP或TFTP客户端，通过命令行将相应的文件传输到服务器上</p>
+<ul>
+<li>对于配置文件的备份，建议每周例行进行；同时在设备的配置有变更之前，应进行配置文件的备份。</li>
+<li>软件与配置都需要备份。备份的目的是为了在极端情况下恢复网络功能。
+<ul>
+<li>当设备因硬件故障无法启动，或更换同型号的设备后，如果没有备份的配置文件，业务将很难快速恢复。</li>
+<li>软件版本也有必要备份，但同一个产品、同一个版本只需要备份一次即可；也可以从厂商官网获取对应的版本文件保存到本地。</li>
+<li>License文件是一类特殊的文件，它针对具体的产品进行了设置，一旦意外丢失，则需要经过厂商的流程重新申请，通常这个流程需要提供一些证明材料，因此申请周期也会比较长
+<ul>
+<li>如果有备份的License文件则可以快速地恢复到设备上</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="信息收集工具">信息收集工具</h3>
+<h4 id="信息中心">信息中心</h4>
+<blockquote>
+<p>信息中心是设备的信息枢纽。设备产生的Log、Trap和Debug信息统一发往信息中心，通过信息中心的统一管理和控制，实现信息的灵活输出</p>
+</blockquote>
+<ul>
+<li>通过配置信息中心，对设备产生的信息按照信息类型、严重级别等进行分类或筛选，用户可以灵活地控制信息输出到不同的输出方向</li>
+<li>用户或网络管理员可以从不同的方向收集设备产生的信息，方便监控设备运行状态和定位故障。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">信息类型</th>
+<th><strong>内容描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>LOG信息</strong></td>
+<td>LOG信息主要记录用户操作、系统故障、系统安全等信息：</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td><strong>用户日志</strong>：记录用户操作和系统运行信息</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td><strong>安全日志</strong>：记录包含账号管理、协议、防攻击和状态等内容的信息</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td><strong>诊断日志</strong>：记录协助进行问题定位的信息</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Trap信息</strong></td>
+<td>Trap信息是系统检测到故障而产生的通知，主要记录故障等系统状态信息</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Debug信息</strong></td>
+<td>Debug信息是系统对设备内部运行的信息的输出，主要用于跟踪设备内部运行的状态</td>
+</tr>
+</tbody>
+</table>
+<h5 id="信息的分级">信息的分级</h5>
+<blockquote>
+<p>设备产生信息比较多时，用户较难分辨哪些是设备正常运转的信息，哪些是出现故障需要处理的信息。对信息进行分级，用户可以根据信息的级别进行粗略判断，及时采取措施，屏蔽无需处理的信息</p>
+</blockquote>
+<ul>
+<li>根据信息的严重等级或紧急程度，信息分为8个等级，信息越严重，其严重等级阈值越小</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>显示值</th>
+<th>严重等级</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Emergencies</td>
+<td>设备致命的异常，系统已经无法恢复正常，必须重启设备</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Alert</td>
+<td>设备重大的异常，需要立即采取措施。如设备内存占用率达到极限等</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Critical</td>
+<td>设备的异常，需要采取措施进行处理或原因分析</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Error</td>
+<td>错误的操作或设备的异常流程，不会影响后续业务，但是需要关注并分析原因</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Warning</td>
+<td>设备运转的异常点，可能引起业务故障，需要引起注意</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Notification</td>
+<td>设备正常运转的关键操作信息</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Informational</td>
+<td>设备正常运转的一般性操作信息</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Debugging</td>
+<td>设备正常运转的一般性信息，用户无需关注</td>
+</tr>
+</tbody>
+</table>
+<h5 id="信息的输出">信息的输出</h5>
+<p>设备产生的信息可以向<strong>远程终端、控制台、Log缓冲区、日志文件、SNMP代理</strong>等方向输出信息</p>
+<ul>
+<li>为了便于各个方向信息的输出控制，信息中心定义了10条信息通道，通道之间独立输出，互不影响</li>
+</ul>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\网络运维相关知识\信息的输出.png" style="zoom:50%;" />
+<h5 id="信息的过滤">信息的过滤</h5>
+<blockquote>
+<p>为了使信息的输出控制更加灵活，信息中心提供了信息过滤的功能。设备正常运行后，各模块在业务处理时都会上报信息</p>
+</blockquote>
+<p>当用户希望过滤某些不需要关注的业务模块/级别的信息时，可以配置信息在信息通道中的过滤功能</p>
+<p>信息中心通过信息过滤表实现信息在通道中的过滤。信息过滤表是根据信息分类、分级、来源对输出到各个方向的信息进行过滤的</p>
+<p>信息过滤表记录的内容如下：</p>
+<ul>
+<li>信息模块号、Log信息输出开关状态、Log信息输出过滤级别、Trap信息输出开关状态、Trap信息输出过滤级别、Debug信息输出开关状态、Debug信息输出过滤级别</li>
+</ul>
+<p><strong>信息中心的应用场景</strong></p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\网络运维相关知识\信息中心的应用场景.png" style="zoom:50%;" />
+<h4 id="信息中心命令">信息中心命令</h4>
+<p><strong>1. 使能信息中心功能</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[HUAWEI]</span> info<span class="token operator">-</span>center enable <span class="token comment">#缺省情况下，信息中心功能处于使能状态</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>2. 为指定编号的信息通道命名</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[HUAWEI]</span> info<span class="token operator">-</span>center channel channel<span class="token operator">-</span>number name channel<span class="token operator">-</span>name<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>3. 配置对指定的Log或Trap信息进行过滤的功能</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[HUAWEI]</span> info<span class="token operator">-</span>center <span class="token keyword">filter</span><span class="token operator">-</span>id <span class="token punctuation">&#123;</span> id <span class="token punctuation">|</span> bymodule<span class="token operator">-</span>alias modname alias <span class="token punctuation">&#125;</span> <span class="token punctuation">[</span> bytime interval <span class="token punctuation">|</span> bynumber number <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>指定需要过滤的Log或Trap信息对应的ID信息</td>
+</tr>
+<tr>
+<td><strong>bymodule-alias</strong> modname alias</td>
+<td>指定需要过滤的Log或Trap信息对应的模块名称和助记符名称</td>
+</tr>
+<tr>
+<td><strong>all</strong></td>
+<td>指定过滤所有Log或者Trap信息</td>
+</tr>
+</tbody>
+</table>
+<p><strong>4. 使能Log信息向Log缓冲区的发送功能</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[HUAWEI]</span> info<span class="token operator">-</span>center logbuffer<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<p>缺省情况下，Log信息向Log缓冲区的发送功能处于使能状态</p>
+</blockquote>
+<p><strong>5. 配置向日志主机输出信息</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[HUAWEI]</span> info<span class="token operator">-</span>center loghost ip<span class="token operator">-</span>address<span class="token punctuation">&#123;</span> source<span class="token operator">-</span>ip source<span class="token operator">-</span>ip<span class="token operator">-</span>address <span class="token punctuation">&#125;</span> <span class="token punctuation">|</span> transport <span class="token punctuation">&#123;</span> udp <span class="token punctuation">|</span> tcp ssl<span class="token operator">-</span>policy policy<span class="token operator">-</span>name <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ip-address</td>
+<td>指定日志主机的IPv4地址</td>
+</tr>
+<tr>
+<td><strong>source-ip</strong> source-ip-address</td>
+<td>指定发向日志主机的报文源IPv4地址</td>
+</tr>
+<tr>
+<td><strong>port</strong> port-number</td>
+<td>指定发送时对应的端口号</td>
+</tr>
+<tr>
+<td>transport { UDP | TCP }</td>
+<td>指定日志报文的传输模式，传输缺省情况下，采用UDP模式</td>
+</tr>
+<tr>
+<td><strong>ssl-policy</strong> policy-name</td>
+<td>指定SSL [Secure Sockets Layer]策略名称</td>
+</tr>
+</tbody>
+</table>
+<p><strong>6. 配置信息输出时所使用的信息通道</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[HUAWEI]</span> info<span class="token operator">-</span>center <span class="token punctuation">&#123;</span> console <span class="token punctuation">|</span> logbuffer <span class="token punctuation">|</span> logfile <span class="token punctuation">|</span> monitor <span class="token punctuation">|</span> snmp <span class="token punctuation">|</span> trapbuffer <span class="token punctuation">&#125;</span> channel <span class="token punctuation">&#123;</span> channel<span class="token operator">-</span>number <span class="token punctuation">|</span> channel<span class="token operator">-</span>name <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>console</strong></td>
+<td>指定向控制台输出信息的信息通道</td>
+</tr>
+<tr>
+<td><strong>logbuffer</strong></td>
+<td>指定向Log缓冲区输出信息的信息通道</td>
+</tr>
+<tr>
+<td><strong>logfile</strong></td>
+<td>指定向日志文件输出信息的信息通道</td>
+</tr>
+<tr>
+<td><strong>monitor</strong></td>
+<td>指定向用户终端输出信息的信息通道</td>
+</tr>
+<tr>
+<td><strong>snmp</strong></td>
+<td>指定向SNMP代理输出信息的信息通道</td>
+</tr>
+<tr>
+<td><strong>trapbuffer</strong></td>
+<td>指定向Trap缓冲区输出信息的信息通道</td>
+</tr>
+<tr>
+<td>channel-number</td>
+<td>指定通道编号</td>
+</tr>
+<tr>
+<td>channel-name</td>
+<td>指定通道名称</td>
+</tr>
+</tbody>
+</table>
+<p><strong>7. 使能终端显示信息中心发送信息的功能</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[HUAWEI]</span> terminal monitor	<span class="token comment"># 缺省情况下，控制台显示功能处于使能状态，用户终端显示功能处于未使能状态</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>8. 使能终端显示Debug信息功能</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[HUAWEI]</span> terminal debugging	<span class="token comment"># 缺省情况下，终端显示Debug信息功能处于未使能状态</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>9. 使能终端显示Log信息功能</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[HUAWEI]</span> terminal logging	<span class="token comment"># 缺省情况下，终端显示Log信息功能处于使能状态</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>10. 查看Log缓冲区记录的信息</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[HUAWEI]</span> display logbuffer <span class="token punctuation">[</span> size size <span class="token punctuation">|</span> slot slot<span class="token operator">-</span>id <span class="token punctuation">|</span> module module<span class="token operator">-</span>name <span class="token punctuation">|</span> security <span class="token punctuation">|</span> level <span class="token punctuation">&#123;</span> severity <span class="token punctuation">|</span> level <span class="token punctuation">&#125;</span> <span class="token punctuation">]</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>11. 查看日志文件信息</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[HUAWEI]</span> display logfile file<span class="token operator">-</span>name <span class="token punctuation">[</span> offset <span class="token punctuation">|</span> hex <span class="token punctuation">]</span> <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>12. 查看信息中心Trap缓冲区记录的信息</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[HUAWEI]</span> display trapbuffer<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>13. 查看设备允许发送的调试信息</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[HUAWEI]</span> display debugging<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>14. 查看信息中心输出方向的配置信息</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[HUAWEI]</span> display info<span class="token operator">-</span>center<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="报文捕获">报文捕获</h4>
+<blockquote>
+<p>当设备的业务流量出现异常，可以使用报文捕获功能，抓取业务报文进行分析，以便及时处理非法报文，保证网络数据的正常传输</p>
+</blockquote>
+<ul>
+<li><strong>capture-packet命令</strong>用来在设备捕获符合设置规则的业务报文，并上送到终端显示，或保存到本地</li>
+</ul>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">capture<span class="token operator">-</span>packet interface interface<span class="token operator">-</span><span class="token function">type</span> interface<span class="token operator">-</span>number <span class="token punctuation">[</span> acl acl<span class="token operator">-</span>number <span class="token punctuation">]</span> <span class="token punctuation">[</span> vxlan <span class="token punctuation">[</span> vni vni<span class="token operator">-</span>id <span class="token punctuation">]</span> destination <span class="token punctuation">&#123;</span> terminal <span class="token punctuation">|</span> file file<span class="token operator">-</span>name <span class="token punctuation">&#125;</span> <span class="token operator">*</span> <span class="token punctuation">[</span> car cir car<span class="token operator">-</span>value <span class="token punctuation">|</span> time<span class="token operator">-</span>out time <span class="token punctuation">|</span> packet<span class="token operator">-</span>num number <span class="token punctuation">|</span> packet<span class="token operator">-</span>len <span class="token punctuation">&#123;</span> length <span class="token punctuation">|</span> total<span class="token operator">-</span>packet <span class="token punctuation">&#125;</span> <span class="token punctuation">]</span> <span class="token operator">*</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>acl</strong> acl-number</td>
+<td>捕获VXLAN报文内层信息匹配到指定ACL规则的报文</td>
+</tr>
+<tr>
+<td><strong>vlan</strong> vlan-id</td>
+<td>捕获指定VLAN报文。</td>
+</tr>
+<tr>
+<td><strong>inner-vlan</strong> inner-vlan-id</td>
+<td>捕获指定内层VLAN报文。</td>
+</tr>
+<tr>
+<td><strong>destination</strong></td>
+<td>将捕获的报文上送目的地</td>
+</tr>
+<tr>
+<td><strong>terminal</strong></td>
+<td>将捕获的报文发送到终端显示</td>
+</tr>
+<tr>
+<td><strong>file</strong> file-name</td>
+<td>将捕获的报文保存在指定的文件里，文件名必须为*.cap格式</td>
+</tr>
+<tr>
+<td><strong>time-out</strong> time</td>
+<td>捕获报文超时时间，超时后报文捕获实例自动关闭</td>
+</tr>
+<tr>
+<td><strong>packet-num</strong> number</td>
+<td>捕获报文的数量，捕获指定数量的报文后报文捕获实例自动关闭</td>
+</tr>
+<tr>
+<td><strong>packet-len</strong> length</td>
+<td>报文在终端显示或存储在存储介质中的长度</td>
+</tr>
+<tr>
+<td><strong>total-packet</strong></td>
+<td>在终端显示或在存储介质中存储整个报文</td>
+</tr>
+</tbody>
+</table>
+<h4 id="lldp">LLDP</h4>
+<p><strong>链路层发现协议 [LLDP，Link Layer Discovery Protocol] 是IEEE 802.1ab中定义的链路层拓扑发现协议</strong></p>
+<p>能够准确定位诸如哪些设备附带有哪些接口，以及哪些接口与其他设备相互连接等信息，并能够显示客户端、交换机、路由器、应用服务器和网络服务器之间的路径</p>
+<p>在实际组网中可以通过LLDP协议获取设备的物理连接信息</p>
+<h4 id="流量统计">流量统计</h4>
+<blockquote>
+<p>流量可以帮助用户了解应用流策略后流量通过和被丢弃的情况，由此分析和判断流策略的应用是否合理，也有助于进行相关的故障诊断与排查</p>
+</blockquote>
+<h2 id="网络故障排除">网络故障排除</h2>
+<h3 id="数通网络故障排除方法">数通网络故障排除方法</h3>
+<h4 id="网络故障排除基本概念">网络故障排除基本概念</h4>
+<p>网络故障是指由于某种原因而使网络丧失规定功能并影响业务的现象。</p>
+<p>从用户的角度出发，凡是影响业务的现象都可以定义为故障。</p>
+<p>常见的故障现象和分类如下：</p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\网络运维相关知识\常见的故障现象和分类.png" style="zoom:50%;" />
+<h4 id="结构化的网络故障排除流程">结构化的网络故障排除流程</h4>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\网络运维相关知识\结构化的网络故障排除流程.png" style="zoom:50%;" />
+<p>关于<strong>非结构化网络故障排除流程</strong>：</p>
+<ul>
+<li>非结构化的网络故障排除流程，就只是凭直觉在这些步骤之间重复执行，虽然最终也可能找到解决故障的方法，但没有办法保证效率</li>
+<li>在复杂的网络环境中，有可能会由于非结构化的网络故障排除流程而导致新的故障，从而使网络故障的排除变得更加困难</li>
+</ul>
+<p><strong>报告故障 - 主动沟通确认</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>事件信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>故障报告者</td>
+<td>姓名、所在的部门、职位级别、所负责的工作内容、使用电脑的位置等信息</td>
+</tr>
+<tr>
+<td>故障频率</td>
+<td>故障是突发的、偶尔的、还是频繁的</td>
+</tr>
+<tr>
+<td>用户操作</td>
+<td>出现故障之前和之后，用户对自己的终端做了哪些操作</td>
+</tr>
+</tbody>
+</table>
+<p><strong>确认故障</strong></p>
+<ul>
+<li>
+<p><strong>确认故障的四个要素</strong>：</p>
+<ul>
+<li>故障的主体：哪个网络业务出现了故障</li>
+<li>故障的表现：故障的现象是什么样的</li>
+<li>故障的时间：用户是什么时间发现的故障，以及专业人员推测的故障出现的真实时间</li>
+<li>故障的位置：哪个网络组件出现了故障</li>
+</ul>
+</li>
+<li>
+<p>对故障现象进行准确的描述</p>
+</li>
+<li>
+<p>最后应确认该故障是否属于自己的负责范围，即自己是否被赋予了相应的权限来处理该故障</p>
+</li>
+</ul>
+<p><strong>收集信息</strong></p>
+<ul>
+<li>需要收集哪些信息：收集信息阶段主要是收集与故障相关的信息，如文档、网络变更情况等</li>
+<li>如何收集这些信息：使用设备自身的操作命令；使用信息收集工具，如抓包工具、网管软件等</li>
+<li>获取授权：在信息安全要求高的网络环境中，对信息的收集是需要得到授权的，有时需要签署书面的授权文件</li>
+<li>收集信息阶段的风险评估：
+<ul>
+<li>有些收集信息的操作，如对路由器或交换机执行debug命令，会导致设备的CPU占用率过高，严重的情况下甚至会使设备停止响应用户的操作指令，从而引入额外的故障现象</li>
+<li>在收集信息的时候应评估这些风险，平衡引入新故障的风险与解决现有故障的紧迫性之间的关系，并明确的告知用户这些风险，由用户来决定是否进行风险较大的信息收集工作</li>
+</ul>
+</li>
+</ul>
+<p><strong>判断分析</strong></p>
+<blockquote>
+<p>判断分析阶段是对收集到的信息进行分析整理</p>
+</blockquote>
+<p>通过对故障信息、维护信息、变更信息的汇总，结合团队经验或个人经验进行综合的判断和分析，得到可能导致网络故障的原因列表</p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\网络运维相关知识\判断分析.png" style="zoom:50%;" />
+<p><strong>原因列表</strong></p>
+<p>在原因列表阶段，首先需要列出所有可能的故障原因，然后通过信息过滤，列出最可能的待排查故障原因，同时排除掉当前最不可能的故障原因，从而缩小故障的排除范围</p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\网络运维相关知识\原因列表.png" style="zoom:50%;" />
+<p><strong>故障评估</strong>：需要在逐一排查前进行故障评估工作</p>
+<p><strong>逐一排查</strong></p>
+<ul>
+<li>在逐一排查阶段同样需要平衡解决问题的迫切性与引入新故障的风险性之间的矛盾。所以，应该明确告知用户排查工作可能带来的风险，并在得到许可的情况下才能执行操作</li>
+<li>有些情况下，通过逐一排查验证推断的过程涉及到网络变更，这时必须做好完善的应急预案和回退准备</li>
+</ul>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\网络运维相关知识\故障排查.png" style="zoom:50%;" />
+<p><strong>解决故障</strong>：通过逐一排查找到了故障的根本原因，并排除了故障，网络故障排除的流程就可以结束</p>
+<p>复杂的网络环境中，故障现象消失后仍然需要观察一段时间，一方面确认用户报告的故障已经得到了解决，另一方面确认故障排除的过程中没有引入新的故障</p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\网络运维相关知识\解决故障.png" style="zoom:50%;" />
+<p><strong>收尾工作</strong>：收尾工作包括相关文档的整理、信息的通告等</p>
+<p>需要对之前网络故障排除流程中所有进行了变更的配置或软件进行备份，并做好故障排除文档的整理和移交工作。为了避免同样的故障再次发生，在此阶段应该向用户提出改进建议</p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\网络运维相关知识\收尾工作.png" style="zoom:50%;" />
+<h4 id="网络故障排除的核心思想和方法">网络故障排除的核心思想和方法</h4>
+<p>以业务流量路径为核心的故障排除思想：通常情况下，网络中业务流量的路径是在网络规划阶段就已经设计好的，只需要知道受到网络故障影响的业务的流量往返路径，跟踪此路径，逐步排除即可</p>
+<ul>
+<li><strong>确认业务流量路径 - 网络层</strong>：在数据包转发过程中可能存在多条路径，因此需要根据报文转发过程，确认业务流量的传输路径</li>
+<li><strong>确认业务流量路径 - 数据链路层</strong>：确认业务流量对应的数据帧在二层网络环境中是如何被交换机转发的</li>
+</ul>
+<h5 id="分层故障处理法">分层故障处理法</h5>
+<p>所有模型都遵循相同的基本前提：当模型的所有低层结构工作正常时，它的高层结构才能正常工作。一般建议在处理故障时，从参考模型自底向上进行故障排查</p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\网络运维相关知识\分层故障处理法.png" style="zoom:50%;" />
+<h5 id="对比配置法">对比配置法</h5>
+<p>对比配置法是指对比正常状态与故障状态下的配置、软件版本、硬件型号等内容，检查两者之间的差异</p>
+<p><strong>分块故障处理法</strong></p>
+<p>华为的交换机和路由器等网络设备的配置文件具有清晰的组织结构，由此可以进行分块故障处理</p>
+<p>当出现一个故障案例现象时，我们可以把它归入以下某一类或某几类中，从而有助于缩减故障定位范围 ：</p>
+<ul>
+<li>
+<p>管理部分 [路由器名称、口令、服务、日志等]</p>
+</li>
+<li>
+<p>端口部分 [地址、封装、cost、认证等]</p>
+</li>
+<li>
+<p>路由协议部分（静态路由、RIP、OSPF、BGP、路由引入等）</p>
+</li>
+<li>
+<p>策略部分（路由策略、策略路由、安全配置等）</p>
+</li>
+<li>
+<p>接入部分（Console登录、Telnet登录、拨号等）</p>
+</li>
+<li>
+<p>其他应用部分（DNS、DHCP、VPN配置等）</p>
+</li>
+</ul>
+<h5 id="分段故障处理法">分段故障处理法</h5>
+<p>数据包转发过程可能经过多台路由器和物理链路，每段物理连接都有可能发生故障，因此分段处理的方法是有效的</p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\网络运维相关知识\分段故障处理法.png" style="zoom:50%;" />
+<h5 id="替换法">替换法</h5>
+<p>替换法是检查硬件问题最常用的方法之一</p>
+<p>当怀疑是网线问题时，更换一根确定是好的网线试试；当怀疑是接口模块有问题时，更换一个其它接口模块试试</p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\网络运维相关知识\替换法.png" style="zoom:50%;" />
+<h2 id="网络割接">网络割接</h2>
+<h3 id="割接基本概念">割接基本概念</h3>
+<p>割接项目：如果对网络执行的技术迁移动作会影响现网运行业务，则在技术迁移项目实施时需严格地遵循预先设定的<strong>操作流程</strong>和<strong>风险控制</strong>措施，一般将此类项目定义为割接项目</p>
+<p>割接常见场景:</p>
+<ul>
+<li>网络扩容：随着业务流量的增加，对网络进行扩容，增加网络设备、添加链路</li>
+<li>网络改造：涉及对网络结构的调整，包括物理结构、逻辑结构</li>
+<li>设备替换：将原有老旧设备升级替换为新设备，或者更换为其他厂家设备，或者使用其他类型设备代替</li>
+<li>配置变更：在不改变物理拓扑结构的情况下，对设备配置进行变更，对正在运行的业务可能会产生影响</li>
+</ul>
+<h4 id="割接流程">割接流程</h4>
+<img src="C:/Users/888888/Desktop/网络工程相关内容复习/Advanced Routing Switching Technology/网络运维相关知识/割接流程.png" style="zoom:80%;" />
+<h3 id="割接操作流程">割接操作流程</h3>
+<h4 id="准备阶段">准备阶段</h4>
+<p><strong>项目调研</strong></p>
+<p>在割接开始前需要与客户网络信息负责人、一线维护工程师、ISP的技术接口人以及设备厂家代表等多方进行沟通，同时进行客户网络信息的收集</p>
+<ul>
+<li>信息采集分析：现网的<strong>静态、动态信息</strong>用于分析网络情况以及割接前后网络情况进行对比分析，判断割接前后业务量是否正常</li>
+<li>业务模型分析：对客户的<strong>业务流量</strong>走向、业务流量大小进行观察，包括<strong>流量走向的变化和链路流量大小</strong>，可用于割接前后进行对比</li>
+<li>现网硬件环境观察：
+<ul>
+<li>需要记录的内容：<strong>光纤接口对应关系、ODF位置、接口标识</strong></li>
+<li>对现网环境的观察便于割接时操作，同时相应的接口对应关系要进行记录，涉及到设备替换、线缆替换等割接操作便于割接完进行检查</li>
+</ul>
+</li>
+</ul>
+<p><strong>项目分析</strong></p>
+<p>对客户的需求进行分析、梳理，分析客户对割接后网络的<strong>新需求</strong>，如带宽，网络KPI指标，新业务承载能力等，同时在该阶段将割接方案中的割接变更需求进行明确</p>
+<p><strong>风险评估</strong></p>
+<p>根据调研结果、需求分析结果，以及割接方案的框架进行<strong>割接风险分析与评估</strong>，针对可能出现的风险项目提前制定应对措施，并将对应的风险项对应措施责任人确认</p>
+<p><strong>输出割接方案</strong></p>
+<ul>
+<li>根据调研结果、项目分析结果、技术人员风险评估编写相应的割接方案</li>
+<li>割接方案中需要将割接前准备阶段、实施阶段、收尾阶段的详细步骤、过程进行明确</li>
+<li><strong>回退方案</strong>：当割接失败时需要将网络退回到割接前初始状态，此时需要按照回退方案进行操作，将网络恢复</li>
+</ul>
+<p><strong>方案验证和审定</strong></p>
+<p>大型的、重要的割接项目，要求在实验室内搭建环境进行提前验证，将风险点进行测试，并对整个方案的可行性确认，<strong>使用实验室环境验证的被称为实验局测试</strong></p>
+<p><strong>割接准备</strong></p>
+<p>割接准备是割接实施前的重要步骤，同时充分地准备也是顺利完成割接的基础</p>
+<blockquote>
+<p>割接的准备分为环境准备 [硬件，软件，工具，备件等]、人员准备 [甲方，乙方，监理]和流程准备 [执行时间划分]</p>
+</blockquote>
+<img src="C:/Users/888888/Desktop/网络工程相关内容复习/Advanced Routing Switching Technology/网络运维相关知识/软硬件准备.png" style="zoom: 67%;" />
+<center>软硬件准备</center>
+<img src="C:/Users/888888/Desktop/网络工程相关内容复习/Advanced Routing Switching Technology/网络运维相关知识/工具备件准备.png" style="zoom: 67%;" />
+<center>工具备件准备</center>
+#### 实施阶段
+<p><strong>割接前快照</strong></p>
+<p>为方便割接回退以及割接之后对比业务是否正常，在正式开始割接之前需要对现网配置、现网数据再进行一次快照，具体包括以下内容：</p>
+<ul>
+<li>现网配置进行备份</li>
+<li>现网动态数据采集 [端口状态、流量、各路由协议状态、路由数量、STP协议状态、各端口ARP/MAC地址表项]</li>
+<li>割接前对业务进行测试，确保割接涉及的业务在割接前属于正常状态</li>
+</ul>
+<p><strong>割接执行</strong></p>
+<ul>
+<li>现场割接人员按照提前准备好的割接步骤一步步严格执行，无特殊原因不能临时更改实施步骤</li>
+<li>每一步骤的执行记录下割接实际操作过程的时间点、执行动作、执行结果</li>
+</ul>
+<p><strong>割接回退</strong></p>
+<ul>
+<li>如果在指定的时间前未完成割接，需按照提前准备的回退方案一步步进行回退，将网络恢复。</li>
+<li>回退范围可根据实际情况，与客户协商<strong>部分回退</strong>或<strong>全部回退</strong></li>
+</ul>
+<p><strong>割接测试</strong></p>
+<p>割接实施完成后为测试割接是否成功，需要从以下几个方面对网络、业务进行测试：</p>
+<ol>
+<li>网络运行状态测试：对现网的动态数据在进行一次采集，与割接前进行对比</li>
+<li>业务测试：通过PING、TRACERT或者客户侧的第三方软件测试网络连通性、延迟、抖动等指标是否到达业务要求</li>
+<li>客户应用测试：测试由网络承载的客户应用，检查是否正常</li>
+</ol>
+<img src="C:/Users/888888/Desktop/网络工程相关内容复习/Advanced Routing Switching Technology/网络运维相关知识/割接测试.png" style="zoom:67%;" />
+<h4 id="收尾阶段">收尾阶段</h4>
+<p><strong>守局</strong></p>
+<p>割接操作完成且通过客户应用业务测试后，网络需进入一个特殊的观察期，在此期间工程师一般驻守在客户局点，观察网络运行状态，防止出现意外故障。</p>
+<p><strong>割接验收</strong></p>
+<p>割接顺利完成并在守局观察无异常之后还需要对客户进行维护培训以及资料移交</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/2025/04/16/%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">https://shierjinghuang.github.io/2025/04/16/%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/HCIP/">
+                                    <span class="chip bg-color">HCIP</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/">
+                                    <span class="chip bg-color">网络工程</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%B7%AF%E7%94%B1%E4%B8%8E%E4%BA%A4%E6%8D%A2%E8%BF%9B%E9%98%B6/">
+                                    <span class="chip bg-color">路由与交换进阶</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%BD%91%E7%BB%9C%E8%BF%90%E7%BB%B4/">
+                                    <span class="chip bg-color">网络运维</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2025/04/18/%E5%AE%89%E5%85%A8%E5%B7%A5%E7%A8%8B%E4%B8%8E%E8%BF%90%E8%90%A5/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="安全工程与运营">
+                        
+                        <span class="card-title">安全工程与运营</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2025-04-18
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                    网络安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CISP/">
+                        <span class="chip bg-color">CISP</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%B3%BB%E7%BB%9F%E5%B7%A5%E7%A8%8B/">
+                        <span class="chip bg-color">系统工程</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2025/04/15/PL-SQL%E6%A6%82%E8%BF%B0/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="PL/SQL概述">
+                        
+                        <span class="card-title">PL/SQL概述</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-04-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    学习笔记
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/PL-SQL/">
+                        <span class="chip bg-color">PL/SQL</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2025</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">504.3k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

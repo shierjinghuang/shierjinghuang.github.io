@@ -1,0 +1,1808 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="MPLS相关知识, 十二惊惶">
+    <meta name="description" content="MPLS相关知识
+[TOC]
+MPLS原理与配置
+MPLS基础
+MPLS概述
+
+MPLS [多协议标签交换] 是一种高效的数据传输技术，主要用于运营商网络和企业专网
+
+
+MPLS位于TCP/IP协议栈中的数据链路层和网络层之间，可以向所有网">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>MPLS相关知识 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">MPLS相关知识</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/HCIP/">
+                                <span class="chip bg-color">HCIP</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%B7%AF%E7%94%B1%E4%B8%8E%E4%BA%A4%E6%8D%A2%E8%BF%9B%E9%98%B6/">
+                                <span class="chip bg-color">路由与交换进阶</span>
+                            </a>
+                        
+                            <a href="/tags/MPLS/">
+                                <span class="chip bg-color">MPLS</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                网络工程相关
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2025-04-21
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2025-04-24
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    7.7k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    29 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1>MPLS相关知识</h1>
+<p>[TOC]</p>
+<h2 id="mpls原理与配置">MPLS原理与配置</h2>
+<h3 id="mpls基础">MPLS基础</h3>
+<h4 id="mpls概述">MPLS概述</h4>
+<blockquote>
+<p>MPLS [多协议标签交换] 是一种高效的数据传输技术，主要用于运营商网络和企业专网</p>
+</blockquote>
+<ul>
+<li>MPLS位于TCP/IP协议栈中的数据链路层和网络层之间，可以向所有网络层提供服务</li>
+<li>通过在数据链路层和网络层之间增加额外的MPLS头部，基于MPLS头部实现数据快速转发</li>
+</ul>
+<h4 id="mpls术语">MPLS术语</h4>
+<p><strong>MPLS域 [MPLS Domain]</strong>：一系列连续的运行MPLS的网络设备构成了一个MPLS域</p>
+<p><strong>LSR [Label Switching Router，标签交换路由器]</strong>：支持MPLS的路由器</p>
+<ul>
+<li>位于MPLS域边缘、连接其它网络的LSR称为<strong>边沿路由器LER</strong> [Label Edge Router]</li>
+<li>区域内部的LSR称为<strong>核心LSR</strong> [Core LSR]</li>
+</ul>
+<p>根据数据处理方式的不同对LSR分类：</p>
+<ul>
+<li><strong>入站LSR</strong> Ingress LSR：通常是向IP报文中压入MPLS头部并生成MPLS报文的LSR</li>
+<li><strong>中转LSR</strong> Transit LSR：通常是将MPLS报文进行例如标签置换操作，并将报文继续在MPLS域中转发的LSR</li>
+<li><strong>出站LSR</strong> Egress LSR：通常是将MPLS报文中MPLS头部移除，还原为IP报文的LSR</li>
+</ul>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS原理与配置\LSR分类.png" style="zoom:50%;" />
+<p><strong>FEC [Forwarding Equivalence Class，转发等价类]</strong> 是一组具有某些共性的数据流的集合，这些数据流在转发过程中被网络节点以相同方式处理</p>
+<ul>
+<li>在MPLS网络中，FEC可以通过多种方式划分</li>
+<li>数据属于哪一个LSP，由数据进入MPLS域时的Ingress LSR决定</li>
+<li>MPLS标签通常是与FEC相对应的，必须有某种机制使得网络中的LSR获得关于某FEC的标签信息</li>
+</ul>
+<blockquote>
+<p>在传统的采用最长匹配算法的IP转发中，匹配到同一条路由的所有报文就是一个转发等价</p>
+</blockquote>
+<p><strong>LSP [Label Switched Path，标签交换路径]</strong> 是标签报文穿越MPLS网络到达目的地所走的路径</p>
+<p>同一个FEC的报文通常采用相同的LSP穿越MPLS域，所以对同一个FEC，LSR总是用相同的标签转发</p>
+<ul>
+<li>一条LSP包含一台入站LSR、一台出站LSR以及数量可变的中转LSR，LSP也可以看做是这些LSR的有序集合</li>
+<li>LSP需要在数据转发开始前建立完成，只有这样报文才能顺利穿越MPLS域</li>
+<li>LSP可通过静态和动态两种方式建立</li>
+<li>LSP是一个从起点到终点的单向路径，若需要双向数据互通，则需要在双方之间建立双向的LSP</li>
+</ul>
+<h4 id="mpls标签">MPLS标签</h4>
+<ul>
+<li>IP报文进入MPLS域之前，会被入站LSR压入MPLS头部，形成一个<strong>MPLS标签报文</strong></li>
+<li>一个标签报文可以包含一个或多个MPLS标签</li>
+</ul>
+<h5 id="mpls报文格式">MPLS报文格式</h5>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS原理与配置\MPLS报文格式.png" style="zoom:50%;" />
+<blockquote>
+<p>当上层为MPLS标签栈时，以太网头部中的Type字段为0x8847，PPP头部中的Protocol字段为0x8281</p>
+</blockquote>
+<p><strong>MPLS报文字段解析：</strong></p>
+<ul>
+<li><strong>标签 Label</strong>：用于携带标签值，长度20bit</li>
+<li><strong>EXP [Experimental Use]</strong>：主要用于CoS Class of Service，长度3bit</li>
+<li><strong>S [Bottom of Stack]</strong>：栈底位，用于指示该标签头部是否为最后一层标签，长度1bit
+<ul>
+<li>如果该字段为1，则表示当前标签头部为栈底</li>
+<li>如果该字段为0，则表示当前标签头部之后依然还有其他标签头部</li>
+</ul>
+</li>
+<li><strong>TTL [Time To Live]</strong>：用于当网络出现环路时，防止标签报文被无限制转发，长度8bit</li>
+</ul>
+<h5 id="mpls标签栈">MPLS标签栈</h5>
+<p>MPLS支持一层或多层标签头部，这些标签头部的有序集合被称为 <strong>标签栈 [Label Stack]</strong></p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS原理与配置\MPLS标签栈.png" style="zoom:50%;" />
+<p><strong>标签空间</strong>：</p>
+<p><strong>标签是一个短而定长的、只具有本地意义的标识符，标签空间就是指标签的取值范围</strong></p>
+<blockquote>
+<p>只具有本地意义说明每一台LSR之间的标签空间是相互独立的，即每台路由器都可以使用完整的标签空间</p>
+</blockquote>
+<p>标签值的范围及规划如下：</p>
+<table>
+<thead>
+<tr>
+<th>标签值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0~15</td>
+<td>特殊标签值，<strong>0被定义为IPv4显式空标签 [IPv4 Explicit NULL Label]</strong></td>
+</tr>
+<tr>
+<td></td>
+<td><strong>标签值3被定义为隐式空标签 [Implicit NULL Label]</strong></td>
+</tr>
+<tr>
+<td>16~1023</td>
+<td>用于静态LSP、静态CR-LSP的共享标签空间</td>
+</tr>
+<tr>
+<td>1024~1048575</td>
+<td>LDP、RSVP-TE、MP-BGP等动态信令协议的标签空间</td>
+</tr>
+<tr>
+<td></td>
+<td>动态信令协议的标签空间不是共享的，而是独立且连续的，互不影响</td>
+</tr>
+</tbody>
+</table>
+<h4 id="mpls标签的处理">MPLS标签的处理</h4>
+<p>LSR对标签的操作类型包括<strong>标签压入 [Push]、标签交换 [Swap]和标签弹出 [Pop]</strong></p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS原理与配置\MPLS标签的处理.png" style="zoom:50%;" />
+<h3 id="mpls转发">MPLS转发</h3>
+<h4 id="mpls转发概述">MPLS转发概述</h4>
+<blockquote>
+<p>MPLS转发的本质就是<strong>将数据归到对应的FEC并按照提前建立好的LSP进行转发</strong></p>
+</blockquote>
+<ul>
+<li>对于整个MPLS域，LSP是某一给定的FEC进入域和离开域的路径，可以看成是LSR的有序集合</li>
+<li>对于单台LSR，需要建立标签转发表，用标签来标识FEC，并绑定相应的标签处理和转发等行为</li>
+</ul>
+<p><strong>补充说明</strong>：</p>
+<ul>
+<li>同一个FEC，若进入MPLS域的Ingress LSR不同，转发时的LSP也不相同</li>
+<li>同一个FEC，LSR的处理方式相同，不论这个FEC来自哪里</li>
+<li>LSR的转发动作决定了LSP，而标签转发表确定转发动作，所以建立标签转发表也可以理解为建立LSP</li>
+</ul>
+<h4 id="mpls体系结构">MPLS体系结构</h4>
+<p>MPLS的体系结构由<strong>控制平面 [Control Plane]</strong> 和<strong>转发平面 [Forwarding Plane]</strong> 组成</p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS原理与配置\MPLS体系结构.png" style="zoom:50%;" />
+<blockquote>
+<p>控制平面：控制平面是无连接的，主要功能是负责产生和维护路由信息以及标签信息</p>
+</blockquote>
+<p><strong>控制平面包括</strong>：</p>
+<ul>
+<li>IP路由协议</li>
+<li><strong>路由信息表 RIB [Routing Information Base]</strong>：由IP路由协议[IP Routing Protocol]、静态路由和直连路由共同生成，用于选择路由</li>
+<li><strong>标签分发协议 LDP</strong></li>
+<li><strong>标签信息表 LIB [Label Information Base]</strong>：用于管理标签信息，LIB中的表项可由标签交换协议 [LDP、RSVP等协议]或静态配置生成。</li>
+</ul>
+<blockquote>
+<p>转发平面：转发平面也称为数据平面，是面向连接的， 主要功能是负责普通IP报文的转发以及带MPLS标签报文的转发</p>
+</blockquote>
+<p><strong>转发平面包括</strong>：</p>
+<ul>
+<li><strong>转发信息表FIB [Forwarding Information Base]</strong>：从RIB提取必要的路由信息生成，负责普通IP报文的转发</li>
+<li><strong>标签转发信息表LFIB [Label Forwarding Information Base]</strong>：简称标签转发表，负责带MPLS标签报文的转发</li>
+</ul>
+<center><img src=".\MPLS原理与配置\路由信息和标签信息传递过程.png" style="zoom:50%;" /><img src=".\MPLS原理与配置\IP数据包和MPLS标签数据包传递过程.png" style="zoom:50%;" /></center>
+#### LSP建立原则
+<ul>
+<li>当网络层协议为IP协议时，FEC所对应的路由必须存在于LSR的IP路由表中，否则该FEC的标签转发表项不生效</li>
+<li>LSR用标签标识指定FEC，所以该FEC的数据被发送至LSR时，必须携带正确的标签，才能被LSR正确的处理</li>
+</ul>
+<h4 id="lsp建立方式">LSP建立方式</h4>
+<blockquote>
+<p>MPLS需要为报文事先分配好标签，建立一条LSP，才能进行报文转发。LSP分为静态LSP和动态LSP两种</p>
+</blockquote>
+<h5 id="静态lsp">静态LSP</h5>
+<ul>
+<li><strong>基本概念</strong>：
+<ul>
+<li>静态LSP是用户通过手工为各个FEC分配标签而建立的</li>
+<li>静态LSP不使用标签发布协议，不需要交互控制报文，因此消耗资源比较小</li>
+<li>通过静态方式建立的LSP不能根据网络拓扑变化动态调整，需要管理员干预</li>
+</ul>
+</li>
+<li><strong>应用场景</strong>：适用于拓扑结构简单并且稳定的小型网络</li>
+<li><strong>标签分配原则</strong>：前一节点出标签的值等于下一个节点入标签的值</li>
+<li>补充：<strong>由于静态LSP各节点上不能相互感知到整个LSP的情况，因此静态LSP是一个本地的概念</strong></li>
+</ul>
+<h5 id="动态lsp">动态LSP</h5>
+<ul>
+<li>
+<p>基本概念：</p>
+<ul>
+<li>动态LSP<strong>通过标签发布协议动态建立</strong></li>
+<li>标签发布协议是MPLS的控制协议，负责FEC的分类、标签的分发以及LSP的建立和维护等一系列操作</li>
+</ul>
+</li>
+<li>
+<p>常用标签发布协议：<strong>标签分发协议 [LDP]</strong></p>
+<ul>
+<li>全称：Label Distribution Protocol</li>
+<li>定义：<strong>LDP是多协议标签交换MPLS的一种控制协议，负责转发等价类FEC的分类、标签的分配以及标签交换路径LSP的建立和维护等操作</strong></li>
+<li>LDP规定了标签分发过程中的各种消息以及相关处理过程</li>
+<li>应用场景：LDP广泛地应用在VPN服务上，具有组网、配置简单、支持基于路由动态建立LSP、支持大容量LSP等优点</li>
+</ul>
+</li>
+<li>
+<p>其他标签发布协议：</p>
+<ul>
+<li><strong>RSVP-TE</strong>：[Resource Reservation Protocol Traffic Engineering]
+<ul>
+<li>是对RSVP的扩展，用于建立基于约束的LSP</li>
+<li>拥有普通LDP LSP没有的功能，如发布带宽预留请求、带宽约束、链路颜色和显式路径等</li>
+</ul>
+</li>
+<li>MP-BGP：[Multiprotocol Border Gateway Protocol]
+<ul>
+<li>MP-BGP是在BGP协议基础上扩展的协议</li>
+<li>MP-BGP支持为MPLS VPN业务中私网路由和跨域VPN的标签路由分配标签</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="mpls标签转发">MPLS标签转发</h4>
+<blockquote>
+<p>LSR处理报文时主要根据FTN、 NHLFE和ILM</p>
+</blockquote>
+<p><strong>FTN [FEC-to-NHLFE]</strong> ：当LSR收到IP报文并需要进行MPLS转发时使用，FTN只在Ingress存在</p>
+<ul>
+<li>FTN包括：<strong>Tunnel ID、FEC到NHLFE的映射信息</strong></li>
+</ul>
+<p><strong>NHLFE 下一跳标签转发表项</strong> [Next Hop Label Forwarding Entry]：LSR对报文 [MPLS或IP报文] 进行MPLS转发时使用，<strong>NHLFE在Ingress和Transit存在</strong></p>
+<ul>
+<li>NHLFE包括：Tunnel ID、出接口、下一跳、出标签、标签操作类型等信息</li>
+</ul>
+<p><strong>ILM 入标签映射 [Incoming Label Map]</strong> ：用于指导MPLS报文的转发，<strong>ILM只在Transit和Egress存在</strong></p>
+<ul>
+<li>ILM包括：Tunnel ID、入标签、入接口、标签操作类型等信息</li>
+</ul>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS原理与配置\MPLS标签转发.png" style="zoom:50%;" />
+<p><strong>补充：</strong></p>
+<ul>
+<li>Tunnel ID：为了给使用隧道的上层应用提供统一的接口，系统自动为隧道分配了一个ID，也称为Tunnel ID。该Tunnel ID的长度为32比特，只是本地有效</li>
+<li>在MPLS转发过程中，FIB、ILM和NHLFE表项是通过Tunnel ID关联的</li>
+</ul>
+<h5 id="ingress-lsr的处理">Ingress LSR的处理</h5>
+<p>当IP报文进入MPLS域时：</p>
+<ul>
+<li>Ingress LSR查看FIB表，检查目的IP地址对应的<strong>Tunnel ID值是否为0x0</strong>
+<ul>
+<li>如果Tunnel ID值为0x0，则进入正常的IP转发流程</li>
+<li>如果Tunnel ID值不为0x0，则进入MPLS转发流程
+<ol>
+<li>根据FIB表的Tunnel ID找到对应的NHLFE表项，将FIB表项和NHLFE表项关联起来</li>
+<li>查看NHLFE表项，可以得到出接口、下一跳、出标签和标签操作类型</li>
+<li>在IP报文中压入出标签，同时处理TTL，然后将封装好的MPLS报文发送给下一跳</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="transit-lsr的处理">Transit LSR的处理</h5>
+<blockquote>
+<p>在Transit LSR，通过查询ILM表和NHLFE表指导MPLS报文的转发</p>
+</blockquote>
+<p>当MPLS报文在MPLS域转发时：</p>
+<ol>
+<li>Transit LSR根据MPLS的标签值查看对应的ILM表，得到Tunnel ID</li>
+<li>根据ILM表的Tunnel ID找到对应的NHLFE表项</li>
+<li>查看NHLFE表项，得到出接口、下一跳、出标签和标签操作类型，标签操作类型为Swap，则交换标签</li>
+</ol>
+<h5 id="egress-lsr的处理">Egress LSR的处理</h5>
+<p>当MPLS报文需要离开MPLS域时：</p>
+<ol>
+<li>Egress根据ILM查询到该标签对应的操作为Pop，说明需要剥离该标签</li>
+<li>根据当前标签头部的下一层报文头部进行下一步处理</li>
+</ol>
+<h3 id="静态lsp配置">静态LSP配置</h3>
+<h5 id="mpls基本配置命令">MPLS基本配置命令</h5>
+<p><strong>1. 配置LSR ID</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei]</span> mpls lsr<span class="token operator">-</span>id lsr<span class="token operator">-</span>id<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>mpls lsr-id命令用来配置LSR的ID</li>
+<li>LSR ID用来在网络中唯一标识一个LSR。LSR没有缺省的LSR ID，必须手工配置</li>
+<li>为了提高网络的可靠性，推荐使用LSR某个Loopback接口的地址作为LSR ID并在配置前对网络中所有LSR的LSR ID进行统一规划</li>
+</ul>
+<p><strong>2. 使能MPLS</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei]</span> mpls <span class="token comment">#mpls命令用来使能本节点的全局MPLS能力，并进入MPLS视图</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-GigabitEthernet0/0/0]</span> mpls<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>在接口视图下，使能当前接口的MPLS功能。需先使能全局MPLS能力后才能执行接口下的MPLS使能命令</p>
+<h5 id="静态lsp配置命令">静态LSP配置命令</h5>
+<p><strong>1. Ingress LSR配置</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei]</span> static<span class="token operator">-</span>lsp ingress lsp<span class="token operator">-</span>name destination ip<span class="token operator">-</span>address <span class="token punctuation">&#123;</span> mask<span class="token operator">-</span>length <span class="token punctuation">|</span> mask <span class="token punctuation">&#125;</span> <span class="token punctuation">&#123;</span> nexthop next<span class="token operator">-</span>hop<span class="token operator">-</span>address <span class="token punctuation">|</span> outgoing<span class="token operator">-</span>interface interface<span class="token operator">-</span><span class="token function">type</span> interface<span class="token operator">-</span>number <span class="token punctuation">&#125;</span> <span class="token operator">*</span> <span class="token function">out-label</span> <span class="token function">out-label</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<p>static-lsp ingress命令用来为入口节点配置静态LSP</p>
+</blockquote>
+<ul>
+<li>推荐采用指定next-hop的方式配置静态LSP，确保本地路由表中存在与指定目的IP地址精确匹配的路由项，包括目的IP地址和下一跳IP地址</li>
+<li>如果LSP出接口为以太网类型，必须配置nexthop next-hop-address参数以保证LSP的正常转发</li>
+<li>out-label的取值范围为16~1048575</li>
+</ul>
+<p><strong>2. Transit LSR配置</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei]</span> static<span class="token operator">-</span>lsp transit lsp<span class="token operator">-</span>name <span class="token punctuation">[</span> incoming<span class="token operator">-</span>interface interface<span class="token operator">-</span><span class="token function">type</span> interface<span class="token operator">-</span>number <span class="token punctuation">]</span> in<span class="token operator">-</span>label in<span class="token operator">-</span>label <span class="token punctuation">&#123;</span> nexthop next<span class="token operator">-</span>hop<span class="token operator">-</span>address <span class="token punctuation">|</span> outgoing<span class="token operator">-</span>interface interface<span class="token operator">-</span><span class="token function">type</span> interface<span class="token operator">-</span>number <span class="token punctuation">&#125;</span><span class="token operator">*</span> <span class="token function">out-label</span> <span class="token function">out-label</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<p>static-lsp transit命令用来为中间转发节点配置静态LSP</p>
+</blockquote>
+<ul>
+<li>下一跳和出接口的配置规则和Ingress LSR保持一致</li>
+<li>out-label占用的是下游LSR的标签空间，而下游空间采用的标签分发方式不确定，所以out-label的标签空间为16~1048575</li>
+<li>in-label占用的是当前LSR的标签空间，采用静态LSP时，标签空间为16~1023</li>
+</ul>
+<p><strong>3. Egress LSR配置</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei]</span> static<span class="token operator">-</span>lsp egress lsp<span class="token operator">-</span>name <span class="token punctuation">[</span> incoming<span class="token operator">-</span>interface interface<span class="token operator">-</span><span class="token function">type</span> interface<span class="token operator">-</span>number <span class="token punctuation">]</span> in<span class="token operator">-</span>label in<span class="token operator">-</span>label <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<p>static-lsp egress命令用来在出口节点配置静态LSP</p>
+</blockquote>
+<p><strong>4. 查看静态LSP配置</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei]</span> display mpls static<span class="token operator">-</span>lsp <span class="token punctuation">[</span> lsp<span class="token operator">-</span>name <span class="token punctuation">]</span> <span class="token punctuation">[</span> <span class="token punctuation">&#123;</span> include <span class="token punctuation">|</span> exclude <span class="token punctuation">&#125;</span> ip<span class="token operator">-</span>address mask<span class="token operator">-</span>length <span class="token punctuation">]</span> <span class="token punctuation">[</span> verbose <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="ldp原理与配置">LDP原理与配置</h2>
+<h3 id="ldp基本概念">LDP基本概念</h3>
+<blockquote>
+<p>LDP 标签分发协议 [Label Distribution Protocol] 是MPLS的一种控制协议，相当于传统网络中的信令协议，负责FEC的分类、标签的分配以及LSP的建立和维护等操作</p>
+</blockquote>
+<ul>
+<li>LDP规定了标签分发过程中的各种消息以及相关处理过程</li>
+</ul>
+<p><strong>LDP的工作过程主要分为两部分</strong>：</p>
+<ol>
+<li>LSR之间建立LDP会话</li>
+<li>LSR之间基于LDP会话动态交换标签与FEC的映射信息，并根据标签信息建立LSP</li>
+</ol>
+<p>LSR之间交互标签绑定消息之前必须建立LDP会话。LDP会话可以分为：</p>
+<ul>
+<li><strong>本地LDP会话 [Local LDP Session]</strong> ：建立会话的两个LSR之间是直连的</li>
+<li><strong>远程LDP会话 [Remote LDP Session]</strong>：建立会话的两个LSR之间可以是直连的，也可以是非直连的</li>
+</ul>
+<p>两台LSR之间交互Hello消息之后，即建立起<strong>邻接体 [Adjacency]关系</strong></p>
+<p>在邻接体关系的基础上，两台LSR之间交互LDP会话消息，建立起LDP会话，两台设备之间形成<strong>LDP对等体关系</strong></p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS原理与配置\LDP标签分发.png" style="zoom:50%;" />
+<p>每一台运行了LDP的LSR除了必须配置<strong>LSR ID</strong>，还必须拥有<strong>LDP ID</strong></p>
+<ul>
+<li>LDP ID的长度为48bit，由32bit的<strong>LSR ID</strong>与16bit的**标签空间标识符 [Label Space ID] **构成</li>
+<li>LDP ID以<strong>LSR ID : 标签空间标识</strong>的形式呈现</li>
+<li>标签空间标识一般存在两种形态：
+<ul>
+<li>值为0：表示基于设备的标签空间</li>
+<li>值非0：表示基于接口的标签空间</li>
+</ul>
+</li>
+</ul>
+<h4 id="ldp消息">LDP消息</h4>
+<p>LDP消息可分为四大类型：<strong>发现消息 [Discovery Message]</strong>，<strong>会话消息 [Session Message]</strong>，<strong>通告消息 [Advertisement Message]</strong> 和<strong>通知消息 [Notification Message]</strong></p>
+<ul>
+<li>发现消息：用来宣告和维护网络中一个LSR的存在，如Hello报文</li>
+<li>会话消息：用于建立、维护和终止LDP对等体之间的会话，如Initialization报文、KeepAlive报文</li>
+<li>通告消息：用来生成、改变和删除FEC的标签映射</li>
+<li>通知消息：用来宣告告警和错误信息</li>
+</ul>
+<blockquote>
+<p>LDP消息承载在UDP或TCP之上，端口号均为646</p>
+</blockquote>
+<ul>
+<li>发现消息用来发现邻居，承载在UDP报文上</li>
+<li>其他消息的传递要求可靠而有序，所以LDP使用TCP建立会话，会话、通告和通知消息都基于TCP传递</li>
+</ul>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS原理与配置\LDP消息.png" style="zoom:50%;" />
+<h4 id="ldp报文封装">LDP报文封装</h4>
+<p>LDP协议报文包括了<strong>LDP头部</strong>和<strong>LDP消息</strong>两部分</p>
+<ul>
+<li>LDP头部中携带了LDP版本、报文长度等信息</li>
+<li>LDP消息中携带了消息类型、消息长度等信息</li>
+</ul>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS原理与配置\LDP封装.png" style="zoom:50%;" />
+<ul>
+<li>
+<p>LDP头部长度为10Byte，包括Version，PDU Length和LDP Identifier三部分</p>
+<ul>
+<li>Version占用2Byte，表示LDP版本号，当前版本号为1</li>
+<li>PDU Length占用2Byte，以字节为单位表示除了Version和PDU Length以外的其他部分的总长度</li>
+<li>LDP Identifier，即LDP ID，长度6Byte，其中前4Byte用来唯一标识一个LSR，后2Byte用来表示LSR的标签空间</li>
+</ul>
+</li>
+<li>
+<p>LDP消息包含五个部分。</p>
+<ul>
+<li>
+<p>U占用1个bit，为Unknown Message bit</p>
+<ul>
+<li>当LSR收到一个无法识别的消息时，该消息的U=0时，LSR会返回给该消息的生成者一个通告，当U=1时，忽略该无法识别的消息，不发送通告给生成者</li>
+</ul>
+</li>
+<li>
+<p>Message Length占用2个bytes，以字节为单位<strong>表示Message ID、Mandatory Parameters和Optional Parameters的总长度</strong></p>
+</li>
+<li>
+<p><strong>Message ID</strong>占用32个bit，用来标识一个消息</p>
+</li>
+<li>
+<p><strong>Mandatory Parameters</strong>和<strong>Optional Parameters</strong>分别为<strong>可变长的该消息的必须的参数和可选的参数</strong></p>
+</li>
+<li>
+<p>Message Type表示具体的消息类型，目前LDP定义的常用的消息有Notification，Hello，Initialization，KeepAlive，Address，Address Withdraw，Label Mapping，Label Request，Label Abort Request，Label Withdraw，Label Release</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="ldp工作原理">LDP工作原理</h3>
+<h4 id="ldp会话状态机">LDP会话状态机</h4>
+<blockquote>
+<p>LDP Session协商过程可以通过状态机来描述，LDP使用5种状态描述LDP会话状态机，分别是<strong>Non-Existent，Initialized，OpenRec，OpenSent，Operational</strong></p>
+</blockquote>
+<ul>
+<li><strong>Non-Existent状态</strong>：该状态为LDP Session最初的状态，在此状态双方发送HELLO消息，选举主动方，在收到TCP连接建立成功事件的触发后变为Initialized状态</li>
+<li><strong>Initialized状态</strong>：该状态下分为<strong>主动方和被动方两种情况</strong>
+<ul>
+<li>主动方将主动发送Initialization消息，转OpenSent 状态，等待回应的Initialization消息</li>
+<li>被动方在此状态等待主动方发给自己的Initialization消息，如果收到的Initialization消息的参数可以接受，则发送Initialization和KeepAlive转向OpenRec状态</li>
+<li>主动方和被动方在此状态下收到任何非Initialization消息或等待超时时，都会转向Non-Existent状态</li>
+</ul>
+</li>
+<li><strong>OpenSent 状态</strong>：此状态为主动方发送Initialization消息后的状态，在此状态等待被动方回答Initialization消息和KeepAlive消息
+<ul>
+<li>如果收到的Initialization消息中的参数可以接受则转向OpenRec状态</li>
+<li>如果参数不能接受或Initialization消息超时则断开TCP连接转向Non-Existent状态</li>
+</ul>
+</li>
+<li><strong>OpenRec状态</strong>：
+<ul>
+<li>此状态不管主动方还是被动方都是发出KeepAlive后的状态，在等待对方回应KeepAlive，只要<strong>收到KeepAlive消息就转向Operational状态</strong></li>
+<li>如果收到其它消息或KeepAlive超时则转向Non-Existent状态</li>
+</ul>
+</li>
+<li>Operational状态：该状态是LDP Session成功建立的标志，在此状态下可以发送和接收所有其它的LDP消息
+<ul>
+<li>在此状态如果KeepAlive超时或收到致命错误的Notification消息或者自己主动发送Shutdown消息主动结束会话，都会转向Non-Existent状态</li>
+</ul>
+</li>
+</ul>
+<p>LDP状态切换信息可以通过指令<strong>debug mpls ldp session</strong>看到</p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS原理与配置\LDP会话状态机.png" style="zoom:50%;" />
+<h4 id="ldp会话建立流程">LDP会话建立流程</h4>
+<h5 id="发现阶段：">发现阶段：</h5>
+<p>设备通过<strong>周期性地发送LDP链路Hello报文 [LDP Link Hello]</strong>，实现LDP基本发现机制</p>
+<ul>
+<li>LDP链路Hello报文使用UDP报文，<strong>目的地址是组播地址224.0.0.2</strong></li>
+<li>如果LSR在特定接口接收到LDP链路Hello报文，表明该接口存在LDP邻接体</li>
+</ul>
+<h5 id="tcp连接建立阶段">TCP连接建立阶段:</h5>
+<blockquote>
+<p>两台LSR之间在建立LDP会话之前，需要先建立TCP连接，以便进行LDP协议报文的交换</p>
+</blockquote>
+<ul>
+<li>Hello报文中携带传输地址，双方后续将使用传输地址建立LDP会话
+<ul>
+<li>设备的传输地址被包含在LDP Hello报文中，LSR通过Hello报文知晓邻居的传输地址</li>
+</ul>
+</li>
+<li>传输地址较大的一方作为主动方，主动发起建立TCP连接</li>
+<li>经过TCP三次握手之后，两者建立起TCP连接</li>
+<li>补充：
+<ul>
+<li>在使用Hello报文发现邻居并且知道了对方的传输地址后，邻居之间就会开始尝试TCP三次握手，并且交互LDP的初始化报文、标签映射报文等，这些报文都使用双方的传输地址作为源、目的IP地址</li>
+<li>LSR必须拥有到达邻居的传输地址的路由</li>
+<li>缺省情况下，公网的LDP传输地址等于设备的LSR ID，私网的传输地址等于接口的主IP地址</li>
+</ul>
+</li>
+</ul>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS原理与配置\发现与建立阶段.png" style="zoom:50%;" />
+<h5 id="会话建立与保持">会话建立与保持</h5>
+<ol>
+<li>TCP连接建立成功后，主动方发送LDP初始化报文，协商建立LDP会话的相关参数</li>
+<li>LDP会话的相关参数包括LDP协议版本、标签分发方式、KeepAlive保持定时器的值、最大PDU长度和标签空间等</li>
+<li>被动方收到初始化报文后，若接受主动方的相关参数，则回应KeepAlive报文作为确认，为了提高发送效率同时发送自己的初始化报文</li>
+<li>主动方收到被动方的初始化报文后，若接受相关参数，则回复KeepAlive报文给被动方</li>
+<li>双方都收到对端的KeepAlive报文后，会话建立成功。后续通过周期性发送的KeepAlive报文保持会话</li>
+</ol>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS原理与配置\会话建立与保持.png" style="zoom: 67%;" />
+<h5 id="ldp邻居状态">LDP邻居状态</h5>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">&lt;R1> display mpls ldp peer 
+
+LDP Peer Information in Public network
+A <span class="token string">'*'</span> before a peer means the peer is being deleted<span class="token punctuation">.</span>
+<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span><span class="token operator">-</span>
+PeerID                 TransportAddress   DiscoverySource
+<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span><span class="token operator">-</span>
+2<span class="token punctuation">.</span>2<span class="token punctuation">.</span>2<span class="token punctuation">.</span>2:0              2<span class="token punctuation">.</span>2<span class="token punctuation">.</span>2<span class="token punctuation">.</span>2            GigabitEthernet0<span class="token operator">/</span>0<span class="token operator">/</span>0
+<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span><span class="token operator">-</span>
+TOTAL: 1 Peer<span class="token punctuation">(</span>s<span class="token punctuation">)</span> Found<span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>PeerID：LDP邻居的LDP ID，上文的2.2.2.2:0，其中2.2.2.2代表的是邻居节点的LSR ID，0代表的是标签空间是基于平台的</li>
+<li>TransportAddress：LDP邻居的传输地址，2.2.2.2代表邻居用来建立TCP连接的IP地址</li>
+</ul>
+<h5 id="ldp会话状态">LDP会话状态</h5>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">&lt;R1> display mpls ldp session 
+
+LDP Session<span class="token punctuation">(</span>s<span class="token punctuation">)</span> in Public Network
+Codes: LAM<span class="token punctuation">(</span>Label Advertisement Mode<span class="token punctuation">)</span><span class="token punctuation">,</span> SsnAge Unit<span class="token punctuation">(</span>DDDD:HH:MM<span class="token punctuation">)</span>
+A <span class="token string">'*'</span> before a session means the session is being deleted<span class="token punctuation">.</span>
+<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span><span class="token operator">-</span>
+PeerID	Status	   LAM  	SsnRole  	SsnAge      KASent<span class="token operator">/</span>Rcv
+<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span><span class="token operator">-</span>
+2<span class="token punctuation">.</span>2<span class="token punctuation">.</span>2<span class="token punctuation">.</span>2:0	Operational DU   	Passive  	0000:00:33  133<span class="token operator">/</span>133
+<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span>-<span class="token operator">--</span><span class="token operator">-</span>
+TOTAL: 1 session<span class="token punctuation">(</span>s<span class="token punctuation">)</span> Found<span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>Status：LDP会话的状态</li>
+<li>LAM：标签发布模式：标签发布模式有DU和DoD两种模式，此例中采用的是DU模式</li>
+<li>SsnRole：LSR在LDP会话中的角色，Active表示建立LDP会话的主动方；Passive表示建立LDP会话的被动方</li>
+</ul>
+<h4 id="ldp标签分发">LDP标签分发</h4>
+<h5 id="标签的发布和管理">标签的发布和管理</h5>
+<ul>
+<li>在MPLS网络中，<strong>下游LSR决定标签和FEC的绑定关系，并将这种绑定关系发布给上游LSR</strong></li>
+<li>LDP通过<strong>发送标签请求和标签映射消息</strong>，在LDP对等体之间通告FEC和标签的绑定关系来建立LSP</li>
+<li><strong>标签的发布和管理由标签发布方式、标签分配控制方式和标签保持方式来决定</strong></li>
+</ul>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS原理与配置\标签发布与管理方式.png" style="zoom:50%;" />
+<blockquote>
+<p>MPLS根据数据的转发方向确定上、下游关系。标签报文从上游LSR发出，被下游LSR接收并处理</p>
+</blockquote>
+<p><strong>标签发布方式 - DU模式</strong></p>
+<p>对于一个特定的FEC，LSR无需从上游获得标签请求消息即进行标签分配与分发，<strong>LSR会主动将自己为FEC捆绑的标签通告给上游邻居，无需邻居先发起请求再通告</strong></p>
+<ul>
+<li>标签分配：<strong>LSR从本地标签空间中取出一个标签与FEC绑定</strong></li>
+<li>标签分发：LSR将标签与FEC的绑定关系通知给上游LSR</li>
+<li>标签发布方式为DU时，系统默认支持LDP为所有对等体分标签，即每个节点都可以向所有的对等体发布标签映射关系，不再区分上下游关系。在只给上游对等体分标签情况下，发送标签映射消息的时候，要根据路由信息对会话的上下游关系进行确认。</li>
+</ul>
+<p><strong>标签发布方式 - DoD模式</strong></p>
+<p>对于一个特定的FEC，LSR获得标签请求消息之后才进行标签分配与分发，<strong>即只有上游邻居向自己请求标签映射时，LSR才会通告标签映射给该邻居</strong></p>
+<p>一般情况下，对特定FEC的访问需求会触发标签请求消息</p>
+<h5 id="标签分配控制方式-独立模式">标签分配控制方式 - 独立模式</h5>
+<p><strong>独立 [Independent] 模式</strong>：本地LSR可以自主地分配一个标签绑定到某个FEC，并通告给上游LSR，而无需等待下游的标签</p>
+<p><strong>标签分配控制方式需要与标签发布方式结合使用</strong>：</p>
+<p>在使用DU作为标签分发方式的情况下，如图所示，R2和R3对192.168.4.0/24这条FEC，可以在上游LSR无请求，且自身没有收到下游LSR的标签绑定信息的情况下，主动向上游LSR通告标签绑定信息</p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS原理与配置\DU+独立模式.png" style="zoom:50%;" />
+<p>采用DoD作为标签发布方式时，如图所示，R2和R3对192.168.4.0/24这条FEC，只要收到上游LSR的标签请求消息，可以在自身没有收到下游LSR的标签绑定信息的情况下，向上游LSR通告标签绑定信息</p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS原理与配置\DoD+独立模式.png" alt="DoD+独立模式" style="zoom:50%;" />
+<h5 id="标签分配控制方式-有序模式">标签分配控制方式 - 有序模式</h5>
+<p><strong>有序 [Ordered] 模式</strong>：对于LSR上某个FEC的标签映射，只有当该LSR已经具有此FEC下一跳的标签映射消息、或者该LSR就是此FEC的出节点时，该LSR才可以向上游发送此FEC的标签映射</p>
+<p><strong>标签保留 - 自由模式</strong></p>
+<p><strong>自由 [Liberal] 模式</strong>：</p>
+<ul>
+<li>LSR收到的标签映射可能来自下一跳，也可能来自非下一跳</li>
+<li>对于从邻居LSR收到的标签映射，无论邻居LSR是不是自己的下一跳都保留</li>
+</ul>
+<blockquote>
+<p>当基于IP网络部署MPLS时，LSR根据IP路由表判断接收到的标签映射是否来自下一跳</p>
+</blockquote>
+<ul>
+<li>Liberal方式的优点在于路由发生变化时能够快速建立新的LSP进行数据转发，因为Liberal方式保留所有标签</li>
+<li>Liberal方式的缺点是需要分发和维护不必要的标签映射</li>
+</ul>
+<p><strong>标签保留 - 保守模式</strong></p>
+<p><strong>保守 [Conservative] 模式</strong>：对于从邻居LSR收到的标签映射，只有当邻居LSR是自己的下一跳时才保留</p>
+<ul>
+<li>Conservative方式的优点在于只需保留和维护用于转发数据的标签，以达到节约标签的目的
+<ul>
+<li>当使用DU标签分发方式时，LSR可能从多个LDP邻居收到到同一网段的标签映射消息，如果采用Conservative保持方式，则只保留下一跳发来的标签，丢弃非下一跳发来的标签</li>
+<li>当使用DoD标签分发方式时， LSR根据路由信息只向它的下一跳请求标签</li>
+</ul>
+</li>
+<li>当网络拓扑变化引起下一跳邻居改变时：
+<ul>
+<li>使用自由标签保持方式，LSR可以直接利用原来非下一跳邻居发来的标签，迅速重建LSP，但需要更多的内存和标签空间</li>
+<li>使用保守标签保持方式，LSR只保留来自下一跳邻居的标签，节省内存和标签空间，但LSP重建会比较慢</li>
+<li>保守标签保持方式通常与DoD方式一起，用于标签空间有限的LSR</li>
+</ul>
+</li>
+</ul>
+<p><strong>PHP [Penultimate Hop Popping，次末跳弹出]</strong></p>
+<ul>
+<li>如果激活了PHP特性，那么egress节点在为本地路由分配标签的时候，会分配一个特殊标签—3，该标签被称为隐式空标签（Implicit NULL Label）</li>
+<li>当LSR转发一个标签报文时，如果发现对应的出标签值为3，则LSR会将栈顶标签弹出，并将里面所封装的数据转发给下游LSR</li>
+</ul>
+<p><strong>隐式空标签</strong></p>
+<blockquote>
+<p>缺省情况下，Egress节点向倒数第二跳分配 [隐式空标签 implicit-null]，即特殊标签3</p>
+</blockquote>
+<ul>
+<li>但在部署QoS的场景下，标签被弹出后，其中的优先级也会一并丢失</li>
+</ul>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS原理与配置\隐式空标签.png" style="zoom:50%;" />
+<p><strong>显式空标签</strong></p>
+<p>显式空标签机制，Egress节点向倒数第二跳分配特殊标签0</p>
+<p>R3在转发标签报文时，若出标签封装为0，则不会将标签头部弹出，标签头部中的QoS信息得以保存。R4在收到带0标签的报文的时候，直接弹出标签，不用去查找ILM表项</p>
+<p>缺省情况下，Egress分配的是隐式空标签</p>
+<h4 id="在mpls中-运行ldp协议的lsr的操作小结">在MPLS中，运行LDP协议的LSR的操作小结</h4>
+<ol>
+<li>LSR首先通过运行IGP协议来构建路由表、FIB表</li>
+<li>LDP根据相应的模式，为路由表中的路由前缀分配标签</li>
+<li>LDP根据相应的模式，将自己为路由前缀分配的标签，通过LDP标签映射报文通告给LDP邻居</li>
+<li>LSR将自己为路由前缀分配的标签，以及LDP邻居为该路由前缀通告的标签存储起来，并与出接口、下一跳地址等信息形成关联</li>
+<li>当LSR转发到达目的网络的标签报文时，所使用的出站标签总是下游LDP邻居所通告的标签，此处所指的下游邻居，是设备的路由表中到达该目的网络的下一跳设备</li>
+</ol>
+<h3 id="ldp基本配置">LDP基本配置</h3>
+<p><strong>1. 使能LDP</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei]</span> mpls ldp<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>mpls ldp命令用来使能本节点的LDP能力，并进入LDP视图</li>
+</ul>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-GigabitEthernet0/0/0]</span> mpls ldp<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>在接口视图下，使能当前接口的LDP功能。需先使能全局LDP能力后才能执行接口下的LDP使能命令</li>
+</ul>
+<p><strong>2. 配置LDP远端会话</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei]</span> mpls ldp remote<span class="token operator">-</span>peer remote<span class="token operator">-</span>peer<span class="token operator">-</span>name<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>mpls ldp remote-peer命令用来创建远端对等体并进入远端对等体视图</li>
+</ul>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-mpls-ldp-remote-PeerName]</span> remote<span class="token operator">-</span>ip ip<span class="token operator">-</span>address<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>remote-ip命令用来配置LDP远端对等体的IP地址</li>
+</ul>
+<p><strong>3. 配置触发LSP的策略</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-mpls]</span> lsp<span class="token operator">-</span>trigger <span class="token punctuation">&#123;</span> all <span class="token punctuation">|</span> host <span class="token punctuation">|</span> ip<span class="token operator">-</span>prefix ip<span class="token operator">-</span>prefix<span class="token operator">-</span>name <span class="token punctuation">|</span> none <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>lsp-trigger命令用来指定哪些静态路由及IGP路由会触发LDP LSP的建立，缺省情况下，根据32位地址的IP路由触发LDP建立LSP</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>all</strong></td>
+<td>所有静态路由和IGP路由项触发建立LSP</td>
+</tr>
+<tr>
+<td><strong>host</strong></td>
+<td>32位地址的主机IP路由触发建立LSP</td>
+</tr>
+<tr>
+<td><strong>ip-prefix</strong> ip-prefix-name</td>
+<td>根据IP地址前缀列表触发建立LSP</td>
+</tr>
+<tr>
+<td><strong>none</strong></td>
+<td>不触发建立LSP</td>
+</tr>
+</tbody>
+</table>
+<p>注：配置ALL参数后，所有静态路由及IGP路由会触发LDP建立LSP，会导致LSP数量庞大，占用过多的标签资源，以及整网LSP收敛速度变慢。故一般情况下不推荐配置此参数</p>
+<p><strong>4. 配置LDP标签发布模式</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-GigabitEthernet0/0/0]</span> mpls ldp advertisement <span class="token punctuation">&#123;</span> dod <span class="token punctuation">|</span> du <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>缺省情况下，标签发布模式为<strong>下游自主标签分发 [Downstream Unsolicited]</strong></p>
+<ul>
+<li>如果标签分配方式为DU，则标签保持模式为Liberal</li>
+<li>如果标签分配方式为DOD，则标签保持模式为Conservative</li>
+</ul>
+<p><strong>5. 配置LDP标签分配控制方式</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-mpls-ldp]</span> label distribution control<span class="token operator">-</span>mode <span class="token punctuation">&#123;</span> independent <span class="token punctuation">|</span> ordered <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>缺省情况下，LDP标签分配控制方式为<strong>有序标签分配控制 [Ordered]</strong></p>
+<p><strong>6. 配置PHP特性</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-mpls]</span> label advertise <span class="token punctuation">&#123;</span> explicit<span class="token operator">-</span>null <span class="token punctuation">|</span> implicit<span class="token operator">-</span>null <span class="token punctuation">|</span> non<span class="token operator">-</span>null <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>缺省情况下，出节点向倒数第二跳分配 <strong>隐式空标签 implicit-null</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+<th>取值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>explicit-null</strong></td>
+<td>不支持PHP特性，出节点向倒数第二跳分配显式空标签</td>
+<td>显式空标签的值为0</td>
+</tr>
+<tr>
+<td><strong>implicit-null</strong></td>
+<td>支持PHP特性，出节点向倒数第二跳分配隐式空标签</td>
+<td>隐式空标签的值为3</td>
+</tr>
+<tr>
+<td><strong>non-null</strong></td>
+<td>不支持PHP特性，出节点向倒数第二跳正常分配标签</td>
+<td>分配的标签值不小于16</td>
+</tr>
+</tbody>
+</table>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/2025/04/21/MPLS%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/">https://shierjinghuang.github.io/2025/04/21/MPLS%E5%8E%9F%E7%90%86%E4%B8%8E%E9%85%8D%E7%BD%AE/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/HCIP/">
+                                    <span class="chip bg-color">HCIP</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%B7%AF%E7%94%B1%E4%B8%8E%E4%BA%A4%E6%8D%A2%E8%BF%9B%E9%98%B6/">
+                                    <span class="chip bg-color">路由与交换进阶</span>
+                                </a>
+                            
+                                <a href="/tags/MPLS/">
+                                    <span class="chip bg-color">MPLS</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2025/04/22/VLAN%E9%AB%98%E7%BA%A7%E6%8A%80%E6%9C%AF/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="VLAN高级技术">
+                        
+                        <span class="card-title">VLAN高级技术</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2025-04-22
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                    网络工程相关
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/">
+                        <span class="chip bg-color">网络工程</span>
+                    </a>
+                    
+                    <a href="/tags/VLAN/">
+                        <span class="chip bg-color">VLAN</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2025/04/20/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E6%94%AF%E6%92%91%E6%8A%80%E6%9C%AF/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="信息安全支撑技术">
+                        
+                        <span class="card-title">信息安全支撑技术</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-04-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" class="post-category">
+                                    网络安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CISP/">
+                        <span class="chip bg-color">CISP</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%BA%AB%E4%BB%BD%E9%89%B4%E5%88%AB/">
+                        <span class="chip bg-color">身份鉴别</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/">
+                        <span class="chip bg-color">访问控制</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2025</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">504.3k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

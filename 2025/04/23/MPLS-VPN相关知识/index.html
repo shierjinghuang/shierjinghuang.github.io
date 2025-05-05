@@ -1,0 +1,1725 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="MPLS VPN相关知识, 十二惊惶">
+    <meta name="description" content="[TOC]
+MPLS VPN相关知识
+
+VPN [Virtual Private Network，虚拟专用网络] 指的是在一个公共网络中实现虚拟的专用网络，从而使得用户能够基于该专用网络实现通信的技术
+
+
+MPLS VPN也是VPN技术中的">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>MPLS VPN相关知识 | 十二惊惶</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="十二惊惶" type="application/atom+xml">
+<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/1.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">十二惊惶</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/1.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">十二惊惶</div>
+        <div class="logo-desc">
+            
+            犁牛之子骍且角，虽欲勿用，山川其舍诸
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>十二惊惶
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://gitee.com/Im-so-scared-2/shier_jinghuang" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="十二惊惶" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+<script src="/libs/cryptojs/crypto-js.min.js"></script>
+<script>
+    (function() {
+        let pwd = '';
+        if (pwd && pwd.length > 0) {
+            if (pwd !== CryptoJS.SHA256(prompt('请输入访问本文章的密码')).toString(CryptoJS.enc.Hex)) {
+                alert('密码错误，将返回主页！');
+                location.href = '/';
+            }
+        }
+    })();
+</script>
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">MPLS VPN相关知识</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/HCIP/">
+                                <span class="chip bg-color">HCIP</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/">
+                                <span class="chip bg-color">网络工程</span>
+                            </a>
+                        
+                            <a href="/tags/MPLS/">
+                                <span class="chip bg-color">MPLS</span>
+                            </a>
+                        
+                            <a href="/tags/VPN/">
+                                <span class="chip bg-color">VPN</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                网络工程相关
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2025-04-23
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2025-04-24
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    7.4k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    28 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>[TOC]</p>
+<h1>MPLS VPN相关知识</h1>
+<blockquote>
+<p><strong>VPN [Virtual Private Network，虚拟专用网络]</strong> 指的是在一个公共网络中实现虚拟的专用网络，从而使得用户能够基于该专用网络实现通信的技术</p>
+</blockquote>
+<blockquote>
+<p>MPLS VPN也是VPN技术中的一种。本章所介绍的MPLS VPN指的是BGP/MPLS IP VPN，这是一种被业界广泛使用的三层VPN</p>
+</blockquote>
+<h2 id="mpls-vpn原理与配置">MPLS VPN原理与配置</h2>
+<h3 id="mpls-vpn概述">MPLS VPN概述</h3>
+<blockquote>
+<p>BGP/MPLS IP VPN网络一般由运营商搭建，VPN用户购买VPN服务来实现用户网络之间的路由传递、数据互通等</p>
+</blockquote>
+<p>MPLS VPN使用BGP在<strong>运营商骨干网</strong>上发布VPN路由，<strong>使用MPLS在运营商骨干网上转发VPN报文</strong></p>
+<p>BGP/MPLS IP VPN又被简称为MPLS VPN，是一种常见的<strong>L3VPN [Layer 3 VPN] 技术</strong></p>
+<h4 id="mpls-vpn网络架构">MPLS VPN网络架构</h4>
+<p>MPLS VPN网络架构由三部分组成：<strong>CE [Customer Edge]</strong> 、<strong>PE [Provider Edge]</strong> 和<strong>P [Provider]</strong> ，其中PE和P是运营商设备，CE是MPLS VPN用户设备</p>
+<p><strong>站点 [site]</strong> 就是MPLS VPN的用户，由CE和其他用户设备构成</p>
+<ul>
+<li><strong>CE：用户网络边缘设备 [Customer Edge]</strong>，有接口直接与运营商网络相连
+<ul>
+<li>CE可以是路由器或交换机，也可以是一台主机。通常情况下，CE感知不到VPN的存在，不需要支持MPLS</li>
+</ul>
+</li>
+<li><strong>PE：运营商边缘路由器 [Provider Edge]</strong>，是运营商网络的边缘设备，与CE直接相连
+<ul>
+<li>在MPLS网络中，对VPN的所有处理都发生在PE上，对PE性能要求较高</li>
+</ul>
+</li>
+<li><strong>P：运营商网络中的骨干路由器 [Provider]</strong>，不与CE直接相连
+<ul>
+<li>P设备只需要具备基本MPLS转发能力，不维护VPN相关信息</li>
+</ul>
+</li>
+</ul>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS-VPN相关知识\MPLS VPN网络架构.png" alt="MPLS VPN网络架构" style="zoom:50%;" />
+<p>站点的含义可以从下述几个方面理解：</p>
+<ul>
+<li>
+<p><strong>站点是指相互之间具备IP连通性的一组IP系统</strong>，并且这组IP系统的IP连通性不需通过运营商网络实现</p>
+</li>
+<li>
+<p><strong>站点的划分是根据设备的拓扑关系</strong>，而不是地理位置</p>
+</li>
+</ul>
+<p><strong>站点与VPN的关系</strong>：</p>
+<ul>
+<li>对于多个连接到同一服务提供商网络的站点，通过制定策略，可以将它们划分为不同的集合，只有属于相同集合的站点之间才能通过服务提供商网络互访，这种集合就是VPN</li>
+<li>一个Site中的设备可以属于多个VPN，换言之，<strong>一个Site可以属于多个VPN</strong></li>
+<li>出现站点为一台主机的情况，此时该主机就是CE设备</li>
+</ul>
+<h4 id="mpls-vpn技术架构">MPLS VPN技术架构</h4>
+<p>MPLS VPN不是单一的一种VPN技术，是<strong>多种技术结合的综合解决方案</strong>，主要包含下列技术：</p>
+<ul>
+<li><strong>MP-BGP</strong>：负责在PE与PE之间传递站点内的路由信息</li>
+<li><strong>LDP</strong>：负责PE与PE之间的隧道建立</li>
+<li><strong>VRF</strong>：负责PE的VPN用户管理</li>
+<li><strong>静态路由、IGP、BGP</strong>：负责PE与CE之间的路由信息交换</li>
+</ul>
+<h4 id="mpls-vpn的优势">MPLS VPN的优势</h4>
+<ul>
+<li>对VPN客户而言：
+<ul>
+<li>感知不到VPN的存在，不需要部署和维护VPN，降低企业运维难度和成本</li>
+<li>一般部署在运营商的MPLS VPN专网上，有一定的安全性保障</li>
+</ul>
+</li>
+<li>对于运营商而言：
+<ul>
+<li>MPLS在无连接的IP网络中增加了面向连接的控制平面，为IP网络增添了管理和运营的手段</li>
+<li>支持地址空间重叠、支持重叠VPN、组网方式灵活、可扩展性好</li>
+<li>能够方便地支持MPLS TE合理调控现有网络资源，最大限度的节省运营商成本</li>
+</ul>
+</li>
+</ul>
+<p><strong>补充：</strong></p>
+<p><strong>MPLS TE [MPLS Traffic Engineering，MPLS流量工程]</strong> ：基于一定约束条件LSP隧道，并将流量引入到这些隧道中进行转发，使网络流量按照指定的路径进行传输</p>
+<ul>
+<li>可以在不进行硬件升级的情况下对现有网络资源进行合理调配和利用，并对网络流量提供带宽和QoS保证，最大限度的节省成本</li>
+</ul>
+<h5 id="mpls-vpn常见组网">MPLS VPN常见组网</h5>
+<p>根据VPN用户的需求不同，可采用以下几种常见的组网方案：</p>
+<ul>
+<li><strong>Intranet</strong>：一个VPN中的所有用户形成闭合用户群，<strong>同一VPN站点之间可以互访，不同VPN站点间不能互访</strong></li>
+<li><strong>Extranet</strong>：<strong>适用于一个VPN用户希望提供部分本VPN的站点资源给其他VPN的用户访问的场景</strong></li>
+<li><strong>Hub&amp;Spoke</strong>：如果希望在VPN中设置中心访问控制设备，其它用户的互访都通过中心访问控制设备进行，可采用Hub&amp;Spoke组网方案</li>
+</ul>
+<h3 id="mpls-vpn路由交互">MPLS VPN路由交互</h3>
+<p><strong>MPLS VPN控制层面</strong>：</p>
+<ul>
+<li>通过VRF和RD隔离不同用户的私网路由信息并构建唯一的VPNv4路由</li>
+<li>通过RT值控制VPNv4路由的发布和接收</li>
+<li>通过MP-BGP传递VPNv4路由前缀、标签以及RT等信息</li>
+<li>通过MPLS LDP构建公网标签转发路径</li>
+</ul>
+<p><strong>MPLS转发层面</strong>：通过内外两层标签进行数据转发，内层标签区分私网数据，外层标签穿通公网网络</p>
+<h4 id="mpls-vpn路由发布概述">MPLS VPN路由发布概述</h4>
+<p>在基本MPLS VPN组网中，VPN路由信息的发布涉及CE和PE，P路由器只维护骨干网的路由，不需要了解任何VPN路由信息。VPN路由信息的发布过程包括三部分：</p>
+<ul>
+<li><strong>本地CE到入口PE、入口PE到出口PE、出口PE到远端CE</strong></li>
+</ul>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS-VPN相关知识\路由信息的发布过程.png" style="zoom:50%;" />
+<h4 id="ce与pe之间的路由信息交换">CE与PE之间的路由信息交换</h4>
+<ul>
+<li>CE与PE之间可以使用静态路由、OSPF、IS-IS或BGP交换路由信息。无论使用哪种路由协议，CE和PE之间交换的都是<strong>标准的IPv4路由</strong></li>
+<li>本地CE到入口PE和出口PE到远端CE的路由信息交换原理完全相同</li>
+</ul>
+<h4 id="入口pe到出口pe路由传递">入口PE到出口PE路由传递</h4>
+<h5 id="一-不同的客户使用重叠ip地址空间的问题">一、不同的客户使用重叠IP地址空间的问题</h5>
+<blockquote>
+<p>PE在接收到CE传递来的路由之后，需要独立保存不同VPN的路由，且需要<strong>解决不同的客户使用重叠IP地址空间的问题</strong></p>
+</blockquote>
+<p>解决不同的客户使用重叠IP地址空间的问题产生的原因</p>
+<p>VPN是一种私有网络，不同的VPN独立管理自己的地址范围，也称为<strong>地址空间 [Address Space]</strong></p>
+<p>不同VPN的地址空间可能会在一定范围内重合，这就发生了<strong>地址空间的重叠 [Address Spaces Overlapping]</strong></p>
+<p>以下两种情况允许VPN使用重叠的地址空间：</p>
+<ul>
+<li>两个VPN没有共同的站点</li>
+<li>两个VPN有共同的站点，但此共同站点中的设备不与两个VPN中使用重叠地址空间的设备互访</li>
+</ul>
+<p><strong>VRF [Virtual Routing and Forwarding，虚拟路由转发]</strong> ，又称VPN实例，是MPLS VPN架构中的关键技术，每个VPN实例使用独立的路由转发表项，实现VPN之间的逻辑隔离</p>
+<p>**RD [ Route Distinguisher，路由标识符 ] **</p>
+<ul>
+<li>RD长8字节，用于区分使用相同地址空间的IPv4前缀</li>
+<li>PE从CE接收到IPv4路由后，在IPv4前缀前加上RD，转换为全局唯一的VPN-IPv4路由</li>
+</ul>
+<blockquote>
+<p>配置RD时，只需要指定RD的Administrator子字段和Assigned Number子字段</p>
+</blockquote>
+<p>RD的配置格式有四种，常用的两种如下：</p>
+<ul>
+<li>16bits自治系统号:32bits用户自定义数字</li>
+<li>32bits IPv4地址:16bits用户自定义数字</li>
+</ul>
+<p>RD的结构使得每个运营商可以独立地分配RD，但为了在某些应用场景下保证路由正常，<strong>必须保证RD全局唯一</strong></p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS-VPN相关知识\RD报文结构.png" style="zoom:50%;" />
+<p><strong>VPN-IPv4地址</strong></p>
+<p>VPN-IPv4地址称为<strong>VPNv4地址</strong>：VPNv4地址共有12个字节，包括8字节的<strong>路由标识符RD [Route Distinguisher]</strong> 和4字节的IPv4地址前缀</p>
+<h5 id="二-通过bgp进行路由传递">二、通过BGP进行路由传递</h5>
+<blockquote>
+<p>PE之间建立BGP邻居关系，并通过BGP进行路由传递</p>
+</blockquote>
+<p>采用BGP的优势：</p>
+<ul>
+<li>BGP使用TCP作为其传输层协议，提高了协议的可靠性。可以跨路由器的两个PE设备之间直接交换路由</li>
+<li>BGP拓展性强，为PE间传播VPN路由提供了便利</li>
+<li>PE之间需要传送的路由条目可能较大，BGP只发送更新的路由，提高传递路由数量且不占用过多链路带宽</li>
+</ul>
+<blockquote>
+<p>传统的BGP-4不支持处理VPNv4路由</p>
+</blockquote>
+<p><strong>MP-BGP</strong></p>
+<blockquote>
+<p>为了正确处理VPN路由，MPLS VPN使用[RFC2858 Multiprotocol Extensions for BGP-4] 中规定的MP-BGP，即BGP-4的多协议扩展</p>
+</blockquote>
+<p><strong>MP-BGP采用地址族 [Address Family]</strong> 来区分不同的网络层协议，既可以支持传统的IPv4地址族，又可以支持其它地址族</p>
+<p>MP-BGP新增了两种路径属性：</p>
+<ul>
+<li><strong>MP_REACH_NLRI：Multiprotocol Reachable NLRI</strong>，<strong>多协议可达NLRI</strong>。用于发布可达路由及下一跳信息</li>
+<li><strong>MP_UNREACH_NLRI：Multiprotocol Unreachable NLRI</strong>，<strong>多协议不可达NLRI</strong>。用于撤销不可达路由</li>
+</ul>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS-VPN相关知识\MP-BGP两种路径属性.png" style="zoom:50%;" />
+<ul>
+<li>
+<p>NLRI：Network Layer Reachability Information，网络层可达信息</p>
+</li>
+<li>
+<p>MP_REACH_NLRI用于发布可达路由及下一跳信息。该属性由一个或多个三元组&lt;地址族信息、下一跳信息、网络可达性信息&gt;组成，格式如下：</p>
+<ul>
+<li>地址族信息域 [Address Family Information] ：由2字节的<strong>地址族标识AFI</strong> [Address Family Identifier] 和1字节的<strong>子地址族标识SAFI</strong> [Subsequent Address Family Identifier] 组成
+<ul>
+<li>AFI标识网络层协议，对应RFC3232的Address Family Number所定义的地址族值
+<ul>
+<li>IPv4的值是1，IPv6的值是2</li>
+</ul>
+</li>
+<li>SAFI表示NLRI的类型。AFI值为1，SAFI值为128表示NLRI中的地址为MPLS-labeled VPN-IPv4地址</li>
+</ul>
+</li>
+<li><strong>下一跳信息域 [Next Hop Network Address Information]</strong> ：由一字节的下一跳网络地址长度和可变长度的下一跳网络地址组成</li>
+<li><strong>网络层可达性信息域 [NLRI]</strong> ：由一个或多个三元组&lt;长度、标签、前缀&gt;组成，该部分内容将在后面的课程里详细介绍</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>MP_UNREACH_NLRI用于通知对等体删除不可达的路由</p>
+</blockquote>
+<p>该属性的格式如下：</p>
+<ul>
+<li>地址族标识AFI：与MP_REACH_NLRI属性中的相同</li>
+<li>子地址族标识SAFI：与MP_REACH_NLRI属性中的相同，表示NLRI的类型</li>
+<li><strong>撤销路由 [Withdrawn Routes]</strong> ：不可达路由列表，也是由一个或多个NLRI组成。BGP发言者可以通过在撤销路由域中携带与之前发布的可达路由中相同的NLRI来撤销路由</li>
+</ul>
+<p>MP-BGP的报文类型、VPNv4路由发布策略仍与普通BGP相同</p>
+<h5 id="三-mp-bgp将vpnv4传递到远端pe">三、MP-BGP将VPNv4传递到远端PE</h5>
+<p>MP-BGP将VPNv4传递到远端PE之后，远端PE需要将VPNv4路由导入正确的VPN实例</p>
+<blockquote>
+<p>MPLS VPN使用<strong>BGP扩展团体属性－VPN Target</strong> [也称为Route Target] 来控制VPN路由信息的发布与接收</p>
+</blockquote>
+<p>本地PE在发布VPNv4路由前附上RT属性，对端PE在接到VPNv4路由后根据RT将路由导入对应的VPN实例</p>
+<p><strong>BGP扩展团体属性 RT</strong></p>
+<p>与RD相同，RT由Type、Administrator和Assigned Number三个字段构成，长度也是8字节</p>
+<ul>
+<li>配置VPN-Target时，只需要指定VPN-Target的Administrator子字段和Assigned Number子字段</li>
+<li>VPN-Target的配置格式与RD格式一致</li>
+</ul>
+<p>在PE上，每一个VPN实例都会与一个或多个VPN Target属性绑定，有两类VPN Target属性：</p>
+<ul>
+<li><strong>Export Target [ERT]</strong> ：本地PE从直接相连站点学到IPv4路由后，转换为VPN IPv4路由，并为这些路由添加Export Target属性
+<ul>
+<li>Export Target属性作为BGP的扩展团体属性随路由发布</li>
+</ul>
+</li>
+<li><strong>Import Target [IRT]</strong> ：PE收到其它PE发布的VPN-IPv4路由时，检查其Export Target属性
+<ul>
+<li>当此属性与PE上某个VPN实例的Import Target匹配时，PE就把路由加入到该VPN实例的路由表</li>
+</ul>
+</li>
+</ul>
+<h5 id="四-pe根据vpnv4路由所携带的rt将路由导入正确的vpn实例之后">四、PE根据VPNv4路由所携带的RT将路由导入正确的VPN实例之后</h5>
+<p>PE根据VPNv4路由所携带的RT将路由导入正确的VPN实例之后，VPNv4路由的RD值剥除，将IPv4路由通告给相应的客户的CE设备</p>
+<blockquote>
+<p>外层标签 [公网标签] 由LDP为VPN路由的NextHop [一般是PE的某个接口地址]分发，P根据外层标签转发数据到PE</p>
+</blockquote>
+<blockquote>
+<p>内层标签 [私网标签] 由PE的MP-BGP为VPN路由分发。PE根据内层标签确定数据所属的VPN</p>
+</blockquote>
+<h5 id="五">五、</h5>
+<ul>
+<li>PE和P设备之间运行LDP，交换公网标签，建立PE之间的LSP隧道 [公网隧道]</li>
+<li>入口PE在通过MP-BGP传递VPNv4路由时，会携带私网标签，用于区分不同VPN的数据</li>
+<li>出口PE在接收到VPNv4路由后，需要执行私网路由交叉和隧道迭代来选择路由</li>
+</ul>
+<p>PE上分配私网标签的方法有如下两种：</p>
+<p><strong>基于路由的MPLS标签分配</strong>：为VPN路由表的每一条路由分配一个标签 [one label per route ]</p>
+<ul>
+<li>缺点：当路由数量较多时，<strong>设备入标签映射表ILM [Incoming Label Map]</strong> 需要维护的表项也会增多，从而提高了对设备容量的要求</li>
+</ul>
+<p><strong>基于VPN实例的MPLS标签分配</strong>：为整个VPN实例分配一个标签，该VPN实例里的所有路由都共享一个标签</p>
+<ul>
+<li>优点：节约标签</li>
+</ul>
+<p><strong>私网路由交叉</strong>：VPNv4路由与本地VPN实例的VPN-Target进行匹配的过程称为私网路由交叉。PE在收到VPNv4路由后，既不进行优选，也不检查隧道是否存在，直接将其与本地的VPN实例进行交叉</p>
+<p><strong>隧道迭代</strong>：为了将私网流量通过公网传递到另一端，需要有一条公网隧道承载这个私网流量。因此私网路由交叉完成后，需要根据目的IPv4前缀进行路由迭代，即该IPv4路由的下一跳有对应的LSP存在；只有隧道迭代成功，该路由才被放入对应的VPN实例路由表</p>
+<h4 id="mpls-vpn中的路由交互全过程">MPLS VPN中的路由交互全过程</h4>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS-VPN相关知识\MPLS VPN中的路由交互全过程.png" style="zoom:50%;" />
+<ol>
+<li>IGP或者EBGP交换私网IPv4路由</li>
+<li>客户私网路由被学习到VPN路由表中 [VPN实例路由表]</li>
+<li>IPv4路由引入到MP-BGP，RD被添加到IPv4路由上，构成VPNv4路由</li>
+<li>VPNv4路由被PE1通过MP-IBGP的Update消息通告给PE2
+<ul>
+<li>Update消息携带着MP_REACH_NLRI属性（包含VPNv4路由前缀，下一跳和标签等重要信息）和RT属性</li>
+</ul>
+</li>
+<li>PE2根据RT将路由导入特定的VRF，同时将VPNv4路由的RD剥除，将IPv4路由通告给相应的客户的CE设备</li>
+<li>客户IPv4路由被通告给CE设备</li>
+</ol>
+<h4 id="小结">小结</h4>
+<p>在MPLS VPN中，PE与CE，PE与PE之间需要进行VPN路由信息的传递</p>
+<ul>
+<li>PE与CE之间可以采用BGP、IGP以及静态路由方式交互IPv4路由信息</li>
+<li>PE与PE之间通过MP-BGP交互VPNv4路由信息，包含：
+<ul>
+<li>RD：与IPv4前缀组合组成VPNv4前缀</li>
+<li>RT：用于控制PE之间路由信息的接收和发布</li>
+<li>标签：数据转发时的内层（私网）标签，在PE上用来区分不同VPN的数据</li>
+</ul>
+</li>
+</ul>
+<h3 id="mpls-vpn报文转发">MPLS  VPN报文转发</h3>
+<p>以图中用户X的站点B访问站点A的192.168.1.0/24网段为例，报文转发过程如下：</p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS-VPN相关知识\报文转发过程.png" alt="报文转发过程" style="zoom:50%;" />
+<ol>
+<li>CE3上存在到192.168.1.0/24网段路由，发送一个普通IP报文</li>
+<li>PE2根据报文入接口找到VPN实例，查找对应VPN的转发表</li>
+<li>匹配目的IPv4前缀，并打上对应的<strong>内层标签 [I-L]</strong></li>
+<li>根据下一跳地址，查找对应的Tunnel-ID</li>
+<li>将报文从隧道发送出去，即<strong>打上公网 [外层] MPLS标签头 [O-L1]</strong></li>
+<li>骨干网的所有P设备都对该报文进行外层标签交换，直到到达PE1</li>
+<li>PE1收到该携带两层标签的报文，交给MPLS处理，MPLS协议将去掉外层标签</li>
+<li>PE1继续处理内层标签：根据内层标签确定对应的下一跳，并将内层标签剥离后，以纯IPv4报文的形式发送给CE1</li>
+<li>CE1收到该IPv4报文后，进行常规的IPv4处理流程</li>
+</ol>
+<h3 id="mpls-vpn配置与实现">MPLS VPN配置与实现</h3>
+<h4 id="vpn实例配置">VPN实例配置</h4>
+<p><strong>1. 创建VPN实例或进入VPN实例视图</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[PE]</span> ip vpn<span class="token operator">-</span>instance vpn<span class="token operator">-</span>instance<span class="token operator">-</span>name	<span class="token comment">#缺省情况下，未配置VPN实例</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>vpn-instance-name</td>
+<td>指定VPN实例的名称</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2. 使能VPN实例的IPv4地址族或进入VPN实例IPv4地址族视图</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[PE-vpn-instance-InstanceName]</span> ipv4<span class="token operator">-</span>family <span class="token comment">#缺省情况下，未使能VPN实例的IPv4地址族</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>3. 为VPN实例地址族配置路由标识RD</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[PE-vpn-instance-InstanceName]</span> route<span class="token operator">-</span>distinguisher route<span class="token operator">-</span>distinguisher <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>RD常见格式有两种：
+<ul>
+<li><strong>2字节自治系统号</strong>:4字节用户自定义数</li>
+<li><strong>IPv4地址</strong>:2字节用户自定义数</li>
+</ul>
+</li>
+<li>无论采用哪种格式，必须保证RD值全局唯一</li>
+<li>VPN实例地址族下一旦配置RD后，RD将不能被修改或删除。如果要修改，需要去使能VPN实例相应的地址族或者删除VPN实例，然后再重新配置</li>
+</ul>
+<p><strong>4. 配置VPN实例的VPN-Target属性</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[PE-vpn-instance-InstanceName]</span> vpn<span class="token operator">-</span>target vpn<span class="token operator">-</span>target &amp;&lt;1<span class="token operator">-</span>8> <span class="token punctuation">[</span> both <span class="token punctuation">|</span> <span class="token function">export-extcommunity</span> <span class="token punctuation">|</span> <span class="token function">import-extcommunity</span> <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>vpn-target命令用来配置VPN实例地址族入方向或出方向的VPN-Target扩展团体属性</p>
+<ul>
+<li>VPN-Target的格式与RD一致</li>
+<li>一条vpn-target命令一次最多可配置8个VPN-Target。如希望配置更多的VPN-Target，可以多次使用vpn-target命令</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>vpn-target</td>
+<td>指定vpn-target添加到VPN实例地址族的VPN-Target扩展团体列表</td>
+</tr>
+<tr>
+<td><strong>both</strong></td>
+<td>指定vpn-target添加到VPN实例地址族的入方向和出方向VPN-Target扩展团体属性列表中如果用户不指定关键字<strong>both</strong>、<strong>export-extcommunity</strong>、<strong>import-extcommunity</strong>，则缺省为<strong>both</strong></td>
+</tr>
+<tr>
+<td><strong>export-extcommunity</strong></td>
+<td>指定vpn-target添加到VPN实例地址族的出方向VPN-Target扩展团体属性列表中</td>
+</tr>
+<tr>
+<td><strong>import-extcommunity</strong></td>
+<td>指定vpn-target添加到VPN实例地址族的入方向VPN-Target扩展团体属性列表中</td>
+</tr>
+</tbody>
+</table>
+<p><strong>5. 将接口绑定到VPN实例</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[PE-GigabitEthernet0/0/0]</span>ip binding vpn<span class="token operator">-</span>instance vpn<span class="token operator">-</span>instance<span class="token operator">-</span>name<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>ip binding vpn-instance命令用来将PE上的接口与VPN实例绑定。缺省情况下，接口不与任何VPN实例绑定，属于根实例。配置接口与VPN实例绑定后，或取消接口与VPN实例的绑定，都会清除该接口的IP地址、三层特性和IP相关的路由协议，如果需要应重新配置</p>
+<h4 id="mp-bgp配置">MP-BGP配置</h4>
+<p><strong>1. BGP基本配置</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[PE]</span> bgp <span class="token punctuation">&#123;</span> as<span class="token operator">-</span>number<span class="token operator">-</span>plain <span class="token punctuation">|</span> as<span class="token operator">-</span>number<span class="token operator">-</span>dot <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>参数说明</th>
+<th>取值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>as-number-plain</td>
+<td>指定整数形式的AS号</td>
+<td>整数形式，取值范围是1-4294967295</td>
+</tr>
+<tr>
+<td>as-number-dot</td>
+<td>指定点分形式的AS号</td>
+<td>格式为x.y，x的取值范围是1-65535，y的取值范围是0-65535</td>
+</tr>
+</tbody>
+</table>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[PE-bgp]</span> peer ipv4<span class="token operator">-</span>address as<span class="token operator">-</span>number as<span class="token operator">-</span>number<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[PE-bgp]</span> peer ipv4<span class="token operator">-</span>address <span class="token function">connect-interface</span> loopback interface<span class="token operator">-</span>number<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>PE之间必须使用32位掩码的Loopback接口地址来建立MP-IBGP对等体关系，以便能够迭代到隧道</p>
+<p><strong>2. 使能与指定MP-BGP对等体之间交换VPNv4路由信息</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[PE-bgp]</span> ipv4<span class="token operator">-</span>family vpnv4 <span class="token punctuation">[</span> unicast <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[PE-bgp-af-vpnv4]</span> peer ipv4<span class="token operator">-</span>address enable<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>缺省情况下，只有BGP-IPv4单播地址族的对等体是自动使能的。即在BGP视图下配置peer as-number命令后，系统会自动配置相应的peer enable命令。其他地址族视图下都必须手动使能</p>
+<p><strong>3. 配置对VPNv4路由进行过滤</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[PE-bgp-af-vpnv4]</span> policy vpn<span class="token operator">-</span>target<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>policy vpn-target命令用来对接收到的VPN路由根据VPN-Target进行过滤。缺省情况下，该功能已经使能。在某些特定组网场景下，需要手动关闭过滤</p>
+<h4 id="pe与ce间路由配置">PE与CE间路由配置</h4>
+<p><strong>1. PE与CE间采用EBGP传递路由</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[PE-bgp]</span> ipv4<span class="token operator">-</span>family vpn<span class="token operator">-</span>instance vpn<span class="token operator">-</span>instance<span class="token operator">-</span>name<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[PE-bgp-InstanceName]</span> peer ipv4<span class="token operator">-</span>address as<span class="token operator">-</span>number as<span class="token operator">-</span>number<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>PE上需进入VPN实例IPv4地址族视图，并将CE配置为VPN私网对等体</li>
+<li>CE上配置与普通EBGP配置相同，并将VPN路由通过import或network的方式引入BGP</li>
+</ul>
+<p><strong>2. PE与CE间采用IGP传递路由 [以OSPF为例]</strong></p>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[PE]</span> ospf <span class="token keyword">process</span><span class="token operator">-</span>id <span class="token punctuation">[</span> router<span class="token operator">-</span>id router<span class="token operator">-</span>id <span class="token punctuation">]</span> vpn<span class="token operator">-</span>instance vpn<span class="token operator">-</span>instance<span class="token operator">-</span>name<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[PE-ospf-processid]</span> <span class="token function">import-route</span> bgp <span class="token punctuation">[</span> permit<span class="token operator">-</span>ibgp <span class="token punctuation">]</span> <span class="token punctuation">[</span> cost cost <span class="token punctuation">|</span> route<span class="token operator">-</span>policy route<span class="token operator">-</span>policy<span class="token operator">-</span>name <span class="token punctuation">|</span> tag tag <span class="token punctuation">|</span> <span class="token function">type</span> <span class="token function">type</span> <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[PE-bgp]</span> ipv4<span class="token operator">-</span>family vpn<span class="token operator">-</span>instance vpn<span class="token operator">-</span>instance<span class="token operator">-</span>name <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[PE-bgp]</span> <span class="token function">import-route</span> ospf <span class="token keyword">process</span><span class="token operator">-</span>id <span class="token punctuation">[</span> med med <span class="token punctuation">|</span> route<span class="token operator">-</span>policy route<span class="token operator">-</span>policy<span class="token operator">-</span>name <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>PE上需要创建与VPN实例绑定的OSPF进程，并与CE建立OSPF邻居关系。同时需要在OSPF和BGP之间互相引入路由</li>
+<li>CE上配置与普通OSPF配置相同</li>
+</ul>
+<h2 id="mpls-vpn部署与应用">MPLS VPN部署与应用</h2>
+<h3 id="mpls-vpn应用与组网概述">MPLS VPN应用与组网概述</h3>
+<h4 id="mpls-vpn典型应用">MPLS VPN典型应用</h4>
+<blockquote>
+<p>MPLS VPN的主要应用包括企业互连和虚拟业务网络</p>
+</blockquote>
+<ul>
+<li><strong>企业互连应用</strong>：可通过MPLS VPN将分布在各地的分支机构和合作伙伴的IP网络连接在一起</li>
+<li><strong>虚拟业务网络</strong>：可在同一物理网络上运行多种业务，如VoIP、IPTV，为每个业务建立一个VPN，实现业务隔离</li>
+</ul>
+<h4 id="mpls-vpn基本组网">MPLS VPN基本组网</h4>
+<h5 id="内联网-intranet">内联网 Intranet</h5>
+<blockquote>
+<p>当采用Intranet组网方案时，一个VPN中的所有用户形成闭合用户群，相互之间能够进行流量转发，VPN中的用户不能与任何本VPN以外的用户通信，其站点通常是属于同一个组织</p>
+</blockquote>
+<ul>
+<li>PE需要为每个站点创建VPN实例，并配置全网唯一的RD</li>
+<li>PE通过配置Import RT和Export RT来控制不同VPN的站点做到无法互访</li>
+</ul>
+<h5 id="外联网-extranet">外联网 Extranet</h5>
+<blockquote>
+<p>当采用Extranet组网方案时，VPN用户可将部分站点中的网络资源给其他VPN用户进行访问</p>
+</blockquote>
+<h5 id="hub-spoke">Hub&amp;Spoke</h5>
+<p>当采用Hub&amp;Spoke方案时，可以将多个站点中的一个站点设置为Hub站点，其余站点为Spoke站点。站点间的互访必须通过Hub站点，通过Hub站点集中管控站点间的数据传输</p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS-VPN相关知识\Hub&amp;Spoke.png" alt="Hub&amp;Spoke" style="zoom:50%;" />
+<ul>
+<li>Spoke站点需要把路由发布给Hub站点，再通过Hub站点发布给其他Spoke站点
+<ul>
+<li>Spoke站点之间不直接交互路由信息</li>
+</ul>
+</li>
+<li>Spoke-PE需要设置Export Target为Spoke，Import Target为Hub</li>
+<li>Hub-PE上需要使用两个接口或子接口，一个用于接收Spoke-PE发来的路由，其VPN实例的Import Target为Spoke；另一个用于向Spoke-PE发布路由，其VPN实例的Export Target为Hub</li>
+</ul>
+<h4 id="mce组网">MCE组网</h4>
+<p>具有<strong>MCE [Multi-VPN-Instance，CE多实例CE]</strong> 功能的CE设备可以在MPLS VPN组网应用中承担多个VPN实例的CE功能，减少用户网络设备的投入</p>
+<ul>
+<li>MCE将PE的部分功能扩展到CE设备，通过将不同的接口与VPN绑定，并为每个VPN创建和维护独立的路由转发表 [Multi-VRF]</li>
+<li>MCE与对应的PE之间可以通过物理接口、子接口或者逻辑接口进行互联，PE上需要将这些接口绑定到对应的VPN实例</li>
+</ul>
+<h4 id="mpls-vpn跨域组网">MPLS VPN跨域组网</h4>
+<blockquote>
+<p>随着MPLS VPN解决方案的广泛应用，服务的终端用户的规格和范围也在增长，在一个企业内部的站点数目越来越大，某个地理位置与另外一个服务提供商相连的需求变得非常的普遍，存在着跨越不同自治系统的情况</p>
+</blockquote>
+<p>AS之间的MPLS VPN部署需要通过<strong>跨域 [Inter-AS] MPLS VPN</strong>实现</p>
+<p>RFC2547中提出了三种跨域VPN解决方案，分别是：</p>
+<ul>
+<li><strong>跨域VPN-OptionA [Inter-Provider Backbones Option A] 方式</strong>：需要跨域的VPN在ASBR间通过专用的接口管理自己的VPN路由，也称为VRF-to-VRF</li>
+<li><strong>跨域VPN-OptionB [Inter-Provider Backbones Option B] 方式</strong>：ASBR间通过MP-EBGP发布标签VPN-IPv4路由，也称为EBGP redistribution of labeled VPN-IPv4 routes</li>
+<li><strong>跨域VPN-OptionC [Inter-Provider Backbones Option C] 方式</strong>：PE间通过Multi-hop MP-EBGP发布标签VPN-IPv4路由，也称为Multihop EBGP redistribution of labeled VPN-IPv4 routes</li>
+</ul>
+<h3 id="mpls-vpn典型应用场景与部署">MPLS VPN典型应用场景与部署</h3>
+<h4 id="intranet场景">Intranet场景</h4>
+<p><strong>部署思路</strong></p>
+<ol>
+<li>MPLS VPN骨干网配置
+<ol>
+<li>IGP配置，实现骨干网的IP连通性</li>
+<li>MPLS与MPLS LDP配置，建立MPLS LSP公网隧道，传输VPN数据</li>
+<li>MP-BGP配置，建立后续传递VPNv4路由的MP-BGP对等体关系</li>
+</ol>
+</li>
+<li>VPN用户接入配置
+<ol>
+<li>创建VPN实例并配置参数（RT、RD）</li>
+<li>将接口加入VPN实例</li>
+<li>配置PE与CE之间的路由交换</li>
+</ol>
+</li>
+</ol>
+<h5 id="特殊场景下的bgp配置-as号替换">特殊场景下的BGP配置 - AS号替换</h5>
+<blockquote>
+<p>在MPLS VPN场景中，若PE与CE之间运行EBGP交互路由信息，则可能会出现两个站点的AS号相同的情况</p>
+</blockquote>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS-VPN相关知识\AS号替换.png" style="zoom:50%;" />
+<ul>
+<li>若CE1通过EBGP向PE1发送一条私网路由，并经过PE2发送到CE2，则CE2会由于AS号重复丢弃这条路由，导致属于同一VPN的Site 1和Site 2之间无法连通</li>
+<li>可以在PE上执行<strong>peer substitute-as命令</strong>使能AS号替换功能，即PE用本地AS号替换收到的私网路由中CE所在VPN站点的AS号，这样对端CE就不会因为AS号重复而丢弃路由了</li>
+</ul>
+<h5 id="特殊场景下的bgp配置-soo">特殊场景下的BGP配置 - SoO</h5>
+<p>在CE多归属，若使能了BGP的AS号替换功能，可能会引起路由环路，需要<strong>SoO [Site of Origin]特性</strong>来避免环路</p>
+<p>配置了BGP邻居的SoO后：</p>
+<ul>
+<li>接收到该邻居的BGP路由时，会在路径属性中携带该SoO属性并通告给其他BGP邻居。</li>
+<li>向该邻居通告BGP路由时，会检查路由中SoO属性是否与配置的SoO值相同，若相同则不通告，避免引起环路</li>
+</ul>
+<p><strong>示例如下：</strong></p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS-VPN相关知识\SoO.png" style="zoom:50%;" />
+<ul>
+<li>CE1与CE3处于同一个VPN站点1，CE2位于站点Site2，Site1和Site2站点所在的AS号都为65001。PE与CE之间运行的都是EBGP路由协议，为了Site 1和Site 2之间的路由可以正常学习，需要在PE1和PE2上配置AS号替换功能</li>
+<li>CE1传递站点内的路由给PE1，PE1传递该路由给CE3，由于配置AS号替换，CE3会接收该路由，可能会导致产生路由环路</li>
+</ul>
+<h4 id="hub-spoke场景">Hub&amp;Spoke场景</h4>
+<p>Hub&amp;Spoke有以下组网方案：</p>
+<ul>
+<li>方式一：Hub-CE与Hub-PE，Spoke-PE与Spoke-CE使用EBGP</li>
+<li>方式二：Hub-CE与Hub-PE，Spoke-PE与Spoke-CE使用IGP</li>
+<li>方式三：Hub-CE与Hub-PE使用EBGP，Spoke-PE与Spoke-CE使用IGP</li>
+<li>无法通过Hub-CE与Hub-PE使用IGP，Spoke-PE与Spoke-CE使用EBGP来部署Hub&amp;Spoke组网的MPLS VPN</li>
+</ul>
+<h3 id="ospf-vpn拓展">OSPF VPN拓展</h3>
+<h4 id="ospf与bgp互操作">OSPF与BGP互操作</h4>
+<h5 id="mpls-vpn中的ospf-bgp">MPLS VPN中的OSPF/BGP</h5>
+<p>当PE-CE间部署OSPF交互路由信息时，若在PE上使用标准BGP/OSPF过程互来传递路由信息，则远端PE在将BGP引入VPN实例的OSPF进程时，会直接产生Type5 LSA，不同站点都会将其他站点的路由视为<strong>自治系统外部路由[AS_external]</strong></p>
+<p><strong>BGP扩展团体属性</strong></p>
+<p>为了保留OSPF的路由信息，BGP新增了部分可携带OSPF路由信息的团体属性：</p>
+<ul>
+<li>Domain ID：域标识符用来标识和区分不同的域。</li>
+<li>Route Type：包含被引入到BGP的OSPF路由的 Area-ID 以及Route Type
+<ul>
+<li>Area-ID：PE 的VPN实例的OSPF进程与CE建立邻接关系的区域号</li>
+<li>Route Type：被引入的 OSPF 路由的类型
+<ul>
+<li>1 或 2：表示路由的类型为区域内部路由， 也就是 PE 根据 Type-1 及 Type-2 LSA 所计算出来的路由</li>
+<li>3：表示路由的类型为区域间路由</li>
+<li>5：表示路由的类型为 OSPF 外部路由，也就是 PE 通过 Type-5 LSA 计算得出的路由。当 Route-Type 字段的值为 5 时， Area-ID 字段的值需为 0.0.0.0</li>
+<li>7：表示路由的类型为 NSSA 路由，也就是 PE 通过 Type-7 LSA 计算得出的路由</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Domain ID</strong></p>
+<blockquote>
+<p>在PE上将OSPF引入BGP时，PE将根据本地的配置为BGP路由增加<strong>域ID属性</strong>，域ID作为BGP的扩展团体属性传播</p>
+</blockquote>
+<p>在PE将BGP路由引入OSPF时：</p>
+<ul>
+<li>若BGP路由携带的Domain ID与本地相同，则认为两个站点属于同一个OSPF路由域</li>
+<li>若不相同，则认为不在同一个路由域</li>
+</ul>
+<p><strong>Domain ID与Route Type</strong></p>
+<p>根据BGP路由中的Domain ID与Route Type属性，PE将产生不同类型的OSPF LSA类型发布到VRF的OSPF进程中</p>
+<table>
+<thead>
+<tr>
+<th>Domain ID与本地是否相同</th>
+<th>Route Type</th>
+<th>PE生成的OSPF LSA类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>是</td>
+<td>1、2、3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>是</td>
+<td>5、7</td>
+<td>5、7</td>
+</tr>
+<tr>
+<td>否</td>
+<td>1、2、3、5、7</td>
+<td>5、7</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ospf防环">OSPF防环</h4>
+<h5 id="type3路由防环-dn位">Type3路由防环 - DN位</h5>
+<ul>
+<li>为了防止3类LSA环路，OSPF多实例进程使用LSA Options域中一个原先未使用的比特作为标志位，称为DN位。使用DN位可以防止Type3 LSA环路</li>
+<li>PE路由器的OSPF实例进程在进行SPF计算时，忽略DN置位的Type3 LSA</li>
+</ul>
+<h5 id="type5-7路由防环-vpn-route-tag">Type5/7路由防环 - VPN Route Tag</h5>
+<p>可以使用VPN Route Tag（VPN路由标记）来防止此5类或7类路由环路</p>
+<p>PE在根据收到的BGP的私网路由生成5/7类LSA时，携带VPN路由标记。当PE发现LSA的VPN路由标记和本地配置的一样，就会忽略这条LSA，因此可以避免上述环路</p>
+<h4 id="ospf-sham-link">OSPF sham link</h4>
+<h5 id="sham-link的应用场景">Sham link的应用场景</h5>
+<p>通常情况下，BGP对等体之间通过BGP扩展团体属性在MPLS VPN骨干网上承载路由信息。另一端PE上运行的OSPF可利用这些信息来生成PE到CE的Type 3 LSA，这些路由是<strong>区域间路由 [Inter_Area route]</strong></p>
+<p>若在CE1和CE2之间增加一条<strong>后门 [Backdoor] 链路</strong>，并且直接运行OSPF交互路由。通过后门链路学习到的路由类型为<strong>区域内路由 [Intra_Area route]</strong></p>
+<img src="C:\Users\888888\Desktop\网络工程相关内容复习\Advanced Routing Switching Technology\MPLS-VPN相关知识\Sham link的应用场景.png" alt="Sham link的应用场景" style="zoom:50%;" />
+<blockquote>
+<p>由于区域内路由优于区域间路由，故后门链路会被优选，若想实现后门链路作为备份链路，可采用sham link实现</p>
+</blockquote>
+<h5 id="sham-link的工作机制">Sham link的工作机制</h5>
+<p>Sham link在两台PE之间创建了一条区域内链路。当LSA在伪装链路中泛洪，所有的OSPF路由类型都不会改变，不会转换成LSA3或者LSA5的类型</p>
+<p>Sham link被看成是两个VPN实例之间的链路，链路的两端是PE上的端点地址，分别作为建立连接时的源和目的地址。伪连接的源地址和目的地址使用32位掩码的Loopback接口地址，该Loopback接口需要绑定到VPN实例中，并通过BGP发布</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">十二惊惶</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://shierjinghuang.github.io/2025/04/23/MPLS-VPN%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/">https://shierjinghuang.github.io/2025/04/23/MPLS-VPN%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">十二惊惶</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/HCIP/">
+                                    <span class="chip bg-color">HCIP</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/">
+                                    <span class="chip bg-color">网络工程</span>
+                                </a>
+                            
+                                <a href="/tags/MPLS/">
+                                    <span class="chip bg-color">MPLS</span>
+                                </a>
+                            
+                                <a href="/tags/VPN/">
+                                    <span class="chip bg-color">VPN</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2025/05/02/%E5%9B%AD%E5%8C%BA%E7%BD%91%E5%85%B8%E5%9E%8B%E7%BB%84%E7%BD%91%E6%9E%B6%E6%9E%84%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%AE%9E%E8%B7%B5/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="园区网典型组网架构及案例实践">
+                        
+                        <span class="card-title">园区网典型组网架构及案例实践</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            园区网一般遵循层次化和模块化设计原则。按照终端用户数量或者网元数量，可将园区络分为小型园区网、中型园区网和大型园区网。
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2025-05-02
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                    网络工程相关
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/HCIA/">
+                        <span class="chip bg-color">HCIA</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2025/04/22/VLAN%E9%AB%98%E7%BA%A7%E6%8A%80%E6%9C%AF/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="VLAN高级技术">
+                        
+                        <span class="card-title">VLAN高级技术</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2025-04-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B%E7%9B%B8%E5%85%B3/" class="post-category">
+                                    网络工程相关
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BD%91%E7%BB%9C%E5%B7%A5%E7%A8%8B/">
+                        <span class="chip bg-color">网络工程</span>
+                    </a>
+                    
+                    <a href="/tags/VLAN/">
+                        <span class="chip bg-color">VLAN</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2025</span>
+            
+            <a href="/about" target="_blank">十二惊惶</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+                &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                        class="white-color">504.3k</span>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:572688347@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=572688347" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 572688347" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
