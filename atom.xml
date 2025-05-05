@@ -34,7 +34,7 @@
     <link href="https://shierjinghuang.github.io/2025/05/05/IPv6%E8%B7%AF%E7%94%B1%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/"/>
     <id>https://shierjinghuang.github.io/2025/05/05/IPv6%E8%B7%AF%E7%94%B1%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7/</id>
     <published>2025-05-05T07:09:55.000Z</published>
-    <updated>2025-05-05T07:12:38.527Z</updated>
+    <updated>2025-05-05T07:56:02.687Z</updated>
     
     
     
@@ -53,8 +53,21 @@
     <link href="https://shierjinghuang.github.io/2025/05/05/%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BA%A4%E6%8D%A2%E5%AE%89%E5%85%A8/"/>
     <id>https://shierjinghuang.github.io/2025/05/05/%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BA%A4%E6%8D%A2%E5%AE%89%E5%85%A8/</id>
     <published>2025-05-05T07:09:19.000Z</published>
-    <updated>2025-05-05T07:12:15.107Z</updated>
+    <updated>2025-05-05T07:54:41.483Z</updated>
     
+    <content type="html"><![CDATA[<h2 id="以太网交换安全">以太网交换安全</h2><h3 id="端口隔离">端口隔离</h3><blockquote><p>端口隔离技术，可以实现同一VLAN内端口之间的隔离</p></blockquote><ul><li>用户只需要将端口加入到隔离组中，就可以实现隔离组内端口之间二层数据的隔离。端口隔离功能为用户提供了更安全、更灵活的组网方案</li></ul><h4 id="端口隔离技术原理">端口隔离技术原理</h4><h5 id="隔离类型">隔离类型</h5><ul><li>双向隔离：同一端口隔离组的接口之间互相隔离，不同端口隔离组的接口之间不隔离。端口隔离只是针对同一设备上的端口隔离组成员，对于不同设备上的接口而言，无法实现该功能</li><li>单向隔离：为了实现不同端口隔离组的接口之间的隔离，可以通过配置接口之间的单向隔离来实现。缺省情况下，未配置端口单向隔离</li></ul><h5 id="隔离模式">隔离模式</h5><ul><li><strong>L2 [二层隔离三层互通]</strong>：隔离同一VLAN内的广播报文，但是不同端口下的用户还可以进行三层通信。缺省情况下，端口隔离模式为二层隔离三层互通<ul><li>采用二层隔离三层互通的隔离模式时，在VLANIF接口上使能VLAN内Proxy ARP功能，配置arp-proxy inner-sub-vlan-proxy enable，可以实现同一VLAN内主机通信</li></ul></li><li><strong>ALL [二层三层都隔离]</strong>：同一VLAN的不同端口下用户二三层彻底隔离无法通信</li></ul><img src="D:\blog\shierjinghuang\source\_posts\以太网交换安全\端口隔离技术原理.png" style="zoom:50%;" /><h4 id="端口隔离配置命令">端口隔离配置命令</h4><p><strong>1. 使能端口隔离功能</strong></p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-GigabitEthernet0/0/1]</span> port<span class="token operator">-</span>isolate enable <span class="token punctuation">[</span> <span class="token function">group</span> <span class="token function">group-id</span> <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>缺省情况下，未使能端口隔离功能。如果不指定group-id参数时，默认加入的端口隔离组为1</p><p><strong>2. 配置端口隔离模式</strong></p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei]</span> port<span class="token operator">-</span>isolate mode <span class="token punctuation">&#123;</span> l2 <span class="token punctuation">|</span> all <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>缺省情况下，端口隔离模式为L2，L2 端口隔离模式为二层隔离三层互通，all 端口隔离模式为二层三层都隔离</p><p><strong>3. 配置端口单向隔离</strong></p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell"><span class="token namespace">[Huawei-GigabitEthernet0/0/1]</span> am isolate <span class="token punctuation">&#123;</span>interface<span class="token operator">-</span><span class="token function">type</span> interface<span class="token operator">-</span>number <span class="token punctuation">&#125;</span>&amp;&lt;1<span class="token operator">-</span>8><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>am isolate命令用来配置当前接口与指定接口的单向隔离。在接口A上配置与接口B之间单向隔离后，接口A发送的报文不能到达接口B，但从接口B发送的报文可以到达接口A。缺省情况下，未配置端口单向隔离</p><p><strong>4. 其他配置命令</strong></p><pre class="line-numbers language-powershell" data-language="powershell"><code class="language-powershell">display port<span class="token operator">-</span>isolate <span class="token function">group</span> <span class="token punctuation">&#123;</span> <span class="token function">group-id</span> <span class="token punctuation">|</span> all <span class="token punctuation">&#125;</span><span class="token comment">#查看端口隔离组的配置</span>clear configuration port<span class="token operator">-</span>isolate<span class="token comment">#命令一键式清除设备上所有的端口隔离配置</span>port<span class="token operator">-</span>isolate exclude vlan<span class="token comment">#命令配置端口隔离功能生效时排除的VLAN</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><h3 id="mac地址表安全">MAC地址表安全</h3><p>端口安全</p><p>MAC地址漂移防止与检测</p><p>MACsec</p><p>交换机流量控制</p><p>DHCP Snooping</p><p>IP Source Guard</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;以太网交换安全&quot;&gt;以太网交换安全&lt;/h2&gt;
+&lt;h3 id=&quot;端口隔离&quot;&gt;端口隔离&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;端口隔离技术，可以实现同一VLAN内端口之间的隔离&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;用户只需要将端口加入到隔离组中，就</summary>
+      
     
     
     
